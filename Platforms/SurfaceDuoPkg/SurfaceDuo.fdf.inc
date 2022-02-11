@@ -41,27 +41,20 @@
 ############################################################################
 
 [Rule.Common.SEC]
-  FILE SEC = $(NAMED_GUID) RELOCS_STRIPPED {
-    TE  TE Align = 4K                   $(INF_OUTPUT)/$(MODULE_NAME).efi
+  FILE SEC = $(NAMED_GUID) RELOCS_STRIPPED FIXED {
+    TE  TE Align = Auto                 $(INF_OUTPUT)/$(MODULE_NAME).efi
   }
 
 [Rule.Common.PEI_CORE]
-  FILE PEI_CORE = $(NAMED_GUID) {
+  FILE PEI_CORE = $(NAMED_GUID) FIXED {
     TE     TE Align = Auto              $(INF_OUTPUT)/$(MODULE_NAME).efi
     UI     STRING ="$(MODULE_NAME)" Optional
   }
 
 [Rule.Common.PEIM]
-  FILE PEIM = $(NAMED_GUID) {
+  FILE PEIM = $(NAMED_GUID) FIXED {
      PEI_DEPEX PEI_DEPEX Optional       $(INF_OUTPUT)/$(MODULE_NAME).depex
      TE       TE Align = Auto           $(INF_OUTPUT)/$(MODULE_NAME).efi
-     UI       STRING="$(MODULE_NAME)" Optional
-  }
-
-[Rule.Common.PEIM.BINARY]
-  FILE PEIM = $(NAMED_GUID) {
-     PEI_DEPEX PEI_DEPEX Optional       $(INF_OUTPUT)/$(MODULE_NAME).depex
-     TE       TE Align = Auto           |.efi
      UI       STRING="$(MODULE_NAME)" Optional
   }
 
@@ -72,15 +65,6 @@
       PE32      PE32                    $(INF_OUTPUT)/$(MODULE_NAME).efi
       UI        STRING="$(MODULE_NAME)" Optional
     }
-  }
-
-[Rule.Common.PEIM.FMP_IMAGE_DESC]
-  FILE PEIM = $(NAMED_GUID) {
-     RAW BIN                  |.acpi
-     PEI_DEPEX PEI_DEPEX Optional        $(INF_OUTPUT)/$(MODULE_NAME).depex
-     PE32      PE32      Align=4K        $(INF_OUTPUT)/$(MODULE_NAME).efi
-     UI        STRING="$(MODULE_NAME)"   Optional
-     VERSION   STRING="$(INF_VERSION)"   Optional BUILD_NUM=$(BUILD_NUMBER)
   }
 
 [Rule.Common.DXE_CORE]
@@ -101,6 +85,8 @@
     DXE_DEPEX    DXE_DEPEX              Optional $(INF_OUTPUT)/$(MODULE_NAME).depex
     PE32         PE32                   $(INF_OUTPUT)/$(MODULE_NAME).efi
     UI           STRING="$(MODULE_NAME)" Optional
+    RAW          ACPI  Optional               |.acpi
+    RAW          ASL   Optional               |.aml
   }
 
 [Rule.Common.DXE_DRIVER.BINARY]
@@ -142,4 +128,5 @@
   FILE FREEFORM = $(NAMED_GUID) {
     RAW       ACPI                    |.acpi
     RAW       ASL                     |.aml
+    UI        STRING="$(MODULE_NAME)" Optional
   }

@@ -6,22 +6,20 @@ EFI_STATUS
 CfgGetMemInfoByName(
     CHAR8 *RegionName, ARM_MEMORY_REGION_DESCRIPTOR_EX *MemRegions)
 {
-  UINTN Index = 0;
+  PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
+      gDeviceMemoryDescriptorEx;
 
   DEBUG(
       (EFI_D_INFO, "[PlatformHob] CfgGetMemInfoByName(%a) Entry...\n",
        RegionName));
 
   // Run through each memory descriptor
-  while (gDeviceMemoryDescriptorEx[Index].Address !=
-         (EFI_PHYSICAL_ADDRESS)0xFFFFFFFF) {
-
-    if (AsciiStriCmp(RegionName, gDeviceMemoryDescriptorEx[Index].Name) == 0) {
-      *MemRegions = gDeviceMemoryDescriptorEx[Index];
+  while (MemoryDescriptorEx->Length != 0) {
+    if (AsciiStriCmp(RegionName, MemoryDescriptorEx->Name) == 0) {
+      *MemRegions = *MemoryDescriptorEx;
       return EFI_SUCCESS;
     }
-
-    Index++;
+    MemoryDescriptorEx++;
   }
 
   DEBUG(
@@ -36,22 +34,20 @@ EFI_STATUS
 CfgGetMemInfoByAddress(
     UINT64 RegionBaseAddress, ARM_MEMORY_REGION_DESCRIPTOR_EX *MemRegions)
 {
-  UINTN Index = 0;
+  PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
+      gDeviceMemoryDescriptorEx;
 
   DEBUG(
       (EFI_D_INFO, "[PlatformHob] CfgGetMemInfoByAddress(%d) Entry...\n",
        RegionBaseAddress));
 
   // Run through each memory descriptor
-  while (gDeviceMemoryDescriptorEx[Index].Address !=
-         (EFI_PHYSICAL_ADDRESS)0xFFFFFFFF) {
-
-    if (gDeviceMemoryDescriptorEx[Index].Address == RegionBaseAddress) {
-      *MemRegions = gDeviceMemoryDescriptorEx[Index];
+  while (MemoryDescriptorEx->Length != 0) {
+    if (MemoryDescriptorEx->Address == RegionBaseAddress) {
+      *MemRegions = *MemoryDescriptorEx;
       return EFI_SUCCESS;
     }
-
-    Index++;
+    MemoryDescriptorEx++;
   }
 
   DEBUG((

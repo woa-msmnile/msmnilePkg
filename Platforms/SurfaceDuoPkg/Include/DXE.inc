@@ -136,7 +136,6 @@
     }
 
     INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
-    INF SurfaceDuoPkg/Driver/Sm8150PlatformInitDxe/Sm8150PlatformInitDxe.inf
 
     FILE DRIVER = 615676D8-F930-40DD-AFF2-F1FAE384337F {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/file-615676d8-f930-40dd-aff2-f1fae384337f/section0.dxe.depex

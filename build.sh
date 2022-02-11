@@ -1,7 +1,7 @@
 #!/bin/bash
 
 python2 ./ImageResources/mkbootimg.py \
-  --kernel ./Build/SurfaceDuo-AARCH64/DEBUG_GCC5/FV/SM8150_EFI.fd \
+  --kernel ./Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/FV/SM8150_EFI.fd \
   --ramdisk ./ImageResources/ramdisk \
   --recovery_dtbo ./ImageResources/recovery_dtbo \
   -o ./boot.img \

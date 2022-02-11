@@ -1,16 +1,13 @@
 #ifndef __PLATFORM_HOB_INTERNAL_H
 #define __PLATFORM_HOB_INTERNAL_H
 
-#include <Library/ArmPlatformLib.h>
+#include <Library/ArmLib.h>
+#include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>
-#include <Library/IoLib.h>
-#include <Library/PcdLib.h>
-
-#include <Ppi/ArmMpCoreInfo.h>
-
 #include <Library/HobLib.h>
+#include <Library/IoLib.h>
 #include <Library/MemoryAllocationLib.h>
-
+#include <Library/PcdLib.h>
 #include <Library/SerialPortLib.h>
 
 // This varies by device
