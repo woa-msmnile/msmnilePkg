@@ -314,7 +314,7 @@ SMBIOS_TABLE_TYPE4 mProcessorInfoType4 = {
 };
 
 CHAR8 *mProcessorInfoType4Strings[] = {
-    "Socket", "Qualcomm Inc.", "Snapdragon 855",
+    "Socket", "Qualcomm Inc.", "Snapdragon (TM) 855",
     "SM8150", NULL};
 
 /***********************************************************************
@@ -424,7 +424,7 @@ SMBIOS_TABLE_TYPE17 mMemDevInfoType17 = {
     0xFFFE, // MemoryErrorInformationHandle;
     0xFFFF, // TotalWidth;
     0xFFFF, // DataWidth;
-    0x0C00, // Size; // When bit 15 is 0: Size in MB
+    0x1800, // Size; // When bit 15 is 0: Size in MB
             // When bit 15 is 1: Size in KB, and continues in ExtendedSize
     MemoryFormFactorRowOfChips, // FormFactor;                     ///< The
                                 // enumeration value from MEMORY_FORM_FACTOR.
