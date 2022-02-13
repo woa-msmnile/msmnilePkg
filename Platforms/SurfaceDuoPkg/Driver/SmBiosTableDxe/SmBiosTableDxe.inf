@@ -39,6 +39,7 @@
 
 [Protocols]
   gEfiSmbiosProtocolGuid
+  gEfiChipInfoProtocolGuid
   
 [Depex]
   gEfiSmbiosProtocolGuid

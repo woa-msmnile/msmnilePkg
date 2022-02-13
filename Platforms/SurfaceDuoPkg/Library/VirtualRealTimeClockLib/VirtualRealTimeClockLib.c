@@ -27,8 +27,6 @@
 #include <Library/RealTimeClockLib.h>
 #include <Library/TimerLib.h>
 
-#include <Configuration/Hob.h>
-
 STATIC EFI_TIME BaseTime;
 
 /**

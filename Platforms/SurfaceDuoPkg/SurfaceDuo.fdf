@@ -115,15 +115,12 @@ READ_LOCK_STATUS   = TRUE
     INF SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
   !endif
 
+  INF EmbeddedPkg/Drivers/VirtualKeyboardDxe/VirtualKeyboardDxe.inf
+
   # BDS
   INF MdeModulePkg/Universal/SmbiosDxe/SmbiosDxe.inf
-  INF MdeModulePkg/Universal/DisplayEngineDxe/DisplayEngineDxe.inf
   INF MdeModulePkg/Universal/SetupBrowserDxe/SetupBrowserDxe.inf
   INF MdeModulePkg/Universal/DriverHealthManagerDxe/DriverHealthManagerDxe.inf
-  INF MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
-  INF SurfaceDuoPkg/Application/BdsMenuApp/BdsMenuApp.inf
-  INF SurfaceDuoPkg/Driver/LogoDxe/LogoDxe.inf
-  INF SurfaceDuoPkg/Application/BootSplashApp/BootSplashApp.inf
 
   # Disk IO
   INF MdeModulePkg/Bus/Scsi/ScsiBusDxe/ScsiBusDxe.inf
@@ -132,22 +129,10 @@ READ_LOCK_STATUS   = TRUE
   # ACPI and SMBIOS
   INF MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
   INF MdeModulePkg/Universal/Acpi/AcpiPlatformDxe/AcpiPlatformDxe.inf
-  INF MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
   INF SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
 
   # ACPI Tables
 !include SurfaceDuoPkg/Include/ACPI.inc
-
-  # SplashApp assets
-  FILE FREEFORM = 5af45c60-a0cd-4aab-b6f4-b1c07c347ad7 {
-    SECTION RAW = SurfaceDuoPkg/Application/BootSplashApp/BootPrompt.png
-    SECTION UI = "BootSplashPrompt"
-  }
-
-  FILE FREEFORM = 5af45c60-a0cd-4aab-b6f4-b1c07c347ad8 {
-    SECTION RAW = SurfaceDuoPkg/Application/BootSplashApp/BootPromptClear.png
-    SECTION UI = "BootSplashPromptClear"
-  }
 
   # DT
   INF EmbeddedPkg/Drivers/DtPlatformDxe/DtPlatformDxe.inf
@@ -155,7 +140,52 @@ READ_LOCK_STATUS   = TRUE
   FILE FREEFORM = 25462CDA-221F-47DF-AC1D-259CFAA4E326 {
     SECTION RAW = SurfaceDuoPkg/FdtBlob/sm8150-microsoft-surface-duo.dtb
   }
+
+  INF MsGraphicsPkg/GopOverrideDxe/GopOverrideDxe.inf
+  INF DfciPkg/AuthManagerNull/AuthManagerNull.inf
+  INF DfciPkg/SettingsManager/SettingsManagerDxe.inf
+  INF OemPkg/BootMenu/BootMenu.inf
+  INF OemPkg/FrontPage/FrontPage.inf
+  INF PcBdsPkg/MsBootPolicy/MsBootPolicy.inf
+  INF MdeModulePkg/Universal/BootManagerPolicyDxe/BootManagerPolicyDxe.inf
+  INF MdeModulePkg/Universal/RegularExpressionDxe/RegularExpressionDxe.inf
+  INF DfciPkg/DfciManager/DfciManager.inf
+
+  # Change AARCH64 to the appropriate architecture for your platform.
+  FILE APPLICATION=PCD(gPcBdsPkgTokenSpaceGuid.PcdShellFile) {
+    SECTION PE32=$(OUTPUT_DIRECTORY)/$(TARGET)_$(TOOL_CHAIN_TAG)/AARCH64/Shell.efi
+    SECTION UI= "EdkShell"
+  }
+
+  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLogoFile) {
+    SECTION RAW = SurfaceDuoPkg/Include/Resources/BootLogo.bmp
+    SECTION UI = "Logo"
+  }
+
+  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdFrontPageLogoFile) {
+    SECTION RAW = OemPkg/FrontPage/Resources/FrontpageLogo.bmp
+  }
+
+  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLowBatteryFile) {
+    SECTION RAW = OemPkg/FrontPage/Resources/LBAT.bmp
+  }
+
+  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdThermalFile) {
+    SECTION RAW = OemPkg/FrontPage/Resources/THOT.bmp
+  }
+
+  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdVolumeUpIndicatorFile) {
+    SECTION RAW = OemPkg/FrontPage/Resources/VolumeUp.bmp
+  }
+
+  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdFirmwareSettingsIndicatorFile) {
+    SECTION RAW = OemPkg/FrontPage/Resources/FirmwareSettings.bmp
+  }
   
+  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdBootFailIndicatorFile ) {
+    SECTION RAW = OemPkg/FrontPage/Resources/NoBoot.bmp
+  }
+
 [FV.FVMAIN_COMPACT]
 FvAlignment        = 8
 ERASE_POLARITY     = 1
@@ -183,4 +213,3 @@ READ_LOCK_STATUS   = TRUE
   }
 
   !include SurfaceDuo.fdf.inc
-

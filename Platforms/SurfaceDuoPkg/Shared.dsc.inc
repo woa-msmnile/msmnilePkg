@@ -109,8 +109,6 @@
   gEfiMdePkgTokenSpaceGuid.PcdDefaultTerminalType|4 
 
   # Boot Manager
-  gEfiMdeModulePkgTokenSpaceGuid.PcdBootManagerMenuFile|{ 0x21, 0xaa, 0x2c, 0x46, 0x14, 0x76, 0x03, 0x45, 0x83, 0x6e, 0x8a, 0xb6, 0xf4, 0x66, 0x23, 0x31 }
-  gSurfaceDuoPkgTokenSpaceGuid.PcdBootSplashAppFile|{ 0x59, 0x67, 0xbe, 0x93, 0x1a, 0x7d, 0x69, 0x4d, 0x6d, 0x98, 0x30, 0xf9, 0xc9, 0x54, 0x8e, 0xd7 }
   gEfiMdePkgTokenSpaceGuid.PcdPlatformBootTimeOut|2
 
   # Enable Debug
@@ -147,6 +145,23 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxAuthVariableSize|0x2800
   gEfiSecurityPkgTokenSpaceGuid.PcdUserPhysicalPresence|TRUE
 !endif
+
+  # a PCD that controls the enumeration and connection of ConIn's. When true, ConIn is only connected once a console input is requests 
+  gEfiMdeModulePkgTokenSpaceGuid.PcdConInConnectOnDemand|TRUE
+
+# Enable SHELL to build instead of just taking the binary
+  gEfiMdePkgTokenSpaceGuid.PcdUefiLibMaxPrintBufferSize|16000
+  gEfiShellPkgTokenSpaceGuid.PcdShellProfileMask|0x1f    # All profiles
+
+  gMsGraphicsPkgTokenSpaceGuid.PcdUiThemeInDxe|TRUE
+  gEfiMdeModulePkgTokenSpaceGuid.PcdBootManagerInBootOrder|TRUE
+
+  # The GUID of Frontpage.inf from MU_OEM_SAMPLE
+  # 4042708A-0F2D-4823-AC60-0D77B3111889
+  gEfiMdeModulePkgTokenSpaceGuid.PcdBootManagerMenuFile|{ 0x8A, 0x70, 0x42, 0x40, 0x2D, 0x0F, 0x23, 0x48, 0xAC, 0x60, 0x0D, 0x77, 0xB3, 0x11, 0x18, 0x89 }
+
+  gOemPkgTokenSpaceGuid.PcdUefiVersionNumber|0x1160601 # 1.22.6.1
+  gOemPkgTokenSpaceGuid.PcdUefiBuildDate|0x16020D # 2/13/2022
 
 [PcdsDynamicDefault.common]
   gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1350
@@ -244,20 +259,18 @@
 !if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == 1
   SerialPortLib|SurfaceDuoPkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf
 !else
+!if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
+  SerialPortLib|SurfaceDuoPkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
+!else
   SerialPortLib|MdePkg/Library/BaseSerialPortLibNull/BaseSerialPortLibNull.inf
+!endif
 !endif
   
   MemoryInitPeiLib|SurfaceDuoPkg/Library/MemoryInitPeiLib/PeiMemoryAllocationLib.inf
   PlatformPeiLib|SurfaceDuoPkg/Library/PlatformPeiLib/PlatformPeiLib.inf
-  PlatformBootManagerLib|SurfaceDuoPkg/Library/PlatformBootManagerLib/PlatformBootManagerLib.inf
 
   # System Reset
-  ArmHvcLib|ArmPkg/Library/ArmHvcLib/ArmHvcLib.inf
-  HwResetSystemLib|MdeModulePkg/Library/BaseResetSystemLibNull/BaseResetSystemLibNull.inf
-
-  # UI Llbrary and apps
-  LittleVglLib|SurfaceDuoPkg/Library/LittleVglLib/LittleVglLib.inf
-  LodePngLib|SurfaceDuoPkg/Library/LodePngLib/LodePngLib.inf
+  HwResetSystemLib|ArmPkg/Library/ArmSmcPsciResetSystemLib/ArmSmcPsciResetSystemLib.inf
 
   BaseBinSecurityLib|MdePkg/Library/BaseBinSecurityLibNull/BaseBinSecurityLibNull.inf
   MemoryProtectionHobLib|MdeModulePkg/Library/MemoryProtectionHobLibNull/MemoryProtectionHobLibNull.inf
@@ -269,8 +282,255 @@
   MemoryTypeInfoSecVarCheckLib|MdeModulePkg/Library/MemoryTypeInfoSecVarCheckLib/MemoryTypeInfoSecVarCheckLib.inf
   FltUsedLib|MdePkg/Library/FltUsedLib/FltUsedLib.inf
   MemoryTypeInformationChangeLib|MdeModulePkg/Library/MemoryTypeInformationChangeLibNull/MemoryTypeInformationChangeLibNull.inf
-  MallocLib|SurfaceDuoPkg/Library/MallocLib/MallocLib.inf
   DtPlatformDtbLoaderLib|EmbeddedPkg/Library/DxeDtPlatformDtbLoaderLibDefault/DxeDtPlatformDtbLoaderLibDefault.inf
+
+  BaseCryptLib|CryptoPkg/Library/BaseCryptLib/BaseCryptLib.inf
+  CapsulePersistLib|MdeModulePkg/Library/CapsulePersistLibNull/CapsulePersistLibNull.inf      ## MU_CHANGE
+  DebugAgentTimerLib|EmbeddedPkg/Library/DebugAgentTimerLibNull/DebugAgentTimerLibNull.inf
+  DfciDeviceIdSupportLib|DfciPkg/Library/DfciDeviceIdSupportLibNull/DfciDeviceIdSupportLibNull.inf
+  DfciGroupLib|DfciPkg/Library/DfciGroupLibNull/DfciGroups.inf
+  DfciRecoveryLib|DfciPkg/Library/DfciRecoveryLib/DfciRecoveryLib.inf
+  DfciSettingsLib|DfciPkg/Library/DfciSettingsLib/DfciSettingsLib.inf
+  DfciUiSupportLib|DfciPkg/Library/DfciUiSupportLibNull/DfciUiSupportLibNull.inf
+  DfciV1SupportLib|DfciPkg/Library/DfciV1SupportLibNull/DfciV1SupportLibNull.inf
+  DfciXmlDeviceIdSchemaSupportLib|DfciPkg/Library/DfciXmlDeviceIdSchemaSupportLib/DfciXmlDeviceIdSchemaSupportLib.inf
+  DfciXmlIdentitySchemaSupportLib|DfciPkg/Library/DfciXmlIdentitySchemaSupportLib/DfciXmlIdentitySchemaSupportLib.inf
+  DfciXmlPermissionSchemaSupportLib|DfciPkg/Library/DfciXmlPermissionSchemaSupportLib/DfciXmlPermissionSchemaSupportLib.inf
+  DfciXmlSettingSchemaSupportLib|DfciPkg/Library/DfciXmlSettingSchemaSupportLib/DfciXmlSettingSchemaSupportLib.inf
+  DfciSettingChangedNotificationLib|DfciPkg/Library/DfciSettingChangedNotificationLib/DfciSettingChangedNotificationLibNull.inf
+  FileHandleLib|MdePkg/Library/UefiFileHandleLib/UefiFileHandleLib.inf
+  FmpAuthenticationLib|SecurityPkg/Library/FmpAuthenticationLibPkcs7/FmpAuthenticationLibPkcs7.inf
+  HttpLib|NetworkPkg/Library/DxeHttpLib/DxeHttpLib.inf
+  JsonLiteParserLib|MsCorePkg/Library/JsonLiteParser/JsonLiteParser.inf
+  MsPlatformDevicesLib|PcBdsPkg/Library/MsPlatformDevicesLibNull/MsPlatformDevicesLibNull.inf
+  MsSecureBootLib|OemPkg/Library/MsSecureBootLib/MsSecureBootLib.inf
+  MuTelemetryHelperLib|MsWheaPkg/Library/MuTelemetryHelperLib/MuTelemetryHelperLib.inf
+  NonDiscoverableDeviceRegistrationLib|MdeModulePkg/Library/NonDiscoverableDeviceRegistrationLib/NonDiscoverableDeviceRegistrationLib.inf
+  OemHookStatusCodeLib|MdeModulePkg/Library/OemHookStatusCodeLibNull/OemHookStatusCodeLibNull.inf
+  PasswordPolicyLib|OemPkg/Library/PasswordPolicyLibNull/PasswordPolicyLibNull.inf
+  PlatformBootManagerLib|MsCorePkg/Library/PlatformBootManagerLib/PlatformBootManagerLib.inf
+  PlatformKeyLib|OemPkg/Library/PlatformKeyLibNull/PlatformKeyLibNull.inf
+  PlatformThemeLib|MsGraphicsPkg/Library/SamplePlatformThemeLib/PlatformThemeLib.inf
+  ReportStatusCodeLib|MdeModulePkg/Library/DxeReportStatusCodeLib/DxeReportStatusCodeLib.inf
+  ShellLib|ShellPkg/Library/UefiShellLib/UefiShellLib.inf
+  UefiDevicePathLib|MdePkg/Library/UefiDevicePathLib/UefiDevicePathLib.inf
+  UefiScsiLib|MdePkg/Library/UefiScsiLib/UefiScsiLib.inf
+  ZeroTouchSettingsLib|ZeroTouchPkg/Library/ZeroTouchSettings/ZeroTouchSettings.inf
+
+  #
+  # Libraries to support Shell
+  #
+  ShellLib|ShellPkg/Library/UefiShellLib/UefiShellLib.inf
+  ShellCommandLib|ShellPkg/Library/UefiShellCommandLib/UefiShellCommandLib.inf
+  ShellCEntryLib|ShellPkg/Library/UefiShellCEntryLib/UefiShellCEntryLib.inf
+  HandleParsingLib|ShellPkg/Library/UefiHandleParsingLib/UefiHandleParsingLib.inf
+  BcfgCommandLib|ShellPkg/Library/UefiShellBcfgCommandLib/UefiShellBcfgCommandLib.inf
+  NetLib|NetworkPkg/Library/DxeNetLib/DxeNetLib.inf
+
+  #
+  # Contains intrinsics for crypto operations
+  #
+  IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
+
+  #
+  # contains NULL routines to support UI operations associated with DFCI.
+  #
+  DfciUiSupportLib|DfciPkg/Library/DfciUiSupportLibNull/DfciUiSupportLibNull.inf
+
+  #
+  # contains crypto support functions for the DFCI recovery feature.
+  #
+  DfciRecoveryLib|DfciPkg/Library/DfciRecoveryLib/DfciRecoveryLib.inf
+
+  #
+  # Contains openSSL library used by BaseCryptoLib
+  #
+  OpensslLib|CryptoPkg/Library/OpensslLib/OpensslLib.inf
+
+  #
+  # Stubs functions that should contain base logic for querying, setting, and verifying user passwords.
+  #
+  PasswordStoreLib|MsCorePkg/Library/PasswordStoreLibNull/PasswordStoreLibNull.inf
+  BaseCryptLib|CryptoPkg/Library/BaseCryptLib/BaseCryptLib.inf
+
+  #
+  # Supports DFCI Groups.
+  #
+  DfciGroupLib|DfciPkg/Library/DfciGroupLibNull/DfciGroups.inf
+  XmlTreeQueryLib|XmlSupportPkg/Library/XmlTreeQueryLib/XmlTreeQueryLib.inf
+  XmlTreeLib|XmlSupportPkg/Library/XmlTreeLib/XmlTreeLib.inf
+
+  #
+  # Backwards compatibility with DFCI V1 functions.
+  #
+  DfciV1SupportLib|DfciPkg/Library/DfciV1SupportLibNull/DfciV1SupportLibNull.inf
+  FltUsedLib|MdePkg/Library/FltUsedLib/FltUsedLib.inf
+
+  #
+  # Library instance that understands the MsXml Settings Schema and providers helper functions
+  #
+  DfciXmlSettingSchemaSupportLib|DfciPkg/Library/DfciXmlSettingSchemaSupportLib/DfciXmlSettingSchemaSupportLib.inf
+
+  #
+  # Library instance that understands the MsXml Permission Schema and providers helper functions
+  #
+  DfciXmlPermissionSchemaSupportLib|DfciPkg/Library/DfciXmlPermissionSchemaSupportLib/DfciXmlPermissionSchemaSupportLib.inf
+
+  #
+  # Library instance that understands the MsXml Device Id Schema and providers helper functions
+  #
+  DfciXmlDeviceIdSchemaSupportLib|DfciPkg/Library/DfciXmlDeviceIdSchemaSupportLib/DfciXmlDeviceIdSchemaSupportLib.inf
+
+  #
+  # Library instance that understands the MsXml Device Id Schema and providers helper functions
+  #
+  DfciXmlIdentitySchemaSupportLib|DfciPkg/Library/DfciXmlIdentitySchemaSupportLib/DfciXmlIdentitySchemaSupportLib.inf
+
+  #
+  # Library instance that understands Zero Touch
+  #
+  ZeroTouchSettingsLib|ZeroTouchPkg/Library/ZeroTouchSettings/ZeroTouchSettings.inf
+  SafeIntLib|MdePkg/Library/BaseSafeIntLib/BaseSafeIntLib.inf
+  BmpSupportLib|MdeModulePkg/Library/BaseBmpSupportLib/BaseBmpSupportLib.inf
+
+  #
+  # Null library for displaying device state
+  #
+  DisplayDeviceStateLib|MsGraphicsPkg/Library/DisplayDeviceStateLibNull/DisplayDeviceStateLibNull.inf
+
+  #
+  # This library is for showing the main system boot graphics.
+  #
+  BootGraphicsLib|MsGraphicsPkg/Library/BootGraphicsLib/BootGraphicsLib.inf
+
+  #
+  # BootGraphicsProviderLib that uses PCDs and raw files in the firmware volumes
+  #
+  BootGraphicsProviderLib|OemPkg/Library/BootGraphicsProviderLib/BootGraphicsProviderLib.inf
+
+  #
+  # This library contains access functions for dealing with the copying of an MS_UI_THEME
+  #
+  MsUiThemeCopyLib|MsGraphicsPkg/Library/MsUiThemeCopyLib/MsUiThemeCopyLib.inf
+
+  #
+  # Library to provide platform version information
+  #
+  MuUefiVersionLib|OemPkg/Library/MuUefiVersionLib/MuUefiVersionLib.inf
+
+  #
+  # This is the Thermal Services Library that encapsulates the platform specific thermal information.
+  #
+  ThermalServicesLib|PcBdsPkg/Library/ThermalServicesLibNull/ThermalServicesLibNull.inf
+
+  #
+  # Null Power Services Library class to support Platforms that dont have battery
+  #
+  PowerServicesLib|PcBdsPkg/Library/PowerServicesLibNull/PowerServicesLibNull.inf
+
+  #
+  # Empty Platform Library of power check.
+  #
+  MsPlatformPowerCheckLib|PcBdsPkg/Library/MsPlatformPowerCheckLibNull/MsPlatformPowerCheckLibNull.inf
+
+  #
+  # Empty Console Message Library
+  #
+  ConsoleMsgLib|PcBdsPkg/Library/ConsoleMsgLibNull/ConsoleMsgLibNull.inf
+
+  #
+  # Library to help set the console to known points (low res, native res)
+  #
+  GraphicsConsoleHelperLib|PcBdsPkg/Library/GraphicsConsoleHelperLib/GraphicsConsoleHelper.inf
+  DeviceStateLib|MdeModulePkg/Library/DeviceStateLib/DeviceStateLib.inf
+
+  #
+  # Device specific actions in support of PlatformBootManagerLib.
+  # Sort of a wrapper for MsPlatformDevicesLib, which needs to be written for each platform.
+  #
+  DeviceBootManagerLib|PcBdsPkg/Library/DeviceBootManagerLib/DeviceBootManagerLib.inf
+
+  #
+  # LIbrary to display the On screen notifications for the platform
+  #
+  UiRectangleLib|MsGraphicsPkg/Library/BaseUiRectangleLib/BaseUiRectangleLib.inf
+
+  #
+  # display the device state notifications for the platform using color bars
+  #
+  DisplayDeviceStateLib|MsGraphicsPkg/Library/ColorBarDisplayDeviceStateLib/ColorBarDisplayDeviceStateLib.inf
+
+  #
+  # interfaces with alternate boot variable
+  #
+  MsAltBootLib|OemPkg/Library/MsAltBootLib/MsAltBootLib.inf
+
+  #
+  # Library that is attached BdsDxe to implement Microsoft extensions to UefiBootManagerLib.
+  #
+  MsBootOptionsLib|PcBdsPkg/Library/MsBootOptionsLib/MsBootOptionsLib.inf
+
+  #
+  # A shared place for all colors used in this package
+  #
+  MsColorTableLib|MsGraphicsPkg/Library/MsColorTableLib/MsColorTableLib.inf
+
+  #
+  # Library that is attached to drivers that require networking.
+  #
+  MsNetworkDependencyLib|PcBdsPkg/Library/MsNetworkDependencyLib/MsNetworkDependencyLib.inf
+
+  #
+  # Library to provide interface on Reboot Reason non volatile varialbles
+  #
+  MsNVBootReasonLib|OemPkg/Library/MsNVBootReasonLib/MsNVBootReasonLib.inf
+
+  #
+  # An architecture agnostic math library providing reasonable approximations for various functions in software
+  #
+  MathLib|MsCorePkg/Library/MathLib/MathLib.inf
+
+  #
+  # This library is for showing the main system boot graphics.
+  #
+  BootGraphicsLib|MsGraphicsPkg/Library/BootGraphicsLib/BootGraphicsLib.inf
+
+  #
+  # Library to support Device disable Settings  (get/set)
+  #
+  MsBootManagerSettingsLib|PcBdsPkg/Library/MsBootManagerSettingsDxeLib/MsBootManagerSettingsDxeLib.inf
+
+  #
+  # Library to provide Dialog Boxes in a Simple Window Manager environment.
+  #
+  SwmDialogsLib|MsGraphicsPkg/Library/SwmDialogsLib/SwmDialogs.inf
+
+  #
+  # BootGraphicsProviderLib that uses PCDs and raw files in the firmware volumes
+  #
+  BootGraphicsProviderLib|OemPkg/Library/BootGraphicsProviderLib/BootGraphicsProviderLib.inf
+
+  #
+  # Library that platform implemented to determine boot type
+  #
+  MsBootPolicyLib|OemPkg/Library/MsBootPolicyLib/MsBootPolicyLib.inf
+  BmpSupportLib|MdeModulePkg/Library/BaseBmpSupportLib/BaseBmpSupportLib.inf
+
+  #
+  # Supplies the theme for this platform to the UEFI settings UI
+  #
+  MsUiThemeLib|MsGraphicsPkg/Library/MsUiThemeLib/Dxe/MsUiThemeLib.inf
+  SafeIntLib|MdePkg/Library/BaseSafeIntLib/BaseSafeIntLib.inf
+  
+  #
+  # Library for determining if Manufacturing mode should be enabled on this boot. 
+  # This libray is what everyone should use to determine which mode we are in.
+  # It can be called from PEI or DXE.
+  #
+  UIToolKitLib|MsGraphicsPkg/Library/SimpleUIToolKit/SimpleUIToolKit.inf
+  ResetUtilityLib|MdeModulePkg/Library/ResetUtilityLib/ResetUtilityLib.inf
+  BaseBinSecurityLib|MdePkg/Library/BaseBinSecurityLibNull/BaseBinSecurityLibNull.inf
+  SecurityLockAuditLib|MdeModulePkg/Library/SecurityLockAuditLibNull/SecurityLockAuditLibNull.inf
 
 [LibraryClasses.common.SEC]
   HobLib|EmbeddedPkg/Library/PrePiHobLib/PrePiHobLib.inf
@@ -337,8 +597,7 @@
   ExtractGuidedSectionLib|MdePkg/Library/DxeExtractGuidedSectionLib/DxeExtractGuidedSectionLib.inf
 
   # System Reset
-  ArmHvcLib|ArmPkg/Library/ArmHvcLib/ArmHvcLib.inf
-  HwResetSystemLib|MdeModulePkg/Library/BaseResetSystemLibNull/BaseResetSystemLibNull.inf
+  HwResetSystemLib|ArmPkg/Library/ArmSmcPsciResetSystemLib/ArmSmcPsciResetSystemLib.inf
 
   VariablePolicyLib|MdeModulePkg/Library/VariablePolicyLib/VariablePolicyLibRuntimeDxe.inf
 
@@ -403,27 +662,35 @@
   SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
 !endif
 
+  MsCorePkg/MuVarPolicyFoundationDxe/MuVarPolicyFoundationDxe.inf
+  DfciPkg/SettingsManager/SettingsManagerDxe.inf {
+  # Platform should add all it settings libs here
+  <LibraryClasses>
+        NULL|ZeroTouchPkg/Library/ZeroTouchSettings/ZeroTouchSettings.inf
+        NULL|DfciPkg/Library/DfciPasswordProvider/DfciPasswordProvider.inf
+        NULL|DfciPkg/Library/DfciSettingsLib/DfciSettingsLib.inf
+        DfciSettingPermissionLib|DfciPkg/Library/DfciSettingPermissionLib/DfciSettingPermissionLib.inf
+  <PcdsFeatureFlag>
+     gDfciPkgTokenSpaceGuid.PcdSettingsManagerInstallProvider|TRUE
+  }
+
+  DfciPkg/IdentityAndAuthManager/IdentityAndAuthManagerDxe.inf
+  DfciPkg/DfciManager/DfciManager.inf
+  DfciPkg/Application/DfciMenu/DfciMenu.inf
+
+  SurfaceDuoPkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
+
   # BDS
   MdeModulePkg/Universal/PrintDxe/PrintDxe.inf
   MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
   MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
-  MdeModulePkg/Universal/Console/TerminalDxe/TerminalDxe.inf
   MdeModulePkg/Universal/SerialDxe/SerialDxe.inf
   MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
   MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
   MdeModulePkg/Universal/SmbiosDxe/SmbiosDxe.inf
-  MdeModulePkg/Universal/DisplayEngineDxe/DisplayEngineDxe.inf
   MdeModulePkg/Universal/SetupBrowserDxe/SetupBrowserDxe.inf
   MdeModulePkg/Universal/DriverHealthManagerDxe/DriverHealthManagerDxe.inf
   MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
-  SurfaceDuoPkg/Application/BdsMenuApp/BdsMenuApp.inf {
-    <LibraryClasses>
-      NULL|MdeModulePkg/Library/DeviceManagerUiLib/DeviceManagerUiLib.inf
-      NULL|MdeModulePkg/Library/BootManagerUiLib/BootManagerUiLib.inf
-      NULL|MdeModulePkg/Library/BootMaintenanceManagerUiLib/BootMaintenanceManagerUiLib.inf
-  }
-  SurfaceDuoPkg/Driver/LogoDxe/LogoDxe.inf
-  SurfaceDuoPkg/Application/BootSplashApp/BootSplashApp.inf
 
   # Disk IO
   MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
@@ -439,6 +706,8 @@
   # DT
   EmbeddedPkg/Drivers/DtPlatformDxe/DtPlatformDxe.inf
 
+  EmbeddedPkg/Drivers/VirtualKeyboardDxe/VirtualKeyboardDxe.inf
+
   # ACPI and SMBIOS
   # We use pre-built ACPI tables, so only core components are loaded
   SurfaceDuoPkg/AcpiTables/SurfaceDuoAcpiTables.inf
@@ -447,23 +716,102 @@
   MdeModulePkg/Universal/Acpi/AcpiPlatformDxe/AcpiPlatformDxe.inf
   MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
 
-  # Shell
+  MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/ReportStatusCodeRouterRuntimeDxe.inf
+  MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf
+  EmbeddedPkg/SimpleTextInOutSerial/SimpleTextInOutSerial.inf
+  MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
+
+  #
+  # Application that presents and manages FrontPage.
+  #
+  OemPkg/FrontPage/FrontPage.inf
+
+  # Surface Boot Manager (Menu) application
+  #
+  # Application that presents & manages the Boot Menu Setup on Front Page.
+  #
+  OemPkg/BootMenu/BootMenu.inf
+
+  PcBdsPkg/MsBootPolicy/MsBootPolicy.inf
+
+  MdeModulePkg/Universal/BootManagerPolicyDxe/BootManagerPolicyDxe.inf
+
+  #
+  # Library to support Remote/IT/Admin Settings such as DFCI
+  #
+  MdeModulePkg/Universal/RegularExpressionDxe/RegularExpressionDxe.inf
+
+  #
+  # Main component of DFCI. Manages and enforces all DFCI settings.
+  #
+  DfciPkg/SettingsManager/SettingsManagerDxe.inf {
+        #Platform should add all it settings libs here
+  <LibraryClasses>
+        NULL|ZeroTouchPkg/Library/ZeroTouchSettings/ZeroTouchSettings.inf
+        NULL|DfciPkg/Library/DfciSettingsLib/DfciSettingsLib.inf
+        DfciSettingPermissionLib|DfciPkg/Library/DfciSettingPermissionLib/DfciSettingPermissionLib.inf
+        NULL|PcBdsPkg/Library/MsBootManagerSettingsDxeLib/MsBootManagerSettingsDxeLib.inf
+  <PcdsFeatureFlag>
+     gDfciPkgTokenSpaceGuid.PcdSettingsManagerInstallProvider|TRUE
+  }
+
+  #
+  # AuthManager provides authentication for DFCI. AuthManagerNull passes out a consistent token to allow the rest 
+  # of FrontPage to be developed and tested while RngLib or other parts of the authentication process are being developed.
+  #
+  DfciPkg/AuthManagerNull/AuthManagerNull.inf
+
+  #
+  # Processes ingoing and outgoing DFCI settings requests.
+  #
+  DfciPkg/DfciManager/DfciManager.inf
+
+  #
+  # Manages windows and fonts to be drawn by the RenderingEngine.
+  #
+  MsGraphicsPkg/SimpleWindowManagerDxe/SimpleWindowManagerDxe.inf
+
+  #
+  # Produces EfiGraphicsOutputProtocol to draw graphics to the screen.
+  #
+  MsGraphicsPkg/RenderingEngineDxe/RenderingEngineDxe.inf
+
+  #
+  # Finds and takes ownership of gEfiGraphicsOutputProtocolGuid so RenderingEngine can use it.
+  #
+  MsGraphicsPkg/GopOverrideDxe/GopOverrideDxe.inf
+
+  #
+  # Driver for On Screen Keyboard.
+  #
+  MsGraphicsPkg/OnScreenKeyboardDxe/OnScreenKeyboardDxe.inf
+
+  #
+  # Installs protocol to share the UI theme. If PcdUiThemeInDxe, this will involve calling the PlatformThemeLib directly.
+  # Otherwise, the theme will have been generated in PEI and it will be located on a HOB.
+  #
+  MsGraphicsPkg/MsUiTheme/Dxe/MsUiThemeProtocol.inf
+
+  #
+  # Produces FORM DISPLAY ENGINE protocol. Handles input, displays strings.
+  #
+  MsGraphicsPkg/DisplayEngineDxe/DisplayEngineDxe.inf
+
+  
+#######################################
+#  Shell
+#######################################
+
   ShellPkg/Application/Shell/Shell.inf {
     <LibraryClasses>
-      ShellCommandLib|ShellPkg/Library/UefiShellCommandLib/UefiShellCommandLib.inf
       NULL|ShellPkg/Library/UefiShellLevel2CommandsLib/UefiShellLevel2CommandsLib.inf
       NULL|ShellPkg/Library/UefiShellLevel1CommandsLib/UefiShellLevel1CommandsLib.inf
       NULL|ShellPkg/Library/UefiShellLevel3CommandsLib/UefiShellLevel3CommandsLib.inf
       NULL|ShellPkg/Library/UefiShellDriver1CommandsLib/UefiShellDriver1CommandsLib.inf
-      NULL|ShellPkg/Library/UefiShellDebug1CommandsLib/UefiShellDebug1CommandsLib.inf
       NULL|ShellPkg/Library/UefiShellInstall1CommandsLib/UefiShellInstall1CommandsLib.inf
+      NULL|ShellPkg/Library/UefiShellDebug1CommandsLib/UefiShellDebug1CommandsLib.inf
       NULL|ShellPkg/Library/UefiShellNetwork1CommandsLib/UefiShellNetwork1CommandsLib.inf
-      HandleParsingLib|ShellPkg/Library/UefiHandleParsingLib/UefiHandleParsingLib.inf
-      PrintLib|MdePkg/Library/BasePrintLib/BasePrintLib.inf
-      BcfgCommandLib|ShellPkg/Library/UefiShellBcfgCommandLib/UefiShellBcfgCommandLib.inf
-
+      NULL|ShellPkg/Library/UefiShellNetwork2CommandsLib/UefiShellNetwork2CommandsLib.inf
     <PcdsFixedAtBuild>
-      gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0xFF
-      gEfiShellPkgTokenSpaceGuid.PcdShellLibAutoInitialize|FALSE
-      gEfiMdePkgTokenSpaceGuid.PcdUefiLibMaxPrintBufferSize|8000
+     gEfiShellPkgTokenSpaceGuid.PcdShellLibAutoInitialize|FALSE
   }

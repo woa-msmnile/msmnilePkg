@@ -32,6 +32,7 @@
 
   DEFINE SECURE_BOOT_ENABLE           = TRUE
   DEFINE USE_SCREEN_FOR_SERIAL_OUTPUT = 0
+  DEFINE USE_MEMORY_FOR_SERIAL_OUTPUT = 0
 
 [BuildOptions.common]
   GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
@@ -47,4 +48,3 @@
   gSurfaceDuoPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"1930"
   
 !include SurfaceDuoPkg/Shared.dsc.inc
-# !include FrontpageDsc.inc

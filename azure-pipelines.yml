@@ -38,6 +38,9 @@ steps:
 - script: pip install --upgrade -r ./pip-requirements.txt
   displayName: 'Prepare pre-build environment, phase 1'
 
+- script: chmod +x ./build_releaseinfo.ps1 && ./build_releaseinfo.ps1
+  displayName: 'Prepare pre-build environment, phase 2'
+
 - script: chmod +x ./build_uefi.sh && ./build_uefi.sh
   displayName: 'UEFI build'
 

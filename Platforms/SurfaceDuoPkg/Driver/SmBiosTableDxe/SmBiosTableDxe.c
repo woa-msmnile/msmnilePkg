@@ -50,18 +50,22 @@ be found at http://opensource.org/licenses/bsd-license.php
 #include <Library/BaseLib.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>
+#include <Library/PrintLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiDriverEntryPoint.h>
 #include <Library/UefiLib.h>
 
 /* Used to read chip serial number */
-#include <Library/LKEnvLib.h>
+#include <Protocol/EFIChipInfo.h>
 
 /* Build-time generated ReleaseInfo.h will override the default one */
 #include <Resources/ReleaseStampStub.h>
 // Must come in order
 #include <Resources/ReleaseInfo.h>
+
+/* Protocol reference */
+EFI_CHIPINFO_PROTOCOL *mBoardProtocol = NULL;
 
 /***********************************************************************
         SMBIOS data definition  TYPE0  BIOS Information
@@ -170,7 +174,7 @@ SMBIOS_TABLE_TYPE1 mSysInfoType1 = {
 };
 CHAR8 *mSysInfoType1Strings[] = {
     "Microsoft", "Surface Duo", "1930", "Unknown",
-    "1930",          "Phone",        NULL};
+    "1930",      "Phone",        NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE2  Board Information
@@ -198,7 +202,7 @@ SMBIOS_TABLE_TYPE2 mBoardInfoType2 = {
     {0}                       // ContainedObjectHandles[1];
 };
 CHAR8 *mBoardInfoType2Strings[] = {
-    "Microsoft", "Surface Duo", "1930", "Unknown", "", "", NULL};
+    "Microsoft", "Surface Duo", "1930", "Unknown", "Unknown", "Unknown", NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE3  Enclosure Information
@@ -221,7 +225,7 @@ SMBIOS_TABLE_TYPE3 mEnclosureInfoType3 = {
     0,                         // ContainedElementRecordLength;
     {{0}},                     // ContainedElements[1];
 };
-CHAR8 *mEnclosureInfoType3Strings[] = {"Surface Duo", "1", "Unknown", "",
+CHAR8 *mEnclosureInfoType3Strings[] = {"Surface Duo", "1", "Unknown", "Unknown",
                                        NULL};
 
 /***********************************************************************
@@ -407,10 +411,10 @@ SMBIOS_TABLE_TYPE16 mPhyMemArrayInfoType16 = {
     MemoryErrorCorrectionUnknown,   // MemoryErrorCorrection;          ///< The
                                     // enumeration value from
                                     // MEMORY_ERROR_CORRECTION.
-    0xC0000000,                     // MaximumCapacity;
+    0xFFFFFFFF,                     // MaximumCapacity;
     0xFFFE,                         // MemoryErrorInformationHandle;
     1,                              // NumberOfMemoryDevices;
-    0xC0000000ULL,                  // ExtendedMaximumCapacity;
+    0x180000000ULL,                 // ExtendedMaximumCapacity;
 };
 CHAR8 *mPhyMemArrayInfoType16Strings[] = {NULL};
 
@@ -618,13 +622,22 @@ VOID BIOSInfoUpdateSmbiosType0(VOID)
 
 VOID SysInfoUpdateSmbiosType1(VOID)
 {
-  char     serialNo[13];
-  uint32_t serial;
+  CHAR8  serialNo[13];
+  UINT32 serial;
 
   // Update string table before proceeds
   mSysInfoType1Strings[1] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemModel);
   mSysInfoType1Strings[2] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemRetailModel);
   mSysInfoType1Strings[4] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemRetailModel);
+
+  // Update serial number from Board DXE
+  if (mBoardProtocol != NULL) {
+    mBoardProtocol->GetSerialNumber(mBoardProtocol, &serial);
+    AsciiSPrint(serialNo, sizeof(serialNo), "%d", serial);
+    mSysInfoType1Strings[3] = serialNo;
+
+    mSysInfoType1.Uuid.Data1 = serial;
+  }
 
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mSysInfoType1, mSysInfoType1Strings, NULL);
@@ -635,12 +648,20 @@ VOID SysInfoUpdateSmbiosType1(VOID)
 ************************************************************************/
 VOID BoardInfoUpdateSmbiosType2(VOID)
 {
-  char serialNo[13];
+  CHAR8  serialNo[13];
+  UINT32 serial;
 
   // Update string table before proceeds
   mBoardInfoType2Strings[1] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemModel);
   mBoardInfoType2Strings[2] =
       (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemRetailModel);
+
+  // Update serial number from Board DXE
+  if (mBoardProtocol != NULL) {
+    mBoardProtocol->GetSerialNumber(mBoardProtocol, &serial);
+    AsciiSPrint(serialNo, sizeof(serialNo), "%d", serial);
+    mBoardInfoType2Strings[3] = serialNo;
+  }
 
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mBoardInfoType2, mBoardInfoType2Strings,
@@ -652,7 +673,15 @@ VOID BoardInfoUpdateSmbiosType2(VOID)
 ************************************************************************/
 VOID EnclosureInfoUpdateSmbiosType3(VOID)
 {
-  char serialNo[13];
+  CHAR8  serialNo[13];
+  UINT32 serial;
+
+  // Update serial number from Board DXE
+  if (mBoardProtocol != NULL) {
+    mBoardProtocol->GetSerialNumber(mBoardProtocol, &serial);
+    AsciiSPrint(serialNo, sizeof(serialNo), "%d", serial);
+    mEnclosureInfoType3Strings[2] = serialNo;
+  }
 
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mEnclosureInfoType3,
@@ -756,6 +785,10 @@ SmBiosTableDxeInitialize(
     IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 {
   EFI_STATUS Status;
+
+  // Locate Qualcomm Board Protocol
+  Status = gBS->LocateProtocol(
+      &gEfiChipInfoProtocolGuid, NULL, (VOID *)&mBoardProtocol);
 
   BIOSInfoUpdateSmbiosType0();
   SysInfoUpdateSmbiosType1();

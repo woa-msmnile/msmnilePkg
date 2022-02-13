@@ -1,7 +1,5 @@
 # Dynamic Generated
-# Platforms/SurfaceDuoPkg/Driver/SmBiosTableDxe/ReleaseInfo.h
-# Platforms/SurfaceDuoPkg/Application/BdsMenuApp/ReleaseInfo.h
-# Platforms/SurfaceDuoPkg/Include/Resources/ReleaseInfo.h
+Platforms/SurfaceDuoPkg/Include/Resources/ReleaseInfo.h
 
 # Local
 .DS_Store
