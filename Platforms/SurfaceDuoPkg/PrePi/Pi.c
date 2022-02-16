@@ -50,11 +50,13 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN UINT64 StartTimeStamp)
   UINTN UefiMemoryBase = 0;
   UINTN UefiMemorySize = 0;
 
+#if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
   // Clear PStore area
   UINT8 *base = (UINT8 *)0x17fe00000ull;
   for (UINTN i = 0; i < 0x200000; i++) {
     base[i] = 0;
   }
+#endif
 
   // Architecture-specific initialization
   // Enable Floating Point

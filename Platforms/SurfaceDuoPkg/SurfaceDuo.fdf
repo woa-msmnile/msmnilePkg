@@ -102,8 +102,8 @@ READ_STATUS        = TRUE
 READ_LOCK_CAP      = TRUE
 READ_LOCK_STATUS   = TRUE
 
-!include SurfaceDuoPkg/Include/APRIORI.inc
-!include SurfaceDuoPkg/Include/DXE.inc
+  !include SurfaceDuoPkg/Include/APRIORI.inc
+  !include SurfaceDuoPkg/Include/DXE.inc
 
   # Debug heartbeat
 !if $(SEND_HEARTBEAT_TO_SERIAL) == 1
@@ -122,6 +122,16 @@ READ_LOCK_STATUS   = TRUE
   INF MdeModulePkg/Universal/SetupBrowserDxe/SetupBrowserDxe.inf
   INF MdeModulePkg/Universal/DriverHealthManagerDxe/DriverHealthManagerDxe.inf
 
+  # HID Support
+  INF HidPkg/HidKeyboardDxe/HidKeyboardDxe.inf
+  # INF HidPkg/HidMouseAbsolutePointerDxe/HidMouseAbsolutePointerDxe.inf
+
+  # Why is this different yet using the same names and GUIDs? (Uses different function signatures for callbacks...)
+  FILE DRIVER = d4e2f6ad-f3ad-40c5-aa14-183e68f4b5bd  {
+    SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-d4e2f6ad-f3ad-40c5-aa14-183e68f4b5bd/section0.pe
+    SECTION UI = "HidMouseAbsolutePointerDxe"
+  }
+
   # Disk IO
   INF MdeModulePkg/Bus/Scsi/ScsiBusDxe/ScsiBusDxe.inf
   INF MdeModulePkg/Bus/Scsi/ScsiDiskDxe/ScsiDiskDxe.inf
@@ -132,7 +142,7 @@ READ_LOCK_STATUS   = TRUE
   INF SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
 
   # ACPI Tables
-!include SurfaceDuoPkg/Include/ACPI.inc
+  !include SurfaceDuoPkg/Include/ACPI.inc
 
   # DT
   INF EmbeddedPkg/Drivers/DtPlatformDxe/DtPlatformDxe.inf
@@ -141,50 +151,7 @@ READ_LOCK_STATUS   = TRUE
     SECTION RAW = SurfaceDuoPkg/FdtBlob/sm8150-microsoft-surface-duo.dtb
   }
 
-  INF MsGraphicsPkg/GopOverrideDxe/GopOverrideDxe.inf
-  INF DfciPkg/AuthManagerNull/AuthManagerNull.inf
-  INF DfciPkg/SettingsManager/SettingsManagerDxe.inf
-  INF OemPkg/BootMenu/BootMenu.inf
-  INF OemPkg/FrontPage/FrontPage.inf
-  INF PcBdsPkg/MsBootPolicy/MsBootPolicy.inf
-  INF MdeModulePkg/Universal/BootManagerPolicyDxe/BootManagerPolicyDxe.inf
-  INF MdeModulePkg/Universal/RegularExpressionDxe/RegularExpressionDxe.inf
-  INF DfciPkg/DfciManager/DfciManager.inf
-
-  # Change AARCH64 to the appropriate architecture for your platform.
-  FILE APPLICATION=PCD(gPcBdsPkgTokenSpaceGuid.PcdShellFile) {
-    SECTION PE32=$(OUTPUT_DIRECTORY)/$(TARGET)_$(TOOL_CHAIN_TAG)/AARCH64/Shell.efi
-    SECTION UI= "EdkShell"
-  }
-
-  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLogoFile) {
-    SECTION RAW = SurfaceDuoPkg/Include/Resources/BootLogo.bmp
-    SECTION UI = "Logo"
-  }
-
-  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdFrontPageLogoFile) {
-    SECTION RAW = OemPkg/FrontPage/Resources/FrontpageLogo.bmp
-  }
-
-  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLowBatteryFile) {
-    SECTION RAW = OemPkg/FrontPage/Resources/LBAT.bmp
-  }
-
-  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdThermalFile) {
-    SECTION RAW = OemPkg/FrontPage/Resources/THOT.bmp
-  }
-
-  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdVolumeUpIndicatorFile) {
-    SECTION RAW = OemPkg/FrontPage/Resources/VolumeUp.bmp
-  }
-
-  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdFirmwareSettingsIndicatorFile) {
-    SECTION RAW = OemPkg/FrontPage/Resources/FirmwareSettings.bmp
-  }
-  
-  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdBootFailIndicatorFile ) {
-    SECTION RAW = OemPkg/FrontPage/Resources/NoBoot.bmp
-  }
+  !include SurfaceDuoPkg/FrontpageFdf.inc
 
 [FV.FVMAIN_COMPACT]
 FvAlignment        = 8
