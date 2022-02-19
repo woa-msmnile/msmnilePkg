@@ -85,7 +85,7 @@ SMBIOS_TABLE_TYPE0 mBIOSInfoType0 = {
         0, //  IsaIsSupported                    :1;
         0, //  McaIsSupported                    :1;
         0, //  EisaIsSupported                   :1;
-        0, //  PciIsSupported                    :1;
+        1, //  PciIsSupported                    :1;
         0, //  PcmciaIsSupported                 :1;
         0, //  PlugAndPlayIsSupported            :1;
         0, //  ApmIsSupported                    :1;
@@ -97,15 +97,15 @@ SMBIOS_TABLE_TYPE0 mBIOSInfoType0 = {
         1, //  SelectableBootIsSupported         :1;
         0, //  RomBiosIsSocketed                 :1;
         0, //  BootFromPcmciaIsSupported         :1;
-        0, //  EDDSpecificationIsSupported       :1;
-        0, //  JapaneseNecFloppyIsSupported      :1;
+        1, //  EDDSpecificationIsSupported       :1;
+        1, //  JapaneseNecFloppyIsSupported      :1;
         0, //  JapaneseToshibaFloppyIsSupported  :1;
         0, //  Floppy525_360IsSupported          :1;
         0, //  Floppy525_12IsSupported           :1;
         0, //  Floppy35_720IsSupported           :1;
         0, //  Floppy35_288IsSupported           :1;
-        0, //  PrintScreenIsSupported            :1;
-        0, //  Keyboard8042IsSupported           :1;
+        1, //  PrintScreenIsSupported            :1;
+        1, //  Keyboard8042IsSupported           :1;
         0, //  SerialIsSupported                 :1;
         0, //  PrinterIsSupported                :1;
         0, //  CgaMonoIsSupported                :1;
@@ -116,7 +116,7 @@ SMBIOS_TABLE_TYPE0 mBIOSInfoType0 = {
     },
     {
         // BIOSCharacteristicsExtensionBytes[]
-        0x81, //  AcpiIsSupported                   :1;
+        0x03, //  AcpiIsSupported                   :1;
               //  UsbLegacyIsSupported              :1;
               //  AgpIsSupported                    :1;
               //  I2OBootIsSupported                :1;
@@ -125,7 +125,7 @@ SMBIOS_TABLE_TYPE0 mBIOSInfoType0 = {
               //  Boot1394IsSupported               :1;
               //  SmartBatteryIsSupported           :1;
               //  BIOSCharacteristicsExtensionBytes[1]
-        0x0e, //  BiosBootSpecIsSupported              :1;
+        0x05, //  BiosBootSpecIsSupported              :1;
               //  FunctionKeyNetworkBootIsSupported    :1;
               //  TargetContentDistributionEnabled     :1;
               //  UefiSpecificationSupported           :1;
@@ -168,13 +168,13 @@ SMBIOS_TABLE_TYPE1 mSysInfoType1 = {
             0xcc,
         },
     },
-    SystemWakeupTypePowerSwitch,
+    SystemWakeupTypeUnknown,
     5, // SKUNumber String
     6, // Family String
 };
 CHAR8 *mSysInfoType1Strings[] = {
-    "Microsoft", "Surface Duo", "1930", "Unknown",
-    "1930",      "Phone",        NULL};
+    "Microsoft Corporation", "Surface Duo", "1930", "Not Specified",
+    "Surface_Duo_1930",      "Surface",        NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE2  Board Information
@@ -202,7 +202,7 @@ SMBIOS_TABLE_TYPE2 mBoardInfoType2 = {
     {0}                       // ContainedObjectHandles[1];
 };
 CHAR8 *mBoardInfoType2Strings[] = {
-    "Microsoft", "Surface Duo", "1930", "Unknown", "Unknown", "Unknown", NULL};
+    "Microsoft Corporation", "Surface Duo", "Not Specified", "Not Specified", "Not Specified", "Not Specified", NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE3  Enclosure Information
@@ -214,10 +214,10 @@ SMBIOS_TABLE_TYPE3 mEnclosureInfoType3 = {
     2,                         // Version String
     3,                         // SerialNumber String
     4,                         // AssetTag String
-    ChassisStateSafe,          // BootupState;
-    ChassisStateSafe,          // PowerSupplyState;
-    ChassisStateSafe,          // ThermalState;
-    ChassisSecurityStatusNone, // SecurityStatus;
+    ChassisStateUnknown,       // BootupState;
+    ChassisStateUnknown,       // PowerSupplyState;
+    ChassisStateUnknown,       // ThermalState;
+    ChassisStateUnknown,       // SecurityStatus;
     {0, 0, 0, 0},              // OemDefined[4];
     0,                         // Height;
     0,                         // NumberofPowerCords;
@@ -225,7 +225,7 @@ SMBIOS_TABLE_TYPE3 mEnclosureInfoType3 = {
     0,                         // ContainedElementRecordLength;
     {{0}},                     // ContainedElements[1];
 };
-CHAR8 *mEnclosureInfoType3Strings[] = {"Surface Duo", "1", "Unknown", "Unknown",
+CHAR8 *mEnclosureInfoType3Strings[] = {"Microsoft Corporation", "Not Specified", "Not Specified", "Not Specified",
                                        NULL};
 
 /***********************************************************************
@@ -290,17 +290,17 @@ SMBIOS_TABLE_TYPE4 mProcessorInfoType4 = {
     3, // ProcessorVersion String;
     {
         // Voltage;
-        1, // ProcessorVoltageCapability5V        :1;
-        1, // ProcessorVoltageCapability3_3V      :1;
-        1, // ProcessorVoltageCapability2_9V      :1;
+        0, // ProcessorVoltageCapability5V        :1;
+        0, // ProcessorVoltageCapability3_3V      :1;
+        0, // ProcessorVoltageCapability2_9V      :1;
         0, // ProcessorVoltageCapabilityReserved  :1; ///< Bit 3, must be zero.
         0, // ProcessorVoltageReserved            :3; ///< Bits 4-6, must be
            // zero.
         0  // ProcessorVoltageIndicateLegacy      :1;
     },
     0,                     // ExternalClock;
-    2000,                  // MaxSpeed;
-    2000,                  // CurrentSpeed;
+    2840,                  // MaxSpeed;
+    1536,                  // CurrentSpeed;
     0x41,                  // Status;
     ProcessorUpgradeOther, // ProcessorUpgrade;      ///< The enumeration value
                            // from PROCESSOR_UPGRADE.
@@ -318,18 +318,94 @@ SMBIOS_TABLE_TYPE4 mProcessorInfoType4 = {
 };
 
 CHAR8 *mProcessorInfoType4Strings[] = {
-    "Socket", "Qualcomm Inc.", "Snapdragon (TM) 855",
+    "Qualcomm", "Qualcomm Technologies Inc", "Snapdragon (TM) 855 @ 2.84 GHz",
     "SM8150", NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE7  Cache Information
 ************************************************************************/
-SMBIOS_TABLE_TYPE7 mCacheInfoType7 = {
+SMBIOS_TABLE_TYPE7 mCacheInfoType7_L1IC = {
     {EFI_SMBIOS_TYPE_CACHE_INFORMATION, sizeof(SMBIOS_TABLE_TYPE7), 0},
     1,      // SocketDesignation String
-    0x0201, // Cache Configuration
-    0x8008, // Maximum Size 256k
-    0x8008, // Install Size 256k
+    0x0280, // Cache Configuration
+    0x0180, // Maximum Size 384k
+    0x0180, // Install Size 384k
+    {
+        // Supported SRAM Type
+        0, // Other             :1
+        0, // Unknown           :1
+        0, // NonBurst          :1
+        0, // Burst             :1
+        0, // PiplelineBurst    :1
+        0, // Synchronous       :1
+        0, // Asynchronous      :1
+        0  // Reserved          :9
+    },
+    {
+        // Current SRAM Type
+        0, // Other             :1
+        0, // Unknown           :1
+        0, // NonBurst          :1
+        0, // Burst             :1
+        0, // PiplelineBurst    :1
+        0, // Synchronous       :1
+        0, // Asynchronous      :1
+        0  // Reserved          :9
+    },
+    0,                     // Cache Speed unknown
+    CacheErrorParity,      // Error Correction Multi
+    CacheTypeInstruction,      // System Cache Type
+    CacheAssociativity16Way // Associativity
+};
+CHAR8 *mCacheInfoType7_L1ICStrings[] = {"L1 Instruction Cache", NULL};
+
+/***********************************************************************
+        SMBIOS data definition  TYPE7  Cache Information
+************************************************************************/
+SMBIOS_TABLE_TYPE7 mCacheInfoType7_L1DC = {
+    {EFI_SMBIOS_TYPE_CACHE_INFORMATION, sizeof(SMBIOS_TABLE_TYPE7), 0},
+    1,      // SocketDesignation String
+    0x0280, // Cache Configuration
+    0x0180, // Maximum Size 384k
+    0x0180, // Install Size 384k
+    {
+        // Supported SRAM Type
+        0, // Other             :1
+        0, // Unknown           :1
+        0, // NonBurst          :1
+        0, // Burst             :1
+        0, // PiplelineBurst    :1
+        0, // Synchronous       :1
+        0, // Asynchronous      :1
+        0  // Reserved          :9
+    },
+    {
+        // Current SRAM Type
+        0, // Other             :1
+        0, // Unknown           :1
+        0, // NonBurst          :1
+        0, // Burst             :1
+        0, // PiplelineBurst    :1
+        0, // Synchronous       :1
+        0, // Asynchronous      :1
+        0  // Reserved          :9
+    },
+    0,                     // Cache Speed unknown
+    CacheErrorParity,      // Error Correction Multi
+    CacheTypeData,      // System Cache Type
+    CacheAssociativity16Way // Associativity
+};
+CHAR8 *mCacheInfoType7_L1DCStrings[] = {"L1 Data Cache", NULL};
+
+/***********************************************************************
+        SMBIOS data definition  TYPE7  Cache Information
+************************************************************************/
+SMBIOS_TABLE_TYPE7 mCacheInfoType7_L2C = {
+    {EFI_SMBIOS_TYPE_CACHE_INFORMATION, sizeof(SMBIOS_TABLE_TYPE7), 0},
+    1,      // SocketDesignation String
+    0x0281, // Cache Configuration
+    0x0500, // Maximum Size 1280k
+    0x0500, // Install Size 1280k
     {
         // Supported SRAM Type
         0, // Other             :1
@@ -357,46 +433,45 @@ SMBIOS_TABLE_TYPE7 mCacheInfoType7 = {
     CacheTypeUnified,      // System Cache Type
     CacheAssociativity8Way // Associativity
 };
-CHAR8 *mCacheInfoType7Strings[] = {"L2 Cache", NULL};
+CHAR8 *mCacheInfoType7_L2CStrings[] = {"L2 Cache", NULL};
 
 /***********************************************************************
-        SMBIOS data definition  TYPE9  System Slot Information
+        SMBIOS data definition  TYPE7  Cache Information
 ************************************************************************/
-SMBIOS_TABLE_TYPE9 mSysSlotInfoType9 = {
-    {EFI_SMBIOS_TYPE_SYSTEM_SLOTS, sizeof(SMBIOS_TABLE_TYPE9), 0},
-    1,             // SlotDesignation String
-    SlotTypeOther, // SlotType;                 ///< The enumeration value from
-                   // MISC_SLOT_TYPE.
-    SlotDataBusWidthOther, // SlotDataBusWidth;         ///< The enumeration
-                           // value from MISC_SLOT_DATA_BUS_WIDTH.
-    SlotUsageAvailable, // CurrentUsage;             ///< The enumeration value
-                        // from MISC_SLOT_USAGE.
-    SlotLengthOther,    // SlotLength;               ///< The enumeration value
-                        // from MISC_SLOT_LENGTH.
-    0,                  // SlotID;
+SMBIOS_TABLE_TYPE7 mCacheInfoType7_L3C = {
+    {EFI_SMBIOS_TYPE_CACHE_INFORMATION, sizeof(SMBIOS_TABLE_TYPE7), 0},
+    1,      // SocketDesignation String
+    0x0282, // Cache Configuration
+    0x0FA0, // Maximum Size 4000k
+    0x0FA0, // Install Size 4000k
     {
-        // SlotCharacteristics1;
-        1, // CharacteristicsUnknown  :1;
-        0, // Provides50Volts         :1;
-        0, // Provides33Volts         :1;
-        0, // SharedSlot              :1;
-        0, // PcCard16Supported       :1;
-        0, // CardBusSupported        :1;
-        0, // ZoomVideoSupported      :1;
-        0, // ModemRingResumeSupported:1;
+        // Supported SRAM Type
+        0, // Other             :1
+        0, // Unknown           :1
+        0, // NonBurst          :1
+        0, // Burst             :1
+        0, // PiplelineBurst    :1
+        0, // Synchronous       :1
+        0, // Asynchronous      :1
+        0  // Reserved          :9
     },
     {
-        // SlotCharacteristics2;
-        0, // PmeSignalSupported      :1;
-        0, // HotPlugDevicesSupported :1;
-        0, // SmbusSignalSupported    :1;
-        0, // Reserved                :5;  ///< Set to 0.
+        // Current SRAM Type
+        0, // Other             :1
+        0, // Unknown           :1
+        0, // NonBurst          :1
+        0, // Burst             :1
+        0, // PiplelineBurst    :1
+        0, // Synchronous       :1
+        0, // Asynchronous      :1
+        0  // Reserved          :9
     },
-    0, // SegmentGroupNum;
-    0, // BusNum;
-    0, // DevFuncNum;
+    0,                     // Cache Speed unknown
+    CacheErrorParity,      // Error Correction Multi
+    CacheTypeUnified,      // System Cache Type
+    CacheAssociativity8Way // Associativity
 };
-CHAR8 *mSysSlotInfoType9Strings[] = {"SD Card", NULL};
+CHAR8 *mCacheInfoType7_L3CStrings[] = {"L3 Cache", NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE16  Physical Memory ArrayInformation
@@ -408,7 +483,7 @@ SMBIOS_TABLE_TYPE16 mPhyMemArrayInfoType16 = {
                                     // MEMORY_ARRAY_LOCATION.
     MemoryArrayUseSystemMemory,     // Use;                            ///< The
                                     // enumeration value from MEMORY_ARRAY_USE.
-    MemoryErrorCorrectionUnknown,   // MemoryErrorCorrection;          ///< The
+    MemoryErrorCorrectionNone,      // MemoryErrorCorrection;          ///< The
                                     // enumeration value from
                                     // MEMORY_ERROR_CORRECTION.
     0xFFFFFFFF,                     // MaximumCapacity;
@@ -434,7 +509,7 @@ SMBIOS_TABLE_TYPE17 mMemDevInfoType17 = {
                                 // enumeration value from MEMORY_FORM_FACTOR.
     0xff,                       // DeviceSet;
     0,                          // DeviceLocator String
-    0,                          // BankLocator String
+    1,                          // BankLocator String
     MemoryTypeLpddr4, // MemoryType;                     ///< The enumeration
                       // value from MEMORY_DEVICE_TYPE.
     {
@@ -457,16 +532,16 @@ SMBIOS_TABLE_TYPE17 mMemDevInfoType17 = {
         0, // Reserved1       :1;
     },
     1600, // Speed;
-    0,    // Manufacturer String
-    0,    // SerialNumber String
-    0,    // AssetTag String
-    0,    // PartNumber String
+    2,    // Manufacturer String
+    3,    // SerialNumber String
+    4,    // AssetTag String
+    5,    // PartNumber String
     0,    // Attributes;
     0,    // ExtendedSize;
     0,    // ConfiguredMemoryClockSpeed;
 };
 
-CHAR8 *mMemDevInfoType17Strings[] = {NULL};
+CHAR8 *mMemDevInfoType17Strings[] = {"Top - on board", "Bank 0", "Hynix", "Not Specified", "Not Specified", "H9HKNNNEBMAVAR-NEH", NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE19  Memory Array Mapped Address Information
@@ -477,29 +552,14 @@ SMBIOS_TABLE_TYPE19 mMemArrMapInfoType19 = {
         sizeof(SMBIOS_TABLE_TYPE19),
         0,
     },
-    0x00000000, // StartingAddress;
-    0x00000000, // EndingAddress;
+    0xFFFFFFFF, // StartingAddress;
+    0xFFFFFFFF, // EndingAddress;
     0,          // MemoryArrayHandle;
-    1,          // PartitionWidth;
-    0,          // ExtendedStartingAddress;
-    0,          // ExtendedEndingAddress;
+    0,          // PartitionWidth;
+    0x3FFFFFFFC00,          // ExtendedStartingAddress;
+    0x3FFFFFFFFFF,          // ExtendedEndingAddress;
 };
 CHAR8 *mMemArrMapInfoType19Strings[] = {NULL};
-
-/***********************************************************************
-        SMBIOS data definition  TYPE32  Boot Information
-************************************************************************/
-SMBIOS_TABLE_TYPE32 mBootInfoType32 = {
-    {
-        EFI_SMBIOS_TYPE_SYSTEM_BOOT_INFORMATION,
-        sizeof(SMBIOS_TABLE_TYPE32),
-        0,
-    },
-    {0, 0, 0, 0, 0, 0},          // Reserved[6];
-    BootInformationStatusNoError // BootStatus
-};
-
-CHAR8 *mBootInfoType32Strings[] = {NULL};
 
 /**
 
@@ -705,20 +765,40 @@ VOID ProcessorInfoUpdateSmbiosType4(IN UINTN MaxCpus)
 /***********************************************************************
         SMBIOS data update  TYPE7  Cache Information
 ************************************************************************/
-VOID CacheInfoUpdateSmbiosType7(VOID)
+VOID CacheInfoUpdateSmbiosType7_L1DC(VOID)
 {
   LogSmbiosData(
-      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7, mCacheInfoType7Strings,
+      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_L1DC, mCacheInfoType7_L1DCStrings,
       NULL);
 }
 
 /***********************************************************************
-        SMBIOS data update  TYPE9  System Slot Information
+        SMBIOS data update  TYPE7  Cache Information
 ************************************************************************/
-VOID SysSlotInfoUpdateSmbiosType9(VOID)
+VOID CacheInfoUpdateSmbiosType7_L1IC(VOID)
 {
   LogSmbiosData(
-      (EFI_SMBIOS_TABLE_HEADER *)&mSysSlotInfoType9, mSysSlotInfoType9Strings,
+      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_L1IC, mCacheInfoType7_L1ICStrings,
+      NULL);
+}
+
+/***********************************************************************
+        SMBIOS data update  TYPE7  Cache Information
+************************************************************************/
+VOID CacheInfoUpdateSmbiosType7_L2C(VOID)
+{
+  LogSmbiosData(
+      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_L2C, mCacheInfoType7_L2CStrings,
+      NULL);
+}
+
+/***********************************************************************
+        SMBIOS data update  TYPE7  Cache Information
+************************************************************************/
+VOID CacheInfoUpdateSmbiosType7_L3C(VOID)
+{
+  LogSmbiosData(
+      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_L3C, mCacheInfoType7_L3CStrings,
       NULL);
 }
 
@@ -767,16 +847,6 @@ VOID MemArrMapInfoUpdateSmbiosType19(VOID)
 }
 
 /***********************************************************************
-        SMBIOS data update  TYPE32  Boot Information
-************************************************************************/
-VOID BootInfoUpdateSmbiosType32(VOID)
-{
-  LogSmbiosData(
-      (EFI_SMBIOS_TABLE_HEADER *)&mBootInfoType32, mBootInfoType32Strings,
-      NULL);
-}
-
-/***********************************************************************
         Driver Entry
 ************************************************************************/
 EFI_STATUS
@@ -795,12 +865,13 @@ SmBiosTableDxeInitialize(
   BoardInfoUpdateSmbiosType2();
   EnclosureInfoUpdateSmbiosType3();
   ProcessorInfoUpdateSmbiosType4(PcdGet32(PcdCoreCount));
-  CacheInfoUpdateSmbiosType7();
-  SysSlotInfoUpdateSmbiosType9();
+  CacheInfoUpdateSmbiosType7_L1IC();
+  CacheInfoUpdateSmbiosType7_L1DC();
+  CacheInfoUpdateSmbiosType7_L2C();
+  CacheInfoUpdateSmbiosType7_L3C();
   PhyMemArrayInfoUpdateSmbiosType16();
   MemDevInfoUpdateSmbiosType17();
   MemArrMapInfoUpdateSmbiosType19();
-  BootInfoUpdateSmbiosType32();
 
   return EFI_SUCCESS;
 }
