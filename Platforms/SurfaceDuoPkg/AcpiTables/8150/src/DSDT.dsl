@@ -51275,10 +51275,11 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             Name (_HID, "QCOM040F")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, 0x04)  // _UID: Unique ID
-            Name (_DEP, Package (0x02)  // _DEP: Dependencies
+            Name (_DEP, Package (0x03)  // _DEP: Dependencies
             {
                 \_SB.PEP0, 
-                \_SB.QGP0
+                \_SB.QGP0, 
+                \_SB.MMU0
             })
             Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
@@ -51303,10 +51304,11 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             Name (_HID, "QCOM040F")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, 0x08)  // _UID: Unique ID
-            Name (_DEP, Package (0x02)  // _DEP: Dependencies
+            Name (_DEP, Package (0x03)  // _DEP: Dependencies
             {
                 \_SB.PEP0, 
-                \_SB.QGP0
+                \_SB.QGP0, 
+                \_SB.MMU0
             })
             Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
@@ -80396,6 +80398,12 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             }
         }
 
+        Device (CSEC)
+        {
+            Name (_HID, "QCOM04AE")  // _HID: Hardware ID
+            Name (_UID, Zero)  // _UID: Unique ID
+        }
+
         Device (QWPP)
         {
             Name (_DEP, Package (0x01)  // _DEP: Dependencies
@@ -80634,49 +80642,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             Alias (\_SB.PSUB, _SUB)
             Name (_CID, "ACPIQCOM0491")  // _CID: Compatible ID
             Name (_UID, Zero)  // _UID: Unique ID
-        }
-
-        Name (HWNL, One)
-        Device (HWN0)
-        {
-            Name (_HID, "QCOM046D")  // _HID: Hardware ID
-            Name (_UID, Zero)  // _UID: Unique ID
-            Alias (\_SB.PSUB, _SUB)
-            Method (_STA, 0, NotSerialized)  // _STA: Status
-            {
-                If ((\_SB.HWNL == Zero))
-                {
-                    Return (Zero)
-                }
-                Else
-                {
-                    Return (0x0F)
-                }
-            }
-
-            Method (HWNL, 0, NotSerialized)
-            {
-                Name (CFG0, Package (0x10)
-                {
-                    0x02, 
-                    0x03, 
-                    0x019B, 
-                    0x14, 
-                    Zero, 
-                    Zero, 
-                    One, 
-                    One, 
-                    0x02, 
-                    0x02, 
-                    One, 
-                    One, 
-                    One, 
-                    0x03, 
-                    0x06, 
-                    One
-                })
-                Return (CFG0) /* \_SB_.HWN0.HWNL.CFG0 */
-            }
         }
 
         Device (SEN2)
@@ -82822,84 +82787,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             }
         }
 
-        Name (HWNH, Zero)
-        Device (HWN1)
-        {
-            Name (_HID, "QCOM046E")  // _HID: Hardware ID
-            Name (_UID, One)  // _UID: Unique ID
-            Alias (\_SB.PSUB, _SUB)
-            Method (_STA, 0, NotSerialized)  // _STA: Status
-            {
-                If ((\_SB.HWNH == Zero))
-                {
-                    Return (Zero)
-                }
-                Else
-                {
-                    Return (0x0F)
-                }
-            }
-
-            Name (_DEP, Package (One)  // _DEP: Dependencies
-            {
-                \_SB.PMIC
-            })
-            Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-            {
-                Name (RBUF, ResourceTemplate ()
-                {
-                    GpioInt (Level, ActiveHigh, Exclusive, PullNone, 0x0000,
-                        "\\_SB.PM02", 0x00, ResourceConsumer, ,
-                        )
-                        {   // Pin list
-                            0x0E00
-                        }
-                })
-                Return (RBUF) /* \_SB_.HWN1._CRS.RBUF */
-            }
-
-            Method (HAPI, 0, NotSerialized)
-            {
-                Name (CFG0, Package (0x03)
-                {
-                    One, 
-                    One, 
-                    One
-                })
-                Return (CFG0) /* \_SB_.HWN1.HAPI.CFG0 */
-            }
-
-            Method (HAPC, 0, NotSerialized)
-            {
-                Name (CFG0, Package (0x16)
-                {
-                    Zero, 
-                    0x0984, 
-                    Zero, 
-                    One, 
-                    One, 
-                    One, 
-                    One, 
-                    Zero, 
-                    0x04, 
-                    One, 
-                    0x03, 
-                    0x14, 
-                    One, 
-                    0x03, 
-                    Zero, 
-                    Zero, 
-                    0x06, 
-                    Zero, 
-                    Zero, 
-                    0x0535, 
-                    0x03, 
-                    One
-                })
-                Return (CFG0) /* \_SB_.HWN1.HAPC.CFG0 */
-            }
-        }
-
         Device (GTCH)
         {
             Method (_HID, 0, NotSerialized)  // _HID: Hardware ID
@@ -82926,6 +82813,12 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         )
                         {   // Pin list
                             0x0003
+                        }
+                    GpioIo (Exclusive, PullDown, 0x0000, 0x0000, IoRestrictionNone,
+                        "\\_SB.GIO0", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0001
                         }
                 })
                 Return (RBUF) /* \_SB_.GTCH._CRS.RBUF */
@@ -83019,6 +82912,20 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
             Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
             {
+                If ((FLAG == 0x03))
+                {
+                    Sleep (0x012C)
+                    OperationRegion (GI54, SystemMemory, 0x03D00000, 0x20)
+                    Field (GI54, DWordAcc, NoLock, Preserve)
+                    {
+                        DWD1,   32, 
+                        DWD2,   32
+                    }
+
+                    DWD2 = 0x02
+                    Sleep (0x96)
+                }
+
                 DEID = Buffer (ESNL){}
                 DVAL = Zero
                 DEID = PGID /* \_SB_.GTCH.PGID */
@@ -83049,6 +82956,16 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
             Method (_RST, 0, NotSerialized)  // _RST: Device Reset
             {
+                OperationRegion (GI54, SystemMemory, 0x03D00000, 0x20)
+                Field (GI54, DWordAcc, NoLock, Preserve)
+                {
+                    DWD1,   32, 
+                    DWD2,   32
+                }
+
+                DWD2 = Zero
+                Sleep (0x012C)
+                DWD2 = 0x02
             }
         }
 
