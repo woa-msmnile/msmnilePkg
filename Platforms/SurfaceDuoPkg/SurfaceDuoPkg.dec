@@ -114,11 +114,6 @@
   gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|1800|UINT32|0x0000a402
   gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|32|UINT32|0x0000a403
 
-  # SMBIOS
-  gSurfaceDuoPkgTokenSpaceGuid.PcdSmbiosSystemModel|"Surface Duo"|VOID*|0x0000a301
-  gSurfaceDuoPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 855"|VOID*|0x0000a302
-  gSurfaceDuoPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"1930"|VOID*|0x0000a303
-
   # FD
   gSurfaceDuoPkgTokenSpaceGuid.PcdFdBaseAddress|0x9FC00000|UINT64|0x0000a103
   gSurfaceDuoPkgTokenSpaceGuid.PcdFdSize|0x00300000|UINT32|0x0000a104

@@ -43,9 +43,6 @@
   gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000        # 6GB
   gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|2700
   gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|1800
-  gSurfaceDuoPkgTokenSpaceGuid.PcdSmbiosSystemModel|"Surface Duo"
-  gSurfaceDuoPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 855"
-  gSurfaceDuoPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"1930"
   
 !include SurfaceDuoPkg/Shared.dsc.inc
 !include SurfaceDuoPkg/FrontpageDsc.inc

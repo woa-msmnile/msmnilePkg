@@ -10,14 +10,8 @@
   SmBiosTableDxe.c
 
 [FixedPcd]
-  gArmPlatformTokenSpaceGuid.PcdCoreCount
   gArmTokenSpaceGuid.PcdSystemMemoryBase
   gArmTokenSpaceGuid.PcdSystemMemorySize
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString
-  gSurfaceDuoPkgTokenSpaceGuid.PcdSmbiosSystemModel
-  gSurfaceDuoPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel
-  gSurfaceDuoPkgTokenSpaceGuid.PcdSmbiosProcessorModel
   
 [Packages]
   ArmPkg/ArmPkg.dec
