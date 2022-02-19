@@ -1180,36 +1180,6 @@ VOID ProcessorInfoUpdateSmbios()
 }
 
 /***********************************************************************
-        SMBIOS data update  TYPE7  Cache Information
-************************************************************************/
-VOID CacheInfoUpdateSmbiosType7_L1DC(VOID)
-{
-  LogSmbiosData(
-      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_L1DC, mCacheInfoType7_L1DCStrings,
-      NULL);
-}
-
-/***********************************************************************
-        SMBIOS data update  TYPE7  Cache Information
-************************************************************************/
-VOID CacheInfoUpdateSmbiosType7_L1IC(VOID)
-{
-  LogSmbiosData(
-      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_L1IC, mCacheInfoType7_L1ICStrings,
-      NULL);
-}
-
-/***********************************************************************
-        SMBIOS data update  TYPE7  Cache Information
-************************************************************************/
-VOID CacheInfoUpdateSmbiosType7_L2C(VOID)
-{
-  LogSmbiosData(
-      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_L2C, mCacheInfoType7_L2CStrings,
-      NULL);
-}
-
-/***********************************************************************
         SMBIOS data update  TYPE16  Physical Memory Array Information
 ************************************************************************/
 VOID PhyMemArrayInfoUpdateSmbiosType16(VOID)
