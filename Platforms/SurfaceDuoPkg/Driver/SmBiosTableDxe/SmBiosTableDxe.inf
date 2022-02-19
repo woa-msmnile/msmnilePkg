@@ -10,6 +10,7 @@
   SmBiosTableDxe.c
 
 [FixedPcd]
+  gArmPlatformTokenSpaceGuid.PcdCoreCount
   gArmTokenSpaceGuid.PcdSystemMemoryBase
   gArmTokenSpaceGuid.PcdSystemMemorySize
   

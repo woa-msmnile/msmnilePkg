@@ -231,195 +231,7 @@ CHAR8 *mEnclosureInfoType3Strings[] = {"Microsoft Corporation", "Not Specified",
 /***********************************************************************
         SMBIOS data definition  TYPE4  Processor Information
 ************************************************************************/
-SMBIOS_TABLE_TYPE4 mProcessorInfoType4_Kryo485Silver = {
-    {EFI_SMBIOS_TYPE_PROCESSOR_INFORMATION, sizeof(SMBIOS_TABLE_TYPE4), 0},
-    1,                // Socket String
-    CentralProcessor, // ProcessorType;				      ///< The
-                      // enumeration value from PROCESSOR_TYPE_DATA.
-    ProcessorFamilyIndicatorFamily2, // ProcessorFamily;        ///< The
-                                     // enumeration value from
-                                     // PROCESSOR_FAMILY2_DATA.
-    2,                               // ProcessorManufacture String;
-    {                                // ProcessorId;
-     {
-         // PROCESSOR_SIGNATURE
-         0, //  ProcessorSteppingId:4;
-         0, //  ProcessorModel:     4;
-         0, //  ProcessorFamily:    4;
-         0, //  ProcessorType:      2;
-         0, //  ProcessorReserved1: 2;
-         0, //  ProcessorXModel:    4;
-         0, //  ProcessorXFamily:   8;
-         0, //  ProcessorReserved2: 4;
-     },
-
-     {
-         // PROCESSOR_FEATURE_FLAGS
-         0, //  ProcessorFpu       :1;
-         0, //  ProcessorVme       :1;
-         0, //  ProcessorDe        :1;
-         0, //  ProcessorPse       :1;
-         0, //  ProcessorTsc       :1;
-         0, //  ProcessorMsr       :1;
-         0, //  ProcessorPae       :1;
-         0, //  ProcessorMce       :1;
-         0, //  ProcessorCx8       :1;
-         0, //  ProcessorApic      :1;
-         0, //  ProcessorReserved1 :1;
-         0, //  ProcessorSep       :1;
-         0, //  ProcessorMtrr      :1;
-         0, //  ProcessorPge       :1;
-         0, //  ProcessorMca       :1;
-         0, //  ProcessorCmov      :1;
-         0, //  ProcessorPat       :1;
-         0, //  ProcessorPse36     :1;
-         0, //  ProcessorPsn       :1;
-         0, //  ProcessorClfsh     :1;
-         0, //  ProcessorReserved2 :1;
-         0, //  ProcessorDs        :1;
-         0, //  ProcessorAcpi      :1;
-         0, //  ProcessorMmx       :1;
-         0, //  ProcessorFxsr      :1;
-         0, //  ProcessorSse       :1;
-         0, //  ProcessorSse2      :1;
-         0, //  ProcessorSs        :1;
-         0, //  ProcessorReserved3 :1;
-         0, //  ProcessorTm        :1;
-         0, //  ProcessorReserved4 :2;
-     }},
-    3, // ProcessorVersion String;
-    {
-        // Voltage;
-        0, // ProcessorVoltageCapability5V        :1;
-        0, // ProcessorVoltageCapability3_3V      :1;
-        0, // ProcessorVoltageCapability2_9V      :1;
-        0, // ProcessorVoltageCapabilityReserved  :1; ///< Bit 3, must be zero.
-        0, // ProcessorVoltageReserved            :3; ///< Bits 4-6, must be
-           // zero.
-        0  // ProcessorVoltageIndicateLegacy      :1;
-    },
-    0,                     // ExternalClock;
-    1800,                  // MaxSpeed;
-    1632,                  // CurrentSpeed;
-    0x41,                  // Status;
-    ProcessorUpgradeOther, // ProcessorUpgrade;      ///< The enumeration value
-                           // from PROCESSOR_UPGRADE.
-    0,                     // L1CacheHandle;
-    0,                     // L2CacheHandle;
-    0xFFFF,                // L3CacheHandle;
-    0,                     // SerialNumber;
-    0,                     // AssetTag;
-    4,                     // PartNumber;
-    4,                           // CoreCount;
-    4,                           // EnabledCoreCount;
-    4,                           // ThreadCount;
-    0xAC,                        // ProcessorCharacteristics;
-    ProcessorFamilyARM,          // ARM Processor Family;
-};
-
-CHAR8 *mProcessorInfoType4_Kryo485SilverStrings[] = {
-    "Qualcomm", "Qualcomm Technologies Inc", "Snapdragon (TM) 855 @ 1.8 GHz",
-    "SM8150", NULL};
-
-
-
-/***********************************************************************
-        SMBIOS data definition  TYPE4  Processor Information
-************************************************************************/
-SMBIOS_TABLE_TYPE4 mProcessorInfoType4_Kryo485Gold = {
-    {EFI_SMBIOS_TYPE_PROCESSOR_INFORMATION, sizeof(SMBIOS_TABLE_TYPE4), 0},
-    1,                // Socket String
-    CentralProcessor, // ProcessorType;				      ///< The
-                      // enumeration value from PROCESSOR_TYPE_DATA.
-    ProcessorFamilyIndicatorFamily2, // ProcessorFamily;        ///< The
-                                     // enumeration value from
-                                     // PROCESSOR_FAMILY2_DATA.
-    2,                               // ProcessorManufacture String;
-    {                                // ProcessorId;
-     {
-         // PROCESSOR_SIGNATURE
-         0, //  ProcessorSteppingId:4;
-         0, //  ProcessorModel:     4;
-         0, //  ProcessorFamily:    4;
-         0, //  ProcessorType:      2;
-         0, //  ProcessorReserved1: 2;
-         0, //  ProcessorXModel:    4;
-         0, //  ProcessorXFamily:   8;
-         0, //  ProcessorReserved2: 4;
-     },
-
-     {
-         // PROCESSOR_FEATURE_FLAGS
-         0, //  ProcessorFpu       :1;
-         0, //  ProcessorVme       :1;
-         0, //  ProcessorDe        :1;
-         0, //  ProcessorPse       :1;
-         0, //  ProcessorTsc       :1;
-         0, //  ProcessorMsr       :1;
-         0, //  ProcessorPae       :1;
-         0, //  ProcessorMce       :1;
-         0, //  ProcessorCx8       :1;
-         0, //  ProcessorApic      :1;
-         0, //  ProcessorReserved1 :1;
-         0, //  ProcessorSep       :1;
-         0, //  ProcessorMtrr      :1;
-         0, //  ProcessorPge       :1;
-         0, //  ProcessorMca       :1;
-         0, //  ProcessorCmov      :1;
-         0, //  ProcessorPat       :1;
-         0, //  ProcessorPse36     :1;
-         0, //  ProcessorPsn       :1;
-         0, //  ProcessorClfsh     :1;
-         0, //  ProcessorReserved2 :1;
-         0, //  ProcessorDs        :1;
-         0, //  ProcessorAcpi      :1;
-         0, //  ProcessorMmx       :1;
-         0, //  ProcessorFxsr      :1;
-         0, //  ProcessorSse       :1;
-         0, //  ProcessorSse2      :1;
-         0, //  ProcessorSs        :1;
-         0, //  ProcessorReserved3 :1;
-         0, //  ProcessorTm        :1;
-         0, //  ProcessorReserved4 :2;
-     }},
-    3, // ProcessorVersion String;
-    {
-        // Voltage;
-        0, // ProcessorVoltageCapability5V        :1;
-        0, // ProcessorVoltageCapability3_3V      :1;
-        0, // ProcessorVoltageCapability2_9V      :1;
-        0, // ProcessorVoltageCapabilityReserved  :1; ///< Bit 3, must be zero.
-        0, // ProcessorVoltageReserved            :3; ///< Bits 4-6, must be
-           // zero.
-        0  // ProcessorVoltageIndicateLegacy      :1;
-    },
-    0,                     // ExternalClock;
-    2420,                  // MaxSpeed;
-    710,                   // CurrentSpeed;
-    0x41,                  // Status;
-    ProcessorUpgradeOther, // ProcessorUpgrade;      ///< The enumeration value
-                           // from PROCESSOR_UPGRADE.
-    0,                     // L1CacheHandle;
-    0,                     // L2CacheHandle;
-    0xFFFF,                // L3CacheHandle;
-    0,                     // SerialNumber;
-    0,                     // AssetTag;
-    4,                     // PartNumber;
-    3,                           // CoreCount;
-    3,                           // EnabledCoreCount;
-    3,                           // ThreadCount;
-    0xAC,                        // ProcessorCharacteristics;
-    ProcessorFamilyARM,          // ARM Processor Family;
-};
-
-CHAR8 *mProcessorInfoType4_Kryo485GoldStrings[] = {
-    "Qualcomm", "Qualcomm Technologies Inc", "Snapdragon (TM) 855 @ 2.42 GHz",
-    "SM8150", NULL};
-
-/***********************************************************************
-        SMBIOS data definition  TYPE4  Processor Information
-************************************************************************/
-SMBIOS_TABLE_TYPE4 mProcessorInfoType4_Kryo485GoldHP = {
+SMBIOS_TABLE_TYPE4 mProcessorInfoType4 = {
     {EFI_SMBIOS_TYPE_PROCESSOR_INFORMATION, sizeof(SMBIOS_TABLE_TYPE4), 0},
     1,                // Socket String
     CentralProcessor, // ProcessorType;				      ///< The
@@ -488,36 +300,36 @@ SMBIOS_TABLE_TYPE4 mProcessorInfoType4_Kryo485GoldHP = {
     },
     0,                     // ExternalClock;
     2840,                  // MaxSpeed;
-    826,                   // CurrentSpeed;
+    1536,                  // CurrentSpeed;
     0x41,                  // Status;
     ProcessorUpgradeOther, // ProcessorUpgrade;      ///< The enumeration value
                            // from PROCESSOR_UPGRADE.
     0,                     // L1CacheHandle;
     0,                     // L2CacheHandle;
-    0xFFFF,                // L3CacheHandle;
+    0,                     // L3CacheHandle;
     0,                     // SerialNumber;
     0,                     // AssetTag;
     4,                     // PartNumber;
-    1,                           // CoreCount;
-    1,                           // EnabledCoreCount;
-    1,                           // ThreadCount;
+    FixedPcdGet32(PcdCoreCount), // CoreCount;
+    FixedPcdGet32(PcdCoreCount), // EnabledCoreCount;
+    FixedPcdGet32(PcdCoreCount), // ThreadCount;
     0xAC,                        // ProcessorCharacteristics;
     ProcessorFamilyARM,          // ARM Processor Family;
 };
 
-CHAR8 *mProcessorInfoType4_Kryo485GoldHPStrings[] = {
+CHAR8 *mProcessorInfoType4Strings[] = {
     "Qualcomm", "Qualcomm Technologies Inc", "Snapdragon (TM) 855 @ 2.84 GHz",
     "SM8150", NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE7  Cache Information
 ************************************************************************/
-SMBIOS_TABLE_TYPE7 mCacheInfoType7_Kryo485Silver_L1IC = {
+SMBIOS_TABLE_TYPE7 mCacheInfoType7_L1IC = {
     {EFI_SMBIOS_TYPE_CACHE_INFORMATION, sizeof(SMBIOS_TABLE_TYPE7), 0},
     1,      // SocketDesignation String
     0x0280, // Cache Configuration
-    0x0100, // Maximum Size 256k
-    0x0100, // Install Size 256k
+    0x0180, // Maximum Size 384k
+    0x0180, // Install Size 384k
     {
         // Supported SRAM Type
         0, // Other             :1
@@ -543,19 +355,19 @@ SMBIOS_TABLE_TYPE7 mCacheInfoType7_Kryo485Silver_L1IC = {
     0,                     // Cache Speed unknown
     CacheErrorParity,      // Error Correction Multi
     CacheTypeInstruction,      // System Cache Type
-    CacheAssociativity2Way // Associativity
+    CacheAssociativity16Way // Associativity
 };
-CHAR8 *mCacheInfoType7_Kryo485Silver_L1ICStrings[] = {"L1 Instruction Cache", NULL};
+CHAR8 *mCacheInfoType7_L1ICStrings[] = {"L1 Instruction Cache", NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE7  Cache Information
 ************************************************************************/
-SMBIOS_TABLE_TYPE7 mCacheInfoType7_Kryo485Silver_L1DC = {
+SMBIOS_TABLE_TYPE7 mCacheInfoType7_L1DC = {
     {EFI_SMBIOS_TYPE_CACHE_INFORMATION, sizeof(SMBIOS_TABLE_TYPE7), 0},
     1,      // SocketDesignation String
     0x0280, // Cache Configuration
-    0x0100, // Maximum Size 256k
-    0x0100, // Install Size 256k
+    0x0180, // Maximum Size 384k
+    0x0180, // Install Size 384k
     {
         // Supported SRAM Type
         0, // Other             :1
@@ -581,19 +393,19 @@ SMBIOS_TABLE_TYPE7 mCacheInfoType7_Kryo485Silver_L1DC = {
     0,                     // Cache Speed unknown
     CacheErrorParity,      // Error Correction Multi
     CacheTypeData,      // System Cache Type
-    CacheAssociativity4Way // Associativity
+    CacheAssociativity16Way // Associativity
 };
-CHAR8 *mCacheInfoType7_Kryo485Silver_L1DCStrings[] = {"L1 Data Cache", NULL};
+CHAR8 *mCacheInfoType7_L1DCStrings[] = {"L1 Data Cache", NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE7  Cache Information
 ************************************************************************/
-SMBIOS_TABLE_TYPE7 mCacheInfoType7_Kryo485Silver_L2C = {
+SMBIOS_TABLE_TYPE7 mCacheInfoType7_L2C = {
     {EFI_SMBIOS_TYPE_CACHE_INFORMATION, sizeof(SMBIOS_TABLE_TYPE7), 0},
     1,      // SocketDesignation String
     0x0281, // Cache Configuration
-    0x0200, // Maximum Size 512k
-    0x0200, // Install Size 512k
+    0x0500, // Maximum Size 1280k
+    0x0500, // Install Size 1280k
     {
         // Supported SRAM Type
         0, // Other             :1
@@ -621,93 +433,17 @@ SMBIOS_TABLE_TYPE7 mCacheInfoType7_Kryo485Silver_L2C = {
     CacheTypeUnified,      // System Cache Type
     CacheAssociativity8Way // Associativity
 };
-CHAR8 *mCacheInfoType7_Kryo485Silver_L2CStrings[] = {"L2 Cache", NULL};
+CHAR8 *mCacheInfoType7_L2CStrings[] = {"L2 Cache", NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE7  Cache Information
 ************************************************************************/
-SMBIOS_TABLE_TYPE7 mCacheInfoType7_Kryo485Gold_L1IC = {
+SMBIOS_TABLE_TYPE7 mCacheInfoType7_L3C = {
     {EFI_SMBIOS_TYPE_CACHE_INFORMATION, sizeof(SMBIOS_TABLE_TYPE7), 0},
     1,      // SocketDesignation String
-    0x0280, // Cache Configuration
-    0x00C0, // Maximum Size 192k
-    0x00C0, // Install Size 192k
-    {
-        // Supported SRAM Type
-        0, // Other             :1
-        0, // Unknown           :1
-        0, // NonBurst          :1
-        0, // Burst             :1
-        0, // PiplelineBurst    :1
-        0, // Synchronous       :1
-        0, // Asynchronous      :1
-        0  // Reserved          :9
-    },
-    {
-        // Current SRAM Type
-        0, // Other             :1
-        0, // Unknown           :1
-        0, // NonBurst          :1
-        0, // Burst             :1
-        0, // PiplelineBurst    :1
-        0, // Synchronous       :1
-        0, // Asynchronous      :1
-        0  // Reserved          :9
-    },
-    0,                     // Cache Speed unknown
-    CacheErrorParity,      // Error Correction Multi
-    CacheTypeInstruction,      // System Cache Type
-    CacheAssociativity4Way // Associativity
-};
-CHAR8 *mCacheInfoType7_Kryo485Gold_L1ICStrings[] = {"L1 Instruction Cache", NULL};
-
-/***********************************************************************
-        SMBIOS data definition  TYPE7  Cache Information
-************************************************************************/
-SMBIOS_TABLE_TYPE7 mCacheInfoType7_Kryo485Gold_L1DC = {
-    {EFI_SMBIOS_TYPE_CACHE_INFORMATION, sizeof(SMBIOS_TABLE_TYPE7), 0},
-    1,      // SocketDesignation String
-    0x0280, // Cache Configuration
-    0x00C0, // Maximum Size 192k
-    0x00C0, // Install Size 192k
-    {
-        // Supported SRAM Type
-        0, // Other             :1
-        0, // Unknown           :1
-        0, // NonBurst          :1
-        0, // Burst             :1
-        0, // PiplelineBurst    :1
-        0, // Synchronous       :1
-        0, // Asynchronous      :1
-        0  // Reserved          :9
-    },
-    {
-        // Current SRAM Type
-        0, // Other             :1
-        0, // Unknown           :1
-        0, // NonBurst          :1
-        0, // Burst             :1
-        0, // PiplelineBurst    :1
-        0, // Synchronous       :1
-        0, // Asynchronous      :1
-        0  // Reserved          :9
-    },
-    0,                     // Cache Speed unknown
-    CacheErrorParity,      // Error Correction Multi
-    CacheTypeData,      // System Cache Type
-    CacheAssociativity4Way // Associativity
-};
-CHAR8 *mCacheInfoType7_Kryo485Gold_L1DCStrings[] = {"L1 Data Cache", NULL};
-
-/***********************************************************************
-        SMBIOS data definition  TYPE7  Cache Information
-************************************************************************/
-SMBIOS_TABLE_TYPE7 mCacheInfoType7_Kryo485Gold_L2C = {
-    {EFI_SMBIOS_TYPE_CACHE_INFORMATION, sizeof(SMBIOS_TABLE_TYPE7), 0},
-    1,      // SocketDesignation String
-    0x0281, // Cache Configuration
-    0x0300, // Maximum Size 768k
-    0x0300, // Install Size 768k
+    0x0282, // Cache Configuration
+    0x0800, // Maximum Size 2048k
+    0x0800, // Install Size 2048k
     {
         // Supported SRAM Type
         0, // Other             :1
@@ -735,121 +471,7 @@ SMBIOS_TABLE_TYPE7 mCacheInfoType7_Kryo485Gold_L2C = {
     CacheTypeUnified,      // System Cache Type
     CacheAssociativity8Way // Associativity
 };
-CHAR8 *mCacheInfoType7_Kryo485Gold_L2CStrings[] = {"L2 Cache", NULL};
-
-/***********************************************************************
-        SMBIOS data definition  TYPE7  Cache Information
-************************************************************************/
-SMBIOS_TABLE_TYPE7 mCacheInfoType7_Kryo485GoldHP_L1IC = {
-    {EFI_SMBIOS_TYPE_CACHE_INFORMATION, sizeof(SMBIOS_TABLE_TYPE7), 0},
-    1,      // SocketDesignation String
-    0x0280, // Cache Configuration
-    0x0040, // Maximum Size 64k
-    0x0040, // Install Size 64k
-    {
-        // Supported SRAM Type
-        0, // Other             :1
-        0, // Unknown           :1
-        0, // NonBurst          :1
-        0, // Burst             :1
-        0, // PiplelineBurst    :1
-        0, // Synchronous       :1
-        0, // Asynchronous      :1
-        0  // Reserved          :9
-    },
-    {
-        // Current SRAM Type
-        0, // Other             :1
-        0, // Unknown           :1
-        0, // NonBurst          :1
-        0, // Burst             :1
-        0, // PiplelineBurst    :1
-        0, // Synchronous       :1
-        0, // Asynchronous      :1
-        0  // Reserved          :9
-    },
-    0,                     // Cache Speed unknown
-    CacheErrorParity,      // Error Correction Multi
-    CacheTypeInstruction,      // System Cache Type
-    CacheAssociativity4Way // Associativity
-};
-CHAR8 *mCacheInfoType7_Kryo485GoldHP_L1ICStrings[] = {"L1 Instruction Cache", NULL};
-
-/***********************************************************************
-        SMBIOS data definition  TYPE7  Cache Information
-************************************************************************/
-SMBIOS_TABLE_TYPE7 mCacheInfoType7_Kryo485GoldHP_L1DC = {
-    {EFI_SMBIOS_TYPE_CACHE_INFORMATION, sizeof(SMBIOS_TABLE_TYPE7), 0},
-    1,      // SocketDesignation String
-    0x0280, // Cache Configuration
-    0x0040, // Maximum Size 64k
-    0x0040, // Install Size 64k
-    {
-        // Supported SRAM Type
-        0, // Other             :1
-        0, // Unknown           :1
-        0, // NonBurst          :1
-        0, // Burst             :1
-        0, // PiplelineBurst    :1
-        0, // Synchronous       :1
-        0, // Asynchronous      :1
-        0  // Reserved          :9
-    },
-    {
-        // Current SRAM Type
-        0, // Other             :1
-        0, // Unknown           :1
-        0, // NonBurst          :1
-        0, // Burst             :1
-        0, // PiplelineBurst    :1
-        0, // Synchronous       :1
-        0, // Asynchronous      :1
-        0  // Reserved          :9
-    },
-    0,                     // Cache Speed unknown
-    CacheErrorParity,      // Error Correction Multi
-    CacheTypeData,      // System Cache Type
-    CacheAssociativity4Way // Associativity
-};
-CHAR8 *mCacheInfoType7_Kryo485GoldHP_L1DCStrings[] = {"L1 Data Cache", NULL};
-
-/***********************************************************************
-        SMBIOS data definition  TYPE7  Cache Information
-************************************************************************/
-SMBIOS_TABLE_TYPE7 mCacheInfoType7_Kryo485GoldHP_L2C = {
-    {EFI_SMBIOS_TYPE_CACHE_INFORMATION, sizeof(SMBIOS_TABLE_TYPE7), 0},
-    1,      // SocketDesignation String
-    0x0281, // Cache Configuration
-    0x0200, // Maximum Size 512k
-    0x0200, // Install Size 512k
-    {
-        // Supported SRAM Type
-        0, // Other             :1
-        0, // Unknown           :1
-        0, // NonBurst          :1
-        0, // Burst             :1
-        0, // PiplelineBurst    :1
-        0, // Synchronous       :1
-        0, // Asynchronous      :1
-        0  // Reserved          :9
-    },
-    {
-        // Current SRAM Type
-        0, // Other             :1
-        0, // Unknown           :1
-        0, // NonBurst          :1
-        0, // Burst             :1
-        0, // PiplelineBurst    :1
-        0, // Synchronous       :1
-        0, // Asynchronous      :1
-        0  // Reserved          :9
-    },
-    0,                     // Cache Speed unknown
-    CacheErrorParity,      // Error Correction Multi
-    CacheTypeUnified,      // System Cache Type
-    CacheAssociativity8Way // Associativity
-};
-CHAR8 *mCacheInfoType7_Kryo485GoldHP_L2CStrings[] = {"L2 Cache", NULL};
+CHAR8 *mCacheInfoType7_L3CStrings[] = {"L3 Cache", NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE16  Physical Memory ArrayInformation
@@ -1119,64 +741,36 @@ VOID EnclosureInfoUpdateSmbiosType3(VOID)
 /***********************************************************************
         SMBIOS data update  TYPE4  Processor Information
 ************************************************************************/
-VOID ProcessorInfoUpdateSmbios()
+VOID ProcessorInfoUpdateSmbiosType4(IN UINTN MaxCpus)
 {
   EFI_SMBIOS_HANDLE SmbiosHandle;
 
   LogSmbiosData(
-      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_Kryo485Silver_L1IC, mCacheInfoType7_Kryo485Silver_L1ICStrings,
+      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_L1DC, mCacheInfoType7_L1DCStrings,
+      &SmbiosHandle);
+  mProcessorInfoType4.L1CacheHandle = (UINT16)SmbiosHandle;
+  LogSmbiosData(
+      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_L2C, mCacheInfoType7_L2CStrings,
+      &SmbiosHandle);
+  mProcessorInfoType4.L2CacheHandle = (UINT16)SmbiosHandle;
+  LogSmbiosData(
+      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_L3C, mCacheInfoType7_L3CStrings,
+      &SmbiosHandle);
+  mProcessorInfoType4.L3CacheHandle = (UINT16)SmbiosHandle;
+
+  LogSmbiosData(
+      (EFI_SMBIOS_TABLE_HEADER *)&mProcessorInfoType4,
+      mProcessorInfoType4Strings, NULL);
+}
+
+/***********************************************************************
+        SMBIOS data update  TYPE7  Cache Information
+************************************************************************/
+VOID CacheInfoUpdateSmbiosType7(VOID)
+{
+  LogSmbiosData(
+      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_L1IC, mCacheInfoType7_L1ICStrings,
       NULL);
-  LogSmbiosData(
-      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_Kryo485Gold_L1IC, mCacheInfoType7_Kryo485Silver_L1ICStrings,
-      NULL);
-  LogSmbiosData(
-      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_Kryo485GoldHP_L1IC, mCacheInfoType7_Kryo485Silver_L1ICStrings,
-      NULL);
-
-
-  LogSmbiosData(
-      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_Kryo485Silver_L1DC, mCacheInfoType7_Kryo485Silver_L1DCStrings,
-      &SmbiosHandle);
-  mProcessorInfoType4_Kryo485Silver.L1CacheHandle = (UINT16)SmbiosHandle;
-
-  LogSmbiosData(
-      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_Kryo485Silver_L2C, mCacheInfoType7_Kryo485Silver_L2CStrings,
-      &SmbiosHandle);
-  mProcessorInfoType4_Kryo485Silver.L2CacheHandle = (UINT16)SmbiosHandle;
-
-
-  LogSmbiosData(
-      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_Kryo485Gold_L1DC, mCacheInfoType7_Kryo485Gold_L1DCStrings,
-      &SmbiosHandle);
-  mProcessorInfoType4_Kryo485Gold.L1CacheHandle = (UINT16)SmbiosHandle;
-
-  LogSmbiosData(
-      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_Kryo485Gold_L2C, mCacheInfoType7_Kryo485Gold_L2CStrings,
-      &SmbiosHandle);
-  mProcessorInfoType4_Kryo485Gold.L2CacheHandle = (UINT16)SmbiosHandle;
-
-
-
-  LogSmbiosData(
-      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_Kryo485GoldHP_L1DC, mCacheInfoType7_Kryo485GoldHP_L1DCStrings,
-      &SmbiosHandle);
-  mProcessorInfoType4_Kryo485GoldHP.L1CacheHandle = (UINT16)SmbiosHandle;
-
-  LogSmbiosData(
-      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_Kryo485GoldHP_L2C, mCacheInfoType7_Kryo485GoldHP_L2CStrings,
-      &SmbiosHandle);
-  mProcessorInfoType4_Kryo485GoldHP.L2CacheHandle = (UINT16)SmbiosHandle;
-
-
-  LogSmbiosData(
-      (EFI_SMBIOS_TABLE_HEADER *)&mProcessorInfoType4_Kryo485Silver,
-      mProcessorInfoType4_Kryo485SilverStrings, NULL);
-  LogSmbiosData(
-      (EFI_SMBIOS_TABLE_HEADER *)&mProcessorInfoType4_Kryo485Gold,
-      mProcessorInfoType4_Kryo485GoldStrings, NULL);
-  LogSmbiosData(
-      (EFI_SMBIOS_TABLE_HEADER *)&mProcessorInfoType4_Kryo485GoldHP,
-      mProcessorInfoType4_Kryo485GoldHPStrings, NULL);
 }
 
 /***********************************************************************
@@ -1241,7 +835,8 @@ SmBiosTableDxeInitialize(
   SysInfoUpdateSmbiosType1();
   BoardInfoUpdateSmbiosType2();
   EnclosureInfoUpdateSmbiosType3();
-  ProcessorInfoUpdateSmbios();
+  ProcessorInfoUpdateSmbiosType4(PcdGet32(PcdCoreCount));
+  CacheInfoUpdateSmbiosType7();
   PhyMemArrayInfoUpdateSmbiosType16();
   MemDevInfoUpdateSmbiosType17();
   MemArrMapInfoUpdateSmbiosType19();
