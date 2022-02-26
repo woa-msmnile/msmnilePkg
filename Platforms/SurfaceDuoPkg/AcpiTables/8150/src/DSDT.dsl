@@ -2422,13 +2422,258 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 Return (DCVS) /* \_SB_.PEP0.DCVS */
             }
 
-            Name (PPPP, Package (0x00){})
+            Name (PPPP, Package (0x2B)
+            {
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_SMPS5_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_SMPS6_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_SMPS8_C"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO1_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO2_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO3_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO5_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO6_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO7_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO9_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO10_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO11_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO12_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO13_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO14_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO15_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO16_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO17_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO18_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO1_C"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO2_C"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO3_C"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO4_C"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO5_C"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO6_C"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO7_C"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO8_C"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO9_C"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO10_C"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_LDO11_C"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_CXO_BUFFERS_BBCLK1_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_CXO_BUFFERS_BBCLK2_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_CXO_BUFFERS_BBCLK3_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_CXO_BUFFERS_DIVCLK1_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_CXO_BUFFERS_DIVCLK2_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_CXO_BUFFERS_DIVCLK1_C"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_BUCK_BOOST1_C"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_PMIC_GPIO_DV1"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_PMIC_GPIO_DV2"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_PMIC_GPIO_DV3"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_TLMM_GPIO_DV1"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_TLMM_GPIO_DV2"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_TLMM_GPIO_DV3"
+                }
+            })
             Method (PPPM, 0, NotSerialized)
             {
                 Return (PPPP) /* \_SB_.PEP0.PPPP */
             }
 
-            Name (PRRP, Package (0x00){})
+            Name (PRRP, Package (0x1B)
+            {
+                "PPP_RESOURCE_RANGE_INFO_SMPS_A", 
+                "PPP_RESOURCE_ID_SMPS1_A", 
+                "PPP_RESOURCE_ID_SMPS6_A", 
+                "PPP_RESOURCE_RANGE_INFO_SMPS_C", 
+                "PPP_RESOURCE_ID_SMPS1_C", 
+                "PPP_RESOURCE_ID_SMPS8_C", 
+                "PPP_RESOURCE_RANGE_INFO_LDO_A", 
+                "PPP_RESOURCE_ID_LDO1_A", 
+                "PPP_RESOURCE_ID_LDO18_A", 
+                "PPP_RESOURCE_RANGE_INFO_LDO_C", 
+                "PPP_RESOURCE_ID_LDO1_C", 
+                "PPP_RESOURCE_ID_LDO11_C", 
+                "PPP_RESOURCE_RANGE_INFO_CXO_BUFFERS_A", 
+                "PPP_RESOURCE_ID_CXO_BUFFERS_BBCLK1_A", 
+                "PPP_RESOURCE_ID_CXO_BUFFERS_DIVCLK2_A", 
+                "PPP_RESOURCE_RANGE_INFO_CXO_BUFFERS_C", 
+                "PPP_RESOURCE_ID_CXO_BUFFERS_DIVCLK1_C", 
+                "PPP_RESOURCE_ID_CXO_BUFFERS_DIVCLK1_C", 
+                "PPP_RESOURCE_RANGE_INFO_BUCK_BOOST_C", 
+                "PPP_RESOURCE_ID_BUCK_BOOST1_C", 
+                "PPP_RESOURCE_ID_BUCK_BOOST1_C", 
+                "PPP_RESOURCE_RANGE_INFO_PMIC_GPIO_DV", 
+                "PPP_RESOURCE_ID_PMIC_GPIO_DV1", 
+                "PPP_RESOURCE_ID_PMIC_GPIO_DV3", 
+                "PPP_RESOURCE_RANGE_INFO_TLMM_GPIO_DV", 
+                "PPP_RESOURCE_ID_TLMM_GPIO_DV1", 
+                "PPP_RESOURCE_ID_TLMM_GPIO_DV3"
+            })
             Method (PPRR, 0, NotSerialized)
             {
                 Return (PRRP) /* \_SB_.PEP0.PRRP */
@@ -40732,10 +40977,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x13)
+                    Package (0x17)
                     {
                         "DSTATE", 
                         Zero, 
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
                         Package (0x02)
                         {
                             "FOOTSWITCH", 
@@ -40930,7 +41231,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x0E)
+                    Package (0x12)
                     {
                         "DSTATE", 
                         One, 
@@ -41061,10 +41362,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
                         }
                     }, 
 
-                    Package (0x0E)
+                    Package (0x12)
                     {
                         "DSTATE", 
                         0x02, 
@@ -41195,10 +41552,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
                         }
                     }, 
 
-                    Package (0x0E)
+                    Package (0x12)
                     {
                         "DSTATE", 
                         0x03, 
@@ -41329,6 +41742,62 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
                         }
                     }, 
 
@@ -41366,10 +41835,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x12)
+                    Package (0x16)
                     {
                         "DSTATE", 
                         Zero, 
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
                         Package (0x02)
                         {
                             "FOOTSWITCH", 
@@ -41558,7 +42083,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         One
                     }, 
 
-                    Package (0x0B)
+                    Package (0x0F)
                     {
                         "DSTATE", 
                         0x02, 
@@ -41658,10 +42183,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Zero, 
                                 Zero
                             }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
                         }
                     }, 
 
-                    Package (0x0D)
+                    Package (0x11)
                     {
                         "DSTATE", 
                         0x03, 
@@ -41780,6 +42361,62 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 One, 
                                 "/arc/client/rail_cx", 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
                                 Zero
                             }
                         }
@@ -41871,10 +42508,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x13)
+                    Package (0x17)
                     {
                         "DSTATE", 
                         Zero, 
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
                         Package (0x02)
                         {
                             "FOOTSWITCH", 
@@ -42069,7 +42762,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x0E)
+                    Package (0x12)
                     {
                         "DSTATE", 
                         One, 
@@ -42200,10 +42893,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
                         }
                     }, 
 
-                    Package (0x0E)
+                    Package (0x12)
                     {
                         "DSTATE", 
                         0x02, 
@@ -42334,10 +43083,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
                         }
                     }, 
 
-                    Package (0x0E)
+                    Package (0x12)
                     {
                         "DSTATE", 
                         0x03, 
@@ -42468,6 +43273,62 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
                         }
                     }, 
 
@@ -42505,10 +43366,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x12)
+                    Package (0x16)
                     {
                         "DSTATE", 
                         Zero, 
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
                         Package (0x02)
                         {
                             "FOOTSWITCH", 
@@ -42697,7 +43614,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         One
                     }, 
 
-                    Package (0x0B)
+                    Package (0x0F)
                     {
                         "DSTATE", 
                         0x02, 
@@ -42797,10 +43714,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Zero, 
                                 Zero
                             }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
                         }
                     }, 
 
-                    Package (0x0D)
+                    Package (0x11)
                     {
                         "DSTATE", 
                         0x03, 
@@ -42921,6 +43894,62 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
                         }
                     }, 
 
@@ -42958,10 +43987,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x14)
+                    Package (0x18)
                     {
                         "DSTATE", 
                         Zero, 
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
                         Package (0x02)
                         {
                             "FOOTSWITCH", 
@@ -43167,7 +44252,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x0D)
+                    Package (0x11)
                     {
                         "DSTATE", 
                         One, 
@@ -43288,10 +44373,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
                         }
                     }, 
 
-                    Package (0x0D)
+                    Package (0x11)
                     {
                         "DSTATE", 
                         0x02, 
@@ -43412,10 +44553,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
                         }
                     }, 
 
-                    Package (0x0D)
+                    Package (0x11)
                     {
                         "DSTATE", 
                         0x03, 
@@ -43534,6 +44731,62 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 One, 
                                 "/arc/client/rail_cx", 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
                                 Zero
                             }
                         }
@@ -44203,10 +45456,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x13)
+                    Package (0x17)
                     {
                         "DSTATE", 
                         Zero, 
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
                         Package (0x02)
                         {
                             "FOOTSWITCH", 
@@ -44401,7 +45710,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x0E)
+                    Package (0x12)
                     {
                         "DSTATE", 
                         One, 
@@ -44532,10 +45841,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
                         }
                     }, 
 
-                    Package (0x0E)
+                    Package (0x12)
                     {
                         "DSTATE", 
                         0x02, 
@@ -44666,10 +46031,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
                         }
                     }, 
 
-                    Package (0x0E)
+                    Package (0x12)
                     {
                         "DSTATE", 
                         0x03, 
@@ -44800,6 +46221,62 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
                         }
                     }, 
 
@@ -44837,10 +46314,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x12)
+                    Package (0x16)
                     {
                         "DSTATE", 
                         Zero, 
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
                         Package (0x02)
                         {
                             "FOOTSWITCH", 
@@ -45029,7 +46562,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         One
                     }, 
 
-                    Package (0x0B)
+                    Package (0x0F)
                     {
                         "DSTATE", 
                         0x02, 
@@ -45129,10 +46662,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Zero, 
                                 Zero
                             }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
                         }
                     }, 
 
-                    Package (0x0D)
+                    Package (0x11)
                     {
                         "DSTATE", 
                         0x03, 
@@ -45251,6 +46840,62 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 One, 
                                 "/arc/client/rail_cx", 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
                                 Zero
                             }
                         }
@@ -45342,10 +46987,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x13)
+                    Package (0x17)
                     {
                         "DSTATE", 
                         Zero, 
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
                         Package (0x02)
                         {
                             "FOOTSWITCH", 
@@ -45540,7 +47241,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x0E)
+                    Package (0x12)
                     {
                         "DSTATE", 
                         One, 
@@ -45671,10 +47372,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
                         }
                     }, 
 
-                    Package (0x0E)
+                    Package (0x12)
                     {
                         "DSTATE", 
                         0x02, 
@@ -45805,10 +47562,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
                         }
                     }, 
 
-                    Package (0x0E)
+                    Package (0x12)
                     {
                         "DSTATE", 
                         0x03, 
@@ -45939,6 +47752,62 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
                         }
                     }, 
 
@@ -45976,10 +47845,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x12)
+                    Package (0x16)
                     {
                         "DSTATE", 
                         Zero, 
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
                         Package (0x02)
                         {
                             "FOOTSWITCH", 
@@ -46168,7 +48093,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         One
                     }, 
 
-                    Package (0x0B)
+                    Package (0x0F)
                     {
                         "DSTATE", 
                         0x02, 
@@ -46268,10 +48193,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Zero, 
                                 Zero
                             }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
                         }
                     }, 
 
-                    Package (0x0D)
+                    Package (0x11)
                     {
                         "DSTATE", 
                         0x03, 
@@ -46392,6 +48373,62 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
                         }
                     }, 
 
@@ -46429,10 +48466,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x16)
+                    Package (0x1A)
                     {
                         "DSTATE", 
                         Zero, 
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
                         Package (0x02)
                         {
                             "FOOTSWITCH", 
@@ -46658,7 +48751,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x0F)
+                    Package (0x13)
                     {
                         "DSTATE", 
                         One, 
@@ -46799,10 +48892,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
                         }
                     }, 
 
-                    Package (0x0F)
+                    Package (0x13)
                     {
                         "DSTATE", 
                         0x02, 
@@ -46943,10 +49092,66 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x002EE000, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
                         }
                     }, 
 
-                    Package (0x0F)
+                    Package (0x13)
                     {
                         "DSTATE", 
                         0x03, 
@@ -47085,6 +49290,62 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 One, 
                                 "/arc/client/rail_cx", 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO12_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
                                 Zero
                             }
                         }
@@ -47250,16 +49511,98 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x02)
+                    Package (0x05)
                     {
                         "DSTATE", 
-                        Zero
+                        Zero, 
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_SMPS5_A", 
+                                0x02, 
+                                0x001DC130, 
+                                One, 
+                                0x06, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_SMPS6_C", 
+                                0x02, 
+                                0x00149970, 
+                                One, 
+                                0x06, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_SMPS7_C", 
+                                0x02, 
+                                0x000E7EF0, 
+                                One, 
+                                0x06, 
+                                Zero
+                            }
+                        }
                     }, 
 
-                    Package (0x02)
+                    Package (0x05)
                     {
                         "DSTATE", 
-                        0x03
+                        0x03, 
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_SMPS5_A", 
+                                0x02, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_SMPS6_C", 
+                                0x02, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_SMPS7_C", 
+                                0x02, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }
                     }
                 }
             })
@@ -47280,7 +49623,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x03)
+                    Package (0x04)
                     {
                         "DSTATE", 
                         Zero, 
@@ -47295,10 +49638,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 0x000F4240, 
                                 0x000F4240
                             }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO1_A", 
+                                One, 
+                                0x000B7980, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
                         }
                     }, 
 
-                    Package (0x03)
+                    Package (0x04)
                     {
                         "DSTATE", 
                         0x02, 
@@ -47313,10 +49670,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Zero, 
                                 Zero
                             }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO1_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
                         }
                     }, 
 
-                    Package (0x03)
+                    Package (0x04)
                     {
                         "DSTATE", 
                         0x03, 
@@ -47329,6 +49700,20 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 "ICBID_MASTER_PCIE_0", 
                                 "ICBID_SLAVE_EBI1", 
                                 Zero, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO1_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
                                 Zero
                             }
                         }
@@ -47355,16 +49740,42 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Zero
                         }, 
 
-                        Package (0x02)
+                        Package (0x03)
                         {
                             "PSTATE", 
-                            Zero
+                            Zero, 
+                            Package (0x02)
+                            {
+                                "PMICVREGVOTE", 
+                                Package (0x06)
+                                {
+                                    "PPP_RESOURCE_ID_LDO1_A", 
+                                    One, 
+                                    0x000B7980, 
+                                    One, 
+                                    0x04, 
+                                    Zero
+                                }
+                            }
                         }, 
 
-                        Package (0x02)
+                        Package (0x03)
                         {
                             "PSTATE", 
-                            One
+                            One, 
+                            Package (0x02)
+                            {
+                                "PMICVREGVOTE", 
+                                Package (0x06)
+                                {
+                                    "PPP_RESOURCE_ID_LDO1_A", 
+                                    One, 
+                                    Zero, 
+                                    Zero, 
+                                    0x04, 
+                                    Zero
+                                }
+                            }
                         }
                     }
                 }, 
@@ -47384,16 +49795,98 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x02)
+                    Package (0x05)
                     {
                         "DSTATE", 
-                        Zero
+                        Zero, 
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO7_A", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                0x0013E5C0, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO11_C", 
+                                One, 
+                                0x00328980, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }
                     }, 
 
-                    Package (0x02)
+                    Package (0x05)
                     {
                         "DSTATE", 
-                        0x03
+                        0x03, 
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO7_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO2_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO11_C", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x04, 
+                                Zero
+                            }
+                        }
                     }
                 }
             })
@@ -50905,6 +53398,125 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Scope (\_SB.PEP0)
         {
+            Method (LPMX, 0, NotSerialized)
+            {
+                Return (LPXX) /* \_SB_.PEP0.LPXX */
+            }
+
+            Name (LPXX, Package (0x01)
+            {
+                Package (0x07)
+                {
+                    "DEVICE", 
+                    "\\_SB.GTCH", 
+                    Package (0x03)
+                    {
+                        "COMPONENT", 
+                        Zero, 
+                        Package (0x02)
+                        {
+                            "FSTATE", 
+                            Zero
+                        }
+                    }, 
+
+                    Package (0x05)
+                    {
+                        "DSTATE", 
+                        Zero, 
+                        Package (0x02)
+                        {
+                            "TLMMGPIO", 
+                            Package (0x06)
+                            {
+                                One, 
+                                One, 
+                                Zero, 
+                                One, 
+                                Zero, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "DELAY", 
+                            Package (0x01)
+                            {
+                                0x012C
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "TLMMGPIO", 
+                            Package (0x06)
+                            {
+                                Zero, 
+                                One, 
+                                Zero, 
+                                One, 
+                                Zero, 
+                                Zero
+                            }
+                        }
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        One
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        0x02
+                    }, 
+
+                    Package (0x05)
+                    {
+                        "DSTATE", 
+                        0x03, 
+                        Package (0x02)
+                        {
+                            "TLMMGPIO", 
+                            Package (0x06)
+                            {
+                                Zero, 
+                                Zero, 
+                                Zero, 
+                                One, 
+                                Zero, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "DELAY", 
+                            Package (0x01)
+                            {
+                                0x0A
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "TLMMGPIO", 
+                            Package (0x06)
+                            {
+                                One, 
+                                One, 
+                                Zero, 
+                                One, 
+                                Zero, 
+                                Zero
+                            }
+                        }
+                    }
+                }
+            })
         }
 
         Device (BAM1)
@@ -80345,7 +82957,11 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         )
                     Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
                     {
-                        0x00000115,
+                        0x00000117,
+                    }
+                    Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
+                    {
+                        0x0000011B,
                     }
                 })
                 Return (RBUF) /* \_SB_.QGP0._CRS.RBUF */
@@ -82804,11 +85420,8 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         ControllerInitiated, 0x017D7840, ClockPolarityLow,
                         ClockPhaseFirst, "\\_SB.SPI8",
                         0x00, ResourceConsumer, , Exclusive,
-                        RawDataBuffer (0x07)  // Vendor Data
-                        {
-                            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-                        })
-                    GpioInt (Edge, ActiveHigh, ExclusiveAndWake, PullNone, 0x0000,
+                        )
+                    GpioInt (Edge, ActiveHigh, ExclusiveAndWake, PullDown, 0x0000,
                         "\\_SB.GIO0", 0x00, ResourceConsumer, ,
                         )
                         {   // Pin list
@@ -82826,63 +85439,53 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
             Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
             {
-                While (One)
+                If ((Arg0 == ToUUID ("6e2ac436-0fcf-41af-a265-b32a220dcfab") /* Unknown UUID */))
                 {
-                    Name (_T_0, Buffer (One)  // _T_x: Emitted by ASL Compiler, x=0-9, A-Z
+                    While (One)
+                    {
+                        Name (_T_0, 0x00)  // _T_x: Emitted by ASL Compiler, x=0-9, A-Z
+                        _T_0 = Arg2
+                        If ((_T_0 == Zero))
+                        {
+                            While (One)
+                            {
+                                Name (_T_1, 0x00)  // _T_x: Emitted by ASL Compiler, x=0-9, A-Z
+                                _T_1 = ToInteger (Arg1)
+                                If ((_T_1 == One))
+                                {
+                                    Return (Buffer (One)
+                                    {
+                                         0x03                                             // .
+                                    })
+                                }
+                                Else
+                                {
+                                    Return (Buffer (One)
+                                    {
+                                         0x00                                             // .
+                                    })
+                                }
+
+                                Break
+                            }
+                        }
+                        ElseIf ((_T_0 == One))
+                        {
+                            Return (One)
+                        }
+                        Else
+                        {
+                        }
+
+                        Break
+                    }
+                }
+                Else
+                {
+                    Return (Buffer (One)
                     {
                          0x00                                             // .
                     })
-                    CopyObject (ToBuffer (Arg0), _T_0) /* \_SB_.GTCH._DSM._T_0 */
-                    If ((_T_0 == ToUUID ("6e2ac436-0fcf-41af-a265-b32a220dcfab") /* Unknown UUID */))
-                    {
-                        While (One)
-                        {
-                            Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler, x=0-9, A-Z
-                            _T_1 = ToInteger (Arg2)
-                            If ((_T_1 == Zero))
-                            {
-                                While (One)
-                                {
-                                    Name (_T_2, Zero)  // _T_x: Emitted by ASL Compiler, x=0-9, A-Z
-                                    _T_2 = ToInteger (Arg1)
-                                    If ((_T_2 == One))
-                                    {
-                                        Return (Buffer (One)
-                                        {
-                                             0x03                                             // .
-                                        })
-                                    }
-                                    Else
-                                    {
-                                        Return (Buffer (One)
-                                        {
-                                             0x00                                             // .
-                                        })
-                                    }
-
-                                    Break
-                                }
-                            }
-                            ElseIf ((_T_1 == One))
-                            {
-                                Return (One)
-                            }
-                            Else
-                            {
-                            }
-
-                            Break
-                        }
-                    }
-                    Else
-                    {
-                        Return (Buffer (One)
-                        {
-                             0x00                                             // .
-                        })
-                    }
-
-                    Break
                 }
             }
 
@@ -82915,8 +85518,8 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 If ((FLAG == 0x03))
                 {
                     Sleep (0x012C)
-                    OperationRegion (GI54, SystemMemory, 0x03D00000, 0x20)
-                    Field (GI54, DWordAcc, NoLock, Preserve)
+                    OperationRegion (GI00, SystemMemory, 0x03D00000, 0x20)
+                    Field (GI00, DWordAcc, NoLock, Preserve)
                     {
                         DWD1,   32, 
                         DWD2,   32
@@ -82956,8 +85559,8 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
             Method (_RST, 0, NotSerialized)  // _RST: Device Reset
             {
-                OperationRegion (GI54, SystemMemory, 0x03D00000, 0x20)
-                Field (GI54, DWordAcc, NoLock, Preserve)
+                OperationRegion (GI00, SystemMemory, 0x03D00000, 0x20)
+                Field (GI00, DWordAcc, NoLock, Preserve)
                 {
                     DWD1,   32, 
                     DWD2,   32
@@ -83275,6 +85878,11 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (ADC2)
         {
+            Method (_STA, 0, NotSerialized)  // _STA: Status
+            {
+                Return (Zero)
+            }
+
             Name (_DEP, Package (0x02)  // _DEP: Dependencies
             {
                 \_SB.SPMI, 
@@ -83304,6 +85912,148 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         })
                         {   // Pin list
                             0x01D8
+                        }
+                })
+                Name (NAM, Buffer (0x0A)
+                {
+                    "\\_SB.SPMI"
+                })
+                Name (VUSR, Buffer (0x0C)
+                {
+                    /* 0000 */  0x8E, 0x13, 0x00, 0x01, 0x00, 0xC1, 0x02, 0x02,  // ........
+                    /* 0008 */  0x31, 0x01, 0x00, 0x00                           // 1...
+                })
+                Name (VBTM, Buffer (0x0C)
+                {
+                    /* 0000 */  0x8E, 0x13, 0x00, 0x01, 0x00, 0xC1, 0x02, 0x02,  // ........
+                    /* 0008 */  0x35, 0x01, 0x00, 0x00                           // 5...
+                })
+                Concatenate (VUSR, NAM, Local1)
+                Concatenate (VBTM, NAM, Local2)
+                Concatenate (Local1, Local2, Local3)
+                Concatenate (Local3, INTB, Local0)
+                Return (Local0)
+            }
+
+            Method (ADDV, 0, NotSerialized)
+            {
+                Return (Package (0x02)
+                {
+                    One, 
+                    One
+                })
+            }
+
+            Method (GENP, 0, NotSerialized)
+            {
+                Return (Package (0x07)
+                {
+                    Zero, 
+                    0x70E4, 
+                    0x001C9C38, 
+                    0x0007A120, 
+                    0x43, 
+                    Zero, 
+                    One
+                })
+            }
+
+            Method (VGIO, 0, NotSerialized)
+            {
+                Return (Package (0x05)
+                {
+                    Package (0x02)
+                    {
+                        One, 
+                        Buffer (0x04)
+                        {
+                             0x10, 0x30, 0x50, 0x70                           // .0Pp
+                        }
+                    }, 
+
+                    Package (0x02)
+                    {
+                        0x0B, 
+                        Buffer (0x04)
+                        {
+                             0x12, 0x32, 0x52, 0x72                           // .2Rr
+                        }
+                    }, 
+
+                    Package (0x02)
+                    {
+                        0x0C, 
+                        Buffer (0x04)
+                        {
+                             0x13, 0x33, 0x53, 0x73                           // .3Ss
+                        }
+                    }, 
+
+                    Package (0x02)
+                    {
+                        0x07, 
+                        Buffer (0x05)
+                        {
+                             0x14, 0x34, 0x54, 0x74, 0x94                     // .4Tt.
+                        }
+                    }, 
+
+                    Package (0x02)
+                    {
+                        0x08, 
+                        Buffer (0x05)
+                        {
+                             0x15, 0x35, 0x55, 0x75, 0x95                     // .5Uu.
+                        }
+                    }
+                })
+            }
+
+            Method (VTGN, 0, NotSerialized)
+            {
+                Return (Package (0x06)
+                {
+                    0x02, 
+                    0x02, 
+                    0x70E4, 
+                    0x001C9C38, 
+                    Zero, 
+                    One
+                })
+            }
+        }
+
+        Device (ADC3)
+        {
+            Name (_DEP, Package (0x02)  // _DEP: Dependencies
+            {
+                \_SB.SPMI, 
+                \_SB.PMIC
+            })
+            Name (_HID, "QCOM0412")  // _HID: Hardware ID
+            Name (_UID, 0x02)  // _UID: Unique ID
+            Alias (\_SB.PSUB, _SUB)
+            Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
+            {
+                Name (INTB, ResourceTemplate ()
+                {
+                    GpioInt (Edge, ActiveHigh, ExclusiveAndWake, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        RawDataBuffer (0x01)  // Vendor Data
+                        {
+                            0x02
+                        })
+                        {   // Pin list
+                            0x0268
+                        }
+                    GpioInt (Edge, ActiveHigh, ExclusiveAndWake, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        RawDataBuffer (0x01)  // Vendor Data
+                        {
+                            0x02
+                        })
+                        {   // Pin list
+                            0x0270
                         }
                 })
                 Name (NAM, Buffer (0x0A)
@@ -83402,139 +86152,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     0x001C9C38, 
                     Zero, 
                     0x02
-                })
-            }
-        }
-
-        Device (ADC3)
-        {
-            Name (_DEP, Package (0x02)  // _DEP: Dependencies
-            {
-                \_SB.SPMI, 
-                \_SB.PMIC
-            })
-            Name (_HID, "QCOM0412")  // _HID: Hardware ID
-            Name (_UID, 0x02)  // _UID: Unique ID
-            Alias (\_SB.PSUB, _SUB)
-            Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-            {
-                Name (INTB, ResourceTemplate ()
-                {
-                    GpioInt (Edge, ActiveHigh, ExclusiveAndWake, PullUp, 0x0000,
-                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
-                        RawDataBuffer (0x01)  // Vendor Data
-                        {
-                            0x02
-                        })
-                        {   // Pin list
-                            0x0268
-                        }
-                    GpioInt (Edge, ActiveHigh, ExclusiveAndWake, PullUp, 0x0000,
-                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
-                        RawDataBuffer (0x01)  // Vendor Data
-                        {
-                            0x02
-                        })
-                        {   // Pin list
-                            0x0270
-                        }
-                })
-                Name (NAM, Buffer (0x0A)
-                {
-                    "\\_SB.SPMI"
-                })
-                Name (VUSR, Buffer (0x0C)
-                {
-                    /* 0000 */  0x8E, 0x13, 0x00, 0x01, 0x00, 0xC1, 0x02, 0x08,  // ........
-                    /* 0008 */  0x31, 0x01, 0x00, 0x00                           // 1...
-                })
-                Name (VBTM, Buffer (0x0C)
-                {
-                    /* 0000 */  0x8E, 0x13, 0x00, 0x01, 0x00, 0xC1, 0x02, 0x08,  // ........
-                    /* 0008 */  0x35, 0x01, 0x00, 0x00                           // 5...
-                })
-                Concatenate (VUSR, NAM, Local1)
-                Concatenate (VBTM, NAM, Local2)
-                Concatenate (Local1, Local2, Local3)
-                Concatenate (Local3, INTB, Local0)
-                Return (Local0)
-            }
-
-            Method (ADDV, 0, NotSerialized)
-            {
-                Return (Package (0x02)
-                {
-                    One, 
-                    One
-                })
-            }
-
-            Method (GENP, 0, NotSerialized)
-            {
-                Return (Package (0x07)
-                {
-                    Zero, 
-                    0x70E4, 
-                    0x001C9C38, 
-                    0x0007A120, 
-                    0x43, 
-                    Zero, 
-                    0x04
-                })
-            }
-
-            Method (VGIO, 0, NotSerialized)
-            {
-                Return (Package (0x04)
-                {
-                    Package (0x02)
-                    {
-                        0x03, 
-                        Buffer (0x04)
-                        {
-                             0x12, 0x32, 0x52, 0x72                           // .2Rr
-                        }
-                    }, 
-
-                    Package (0x02)
-                    {
-                        0x04, 
-                        Buffer (0x04)
-                        {
-                             0x13, 0x33, 0x53, 0x73                           // .3Ss
-                        }
-                    }, 
-
-                    Package (0x02)
-                    {
-                        0x05, 
-                        Buffer (0x05)
-                        {
-                             0x14, 0x34, 0x54, 0x74, 0x94                     // .4Tt.
-                        }
-                    }, 
-
-                    Package (0x02)
-                    {
-                        0x02, 
-                        Buffer (0x05)
-                        {
-                             0x15, 0x35, 0x55, 0x75, 0x95                     // .5Uu.
-                        }
-                    }
-                })
-            }
-
-            Method (VTGN, 0, NotSerialized)
-            {
-                Return (Package (0x06)
-                {
-                    0x02, 
-                    0x02, 
-                    0x70E4, 
-                    0x001C9C38, 
-                    Zero, 
-                    0x04
                 })
             }
         }
