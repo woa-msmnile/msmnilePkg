@@ -459,8 +459,6 @@
 
   DfciPkg/Application/DfciMenu/DfciMenu.inf
 
-  SurfaceDuoPkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
-
   # BDS
   MdeModulePkg/Universal/PrintDxe/PrintDxe.inf
   MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
