@@ -29,21 +29,6 @@ extern UINT64 mSystemMemoryEnd;
 
 VOID BuildMemoryTypeInformationHob(VOID);
 
-STATIC VOID ClearUCSIMemoryRegion(VOID)
-{
-  UINT8 *base = (UINT8 *)0x9FF90000ull;
-  for (UINTN i = 0; i < 0x2000; i++) {
-    base[i] = 0;
-  }
-}
-
-STATIC VOID ClearDisplayMemoryRegion(VOID)
-{
-  UINT8 *base = (UINT8 *)0x80600000ull;
-  for (UINTN i = 0; i < 0x2400000; i++) {
-    base[i] = 0;
-  }
-}
 
 STATIC
 VOID InitMmu(IN ARM_MEMORY_REGION_DESCRIPTOR *MemoryTable)
@@ -71,7 +56,11 @@ VOID AddHob(PARM_MEMORY_REGION_DESCRIPTOR_EX Desc)
   BuildResourceDescriptorHob(
       Desc->ResourceType, Desc->ResourceAttribute, Desc->Address, Desc->Length);
 
-  BuildMemoryAllocationHob(Desc->Address, Desc->Length, Desc->MemoryType);
+  if (Desc->ResourceType == EFI_RESOURCE_SYSTEM_MEMORY ||
+      Desc->MemoryType == EfiRuntimeServicesData)
+  {
+    BuildMemoryAllocationHob(Desc->Address, Desc->Length, Desc->MemoryType);
+  }
 }
 
 /*++
@@ -134,9 +123,6 @@ MemoryPeim(IN EFI_PHYSICAL_ADDRESS UefiMemoryBase, IN UINT64 UefiMemorySize)
   MemoryDescriptor[Index].VirtualBase  = 0;
   MemoryDescriptor[Index].Length       = 0;
   MemoryDescriptor[Index].Attributes   = 0;
-
-  ClearUCSIMemoryRegion();
-  ClearDisplayMemoryRegion();
 
   // Build Memory Allocation Hob
   DEBUG((EFI_D_INFO, "Configure MMU In \n"));
