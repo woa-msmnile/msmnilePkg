@@ -5,6 +5,7 @@
 .text
 .align 3
 
+GCC_ASM_IMPORT (ArmDeInitialize)
 GCC_ASM_IMPORT (CEntryPoint)
 GCC_ASM_EXPORT (_ModuleEntryPoint)
 GCC_ASM_IMPORT (ArmEnableInstructionCache)
@@ -52,6 +53,10 @@ _CopyLoop:
   b.ne   _CopyLoop
 
 _ContinueModuleEntryPoint:
+
+  /* World reset */
+  bl ASM_PFX(ArmDeInitialize)
+
   mov x0, #0
 
   /* mdss_dsi0 + DSI_CTRL */
