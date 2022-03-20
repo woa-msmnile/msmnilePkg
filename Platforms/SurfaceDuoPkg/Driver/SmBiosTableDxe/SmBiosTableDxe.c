@@ -173,8 +173,8 @@ SMBIOS_TABLE_TYPE1 mSysInfoType1 = {
     6, // Family String
 };
 CHAR8 *mSysInfoType1Strings[] = {
-    "Microsoft Corporation", "Surface Duo", "1930", "Not Specified",
-    "Surface_Duo_1930",      "Surface",        NULL};
+    "Qualcomm Technologies, Inc.", "Qualcomm 8150 MTP", "8150", "Not Specified",
+    "8150_MTP",      "Qualcomm",        NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE2  Board Information
@@ -202,7 +202,7 @@ SMBIOS_TABLE_TYPE2 mBoardInfoType2 = {
     {0}                       // ContainedObjectHandles[1];
 };
 CHAR8 *mBoardInfoType2Strings[] = {
-    "Microsoft Corporation", "Surface Duo", "Not Specified", "Not Specified", "Not Specified", "Not Specified", NULL};
+    "Qualcomm Technologies, Inc.", "Qualcomm 8150 MTP", "Not Specified", "Not Specified", "Not Specified", "Not Specified", NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE3  Enclosure Information
@@ -225,7 +225,7 @@ SMBIOS_TABLE_TYPE3 mEnclosureInfoType3 = {
     0,                         // ContainedElementRecordLength;
     {{0}},                     // ContainedElements[1];
 };
-CHAR8 *mEnclosureInfoType3Strings[] = {"Microsoft Corporation", "Not Specified", "Not Specified", "Not Specified",
+CHAR8 *mEnclosureInfoType3Strings[] = {"Qualcomm Technologies, Inc.", "Not Specified", "Not Specified", "Not Specified",
                                        NULL};
 
 /***********************************************************************
