@@ -257,7 +257,11 @@
 
   # Platform Drivers
 !if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == 1
+!if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
+  SerialPortLib|SurfaceDuoPkg/Library/FrameBufferInMemorySerialPortLib/FrameBufferInMemorySerialPortLib.inf
+!else
   SerialPortLib|SurfaceDuoPkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf
+!endif
 !else
 !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
   SerialPortLib|SurfaceDuoPkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
@@ -395,7 +399,11 @@
   SurfaceDuoPkg/PrePi/PrePi.inf {
     <LibraryClasses>
     !if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == 1
+    !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
+      SerialPortLib|SurfaceDuoPkg/Library/FrameBufferInMemorySerialPortLib/FrameBufferInMemorySerialPortLib.inf
+    !else
       SerialPortLib|SurfaceDuoPkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf
+    !endif
     !else
     !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
       SerialPortLib|SurfaceDuoPkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
