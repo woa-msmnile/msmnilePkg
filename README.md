@@ -1,6 +1,9 @@
-# Project Mu UEFI Implementation for Surface Duo
+## This Repo Is Based On [SurfaceDuoPkg](https://github.com/Woa-Project/SurfaceDuoPkg/)
+ Thanks for Gus's instructions!
 
-## Build
+# Project Mu UEFI Implementation for Other SM8150 Devices
+
+## Build 
 
 Quick notes for building:
 
