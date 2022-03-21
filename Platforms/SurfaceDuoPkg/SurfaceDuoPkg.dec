@@ -124,7 +124,7 @@
   gSurfaceDuoPkgTokenSpaceGuid.PcdEnableScreenSerial|FALSE|BOOLEAN|0x00000a105
   
   # Memory allocation
-  gSurfaceDuoPkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x20000000|UINT64|0x00000a106
+  gSurfaceDuoPkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x40000000|UINT64|0x00000a106
   gSurfaceDuoPkgTokenSpaceGuid.PcdUefiMemPoolSize|0x78000000|UINT32|0x00000a107
 
   # RTC information
