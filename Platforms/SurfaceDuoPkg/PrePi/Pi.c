@@ -77,8 +77,8 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN UINT64 StartTimeStamp)
 
   DEBUG(
       (EFI_D_INFO | EFI_D_LOAD,
-       "UEFI Memory Base = 0x%llx, Size = 0x%llx, Stack Base = 0x%llx, Stack "
-       "Size = 0x%llx\n",
+       "UEFI Memory Base = 0x%llx, Size = 0x%llx, Stack Base = 0x%llx, Stack \n"
+       "        Size = 0x%llx\n",
        UefiMemoryBase, UefiMemorySize, StackBase, StackSize));
 
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "Disabling Qualcomm Watchdog Reboot timer\n"));
@@ -107,20 +107,36 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN UINT64 StartTimeStamp)
   DEBUG((EFI_D_LOAD | EFI_D_INFO, "MMU configured from device config\n"));
 
   // Add HOBs
+  DEBUG((EFI_D_LOAD | EFI_D_INFO, "Start Build Stack Hob    "));
+
   BuildStackHob((UINTN)StackBase, StackSize);
 
+  DEBUG((EFI_D_LOAD | EFI_D_INFO, " Finished !\n"));
+
   // TODO: Call CpuPei as a library
+   DEBUG((EFI_D_LOAD | EFI_D_INFO, "Call CpuPei as a library    "));
+
   BuildCpuHob(ArmGetPhysicalAddressBits(), PcdGet8(PcdPrePiCpuIoSize));
+  DEBUG((EFI_D_LOAD | EFI_D_INFO, "Finished    \n"));
 
   // Set the Boot Mode
+  DEBUG((EFI_D_LOAD | EFI_D_INFO, "Set the Boot Mode    "));
+
   SetBootMode(BOOT_WITH_FULL_CONFIGURATION);
+  DEBUG((EFI_D_LOAD | EFI_D_INFO, "Finished    \n"));
 
   // Initialize Platform HOBs (CpuHob and FvHob)
+  DEBUG((EFI_D_LOAD | EFI_D_INFO, "Initialize Platform HOBs (CpuHob and FvHob)    "));
+
   Status = PlatformPeim();
   ASSERT_EFI_ERROR(Status);
+  DEBUG((EFI_D_LOAD | EFI_D_INFO, "Finished    \n"));
 
   // Install SoC driver HOBs
+
+  DEBUG((EFI_D_LOAD | EFI_D_INFO, "Install SoC driver HOBs    "));
   InstallPlatformHob();
+  DEBUG((EFI_D_LOAD | EFI_D_INFO, "Finished    \n"));
 
   // Now, the HOB List has been initialized, we can register performance
   // information PERF_START (NULL, "PEI", NULL, StartTimeStamp);
@@ -130,11 +146,18 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN UINT64 StartTimeStamp)
 
   // Assume the FV that contains the PI (our code) also contains a compressed
   // FV.
+  DEBUG((EFI_D_LOAD | EFI_D_INFO, "Decompress FV "));
+
   Status = DecompressFirstFv();
+
   ASSERT_EFI_ERROR(Status);
+  DEBUG((EFI_D_LOAD | EFI_D_INFO, "Finished\n"));
 
   // Load the DXE Core and transfer control to it
+  DEBUG((EFI_D_LOAD | EFI_D_INFO, "Loading DXE  Core "));
+
   Status = LoadDxeCoreFromFv(NULL, 0);
+
   ASSERT_EFI_ERROR(Status);
 
   // We should never reach here
