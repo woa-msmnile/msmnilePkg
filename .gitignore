@@ -5,6 +5,7 @@ Platforms/SurfaceDuoPkg/Include/Resources/ReleaseInfo.h
 .DS_Store
 .vs
 .vscode
+.img
 
 /Build/
 .DS_Store

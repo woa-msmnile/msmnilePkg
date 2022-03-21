@@ -170,6 +170,12 @@ APRIORI DXE {
 
     INF SurfaceDuoPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
 
+    FILE DRIVER = C9C6BB00-44FC-4C87-8AF9-F93218E17C10  {
+            SECTION DXE_DEPEX = SurfaceDuoPkg/CustomizedBinaries/LemonICE/UsbcSetDrpDxe.depex
+            SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/LemonICE/UsbcSetDrpDxe.efi
+            SECTION UI = "UsbcSetDrpDxe"
+    }
+
     FILE DRIVER = 1d317734-4083-47c6-83ea-e3a42f2a6bff {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-1d317734-4083-47c6-83ea-e3a42f2a6bff/section0.dxe.depex
             SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-1d317734-4083-47c6-83ea-e3a42f2a6bff/section1.pe
