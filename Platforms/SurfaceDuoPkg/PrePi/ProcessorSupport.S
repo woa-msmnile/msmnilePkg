@@ -112,7 +112,6 @@ ArmCallSmcHardCoded:
 	ldr	 x4, =0
 	ldr	 x3, =0x50
 	ldr	 x2, =0xA0000000
-//	ldr	 x2, =0xB9400000
 	ldr	 x1, =0x12
 	ldr	 x0, =0x0200010f
 
