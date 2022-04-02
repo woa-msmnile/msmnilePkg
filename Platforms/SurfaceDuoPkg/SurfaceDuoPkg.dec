@@ -113,8 +113,6 @@
   gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080|UINT32|0x0000a401
   gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2340|UINT32|0x0000a402
   gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|66|UINT32|0x0000a403
-  gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferVisibleWidth|1080|UINT32|0x0000a404
-  gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferVisibleHeight|2340|UINT32|0x0000a405
 
   # FD
   gSurfaceDuoPkgTokenSpaceGuid.PcdFdBaseAddress|0xD0000000|UINT64|0x0000a103
