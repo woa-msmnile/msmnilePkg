@@ -16,6 +16,8 @@ This file aims to provide further information about the different patches applie
 
 - FmpDxe: so the driver loads and provides firmware manegement interfaces to FrontPage.
 
+- UsbPwrCtrlDxe: UCSI + Dual Role support present only on Windows variants, taken from Pro X, patched to work on Duo.
+
 ## UFSDxe & DisplayDxe
 
 MMU related setup routine was patched to not recreate already existing MMU domains.
