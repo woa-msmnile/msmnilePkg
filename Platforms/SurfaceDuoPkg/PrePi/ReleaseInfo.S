@@ -2,7 +2,7 @@
 .align 3
 
 .global _ReleaseInfo
-        
+
 .extern _ModuleEntryPoint
 
 _ReleaseInfo:

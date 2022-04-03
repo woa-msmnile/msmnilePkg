@@ -113,11 +113,9 @@
   gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080|UINT32|0x0000a401
   gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2340|UINT32|0x0000a402
   gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|66|UINT32|0x0000a403
-  gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferVisibleWidth|1080|UINT32|0x0000a404
-  gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferVisibleHeight|2340|UINT32|0x0000a405
 
   # FD
-  gSurfaceDuoPkgTokenSpaceGuid.PcdFdBaseAddress|0x9FC00000|UINT64|0x0000a103
+  gSurfaceDuoPkgTokenSpaceGuid.PcdFdBaseAddress|0xD0000000|UINT64|0x0000a103
   gSurfaceDuoPkgTokenSpaceGuid.PcdFdSize|0x00300000|UINT32|0x0000a104
 
   # Debug Screen Serial
