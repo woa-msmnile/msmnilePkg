@@ -16,6 +16,8 @@ tags/
 .vscode/
 *.bak
 BuildConfig.conf
+UpdateAcpi.sh
+DSDT.aml
 
 /Conf/
 /SurfaceDuo/
