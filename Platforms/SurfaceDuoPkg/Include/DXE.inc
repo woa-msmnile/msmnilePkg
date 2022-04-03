@@ -93,12 +93,12 @@
             SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-9c1eb71f-dd6c-4ed5-9f6a-5cc0ca789f16/section1.pe
             SECTION UI = "ShmBridgeDxe"
     }
-#
-#    FILE DRIVER = 2d7a83e3-e343-4ffb-9109-631f2ee11694 {
-#            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-2d7a83e3-e343-4ffb-9109-631f2ee11694/section0.dxe.depex
-#            SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/XiaoMi/ScmDxe.efi
-#            SECTION UI = "ScmDxe"
-#    }
+
+    FILE DRIVER = 2d7a83e3-e343-4ffb-9109-631f2ee11694 {
+            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-2d7a83e3-e343-4ffb-9109-631f2ee11694/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/XiaoMi/ScmDxe.efi
+            SECTION UI = "ScmDxe"
+    }
 
     FILE DRIVER = 6b38f7b4-ad98-40e9-9093-aca2b5a253c4 {
             SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/XiaoMi/DiskIoDxe.efi
@@ -118,18 +118,18 @@
 
     FILE DRIVER = 0d35cd8e-97ea-4f9a-96af-0f0d89f76567 {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-0d35cd8e-97ea-4f9a-96af-0f0d89f76567/section0.dxe.depex
-#            SECTION PE32 = SurfaceDuoPkg/PatchedBinaries/UFSDxe.efi
-	    SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/845/UFSDxe.efi
+            SECTION PE32 = SurfaceDuoPkg/PatchedBinaries/UFSDxe.efi
+#	    SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/845/UFSDxe.efi
             SECTION UI = "UFSDxe"
     }
 
     INF FatPkg/EnhancedFatDxe/Fat.inf
 
-#    FILE DRIVER = 6925fad3-e243-4b69-ad61-3f978c8abc60 {
-#            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-6925fad3-e243-4b69-ad61-3f978c8abc60/section0.dxe.depex
-#            SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/XiaoMi/TzDxe.efi
-#            SECTION UI = "TzDxe"
-#    }
+    FILE DRIVER = 6925fad3-e243-4b69-ad61-3f978c8abc60 {
+            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-6925fad3-e243-4b69-ad61-3f978c8abc60/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/XiaoMi/TzDxe.efi
+            SECTION UI = "TzDxe"
+    }
 
     INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
 
@@ -157,19 +157,20 @@
             SECTION UI = "DDRInfoDxe"
     }
 
-#    FILE DRIVER = 5776232e-082d-4b75-9a0e-fe1d13f7a5d9 {
-#            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-5776232e-082d-4b75-9a0e-fe1d13f7a5d9/section0.dxe.depex
-#            SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/XiaoMi/PmicDxe.efi
-#            SECTION UI = "PmicDxe"
-#    }
-#
+    FILE DRIVER = 5776232e-082d-4b75-9a0e-fe1d13f7a5d9 {
+            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-5776232e-082d-4b75-9a0e-fe1d13f7a5d9/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/XiaoMi/PmicDxe.efi
+            SECTION UI = "PmicDxe"
+    }
+
     INF SurfaceDuoPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
+
+    FILE DRIVER = 1d317734-4083-47c6-83ea-e3a42f2a6bff {
+            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-1d317734-4083-47c6-83ea-e3a42f2a6bff/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/XiaoMi/PILDxe.efi
+            SECTION UI = "PILDxe"
+    }
 #
-#    FILE DRIVER = 1d317734-4083-47c6-83ea-e3a42f2a6bff {
-#            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-1d317734-4083-47c6-83ea-e3a42f2a6bff/section0.dxe.depex
-#            SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/XiaoMi/PILDxe.efi
-#            SECTION UI = "PILDxe"
-#    }
 #    FILE DRIVER = C9C6BB00-44FC-4C87-8AF9-F93218E17C10  {
 #            SECTION DXE_DEPEX = SurfaceDuoPkg/CustomizedBinaries/LemonICE/UsbcSetDrpDxe.depex
 #            SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/LemonICE/UsbcSetDrpDxe.efi
@@ -223,21 +224,21 @@
 
     FILE DRIVER = 11faed4c-b21f-4d88-8e48-c4c28a1e50df {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-11faed4c-b21f-4d88-8e48-c4c28a1e50df/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoPkg/PatchedBinaries/UsbPwrCtrlDxe.efi
+            SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/XiaoMi/UsbPwrCtrlDxe.efi
             SECTION UI = "UsbPwrCtrlDxe"
     }
-
-    FILE DRIVER = 4bce7f36-428e-4393-99e3-7e0844404dba {
-            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-4bce7f36-428e-4393-99e3-7e0844404dba/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-4bce7f36-428e-4393-99e3-7e0844404dba/section1.pe
-            SECTION UI = "QcomChargerDxeLA"
-    }
-
-    FILE DRIVER = 2e3042f3-2bb9-463f-8866-56d75b7c4ab0 {
-            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-2e3042f3-2bb9-463f-8866-56d75b7c4ab0/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-2e3042f3-2bb9-463f-8866-56d75b7c4ab0/section1.pe
-            SECTION UI = "ChargerExDxe"
-    }
+#
+#    FILE DRIVER = 4bce7f36-428e-4393-99e3-7e0844404dba {
+#            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-4bce7f36-428e-4393-99e3-7e0844404dba/section0.dxe.depex
+#            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-4bce7f36-428e-4393-99e3-7e0844404dba/section1.pe
+#            SECTION UI = "QcomChargerDxeLA"
+#    }
+#
+#    FILE DRIVER = 2e3042f3-2bb9-463f-8866-56d75b7c4ab0 {
+#            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-2e3042f3-2bb9-463f-8866-56d75b7c4ab0/section0.dxe.depex
+#            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-2e3042f3-2bb9-463f-8866-56d75b7c4ab0/section1.pe
+#            SECTION UI = "ChargerExDxe"
+#    }
 
     FILE DRIVER = 94f8a6a7-dc34-4101-88c1-99179cceae83 {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-94f8a6a7-dc34-4101-88c1-99179cceae83/section0.dxe.depex

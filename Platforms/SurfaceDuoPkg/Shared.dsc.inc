@@ -497,6 +497,11 @@
   # USB
   MdeModulePkg/Bus/Usb/UsbMouseAbsolutePointerDxe/UsbMouseAbsolutePointerDxe.inf
 
+  #Memory Attributes Set ( Display Region )
+  SurfaceDuoPkg/Driver/MemAttSetDxe/MemAttSet.inf
+  
+
+
   # DT
   EmbeddedPkg/Drivers/DtPlatformDxe/DtPlatformDxe.inf
 

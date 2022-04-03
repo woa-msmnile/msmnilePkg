@@ -133,6 +133,8 @@ READ_LOCK_STATUS   = TRUE
     SECTION UI = "HidMouseAbsolutePointerDxe"
   }
 
+  # MemAttSet Need by Display Region
+  INF SurfaceDuoPkg/Driver/MemAttSetDxe/MemAttSet.inf
   # Disk IO
   INF MdeModulePkg/Bus/Scsi/ScsiBusDxe/ScsiBusDxe.inf
   INF MdeModulePkg/Bus/Scsi/ScsiDiskDxe/ScsiDiskDxe.inf
