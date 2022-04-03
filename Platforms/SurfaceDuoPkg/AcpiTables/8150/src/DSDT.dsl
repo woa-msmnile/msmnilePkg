@@ -568,7 +568,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 BDIX |= VHPD /* \_SB_.PMGK.UPAN.BDIX */
                 VHIQ <<= 0x05
                 BDIX |= VHIQ /* \_SB_.PMGK.UPAN.BDIX */
-                \_SB.UCS0.EINF = 0x02
+                \_SB.UCS0.EINF = One
                 While (One)
                 {
                     Name (_T_1, 0x00)  // _T_x: Emitted by ASL Compiler, x=0-9, A-Z
@@ -578,14 +578,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         \_SB.UCS0.EUPD |= One
                         \_SB.UCS0.ECC0 = BCCX /* \_SB_.PMGK.UPAN.BCCX */
                         \_SB.UCS0.EDI0 = BDIX /* \_SB_.PMGK.UPAN.BDIX */
-                        \_SB.UCS0.USBR ()
-                        Break
-                    }
-                    ElseIf ((_T_1 == One))
-                    {
-                        \_SB.UCS0.EUPD |= 0x02
-                        \_SB.UCS0.ECC1 = BCCX /* \_SB_.PMGK.UPAN.BCCX */
-                        \_SB.UCS0.EDI1 = BDIX /* \_SB_.PMGK.UPAN.BDIX */
                         \_SB.UCS0.USBR ()
                         Break
                     }
@@ -92890,50 +92882,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 })
             }
 
-            Device (UCN1)
-            {
-                Name (_ADR, One)  // _ADR: Address
-                Name (_PLD, Package (0x01)  // _PLD: Physical Location of Device
-                {
-                    ToPLD (
-                        PLD_Revision           = 0x2,
-                        PLD_IgnoreColor        = 0x1,
-                        PLD_Red                = 0x0,
-                        PLD_Green              = 0x0,
-                        PLD_Blue               = 0x0,
-                        PLD_Width              = 0x0,
-                        PLD_Height             = 0x0,
-                        PLD_UserVisible        = 0x1,
-                        PLD_Dock               = 0x0,
-                        PLD_Lid                = 0x0,
-                        PLD_Panel              = "BACK",
-                        PLD_VerticalPosition   = "CENTER",
-                        PLD_HorizontalPosition = "LEFT",
-                        PLD_Shape              = "VERTICALRECTANGLE",
-                        PLD_GroupOrientation   = 0x0,
-                        PLD_GroupToken         = 0x0,
-                        PLD_GroupPosition      = 0x1,
-                        PLD_Bay                = 0x0,
-                        PLD_Ejectable          = 0x0,
-                        PLD_EjectRequired      = 0x0,
-                        PLD_CabinetNumber      = 0x0,
-                        PLD_CardCageNumber     = 0x0,
-                        PLD_Reference          = 0x0,
-                        PLD_Rotation           = 0x0,
-                        PLD_Order              = 0x0,
-                        PLD_VerticalOffset     = 0xFFFF,
-                        PLD_HorizontalOffset   = 0xFFFF)
-
-                })
-                Name (_UPC, Package (0x04)  // _UPC: USB Port Capabilities
-                {
-                    One, 
-                    0x09, 
-                    Zero, 
-                    Zero
-                })
-            }
-
             Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
             {
                 Memory32Fixed (ReadWrite,
@@ -93023,7 +92971,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 Memory32Fixed (ReadWrite,
                     0x9FF90040,         // Address Base
-                    0x00000006,         // Address Length
+                    0x00000004,         // Address Length
                     )
                 GpioIo (Shared, PullNone, 0x0000, 0x0000, IoRestrictionNone,
                     "\\_SB.GIO0", 0x00, ResourceConsumer, ,
@@ -93052,55 +93000,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {   // Pin list
                         0x0064
                     }
-                GpioIo (Shared, PullNone, 0x0000, 0x0000, IoRestrictionNone,
-                    "\\_SB.GIO0", 0x00, ResourceConsumer, ,
-                    RawDataBuffer (0x01)  // Vendor Data
-                    {
-                        0x01
-                    })
-                    {   // Pin list
-                        0x003A
-                    }
-                GpioIo (Exclusive, PullUp, 0x0000, 0x0000, IoRestrictionOutputOnly,
-                    "\\_SB.GIO0", 0x00, ResourceConsumer, ,
-                    RawDataBuffer (0x01)  // Vendor Data
-                    {
-                        0x01
-                    })
-                    {   // Pin list
-                        0x00BC
-                    }
-                GpioIo (Exclusive, PullUp, 0x0000, 0x0000, IoRestrictionOutputOnly,
-                    "\\_SB.GIO0", 0x00, ResourceConsumer, ,
-                    RawDataBuffer (0x01)  // Vendor Data
-                    {
-                        0x01
-                    })
-                    {   // Pin list
-                        0x00BB
-                    }
             })
-            OperationRegion (USBC, SystemMemory, 0x9FF90040, 0x06)
+            OperationRegion (USBC, SystemMemory, 0x9FF90040, 0x04)
             Field (USBC, ByteAcc, NoLock, Preserve)
             {
                 INFO,   8, 
                 UPDT,   8, 
                 CCM0,   8, 
-                DIS0,   8, 
-                CCM1,   8, 
-                DIS1,   8
+                DIS0,   8
             }
 
-            Name (PORT, Buffer (0x06)
+            Name (PORT, Buffer (0x04)
             {
-                 0x02, 0x00, 0x02, 0x00, 0x02, 0x00               // ......
+                 0x01, 0x00, 0x02, 0x00                           // ....
             })
             CreateByteField (PORT, Zero, EINF)
             CreateByteField (PORT, One, EUPD)
             CreateByteField (PORT, 0x02, ECC0)
             CreateByteField (PORT, 0x03, EDI0)
-            CreateByteField (PORT, 0x04, ECC1)
-            CreateByteField (PORT, 0x05, EDI1)
             Method (USBW, 0, NotSerialized)
             {
                 EUPD = UPDT /* \_SB_.UCS0.UPDT */
@@ -93114,8 +93031,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 UPDT = EUPD /* \_SB_.UCS0.EUPD */
                 CCM0 = ECC0 /* \_SB_.UCS0.ECC0 */
                 DIS0 = EDI0 /* \_SB_.UCS0.EDI0 */
-                CCM1 = ECC1 /* \_SB_.UCS0.ECC1 */
-                DIS1 = EDI1 /* \_SB_.UCS0.EDI1 */
                 Notify (UCS0, 0xA0) // Device-Specific
                 Return (Zero)
             }
