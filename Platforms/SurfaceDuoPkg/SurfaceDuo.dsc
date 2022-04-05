@@ -42,24 +42,7 @@
 #    1. Xiaomi Pad 5   (nabu)                                         
 #    2. LG G8          (waiting...)
 #
-  DEFINE BUILD_DEVICE_ID	= 1
-
-
-#
-# Screen Resolution Config (Do Not Edit)
-#
-
-!if $(BUILD_DEVICE_ID) == 0
-  DEFINE  SCREEN_WIDTH		= 1080
-  DEFINE  SCREEN_HEIGHT		= 2340
-!endif
-
-!if $(BUILD_DEVICE_ID) == 1
-  DEFINE  SCREEN_WIDTH		= 1600
-  DEFINE  SCREEN_HEIGHT		= 2800
-!endif
-
-
+  DEFINE BUILD_DEVICE_ID	= 0
 
 [BuildOptions.common]
 !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
@@ -69,9 +52,26 @@
 !endif
   
 [PcdsFixedAtBuild.common]
+
   # Platform-specific
   gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # 6GB
   gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000        # 6GB
   
+  #
+  # Screen Resolution Config (Do Not Edit)
+  #
+#Mix 3 5G
+  !if $(BUILD_DEVICE_ID) == 0
+	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
+	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2340
+  !endif
+#MI Pad5
+  !if $(BUILD_DEVICE_ID) == 1
+	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1600
+	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2560
+  !endif
+
+
+
 !include SurfaceDuoPkg/Shared.dsc.inc
 !include SurfaceDuoPkg/FrontpageDsc.inc
