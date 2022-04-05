@@ -107,7 +107,6 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
     /* RAM partition regions */
     {"RAM Partition",     0xB9400000, 0x03800000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
 
-//{"RAM Partition",     0xA0000000, 0x1CC00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
     /* Memory hole */
     /* 0xBCC00000 - 0xBFFFFFFF */
 
