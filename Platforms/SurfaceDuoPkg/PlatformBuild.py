@@ -55,7 +55,7 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
         ''' return iterable of edk2 target tags supported by this build '''
         return CommonPlatform.TargetsSupported
 
-   # def GetRequiredSubmodules(self):
+    def GetRequiredSubmodules(self):
         ''' return iterable containing RequiredSubmodule objects.
         If no RequiredSubmodules return an empty iterable
         '''

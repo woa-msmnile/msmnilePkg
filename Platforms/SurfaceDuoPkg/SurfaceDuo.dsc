@@ -34,6 +34,33 @@
   DEFINE USE_SCREEN_FOR_SERIAL_OUTPUT = 1
   DEFINE USE_MEMORY_FOR_SERIAL_OUTPUT = 0
 
+#
+# Build ID Tables
+#
+#
+#    0. Xiaomi Mix3 5g (andromeda)
+#    1. Xiaomi Pad 5   (nabu)                                         
+#    2. LG G8          (waiting...)
+#
+  DEFINE BUILD_DEVICE_ID	= 1
+
+
+#
+# Screen Resolution Config (Do Not Edit)
+#
+
+!if $(BUILD_DEVICE_ID) == 0
+  DEFINE  SCREEN_WIDTH		= 1080
+  DEFINE  SCREEN_HEIGHT		= 2340
+!endif
+
+!if $(BUILD_DEVICE_ID) == 1
+  DEFINE  SCREEN_WIDTH		= 1600
+  DEFINE  SCREEN_HEIGHT		= 2800
+!endif
+
+
+
 [BuildOptions.common]
 !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
   GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
