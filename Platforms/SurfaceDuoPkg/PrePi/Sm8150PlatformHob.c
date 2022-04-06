@@ -181,12 +181,14 @@ CfgGetCfgInfoVal(CHAR8 *Key, UINT32 *Value)
   }
 
   if (AsciiStriCmp(Key, "TzAppsRegnSize") == 0) {
-    *Value = 0x02200000;
+ // *Value = 0x02200000;
+ // Xiaomi uses this size
+    *Value = 0x03E00000;
     return EFI_SUCCESS;
   }
 
   if (AsciiStriCmp(Key, "EnableLogFsSyncInRetail") == 0) {
-    *Value = 0x0;
+    *Value = 0x1;
     return EFI_SUCCESS;
   }
 
@@ -196,7 +198,7 @@ CfgGetCfgInfoVal(CHAR8 *Key, UINT32 *Value)
   }
 
   if (AsciiStriCmp(Key, "EnableMultiThreading") == 0) {
-    *Value = 0;
+    *Value = 1;
     return EFI_SUCCESS;
   }
 
@@ -211,7 +213,7 @@ CfgGetCfgInfoVal(CHAR8 *Key, UINT32 *Value)
   }
 
   if (AsciiStriCmp(Key, "EnableDisplayThread") == 0) {
-    *Value = 0;
+    *Value = 1;
     return EFI_SUCCESS;
   }
 

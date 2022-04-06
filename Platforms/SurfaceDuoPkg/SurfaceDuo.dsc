@@ -42,7 +42,7 @@
 #    1. Xiaomi Pad 5   (nabu)                                         
 #    2. LG G8          (waiting...)
 #
-  DEFINE BUILD_DEVICE_ID	= 0
+  DEFINE BUILD_DEVICE_ID	= 1
 
 [BuildOptions.common]
 !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
