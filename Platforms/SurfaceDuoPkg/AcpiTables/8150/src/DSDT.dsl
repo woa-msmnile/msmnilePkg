@@ -2458,8 +2458,28 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 Return (DCVS) /* \_SB_.PEP0.DCVS */
             }
 
-            Name (PPPP, Package (0x30)
+            Name (PPPP, Package (0x39)
             {
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_SMPS1_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_SMPS2_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_SMPS3_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_SMPS4_A"
+                }, 
+
                 Package (0x01)
                 {
                     "PPP_RESOURCE_ID_SMPS5_A"
@@ -2468,6 +2488,31 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 Package (0x01)
                 {
                     "PPP_RESOURCE_ID_SMPS6_A"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_SMPS1_C"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_SMPS2_C"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_SMPS4_C"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_SMPS5_C"
+                }, 
+
+                Package (0x01)
+                {
+                    "PPP_RESOURCE_ID_SMPS6_C"
                 }, 
 
                 Package (0x01)
@@ -2804,16 +2849,36 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         Zero, 
-                        Package (0x02)
+                        Package (0x03)
                         {
                             "FSTATE", 
-                            Zero
+                            Zero, 
+                            Package (0x02)
+                            {
+                                "PMICVREGVOTE", 
+                                Package (0x03)
+                                {
+                                    "PPP_RESOURCE_ID_CXO_BUFFERS_BBCLK2_A", 
+                                    0x06, 
+                                    One
+                                }
+                            }
                         }, 
 
-                        Package (0x02)
+                        Package (0x03)
                         {
                             "FSTATE", 
-                            One
+                            One, 
+                            Package (0x02)
+                            {
+                                "PMICVREGVOTE", 
+                                Package (0x03)
+                                {
+                                    "PPP_RESOURCE_ID_CXO_BUFFERS_BBCLK2_A", 
+                                    0x06, 
+                                    Zero
+                                }
+                            }
                         }
                     }, 
 

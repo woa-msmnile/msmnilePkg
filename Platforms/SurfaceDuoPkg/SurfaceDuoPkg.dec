@@ -108,7 +108,8 @@
   gQcomDisplayUtilsProtocolGuid =      { 0xc0dd69ac, 0x76ba, 0x11e6, { 0xab, 0x24, 0x1f, 0xc7, 0xf5, 0x57, 0x5f, 0x19 } }
 
 [PcdsFixedAtBuild.common]
-  # Simple FrameBuffer
+  # Simple FrameBuffer 
+#Default Resolution: 1080x2340
   gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0x9C000000|UINT32|0x0000a400
   gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080|UINT32|0x0000a401
   gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2340|UINT32|0x0000a402

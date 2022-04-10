@@ -93,21 +93,25 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
     {"RSRV2",             0x9FFE3000, 0x00014000, AddMem, SYS_MEM, SYS_MEM_CAP, RtData, WRITE_BACK_XN},
     {"Log Buffer",        0x9FFF7000, 0x00008000, AddMem, SYS_MEM, SYS_MEM_CAP, RtData, WRITE_BACK_XN},
     {"Info Blk",          0x9FFFF000, 0x00001000, AddMem, SYS_MEM, SYS_MEM_CAP, RtData, WRITE_BACK_XN},
-    {"MLVM_APSS",         0xA0000000, 0x08800000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, NS_DEVICE},
-    {"MLVM_1",            0xA8800000, 0x07C00000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, NS_DEVICE},
-    {"MLVM",              0xB0400000, 0x09000000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, NS_DEVICE},
 
-/*
-   {"MLVM_APSS",           0xA0000000, 0x04C00000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
+//    {"MLVM_APSS",         0xA0000000, 0x08800000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+//    {"MLVM_1",            0xA8800000, 0x07C00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+//    {"MLVM",              0xB0400000, 0x09000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+
+//    {"MLVM_APSS",         0xA0000000, 0x08800000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, NS_DEVICE},
+//    {"MLVM_1",            0xA8800000, 0x07C00000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, NS_DEVICE},
+//    {"MLVM",              0xB0400000, 0x09000000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, NS_DEVICE},
+
+
+   {"MLVM_APSS",           0xA0000000, 0x04C00000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, NS_DEVICE},
    {"RAM Partition",       0xA4C00000, 0x03C00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
-   {"MLVM_1",              0xA8800000, 0x07800000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
+   {"MLVM_1",              0xA8800000, 0x07800000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, NS_DEVICE},
    {"RAM Partition",       0xB0000000, 0x00400000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
-   {"MLVM",                0xB0400000, 0x09000000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
-*/
+   {"MLVM",                0xB0400000, 0x09000000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, NS_DEVICE},
+
     /* RAM partition regions */
     {"RAM Partition",     0xB9400000, 0x03800000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
 
-//{"RAM Partition",     0xA0000000, 0x1CC00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
     /* Memory hole */
     /* 0xBCC00000 - 0xBFFFFFFF */
 
