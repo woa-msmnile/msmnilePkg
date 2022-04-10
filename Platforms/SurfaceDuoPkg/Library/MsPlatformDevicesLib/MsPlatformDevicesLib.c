@@ -18,6 +18,8 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 #include <Library/UefiLib.h>
 #include <Library/UefiRuntimeServicesTableLib.h>
 
+#include "HypervisorMvCalls.h"
+
 /**
 Library function used to provide the platform SD Card device path
 **/
@@ -121,6 +123,39 @@ BDS_CONSOLE_CONNECT_ENTRY *EFIAPI GetPlatformConsoleList(VOID)
 
   gBS->FreePool(pSimpleTextDevicePaths);
   gBS->FreePool(pGraphicsOutputDevicePaths);
+
+  DEBUG((EFI_D_ERROR, "Drumroll...\n"));
+  HypBootInfo* hypBootInfo = GetVmData();
+
+  if (hypBootInfo != NULL) {
+    DEBUG((EFI_D_ERROR, "We got Vm Data!\n"));
+
+    DEBUG((EFI_D_ERROR, "hyp_bootinfo_magic: %d\n", hypBootInfo->hyp_bootinfo_magic));
+    DEBUG((EFI_D_ERROR, "hyp_bootinfo_version: %d\n", hypBootInfo->hyp_bootinfo_version));
+    DEBUG((EFI_D_ERROR, "hyp_bootinfo_size: %d\n", hypBootInfo->hyp_bootinfo_size));
+    DEBUG((EFI_D_ERROR, "num_vms: %d\n", hypBootInfo->num_vms));
+    DEBUG((EFI_D_ERROR, "hlos_vm: %d\n", hypBootInfo->hlos_vm));
+    DEBUG((EFI_D_ERROR, "pipe_id: %d\n", hypBootInfo->pipe_id));
+
+    DEBUG((EFI_D_ERROR, "VM List:\n"));
+
+    for (int i = 0; i < hypBootInfo->num_vms; i++) {
+      DEBUG((EFI_D_ERROR, "vm[%d]: vm_type: %d\n", i, hypBootInfo->vm[i].vm_type));
+      DEBUG((EFI_D_ERROR, "vm[%d]: vm_name: %a\n", i, hypBootInfo->vm[i].vm_name));
+      //DEBUG((EFI_D_ERROR, "vm[%d]: uuid: %a\n", i, hypBootInfo->vm[i].uuid));
+      DEBUG((EFI_D_ERROR, "vm[%d]: dtbo_base: %d\n", i, hypBootInfo->vm[i].info.linux_arm.dtbo_base));
+      DEBUG((EFI_D_ERROR, "vm[%d]: dtbo_size: %d\n", i, hypBootInfo->vm[i].info.linux_arm.dtbo_size));
+
+      for (int j = 0; j < 8; j++) {
+        VmMemRegion region = hypBootInfo->vm[i].ddr_region[j];
+        DEBUG((EFI_D_ERROR, "vm[%d]: ddr_region[%d]: base: %d\n", i, j, region.base));
+        DEBUG((EFI_D_ERROR, "vm[%d]: ddr_region[%d]: size: %d\n", i, j, region.size));
+      }
+    }
+
+  } else {
+    DEBUG((EFI_D_ERROR, "We didn't get vm data... why?\n"));
+  }
 
   return pConsoleConnectEntries;
 }
