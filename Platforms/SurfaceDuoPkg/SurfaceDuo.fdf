@@ -103,7 +103,17 @@ READ_LOCK_CAP      = TRUE
 READ_LOCK_STATUS   = TRUE
 
   !include SurfaceDuoPkg/Include/APRIORI.inc
-  !include SurfaceDuoPkg/Include/DXE.inc
+
+#MIX3 5G
+!if $(BUILD_DEVICE_ID) == 0
+  !include SurfaceDuoPkg/Include/DXE0.inc
+!endif
+
+#Mi Pad 5
+!if $(BUILD_DEVICE_ID) == 1
+  !include SurfaceDuoPkg/Include/DXE1.inc
+!endif
+
 
   # Debug heartbeat
 !if $(SEND_HEARTBEAT_TO_SERIAL) == 1
