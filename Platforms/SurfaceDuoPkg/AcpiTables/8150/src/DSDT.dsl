@@ -52228,7 +52228,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             "PMICVREGVOTE", 
                             Package (0x06)
                             {
-                                "PPP_RESOURCE_ID_LDO2_A", 
+                                "PPP_RESOURCE_ID_LDO2_C", 
                                 One, 
                                 0x0013E5C0, 
                                 One, 
@@ -52275,7 +52275,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             "PMICVREGVOTE", 
                             Package (0x06)
                             {
-                                "PPP_RESOURCE_ID_LDO2_A", 
+                                "PPP_RESOURCE_ID_LDO2_C", 
                                 One, 
                                 Zero, 
                                 Zero, 
