@@ -69675,8 +69675,8 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 One, 
                                 Zero, 
                                 One, 
-                                Zero, 
-                                Zero
+                                0x03, 
+                                0x03
                             }
                         }, 
 
@@ -69698,8 +69698,8 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 One, 
                                 Zero, 
                                 One, 
-                                Zero, 
-                                Zero
+                                0x03, 
+                                0x03
                             }
                         }
                     }, 
@@ -69729,7 +69729,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Zero, 
                                 Zero, 
                                 One, 
-                                Zero, 
+                                One, 
                                 Zero
                             }
                         }, 
@@ -69749,10 +69749,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x06)
                             {
                                 One, 
-                                One, 
+                                Zero, 
                                 Zero, 
                                 One, 
-                                Zero, 
+                                One, 
                                 Zero
                             }
                         }
@@ -95625,7 +95625,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             ClockPhaseFirst, "\\_SB.SPI8",
                             0x00, ResourceConsumer, , Exclusive,
                             )
-                        GpioInt (Edge, ActiveHigh, ExclusiveAndWake, PullNone, 0x0000,
+                        GpioInt (Edge, ActiveHigh, ExclusiveAndWake, PullDown, 0x0000,
                             "\\_SB.GIO0", 0x00, ResourceConsumer, ,
                             )
                             {   // Pin list
@@ -96805,11 +96805,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (ADC2)
         {
-            Method (_STA, 0, NotSerialized)  // _STA: Status
-            {
-                Return (Zero)
-            }
-
             Name (_DEP, Package (0x02)  // _DEP: Dependencies
             {
                 \_SB.SPMI, 
@@ -96829,7 +96824,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             0x02
                         })
                         {   // Pin list
-                            0x01D0
+                            0x0130
                         }
                     GpioInt (Edge, ActiveHigh, ExclusiveAndWake, PullUp, 0x0000,
                         "\\_SB.PM01", 0x00, ResourceConsumer, ,
@@ -96838,7 +96833,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             0x02
                         })
                         {   // Pin list
-                            0x01D8
+                            0x0138
                         }
                 })
                 Name (NAM, Buffer (0x0A)
@@ -96971,7 +96966,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             0x02
                         })
                         {   // Pin list
-                            0x0268
+                            0x01D0
                         }
                     GpioInt (Edge, ActiveHigh, ExclusiveAndWake, PullUp, 0x0000,
                         "\\_SB.PM01", 0x00, ResourceConsumer, ,
@@ -96980,7 +96975,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             0x02
                         })
                         {   // Pin list
-                            0x0270
+                            0x01D8
                         }
                 })
                 Name (NAM, Buffer (0x0A)
@@ -97138,7 +97133,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "XO_THERM", 
                         0x4C, 
-                        0x0A, 
+                        0x02, 
                         Zero, 
                         0x02, 
                         One, 
@@ -97153,7 +97148,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "XO_THERM_GPS", 
                         0x4C, 
-                        0x0A, 
+                        0x02, 
                         0x02, 
                         0x02, 
                         One, 
@@ -97168,7 +97163,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "SYS_THERM1", 
                         0x4D, 
-                        One, 
+                        0x02, 
                         Zero, 
                         0x02, 
                         One, 
@@ -97183,7 +97178,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "PA_THERM", 
                         0x4E, 
-                        One, 
+                        0x02, 
                         Zero, 
                         0x02, 
                         One, 
@@ -98462,7 +98457,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "SYS_THERM1", 
                         0x4D, 
-                        One, 
+                        0x02, 
                         Zero, 
                         Zero, 
                         One, 
@@ -98479,7 +98474,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "PA_THERM", 
                         0x4E, 
-                        One, 
+                        0x02, 
                         Zero, 
                         Zero, 
                         One, 
@@ -98509,7 +98504,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         {
             Method (CHAN, 0, NotSerialized)
             {
-                Return (Package (0x04)
+                Return (Package (0x07)
                 {
                     Package (0x0B)
                     {
@@ -98528,9 +98523,54 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
                     Package (0x0B)
                     {
+                        "USB_IN_I", 
+                        0x07, 
+                        Zero, 
+                        Zero, 
+                        0x02, 
+                        0x02, 
+                        One, 
+                        One, 
+                        Zero, 
+                        Zero, 
+                        Zero
+                    }, 
+
+                    Package (0x0B)
+                    {
+                        "USB_IN", 
+                        0x08, 
+                        Zero, 
+                        Zero, 
+                        0x02, 
+                        0x02, 
+                        One, 
+                        0x10, 
+                        Zero, 
+                        Zero, 
+                        Zero
+                    }, 
+
+                    Package (0x0B)
+                    {
+                        "CHG_TEMP", 
+                        0x09, 
+                        Zero, 
+                        Zero, 
+                        0x02, 
+                        0x02, 
+                        One, 
+                        One, 
+                        Zero, 
+                        Zero, 
+                        Zero
+                    }, 
+
+                    Package (0x0B)
+                    {
                         "SYS_THERM2", 
                         0x4D, 
-                        One, 
+                        0x02, 
                         Zero, 
                         0x02, 
                         One, 
@@ -98545,7 +98585,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "SYS_THERM3", 
                         0x4E, 
-                        One, 
+                        0x02, 
                         Zero, 
                         0x02, 
                         One, 
@@ -98560,7 +98600,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "PA_THERM1", 
                         0x4F, 
-                        One, 
+                        0x02, 
                         Zero, 
                         0x02, 
                         One, 
@@ -98808,7 +98848,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "SYS_THERM2", 
                         0x4D, 
-                        One, 
+                        0x02, 
                         Zero, 
                         Zero, 
                         One, 
@@ -98825,7 +98865,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "SYS_THERM3", 
                         0x4E, 
-                        One, 
+                        0x02, 
                         Zero, 
                         Zero, 
                         One, 
@@ -98842,7 +98882,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "PA_THERM1", 
                         0x4F, 
-                        One, 
+                        0x02, 
                         Zero, 
                         Zero, 
                         One, 
@@ -98872,7 +98912,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         {
             Method (CHAN, 0, NotSerialized)
             {
-                Return (Package (0x03)
+                Return (Package (0x04)
                 {
                     Package (0x0B)
                     {
@@ -98892,31 +98932,46 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     Package (0x0B)
                     {
                         "SYS_THERM4", 
-                        0x06, 
-                        Zero, 
-                        Zero, 
+                        0x4D, 
                         0x02, 
+                        Zero, 
                         0x02, 
                         One, 
                         One, 
-                        0x03, 
-                        Zero, 
-                        Zero
+                        One, 
+                        0x02, 
+                        0x000186A0, 
+                        SYTB
                     }, 
 
                     Package (0x0B)
                     {
                         "SYS_THERM5", 
-                        0x06, 
-                        Zero, 
-                        Zero, 
+                        0x4E, 
                         0x02, 
+                        Zero, 
                         0x02, 
                         One, 
                         One, 
-                        0x03, 
+                        One, 
+                        0x02, 
+                        0x000186A0, 
+                        SYTB
+                    }, 
+
+                    Package (0x0B)
+                    {
+                        "SYS_THERM6", 
+                        0x4F, 
+                        0x02, 
                         Zero, 
-                        Zero
+                        0x02, 
+                        One, 
+                        One, 
+                        One, 
+                        0x02, 
+                        0x000186A0, 
+                        SYTB
                     }
                 })
             }
@@ -99133,7 +99188,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
             Method (VTCH, 0, NotSerialized)
             {
-                Return (Package (0x03)
+                Return (Package (0x04)
                 {
                     Package (0x0D)
                     {
@@ -99155,35 +99210,52 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     Package (0x0D)
                     {
                         "SYS_THERM4", 
-                        0x06, 
-                        Zero, 
-                        Zero, 
-                        Zero, 
+                        0x4D, 
                         0x02, 
-                        One, 
-                        One, 
-                        0x03, 
                         Zero, 
                         Zero, 
-                        0xFFFF3CB0, 
-                        0x000249F0
+                        One, 
+                        One, 
+                        One, 
+                        0x02, 
+                        0x000186A0, 
+                        SYTB, 
+                        0xFFFFFFD8, 
+                        0x7D
                     }, 
 
                     Package (0x0D)
                     {
                         "SYS_THERM5", 
-                        0x06, 
-                        Zero, 
-                        Zero, 
-                        Zero, 
+                        0x4E, 
                         0x02, 
-                        One, 
-                        One, 
-                        0x03, 
                         Zero, 
                         Zero, 
-                        0xFFFF3CB0, 
-                        0x000249F0
+                        One, 
+                        One, 
+                        One, 
+                        0x02, 
+                        0x000186A0, 
+                        SYTB, 
+                        0xFFFFFFD8, 
+                        0x7D
+                    }, 
+
+                    Package (0x0D)
+                    {
+                        "SYS_THERM6", 
+                        0x4F, 
+                        0x02, 
+                        Zero, 
+                        Zero, 
+                        One, 
+                        One, 
+                        One, 
+                        0x02, 
+                        0x000186A0, 
+                        SYTB, 
+                        0xFFFFFFD8, 
+                        0x7D
                     }
                 })
             }
