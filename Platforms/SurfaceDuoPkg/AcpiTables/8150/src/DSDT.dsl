@@ -2318,7 +2318,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         Return ("HAZD8150")
                     }
-                    ElseIf (((\_SB.SOID == 0x0194) && (\_SB.PLST == One)))
+                    ElseIf (((\_SB.SOID == 0x0169) && (\_SB.PLST == One)))
                     {
                         Return ("MTPC8150")
                     }
@@ -2331,7 +2331,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 {
                     If ((_BID == Zero))
                     {
-                        If (((\_SB.SOID == 0x0194) && (\_SB.PLST == One)))
+                        If (((\_SB.SOID == 0x0169) && (\_SB.PLST == One)))
                         {
                             Return ("CLS28150")
                         }
@@ -2340,7 +2340,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Return ("CLS08150")
                         }
                     }
-                    ElseIf (((\_SB.SOID == 0x0194) && (\_SB.PLST == One)))
+                    ElseIf (((\_SB.SOID == 0x0169) && (\_SB.PLST == One)))
                     {
                         Return ("CLS38150")
                     }
@@ -51895,7 +51895,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 }
                 ElseIf ((\_SB.PSUB == "CLS08150"))
                 {
-                    If (((\_SB.SOID == 0x0194) && ((BSID == 0x02) || (BSID == 0x03))))
+                    If (((\_SB.SOID == 0x0169) && ((BSID == 0x02) || (BSID == 0x03))))
                     {
                         Return (WBRX) /* \_SB_.PEP0.WBRX */
                     }
@@ -52308,7 +52308,32 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 If ((\_SB.SVMJ >= 0x02))
                 {
-                    Return (PEMC) /* \_SB_.PEP0.PEMC */
+                    If ((\_SB.PSUB == "MTP08150"))
+                    {
+                        If (((\_SB.PLST == One) || (\_SB.PLST == 0x04)))
+                        {
+                            Return (PEMH) /* \_SB_.PEP0.PEMH */
+                        }
+                        Else
+                        {
+                            Return (PEMC) /* \_SB_.PEP0.PEMC */
+                        }
+                    }
+                    ElseIf ((\_SB.PSUB == "CLS08150"))
+                    {
+                        If (((\_SB.SOID == 0x0169) && ((BSID == 0x02) || (BSID == 0x03))))
+                        {
+                            Return (PEMH) /* \_SB_.PEP0.PEMH */
+                        }
+                        Else
+                        {
+                            Return (PEMC) /* \_SB_.PEP0.PEMC */
+                        }
+                    }
+                    Else
+                    {
+                        Return (PEMC) /* \_SB_.PEP0.PEMC */
+                    }
                 }
                 Else
                 {
@@ -55865,6 +55890,1818 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 "gcc_ufs_card_clkref_en", 
                                 0x09, 
                                 0x08
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_3_pipe_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_3_slv_axi_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_3_slv_q2a_axi_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_3_mstr_axi_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_3_cfg_ahb_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x04)
+                            {
+                                "gcc_pcie_3_aux_clk", 
+                                0x08, 
+                                0x0124F800, 
+                                0x03
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x04)
+                            {
+                                "gcc_pcie3_phy_refgen_clk", 
+                                0x08, 
+                                0x05F5E100, 
+                                0x03
+                            }
+                        }
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        One
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        0x02
+                    }, 
+
+                    Package (0x11)
+                    {
+                        "DSTATE", 
+                        0x03, 
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_3_aux_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_3_slv_axi_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_3_slv_q2a_axi_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_3_mstr_axi_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_3_cfg_ahb_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie3_phy_refgen_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_3_pipe_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_phy_aux_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_aggre_noc_pcie_tbu_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "NPARESOURCE", 
+                            Package (0x04)
+                            {
+                                One, 
+                                "/arc/client/rail_cx", 
+                                0x10, 
+                                "SUPPRESSIBLE"
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "BUSARB", 
+                            Package (0x05)
+                            {
+                                0x03, 
+                                "ICBID_MASTER_APPSS_PROC", 
+                                "ICBID_SLAVE_PCIE_3_CFG", 
+                                Zero, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "BUSARB", 
+                            Package (0x05)
+                            {
+                                0x03, 
+                                "ICBID_MASTER_PCIE_3", 
+                                "ICBID_SLAVE_EBI1", 
+                                Zero, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "FOOTSWITCH", 
+                            Package (0x02)
+                            {
+                                "pcie_3_gdsc", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                Zero, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                Zero, 
+                                Zero
+                            }
+                        }
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "CRASHDUMP_EXCEPTION", 
+                        Package (0x02)
+                        {
+                            "EXECUTE_FUNCTION", 
+                            Package (0x01)
+                            {
+                                "ExecuteOcdPCIeExceptions"
+                            }
+                        }
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "CRASHDUMP_DSTATE", 
+                        Zero
+                    }
+                }, 
+
+                Package (0x07)
+                {
+                    "DEVICE", 
+                    "\\_SB.PCI3.RP1", 
+                    Package (0x04)
+                    {
+                        "COMPONENT", 
+                        Zero, 
+                        Package (0x02)
+                        {
+                            "FSTATE", 
+                            Zero
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "FSTATE", 
+                            One
+                        }
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        Zero
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        One
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        0x02
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        0x03
+                    }
+                }
+            })
+            Name (PEMH, Package (0x08)
+            {
+                Package (0x09)
+                {
+                    "DEVICE", 
+                    "\\_SB.PCI0", 
+                    Package (0x04)
+                    {
+                        "COMPONENT", 
+                        Zero, 
+                        Package (0x02)
+                        {
+                            "FSTATE", 
+                            Zero
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "FSTATE", 
+                            One
+                        }
+                    }, 
+
+                    Package (0x12)
+                    {
+                        "DSTATE", 
+                        Zero, 
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                One, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                One, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "FOOTSWITCH", 
+                            Package (0x02)
+                            {
+                                "pcie_0_gdsc", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "BUSARB", 
+                            Package (0x05)
+                            {
+                                0x03, 
+                                "ICBID_MASTER_APPSS_PROC", 
+                                "ICBID_SLAVE_PCIE_0_CFG", 
+                                0x047868C0, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "BUSARB", 
+                            Package (0x05)
+                            {
+                                0x03, 
+                                "ICBID_MASTER_PCIE_0", 
+                                "ICBID_SLAVE_EBI1", 
+                                0x3A699D00, 
+                                0x3A699D00
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "NPARESOURCE", 
+                            Package (0x04)
+                            {
+                                One, 
+                                "/arc/client/rail_cx", 
+                                0x0100, 
+                                "SUPPRESSIBLE"
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_phy_aux_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_aggre_noc_pcie_tbu_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_0_pipe_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_0_slv_axi_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_0_slv_q2a_axi_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_0_mstr_axi_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_0_cfg_ahb_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x04)
+                            {
+                                "gcc_pcie_0_aux_clk", 
+                                0x08, 
+                                0x0124F800, 
+                                0x03
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x04)
+                            {
+                                "gcc_pcie0_phy_refgen_clk", 
+                                0x08, 
+                                0x05F5E100, 
+                                0x03
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "TLMMGPIO", 
+                            Package (0x07)
+                            {
+                                0x24, 
+                                Zero, 
+                                One, 
+                                Zero, 
+                                0x03, 
+                                Zero, 
+                                Zero
+                            }
+                        }
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        One
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        0x02
+                    }, 
+
+                    Package (0x11)
+                    {
+                        "DSTATE", 
+                        0x03, 
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_0_aux_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_0_slv_axi_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_0_slv_q2a_axi_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_0_mstr_axi_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_0_cfg_ahb_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie0_phy_refgen_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_0_pipe_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_phy_aux_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_aggre_noc_pcie_tbu_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "NPARESOURCE", 
+                            Package (0x04)
+                            {
+                                One, 
+                                "/arc/client/rail_cx", 
+                                0x10, 
+                                "SUPPRESSIBLE"
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "BUSARB", 
+                            Package (0x05)
+                            {
+                                0x03, 
+                                "ICBID_MASTER_APPSS_PROC", 
+                                "ICBID_SLAVE_PCIE_0_CFG", 
+                                Zero, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "BUSARB", 
+                            Package (0x05)
+                            {
+                                0x03, 
+                                "ICBID_MASTER_PCIE_0", 
+                                "ICBID_SLAVE_EBI1", 
+                                Zero, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "FOOTSWITCH", 
+                            Package (0x02)
+                            {
+                                "pcie_0_gdsc", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                Zero, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                Zero, 
+                                Zero
+                            }
+                        }
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "CRASHDUMP_EXCEPTION", 
+                        Package (0x02)
+                        {
+                            "EXECUTE_FUNCTION", 
+                            Package (0x01)
+                            {
+                                "ExecuteOcdPCIeExceptions"
+                            }
+                        }
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "CRASHDUMP_DSTATE", 
+                        Zero
+                    }
+                }, 
+
+                Package (0x07)
+                {
+                    "DEVICE", 
+                    "\\_SB.PCI0.RP1", 
+                    Package (0x04)
+                    {
+                        "COMPONENT", 
+                        Zero, 
+                        Package (0x02)
+                        {
+                            "FSTATE", 
+                            Zero
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "FSTATE", 
+                            One
+                        }
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        Zero
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        One
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        0x02
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        0x03
+                    }
+                }, 
+
+                Package (0x09)
+                {
+                    "DEVICE", 
+                    "\\_SB.PCI1", 
+                    Package (0x04)
+                    {
+                        "COMPONENT", 
+                        Zero, 
+                        Package (0x02)
+                        {
+                            "FSTATE", 
+                            Zero
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "FSTATE", 
+                            One
+                        }
+                    }, 
+
+                    Package (0x12)
+                    {
+                        "DSTATE", 
+                        Zero, 
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                One, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                One, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "FOOTSWITCH", 
+                            Package (0x02)
+                            {
+                                "pcie_1_gdsc", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "BUSARB", 
+                            Package (0x05)
+                            {
+                                0x03, 
+                                "ICBID_MASTER_APPSS_PROC", 
+                                "ICBID_SLAVE_PCIE_1_CFG", 
+                                0x047868C0, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "BUSARB", 
+                            Package (0x05)
+                            {
+                                0x03, 
+                                "ICBID_MASTER_PCIE_1", 
+                                "ICBID_SLAVE_EBI1", 
+                                0x74D33A00, 
+                                0x74D33A00
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "NPARESOURCE", 
+                            Package (0x04)
+                            {
+                                One, 
+                                "/arc/client/rail_cx", 
+                                0x0100, 
+                                "SUPPRESSIBLE"
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_phy_aux_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_aggre_noc_pcie_tbu_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_1_pipe_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_1_slv_axi_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_1_slv_q2a_axi_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_1_mstr_axi_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_1_cfg_ahb_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x04)
+                            {
+                                "gcc_pcie_1_aux_clk", 
+                                0x08, 
+                                0x0124F800, 
+                                0x03
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x04)
+                            {
+                                "gcc_pcie1_phy_refgen_clk", 
+                                0x08, 
+                                0x05F5E100, 
+                                0x03
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "TLMMGPIO", 
+                            Package (0x07)
+                            {
+                                0x67, 
+                                Zero, 
+                                One, 
+                                Zero, 
+                                0x03, 
+                                Zero, 
+                                Zero
+                            }
+                        }
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        One
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        0x02
+                    }, 
+
+                    Package (0x11)
+                    {
+                        "DSTATE", 
+                        0x03, 
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_1_aux_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_1_slv_axi_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_1_slv_q2a_axi_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_1_mstr_axi_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_1_cfg_ahb_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie1_phy_refgen_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_1_pipe_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_phy_aux_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_aggre_noc_pcie_tbu_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "NPARESOURCE", 
+                            Package (0x04)
+                            {
+                                One, 
+                                "/arc/client/rail_cx", 
+                                0x10, 
+                                "SUPPRESSIBLE"
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "BUSARB", 
+                            Package (0x05)
+                            {
+                                0x03, 
+                                "ICBID_MASTER_APPSS_PROC", 
+                                "ICBID_SLAVE_PCIE_1_CFG", 
+                                Zero, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "BUSARB", 
+                            Package (0x05)
+                            {
+                                0x03, 
+                                "ICBID_MASTER_PCIE_1", 
+                                "ICBID_SLAVE_EBI1", 
+                                Zero, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "FOOTSWITCH", 
+                            Package (0x02)
+                            {
+                                "pcie_1_gdsc", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                Zero, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                Zero, 
+                                Zero
+                            }
+                        }
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "CRASHDUMP_EXCEPTION", 
+                        Package (0x02)
+                        {
+                            "EXECUTE_FUNCTION", 
+                            Package (0x01)
+                            {
+                                "ExecuteOcdPCIeExceptions"
+                            }
+                        }
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "CRASHDUMP_DSTATE", 
+                        Zero
+                    }
+                }, 
+
+                Package (0x07)
+                {
+                    "DEVICE", 
+                    "\\_SB.PCI1.RP1", 
+                    Package (0x04)
+                    {
+                        "COMPONENT", 
+                        Zero, 
+                        Package (0x02)
+                        {
+                            "FSTATE", 
+                            Zero
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "FSTATE", 
+                            One
+                        }
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        Zero
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        One
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        0x02
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        0x03
+                    }
+                }, 
+
+                Package (0x09)
+                {
+                    "DEVICE", 
+                    "\\_SB.PCI2", 
+                    Package (0x04)
+                    {
+                        "COMPONENT", 
+                        Zero, 
+                        Package (0x02)
+                        {
+                            "FSTATE", 
+                            Zero
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "FSTATE", 
+                            One
+                        }
+                    }, 
+
+                    Package (0x11)
+                    {
+                        "DSTATE", 
+                        Zero, 
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                One, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                One, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "FOOTSWITCH", 
+                            Package (0x02)
+                            {
+                                "pcie_2_gdsc", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "BUSARB", 
+                            Package (0x05)
+                            {
+                                0x03, 
+                                "ICBID_MASTER_APPSS_PROC", 
+                                "ICBID_SLAVE_PCIE_2_CFG", 
+                                0x047868C0, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "BUSARB", 
+                            Package (0x05)
+                            {
+                                0x03, 
+                                "ICBID_MASTER_PCIE_2", 
+                                "ICBID_SLAVE_EBI1", 
+                                0xE9A67400, 
+                                0xE9A67400
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "NPARESOURCE", 
+                            Package (0x04)
+                            {
+                                One, 
+                                "/arc/client/rail_cx", 
+                                0x0100, 
+                                "SUPPRESSIBLE"
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_phy_aux_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_aggre_noc_pcie_tbu_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_2_pipe_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_2_slv_axi_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_2_slv_q2a_axi_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_2_mstr_axi_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_2_cfg_ahb_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x04)
+                            {
+                                "gcc_pcie_2_aux_clk", 
+                                0x08, 
+                                0x0124F800, 
+                                0x03
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x04)
+                            {
+                                "gcc_pcie2_phy_refgen_clk", 
+                                0x08, 
+                                0x05F5E100, 
+                                0x03
+                            }
+                        }
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        One
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        0x02
+                    }, 
+
+                    Package (0x11)
+                    {
+                        "DSTATE", 
+                        0x03, 
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_2_aux_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_2_slv_axi_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_2_slv_q2a_axi_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_2_mstr_axi_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_2_cfg_ahb_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie2_phy_refgen_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_2_pipe_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_phy_aux_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_aggre_noc_pcie_tbu_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "NPARESOURCE", 
+                            Package (0x04)
+                            {
+                                One, 
+                                "/arc/client/rail_cx", 
+                                0x10, 
+                                "SUPPRESSIBLE"
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "BUSARB", 
+                            Package (0x05)
+                            {
+                                0x03, 
+                                "ICBID_MASTER_APPSS_PROC", 
+                                "ICBID_SLAVE_PCIE_2_CFG", 
+                                Zero, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "BUSARB", 
+                            Package (0x05)
+                            {
+                                0x03, 
+                                "ICBID_MASTER_PCIE_2", 
+                                "ICBID_SLAVE_EBI1", 
+                                Zero, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "FOOTSWITCH", 
+                            Package (0x02)
+                            {
+                                "pcie_2_gdsc", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                Zero, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                Zero, 
+                                Zero
+                            }
+                        }
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "CRASHDUMP_EXCEPTION", 
+                        Package (0x02)
+                        {
+                            "EXECUTE_FUNCTION", 
+                            Package (0x01)
+                            {
+                                "ExecuteOcdPCIeExceptions"
+                            }
+                        }
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "CRASHDUMP_DSTATE", 
+                        Zero
+                    }
+                }, 
+
+                Package (0x07)
+                {
+                    "DEVICE", 
+                    "\\_SB.PCI2.RP1", 
+                    Package (0x04)
+                    {
+                        "COMPONENT", 
+                        Zero, 
+                        Package (0x02)
+                        {
+                            "FSTATE", 
+                            Zero
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "FSTATE", 
+                            One
+                        }
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        Zero
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        One
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        0x02
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        0x03
+                    }
+                }, 
+
+                Package (0x09)
+                {
+                    "DEVICE", 
+                    "\\_SB.PCI3", 
+                    Package (0x04)
+                    {
+                        "COMPONENT", 
+                        Zero, 
+                        Package (0x02)
+                        {
+                            "FSTATE", 
+                            Zero
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "FSTATE", 
+                            One
+                        }
+                    }, 
+
+                    Package (0x11)
+                    {
+                        "DSTATE", 
+                        Zero, 
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                One, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                One, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "FOOTSWITCH", 
+                            Package (0x02)
+                            {
+                                "pcie_3_gdsc", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "BUSARB", 
+                            Package (0x05)
+                            {
+                                0x03, 
+                                "ICBID_MASTER_APPSS_PROC", 
+                                "ICBID_SLAVE_PCIE_3_CFG", 
+                                0x047868C0, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "BUSARB", 
+                            Package (0x05)
+                            {
+                                0x03, 
+                                "ICBID_MASTER_PCIE_3", 
+                                "ICBID_SLAVE_EBI1", 
+                                0xE9A67400, 
+                                0xE9A67400
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "NPARESOURCE", 
+                            Package (0x04)
+                            {
+                                One, 
+                                "/arc/client/rail_cx", 
+                                0x0100, 
+                                "SUPPRESSIBLE"
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_pcie_phy_aux_clk", 
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_aggre_noc_pcie_tbu_clk", 
+                                One
                             }
                         }, 
 
@@ -72859,7 +74696,11 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 Method (_STA, 0, NotSerialized)  // _STA: Status
                 {
-                    If (((\_SB.SOID == 0x0194) && (\_SB.PLST == One)))
+                    If (((\_SB.SOID == 0x0169) && (\_SB.PLST == One)))
+                    {
+                        Return (Zero)
+                    }
+                    ElseIf ((\_SB.PLST == 0x04))
                     {
                         Return (Zero)
                     }
@@ -73028,11 +74869,11 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         {
             Method (_SUB, 0, NotSerialized)  // _SUB: Subsystem ID
             {
-                If (((\_SB.SOID == 0x0194) && (\_SB.PLST == 0x02)))
+                If (((\_SB.SOID == 0x0169) && (\_SB.PLST == 0x02)))
                 {
                     Return ("MTPB8150")
                 }
-                ElseIf (((\_SB.SOID == 0x0194) && (\_SB.PLST == One)))
+                ElseIf (((\_SB.SOID == 0x0169) && (\_SB.PLST == One)))
                 {
                     Return ("MTPC8150")
                 }
@@ -73051,7 +74892,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         {
             Method (_SUB, 0, NotSerialized)  // _SUB: Subsystem ID
             {
-                If ((\_SB.SOID == 0x0194))
+                If ((\_SB.SOID == 0x0169))
                 {
                     If ((\_SB.PLST == 0x02))
                     {
@@ -73061,6 +74902,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         Return ("MTPC8150")
                     }
+                    ElseIf ((\_SB.PLST == 0x04))
+                    {
+                        Return ("MTPF8150")
+                    }
                     Else
                     {
                         Return ("MTPA8150")
@@ -73069,6 +74914,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 ElseIf (((\_SB.SOID == 0x0153) && (\_SB.PLST == 0x02)))
                 {
                     Return ("MTPD8150")
+                }
+                ElseIf (((\_SB.SOID == 0x0153) && (\_SB.PLST == 0x04)))
+                {
+                    Return ("MTPE8150")
                 }
                 Else
                 {
@@ -73356,30 +75205,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
                     {
                         0x00000171,
-                    }
-                    Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
-                    {
-                        0x00000172,
-                    }
-                    Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
-                    {
-                        0x00000173,
-                    }
-                    Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
-                    {
-                        0x00000174,
-                    }
-                    Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
-                    {
-                        0x00000175,
-                    }
-                    Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
-                    {
-                        0x00000176,
-                    }
-                    Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
-                    {
-                        0x00000177,
                     }
                 })
             }
@@ -73811,7 +75636,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 {
                     0x03, 
                     0x02, 
-                    0x00420028, 
+                    0x0048002B, 
                     Package (0x07)
                     {
                         "ENGINES", 
@@ -85456,20 +87281,20 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     }
                 })
                 If (((((\_SB.SOID == 0x0153) && (\_SB.SIDV >= 0x00020001)) && (
-                    \_SB.SIDT == 0x03)) || (((\_SB.SOID == 0x0194) && (\_SB.SIDV >= 0x00020001)) && (\_SB.SIDT == 
+                    \_SB.SIDT == 0x03)) || (((\_SB.SOID == 0x0169) && (\_SB.SIDV >= 0x00020001)) && (\_SB.SIDT == 
                     0x02))))
                 {
                     DerefOf (RBUF [0x04]) [0x0C] = P001 /* \_SB_.GPU0.PMCL.P001 */
                 }
                 ElseIf ((((((\_SB.SOID == 0x0153) && (\_SB.SIDV == 0x00020000)) && 
                     (\_SB.SIDT == 0x05)) || (((\_SB.SOID == 0x0153) && (\_SB.SIDV >= 0x00020001)) && (
-                    \_SB.SIDT == 0x02))) || (((\_SB.SOID == 0x0194) && (\_SB.SIDV >= 0x00020000)) && (\_SB.SIDT == 
+                    \_SB.SIDT == 0x02))) || (((\_SB.SOID == 0x0169) && (\_SB.SIDV >= 0x00020000)) && (\_SB.SIDT == 
                     One))))
                 {
                     DerefOf (RBUF [0x04]) [0x0C] = P002 /* \_SB_.GPU0.PMCL.P002 */
                 }
                 ElseIf (((((\_SB.SOID == 0x0153) && (\_SB.SIDV >= 0x00020001)) && 
-                    (\_SB.SIDT == 0x05)) || (((\_SB.SOID == 0x0194) && (\_SB.SIDV >= 0x00020001)) && (
+                    (\_SB.SIDT == 0x05)) || (((\_SB.SOID == 0x0169) && (\_SB.SIDV >= 0x00020001)) && (
                     \_SB.SIDT == 0x03))))
                 {
                     DerefOf (RBUF [0x04]) [0x0C] = P003 /* \_SB_.GPU0.PMCL.P003 */
@@ -85485,7 +87310,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
                 If ((((((\_SB.SOID == 0x0153) && (\_SB.SIDV == 0x00020000)) && (
                     \_SB.SIDT == 0x05)) || (((\_SB.SOID == 0x0153) && (\_SB.SIDV >= 0x00020001)) && (\_SB.SIDT == 
-                    0x02))) || (((\_SB.SOID == 0x0194) && (\_SB.SIDV >= 0x00020000)) && (\_SB.SIDT == One))))
+                    0x02))) || (((\_SB.SOID == 0x0169) && (\_SB.SIDV >= 0x00020000)) && (\_SB.SIDT == One))))
                 {
                     DerefOf (RBUF [0x04]) [0x0D] = P006 /* \_SB_.GPU0.PMCL.P006 */
                 }
@@ -88209,7 +90034,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                         ElseIf ((\_SB.PSUB == "CLS08150"))
                         {
-                            If (((\_SB.SOID == 0x0194) && ((BSID == 0x02) || (BSID == 0x03))))
+                            If (((\_SB.SOID == 0x0169) && ((BSID == 0x02) || (BSID == 0x03))))
                             {
                                 \_SB.QPPX.WLEN = Zero
                                 Sleep (0x05)
@@ -89614,7 +91439,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         {
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If ((\_SB.SOID == 0x0194))
+                If ((\_SB.SOID == 0x0169))
                 {
                     Return (Zero)
                 }
@@ -89659,7 +91484,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         {
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If ((\_SB.SOID == 0x0194))
+                If ((\_SB.SOID == 0x0169))
                 {
                     Return (Zero)
                 }
@@ -91200,7 +93025,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         {
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If (((\_SB.SOID == 0x0194) && ((\_SB.PLST == One) || (\_SB.PLST == 0x02))))
+                If (((\_SB.SOID == 0x0169) && ((\_SB.PLST == One) || (\_SB.PLST == 0x02))))
                 {
                     Return (Zero)
                 }
@@ -91427,7 +93252,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 {
                     Return (0x0F)
                 }
-                ElseIf (((\_SB.SOID == 0x0194) && ((\_SB.PLST == One) || (\_SB.PLST == 
+                ElseIf (((\_SB.SOID == 0x0169) && ((\_SB.PLST == One) || (\_SB.PLST == 
                     0x02))))
                 {
                     Return (0x0F)
@@ -91443,7 +93268,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         {
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If ((\_SB.SOID == 0x0194))
+                If ((\_SB.SOID == 0x0169))
                 {
                     Return (Zero)
                 }
@@ -91462,7 +93287,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         {
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If ((\_SB.SOID == 0x0194))
+                If ((\_SB.SOID == 0x0169))
                 {
                     Return (Zero)
                 }
@@ -91481,7 +93306,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         {
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If ((\_SB.SOID == 0x0194))
+                If ((\_SB.SOID == 0x0169))
                 {
                     Return (Zero)
                 }
@@ -91500,7 +93325,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         {
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If ((\_SB.SOID == 0x0194))
+                If ((\_SB.SOID == 0x0169))
                 {
                     Return (Zero)
                 }
@@ -93989,7 +95814,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If ((((\_SB.SOID == 0x0194) || (\_SB.SOID == 0x0153)) && ((\_SB.PLST == 
+                If ((((\_SB.SOID == 0x0169) || (\_SB.SOID == 0x0153)) && ((\_SB.PLST == 
                     One) || (\_SB.PLST == 0x02))))
                 {
                     Return (0x0F)
@@ -94007,7 +95832,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If ((((\_SB.SOID == 0x0194) || (\_SB.SOID == 0x0153)) && ((\_SB.PLST == 
+                If ((((\_SB.SOID == 0x0169) || (\_SB.SOID == 0x0153)) && ((\_SB.PLST == 
                     One) || (\_SB.PLST == 0x02))))
                 {
                     Return (0x0F)
@@ -94025,7 +95850,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If ((((\_SB.SOID == 0x0194) || (\_SB.SOID == 0x0153)) && ((\_SB.PLST == 
+                If ((((\_SB.SOID == 0x0169) || (\_SB.SOID == 0x0153)) && ((\_SB.PLST == 
                     One) || (\_SB.PLST == 0x02))))
                 {
                     Return (0x0F)
@@ -94043,7 +95868,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If ((((\_SB.SOID == 0x0194) || (\_SB.SOID == 0x0153)) && ((\_SB.PLST == 
+                If ((((\_SB.SOID == 0x0169) || (\_SB.SOID == 0x0153)) && ((\_SB.PLST == 
                     One) || (\_SB.PLST == 0x02))))
                 {
                     Return (0x0F)
@@ -94061,7 +95886,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If ((((\_SB.SOID == 0x0194) || (\_SB.SOID == 0x0153)) && ((\_SB.PLST == 
+                If ((((\_SB.SOID == 0x0169) || (\_SB.SOID == 0x0153)) && ((\_SB.PLST == 
                     One) || (\_SB.PLST == 0x02))))
                 {
                     Return (0x0F)
@@ -94079,7 +95904,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If ((((\_SB.SOID == 0x0194) || (\_SB.SOID == 0x0153)) && ((\_SB.PLST == 
+                If ((((\_SB.SOID == 0x0169) || (\_SB.SOID == 0x0153)) && ((\_SB.PLST == 
                     One) || (\_SB.PLST == 0x02))))
                 {
                     Return (0x0F)
@@ -94097,7 +95922,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If ((((\_SB.SOID == 0x0194) || (\_SB.SOID == 0x0153)) && ((\_SB.PLST == 
+                If ((((\_SB.SOID == 0x0169) || (\_SB.SOID == 0x0153)) && ((\_SB.PLST == 
                     One) || (\_SB.PLST == 0x02))))
                 {
                     Return (0x0F)
@@ -94115,7 +95940,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If ((((\_SB.SOID == 0x0194) || (\_SB.SOID == 0x0153)) && ((\_SB.PLST == 
+                If ((((\_SB.SOID == 0x0169) || (\_SB.SOID == 0x0153)) && ((\_SB.PLST == 
                     One) || (\_SB.PLST == 0x02))))
                 {
                     Return (0x0F)
@@ -94133,7 +95958,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If ((((\_SB.SOID == 0x0194) || (\_SB.SOID == 0x0153)) && ((\_SB.PLST == 
+                If ((((\_SB.SOID == 0x0169) || (\_SB.SOID == 0x0153)) && ((\_SB.PLST == 
                     One) || (\_SB.PLST == 0x02))))
                 {
                     Return (0x0F)
@@ -94151,7 +95976,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If ((((\_SB.SOID == 0x0194) || (\_SB.SOID == 0x0153)) && ((\_SB.PLST == 
+                If ((((\_SB.SOID == 0x0169) || (\_SB.SOID == 0x0153)) && ((\_SB.PLST == 
                     One) || (\_SB.PLST == 0x02))))
                 {
                     Return (0x0F)
@@ -94169,7 +95994,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If ((((\_SB.SOID == 0x0194) || (\_SB.SOID == 0x0153)) && ((\_SB.PLST == 
+                If ((((\_SB.SOID == 0x0169) || (\_SB.SOID == 0x0153)) && ((\_SB.PLST == 
                     One) || (\_SB.PLST == 0x02))))
                 {
                     Return (0x0F)
@@ -94187,7 +96012,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If ((((\_SB.SOID == 0x0194) || (\_SB.SOID == 0x0153)) && ((\_SB.PLST == 
+                If ((((\_SB.SOID == 0x0169) || (\_SB.SOID == 0x0153)) && ((\_SB.PLST == 
                     One) || (\_SB.PLST == 0x02))))
                 {
                     Return (0x0F)
@@ -96522,7 +98347,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         {
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If ((\_SB.SOID == 0x0194))
+                If ((\_SB.SOID == 0x0169))
                 {
                     Return (Zero)
                 }
@@ -96541,7 +98366,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         {
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If ((\_SB.SOID == 0x0194))
+                If ((\_SB.SOID == 0x0169))
                 {
                     Return (Zero)
                 }
@@ -96597,7 +98422,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 }
                 ElseIf ((\_SB.PSUB == "CLS08150"))
                 {
-                    If (((\_SB.SOID == 0x0194) && ((BSID == 0x02) || (BSID == 0x03))))
+                    If (((\_SB.SOID == 0x0169) && ((BSID == 0x02) || (BSID == 0x03))))
                     {
                         Return (PBUF) /* \_SB_.BTH0.PBUF */
                     }
@@ -96644,7 +98469,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         {
             Method (_SUB, 0, NotSerialized)  // _SUB: Subsystem ID
             {
-                If ((\_SB.SOID == 0x0194))
+                If ((\_SB.SOID == 0x0169))
                 {
                     If ((\_SB.PLST == 0x02))
                     {
@@ -96654,6 +98479,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         Return ("MTPC8150")
                     }
+                    ElseIf ((\_SB.PLST == 0x04))
+                    {
+                        Return ("MTPF8150")
+                    }
                     Else
                     {
                         Return ("MTPA8150")
@@ -96662,6 +98491,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 ElseIf (((\_SB.SOID == 0x0153) && (\_SB.PLST == 0x02)))
                 {
                     Return ("MTPD8150")
+                }
+                ElseIf (((\_SB.SOID == 0x0153) && (\_SB.PLST == 0x04)))
+                {
+                    Return ("MTPE8150")
                 }
                 Else
                 {
