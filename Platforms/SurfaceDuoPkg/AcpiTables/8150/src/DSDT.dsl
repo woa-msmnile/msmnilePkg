@@ -1,7 +1,6 @@
 DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 {
     External (_BID, UnknownObj)
-    External (_SB_.DPP0, IntObj)
     External (_SB_.DPP1, IntObj)
     External (_SB_.MPP0, IntObj)
     External (_SB_.MPP1, IntObj)
@@ -403,13 +402,37 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             }
         }
 
-        Device (PMBM)
+        Name (BFCC, 0x3D2C)
+        Name (PCT1, 0x05)
+        Name (PCT2, 0x09)
+        Name (CUST, "8150_MTP")
+        Name (VNOM, 0x0ED8)
+        Name (VLOW, 0x0CE4)
+        Name (EMPT, 0x0C80)
+        Name (DCMA, 0x0384)
+        Name (BOCP, 0x1194)
+        Name (BVLO, 0x0BB8)
+        Name (BLOP, 0x14)
+        Name (BNOP, 0x16)
+        Name (IFGD, 0x32)
+        Name (VFGD, 0x32)
+        Name (VDD1, 0x10FE)
+        Name (FCC1, 0x0834)
+        Name (HCLI, Zero)
+        Name (SCLI, 0x0A)
+        Name (SHLI, 0x2D)
+        Name (HHLI, 0x37)
+        Name (FVC1, 0x69)
+        Name (CCC1, 0x03E8)
+        Name (RID2, 0x3A98)
+        Name (RID3, 0x000222E0)
+        Device (PM3P)
         {
-            Name (_HID, "QCOM042D")  // _HID: Hardware ID
-            Alias (\_SB.PSUB, _SUB)
-            Name (_DEP, Package (One)  // _DEP: Dependencies
+            Name (_HID, "QCOM0439")  // _HID: Hardware ID
+            Name (_DEP, Package (0x02)  // _DEP: Dependencies
             {
-                \_SB.PMGK
+                \_SB.IC18, 
+                \_SB.I2C2
             })
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -418,11 +441,467 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
             {
+                Name (RBUF, ResourceTemplate ()
+                {
+                    I2cSerialBusV2 (0x0055, ControllerInitiated, 0x000186A0,
+                        AddressingMode7Bit, "\\_SB.IC18",
+                        0x00, ResourceConsumer, , Exclusive,
+                        )
+                    I2cSerialBusV2 (0x0055, ControllerInitiated, 0x000186A0,
+                        AddressingMode7Bit, "\\_SB.I2C2",
+                        0x00, ResourceConsumer, , Exclusive,
+                        )
+                })
+                Return (RBUF) /* \_SB_.PM3P._CRS.RBUF */
+            }
+
+            Method (PMCF, 0, NotSerialized)
+            {
+                Name (CFG0, Package (0x04)
+                {
+                    Zero, 
+                    One, 
+                    One, 
+                    One
+                })
+                Return (CFG0) /* \_SB_.PM3P.PMCF.CFG0 */
+            }
+        }
+
+        Device (PEIC)
+        {
+            Name (_HID, "QCOM047E")  // _HID: Hardware ID
+            Alias (\_SB.PSUB, _SUB)
+            Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
+            {
+                Name (RBUF, ResourceTemplate ()
+                {
+                    I2cSerialBusV2 (0x0044, ControllerInitiated, 0x00061A80,
+                        AddressingMode7Bit, "\\_SB.I2C2",
+                        0x00, ResourceConsumer, , Exclusive,
+                        )
+                })
+                Return (RBUF) /* \_SB_.PEIC._CRS.RBUF */
+            }
+
+            Method (PMCF, 0, NotSerialized)
+            {
+                Name (CFG0, Package (0x02)
+                {
+                    Zero, 
+                    0x02
+                })
+                Return (CFG0) /* \_SB_.PEIC.PMCF.CFG0 */
+            }
+
+            Method (_STA, 0, NotSerialized)  // _STA: Status
+            {
+                Return (0x0F)
+            }
+        }
+
+        Device (PMBT)
+        {
+            Name (_HID, "QCOM0431")  // _HID: Hardware ID
+            Alias (\_SB.PSUB, _SUB)
+            Name (_DEP, Package (0x03)  // _DEP: Dependencies
+            {
+                \_SB.PMIC, 
+                \_SB.ADC1, 
+                \_SB.PEIC
+            })
+            Method (_STA, 0, NotSerialized)  // _STA: Status
+            {
+                Return (0x0F)
+            }
+
+            Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
+            {
+                Name (RBUF, ResourceTemplate ()
+                {
+                    GpioInt (Edge, ActiveHigh, Shared, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0148
+                        }
+                    GpioInt (Edge, ActiveHigh, Exclusive, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0150
+                        }
+                    GpioInt (Edge, ActiveHigh, Shared, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x00EE
+                        }
+                    GpioInt (Edge, ActiveHigh, Shared, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x00E0
+                        }
+                })
+                Return (RBUF) /* \_SB_.PMBT._CRS.RBUF */
+            }
+
+            Method (BMNR, 0, NotSerialized)
+            {
+                Name (CFG0, Package (0x05)
+                {
+                    0x02, 
+                    Zero, 
+                    One, 
+                    Zero, 
+                    "CUST_PMIC"
+                })
+                CFG0 [0x04] = CUST /* \_SB_.CUST */
+                Return (CFG0) /* \_SB_.PMBT.BMNR.CFG0 */
+            }
+
+            Method (BTIM, 0, NotSerialized)
+            {
+                Name (CFG0, Package (0x08)
+                {
+                    0x7530, 
+                    0x2710, 
+                    0x000493E0, 
+                    0x0001D4C0, 
+                    Zero, 
+                    Zero, 
+                    0x01AC7780, 
+                    Zero
+                })
+                Return (CFG0) /* \_SB_.PMBT.BTIM.CFG0 */
+            }
+
+            Method (BBAT, 0, NotSerialized)
+            {
+                Name (CFG0, Package (0x0D)
+                {
+                    One, 
+                    0x4C494F4E, 
+                    0xFFFFFFFF, 
+                    0xFFFFFFFF, 
+                    0xFFFFFFFF, 
+                    0xFFFFFFFF, 
+                    "QCOMBATT01", 
+                    "Qualcomm", 
+                    "QCOMBAT01_07012011", 
+                    "07012011", 
+                    0x13, 
+                    0x04, 
+                    0x07DE
+                })
+                Local0 = (PCT1 * BFCC) /* \_SB_.BFCC */
+                Divide (Local0, 0x64, Local1, Local2)
+                Local0 = (PCT2 * BFCC) /* \_SB_.BFCC */
+                Divide (Local0, 0x64, Local1, Local3)
+                CFG0 [0x02] = BFCC /* \_SB_.BFCC */
+                CFG0 [0x03] = BFCC /* \_SB_.BFCC */
+                CFG0 [0x04] = Local2
+                CFG0 [0x05] = Local3
+                Return (CFG0) /* \_SB_.PMBT.BBAT.CFG0 */
+            }
+
+            Method (BPCH, 0, NotSerialized)
+            {
+                Name (CFG0, Package (0x03)
+                {
+                    0x0BB8, 
+                    0x0BB8, 
+                    0x05DC
+                })
+                Return (CFG0) /* \_SB_.PMBT.BPCH.CFG0 */
+            }
+
+            Method (BFCH, 0, NotSerialized)
+            {
+                Name (CFG0, Package (0x04)
+                {
+                    One, 
+                    0x05, 
+                    0x1388, 
+                    0x0384
+                })
+                Return (CFG0) /* \_SB_.PMBT.BFCH.CFG0 */
+            }
+
+            Method (BCCC, 0, NotSerialized)
+            {
+                Name (CFG0, Package (0x03)
+                {
+                    One, 
+                    Zero, 
+                    Zero
+                })
+                Return (CFG0) /* \_SB_.PMBT.BCCC.CFG0 */
+            }
+
+            Method (BRCH, 0, NotSerialized)
+            {
+                Name (CFG0, Package (0x02)
+                {
+                    0x64, 
+                    Zero
+                })
+                Return (CFG0) /* \_SB_.PMBT.BRCH.CFG0 */
+            }
+
+            Method (_BQI, 0, NotSerialized)
+            {
+                Name (CFG0, Package (0x01)
+                {
+                    Zero
+                })
+                Return (CFG0) /* \_SB_.PMBT._BQI.CFG0 */
+            }
+
+            Method (BIRQ, 0, NotSerialized)
+            {
+                Name (CFG0, Package (0x04)
+                {
+                    "VbatLow", 
+                    "BattMissing", 
+                    "AiclDone", 
+                    "JeitaLimit"
+                })
+                Return (CFG0) /* \_SB_.PMBT.BIRQ.CFG0 */
+            }
+
+            Method (BPLT, 0, NotSerialized)
+            {
+                Name (CFG0, Package (0x2F)
+                {
+                    0x0400, 
+                    0xFFFFFFFF, 
+                    0xFFFFFFFF, 
+                    0xFFFFFFFF, 
+                    0xFFFFFFFF, 
+                    One, 
+                    0x32, 
+                    0x32, 
+                    0x1388, 
+                    0x08, 
+                    One, 
+                    0x50, 
+                    0xFFFFFFEC, 
+                    0x48, 
+                    0x64, 
+                    0x1E, 
+                    0x05, 
+                    0x06, 
+                    0x01F4, 
+                    0x7E, 
+                    0x0190, 
+                    0xFFFFFFFF, 
+                    0x02EE, 
+                    One, 
+                    0x02, 
+                    0x32, 
+                    0x0A, 
+                    One, 
+                    0xFFFFFFEC, 
+                    0x0A, 
+                    0x0A, 
+                    0x0A, 
+                    0x0A, 
+                    One, 
+                    0x96, 
+                    0x64, 
+                    0x05, 
+                    0x0A, 
+                    0x02, 
+                    0x33, 
+                    0x02, 
+                    0x0A, 
+                    Zero, 
+                    Zero, 
+                    0x46, 
+                    0x32, 
+                    0x3C
+                })
+                CFG0 [One] = VNOM /* \_SB_.VNOM */
+                CFG0 [0x02] = VLOW /* \_SB_.VLOW */
+                CFG0 [0x03] = EMPT /* \_SB_.EMPT */
+                CFG0 [0x04] = DCMA /* \_SB_.DCMA */
+                CFG0 [0x15] = BOCP /* \_SB_.BOCP */
+                CFG0 [0x19] = IFGD /* \_SB_.IFGD */
+                CFG0 [0x1A] = VFGD /* \_SB_.VFGD */
+                Return (CFG0) /* \_SB_.PMBT.BPLT.CFG0 */
+            }
+
+            Method (BPTM, 0, NotSerialized)
+            {
+                Name (CFG0, Package (0x02)
+                {
+                    0x3A98, 
+                    Zero
+                })
+                Return (CFG0) /* \_SB_.PMBT.BPTM.CFG0 */
+            }
+
+            Name (BCT1, Package (0x0A)
+            {
+                0x10FE, 
+                0x0834, 
+                Zero, 
+                0x0A, 
+                0x2D, 
+                0x37, 
+                0x69, 
+                Zero, 
+                Zero, 
+                0x03E8
+            })
+            Method (BJTA, 0, NotSerialized)
+            {
+                Name (CFG0, Package (0x03)
+                {
+                    0x02, 
+                    0x02, 
+                    Package (0x0A)
+                    {
+                        Zero, 
+                        Zero, 
+                        Zero, 
+                        Zero, 
+                        Zero, 
+                        Zero, 
+                        Zero, 
+                        Zero, 
+                        Zero, 
+                        Zero
+                    }
+                })
+                \_SB.PMBT.BCT1 [Zero] = VDD1 /* \_SB_.VDD1 */
+                \_SB.PMBT.BCT1 [One] = FCC1 /* \_SB_.FCC1 */
+                \_SB.PMBT.BCT1 [0x02] = HCLI /* \_SB_.HCLI */
+                \_SB.PMBT.BCT1 [0x03] = SCLI /* \_SB_.SCLI */
+                \_SB.PMBT.BCT1 [0x04] = SHLI /* \_SB_.SHLI */
+                \_SB.PMBT.BCT1 [0x05] = HHLI /* \_SB_.HHLI */
+                \_SB.PMBT.BCT1 [0x06] = FVC1 /* \_SB_.FVC1 */
+                \_SB.PMBT.BCT1 [0x09] = CCC1 /* \_SB_.CCC1 */
+                CFG0 [0x02] = \_SB.PMBT.BCT1
+                Return (CFG0) /* \_SB_.PMBT.BJTA.CFG0 */
+            }
+
+            Method (BAT1, 0, NotSerialized)
+            {
+                Name (CFG0, Package (0x05)
+                {
+                    Zero, 
+                    0xFFFFFFEC, 
+                    0x41, 
+                    Package (0x04)
+                    {
+                        Zero, 
+                        Zero, 
+                        Zero, 
+                        Zero
+                    }, 
+
+                    Package (0x0A)
+                    {
+                        Zero, 
+                        Zero, 
+                        Zero, 
+                        Zero, 
+                        Zero, 
+                        Zero, 
+                        Zero, 
+                        Zero, 
+                        Zero, 
+                        Zero
+                    }
+                })
+                CFG0 [0x04] = \_SB.PMBT.BCT1
+                Return (CFG0) /* \_SB_.PMBT.BAT1.CFG0 */
+            }
+
+            Method (BEHC, 0, NotSerialized)
+            {
+                Name (CFG0, Package (0x08)
+                {
+                    One, 
+                    0x08, 
+                    One, 
+                    Zero, 
+                    Zero, 
+                    0x02, 
+                    0x02, 
+                    0x04
+                })
+                Return (CFG0) /* \_SB_.PMBT.BEHC.CFG0 */
+            }
+
+            Method (CTMC, 0, NotSerialized)
+            {
+                Name (CFG0, Package (0x07)
+                {
+                    0x07D0, 
+                    0x36B0, 
+                    0xFFFFFFFF, 
+                    0xFFFFFFFF, 
+                    0x0003A980, 
+                    0x0006DDD0, 
+                    One
+                })
+                CFG0 [0x02] = RID2 /* \_SB_.RID2 */
+                CFG0 [0x03] = RID3 /* \_SB_.RID3 */
+                Return (CFG0) /* \_SB_.PMBT.CTMC.CFG0 */
+            }
+
+            Method (BMPC, 0, NotSerialized)
+            {
+                Name (CFG0, Package (0x0C)
+                {
+                    One, 
+                    One, 
+                    0x1B58, 
+                    0x03E8, 
+                    0x32, 
+                    0x3C, 
+                    0x01F4, 
+                    0x5A, 
+                    Zero, 
+                    0x46, 
+                    Zero, 
+                    Package (0x04)
+                    {
+                        0x05, 
+                        0x05, 
+                        0x78, 
+                        0x05
+                    }
+                })
+                Return (CFG0) /* \_SB_.PMBT.BMPC.CFG0 */
+            }
+        }
+
+        Device (PMBM)
+        {
+            Name (_HID, "QCOM042D")  // _HID: Hardware ID
+            Alias (\_SB.PSUB, _SUB)
+            Name (_DEP, Package (0x02)  // _DEP: Dependencies
+            {
+                \_SB.PMBT, 
+                \_SB.PM3P
+            })
+            Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
+            {
                 Name (RBUF, Buffer (0x02)
                 {
                      0x79, 0x00                                       // y.
                 })
                 Return (RBUF) /* \_SB_.PMBM._CRS.RBUF */
+            }
+
+            Method (_STA, 0, NotSerialized)  // _STA: Status
+            {
+                Return (0x0F)
             }
         }
 
@@ -507,181 +986,86 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             }
         }
 
-        Device (PMGK)
+        Device (PTCC)
         {
-            Name (_HID, "QCOM049A")  // _HID: Hardware ID
+            Name (_HID, "QCOM0482")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
-            Name (_DEP, Package (0x02)  // _DEP: Dependencies
+            Name (_DEP, Package (One)  // _DEP: Dependencies
             {
-                \_SB.GLNK, 
-                \_SB.ABD
+                \_SB.PMIC
             })
-            Name (LKUP, Zero)
-            Method (_STA, 0, NotSerialized)  // _STA: Status
-            {
-                Return (0x0B)
-            }
-
-            Method (GEPT, 0, NotSerialized)
-            {
-                Name (BUFF, Buffer (0x04){})
-                CreateByteField (BUFF, Zero, STAT)
-                CreateWordField (BUFF, 0x02, DATA)
-                DATA = 0x03
-                Return (DATA) /* \_SB_.PMGK.GEPT.DATA */
-            }
-
-            Name (BUFF, Buffer (0x32){})
-            CreateField (BUFF, Zero, 0x08, BSTA)
-            CreateField (BUFF, 0x08, 0x08, BSIZ)
-            CreateField (BUFF, 0x10, 0x10, BVER)
-            CreateField (BUFF, 0x30, 0x20, BCCI)
-            CreateField (BUFF, 0x50, 0x40, BCTL)
-            CreateField (BUFF, 0x90, 0x80, BMGI)
-            CreateField (BUFF, 0x0110, 0x80, BMGO)
-            Method (USBN, 1, NotSerialized)
-            {
-                BUFF = UCSI /* \_SB_.PMGK.UCSI */
-                \_SB.UCSI.VERS = BVER /* \_SB_.PMGK.BVER */
-                \_SB.UCSI.MSGI = BMGI /* \_SB_.PMGK.BMGI */
-                \_SB.UCSI.CCI = BCCI /* \_SB_.PMGK.BCCI */
-                Notify (\_SB.UCSI, Arg0)
-                Return (Zero)
-            }
-
-            Method (UPAN, 1, NotSerialized)
-            {
-                Name (VNTF, 0xFFFFFFFF)
-                Name (VPRT, 0x04)
-                Name (VMUX, Zero)
-                Name (VCCS, 0x02)
-                Name (VDPP, Zero)
-                Name (VHPD, Zero)
-                Name (VHSF, 0x02)
-                Name (VHIQ, Zero)
-                Name (BCCX, Zero)
-                Name (BDIX, Zero)
-                VNTF = Arg0
-                VPRT = (VNTF & 0xFF)
-                VNTF >>= 0x08
-                VCCS = (VNTF & 0xFF)
-                VNTF >>= 0x08
-                VMUX = (VNTF & 0xFF)
-                While (One)
-                {
-                    Name (_T_0, 0x00)  // _T_x: Emitted by ASL Compiler, x=0-9, A-Z
-                    _T_0 = VMUX /* \_SB_.PMGK.UPAN.VMUX */
-                    If ((_T_0 == Zero))
-                    {
-                        VHSF = Zero
-                        Break
-                    }
-                    ElseIf ((_T_0 == One))
-                    {
-                        VHSF = Zero
-                        Break
-                    }
-                    ElseIf ((_T_0 == 0x02))
-                    {
-                        VHSF = One
-                        Break
-                    }
-                    ElseIf ((_T_0 == 0x03))
-                    {
-                        VHSF = Zero
-                        Break
-                    }
-
-                    Break
-                }
-
-                VNTF >>= 0x08
-                VHIQ = (VNTF & 0x80)
-                If ((VHIQ == Zero))
-                {
-                    VHIQ = Zero
-                }
-                Else
-                {
-                    VHIQ = One
-                }
-
-                VHPD = (VNTF & 0x40)
-                If ((VHPD == Zero))
-                {
-                    VHPD = Zero
-                }
-                Else
-                {
-                    VHPD = One
-                }
-
-                VDPP = (VNTF & 0x3F)
-                If ((VDPP == Zero))
-                {
-                    VDPP = Zero
-                }
-                ElseIf ((VCCS == One))
-                {
-                    VDPP += 0x06
-                }
-
-                BCCX = VCCS /* \_SB_.PMGK.UPAN.VCCS */
-                VMUX <<= 0x02
-                BCCX |= VMUX /* \_SB_.PMGK.UPAN.BCCX */
-                VHSF <<= 0x04
-                BCCX |= VHSF /* \_SB_.PMGK.UPAN.BCCX */
-                BDIX = VDPP /* \_SB_.PMGK.UPAN.VDPP */
-                VHPD <<= 0x04
-                BDIX |= VHPD /* \_SB_.PMGK.UPAN.BDIX */
-                VHIQ <<= 0x05
-                BDIX |= VHIQ /* \_SB_.PMGK.UPAN.BDIX */
-                \_SB.UCS0.EINF = One
-                While (One)
-                {
-                    Name (_T_1, 0x00)  // _T_x: Emitted by ASL Compiler, x=0-9, A-Z
-                    _T_1 = VPRT /* \_SB_.PMGK.UPAN.VPRT */
-                    If ((_T_1 == Zero))
-                    {
-                        \_SB.UCS0.EUPD |= One
-                        \_SB.UCS0.ECC0 = BCCX /* \_SB_.PMGK.UPAN.BCCX */
-                        \_SB.UCS0.EDI0 = BDIX /* \_SB_.PMGK.UPAN.BDIX */
-                        \_SB.UCS0.USBR ()
-                        Break
-                    }
-
-                    Break
-                }
-
-                Return (Zero)
-            }
-
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
             {
-                Name (RBUF, Buffer (0x02)
+                Name (RBUF, ResourceTemplate ()
                 {
-                     0x79, 0x00                                       // y.
-                })
-                Return (RBUF) /* \_SB_.PMGK._CRS.RBUF */
-            }
-
-            Method (LKST, 1, NotSerialized)
-            {
-                LKUP = Arg0
-                Notify (\_SB.UCSI, Zero) // Bus Check
-                Return (Zero)
-            }
-
-            Field (\_SB.ABD.ROP1, BufferAcc, NoLock, Preserve)
-            {
-                Connection (
-                    I2cSerialBusV2 (0x0003, ControllerInitiated, 0x00000000,
-                        AddressingMode7Bit, "\\_SB.ABD",
-                        0x00, ResourceConsumer, , Exclusive,
+                    GpioInt (Edge, ActiveHigh, SharedAndWake, PullNone, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
                         )
-                ), 
-                AccessAs (BufferAcc, AttribRawBytes (0x30)), 
-                UCSI,   384
+                        {   // Pin list
+                            0x00F8
+                        }
+                    GpioInt (Edge, ActiveHigh, SharedAndWake, PullNone, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x010E
+                        }
+                    GpioInt (Edge, ActiveHigh, SharedAndWake, PullNone, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x010D
+                        }
+                    GpioInt (Edge, ActiveHigh, SharedAndWake, PullNone, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x010C
+                        }
+                    GpioInt (Edge, ActiveHigh, SharedAndWake, PullNone, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x010B
+                        }
+                    GpioInt (Edge, ActiveHigh, SharedAndWake, PullNone, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x010A
+                        }
+                    GpioInt (Edge, ActiveHigh, SharedAndWake, PullNone, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0109
+                        }
+                    GpioInt (Edge, ActiveHigh, SharedAndWake, PullNone, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0108
+                        }
+                    GpioInt (Edge, ActiveHigh, Exclusive, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x00D9
+                        }
+                    GpioInt (Edge, ActiveBoth, Exclusive, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x00DF
+                        }
+                    GpioInt (Edge, ActiveHigh, Exclusive, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x00EB
+                        }
+                })
+                Return (RBUF) /* \_SB_.PTCC._CRS.RBUF */
             }
         }
 
@@ -2853,7 +3237,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
             Method (DPRF, 0, NotSerialized)
             {
-                Return (\_SB.DPP0) /* External reference */
+                Return (\_SB.DPP0)
             }
 
             Method (DMRF, 0, NotSerialized)
@@ -42736,12 +43120,12 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     }
                 }
             })
-            Name (LPCC, Package (0x08)
+            Name (LPCC, Package (0x09)
             {
                 Package (0x07)
                 {
                     "DEVICE", 
-                    "\\_SB.UCS0", 
+                    "\\_SB.UCP0", 
                     Package (0x05)
                     {
                         "COMPONENT", 
@@ -43283,6 +43667,112 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 {
                                     One, 
                                     "/arc/client/rail_cx", 
+                                    Zero
+                                }
+                            }
+                        }
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        Zero
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        One
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        0x02
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        0x03
+                    }
+                }, 
+
+                Package (0x07)
+                {
+                    "DEVICE", 
+                    "\\_SB.PTCC", 
+                    Package (0x05)
+                    {
+                        "COMPONENT", 
+                        Zero, 
+                        Package (0x02)
+                        {
+                            "FSTATE", 
+                            Zero
+                        }, 
+
+                        Package (0x04)
+                        {
+                            "PSTATE", 
+                            Zero, 
+                            Package (0x02)
+                            {
+                                "PMICVREGVOTE", 
+                                Package (0x06)
+                                {
+                                    "PPP_RESOURCE_ID_LDO2_A", 
+                                    One, 
+                                    0x002EE000, 
+                                    One, 
+                                    One, 
+                                    Zero
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PMICVREGVOTE", 
+                                Package (0x06)
+                                {
+                                    "PPP_RESOURCE_ID_LDO12_A", 
+                                    One, 
+                                    0x001B7740, 
+                                    One, 
+                                    One, 
+                                    Zero
+                                }
+                            }
+                        }, 
+
+                        Package (0x04)
+                        {
+                            "PSTATE", 
+                            One, 
+                            Package (0x02)
+                            {
+                                "PMICVREGVOTE", 
+                                Package (0x06)
+                                {
+                                    "PPP_RESOURCE_ID_LDO2_A", 
+                                    One, 
+                                    Zero, 
+                                    Zero, 
+                                    Zero, 
+                                    Zero
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PMICVREGVOTE", 
+                                Package (0x06)
+                                {
+                                    "PPP_RESOURCE_ID_LDO12_A", 
+                                    One, 
+                                    Zero, 
+                                    Zero, 
+                                    Zero, 
                                     Zero
                                 }
                             }
@@ -47215,12 +47705,12 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     }
                 }
             })
-            Name (LPCD, Package (0x08)
+            Name (LPCD, Package (0x09)
             {
                 Package (0x07)
                 {
                     "DEVICE", 
-                    "\\_SB.UCS0", 
+                    "\\_SB.UCP0", 
                     Package (0x05)
                     {
                         "COMPONENT", 
@@ -47762,6 +48252,112 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 {
                                     One, 
                                     "/arc/client/rail_cx", 
+                                    Zero
+                                }
+                            }
+                        }
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        Zero
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        One
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        0x02
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        0x03
+                    }
+                }, 
+
+                Package (0x07)
+                {
+                    "DEVICE", 
+                    "\\_SB.PTCC", 
+                    Package (0x05)
+                    {
+                        "COMPONENT", 
+                        Zero, 
+                        Package (0x02)
+                        {
+                            "FSTATE", 
+                            Zero
+                        }, 
+
+                        Package (0x04)
+                        {
+                            "PSTATE", 
+                            Zero, 
+                            Package (0x02)
+                            {
+                                "PMICVREGVOTE", 
+                                Package (0x06)
+                                {
+                                    "PPP_RESOURCE_ID_LDO2_A", 
+                                    One, 
+                                    0x002EE000, 
+                                    One, 
+                                    One, 
+                                    Zero
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PMICVREGVOTE", 
+                                Package (0x06)
+                                {
+                                    "PPP_RESOURCE_ID_LDO12_A", 
+                                    One, 
+                                    0x001B7740, 
+                                    One, 
+                                    One, 
+                                    Zero
+                                }
+                            }
+                        }, 
+
+                        Package (0x04)
+                        {
+                            "PSTATE", 
+                            One, 
+                            Package (0x02)
+                            {
+                                "PMICVREGVOTE", 
+                                Package (0x06)
+                                {
+                                    "PPP_RESOURCE_ID_LDO2_A", 
+                                    One, 
+                                    Zero, 
+                                    Zero, 
+                                    Zero, 
+                                    Zero
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PMICVREGVOTE", 
+                                Package (0x06)
+                                {
+                                    "PPP_RESOURCE_ID_LDO12_A", 
+                                    One, 
+                                    Zero, 
+                                    Zero, 
+                                    Zero, 
                                     Zero
                                 }
                             }
@@ -95136,30 +95732,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         }
 
         Name (QUFN, Zero)
-        Name (HPDB, Zero)
-        Name (HPDS, Buffer (One)
-        {
-             0x00                                             // .
-        })
-        Name (PINA, Zero)
-        Name (DPPN, 0x0D)
-        Name (CCST, Buffer (One)
-        {
-             0x02                                             // .
-        })
-        Name (PORT, Buffer (One)
-        {
-             0x02                                             // .
-        })
-        Name (HIRQ, Buffer (One)
-        {
-             0x00                                             // .
-        })
-        Name (USBC, Buffer (One)
-        {
-             0x0B                                             // .
-        })
-        Name (MUXC, Buffer (One)
+        Name (DPP0, Buffer (One)
         {
              0x00                                             // .
         })
@@ -95182,10 +95755,9 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
-            Name (_DEP, Package (0x02)  // _DEP: Dependencies
+            Name (_DEP, Package (One)  // _DEP: Dependencies
             {
-                \_SB.PEP0, 
-                \_SB.UCS0
+                \_SB.PEP0
             })
             Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
             {
@@ -95276,7 +95848,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
                 Method (CCVL, 0, NotSerialized)
                 {
-                    \_SB.CCST = (One & \_SB.UCS0.ECC0)
                     Return (\_SB.CCST)
                 }
 
@@ -95439,7 +96010,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 })
                 Method (CCVL, 0, NotSerialized)
                 {
-                    \_SB.CCST = (One & \_SB.UCS0.ECC0)
                     Return (\_SB.CCST)
                 }
 
@@ -95583,34 +96153,30 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             }
         }
 
-        Device (UCSI)
+        Name (HPDB, Zero)
+        Name (PINA, Zero)
+        Name (CCST, Buffer (One)
         {
-            Name (_HID, EisaId ("USBC000"))  // _HID: Hardware ID
-            Name (_CID, EisaId ("PNP0CA0"))  // _CID: Compatible ID
-            Name (_UID, 0x03)  // _UID: Unique ID
-            Name (_DDN, "USB Type-C")  // _DDN: DOS Device Name
+             0x02                                             // .
+        })
+        Name (HSFL, Buffer (One)
+        {
+             0x00                                             // .
+        })
+        Name (USBC, Buffer (One)
+        {
+             0x0B                                             // .
+        })
+        Device (UCP0)
+        {
+            Name (_HID, "QCOM047D")  // _HID: Hardware ID
             Name (_DEP, Package (0x03)  // _DEP: Dependencies
             {
-                \_SB.ABD, 
-                \_SB.PMGK, 
-                \_SB.UCS0
+                \_SB.PEP0, 
+                \_SB.PTCC, 
+                \_SB.URS0
             })
-            Method (_STA, 0, NotSerialized)  // _STA: Status
-            {
-                VERS = 0x0100
-                CCI = Zero
-                MSGI = Zero
-                If ((\_SB.PMGK.LKUP > Zero))
-                {
-                    Return (0x0F)
-                }
-                Else
-                {
-                    Return (Zero)
-                }
-            }
-
-            Device (UCN0)
+            Device (CON0)
             {
                 Name (_ADR, Zero)  // _ADR: Address
                 Name (_PLD, Package (0x01)  // _PLD: Physical Location of Device
@@ -95632,7 +96198,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         PLD_Shape              = "VERTICALRECTANGLE",
                         PLD_GroupOrientation   = 0x0,
                         PLD_GroupToken         = 0x0,
-                        PLD_GroupPosition      = 0x0,
+                        PLD_GroupPosition      = 0x1,
                         PLD_Bay                = 0x0,
                         PLD_Ejectable          = 0x0,
                         PLD_EjectRequired      = 0x0,
@@ -95652,160 +96218,249 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     Zero, 
                     Zero
                 })
-            }
-
-            Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
-            {
-                Memory32Fixed (ReadWrite,
-                    0x9FF90000,         // Address Base
-                    0x00000030,         // Address Length
-                    )
-            })
-            OperationRegion (USBC, SystemMemory, 0x9FF90000, 0x30)
-            Field (USBC, ByteAcc, NoLock, Preserve)
-            {
-                VERS,   16, 
-                RESV,   16, 
-                CCI,    32, 
-                CTRL,   64, 
-                MSGI,   128, 
-                MSGO,   128
-            }
-
-            Name (BUFF, Buffer (0x32){})
-            CreateField (BUFF, Zero, 0x08, BSTA)
-            CreateField (BUFF, 0x08, 0x08, BSIZ)
-            CreateField (BUFF, 0x10, 0x10, BVER)
-            CreateField (BUFF, 0x30, 0x20, BCCI)
-            CreateField (BUFF, 0x50, 0x40, BCTL)
-            CreateField (BUFF, 0x90, 0x80, BMGI)
-            CreateField (BUFF, 0x0110, 0x80, BMGO)
-            Method (OPMW, 0, NotSerialized)
-            {
-                BCTL = CTRL /* \_SB_.UCSI.CTRL */
-                BMGO = MSGO /* \_SB_.UCSI.MSGO */
-                \_SB.PMGK.UCSI = BUFF /* \_SB_.UCSI.BUFF */
-                Return (Zero)
-            }
-
-            Method (OPMR, 0, NotSerialized)
-            {
-                BUFF = \_SB.PMGK.UCSI
-                VERS = BVER /* \_SB_.UCSI.BVER */
-                CCI = BCCI /* \_SB_.UCSI.BCCI */
-                MSGI = BMGI /* \_SB_.UCSI.BMGI */
-                Return (Zero)
-            }
-
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-            {
-                If ((Arg0 == ToUUID ("6f8398c2-7ca4-11e4-ad36-631042b5008f") /* Unknown UUID */))
+                Name (_DSD, Package (0x02)  // _DSD: Device-Specific Data
                 {
-                    While (One)
+                    ToUUID ("6b856e62-40f4-4688-bd46-5e888a2260de") /* Unknown UUID */, 
+                    Package (0x0A)
                     {
-                        Name (_T_0, 0x00)  // _T_x: Emitted by ASL Compiler, x=0-9, A-Z
-                        _T_0 = ToInteger (Arg2)
-                        If ((_T_0 == Zero))
+                        Package (0x02)
                         {
-                            Return (Buffer (One)
-                            {
-                                 0x0F                                             // .
-                            })
-                        }
-                        ElseIf ((_T_0 == One))
-                        {
-                            Return (OPMW ())
-                        }
-                        ElseIf ((_T_0 == 0x02))
-                        {
-                            Return (OPMR ())
-                        }
-                        ElseIf ((_T_0 == 0x03))
-                        {
-                            Return (Zero)
-                        }
+                            One, 
+                            0x04
+                        }, 
 
+                        Package (0x02)
+                        {
+                            0x02, 
+                            0x03
+                        }, 
+
+                        Package (0x02)
+                        {
+                            0x03, 
+                            Zero
+                        }, 
+
+                        Package (0x02)
+                        {
+                            0x04, 
+                            One
+                        }, 
+
+                        Package (0x02)
+                        {
+                            0x05, 
+                            0x03
+                        }, 
+
+                        Package (0x02)
+                        {
+                            0x06, 
+                            Package (0x01)
+                            {
+                                0x00019096
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            0x07, 
+                            Package (0x03)
+                            {
+                                0x0001912C, 
+                                0x0002D0C8, 
+                                0x0003C096
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            0x08, 
+                            Package (0x02)
+                            {
+                                0xFF01, 
+                                0x3C86
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            0x09, 
+                            One
+                        }, 
+
+                        Package (0x02)
+                        {
+                            0x0A, 
+                            One
+                        }
+                    }
+                })
+            }
+
+            Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+            {
+                While (One)
+                {
+                    Name (_T_0, Buffer (0x01)  // _T_x: Emitted by ASL Compiler, x=0-9, A-Z
+                    {
+                         0x00                                             // .
+                    })
+                    CopyObject (ToBuffer (Arg0), _T_0) /* \_SB_.UCP0._DSM._T_0 */
+                    If ((_T_0 == ToUUID ("18de299f-9476-4fc9-b43b-8aeb713ed751") /* Unknown UUID */))
+                    {
+                        While (One)
+                        {
+                            Name (_T_1, 0x00)  // _T_x: Emitted by ASL Compiler, x=0-9, A-Z
+                            _T_1 = ToInteger (Arg2)
+                            If ((_T_1 == Zero))
+                            {
+                                While (One)
+                                {
+                                    Name (_T_2, 0x00)  // _T_x: Emitted by ASL Compiler, x=0-9, A-Z
+                                    _T_2 = ToInteger (Arg1)
+                                    If ((_T_2 == Zero))
+                                    {
+                                        Return (Buffer (One)
+                                        {
+                                             0x01                                             // .
+                                        })
+                                        Break
+                                    }
+                                    Else
+                                    {
+                                        Return (Buffer (One)
+                                        {
+                                             0x01                                             // .
+                                        })
+                                        Break
+                                    }
+
+                                    Break
+                                }
+
+                                Return (Buffer (One)
+                                {
+                                     0x00                                             // .
+                                })
+                                Break
+                            }
+                            ElseIf ((_T_1 == One))
+                            {
+                                While (One)
+                                {
+                                    Name (_T_3, 0x00)  // _T_x: Emitted by ASL Compiler, x=0-9, A-Z
+                                    _T_3 = ToInteger (Arg3)
+                                    If ((_T_3 == Zero))
+                                    {
+                                        Return (Package (0x01)
+                                        {
+                                            0x36019050
+                                        })
+                                        Break
+                                    }
+                                    ElseIf ((_T_3 == One))
+                                    {
+                                        Return (Package (0x01)
+                                        {
+                                            0x3601912C
+                                        })
+                                        Break
+                                    }
+                                    Else
+                                    {
+                                        Return (Package (0x01)
+                                        {
+                                            Zero
+                                        })
+                                        Break
+                                    }
+
+                                    Break
+                                }
+                            }
+                            Else
+                            {
+                                Return (Buffer (One)
+                                {
+                                     0x00                                             // .
+                                })
+                                Break
+                            }
+
+                            Break
+                        }
+                    }
+                    Else
+                    {
+                        Return (Buffer (One)
+                        {
+                             0x00                                             // .
+                        })
                         Break
                     }
+
+                    Break
                 }
+            }
+
+            Method (CCOT, 2, NotSerialized)
+            {
+                \_SB.CCST = Arg0
+                \_SB.HSFL = Arg1
+            }
+
+            Method (CCVL, 0, NotSerialized)
+            {
+                Return (\_SB.CCST)
+            }
+
+            Method (HPDS, 0, NotSerialized)
+            {
+                Notify (\_SB.GPU0, 0x94) // Device-Specific
+            }
+
+            Method (HPDF, 2, NotSerialized)
+            {
+                \_SB.HPDB = Arg0
+                \_SB.PINA = Arg1
+                Notify (\_SB.GPU0, \_SB.HPDB)
+            }
+
+            Method (HPDV, 0, NotSerialized)
+            {
+                Return (\_SB.HPDB)
+            }
+
+            Method (PINV, 0, NotSerialized)
+            {
+                Return (\_SB.PINA)
             }
         }
 
-        Device (UCS0)
+        Device (USB1)
         {
-            Name (_HID, "QCOM04A9")  // _HID: Hardware ID
-            Alias (\_SB.PSUB, _SUB)
             Name (_DEP, Package (One)  // _DEP: Dependencies
             {
                 \_SB.PEP0
             })
-            Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
+            Name (_HID, "QCOM0475")  // _HID: Hardware ID
+            Name (_UID, One)  // _UID: Unique ID
+            Name (STVL, Zero)
+            Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                Memory32Fixed (ReadWrite,
-                    0x9FF90040,         // Address Base
-                    0x00000004,         // Address Length
-                    )
-                GpioIo (Shared, PullNone, 0x0000, 0x0000, IoRestrictionNone,
-                    "\\_SB.GIO0", 0x00, ResourceConsumer, ,
-                    RawDataBuffer (0x01)  // Vendor Data
-                    {
-                        0x01
-                    })
-                    {   // Pin list
-                        0x0026
-                    }
-                GpioIo (Exclusive, PullUp, 0x0000, 0x0000, IoRestrictionOutputOnly,
-                    "\\_SB.GIO0", 0x00, ResourceConsumer, ,
-                    RawDataBuffer (0x01)  // Vendor Data
-                    {
-                        0x01
-                    })
-                    {   // Pin list
-                        0x0098
-                    }
-                GpioIo (Exclusive, PullUp, 0x0000, 0x0000, IoRestrictionOutputOnly,
-                    "\\_SB.GIO0", 0x00, ResourceConsumer, ,
-                    RawDataBuffer (0x01)  // Vendor Data
-                    {
-                        0x01
-                    })
-                    {   // Pin list
-                        0x0064
-                    }
-            })
-            OperationRegion (USBC, SystemMemory, 0x9FF90040, 0x04)
-            Field (USBC, ByteAcc, NoLock, Preserve)
-            {
-                INFO,   8, 
-                UPDT,   8, 
-                CCM0,   8, 
-                DIS0,   8
+                Return (STVL) /* \_SB_.USB1.STVL */
             }
+        }
 
-            Name (PORT, Buffer (0x04)
+        Device (USBA)
+        {
+            Name (_DEP, Package (One)  // _DEP: Dependencies
             {
-                 0x01, 0x00, 0x02, 0x00                           // ....
+                \_SB.IMM0
             })
-            CreateByteField (PORT, Zero, EINF)
-            CreateByteField (PORT, One, EUPD)
-            CreateByteField (PORT, 0x02, ECC0)
-            CreateByteField (PORT, 0x03, EDI0)
-            Method (USBW, 0, NotSerialized)
-            {
-                EUPD = UPDT /* \_SB_.UCS0.UPDT */
-                Notify (\_SB.PMGK, 0xF0) // Hardware-Specific
-                Return (Zero)
-            }
-
-            Method (USBR, 0, NotSerialized)
-            {
-                INFO = EINF /* \_SB_.UCS0.EINF */
-                UPDT = EUPD /* \_SB_.UCS0.EUPD */
-                CCM0 = ECC0 /* \_SB_.UCS0.ECC0 */
-                DIS0 = EDI0 /* \_SB_.UCS0.EDI0 */
-                Notify (UCS0, 0xA0) // Device-Specific
-                Return (Zero)
-            }
+            Name (_HID, "QCOM0490")  // _HID: Hardware ID
+            Alias (\_SB.PSUB, _SUB)
         }
 
         Device (MPA)
