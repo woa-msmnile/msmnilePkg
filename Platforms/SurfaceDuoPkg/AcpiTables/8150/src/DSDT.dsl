@@ -402,7 +402,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             }
         }
 
-        Name (BFCC, 0x3D2C)
+        Name (BFCC, 0x33CC)
         Name (PCT1, 0x05)
         Name (PCT2, 0x09)
         Name (CUST, "8150_MTP")
@@ -416,8 +416,8 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         Name (BNOP, 0x16)
         Name (IFGD, 0x32)
         Name (VFGD, 0x32)
-        Name (VDD1, 0x10FE)
-        Name (FCC1, 0x0834)
+        Name (VDD1, 0x1068)
+        Name (FCC1, 0x0323)
         Name (HCLI, Zero)
         Name (SCLI, 0x0A)
         Name (SHLI, 0x2D)
@@ -457,12 +457,14 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
             Method (PMCF, 0, NotSerialized)
             {
-                Name (CFG0, Package (0x04)
+                Name (CFG0, Package (0x06)
                 {
+                    0xFF, 
                     Zero, 
+                    Zero, 
+                    0x02, 
                     One, 
-                    One, 
-                    One
+                    0x02
                 })
                 Return (CFG0) /* \_SB_.PM3P.PMCF.CFG0 */
             }
@@ -551,9 +553,9 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 Name (CFG0, Package (0x05)
                 {
-                    0x02, 
-                    Zero, 
                     One, 
+                    Zero, 
+                    Zero, 
                     Zero, 
                     "CUST_PMIC"
                 })
@@ -621,7 +623,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 Name (CFG0, Package (0x04)
                 {
-                    One, 
+                    Zero, 
                     0x05, 
                     0x1388, 
                     0x0384
@@ -633,7 +635,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 Name (CFG0, Package (0x03)
                 {
-                    One, 
+                    Zero, 
                     Zero, 
                     Zero
                 })
@@ -760,7 +762,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 Name (CFG0, Package (0x03)
                 {
-                    0x02, 
+                    One, 
                     0x02, 
                     Package (0x0A)
                     {
@@ -825,7 +827,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 Name (CFG0, Package (0x08)
                 {
-                    One, 
+                    Zero, 
                     0x08, 
                     One, 
                     Zero, 
@@ -992,7 +994,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             Alias (\_SB.PSUB, _SUB)
             Name (_DEP, Package (One)  // _DEP: Dependencies
             {
-                \_SB.PMIC
+                \_SB.PCPD
             })
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
             {
@@ -1067,6 +1069,16 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 })
                 Return (RBUF) /* \_SB_.PTCC._CRS.RBUF */
             }
+        }
+
+        Device (PCPD)
+        {
+            Name (_DEP, Package (One)  // _DEP: Dependencies
+            {
+                \_SB.PMIC
+            })
+            Name (_HID, "QCOM04B2")  // _HID: Hardware ID
+            Alias (\_SB.PSUB, _SUB)
         }
 
         Device (PEP0)
