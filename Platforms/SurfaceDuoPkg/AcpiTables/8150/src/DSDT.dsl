@@ -58678,7 +58678,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         Zero, 
-                        Package (0x28)
+                        Package (0x27)
                         {
                             "FSTATE", 
                             Zero, 
@@ -58699,16 +58699,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     One
                                 }
                             }, 
@@ -59124,7 +59114,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x24)
+                        Package (0x23)
                         {
                             "FSTATE", 
                             One, 
@@ -59494,16 +59484,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     0x02
                                 }
                             }, 
@@ -63356,7 +63336,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         One, 
-                        Package (0x09)
+                        Package (0x08)
                         {
                             "FSTATE", 
                             Zero, 
@@ -63377,16 +63357,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     One
                                 }
                             }, 
@@ -63432,7 +63402,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x09)
+                        Package (0x08)
                         {
                             "FSTATE", 
                             One, 
@@ -63472,16 +63442,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     0x02
                                 }
                             }, 
@@ -63531,7 +63491,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 {
                     "DEVICE", 
                     "\\_SB.CAMS", 
-                    Package (0x0D)
+                    Package (0x0C)
                     {
                         "DSTATE", 
                         Zero, 
@@ -63552,16 +63512,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x02)
                             {
                                 "gcc_camera_xo_clk", 
-                                One
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "CLOCK", 
-                            Package (0x02)
-                            {
-                                "gcc_camera_ahb_clk", 
                                 One
                             }
                         }, 
@@ -63656,7 +63606,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x0C)
+                    Package (0x0B)
                     {
                         "DSTATE", 
                         0x03, 
@@ -63731,16 +63681,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x02)
                             {
                                 "cam_cc_gdsc_clk", 
-                                0x02
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "CLOCK", 
-                            Package (0x02)
-                            {
-                                "gcc_camera_ahb_clk", 
                                 0x02
                             }
                         }, 
@@ -63772,7 +63712,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 {
                     "DEVICE", 
                     "\\_SB.CAMF", 
-                    Package (0x0D)
+                    Package (0x0C)
                     {
                         "DSTATE", 
                         Zero, 
@@ -63793,16 +63733,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x02)
                             {
                                 "gcc_camera_xo_clk", 
-                                One
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "CLOCK", 
-                            Package (0x02)
-                            {
-                                "gcc_camera_ahb_clk", 
                                 One
                             }
                         }, 
@@ -63897,7 +63827,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x0C)
+                    Package (0x0B)
                     {
                         "DSTATE", 
                         0x03, 
@@ -63981,16 +63911,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             "CLOCK", 
                             Package (0x02)
                             {
-                                "gcc_camera_ahb_clk", 
-                                0x02
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "CLOCK", 
-                            Package (0x02)
-                            {
                                 "gcc_camera_xo_clk", 
                                 0x02
                             }
@@ -64013,7 +63933,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 {
                     "DEVICE", 
                     "\\_SB.CAMI", 
-                    Package (0x0D)
+                    Package (0x0C)
                     {
                         "DSTATE", 
                         Zero, 
@@ -64034,16 +63954,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x02)
                             {
                                 "gcc_camera_xo_clk", 
-                                One
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "CLOCK", 
-                            Package (0x02)
-                            {
-                                "gcc_camera_ahb_clk", 
                                 One
                             }
                         }, 
@@ -64138,7 +64048,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x0D)
+                    Package (0x0C)
                     {
                         "DSTATE", 
                         0x03, 
@@ -64227,16 +64137,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x02)
                             {
                                 "cam_cc_gdsc_clk", 
-                                0x02
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "CLOCK", 
-                            Package (0x02)
-                            {
-                                "gcc_camera_ahb_clk", 
                                 0x02
                             }
                         }, 
@@ -64293,7 +64193,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         Zero, 
-                        Package (0x0B)
+                        Package (0x0A)
                         {
                             "FSTATE", 
                             Zero, 
@@ -64314,16 +64214,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     One
                                 }
                             }, 
@@ -64389,7 +64279,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x0A)
+                        Package (0x09)
                         {
                             "FSTATE", 
                             One, 
@@ -64439,16 +64329,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     0x02
                                 }
                             }, 
@@ -64553,7 +64433,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         One, 
-                        Package (0x0B)
+                        Package (0x0A)
                         {
                             "FSTATE", 
                             Zero, 
@@ -64574,16 +64454,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     One
                                 }
                             }, 
@@ -64649,7 +64519,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x0A)
+                        Package (0x09)
                         {
                             "FSTATE", 
                             One, 
@@ -64699,16 +64569,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     0x02
                                 }
                             }, 
@@ -64820,7 +64680,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         Zero, 
-                        Package (0x0B)
+                        Package (0x0A)
                         {
                             "FSTATE", 
                             Zero, 
@@ -64841,16 +64701,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     One
                                 }
                             }, 
@@ -64920,7 +64770,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x0B)
+                        Package (0x0A)
                         {
                             "FSTATE", 
                             One, 
@@ -64980,16 +64830,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     0x02
                                 }
                             }, 
@@ -65021,7 +64861,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         One, 
-                        Package (0x0B)
+                        Package (0x0A)
                         {
                             "FSTATE", 
                             Zero, 
@@ -65042,16 +64882,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     One
                                 }
                             }, 
@@ -65121,7 +64951,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x0B)
+                        Package (0x0A)
                         {
                             "FSTATE", 
                             One, 
@@ -65181,16 +65011,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     0x02
                                 }
                             }, 
@@ -65222,7 +65042,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         0x02, 
-                        Package (0x0B)
+                        Package (0x0A)
                         {
                             "FSTATE", 
                             Zero, 
@@ -65243,16 +65063,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     One
                                 }
                             }, 
@@ -65322,7 +65132,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x0B)
+                        Package (0x0A)
                         {
                             "FSTATE", 
                             One, 
@@ -65382,16 +65192,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     0x02
                                 }
                             }, 
@@ -65423,7 +65223,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         0x03, 
-                        Package (0x0B)
+                        Package (0x0A)
                         {
                             "FSTATE", 
                             Zero, 
@@ -65444,16 +65244,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     One
                                 }
                             }, 
@@ -65523,7 +65313,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x0B)
+                        Package (0x0A)
                         {
                             "FSTATE", 
                             One, 
@@ -65583,16 +65373,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     0x02
                                 }
                             }, 
@@ -65631,7 +65411,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         Zero, 
-                        Package (0x12)
+                        Package (0x11)
                         {
                             "FSTATE", 
                             Zero, 
@@ -65652,16 +65432,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     One
                                 }
                             }, 
@@ -65799,7 +65569,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x12)
+                        Package (0x11)
                         {
                             "FSTATE", 
                             One, 
@@ -65929,16 +65699,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     0x02
                                 }
                             }, 
@@ -66133,7 +65893,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         One, 
-                        Package (0x12)
+                        Package (0x11)
                         {
                             "FSTATE", 
                             Zero, 
@@ -66154,16 +65914,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     One
                                 }
                             }, 
@@ -66301,7 +66051,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x12)
+                        Package (0x11)
                         {
                             "FSTATE", 
                             One, 
@@ -66431,16 +66181,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     0x02
                                 }
                             }, 
@@ -66635,7 +66375,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         0x02, 
-                        Package (0x12)
+                        Package (0x11)
                         {
                             "FSTATE", 
                             Zero, 
@@ -66656,16 +66396,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     One
                                 }
                             }, 
@@ -66803,7 +66533,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x12)
+                        Package (0x11)
                         {
                             "FSTATE", 
                             One, 
@@ -66933,16 +66663,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     0x02
                                 }
                             }, 
@@ -67137,7 +66857,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         0x03, 
-                        Package (0x12)
+                        Package (0x11)
                         {
                             "FSTATE", 
                             Zero, 
@@ -67158,16 +66878,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     One
                                 }
                             }, 
@@ -67305,7 +67015,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x12)
+                        Package (0x11)
                         {
                             "FSTATE", 
                             One, 
@@ -67435,16 +67145,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     0x02
                                 }
                             }, 
@@ -67639,7 +67339,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         0x04, 
-                        Package (0x10)
+                        Package (0x0F)
                         {
                             "FSTATE", 
                             Zero, 
@@ -67660,16 +67360,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     One
                                 }
                             }, 
@@ -67787,7 +67477,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x10)
+                        Package (0x0F)
                         {
                             "FSTATE", 
                             One, 
@@ -67897,16 +67587,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     0x02
                                 }
                             }, 
@@ -68101,7 +67781,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         0x05, 
-                        Package (0x0F)
+                        Package (0x0E)
                         {
                             "FSTATE", 
                             Zero, 
@@ -68122,16 +67802,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     One
                                 }
                             }, 
@@ -68239,7 +67909,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x0F)
+                        Package (0x0E)
                         {
                             "FSTATE", 
                             One, 
@@ -68339,16 +68009,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     0x02
                                 }
                             }, 
@@ -68543,7 +68203,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         0x06, 
-                        Package (0x0F)
+                        Package (0x0E)
                         {
                             "FSTATE", 
                             Zero, 
@@ -68564,16 +68224,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     One
                                 }
                             }, 
@@ -68681,7 +68331,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x0F)
+                        Package (0x0E)
                         {
                             "FSTATE", 
                             One, 
@@ -68781,16 +68431,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     0x02
                                 }
                             }, 
@@ -68985,7 +68625,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         0x07, 
-                        Package (0x0F)
+                        Package (0x0E)
                         {
                             "FSTATE", 
                             Zero, 
@@ -69006,16 +68646,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     One
                                 }
                             }, 
@@ -69123,7 +68753,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x0F)
+                        Package (0x0E)
                         {
                             "FSTATE", 
                             One, 
@@ -69223,16 +68853,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     0x02
                                 }
                             }, 
@@ -69427,7 +69047,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         0x08, 
-                        Package (0x14)
+                        Package (0x13)
                         {
                             "FSTATE", 
                             Zero, 
@@ -69448,16 +69068,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     One
                                 }
                             }, 
@@ -69613,7 +69223,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x14)
+                        Package (0x13)
                         {
                             "FSTATE", 
                             One, 
@@ -69763,16 +69373,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     0x02
                                 }
                             }, 
@@ -70106,7 +69706,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         0x09, 
-                        Package (0x17)
+                        Package (0x16)
                         {
                             "FSTATE", 
                             Zero, 
@@ -70127,16 +69727,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     One
                                 }
                             }, 
@@ -70322,7 +69912,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x17)
+                        Package (0x16)
                         {
                             "FSTATE", 
                             One, 
@@ -70502,16 +70092,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     0x02
                                 }
                             }, 
@@ -70903,7 +70483,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         0x0A, 
-                        Package (0x10)
+                        Package (0x0F)
                         {
                             "FSTATE", 
                             Zero, 
@@ -70924,16 +70504,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     One
                                 }
                             }, 
@@ -71049,7 +70619,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x10)
+                        Package (0x0F)
                         {
                             "FSTATE", 
                             One, 
@@ -71159,16 +70729,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     0x02
                                 }
                             }, 
@@ -71380,7 +70940,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         0x0B, 
-                        Package (0x0A)
+                        Package (0x09)
                         {
                             "FSTATE", 
                             Zero, 
@@ -71401,16 +70961,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     One
                                 }
                             }, 
@@ -71466,7 +71016,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x0A)
+                        Package (0x09)
                         {
                             "FSTATE", 
                             One, 
@@ -71516,16 +71066,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     0x02
                                 }
                             }, 
@@ -71647,7 +71187,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         0x0C, 
-                        Package (0x0E)
+                        Package (0x0D)
                         {
                             "FSTATE", 
                             Zero, 
@@ -71668,16 +71208,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     One
                                 }
                             }, 
@@ -71773,7 +71303,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x0E)
+                        Package (0x0D)
                         {
                             "FSTATE", 
                             One, 
@@ -71863,16 +71393,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_ahb_clk", 
                                     0x02
                                 }
                             }, 
