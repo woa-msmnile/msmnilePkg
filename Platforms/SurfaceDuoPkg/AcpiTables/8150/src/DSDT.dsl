@@ -1077,7 +1077,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 \_SB.PMIC
             })
-            Name (_HID, "QCOM04B2")  // _HID: Hardware ID
+            Name (_HID, "QCOM04B4")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
         }
 
