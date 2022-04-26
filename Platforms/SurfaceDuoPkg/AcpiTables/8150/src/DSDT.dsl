@@ -436,7 +436,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             })
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                Return (0x0F)
+                Return (Zero)
             }
 
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
@@ -553,7 +553,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 Name (CFG0, Package (0x05)
                 {
-                    One, 
+                    0x02, 
                     Zero, 
                     Zero, 
                     Zero, 
@@ -623,7 +623,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 Name (CFG0, Package (0x04)
                 {
-                    Zero, 
+                    One, 
                     0x05, 
                     0x1388, 
                     0x0384
@@ -635,7 +635,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 Name (CFG0, Package (0x03)
                 {
-                    Zero, 
+                    One, 
                     Zero, 
                     Zero
                 })
@@ -827,7 +827,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 Name (CFG0, Package (0x08)
                 {
-                    Zero, 
+                    One, 
                     0x08, 
                     One, 
                     Zero, 
