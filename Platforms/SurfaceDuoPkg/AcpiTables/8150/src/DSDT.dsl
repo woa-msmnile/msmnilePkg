@@ -58646,7 +58646,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 Return (CPXC) /* \_SB_.PEP0.CPXC */
             }
 
-            Name (CPXC, Package (0x05)
+            Name (CPXC, Package (0x04)
             {
                 Package (0x03)
                 {
@@ -63491,7 +63491,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 {
                     "DEVICE", 
                     "\\_SB.CAMS", 
-                    Package (0x0C)
+                    Package (0x0E)
                     {
                         "DSTATE", 
                         Zero, 
@@ -63561,11 +63561,39 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             "TLMMGPIO", 
                             Package (0x06)
                             {
-                                0x16, 
+                                0x1E, 
                                 Zero, 
                                 Zero, 
                                 One, 
                                 Zero, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_SMPS8_C", 
+                                0x02, 
+                                0x0014A140, 
+                                One, 
+                                Zero, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO1_C", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x07, 
                                 Zero
                             }
                         }, 
@@ -63587,7 +63615,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             "TLMMGPIO", 
                             Package (0x06)
                             {
-                                0x16, 
+                                0x1E, 
                                 One, 
                                 Zero, 
                                 One, 
@@ -63606,7 +63634,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x0B)
+                    Package (0x0D)
                     {
                         "DSTATE", 
                         0x03, 
@@ -63615,7 +63643,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             "TLMMGPIO", 
                             Package (0x06)
                             {
-                                0x16, 
+                                0x1E, 
                                 Zero, 
                                 Zero, 
                                 One, 
@@ -63642,6 +63670,34 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 0x0C, 
                                 Zero, 
                                 0x03
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO1_C", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_SMPS8_C", 
+                                0x02, 
+                                Zero, 
+                                Zero, 
+                                Zero, 
+                                Zero
                             }
                         }, 
 
@@ -63712,7 +63768,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 {
                     "DEVICE", 
                     "\\_SB.CAMF", 
-                    Package (0x0C)
+                    Package (0x0E)
                     {
                         "DSTATE", 
                         Zero, 
@@ -63782,7 +63838,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             "TLMMGPIO", 
                             Package (0x06)
                             {
-                                0x0C, 
+                                0x1E, 
                                 Zero, 
                                 Zero, 
                                 One, 
@@ -63793,10 +63849,38 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
                         Package (0x02)
                         {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_SMPS8_C", 
+                                0x02, 
+                                0x0014A140, 
+                                One, 
+                                Zero, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO1_C", 
+                                One, 
+                                0x001B7740, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
                             "CLOCK", 
                             Package (0x04)
                             {
-                                "cam_cc_mclk2_clk", 
+                                "cam_cc_mclk0_clk", 
                                 0x08, 
                                 0x016E3600, 
                                 0x03
@@ -63808,7 +63892,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             "TLMMGPIO", 
                             Package (0x06)
                             {
-                                0x0C, 
+                                0x1E, 
                                 One, 
                                 Zero, 
                                 One, 
@@ -63827,7 +63911,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x0B)
+                    Package (0x0D)
                     {
                         "DSTATE", 
                         0x03, 
@@ -63836,7 +63920,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             "TLMMGPIO", 
                             Package (0x06)
                             {
-                                0x0C, 
+                                0x1E, 
                                 Zero, 
                                 Zero, 
                                 One, 
@@ -63859,7 +63943,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             "CLOCK", 
                             Package (0x04)
                             {
-                                "cam_cc_mclk2_clk", 
+                                "cam_cc_mclk0_clk", 
                                 0x0C, 
                                 Zero, 
                                 0x03
@@ -63868,234 +63952,27 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
                         Package (0x02)
                         {
-                            "CLOCK", 
-                            Package (0x02)
-                            {
-                                "cam_cc_cpas_ahb_clk", 
-                                0x02
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "CLOCK", 
-                            Package (0x02)
-                            {
-                                "cam_cc_camnoc_axi_clk", 
-                                0x02
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "FOOTSWITCH", 
-                            Package (0x02)
-                            {
-                                "titan_top_gdsc", 
-                                0x02
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "CLOCK", 
-                            Package (0x02)
-                            {
-                                "cam_cc_gdsc_clk", 
-                                0x02
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "CLOCK", 
-                            Package (0x02)
-                            {
-                                "gcc_camera_xo_clk", 
-                                0x02
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "NPARESOURCE", 
-                            Package (0x03)
-                            {
-                                One, 
-                                "/arc/client/rail_mmcx", 
-                                Zero
-                            }
-                        }
-                    }
-                }, 
-
-                Package (0x04)
-                {
-                    "DEVICE", 
-                    "\\_SB.CAMI", 
-                    Package (0x0C)
-                    {
-                        "DSTATE", 
-                        Zero, 
-                        Package (0x02)
-                        {
-                            "NPARESOURCE", 
-                            Package (0x03)
-                            {
-                                One, 
-                                "/arc/client/rail_mmcx", 
-                                0x30
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "CLOCK", 
-                            Package (0x02)
-                            {
-                                "gcc_camera_xo_clk", 
-                                One
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "CLOCK", 
-                            Package (0x02)
-                            {
-                                "cam_cc_gdsc_clk", 
-                                One
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "FOOTSWITCH", 
-                            Package (0x02)
-                            {
-                                "titan_top_gdsc", 
-                                One
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "CLOCK", 
-                            Package (0x02)
-                            {
-                                "cam_cc_camnoc_axi_clk", 
-                                One
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "CLOCK", 
-                            Package (0x02)
-                            {
-                                "cam_cc_cpas_ahb_clk", 
-                                One
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "TLMMGPIO", 
+                            "PMICVREGVOTE", 
                             Package (0x06)
                             {
-                                0x17, 
-                                Zero, 
-                                Zero, 
+                                "PPP_RESOURCE_ID_LDO1_C", 
                                 One, 
                                 Zero, 
+                                Zero, 
+                                0x07, 
                                 Zero
                             }
                         }, 
 
                         Package (0x02)
                         {
-                            "CLOCK", 
-                            Package (0x04)
-                            {
-                                "cam_cc_mclk3_clk", 
-                                0x08, 
-                                0x016E3600, 
-                                0x03
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "TLMMGPIO", 
+                            "PMICVREGVOTE", 
                             Package (0x06)
                             {
-                                0x17, 
-                                One, 
-                                Zero, 
-                                One, 
-                                Zero, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "DELAY", 
-                            Package (0x01)
-                            {
-                                One
-                            }
-                        }
-                    }, 
-
-                    Package (0x0C)
-                    {
-                        "DSTATE", 
-                        0x03, 
-                        Package (0x02)
-                        {
-                            "TLMMGPIO", 
-                            Package (0x06)
-                            {
-                                0x17, 
-                                One, 
-                                Zero, 
-                                One, 
-                                Zero, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "DELAY", 
-                            Package (0x01)
-                            {
-                                One
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "CLOCK", 
-                            Package (0x04)
-                            {
-                                "cam_cc_mclk3_clk", 
-                                0x0C, 
-                                Zero, 
-                                0x03
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "TLMMGPIO", 
-                            Package (0x06)
-                            {
-                                0x17, 
+                                "PPP_RESOURCE_ID_SMPS8_C", 
+                                0x02, 
                                 Zero, 
                                 Zero, 
-                                One, 
                                 Zero, 
                                 Zero
                             }
@@ -93565,10 +93442,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         Package (0x09)
                         {
-                            0x07, 
+                            One, 
                             Zero, 
-                            0x00210012, 
-                            0x01310010, 
+                            Zero, 
+                            Zero, 
                             Zero, 
                             Zero, 
                             Zero, 
@@ -93583,10 +93460,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         Package (0x09)
                         {
-                            0x07, 
+                            One, 
                             Zero, 
-                            0x00210010, 
-                            0x01310010, 
+                            Zero, 
+                            Zero, 
                             Zero, 
                             Zero, 
                             Zero, 
@@ -93990,10 +93867,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 {
                     Package (0x05)
                     {
-                        "com.qti.sensormodule.ofilm_ov12a10.bin", 
-                        "com.qti.tuned.ofilm_ov12a10.bin", 
-                        0x00160020, 
-                        0x1241300B, 
+                        "com.qti.sensormodule.sony_imx351.bin", 
+                        "com.qti.tuned.sony_imx351.bin", 
+                        0x00150034, 
+                        0x03510016, 
                         Zero
                     }
                 })
@@ -94078,10 +93955,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 {
                     Package (0x05)
                     {
-                        "com.qti.sensormodule.ofilm_ov12a10_front.bin", 
-                        "com.qti.tuned.ofilm_ov12a10.bin", 
-                        0x00160020, 
-                        0x1241300B, 
+                        "com.qti.sensormodule.sony_front_imx351.bin", 
+                        "com.qti.tuned.sony_front_imx351.bin", 
+                        0x00150034, 
+                        0x03510016, 
                         Zero
                     }
                 })
@@ -94129,94 +94006,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 If (\_SB.ABD.AVBL)
                 {
                     \_SB.PEP0.FLD0 = DBUF /* \_SB_.CAMF.DBUF */
-                }
-            }
-        }
-
-        Device (CAMI)
-        {
-            Name (_DEP, Package (One)  // _DEP: Dependencies
-            {
-                \_SB.MPCS
-            })
-            Name (_HID, "QCOM04A5")  // _HID: Hardware ID
-            Name (_UID, 0x1C)  // _UID: Unique ID
-            Alias (\_SB.PSUB, _SUB)
-            Method (_STA, 0, NotSerialized)  // _STA: Status
-            {
-                OperationRegion (USBC, SystemMemory, 0x9FF90080, One)
-                Field (USBC, ByteAcc, NoLock, Preserve)
-                {
-                    UCAM,   8
-                }
-
-                If (((\_SB.PLST == One) && (UCAM == One)))
-                {
-                    Return (Zero)
-                }
-                Else
-                {
-                    Return (0x0F)
-                }
-            }
-
-            Method (SCFG, 0, Serialized)
-            {
-                Return (Package (0x01)
-                {
-                    Package (0x05)
-                    {
-                        "com.qti.sensormodule.tfc_ov7251.bin", 
-                        "com.qti.tuned.liteon_ov7251.bin", 
-                        0x001500C0, 
-                        0x7750300A, 
-                        Zero
-                    }
-                })
-            }
-
-            Name (PGID, Buffer (0x0A)
-            {
-                "\\_SB.CAMI"
-            })
-            Name (DBUF, Buffer (DBFL){})
-            CreateByteField (DBUF, Zero, STAT)
-            CreateByteField (DBUF, 0x02, DVAL)
-            CreateField (DBUF, 0x18, 0xA0, DEID)
-            Method (_S1D, 0, NotSerialized)  // _S1D: S1 Device State
-            {
-                Return (0x03)
-            }
-
-            Method (_S2D, 0, NotSerialized)  // _S2D: S2 Device State
-            {
-                Return (0x03)
-            }
-
-            Method (_S3D, 0, NotSerialized)  // _S3D: S3 Device State
-            {
-                Return (0x03)
-            }
-
-            Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
-            {
-                DEID = Buffer (ESNL){}
-                DVAL = Zero
-                DEID = PGID /* \_SB_.CAMI.PGID */
-                If (\_SB.ABD.AVBL)
-                {
-                    \_SB.PEP0.FLD0 = DBUF /* \_SB_.CAMI.DBUF */
-                }
-            }
-
-            Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
-            {
-                DEID = Buffer (ESNL){}
-                DVAL = 0x03
-                DEID = PGID /* \_SB_.CAMI.PGID */
-                If (\_SB.ABD.AVBL)
-                {
-                    \_SB.PEP0.FLD0 = DBUF /* \_SB_.CAMI.DBUF */
                 }
             }
         }
