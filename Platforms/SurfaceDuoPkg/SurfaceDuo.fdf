@@ -104,15 +104,21 @@ READ_LOCK_STATUS   = TRUE
 
   !include SurfaceDuoPkg/Include/APRIORI.inc
 
-#MIX3 5G
-!if $(BUILD_DEVICE_ID) == 0
-  !include SurfaceDuoPkg/Include/DXE0.inc
-!endif
+#
+# Choose Binaries Configuration Here.
+#
 
-#Mi Pad 5
-!if $(BUILD_DEVICE_ID) == 1
-  !include SurfaceDuoPkg/Include/DXE1.inc
-!endif
+ #MIX3 5G
+  !if $(BUILD_DEVICE_ID) == 0
+    !include SurfaceDuoPkg/Include/DXE0.inc
+  !endif
+
+ #Mi Pad 5
+  !if $(BUILD_DEVICE_ID) == 1
+    !include SurfaceDuoPkg/Include/DXE1.inc
+  !endif
+
+
 
 
   # Debug heartbeat
