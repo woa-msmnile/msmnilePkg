@@ -18,6 +18,7 @@ tags/
 BuildConfig.conf
 UpdateAcpi.sh
 DSDT.aml
+build_uefi.sh
 
 /Conf/
 /SurfaceDuo/
