@@ -31,7 +31,7 @@
   FLASH_DEFINITION               = SurfaceDuoPkg/SurfaceDuo.fdf
 
   DEFINE SECURE_BOOT_ENABLE           = TRUE
-  DEFINE USE_SCREEN_FOR_SERIAL_OUTPUT = 1
+  DEFINE USE_SCREEN_FOR_SERIAL_OUTPUT = 0
   DEFINE USE_MEMORY_FOR_SERIAL_OUTPUT = 0
 
 #
@@ -42,7 +42,7 @@
 #    1. Xiaomi Pad 5   (nabu)                                         
 #    2. LG G8          (waiting...)
 #
-  DEFINE BUILD_DEVICE_ID	= 1
+  DEFINE BUILD_DEVICE_ID	= 0
 
 [BuildOptions.common]
 !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
