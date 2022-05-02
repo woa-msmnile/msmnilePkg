@@ -8,6 +8,18 @@ Quick notes for building:
 - Generate ACPI tables with IASL
 - Follow this quick draft
 
+Switch your device before building
+
+```
+nano Platform/SurfaceDuo.dsc
+
+```
+You will see:
+```
+DEFINE BUILD_DEVICE_ID        = 0
+```
+Refer to the Build ID Table Above the macro and change the value of it.
+
 ```
 # Setup environment
 ./setup_env.sh
