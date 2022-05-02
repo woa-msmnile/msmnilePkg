@@ -108,7 +108,7 @@ READ_LOCK_STATUS   = TRUE
 # Choose Binaries Configuration Here.
 #
 
- #MIX3 5G
+ #Mi MIX3 5G
   !if $(BUILD_DEVICE_ID) == 0
     !include SurfaceDuoPkg/Include/DXE0.inc
   !endif
@@ -116,6 +116,11 @@ READ_LOCK_STATUS   = TRUE
  #Mi Pad 5
   !if $(BUILD_DEVICE_ID) == 1
     !include SurfaceDuoPkg/Include/DXE1.inc
+  !endif
+
+ #Mi K20 Pro
+  !if $(BUILD_DEVICE_ID) == 3
+    !include SurfaceDuoPkg/Include/DXE3.inc
   !endif
 
 
