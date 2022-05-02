@@ -22,7 +22,7 @@
 						Set the value to the ID you set above.
 
 	
-## 2. Set Your Device's Revolution in Platforms/SurfaceDuoPkg/SurfaceDuo.dsc
+## 2. Set Your Device's Resolution in Platforms/SurfaceDuoPkg/SurfaceDuo.dsc
 	After adding a device ID , then you should write some configs for it.
 	It is easy to do.
 	Open this file and add it.
