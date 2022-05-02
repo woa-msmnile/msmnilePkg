@@ -41,8 +41,10 @@
 #    0. Xiaomi Mix3 5g (andromeda)
 #    1. Xiaomi Pad 5   (nabu)                                         
 #    2. LG G8          (waiting...)
+#    3. Xiaomi K20 Pro (raphael)
 #
-  DEFINE BUILD_DEVICE_ID	= 1
+
+  DEFINE BUILD_DEVICE_ID	= 3
 
 [BuildOptions.common]
 !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
@@ -61,15 +63,20 @@
   # Screen Resolution Config (Do Not Edit)
   #
 
-#Mix 3 5G
+#Mi MIX 3 5G
   !if $(BUILD_DEVICE_ID) == 0
 	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
 	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2340
   !endif
-#MI Pad5
+#Mi Pad5
   !if $(BUILD_DEVICE_ID) == 1
 	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1600
 	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2560
+  !endif
+#Mi K20 Pro
+  !if $(BUILD_DEVICE_ID) == 3
+	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
+	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2340
   !endif
 
 

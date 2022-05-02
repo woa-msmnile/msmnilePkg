@@ -1,5 +1,5 @@
-
-We buildt a shabby Duo-devices Framework for now.
+* This is an Eassy about How to Use the Shabby Multi-Device Framework.
+* A Temporary Solution to Support Multi-Device.
 
 ## 1.Add a device in Platforms/SurfaceDuoPkg/SurfaceDuo.dsc
 	You may have found there is a macro defined in it:
@@ -22,7 +22,7 @@ We buildt a shabby Duo-devices Framework for now.
 						Set the value to the ID you set above.
 
 	
-## 2. Set Your Device's Revolution in Platforms/SurfaceDuoPkg/SurfaceDuo.dsc
+## 2. Set Your Device's Resolution in Platforms/SurfaceDuoPkg/SurfaceDuo.dsc
 	After adding a device ID , then you should write some configs for it.
 	It is easy to do.
 	Open this file and add it.
