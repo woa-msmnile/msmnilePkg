@@ -1,7 +1,5 @@
-
-# We Built a Shabby Duo-device Framework For Temporarily use.
-
-Essay:
+* This is an Eassy about How to Use the Shabby Multi-Device Framework.
+* A Temporary Solution to Support Multi-Device.
 
 ## 1.Add a device in Platforms/SurfaceDuoPkg/SurfaceDuo.dsc
 	You may have found there is a macro defined in it:
