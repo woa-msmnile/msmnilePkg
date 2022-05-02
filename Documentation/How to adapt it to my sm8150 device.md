@@ -1,5 +1,7 @@
 
-We built a shabby Duo-devices Framework for now.
+#We Built a Shabby Duo-device Framework For Temporarily use.
+
+Essay:
 
 ## 1.Add a device in Platforms/SurfaceDuoPkg/SurfaceDuo.dsc
 	You may have found there is a macro defined in it:
