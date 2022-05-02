@@ -90,7 +90,7 @@
 
     FILE DRIVER = 9c1eb71f-dd6c-4ed5-9f6a-5cc0ca789f16 {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-9c1eb71f-dd6c-4ed5-9f6a-5cc0ca789f16/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-9c1eb71f-dd6c-4ed5-9f6a-5cc0ca789f16/section1.pe
+            SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/XiaoMi/Andromeda_MIX3_5G/ShmBridgeDxe.efi
             SECTION UI = "ShmBridgeDxe"
     }
 
@@ -170,12 +170,12 @@
             SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/XiaoMi/Andromeda_MIX3_5G/PILDxe.efi
             SECTION UI = "PILDxe"
     }
-#
-#    FILE DRIVER = C9C6BB00-44FC-4C87-8AF9-F93218E17C10  {
-#            SECTION DXE_DEPEX = SurfaceDuoPkg/CustomizedBinaries/LemonICE/UsbcSetDrpDxe.depex
-#            SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/LemonICE/UsbcSetDrpDxe.efi
-#            SECTION UI = "UsbcSetDrpDxe"
-#    }
+
+    FILE DRIVER = C9C6BB00-44FC-4C87-8AF9-F93218E17C10  {
+            SECTION DXE_DEPEX = SurfaceDuoPkg/CustomizedBinaries/LemonICE/UsbcSetDrpDxe.depex
+            SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/LemonICE/UsbcSetDrpDxe.efi
+            SECTION UI = "UsbcSetDrpDxe"
+    }
 
     INF MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
 
@@ -311,11 +311,11 @@
             SECTION UI = "AdapterInformationDxe"
     }
 
-    FILE DRIVER = 1b52138d-3fa3-4e50-b958-20887353f809 {
-            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section1.pe
-            SECTION UI = "CPRDxe"
-    }
+#    FILE DRIVER = 1b52138d-3fa3-4e50-b958-20887353f809 {
+#            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section0.dxe.depex
+#            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section1.pe
+#            SECTION UI = "CPRDxe"
+#    }
 
     FILE DRIVER = 5246dcd6-1968-4bc6-b50e-620a0b629dc3 {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-5246dcd6-1968-4bc6-b50e-620a0b629dc3/section0.dxe.depex
