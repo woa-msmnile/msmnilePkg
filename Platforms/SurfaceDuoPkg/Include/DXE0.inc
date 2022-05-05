@@ -418,6 +418,7 @@
             SECTION UI = "MsEarlyGraphicsDxe"
     }
 
+
     FILE FREEFORM = a91d838e-a5fa-4138-825d-455e2303079e {
             SECTION UI = "BDS_Menu.cfg"
             SECTION RAW = SurfaceDuoPkg/CustomizedBinaries/XiaoMi/Andromeda_MIX3_5G/BDS_Menu.cfg.raw
@@ -432,3 +433,4 @@
             SECTION UI = "uefipil.cfg"
             SECTION RAW = SurfaceDuoPkg/CustomizedBinaries/XiaoMi/Andromeda_MIX3_5G/uefipil.cfg.raw
     }
+
