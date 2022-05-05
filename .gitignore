@@ -19,6 +19,10 @@ BuildConfig.conf
 UpdateAcpi.sh
 DSDT.aml
 build_uefi.sh
+DXEupdate.sh
+D*.*
+F*.*
+
 
 /Conf/
 /SurfaceDuo/
