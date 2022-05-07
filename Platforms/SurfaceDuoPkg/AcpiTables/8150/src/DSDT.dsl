@@ -93185,10 +93185,9 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 Method (_HID, 0, NotSerialized)  // _HID: Hardware ID
                 {
-                    Return ("MSHW0134")
+                    Return ("MSHW5001")
                 }
 
-                Name (_CID, "PNP0C51")  // _CID: Compatible ID
                 Name (_S0W, 0x02)  // _S0W: S0 Device Wake State
                 Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
                 {
