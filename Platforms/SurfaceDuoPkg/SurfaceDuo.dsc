@@ -44,7 +44,7 @@
 #    3. Xiaomi K20 Pro (raphael)
 #
 
-  DEFINE BUILD_DEVICE_ID	= 3
+  DEFINE BUILD_DEVICE_ID	= 0
 
 [BuildOptions.common]
 !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
