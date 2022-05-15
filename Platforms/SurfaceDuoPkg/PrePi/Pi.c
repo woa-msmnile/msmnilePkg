@@ -52,7 +52,7 @@ VOID BootLinux(IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
   LINUX_KERNEL LinuxKernel = (LINUX_KERNEL) LinuxKernelAddr;
 
   DEBUG(
-      (EFI_D_LOAD | EFI_D_INFO,
+      (EFI_D_INFO | EFI_D_LOAD,
        "Kernel Load Address = 0x%llx, Device Tree Load Address = 0x%llx\n",
        LinuxKernelAddr, DeviceTreeLoadAddress));
 
@@ -118,6 +118,13 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
       (EFI_D_INFO | EFI_D_LOAD,
        "Lid Status = 0x%llx\n",
        Lid0Status));
+
+  if (Lid0Status == 1) {
+    BootLinux(KernelLoadAddress, DeviceTreeLoadAddress);
+
+    // We should never reach here
+    CpuDeadLoop();
+  }
 
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "Disabling Qualcomm Watchdog Reboot timer\n"));
   MmioWrite32(0x17C10008, 0x00000000);
