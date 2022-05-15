@@ -42,6 +42,9 @@
 
 #define LID0_GPIO121_STATUS_ADDR (TLMM_SOUTH + TLMM_ADDR_OFFSET_FOR_PIN(121) + TLMM_PIN_IO_REGISTER)
 
+#define LINUX_KERNEL_ARCH_MAGIC_OFFSET 0x38
+#define LINUX_KERNEL_AARCH64_MAGIC 0x41524D64
+
 typedef VOID (*LINUX_KERNEL) (UINT64 ParametersBase,
                               UINT64 Reserved0,
                               UINT64 Reserved1,
@@ -57,6 +60,13 @@ STATIC VOID UartInit(VOID)
   DEBUG(
       (EFI_D_INFO, "Firmware version %s built %a %a\n\n",
        (CHAR16 *)PcdGetPtr(PcdFirmwareVersionString), __TIME__, __DATE__));
+}
+
+BOOLEAN IsLinuxAvailable(IN VOID *KernelLoadAddress)
+{
+  VOID *LinuxKernelAddr = KernelLoadAddress + PcdGet32(PcdFdSize);
+  UINT64 *LinuxKernelMagic = (UINT64*)(LinuxKernelAddr + LINUX_KERNEL_ARCH_MAGIC_OFFSET);
+  return *LinuxKernelMagic == LINUX_KERNEL_AARCH64_MAGIC;
 }
 
 VOID BootLinux(IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
@@ -125,18 +135,20 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
        "Kernel Load Address = 0x%llx, Device Tree Load Address = 0x%llx\n",
        KernelLoadAddress, DeviceTreeLoadAddress));
 
-  Lid0Status = MmioRead32(LID0_GPIO121_STATUS_ADDR) & 1;
+  if (IsLinuxAvailable(KernelLoadAddress)) {
+    Lid0Status = MmioRead32(LID0_GPIO121_STATUS_ADDR) & 1;
 
-  DEBUG(
-      (EFI_D_INFO | EFI_D_LOAD,
-       "Lid Status = 0x%llx\n",
-       Lid0Status));
+    DEBUG(
+        (EFI_D_INFO | EFI_D_LOAD,
+        "Lid Status = 0x%llx\n",
+        Lid0Status));
 
-  if (Lid0Status == 1) {
-    BootLinux(KernelLoadAddress, DeviceTreeLoadAddress);
+    if (Lid0Status == 1) {
+      BootLinux(KernelLoadAddress, DeviceTreeLoadAddress);
 
-    // We should never reach here
-    CpuDeadLoop();
+      // We should never reach here
+      CpuDeadLoop();
+    }
   }
 
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "Disabling Qualcomm Watchdog Reboot timer\n"));
