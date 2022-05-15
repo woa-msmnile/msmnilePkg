@@ -55,7 +55,7 @@ VOID BootLinux(IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
        LinuxKernelAddr, DeviceTreeLoadAddress));
 
   // Jump to linux
-  LinuxKernel (DeviceTreeLoadAddress, 0, 0, 0);
+  LinuxKernel ((UINT64)DeviceTreeLoadAddress, 0, 0, 0);
 
   // We should never reach here
   CpuDeadLoop();
