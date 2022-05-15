@@ -41,7 +41,6 @@
 #define TLMM_PIN_INTERRUPT_TARGET_REGISTER TLMM_PIN_INTERRUPT_CONFIG_REGISTER
 
 #define LID0_GPIO121_STATUS_ADDR (TLMM_SOUTH + TLMM_ADDR_OFFSET_FOR_PIN(121) + TLMM_PIN_IO_REGISTER)
-#define FPC0_GPIO118_STATUS_ADDR (TLMM_SOUTH + TLMM_ADDR_OFFSET_FOR_PIN(118) + TLMM_PIN_INTERRUPT_STATUS_REGISTER)
 
 typedef VOID (*LINUX_KERNEL) (UINT64 ParametersBase,
                               UINT64 Reserved0,
@@ -89,7 +88,6 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
   UINTN UefiMemorySize = 0;
 
   UINT32 Lid0Status    = 0;
-  UINT32 Fpc0Status    = 0;
 
 #if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
   // Clear PStore area
@@ -128,15 +126,13 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
        KernelLoadAddress, DeviceTreeLoadAddress));
 
   Lid0Status = MmioRead32(LID0_GPIO121_STATUS_ADDR) & 1;
-  Fpc0Status = MmioRead32(FPC0_GPIO118_STATUS_ADDR) & 1;
 
   DEBUG(
       (EFI_D_INFO | EFI_D_LOAD,
-       "Lid Status = 0x%llx, Fpc Status = 0x%llx\n",
-       Lid0Status, Fpc0Status));
+       "Lid Status = 0x%llx\n",
+       Lid0Status));
 
-  //if (Lid0Status == 1) {
-  if (Fpc0Status == 1) {
+  if (Lid0Status == 1) {
     BootLinux(KernelLoadAddress, DeviceTreeLoadAddress);
 
     // We should never reach here
