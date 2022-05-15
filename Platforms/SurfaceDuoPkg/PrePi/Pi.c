@@ -42,6 +42,14 @@
 
 #define LID0_GPIO121_STATUS_ADDR (TLMM_SOUTH + TLMM_ADDR_OFFSET_FOR_PIN(121) + TLMM_PIN_IO_REGISTER)
 
+#define SPMI_BASE_ADDR 0xc440000
+#define PMIC8150_A_OFFSET 0
+#define PMIC8150_PON_DEVICE_OFFSET 0x800
+#define PMIC8150_PON_POWER_STATUS 0x10
+#define PMIC8150_PON_POWER_STATUS_BUTTON_MASK (1 << 1)
+
+#define POWER_ON_BUTTON_STATUS (SPMI_BASE_ADDR + PMIC8150_A_OFFSET + PMIC8150_PON_DEVICE_OFFSET + PMIC8150_PON_POWER_STATUS)
+
 #define LINUX_KERNEL_ARCH_MAGIC_OFFSET 0x38
 #define LINUX_KERNEL_AARCH64_MAGIC 0x644D5241
 
@@ -97,7 +105,7 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
   UINTN UefiMemoryBase = 0;
   UINTN UefiMemorySize = 0;
 
-  UINT32 Lid0Status    = 0;
+  UINT32 Pon0Status    = 0;
 
 #if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
   // Clear PStore area
@@ -136,14 +144,14 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
        KernelLoadAddress, DeviceTreeLoadAddress));
 
   if (IsLinuxAvailable(KernelLoadAddress)) {
-    Lid0Status = MmioRead32(LID0_GPIO121_STATUS_ADDR) & 1;
+    Pon0Status = MmioRead32(POWER_ON_BUTTON_STATUS) & PMIC8150_PON_POWER_STATUS_BUTTON_MASK;
 
     DEBUG(
         (EFI_D_INFO | EFI_D_LOAD,
-        "Lid Status = 0x%llx\n",
-        Lid0Status));
+        "Pon Status = 0x%llx\n",
+        Pon0Status));
 
-    if (Lid0Status == 1) {
+    if (Pon0Status == 0) {
       BootLinux(KernelLoadAddress, DeviceTreeLoadAddress);
 
       // We should never reach here
