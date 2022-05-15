@@ -27,6 +27,11 @@
 
 #include "Sm8150PlatformHob.h"
 
+typedef VOID (*LINUX_KERNEL) (UINT64 ParametersBase,
+                              UINT64 Reserved0,
+                              UINT64 Reserved1,
+                              UINT64 Reserved2);
+
 VOID EFIAPI ProcessLibraryConstructorList(VOID);
 
 STATIC VOID UartInit(VOID)
@@ -39,7 +44,24 @@ STATIC VOID UartInit(VOID)
        (CHAR16 *)PcdGetPtr(PcdFirmwareVersionString), __TIME__, __DATE__));
 }
 
-VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN UINT64 StartTimeStamp)
+VOID BootLinux(IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
+{
+  VOID *LinuxKernelAddr = KernelLoadAddress + PcdGet32(PcdFdSize);
+  LINUX_KERNEL LinuxKernel = (LINUX_KERNEL) LinuxKernelAddr;
+
+  DEBUG(
+      (EFI_D_LOAD | EFI_D_INFO,
+       "Kernel Load Address = 0x%llx, Device Tree Load Address = 0x%llx\n",
+       LinuxKernelAddr, DeviceTreeLoadAddress));
+
+  // Jump to linux
+  LinuxKernel (DeviceTreeLoadAddress, 0, 0, 0);
+
+  // We should never reach here
+  CpuDeadLoop();
+}
+
+VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
 {
 
   EFI_HOB_HANDOFF_INFO_TABLE *HobList;
@@ -80,6 +102,11 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN UINT64 StartTimeStamp)
        "UEFI Memory Base = 0x%llx, Size = 0x%llx, Stack Base = 0x%llx, Stack "
        "Size = 0x%llx\n",
        UefiMemoryBase, UefiMemorySize, StackBase, StackSize));
+
+  DEBUG(
+      (EFI_D_INFO | EFI_D_LOAD,
+       "Kernel Load Address = 0x%llx, Device Tree Load Address = 0x%llx\n",
+       KernelLoadAddress, DeviceTreeLoadAddress));
 
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "Disabling Qualcomm Watchdog Reboot timer\n"));
   MmioWrite32(0x17C10008, 0x00000000);
@@ -141,7 +168,7 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN UINT64 StartTimeStamp)
   CpuDeadLoop();
 }
 
-VOID CEntryPoint(IN VOID *StackBase, IN UINTN StackSize)
+VOID CEntryPoint(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
 {
-  Main(StackBase, StackSize, 0);
+  Main(StackBase, StackSize, KernelLoadAddress, DeviceTreeLoadAddress);
 }

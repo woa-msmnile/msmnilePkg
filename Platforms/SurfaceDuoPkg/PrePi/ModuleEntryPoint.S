@@ -54,6 +54,11 @@ _CopyLoop:
 
 _ContinueModuleEntryPoint:
 
+  // backup start address into x20
+  mov    x20, x1
+  // backup device tree address into x21
+  mov    x21, x0
+
   /* World reset */
   bl ASM_PFX(ArmDeInitialize)
 
@@ -129,6 +134,8 @@ _PrepareArguments:
   /* x0 = _StackBase and x1 = _StackSize */
   ldr x0, _StackBase     /* Stack base arg0 */
   ldr x1, _StackSize     /* Stack size arg1 */
+  mov x2, x20            /* Kernel Load Address */
+  mov x3, x21            /* Device Tree Load Address */
 
   bl CEntryPoint
 
