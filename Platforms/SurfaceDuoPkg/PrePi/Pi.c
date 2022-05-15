@@ -65,7 +65,7 @@ STATIC VOID UartInit(VOID)
 BOOLEAN IsLinuxAvailable(IN VOID *KernelLoadAddress)
 {
   VOID *LinuxKernelAddr = KernelLoadAddress + PcdGet32(PcdFdSize);
-  UINT64 *LinuxKernelMagic = (UINT64*)(LinuxKernelAddr + LINUX_KERNEL_ARCH_MAGIC_OFFSET);
+  UINT32 *LinuxKernelMagic = (UINT32*)(LinuxKernelAddr + LINUX_KERNEL_ARCH_MAGIC_OFFSET);
   return *LinuxKernelMagic == LINUX_KERNEL_AARCH64_MAGIC;
 }
 
