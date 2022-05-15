@@ -27,6 +27,8 @@
 
 #include "Sm8150PlatformHob.h"
 
+#define LID0_GPIO121_STATUS_ADDR 0x03D79004
+
 typedef VOID (*LINUX_KERNEL) (UINT64 ParametersBase,
                               UINT64 Reserved0,
                               UINT64 Reserved1,
@@ -72,6 +74,8 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
   UINTN UefiMemoryBase = 0;
   UINTN UefiMemorySize = 0;
 
+  UINT32 Lid0Status    = 0;
+
 #if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
   // Clear PStore area
   UINT8 *base = (UINT8 *)0x17fe00000ull;
@@ -107,6 +111,13 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
       (EFI_D_INFO | EFI_D_LOAD,
        "Kernel Load Address = 0x%llx, Device Tree Load Address = 0x%llx\n",
        KernelLoadAddress, DeviceTreeLoadAddress));
+
+  Lid0Status = MmioRead32(LID0_GPIO121_STATUS_ADDR) & 1;
+
+  DEBUG(
+      (EFI_D_INFO | EFI_D_LOAD,
+       "Lid Status = 0x%llx\n",
+       Lid0Status));
 
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "Disabling Qualcomm Watchdog Reboot timer\n"));
   MmioWrite32(0x17C10008, 0x00000000);
