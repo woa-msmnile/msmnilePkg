@@ -1,7 +1,9 @@
 #!/bin/bash
 
+cat ./Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/FV/SM8150_EFI.fd ./ImageResources/dummykernel > ./bootpayload.bin
+
 python2 ./ImageResources/mkbootimg.py \
-  --kernel ./Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/FV/SM8150_EFI.fd \
+  --kernel ./bootpayload.bin \
   --ramdisk ./ImageResources/ramdisk \
   -o ./uefi.img \
   --pagesize 4096 \
