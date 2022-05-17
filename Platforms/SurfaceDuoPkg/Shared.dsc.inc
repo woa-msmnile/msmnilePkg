@@ -18,7 +18,7 @@
   *_GCC5_AARCH64_CC_FLAGS = -mfix-cortex-a53-835769 -mfix-cortex-a53-843419
   *_GCC5_AARCH64_DLINK_FLAGS = -mfix-cortex-a53-835769 -mfix-cortex-a53-843419
   # Use Clang 11+ actually, some fixes are builtin
-  *_CLANG38_AARCH64_CC_FLAGS = -mfix-cortex-a53-835769 -D CLANG
+  *_CLANG38_AARCH64_CC_FLAGS = -mfix-cortex-a53-835769 -Wno-unused-const-variable -Wno-sometimes-uninitialized -D CLANG
   *_CLANG38_AARCH64_DLINK_FLAGS = -mfix-cortex-a53-835769
   *_*_*_CC_FLAGS = -D DISABLE_NEW_DEPRECATED_INTERFACES -D HAS_MEMCPY_INTRINSICS
 
@@ -288,6 +288,7 @@
   MemoryTypeInformationChangeLib|MdeModulePkg/Library/MemoryTypeInformationChangeLibNull/MemoryTypeInformationChangeLibNull.inf
   DtPlatformDtbLoaderLib|EmbeddedPkg/Library/DxeDtPlatformDtbLoaderLibDefault/DxeDtPlatformDtbLoaderLibDefault.inf
   VariableFlashInfoLib|MdeModulePkg/Library/BaseVariableFlashInfoLib/BaseVariableFlashInfoLib.inf
+  PlatformPKProtectionLib|SecurityPkg/Library/PlatformPKProtectionLibVarPolicy/PlatformPKProtectionLibVarPolicy.inf
 
   BaseCryptLib|CryptoPkg/Library/BaseCryptLib/BaseCryptLib.inf
   CapsulePersistLib|MdeModulePkg/Library/CapsulePersistLibNull/CapsulePersistLibNull.inf      ## MU_CHANGE
@@ -308,13 +309,13 @@
   HttpLib|NetworkPkg/Library/DxeHttpLib/DxeHttpLib.inf
   JsonLiteParserLib|MsCorePkg/Library/JsonLiteParser/JsonLiteParser.inf
   MsPlatformDevicesLib|SurfaceDuoPkg/Library/MsPlatformDevicesLib/MsPlatformDevicesLib.inf
-  MsSecureBootLib|OemPkg/Library/MsSecureBootLib/MsSecureBootLib.inf
+  MsSecureBootModeSettingLib|OemPkg/Library/MsSecureBootModeSettingLib/MsSecureBootModeSettingLib.inf
   MuTelemetryHelperLib|MsWheaPkg/Library/MuTelemetryHelperLib/MuTelemetryHelperLib.inf
   NonDiscoverableDeviceRegistrationLib|MdeModulePkg/Library/NonDiscoverableDeviceRegistrationLib/NonDiscoverableDeviceRegistrationLib.inf
   OemHookStatusCodeLib|MdeModulePkg/Library/OemHookStatusCodeLibNull/OemHookStatusCodeLibNull.inf
   PasswordPolicyLib|OemPkg/Library/PasswordPolicyLib/PasswordPolicyLib.inf
   PlatformBootManagerLib|MsCorePkg/Library/PlatformBootManagerLib/PlatformBootManagerLib.inf
-  PlatformKeyLib|OemPkg/Library/PlatformKeyLibNull/PlatformKeyLibNull.inf
+  SecureBootKeyStoreLib|OemPkg/Library/SecureBootKeyStoreLibOem/SecureBootKeyStoreLibOem.inf
   PlatformThemeLib|MsGraphicsPkg/Library/SamplePlatformThemeLib/PlatformThemeLib.inf
   ReportStatusCodeLib|MdeModulePkg/Library/DxeReportStatusCodeLib/DxeReportStatusCodeLib.inf
   ShellLib|ShellPkg/Library/UefiShellLib/UefiShellLib.inf
@@ -322,6 +323,7 @@
   UefiScsiLib|MdePkg/Library/UefiScsiLib/UefiScsiLib.inf
   ZeroTouchSettingsLib|ZeroTouchPkg/Library/ZeroTouchSettings/ZeroTouchSettings.inf
   MuSecureBootKeySelectorLib|MsCorePkg/Library/MuSecureBootKeySelectorLib/MuSecureBootKeySelectorLib.inf
+  UpdateFacsHardwareSignatureLib|PcBdsPkg/Library/UpdateFacsHardwareSignatureLib/UpdateFacsHardwareSignatureLib.inf
 
 [LibraryClasses.common.SEC]
   HobLib|EmbeddedPkg/Library/PrePiHobLib/PrePiHobLib.inf
