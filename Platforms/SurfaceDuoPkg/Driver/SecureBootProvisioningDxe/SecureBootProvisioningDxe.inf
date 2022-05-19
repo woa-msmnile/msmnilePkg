@@ -19,16 +19,15 @@
   SurfaceDuoPkg/SurfaceDuoPkg.dec
 
 [LibraryClasses]
-  DebugLib
-  UefiBootServicesTableLib
-  UefiRuntimeServicesTableLib
   BaseLib
-  BaseMemoryLib
+  ReportStatusCodeLib
   UefiLib
-  PcdLib
-  SecureBootVariableLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  BaseMemoryLib
+  DebugLib
+  CompilerIntrinsicsLib
   MuSecureBootKeySelectorLib
-  SecureBootKeyStoreLib
 
 [Depex]
   TRUE
