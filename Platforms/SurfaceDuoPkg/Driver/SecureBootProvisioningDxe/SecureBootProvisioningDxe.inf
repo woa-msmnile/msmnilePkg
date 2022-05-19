@@ -16,6 +16,7 @@
   EmbeddedPkg/EmbeddedPkg.dec
   MdeModulePkg/MdeModulePkg.dec
   MsCorePkg/MsCorePkg.dec
+  SurfaceDuoPkg/SurfaceDuoPkg.dec
 
 [LibraryClasses]
   DebugLib
