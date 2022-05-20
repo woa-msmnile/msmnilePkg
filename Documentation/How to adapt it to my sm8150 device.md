@@ -1,3 +1,8 @@
+
+# We Built a Shabby Duo-device Framework For Temporarily use.
+
+Essay:
+
 * This is an Eassy about How to Use the Shabby Multi-Device Framework.
 * A Temporary Solution to Support Multi-Device.
 
