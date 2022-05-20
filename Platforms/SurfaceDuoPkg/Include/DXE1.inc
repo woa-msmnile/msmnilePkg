@@ -119,7 +119,6 @@
     FILE DRIVER = 0d35cd8e-97ea-4f9a-96af-0f0d89f76567 {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-0d35cd8e-97ea-4f9a-96af-0f0d89f76567/section0.dxe.depex
             SECTION PE32 = SurfaceDuoPkg/PatchedBinaries/MiPad5/UFSDxe.efi
-#	    SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/845/UFSDxe.efi
             SECTION UI = "UFSDxe"
     }
 
@@ -254,7 +253,7 @@
 
     FILE DRIVER = 5bd181db-0487-4f1a-ae73-820e165611b3 {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-5bd181db-0487-4f1a-ae73-820e165611b3/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoPkg/PatchedBinaries/ButtonsDxe.efi
+            SECTION PE32 = SurfaceDuoPkg/PatchedBinaries/MiPad5/ButtonsDxe.efi
             SECTION UI = "ButtonsDxe"
     }
 
