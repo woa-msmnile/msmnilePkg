@@ -16,6 +16,7 @@
   EmbeddedPkg/EmbeddedPkg.dec
   MdeModulePkg/MdeModulePkg.dec
   MsCorePkg/MsCorePkg.dec
+  SecurityPkg/SecurityPkg.dec
   SurfaceDuoPkg/SurfaceDuoPkg.dec
 
 [LibraryClasses]
@@ -28,9 +29,13 @@
   DebugLib
   CompilerIntrinsicsLib
   MuSecureBootKeySelectorLib
+  SecureBootVariableLib
 
 [Depex]
   TRUE
 
 [BuildOptions.AARCH64]
   GCC:*_*_*_CC_FLAGS = -Wno-missing-brace -Wno-error
+
+[Guids]
+  gEfiImageSecurityDatabaseGuid
