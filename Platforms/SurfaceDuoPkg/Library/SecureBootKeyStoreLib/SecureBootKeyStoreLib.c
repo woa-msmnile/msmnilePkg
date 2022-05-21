@@ -15,7 +15,7 @@
 
 #include "MsSecureBootDefaultVars.h"
 
-#define PLATFORM_SECURE_BOOT_KEY_COUNT  1
+#define PLATFORM_SECURE_BOOT_KEY_COUNT  2
 
 SECURE_BOOT_PAYLOAD_INFO  *gSecureBootPayload     = NULL;
 UINT8                     gSecureBootPayloadCount = 0;
@@ -28,11 +28,22 @@ CONST UINT8  mDevelopmentPlatformKeyCertificate[] = {
 UINT8                     mSecureBootPayloadCount                            = PLATFORM_SECURE_BOOT_KEY_COUNT;
 SECURE_BOOT_PAYLOAD_INFO  mSecureBootPayload[PLATFORM_SECURE_BOOT_KEY_COUNT] = {
   {
-    .SecureBootKeyName = L"Microsoft Plus 3rd Party Plus Windows On Andromeda",
+    .SecureBootKeyName = L"Microsoft Only",
     .KekPtr            = mKekDefault,
     .KekSize           = sizeof (mKekDefault),
     .DbPtr             = mDbDefault,
     .DbSize            = sizeof (mDbDefault),
+    .DbxPtr            = mDbxDefault,
+    .DbxSize           = sizeof (mDbxDefault),
+    .DbtPtr            = NULL,
+    .DbtSize           = 0,
+  },
+  {
+    .SecureBootKeyName = L"Microsoft Plus 3rd Party",
+    .KekPtr            = mKekDefault,
+    .KekSize           = sizeof (mKekDefault),
+    .DbPtr             = mDb3PDefault,
+    .DbSize            = sizeof (mDb3PDefault),
     .DbxPtr            = mDbxDefault,
     .DbxSize           = sizeof (mDbxDefault),
     .DbtPtr            = NULL,
@@ -103,6 +114,8 @@ SecureBootKeyStoreLibConstructor (
 
   mSecureBootPayload[0].PkPtr  = SigListBuffer;
   mSecureBootPayload[0].PkSize = DataSize;
+  mSecureBootPayload[1].PkPtr  = SigListBuffer;
+  mSecureBootPayload[1].PkSize = DataSize;
 
   gSecureBootPayload      = mSecureBootPayload;
   gSecureBootPayloadCount = mSecureBootPayloadCount;

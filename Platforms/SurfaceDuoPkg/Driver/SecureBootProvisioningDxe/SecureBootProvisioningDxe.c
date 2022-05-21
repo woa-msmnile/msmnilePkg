@@ -18,6 +18,5 @@ EFIAPI
 SecureBootProvisioningDxeInitialize(
     IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 {
-  // Microsoft Plus 3rd Party Plus Windows On Andromeda
-  return SetSecureBootConfig(0);
+  return SetSecureBootConfig(1);
 }
