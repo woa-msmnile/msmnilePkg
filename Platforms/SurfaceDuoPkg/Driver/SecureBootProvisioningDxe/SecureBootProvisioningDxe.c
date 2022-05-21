@@ -10,6 +10,7 @@
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiDriverEntryPoint.h>
 #include <Library/UefiLib.h>
+#include <Library/UefiRuntimeServicesTableLib.h>
 
 #include <Library/MuSecureBootKeySelectorLib.h>
 

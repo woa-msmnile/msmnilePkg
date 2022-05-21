@@ -28,7 +28,7 @@
   DebugLib
   CompilerIntrinsicsLib
   MuSecureBootKeySelectorLib
-  SecureBootVariableLib
+  UefiRuntimeServicesTableLib
 
 [Depex]
   TRUE
