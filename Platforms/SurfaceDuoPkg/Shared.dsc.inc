@@ -163,6 +163,8 @@
   gOemPkgTokenSpaceGuid.PcdUefiVersionNumber|0x1160601 # 1.22.6.1
   gOemPkgTokenSpaceGuid.PcdUefiBuildDate|0x16020D # 2/13/2022
 
+  gEfiMdeModulePkgTokenSpaceGuid.PcdMaxVariableSize|0x2000
+
 [PcdsDynamicDefault.common]
   gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1350
   gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|1800
