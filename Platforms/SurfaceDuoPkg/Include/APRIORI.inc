@@ -176,6 +176,13 @@ APRIORI DXE {
             SECTION UI = "UsbcSetDrpDxe"
     }
 
+#
+#    FILE DRIVER = 4138022f-06c7-4f79-9c94-7e33b511a4e7 {
+#            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-4138022f-06c7-4f79-9c94-7e33b511a4e7/section0.dxe.depex
+#            SECTION PE32 = SurfaceDuoPkg/PatchedBinaries/Xiaomi/DisplayDxe.efi
+#            SECTION UI = "DisplayDxe"
+#    }
+
     FILE DRIVER = 1d317734-4083-47c6-83ea-e3a42f2a6bff {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-1d317734-4083-47c6-83ea-e3a42f2a6bff/section0.dxe.depex
             SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-1d317734-4083-47c6-83ea-e3a42f2a6bff/section1.pe

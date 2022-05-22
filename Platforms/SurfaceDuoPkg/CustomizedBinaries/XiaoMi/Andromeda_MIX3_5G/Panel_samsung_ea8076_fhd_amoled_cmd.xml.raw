@@ -47,9 +47,8 @@
  <DSITimingCLKPrepareValue>7</DSITimingCLKPrepareValue>
  <DSITimingHSPrepareOverride>True</DSITimingHSPrepareOverride>
  <DSITimingHSPrepareValue>7</DSITimingHSPrepareValue>
-
 </Group>
-<DSIInitSequence>
+<!-- <DSIInitSequence>
  39 F0 5A 5A
  39 FC 5A 5A
  39 B0 0C
@@ -89,7 +88,7 @@
  FF 23
  05 10
  FF 78
-</DSITermSequence>
+</DSITermSequence> -->
 <Group id='Backlight Configuration'>
  <BacklightType>3</BacklightType>
  <BacklightPmicControlType>2</BacklightPmicControlType>
