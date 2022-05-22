@@ -170,12 +170,12 @@
             SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/XiaoMi/Andromeda_MIX3_5G/PILDxe.efi
             SECTION UI = "PILDxe"
     }
-
-    FILE DRIVER = C9C6BB00-44FC-4C87-8AF9-F93218E17C10  {
-            SECTION DXE_DEPEX = SurfaceDuoPkg/CustomizedBinaries/LemonICE/UsbcSetDrpDxe.depex
-            SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/LemonICE/UsbcSetDrpDxe.efi
-            SECTION UI = "UsbcSetDrpDxe"
-    }
+#
+#    FILE DRIVER = C9C6BB00-44FC-4C87-8AF9-F93218E17C10  {
+#            SECTION DXE_DEPEX = SurfaceDuoPkg/CustomizedBinaries/LemonICE/UsbcSetDrpDxe.depex
+#            SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/LemonICE/UsbcSetDrpDxe.efi
+#            SECTION UI = "UsbcSetDrpDxe"
+#    }
 
     INF MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
 
@@ -310,7 +310,7 @@
             SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-ce044919-3000-4998-82af-ddb4e17c6b66/section1.pe
             SECTION UI = "AdapterInformationDxe"
     }
-
+#
 #    FILE DRIVER = 1b52138d-3fa3-4e50-b958-20887353f809 {
 #            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section0.dxe.depex
 #            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section1.pe
@@ -417,7 +417,18 @@
             SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-3977d4c4-b0eb-4548-96b9-671fa2e36820/section1.pe
             SECTION UI = "MsEarlyGraphicsDxe"
     }
+#
+#    FILE DRIVER = 4138022f-06c7-4f79-9c94-7e33b511a4e7 {
+#            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-4138022f-06c7-4f79-9c94-7e33b511a4e7/section0.dxe.depex
+#            SECTION PE32 = SurfaceDuoPkg/PatchedBinaries/Xiaomi/DisplayDxe.efi
+#            SECTION UI = "DisplayDxe"
+#    }
 
+
+    FILE FREEFORM = 708A5B80-136B-45A9-A03E-98F450FC24BF {
+            SECTION UI = "Panel_samsung_ea8076_fhd_amoled_cmd.xml"
+            SECTION RAW = Platforms/SurfaceDuoPkg/CustomizedBinaries/XiaoMi/Andromeda_MIX3_5G/Panel_samsung_ea8076_fhd_amoled_cmd.xml.raw
+    }
 
     FILE FREEFORM = a91d838e-a5fa-4138-825d-455e2303079e {
             SECTION UI = "BDS_Menu.cfg"
