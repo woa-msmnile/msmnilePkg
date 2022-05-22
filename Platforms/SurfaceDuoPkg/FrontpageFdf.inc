@@ -20,7 +20,7 @@
   # Hardware Health (Menu) application
   INF MsWheaPkg/HwhMenu/HwhMenu.inf
 
-  # INF MsCorePkg/AcpiRGRT/AcpiRgrt.inf
+  INF MsCorePkg/AcpiRGRT/AcpiRgrt.inf
 
   # Change AARCH64 to the appropriate architecture for your platform.
   FILE APPLICATION=PCD(gPcBdsPkgTokenSpaceGuid.PcdShellFile) {
@@ -49,6 +49,6 @@
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdBootFailIndicatorFile) {
     SECTION RAW = OemPkg/FrontPage/Resources/NoBoot.bmp
   }
-  # FILE FREEFORM = PCD(gMsCorePkgTokenSpaceGuid.PcdRegulatoryGraphicFileGuid) {
-  #   SECTION RAW = SurfaceDuoPkg/Include/Resources/RegulatoryLogos.png
-  # }
+  FILE FREEFORM = PCD(gMsCorePkgTokenSpaceGuid.PcdRegulatoryGraphicFileGuid) {
+    SECTION RAW = SurfaceDuoPkg/Include/Resources/RegulatoryLogos.png
+  }
