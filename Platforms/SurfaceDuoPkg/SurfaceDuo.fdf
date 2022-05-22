@@ -113,6 +113,7 @@ READ_LOCK_STATUS   = TRUE
   # Secure Boot Key Enroll
   !if $(SECURE_BOOT_ENABLE) == TRUE
     INF SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
+    # INF SurfaceDuoPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
   !endif
 
   INF EmbeddedPkg/Drivers/VirtualKeyboardDxe/VirtualKeyboardDxe.inf
