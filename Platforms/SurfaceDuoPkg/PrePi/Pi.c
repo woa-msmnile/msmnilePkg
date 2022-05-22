@@ -97,7 +97,7 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
   UINTN UefiMemoryBase = 0;
   UINTN UefiMemorySize = 0;
 
-  UINT32 Lid0Status    = 0;
+  //UINT32 Lid0Status    = 0;
 
 #if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
   // Clear PStore area
@@ -135,7 +135,7 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
        "Kernel Load Address = 0x%llx, Device Tree Load Address = 0x%llx\n",
        KernelLoadAddress, DeviceTreeLoadAddress));
 
-  if (IsLinuxAvailable(KernelLoadAddress)) {
+  /*if (IsLinuxAvailable(KernelLoadAddress)) {
     Lid0Status = MmioRead32(LID0_GPIO121_STATUS_ADDR) & 1;
 
     DEBUG(
@@ -149,7 +149,7 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
       // We should never reach here
       CpuDeadLoop();
     }
-  }
+  }*/
 
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "Disabling Qualcomm Watchdog Reboot timer\n"));
   MmioWrite32(0x17C10008, 0x00000000);
