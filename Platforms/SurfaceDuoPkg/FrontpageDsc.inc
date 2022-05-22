@@ -281,7 +281,7 @@
   # Hardware Health (Menu) application
   MsWheaPkg/HwhMenu/HwhMenu.inf
 
-  # MsCorePkg/AcpiRGRT/AcpiRgrt.inf
+  MsCorePkg/AcpiRGRT/AcpiRgrt.inf
   
 #######################################
 #  Shell

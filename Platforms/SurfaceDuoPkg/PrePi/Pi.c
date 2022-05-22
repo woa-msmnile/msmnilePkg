@@ -27,6 +27,29 @@
 
 #include "Sm8150PlatformHob.h"
 
+#define TLMM_WEST  0x03100000
+#define TLMM_EAST  0x03500000
+#define TLMM_NORTH 0x03900000
+#define TLMM_SOUTH 0x03D00000
+
+#define TLMM_ADDR_OFFSET_FOR_PIN(x) (0x1000 * x)
+
+#define TLMM_PIN_CONTROL_REGISTER 0
+#define TLMM_PIN_IO_REGISTER 4
+#define TLMM_PIN_INTERRUPT_CONFIG_REGISTER 8
+#define TLMM_PIN_INTERRUPT_STATUS_REGISTER 0xC
+#define TLMM_PIN_INTERRUPT_TARGET_REGISTER TLMM_PIN_INTERRUPT_CONFIG_REGISTER
+
+#define LID0_GPIO121_STATUS_ADDR (TLMM_SOUTH + TLMM_ADDR_OFFSET_FOR_PIN(121) + TLMM_PIN_IO_REGISTER)
+
+#define LINUX_KERNEL_ARCH_MAGIC_OFFSET 0x38
+#define LINUX_KERNEL_AARCH64_MAGIC 0x644D5241
+
+typedef VOID (*LINUX_KERNEL) (UINT64 ParametersBase,
+                              UINT64 Reserved0,
+                              UINT64 Reserved1,
+                              UINT64 Reserved2);
+
 VOID EFIAPI ProcessLibraryConstructorList(VOID);
 
 STATIC VOID UartInit(VOID)
@@ -39,7 +62,31 @@ STATIC VOID UartInit(VOID)
        (CHAR16 *)PcdGetPtr(PcdFirmwareVersionString), __TIME__, __DATE__));
 }
 
-VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN UINT64 StartTimeStamp)
+BOOLEAN IsLinuxAvailable(IN VOID *KernelLoadAddress)
+{
+  VOID *LinuxKernelAddr = KernelLoadAddress + PcdGet32(PcdFdSize);
+  UINT32 *LinuxKernelMagic = (UINT32*)(LinuxKernelAddr + LINUX_KERNEL_ARCH_MAGIC_OFFSET);
+  return *LinuxKernelMagic == LINUX_KERNEL_AARCH64_MAGIC;
+}
+
+VOID BootLinux(IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
+{
+  VOID *LinuxKernelAddr = KernelLoadAddress + PcdGet32(PcdFdSize);
+  LINUX_KERNEL LinuxKernel = (LINUX_KERNEL) LinuxKernelAddr;
+
+  DEBUG(
+      (EFI_D_INFO | EFI_D_LOAD,
+       "Kernel Load Address = 0x%llx, Device Tree Load Address = 0x%llx\n",
+       LinuxKernelAddr, DeviceTreeLoadAddress));
+
+  // Jump to linux
+  LinuxKernel ((UINT64)DeviceTreeLoadAddress, 0, 0, 0);
+
+  // We should never reach here
+  CpuDeadLoop();
+}
+
+VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
 {
 
   EFI_HOB_HANDOFF_INFO_TABLE *HobList;
@@ -49,6 +96,8 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN UINT64 StartTimeStamp)
   UINTN MemorySize     = 0;
   UINTN UefiMemoryBase = 0;
   UINTN UefiMemorySize = 0;
+
+  UINT32 Lid0Status    = 0;
 
 #if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
   // Clear PStore area
@@ -77,9 +126,30 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN UINT64 StartTimeStamp)
 
   DEBUG(
       (EFI_D_INFO | EFI_D_LOAD,
-       "UEFI Memory Base = 0x%llx, Size = 0x%llx, Stack Base = 0x%llx, Stack \n"
-       "        Size = 0x%llx\n",
+       "UEFI Memory Base = 0x%llx, Size = 0x%llx, Stack Base = 0x%llx, Stack "
+       "Size = 0x%llx\n",
        UefiMemoryBase, UefiMemorySize, StackBase, StackSize));
+
+  DEBUG(
+      (EFI_D_INFO | EFI_D_LOAD,
+       "Kernel Load Address = 0x%llx, Device Tree Load Address = 0x%llx\n",
+       KernelLoadAddress, DeviceTreeLoadAddress));
+
+  if (IsLinuxAvailable(KernelLoadAddress)) {
+    Lid0Status = MmioRead32(LID0_GPIO121_STATUS_ADDR) & 1;
+
+    DEBUG(
+        (EFI_D_INFO | EFI_D_LOAD,
+        "Lid Status = 0x%llx\n",
+        Lid0Status));
+
+    if (Lid0Status == 1) {
+      BootLinux(KernelLoadAddress, DeviceTreeLoadAddress);
+
+      // We should never reach here
+      CpuDeadLoop();
+    }
+  }
 
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "Disabling Qualcomm Watchdog Reboot timer\n"));
   MmioWrite32(0x17C10008, 0x00000000);
@@ -107,36 +177,20 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN UINT64 StartTimeStamp)
   DEBUG((EFI_D_LOAD | EFI_D_INFO, "MMU configured from device config\n"));
 
   // Add HOBs
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "Start Build Stack Hob    "));
-
   BuildStackHob((UINTN)StackBase, StackSize);
 
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, " Finished !\n"));
-
   // TODO: Call CpuPei as a library
-   DEBUG((EFI_D_LOAD | EFI_D_INFO, "Call CpuPei as a library    "));
-
   BuildCpuHob(ArmGetPhysicalAddressBits(), PcdGet8(PcdPrePiCpuIoSize));
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "Finished    \n"));
 
   // Set the Boot Mode
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "Set the Boot Mode    "));
-
   SetBootMode(BOOT_WITH_FULL_CONFIGURATION);
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "Finished    \n"));
 
   // Initialize Platform HOBs (CpuHob and FvHob)
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "Initialize Platform HOBs (CpuHob and FvHob)    "));
-
   Status = PlatformPeim();
   ASSERT_EFI_ERROR(Status);
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "Finished    \n"));
 
   // Install SoC driver HOBs
-
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "Install SoC driver HOBs    "));
   InstallPlatformHob();
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "Finished    \n"));
 
   // Now, the HOB List has been initialized, we can register performance
   // information PERF_START (NULL, "PEI", NULL, StartTimeStamp);
@@ -146,25 +200,18 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN UINT64 StartTimeStamp)
 
   // Assume the FV that contains the PI (our code) also contains a compressed
   // FV.
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "Decompress FV "));
-
   Status = DecompressFirstFv();
-
   ASSERT_EFI_ERROR(Status);
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "Finished\n"));
 
   // Load the DXE Core and transfer control to it
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "Loading DXE  Core "));
-
   Status = LoadDxeCoreFromFv(NULL, 0);
-
   ASSERT_EFI_ERROR(Status);
 
   // We should never reach here
   CpuDeadLoop();
 }
 
-VOID CEntryPoint(IN VOID *StackBase, IN UINTN StackSize)
+VOID CEntryPoint(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
 {
-  Main(StackBase, StackSize, 0);
+  Main(StackBase, StackSize, KernelLoadAddress, DeviceTreeLoadAddress);
 }
