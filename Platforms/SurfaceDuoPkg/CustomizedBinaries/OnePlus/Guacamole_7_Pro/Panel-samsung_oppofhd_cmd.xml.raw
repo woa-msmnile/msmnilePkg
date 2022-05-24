@@ -1,0 +1,87 @@
+<?xml version=\"1.0\" encoding=\"utf-8\"?>
+<PanelName>OPPOFHD</PanelName>
+<PanelDescription>samsung OPPOFHD cmd mode dsi panel(1080x2280 24bpp)</PanelDescription>
+<Group id=\"Active Timing\">
+ <HorizontalActive>1080</HorizontalActive>
+ <HorizontalFrontPorch>112</HorizontalFrontPorch>
+ <HorizontalBackPorch>36</HorizontalBackPorch>
+ <HorizontalSyncPulse>16</HorizontalSyncPulse>
+ <HorizontalSyncSkew>0</HorizontalSyncSkew>
+ <HorizontalLeftBorder>0</HorizontalLeftBorder>
+ <HorizontalRightBorder>0</HorizontalRightBorder>
+ <VerticalActive>2280</VerticalActive>
+ <VerticalFrontPorch>36</VerticalFrontPorch>
+ <VerticalBackPorch>12</VerticalBackPorch>
+ <VerticalSyncPulse>8</VerticalSyncPulse>
+ <VerticalSyncSkew>0</VerticalSyncSkew>
+ <VerticalTopBorder>0</VerticalTopBorder>
+ <VerticalBottomBorder>0</VerticalBottomBorder>
+ <InvertDataPolarity>False</InvertDataPolarity>
+ <InvertVsyncPolairty>False</InvertVsyncPolairty>
+ <InvertHsyncPolarity>False</InvertHsyncPolarity>
+ <BorderColor>0x0</BorderColor>
+</Group>
+<Group id="Display Interface">
+ <InterfaceType>9</InterfaceType>
+ <InterfaceColorFormat>3</InterfaceColorFormat>
+</Group>
+<Group id="DSI Interface">
+ <DSIChannelId>2</DSIChannelId>
+ <DSIVirtualId>0</DSIVirtualId>
+ <DSIColorFormat>36</DSIColorFormat>
+ <DSITrafficMode>1</DSITrafficMode>
+ <DSILanes>4</DSILanes>
+ <DSIRefreshRate>0x3C0000</DSIRefreshRate>
+ <DSICmdSwapInterface>False</DSICmdSwapInterface>
+ <DSICmdUsingTrigger>False</DSICmdUsingTrigger>
+ <DSIEnableAutoRefresh>True</DSIEnableAutoRefresh>
+ <DSIAutoRefreshFrameNumDiv>1</DSIAutoRefreshFrameNumDiv>
+ <DSIControllerMapping>
+  00
+ </DSIControllerMapping>
+ <DSILP11AtInit>True</DSILP11AtInit>
+</Group>
+<DSIInitSequence>
+ 05 11 00
+ FF 0A
+ 15 35 00
+ FF 01
+ 15 53 20
+ FF 01
+ 39 F0 5A 5A
+ 39 B0 07
+ 39 B6 12
+ 39 53 20
+ 39 38 00
+ 39 51 00 00
+ FF 01
+ 15 F7 03
+ FF 0A
+ FE 00 00 00
+ FF 01
+ 39 E2 00 85
+ 39 B0 2C
+ 39 E2 E0 03 05 04 FF 00 00 00 FF 00 FF FF FF 00 FF E4 DB 00 FC FD FF
+ 39 B0 49
+ 39 E2 00
+ 39 B0 4A
+ 39 E2 00
+ 39 B0 4B
+ 39 E2 01
+ 39 B0 4D
+ 39 E2 49
+ 39 F0 A5 A5
+ FF 78
+ 05 29 00
+</DSIInitSequence>
+<DSITermSequence>
+ 05 28 00
+ ff 28
+ 05 10 00
+ ff 78
+</DSITermSequence>
+<Group id='Backlight Configuration'>
+ <BacklightType>3</BacklightType>
+ <DisplayResetInfo>0 2000 5000 12000 0</DisplayResetInfo>
+</Group>
+
