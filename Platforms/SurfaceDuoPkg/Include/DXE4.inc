@@ -425,10 +425,10 @@
 #    }
 
 
-    FILE FREEFORM = 708A5B80-136B-45A9-A03E-98F450FC24BF {
-            SECTION UI = "Panel_samsung_ea8076_fhd_amoled_cmd.xml"
-            SECTION RAW = Platforms/SurfaceDuoPkg/CustomizedBinaries/OnePlus/Guacamole_7_Pro/Panel_samsung_ea8076_fhd_amoled_cmd.xml.raw
-    }
+#    FILE FREEFORM = 708A5B80-136B-45A9-A03E-98F450FC24BF {
+#            SECTION UI = "Panel_samsung_ea8076_fhd_amoled_cmd.xml"
+#            SECTION RAW = Platforms/SurfaceDuoPkg/CustomizedBinaries/OnePlus/Guacamole_7_Pro/Panel_samsung_ea8076_fhd_amoled_cmd.xml.raw
+#    }
 
     FILE FREEFORM = a91d838e-a5fa-4138-825d-455e2303079e {
             SECTION UI = "BDS_Menu.cfg"
