@@ -124,6 +124,11 @@ READ_LOCK_STATUS   = TRUE
   !endif
 
 
+#OnePlus 7 Pro
+  !if $(BUILD_DEVICE_ID) == 4
+    !include SurfaceDuoPkg/Include/DXE4.inc
+  !endif
+
 
 
   # Debug heartbeat
