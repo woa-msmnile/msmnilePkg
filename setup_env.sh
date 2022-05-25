@@ -16,10 +16,10 @@ sudo apt-get install -y python3 python3-venv python3-pip python git-core git bui
 
 # PowerShell
 # Import the public repository GPG keys
-curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
 
 # Register the Microsoft Ubuntu repository
-curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list | tee /etc/apt/sources.list.d/microsoft.list
+curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list | sudo tee /etc/apt/sources.list.d/microsoft.list
 
 # Update the list of products
 sudo apt-get update
