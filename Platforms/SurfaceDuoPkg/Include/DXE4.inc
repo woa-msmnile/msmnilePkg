@@ -170,12 +170,12 @@
             SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/OnePlus/Guacamole_7_Pro/PILDxe.efi
             SECTION UI = "PILDxe"
     }
-#
-#    FILE DRIVER = C9C6BB00-44FC-4C87-8AF9-F93218E17C10  {
-#            SECTION DXE_DEPEX = SurfaceDuoPkg/CustomizedBinaries/LemonICE/UsbcSetDrpDxe.depex
-#            SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/LemonICE/UsbcSetDrpDxe.efi
-#            SECTION UI = "UsbcSetDrpDxe"
-#    }
+
+    FILE DRIVER = C9C6BB00-44FC-4C87-8AF9-F93218E17C10  {
+            SECTION DXE_DEPEX = SurfaceDuoPkg/CustomizedBinaries/LemonICE/UsbcSetDrpDxe.depex
+            SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/LemonICE/UsbcSetDrpDxe.efi
+            SECTION UI = "UsbcSetDrpDxe"
+    }
 
     INF MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
 

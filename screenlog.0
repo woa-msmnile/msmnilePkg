@@ -1,0 +1,864 @@
+[01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ ./[K[Kpython3 -m venv SurfaceDuo
+[01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ source SurfaceDuo/bin/activate
+(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ ./build
+build_releaseinfo.ps1  build.sh               build_uefi.sh          
+(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ ./build_releaseinfo.ps1 
+[?1h=Stamp build.
+[?1h=[?1h=[?1h=[?1h=(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ ./
+azure-pipelines.yml    .clang-format          .gitattributes         MU_BASECORE/           setup_env.sh
+Build/                 Common/                .gitignore             pip-requirements.txt   setup_uefi.sh
+build_releaseinfo.ps1  Conf/                  .gitmodules            Platforms/             Silicon/
+build.sh               Documentation/         ImageResources/        .pytool/               SurfaceDuo/
+build_uefi.sh          .git/                  LICENSE                README.md              USAGE.md
+(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ ./setup_uefi.sh 
+[36mSECTION - Init SDE[39m
+[36mSECTION - Loading Plugins[39m
+[36mSECTION - Start Invocable Tool[39m
+[32mPROGRESS - ## Syncing Git repositories: MU_BASECORE Common/MU_TIANO Common/MU Common/MU_OEM_SAMPLE Silicon/ARM/TIANO Platforms/SurfaceDuoPkg/FirmwareBinaries...[39m
+[32mPROGRESS - Done.
+[39m
+[32mPROGRESS - ## Checking Git repository: MU_BASECORE...[39m
+[32mPROGRESS - Done.
+[39m
+[32mPROGRESS - ## Checking Git repository: Common/MU_TIANO...[39m
+[32mPROGRESS - Done.
+[39m
+[32mPROGRESS - ## Checking Git repository: Common/MU...[39m
+[32mPROGRESS - Done.
+[39m
+[32mPROGRESS - ## Checking Git repository: Common/MU_OEM_SAMPLE...[39m
+[32mPROGRESS - Done.
+[39m
+[32mPROGRESS - ## Checking Git repository: Silicon/ARM/TIANO...[39m
+[32mPROGRESS - Done.
+[39m
+[32mPROGRESS - ## Checking Git repository: Platforms/SurfaceDuoPkg/FirmwareBinaries...[39m
+[32mPROGRESS - Done.
+[39m
+[36mSECTION - Summary[39m
+[32mPROGRESS - Success[39m
+[36mSECTION - Init SDE[39m
+[36mSECTION - Loading Plugins[39m
+[36mSECTION - Start Invocable Tool[39m
+[36mSECTION - Initial update of environment[39m
+Updating. Done
+[36mSECTION - 	Updated/Verified 5 dependencies[39m
+[36mSECTION - Second pass update of environment[39m
+Updating. Done
+[36mSECTION - 	Updated/Verified 5 dependencies[39m
+[36mSECTION - Summary[39m
+[32mPROGRESS - Success[39m
+(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ ./bi[Kuild_uefi.sh 
+[36mINFO[39m - Log Started: Wednesday, May 25, 2022 06:32PM
+[36mSECTION - Init SDE[39m
+[36mINFO[39m - Computing path for Mu-Basetools located at /home/hamada/MU-sm8150pkg/MU_BASECORE/BaseTools/Bin/Mu-Basetools_extdep on Host(os='Linux', arch='x86', bit='64')
+[36mINFO[39m - /home/hamada/MU-sm8150pkg/MU_BASECORE/BaseTools/Bin/Mu-Basetools_extdep/Linux-x86 was found!
+[36mINFO[39m - Computing path for edk2-acpica-iasl located at /home/hamada/MU-sm8150pkg/MU_BASECORE/BaseTools/Bin/edk2-acpica-iasl_extdep on Host(os='Linux', arch='x86', bit='64')
+[36mINFO[39m - /home/hamada/MU-sm8150pkg/MU_BASECORE/BaseTools/Bin/edk2-acpica-iasl_extdep/Linux-x86 was found!
+[36mINFO[39m - Computing path for mu-uncrustify-release located at /home/hamada/MU-sm8150pkg/MU_BASECORE/.pytool/Plugin/UncrustifyCheck/mu-uncrustify-release_extdep on Host(os='Linux', arch='x86', bit='64')
+[36mINFO[39m - /home/hamada/MU-sm8150pkg/MU_BASECORE/.pytool/Plugin/UncrustifyCheck/mu-uncrustify-release_extdep/Linux-x86 was found!
+[36mINFO[39m - Computing path for mu_nasm located at /home/hamada/MU-sm8150pkg/MU_BASECORE/BaseTools/Bin/mu_nasm_extdep on Host(os='Linux', arch='x86', bit='64')
+[36mINFO[39m - /home/hamada/MU-sm8150pkg/MU_BASECORE/BaseTools/Bin/mu_nasm_extdep/Linux-x86-64 was found!
+[36mINFO[39m - Computing path for Mu-Basetools located at /home/hamada/MU-sm8150pkg/MU_BASECORE/BaseTools/Bin/Mu-Basetools_extdep on Host(os='Linux', arch='x86', bit='64')
+[36mINFO[39m - /home/hamada/MU-sm8150pkg/MU_BASECORE/BaseTools/Bin/Mu-Basetools_extdep/Linux-x86 was found!
+[36mINFO[39m - Computing path for edk2-acpica-iasl located at /home/hamada/MU-sm8150pkg/MU_BASECORE/BaseTools/Bin/edk2-acpica-iasl_extdep on Host(os='Linux', arch='x86', bit='64')
+[36mINFO[39m - /home/hamada/MU-sm8150pkg/MU_BASECORE/BaseTools/Bin/edk2-acpica-iasl_extdep/Linux-x86 was found!
+[36mINFO[39m - Computing path for mu-uncrustify-release located at /home/hamada/MU-sm8150pkg/MU_BASECORE/.pytool/Plugin/UncrustifyCheck/mu-uncrustify-release_extdep on Host(os='Linux', arch='x86', bit='64')
+[36mINFO[39m - /home/hamada/MU-sm8150pkg/MU_BASECORE/.pytool/Plugin/UncrustifyCheck/mu-uncrustify-release_extdep/Linux-x86 was found!
+[36mINFO[39m - Computing path for mu_nasm located at /home/hamada/MU-sm8150pkg/MU_BASECORE/BaseTools/Bin/mu_nasm_extdep on Host(os='Linux', arch='x86', bit='64')
+[36mINFO[39m - /home/hamada/MU-sm8150pkg/MU_BASECORE/BaseTools/Bin/mu_nasm_extdep/Linux-x86-64 was found!
+[36mINFO[39m - Computing path for Mu-Basetools located at /home/hamada/MU-sm8150pkg/MU_BASECORE/BaseTools/Bin/Mu-Basetools_extdep on Host(os='Linux', arch='x86', bit='64')
+[36mINFO[39m - /home/hamada/MU-sm8150pkg/MU_BASECORE/BaseTools/Bin/Mu-Basetools_extdep/Linux-x86 was found!
+[36mINFO[39m - Computing path for edk2-acpica-iasl located at /home/hamada/MU-sm8150pkg/MU_BASECORE/BaseTools/Bin/edk2-acpica-iasl_extdep on Host(os='Linux', arch='x86', bit='64')
+[36mINFO[39m - /home/hamada/MU-sm8150pkg/MU_BASECORE/BaseTools/Bin/edk2-acpica-iasl_extdep/Linux-x86 was found!
+[36mINFO[39m - Computing path for mu-uncrustify-release located at /home/hamada/MU-sm8150pkg/MU_BASECORE/.pytool/Plugin/UncrustifyCheck/mu-uncrustify-release_extdep on Host(os='Linux', arch='x86', bit='64')
+[36mINFO[39m - /home/hamada/MU-sm8150pkg/MU_BASECORE/.pytool/Plugin/UncrustifyCheck/mu-uncrustify-release_extdep/Linux-x86 was found!
+[36mINFO[39m - Computing path for mu_nasm located at /home/hamada/MU-sm8150pkg/MU_BASECORE/BaseTools/Bin/mu_nasm_extdep on Host(os='Linux', arch='x86', bit='64')
+[36mINFO[39m - /home/hamada/MU-sm8150pkg/MU_BASECORE/BaseTools/Bin/mu_nasm_extdep/Linux-x86-64 was found!
+[36mSECTION - Loading Plugins[39m
+[36mINFO[39m - PLUGIN DESCRIPTOR:Windows Capsule Support Helper Functions
+[36mINFO[39m - PLUGIN DESCRIPTOR:Edk2Tool Helper Functions
+[36mSECTION - Start Invocable Tool[39m
+[36mINFO[39m - Running Python version: sys.version_info(major=3, minor=8, micro=10, releaselevel='final', serial=0)
+[36mINFO[39m - setuptools version: 44.0.0
+[36mINFO[39m - PyYAML version: 6.0
+[36mINFO[39m - pkg-resources version: 0.0.0
+[36mINFO[39m - pip version: 20.0.2
+[36mINFO[39m - edk2-pytool-library version: 0.10.15
+[36mINFO[39m - edk2-pytool-extensions version: 0.13.10
+[36mSECTION - Loading Plugins[39m
+[36mINFO[39m - PLUGIN DESCRIPTOR:Windows Capsule Support Helper Functions
+[36mINFO[39m - PLUGIN DESCRIPTOR:Edk2Tool Helper Functions
+[36mSECTION - Kicking off build[39m
+[32mPROGRESS - Start time: 2022-05-25 18:32:07.346610[39m
+[32mPROGRESS - Setting up the Environment[39m
+[32mPROGRESS - Running Pre Build[39m
+[36mINFO[39m - Writing BuildToolsReports to /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/BUILD_TOOLS_REPORT
+[36mINFO[39m - ---------------------------------------------------------
+[36mINFO[39m - --------------Override Validation Starting---------------
+[36mINFO[39m - ---------------------------------------------------------
+[97mCRITICAL - Override Log file at /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/OVERRIDELOG.TXT[39m
+[36mINFO[39m - ---------------------------------------------------------
+[36mINFO[39m - --------------Override Validation Finished---------------
+[36mINFO[39m - -------------- Running Time (mm:ss): 00:00 --------------
+[36mINFO[39m - ---------------------------------------------------------
+[32mPROGRESS - Running Build DEBUG[39m
+[36mINFO[39m - Cmd to run is: build -p SurfaceDuoPkg/SurfaceDuo.dsc -b DEBUG -t CLANG38 -a AARCH64 -y /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/BUILD_REPORT.TXT -Y PCD -Y DEPEX -Y FLASH -Y BUILD_FLAGS -Y LIBRARY -Y FIXED_ADDRESS -Y HASH -D BUILDID_STRING=Unknown -D SHIP_MODE=FALSE
+[36mINFO[39m - ------------------------------------------------
+[36mINFO[39m - --------------Cmd Output Starting---------------
+[36mINFO[39m - ------------------------------------------------
+[36mINFO[39m - Build environment: Linux-5.4.0-109-generic-x86_64-with-glibc2.29
+[36mINFO[39m - Build start time: 18:32:07, May.25 2022
+[36mINFO[39m - 
+[36mINFO[39m - WORKSPACE        = /home/hamada/MU-sm8150pkg
+[36mINFO[39m - PACKAGES_PATH    = /home/hamada/MU-sm8150pkg/Platforms:/home/hamada/MU-sm8150pkg/MU_BASECORE:/home/hamada/MU-sm8150pkg/Common/MU:/home/hamada/MU-sm8150pkg/Common/MU_TIANO:/home/hamada/MU-sm8150pkg/Common/MU_OEM_SAMPLE:/home/hamada/MU-sm8150pkg/Silicon/ARM/TIANO
+[36mINFO[39m - EDK_TOOLS_PATH   = /home/hamada/MU-sm8150pkg/MU_BASECORE/BaseTools
+[36mINFO[39m - EDK_TOOLS_BIN    = /home/hamada/MU-sm8150pkg/MU_BASECORE/BaseTools/Bin/Mu-Basetools_extdep/Linux-x86
+[36mINFO[39m - CONF_PATH        = /home/hamada/MU-sm8150pkg/Conf
+[36mINFO[39m - PYTHON_COMMAND   = /home/hamada/MU-sm8150pkg/SurfaceDuo/bin/python3
+[36mINFO[39m - 
+[36mINFO[39m - 
+[36mINFO[39m - Processing meta-data .
+[36mINFO[39m - Architecture(s)  = AARCH64
+[36mINFO[39m - Build target     = DEBUG
+[36mINFO[39m - Toolchain        = CLANG38
+[36mINFO[39m - 
+[36mINFO[39m - Active Platform          = /home/hamada/MU-sm8150pkg/Platforms/SurfaceDuoPkg/SurfaceDuo.dsc
+[36mINFO[39m - ....... done!
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/LzmaCustomDecompressLib/LzmaCustomDecompressLib.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/DxeCrc32GuidedSectionExtractLib/DxeCrc32GuidedSectionExtractLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/BaseStackCheckLib/BaseStackCheckLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/MemoryProtectionHobLibNull/DxeMemoryProtectionHobLibNull.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/BaseBinSecurityLibNull/BaseBinSecurityLibNull.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Silicon/ARM/TIANO/ArmPkg/Library/ArmExceptionLib/ArmExceptionLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/DebugAgentLibNull/DebugAgentLibNull.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/BasePeCoffLib/BasePeCoffLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/DxeCorePerformanceLib/DxeCorePerformanceLib.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/BaseUefiDecompressLib/BaseUefiDecompressLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/DxeExtractGuidedSectionLib/DxeExtractGuidedSectionLib.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Silicon/ARM/TIANO/ArmPkg/Library/DefaultExceptionHandlerLib/DefaultExceptionHandlerLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/BasePeCoffExtraActionLibNull/BasePeCoffExtraActionLibNull.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/DxeReportStatusCodeLib/DxeReportStatusCodeLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/DxeServicesLib/DxeServicesLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Silicon/ARM/TIANO/ArmPkg/Library/ArmArchTimerLib/ArmArchTimerLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Silicon/ARM/TIANO/ArmPkg/Library/ArmDisassemblerLib/ArmDisassemblerLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/UefiLib/UefiLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Silicon/ARM/TIANO/ArmPkg/Library/ArmGenericTimerPhyCounterLib/ArmGenericTimerPhyCounterLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/BasePeCoffGetEntryPointLib/BasePeCoffGetEntryPointLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/UefiDevicePathLib/UefiDevicePathLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/UefiRuntimeServicesTableLib/UefiRuntimeServicesTableLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/DxeCoreMemoryAllocationLib/DxeCoreMemoryAllocationLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/UefiBootServicesTableLib/UefiBootServicesTableLib.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/BaseDebugLibSerialPort/BaseDebugLibSerialPort.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/BasePrintLib/BasePrintLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Platforms/SurfaceDuoPkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/BaseDebugPrintErrorLevelLib/BaseDebugPrintErrorLevelLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Silicon/ARM/TIANO/ArmPkg/Library/ArmCacheMaintenanceLib/ArmCacheMaintenanceLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/DxeCoreHobLib/DxeCoreHobLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/CompilerIntrinsicsLib/ArmCompilerIntrinsicsLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/BaseIoLibIntrinsic/BaseIoLibIntrinsic.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Silicon/ARM/TIANO/ArmPkg/Library/ArmLib/ArmBaseLib.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/DxeCoreEntryPoint/DxeCoreEntryPoint.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/RegisterFilterLibNull/RegisterFilterLibNull.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/BaseMemoryLib/BaseMemoryLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/BaseLib/BaseLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/DxePcdLib/DxePcdLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Silicon/ARM/TIANO/ArmPkg/Library/ArmGicArchLib/ArmGicArchLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Silicon/ARM/TIANO/ArmPkg/Drivers/ArmGic/ArmGicLib.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_OEM_SAMPLE/OemPkg/Library/MsAltBootLib/MsAltBootLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_TIANO/EmbeddedPkg/Library/TimeBaseLib/TimeBaseLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Platforms/SurfaceDuoPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsGraphicsPkg/Library/MsUiThemeCopyLib/MsUiThemeCopyLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsGraphicsPkg/Library/SamplePlatformThemeLib/PlatformThemeLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/UefiUsbLib/UefiUsbLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/FrameBufferBltLib/FrameBufferBltLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/BaseCpuLib/BaseCpuLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/ShellPkg/Library/UefiShellNetwork2CommandsLib/UefiShellNetwork2CommandsLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/ShellPkg/Library/UefiShellNetwork1CommandsLib/UefiShellNetwork1CommandsLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/ShellPkg/Library/UefiShellDebug1CommandsLib/UefiShellDebug1CommandsLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/ShellPkg/Library/UefiShellInstall1CommandsLib/UefiShellInstall1CommandsLib.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/ShellPkg/Library/UefiShellDriver1CommandsLib/UefiShellDriver1CommandsLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/ShellPkg/Library/UefiShellLevel3CommandsLib/UefiShellLevel3CommandsLib.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/ShellPkg/Library/UefiShellLevel1CommandsLib/UefiShellLevel1CommandsLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/ShellPkg/Library/UefiShellLevel2CommandsLib/UefiShellLevel2CommandsLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/ShellPkg/Library/UefiShellBcfgCommandLib/UefiShellBcfgCommandLib.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/ShellPkg/Library/UefiShellCommandLib/UefiShellCommandLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/ShellPkg/Library/UefiHandleParsingLib/UefiHandleParsingLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/ShellPkg/Library/UefiShellLib/UefiShellLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/BaseOrderedCollectionRedBlackTreeLib/BaseOrderedCollectionRedBlackTreeLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/DfciPkg/Library/DfciXmlIdentitySchemaSupportLib/DfciXmlIdentitySchemaSupportLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/DfciPkg/Library/DfciRecoveryLib/DfciRecoveryLib.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/ResetUtilityLib/ResetUtilityLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/UefiApplicationEntryPoint/UefiApplicationEntryPoint.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsCorePkg/Library/PlatformBootManagerLib/PlatformBootManagerLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/DxeCapsuleLibNull/DxeCapsuleLibNull.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/PcBdsPkg/Library/DeviceBootManagerLib/DeviceBootManagerLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/PcBdsPkg/Library/MsNetworkDependencyLib/MsNetworkDependencyLib.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/PcBdsPkg/Library/ConsoleMsgLibNull/ConsoleMsgLibNull.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/PcBdsPkg/Library/MsPlatformPowerCheckLibNull/MsPlatformPowerCheckLibNull.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/PcBdsPkg/Library/ThermalServicesLibNull/ThermalServicesLibNull.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/PcBdsPkg/Library/PowerServicesLibNull/PowerServicesLibNull.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_OEM_SAMPLE/OemPkg/Library/MuUefiVersionLib/MuUefiVersionLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_OEM_SAMPLE/OemPkg/Library/MsNVBootReasonLib/MsNVBootReasonLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Platforms/SurfaceDuoPkg/Library/PlatformPeiLib/PlatformPeiLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Platforms/SurfaceDuoPkg/Library/MemoryInitPeiLib/PeiMemoryAllocationLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Silicon/ARM/TIANO/ArmPkg/Library/ArmMmuLib/ArmMmuBaseLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_TIANO/EmbeddedPkg/Library/PrePiMemoryAllocationLib/PrePiMemoryAllocationLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_TIANO/EmbeddedPkg/Library/PrePiLib/PrePiLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_TIANO/EmbeddedPkg/Library/PrePiExtractGuidedSectionLib/PrePiExtractGuidedSectionLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/BasePerformanceLibNull/BasePerformanceLibNull.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_TIANO/EmbeddedPkg/Library/PrePiHobLib/PrePiHobLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Silicon/ARM/TIANO/ArmPlatformPkg/Library/PrePiHobListPointerLib/PrePiHobListPointerLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsCorePkg/Library/MuSecureBootKeySelectorLib/MuSecureBootKeySelectorLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Platforms/SurfaceDuoPkg/Library/SecureBootKeyStoreLib/SecureBootKeyStoreLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsWheaPkg/Library/MsWheaEarlyStorageLibNull/MsWheaEarlyStorageLibNull.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/UefiScsiLib/UefiScsiLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_TIANO/SecurityPkg/Library/DxeImageVerificationLib/DxeImageVerificationLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/DxeSecurityManagementLib/DxeSecurityManagementLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_TIANO/SecurityPkg/Library/SecureBootVariableProvisionLib/SecureBootVariableProvisionLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/FileExplorerLib/FileExplorerLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_TIANO/SecurityPkg/Library/SecureBootVariableLib/SecureBootVariableLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_TIANO/SecurityPkg/Library/PlatformPKProtectionLibVarPolicy/PlatformPKProtectionLibVarPolicy.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_TIANO/EmbeddedPkg/Library/DxeDtPlatformDtbLoaderLibDefault/DxeDtPlatformDtbLoaderLibDefault.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsWheaPkg/Library/ParserRegistryLib/ParserRegistryLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsWheaPkg/Library/MuTelemetryHelperLib/MuTelemetryHelperLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsWheaPkg/Library/CheckHwErrRecHeaderLib/CheckHwErrRecHeaderLib.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/PcBdsPkg/Library/MsBootManagerSettingsDxeLib/MsBootManagerSettingsDxeLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/DfciPkg/Library/DfciAssetTagSettingLib/DfciAssetTagSetting.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/DfciPkg/Library/DfciWpbtSettingLib/DfciWpbtSetting.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/DfciPkg/Library/DfciVirtualizationSettings/DfciVirtualizationSettings.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/DfciPkg/Library/DfciSettingsLib/DfciSettingsLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/DfciPkg/Library/DfciPasswordProvider/DfciPasswordProvider.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/DfciPkg/Library/DfciSettingPermissionLib/DfciSettingPermissionLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/DfciPkg/Library/DfciXmlSettingSchemaSupportLib/DfciXmlSettingSchemaSupportLib.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/DfciPkg/Library/DfciXmlDeviceIdSchemaSupportLib/DfciXmlDeviceIdSchemaSupportLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_OEM_SAMPLE/OemPkg/Library/PasswordStoreLib/PasswordStoreLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/DfciPkg/Library/DfciXmlPermissionSchemaSupportLib/DfciXmlPermissionSchemaSupportLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/DfciPkg/Library/DfciGroupLibNull/DfciGroups.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_OEM_SAMPLE/OemPkg/Library/PasswordPolicyLib/PasswordPolicyLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/DfciPkg/Library/DfciV1SupportLibNull/DfciV1SupportLibNull.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/XmlSupportPkg/Library/XmlTreeQueryLib/XmlTreeQueryLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/BaseCryptLib/BaseCryptLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/XmlSupportPkg/Library/XmlTreeLib/XmlTreeLib.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Platforms/SurfaceDuoPkg/AcpiTables/SurfaceDuoAcpiTables.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/MemoryTypeInfoSecVarCheckLib/MemoryTypeInfoSecVarCheckLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/BaseVariableFlashInfoLib/BaseVariableFlashInfoLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_TIANO/SecurityPkg/Library/AuthVariableLib/AuthVariableLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/TpmMeasurementLibNull/TpmMeasurementLibNull.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/UefiRuntimeLib/UefiRuntimeLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/BaseSynchronizationLib/BaseSynchronizationLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/VarCheckLib/VarCheckLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/VariablePolicyLib/VariablePolicyLibRuntimeDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/BaseCryptLib/RuntimeCryptLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_TIANO/SecurityPkg/Library/PlatformSecureLibNull/PlatformSecureLibNull.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/SecurityLockAuditLibNull/SecurityLockAuditLibNull.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/OpensslLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/BaseRngLibTimerLib/BaseRngLibTimerLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/PcdDatabaseLoaderLib/Dxe/PcdDatabaseLoaderLibDxe.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/ZeroTouchPkg/Library/ZeroTouchSettings/ZeroTouchSettings.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Built with Respfile ... /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/CryptoPkg/Library/OpensslLib/OpensslLib
+[36mINFO[39m -   "CC_FLAGS" :  -g -Os -fshort-wchar -fno-builtin -fno-strict-aliasing -Wall -Werror -Wno-array-bounds -include AutoGen.h -fno-common -mlittle-endian -fno-short-enums -fverbose-asm -funsigned-char  -ffunction-sections -fdata-sections -Wno-address -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-pic -fno-pie -ffixed-x18 -target aarch64-linux-gnu -mcmodel=small -Wno-parentheses-equality -Wno-tautological-compare -Wno-tautological-constant-out-of-range-compare -Wno-empty-body -Wno-unused-const-variable -Wno-varargs -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-const-variable   -flto -O1 -DL_ENDIAN -DOPENSSL_SMALL_FOOTPRINT -D_CRT_SECURE_NO_DEPRECATE -D_CRT_NONSTDC_NO_DEPRECATE -DOPENSSL_NO_ASM -Wno-error=maybe-uninitialized -Wno-format -Wno-error=unused-but-set-variable -std=c99 -Wno-error=uninitialized -mfix-cortex-a53-835769 -Wno-unused-const-variable -Wno-sometimes-uninitialized -D CLANG -D DISABLE_NEW_DEPRECATED_INTERFACES -D HAS_MEMCPY_INTRINSICS -DSILICON_PLATFORM=8150 -DUSE_MEMORY_FOR_SERIAL_OUTPUT=1 -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/ssl/statem -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/ssl/record -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/ssl -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/store -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/x509v3 -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/x509 -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/ui -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/txt_db -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/stack -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/sm4 -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/sm3 -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/sm2 -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/siphash -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/sha -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/rsa -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/rand -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/pkcs7 -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/pkcs12 -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/pem -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/ocsp -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/objects -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/modes -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/md5 -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/lhash -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/kdf -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/hmac -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/evp -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/err -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/ec/curve448 -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/ec/curve448/arch_32 -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/ec -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/dso -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/dh -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/conf -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/comp -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/cmac -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/buffer -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/bn -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/bio -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/async -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/async/arch -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/asn1 -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/aria -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/crypto/aes -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/ms -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib -I/home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/CryptoPkg/Library/OpensslLib/OpensslLib/DEBUG -I/home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg -I/home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Include -I/home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Test/UnitTest/Include -I/home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Include/AArch64 -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Include -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Private -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/Include -I/home/hamada/MU-sm8150pkg/MU_BASECORE/CryptoPkg/Library/OpensslLib/openssl/include
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsCorePkg/Library/JsonLiteParser/JsonLiteParser.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/NetworkPkg/Library/DxeHttpLib/DxeHttpLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/UefiFileHandleLib/UefiFileHandleLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/DfciPkg/Library/DfciUiSupportLibNull/DfciUiSupportLibNull.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/DfciPkg/Library/DfciSettingChangedNotificationLib/DfciSettingChangedNotificationLibNull.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/DfciPkg/Library/DfciDeviceIdSupportLibNull/DfciDeviceIdSupportLibNull.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/NetworkPkg/Library/DxeNetLib/DxeNetLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Silicon/ARM/TIANO/ArmPkg/Library/ArmSmcPsciResetSystemLib/ArmSmcPsciResetSystemLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Silicon/ARM/TIANO/ArmPkg/Library/ArmSmcLib/ArmSmcLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsGraphicsPkg/Library/SwmDialogsLib/SwmDialogs.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/PcBdsPkg/Library/MsBootOptionsLib/MsBootOptionsLib.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/PcBdsPkg/Library/GraphicsConsoleHelperLib/GraphicsConsoleHelper.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsGraphicsPkg/Library/BootGraphicsLib/BootGraphicsLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_OEM_SAMPLE/OemPkg/Library/MsBootPolicyLib/MsBootPolicyLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/UefiDriverEntryPoint/UefiDriverEntryPoint.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsGraphicsPkg/Library/MsColorTableLib/MsColorTableLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsGraphicsPkg/Library/SimpleUIToolKit/SimpleUIToolKit.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/UefiBootManagerLib/UefiBootManagerLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_OEM_SAMPLE/OemPkg/Library/BootGraphicsProviderLib/BootGraphicsProviderLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsGraphicsPkg/Library/ColorBarDisplayDeviceStateLib/ColorBarDisplayDeviceStateLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/BaseBmpSupportLib/BaseBmpSupportLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Platforms/SurfaceDuoPkg/Library/MsPlatformDevicesLib/MsPlatformDevicesLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsGraphicsPkg/Library/MsUiThemeLib/Dxe/MsUiThemeLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsCorePkg/Library/MathLib/MathLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/UefiHiiLib/UefiHiiLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/DxePerformanceLib/DxePerformanceLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/DxeServicesTableLib/DxeServicesTableLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/UefiSortLib/UefiSortLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/VariablePolicyHelperLib/VariablePolicyHelperLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/MemoryTypeInformationChangeLibNull/MemoryTypeInformationChangeLibNull.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsGraphicsPkg/Library/BaseUiRectangleLib/BaseUiRectangleLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/DeviceStateLib/DeviceStateLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/BaseSafeIntLib/BaseSafeIntLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/FltUsedLib/FltUsedLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Library/UefiHiiServicesLib/UefiHiiServicesLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/DxeHobLib/DxeHobLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Library/UefiMemoryAllocationLib/UefiMemoryAllocationLib.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Core/Dxe/DxeMain.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Silicon/ARM/TIANO/ArmPkg/Drivers/ArmGic/ArmGicDxe.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/RegularExpressionDxe/RegularExpressionDxe.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Platforms/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsGraphicsPkg/GopOverrideDxe/GopOverrideDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/BootManagerPolicyDxe/BootManagerPolicyDxe.inf [AARCH64]
+[36mINFO[39m - "clang" -MMD -MF /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/OUTPUT/SmBiosTableDxe.obj.deps -g -Os -fshort-wchar -fno-builtin -fno-strict-aliasing -Wall -Werror -Wno-array-bounds -include AutoGen.h -fno-common -mlittle-endian -fno-short-enums -fverbose-asm -funsigned-char -ffunction-sections -fdata-sections -Wno-address -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-pic -fno-pie -ffixed-x18 -target aarch64-linux-gnu -mcmodel=small -Wno-parentheses-equality -Wno-tautological-compare -Wno-tautological-constant-out-of-range-compare -Wno-empty-body -Wno-unused-const-variable -Wno-varargs -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-const-variable   -flto -O1 -Wno-missing-brace -Wno-error -mfix-cortex-a53-835769 -Wno-unused-const-variable -Wno-sometimes-uninitialized -D CLANG -D DISABLE_NEW_DEPRECATED_INTERFACES -D HAS_MEMCPY_INTRINSICS -DSILICON_PLATFORM=8150 -DUSE_MEMORY_FOR_SERIAL_OUTPUT=1 -c -o /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/OUTPUT/./SmBiosTableDxe.obj -I/home/hamada/MU-sm8150pkg/Platforms/SurfaceDuoPkg/Driver/SmBiosTableDxe -I/home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/DEBUG -I/home/hamada/MU-sm8150pkg/Silicon/ARM/TIANO/ArmPkg -I/home/hamada/MU-sm8150pkg/Silicon/ARM/TIANO/ArmPkg/Include -I/home/hamada/MU-sm8150pkg/Silicon/ARM/TIANO/ArmPlatformPkg -I/home/hamada/MU-sm8150pkg/Silicon/ARM/TIANO/ArmPlatformPkg/Include -I/home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg -I/home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Include -I/home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Test/UnitTest/Include -I/home/hamada/MU-sm8150pkg/MU_BASECORE/MdePkg/Include/AArch64 -I/home/hamada/MU-sm8150pkg/Common/MU_TIANO/EmbeddedPkg -I/home/hamada/MU-sm8150pkg/Common/MU_TIANO/EmbeddedPkg/Include -I/home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg -I/home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Include -I/home/hamada/MU-sm8150pkg/Platforms/SurfaceDuoPkg -I/home/hamada/MU-sm8150pkg/Platforms/SurfaceDuoPkg/Include /home/hamada/MU-sm8150pkg/Platforms/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe.c
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/PcBdsPkg/MsBootPolicy/MsBootPolicy.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_TIANO/EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsGraphicsPkg/MsUiTheme/Dxe/MsUiThemeProtocol.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/ReportStatusCodeRouterRuntimeDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/SerialDxe/SerialDxe.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/HidPkg/HidMouseAbsolutePointerDxe/HidMouseAbsolutePointerDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsGraphicsPkg/SimpleWindowManagerDxe/SimpleWindowManagerDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Bus/Usb/UsbMouseAbsolutePointerDxe/UsbMouseAbsolutePointerDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Platforms/SurfaceDuoPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Silicon/ARM/TIANO/ArmPkg/Drivers/CpuDxe/CpuDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsCorePkg/MuVarPolicyFoundationDxe/MuVarPolicyFoundationDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/ShellPkg/Application/Shell/Shell.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Bus/Scsi/ScsiDiskDxe/ScsiDiskDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/SetupBrowserDxe/SetupBrowserDxe.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_TIANO/EmbeddedPkg/EmbeddedMonotonicCounter/EmbeddedMonotonicCounter.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsCorePkg/AcpiRGRT/AcpiRgrt.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Core/RuntimeDxe/RuntimeDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/DfciPkg/IdentityAndAuthManager/IdentityAndAuthManagerDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_OEM_SAMPLE/OemPkg/FrontPage/FrontPage.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/BdsDxe/BdsDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/DriverHealthManagerDxe/DriverHealthManagerDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Silicon/ARM/TIANO/ArmPkg/Drivers/TimerDxe/TimerDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsGraphicsPkg/OnScreenKeyboardDxe/OnScreenKeyboardDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/DfciPkg/DfciManager/DfciManager.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/FvSimpleFileSystemDxe/FvSimpleFileSystemDxe.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Platforms/SurfaceDuoPkg/PrePi/PrePi.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - rm -f /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/OUTPUT/SmBiosTableDxe.lib
+[36mINFO[39m - "llvm-ar" cr /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/OUTPUT/SmBiosTableDxe.lib  @/home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/OUTPUT/object_files.lst
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Platforms/SurfaceDuoPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf [AARCH64]
+[36mINFO[39m - "clang" -o /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/DEBUG/SmBiosTableDxe.dll -target aarch64-linux-gnu -Wl,--emit-relocs -nostdlib -Wl,--gc-sections -u _ModuleEntryPoint -Wl,-e,_ModuleEntryPoint,-Map,/home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/DEBUG/SmBiosTableDxe.map -z common-page-size=0x20 -z common-page-size=0x1000 -flto -Wl,-O1 -L/home/hamada/MU-sm8150pkg/MU_BASECORE/BaseTools/Bin/GccLto -llto-aarch64 -Wl,-plugin-opt=-pass-through=-llto-aarch64 -mfix-cortex-a53-835769 -z common-page-size=0x1000 -Wl,--start-group,@/home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/OUTPUT/static_library_files.lst,--end-group -g -Os -fshort-wchar -fno-builtin -fno-strict-aliasing -Wall -Werror -Wno-array-bounds -include AutoGen.h -fno-common -mlittle-endian -fno-short-enums -fverbose-asm -funsigned-char -ffunction-sections -fdata-sections -Wno-address -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-pic -fno-pie -ffixed-x18 -target aarch64-linux-gnu -mcmodel=small -Wno-parentheses-equality -Wno-tautological-compare -Wno-tautological-constant-out-of-range-compare -Wno-empty-body -Wno-unused-const-variable -Wno-varargs -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-const-variable   -flto -O1 -Wno-missing-brace -Wno-error -mfix-cortex-a53-835769 -Wno-unused-const-variable -Wno-sometimes-uninitialized -D CLANG -D DISABLE_NEW_DEPRECATED_INTERFACES -D HAS_MEMCPY_INTRINSICS -DSILICON_PLATFORM=8150 -DUSE_MEMORY_FOR_SERIAL_OUTPUT=1 -Wl,--script=/home/hamada/MU-sm8150pkg/MU_BASECORE/BaseTools/Scripts/GccBase.lds -Wl,--defsym=PECOFF_HEADER_SIZE=0x228
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsWheaPkg/MsWheaReport/Dxe/MsWheaReportDxe.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsGraphicsPkg/DisplayEngineDxe/DisplayEngineDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_TIANO/FatPkg/EnhancedFatDxe/Fat.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/PrintDxe/PrintDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Bus/Scsi/ScsiBusDxe/ScsiBusDxe.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_TIANO/SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsWheaPkg/HwErrBert/HwErrBert.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_TIANO/EmbeddedPkg/Drivers/VirtualKeyboardDxe/VirtualKeyboardDxe.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/SmbiosDxe/SmbiosDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsGraphicsPkg/RenderingEngineDxe/RenderingEngineDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_TIANO/EmbeddedPkg/Drivers/DtPlatformDxe/DtPlatformDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/MsWheaPkg/HwhMenu/HwhMenu.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/DfciPkg/SettingsManager/SettingsManagerDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_OEM_SAMPLE/OemPkg/FrontpageButtonsVolumeUp/FrontpageButtonsVolumeUp.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Platforms/SurfaceDuoPkg/Driver/MemAttSetDxe/MemAttSet.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/Acpi/AcpiPlatformDxe/AcpiPlatformDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_TIANO/EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf [AARCH64]
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/PCD/Dxe/Pcd.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/MU_BASECORE/MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/HidPkg/HidKeyboardDxe/HidKeyboardDxe.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU/DfciPkg/Application/DfciMenu/DfciMenu.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_TIANO/EmbeddedPkg/SimpleTextInOutSerial/SimpleTextInOutSerial.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - Building ... /home/hamada/MU-sm8150pkg/Common/MU_OEM_SAMPLE/OemPkg/BootMenu/BootMenu.inf [AARCH64]
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - make: Nothing to be done for 'tbuild'.
+[36mINFO[39m - "echo" objcopy not needed for /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/DEBUG/SmBiosTableDxe.dll
+[36mINFO[39m - objcopy not needed for /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/DEBUG/SmBiosTableDxe.dll
+[36mINFO[39m - cp -f /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/DEBUG/SmBiosTableDxe.dll /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/DEBUG/SmBiosTableDxe.debug
+[36mINFO[39m - echo --strip-unneeded -R .eh_frame /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/DEBUG/SmBiosTableDxe.dll
+[36mINFO[39m - --strip-unneeded -R .eh_frame /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/DEBUG/SmBiosTableDxe.dll
+[36mINFO[39m - echo --add-gnu-debuglink=/home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/DEBUG/SmBiosTableDxe.debug /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/DEBUG/SmBiosTableDxe.dll
+[36mINFO[39m - --add-gnu-debuglink=/home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/DEBUG/SmBiosTableDxe.debug /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/DEBUG/SmBiosTableDxe.dll
+[36mINFO[39m - cp -f /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/DEBUG/SmBiosTableDxe.debug /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SmBiosTableDxe.debug
+[36mINFO[39m - "GenFw" -e DXE_DRIVER -o /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/OUTPUT/SmBiosTableDxe.efi /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/DEBUG/SmBiosTableDxe.dll
+[36mINFO[39m - cp -f /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/OUTPUT/SmBiosTableDxe.efi /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/DEBUG
+[36mINFO[39m - cp -f /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/OUTPUT/SmBiosTableDxe.efi /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SmBiosTableDxe.efi
+[36mINFO[39m - cp -f /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/DEBUG/*.map /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/OUTPUT
+[36mINFO[39m - test -f /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/OUTPUT/SmBiosTableDxe.map && cp -f /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/OUTPUT/SmBiosTableDxe.map /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/FV/Ffs/50A15B6F-E3A9-4192-9640-369CB367C4DESmBiosTableDxe/50A15B6F-E3A9-4192-9640-369CB367C4DE.map
+[36mINFO[39m - test -e /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/OUTPUT/SmBiosTableDxe.efi && GenSec -s EFI_SECTION_PE32 -o /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/FV/Ffs/50A15B6F-E3A9-4192-9640-369CB367C4DESmBiosTableDxe/50A15B6F-E3A9-4192-9640-369CB367C4DESEC2.1.pe32 /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/AARCH64/SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe/OUTPUT/SmBiosTableDxe.efi
+[36mINFO[39m - GenFfs -t EFI_FV_FILETYPE_DRIVER -g 50A15B6F-E3A9-4192-9640-369CB367C4DE -o /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/FV/Ffs/50A15B6F-E3A9-4192-9640-369CB367C4DESmBiosTableDxe/50A15B6F-E3A9-4192-9640-369CB367C4DE.ffs -oi /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/FV/Ffs/50A15B6F-E3A9-4192-9640-369CB367C4DESmBiosTableDxe/50A15B6F-E3A9-4192-9640-369CB367C4DESEC1.1.dpx -oi /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/FV/Ffs/50A15B6F-E3A9-4192-9640-369CB367C4DESmBiosTableDxe/50A15B6F-E3A9-4192-9640-369CB367C4DESEC2.1.pe32 -oi /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/FV/Ffs/50A15B6F-E3A9-4192-9640-369CB367C4DESmBiosTableDxe/50A15B6F-E3A9-4192-9640-369CB367C4DESEC3.ui
+[36mINFO[39m - 
+[36mINFO[39m - Fd File Name:SM8150_EFI (/home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/FV/SM8150_EFI.fd)
+[36mINFO[39m - 
+[36mINFO[39m - Generate Region at Offset 0x0
+[36mINFO[39m -    Region Size = 0x1000
+[36mINFO[39m -    Region Name = DATA
+[36mINFO[39m - 
+[36mINFO[39m - Generate Region at Offset 0x1000
+[36mINFO[39m -    Region Size = 0x2FF000
+[36mINFO[39m -    Region Name = FV
+[36mINFO[39m - 
+[36mINFO[39m - Generating FVMAIN_COMPACT FV
+[36mINFO[39m - 
+[36mINFO[39m - Generating FVMAIN FV
+[36mINFO[39m - ########################################
+[36mINFO[39m - ########################################
+[36mINFO[39m - ########################################
+[36mINFO[39m - ########################################
+[36mINFO[39m - ########################################
+[36mINFO[39m - ########
+[36mINFO[39m - GUID cross reference file can be found at /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/FV/Guid.xref
+[36mINFO[39m - 
+[36mINFO[39m - FV Space Information
+[36mINFO[39m - FVMAIN [99%Full] 15356224 (0xea5140) total, 15356168 (0xea5108) used, 56 (0x38) free
+[36mINFO[39m - FVMAIN_COMPACT [69%Full] 3141632 (0x2ff000) total, 2184664 (0x2155d8) used, 956968 (0xe9a28) free
+[36mINFO[39m - Build report can be found at /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/BUILD_REPORT.TXT
+[36mINFO[39m - 
+[36mINFO[39m - - Done -
+[36mINFO[39m - Build end time: 18:32:25, May.25 2022
+[36mINFO[39m - Build total time: 00:00:17
+[36mINFO[39m - 
+[36mINFO[39m - ------------------------------------------------
+[36mINFO[39m - --------------Cmd Output Finished---------------
+[36mINFO[39m - --------- Running Time (mm:ss): 00:18 ----------
+[36mINFO[39m - ----------- Return Code: 0x00000000 ------------
+[36mINFO[39m - ------------------------------------------------
+[32mPROGRESS - Running Post Build[39m
+[97mCRITICAL - Copying PDBs to flat directory[39m
+[36mINFO[39m - Writing BuildToolsReports to /home/hamada/MU-sm8150pkg/Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/BUILD_TOOLS_REPORT
+[32mPROGRESS - End time: 2022-05-25 18:32:25.930205	 Total time Elapsed: 0:00:18[39m
+[36mSECTION - Log file is located at: /home/hamada/MU-sm8150pkg/Build/BUILDLOG_SurfaceDuoPkg.txt[39m
+[36mSECTION - Summary[39m
+[32mPROGRESS - Success[39m
+move complete
+./build_uefi.sh: line 10: ./buildimg.sh: No such file or directory
+(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ gzip [K[K[K[K[Kls
+[0m[01;32mazure-pipelines.yml[0m    [01;32mbuild.sh[0m       [01;34mConf[0m            [01;32mLICENSE[0m               [01;34mPlatforms[0m    [01;32msetup_env.sh[0m   [01;34mSurfaceDuo[0m
+[01;34mBuild[0m                  [01;32mbuild_uefi.sh[0m  [01;34mDocumentation[0m   [01;34mMU_BASECORE[0m           [01;32mREADME.md[0m    [01;32msetup_uefi.sh[0m  [01;32mUSAGE.md[0m
+[01;32mbuild_releaseinfo.ps1[0m  [01;34mCommon[0m         [01;34mImageResources[0m  [01;32mpip-requirements.txt[0m  screenlog.0  [01;34mSilicon[0m
+(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ gzip SM8[K[K[KBuild/
+BUILDLOG_SurfaceDuoPkg.md   SETUPLOG.md                 SurfaceDuo-AARCH64/         UPDATE_LOG.txt
+BUILDLOG_SurfaceDuoPkg.txt  SETUPLOG.txt                UPDATE_LOG.md               
+(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ gzip Build/
+BUILDLOG_SurfaceDuoPkg.md   SETUPLOG.md                 SurfaceDuo-AARCH64/         UPDATE_LOG.txt
+BUILDLOG_SurfaceDuoPkg.txt  SETUPLOG.txt                UPDATE_LOG.md               
+(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ gzip Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/Fv[K[K
+AARCH64/
+AutoGen
+BuildOptions
+BUILD_REPORT.TXT
+BUILD_TOOLS_REPORT.html
+BUILD_TOOLS_REPORT.json
+FD_REPORT.HTML
+FV/
+GlobalVar_b6325ac2-9f3f-4b1d-b129-ac7b35ddde60_AARCH64.bin
+OVERRIDELOG.TXT
+PcdTokenNumber
+PDB/
+SurfaceDuo.map
+(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ gzip Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/FV/SM8150_EFI.fd 
+(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ ls
+[0m[01;32mazure-pipelines.yml[0m    [01;32mbuild.sh[0m       [01;34mConf[0m            [01;32mLICENSE[0m               [01;34mPlatforms[0m    [01;32msetup_env.sh[0m   [01;34mSurfaceDuo[0m
+[01;34mBuild[0m                  [01;32mbuild_uefi.sh[0m  [01;34mDocumentation[0m   [01;34mMU_BASECORE[0m           [01;32mREADME.md[0m    [01;32msetup_uefi.sh[0m  [01;32mUSAGE.md[0m
+[01;32mbuild_releaseinfo.ps1[0m  [01;34mCommon[0m         [01;34mImageResources[0m  [01;32mpip-requirements.txt[0m  screenlog.0  [01;34mSilicon[0m
+(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ mv Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/FV/SM8150_EFI.fd.gz ~/mnt/uefi/uefi_image.gz [A(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ [C[C[C Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/FV/SM8150_EFI.fd.gz ~/mnt/uefi/uef[1@i[A(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ [C[C[C- Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/FV/SM8150_EFI.fd.gz ~/mnt/uefi/ue[1@f[A(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ [C[C[C[Cv Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/FV/SM8150_EFI.fd.gz ~/mnt/uefi/u[1@e[A(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ [C[C[C[C[C
+
+renamed 'Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/FV/SM8150_EFI.fd.gz' -> '/home/hamada/mnt/uefi/uefi_image.gz'
+(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ cd /[K~/uee[Kfi
+bash: cd: /home/hamada/uefi: No such file or directory
+(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ cd ~/mnt/uefi/
+(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/mnt/uefi[00m$ cp uefi_image.gz tmp.gz
+(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/mnt/uefi[00m$ cat ~/fdt >> tmp.gz 
+(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/mnt/uefi[00m$ abootimg --create uefi_test.img -k tmp.gz -r initrd -f bootimg.cfg
+bootimg.cfg: No such file or directory
+(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/mnt/uefi[00m$ cd ../MU[K[K[K[K[K~/MU-sm8150pkg/
+(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ find -name 'bppt[K[K[Kootimg.cfg'
+(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ nano bootimg.cdf[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Knano [K[K[K[K[Kls[K[Kgit log
+[?1h=[33mcommit bb78977debcd5fef3deb8018ef3969861a96cc58[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m[m
+Merge: 3e02e96 3ef7fd1[m
+Author: sunflower2333 <54024877+sunflower2333@users.noreply.github.com>[m
+Date:   Wed May 25 22:20:42 2022 +0800[m
+[m
+    Merge pull request #10 from WaseemAlkurdi/main[m
+    [m
+    [By WaseemAlkurdi] Add Support For Oneplus 7 Pro[m
+[m
+[33mcommit 3ef7fd17b3716580a63c58e2ac8d0d81c0484e32[m[33m ([m[1;31mfork/main[m[33m)[m[m
+Author: Waseem Alkurdi <waseem19992009@outlook.com>[m
+Date:   Tue May 24 21:23:52 2022 +0300[m
+[m
+    guacamole: Comment out references to the default ACPI tables and load in the CustomizedACPI ones[m
+[m
+[33mcommit 659e2231292be89ec81f4e67ab2b0ca8b4ae49d8[m[m
+Author: Waseem Alkurdi <waseem19992009@outlook.com>[m
+Date:   Tue May 24 21:08:42 2022 +0300[m
+[m
+    guacamole: Comment out the display XML in DXE4.dsc[m
+    [m
+    Looks like we don't need a display XML since we don't use DisplayDxe.[m
+[m
+[33mcommit 7a9a369f05f25ebd78306924100f89e0434f363d[m[m
+Author: Waseem Alkurdi <waseem19992009@outlook.com>[m
+Date:   Tue May 24 20:38:10 2022 +0300[m
+[m
+    device: Initial bringup for the OnePlus 7 Pro / guacamole[m
+[m
+[33mcommit 309178a13d61c606a73c8573a11d68868e439662[m[m
+Author: Waseem Alkurdi <waseem19992009@outlook.com>[m
+Date:   Tue May 24 20:03:23 2022 +0300[m
+[m
+    build: Implements separate scripts for stuart_setup + stuart_update and stuart_build, respectively[m
+    [m
+    This solves the confusion that results from running stuart_build without a properly[m
+    set-up environment.[m
+[m
+[33mcommit 4d9e8eac18eaf6c3ccecc75070a626a6758c9799[m[m
+Author: Waseem Alkurdi <waseem19992009@outlook.com>[m
+Date:   Tue May 24 20:00:29 2022 +0300[m
+[m
+    build: Authorize apt-key and tee commands with sudo[m
+    [m
+    Prior to this, the commands that added an apt key and repository failed as they weren't being[m
+    executed with full privileges.[m
+[m
+[33mcommit 3e02e968be484159fa2920239fa8e9041cb9a049[m[m
+Merge: 36cd9d8 0002954[m
+:[K[K[?1l>(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ git long[K[Kg
+[?1h=[33mcommit bb78977debcd5fef3deb8018ef3969861a96cc58[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m[m
+Merge: 3e02e96 3ef7fd1[m
+Author: sunflower2333 <54024877+sunflower2333@users.noreply.github.com>[m
+Date:   Wed May 25 22:20:42 2022 +0800[m
+[m
+    Merge pull request #10 from WaseemAlkurdi/main[m
+    [m
+    [By WaseemAlkurdi] Add Support For Oneplus 7 Pro[m
+[m
+[33mcommit 3ef7fd17b3716580a63c58e2ac8d0d81c0484e32[m[33m ([m[1;31mfork/main[m[33m)[m[m
+Author: Waseem Alkurdi <waseem19992009@outlook.com>[m
+Date:   Tue May 24 21:23:52 2022 +0300[m
+[m
+    guacamole: Comment out references to the default ACPI tables and load in the CustomizedACPI ones[m
+[m
+[33mcommit 659e2231292be89ec81f4e67ab2b0ca8b4ae49d8[m[m
+Author: Waseem Alkurdi <waseem19992009@outlook.com>[m
+Date:   Tue May 24 21:08:42 2022 +0300[m
+[m
+    guacamole: Comment out the display XML in DXE4.dsc[m
+    [m
+    Looks like we don't need a display XML since we don't use DisplayDxe.[m
+[m
+[33mcommit 7a9a369f05f25ebd78306924100f89e0434f363d[m[m
+Author: Waseem Alkurdi <waseem19992009@outlook.com>[m
+Date:   Tue May 24 20:38:10 2022 +0300[m
+[m
+    device: Initial bringup for the OnePlus 7 Pro / guacamole[m
+[m
+[33mcommit 309178a13d61c606a73c8573a11d68868e439662[m[m
+Author: Waseem Alkurdi <waseem19992009@outlook.com>[m
+Date:   Tue May 24 20:03:23 2022 +0300[m
+[m
+    build: Implements separate scripts for stuart_setup + stuart_update and stuart_build, respectively[m
+    [m
+    This solves the confusion that results from running stuart_build without a properly[m
+    set-up environment.[m
+[m
+[33mcommit 4d9e8eac18eaf6c3ccecc75070a626a6758c9799[m[m
+Author: Waseem Alkurdi <waseem19992009@outlook.com>[m
+Date:   Tue May 24 20:00:29 2022 +0300[m
+[m
+    build: Authorize apt-key and tee commands with sudo[m
+    [m
+    Prior to this, the commands that added an apt key and repository failed as they weren't being[m
+    executed with full privileges.[m
+[m
+[33mcommit 3e02e968be484159fa2920239fa8e9041cb9a049[m[m
+Merge: 36cd9d8 0002954[m
+:[K[K[?1l>(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ git sg[Khow
+[?1h=[33mcommit bb78977debcd5fef3deb8018ef3969861a96cc58[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m[m
+Merge: 3e02e96 3ef7fd1[m
+Author: sunflower2333 <54024877+sunflower2333@users.noreply.github.com>[m
+Date:   Wed May 25 22:20:42 2022 +0800[m
+[m
+    Merge pull request #10 from WaseemAlkurdi/main[m
+    [m
+    [By WaseemAlkurdi] Add Support For Oneplus 7 Pro[m
+[m
+[K[?1l>(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ gith [K[K show HEAD
+[?1h=[33mcommit bb78977debcd5fef3deb8018ef3969861a96cc58[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m[m
+Merge: 3e02e96 3ef7fd1[m
+Author: sunflower2333 <54024877+sunflower2333@users.noreply.github.com>[m
+Date:   Wed May 25 22:20:42 2022 +0800[m
+[m
+    Merge pull request #10 from WaseemAlkurdi/main[m
+    [m
+    [By WaseemAlkurdi] Add Support For Oneplus 7 Pro[m
+[m
+[K[?1l>(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ git show HEAD[C[C[C[C[C^
+[?1h=[33mcommit 3e02e968be484159fa2920239fa8e9041cb9a049[m[m
+Merge: 36cd9d8 0002954[m
+Author: sunflower2333 <54024877+sunflower2333@users.noreply.github.com>[m
+Date:   Sun May 22 20:26:37 2022 +0800[m
+[m
+    Merge pull request #9 from sunflower2333/test[m
+    [m
+    memorymap: set conventional ram respectively.[m
+[m
+[1mdiff --cc Platforms/SurfaceDuoPkg/Shared.dsc.inc[m[m
+[1mindex cb2b807,f8fe965..c672dde[m[m
+[1m--- a/Platforms/SurfaceDuoPkg/Shared.dsc.inc[m[m
+[1m+++ b/Platforms/SurfaceDuoPkg/Shared.dsc.inc[m[m
+[36m@@@ -163,13 -163,11 +163,13 @@@[m[m
+    gOemPkgTokenSpaceGuid.PcdUefiVersionNumber|0x1160601 # 1.22.6.1[m[m
+    gOemPkgTokenSpaceGuid.PcdUefiBuildDate|0x16020D # 2/13/2022[m[m
+  [m[m
+[32m +  gEfiMdeModulePkgTokenSpaceGuid.PcdMaxVariableSize|0x2000[m[m
+[32m +[m[m
+  [PcdsDynamicDefault.common][m[m
+[31m-   gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1350[m[m
+[31m-   gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|1800[m[m
+[31m-   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|1350[m[m
+[31m-   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|1800[m[m
+[32m+   gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1080[m[m
+[32m+   gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|2340[m[m
+[32m+   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|1080[m[m
+[32m+   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|2340[m[m
+    gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|150[m[m
+    gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|150[m[m
+  [m[m
+[K[?1l>(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ [K(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ [K(SurfaceDuo) [01;32mhamada@camsrv1[00m:[01;34m~/MU-sm8150pkg[00m$ exit
