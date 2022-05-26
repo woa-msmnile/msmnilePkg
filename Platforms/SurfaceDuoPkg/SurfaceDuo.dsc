@@ -43,9 +43,10 @@
 #    2. LG G8          (waiting...)
 #    3. Xiaomi K20 Pro (raphael)
 #    4. OnePlus 7 Pro  (guacamole)
+#    5. OnePlus 7T Pro (hotdog)
 #
 
-  DEFINE BUILD_DEVICE_ID	= 4
+  DEFINE BUILD_DEVICE_ID	= 0
 
 [BuildOptions.common]
 !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
@@ -84,6 +85,11 @@
   !if $(BUILD_DEVICE_ID) == 4
 	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1440
 	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|3120
+  !endif
+#OnePlus 7T Pro
+  !if $(BUILD_DEVICE_ID) == 5
+        gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1440
+        gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|3120
   !endif
 
 

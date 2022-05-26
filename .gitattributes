@@ -3,3 +3,4 @@
 * text=auto
 *.sh eol=lf
 Platforms/SurfaceDuoPkg/CustomizedBinaries/OnePlus/Guacamole_7_Pro/Panel-samsung_findx_dsc_cmd.xml.raw eol=crlf
+Platforms/SurfaceDuoPkg/CustomizedBinaries/OnePlus/Hotdog_7T_Pro/Panel-samsung_findx_dsc_cmd.xml.raw eol=crlf
