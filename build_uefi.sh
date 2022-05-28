@@ -11,4 +11,4 @@ gzip SM8150_EFI.fd
 mv SM8150_EFI.fd.gz ~/mnt/uefi/uefi_image.gz
 echo move complete
 cd ~/mnt/uefi/
-./buildimg.sh
+./build.sh
