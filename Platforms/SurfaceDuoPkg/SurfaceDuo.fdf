@@ -132,6 +132,10 @@ READ_LOCK_STATUS   = TRUE
   !if $(BUILD_DEVICE_ID) == 5
     !include SurfaceDuoPkg/Include/DXE5.inc
   !endif
+#Poco X3 Pro
+  !if $(BUILD_DEVICE_ID) == 6
+    !include SurfaceDuoPkg/Include/DXE6.inc
+  !endif
 
 
   # Debug heartbeat
