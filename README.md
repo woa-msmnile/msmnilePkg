@@ -31,6 +31,8 @@ DEFINE BUILD_DEVICE_ID        = 0
 
 # Build UEFI
 pip install --upgrade -r pip-requirements.txt
+# Stamp build:
+pwsh ./build_releaseinfo.ps1
 ./build_uefi.sh
 
 # Generate ELF image
