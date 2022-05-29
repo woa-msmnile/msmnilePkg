@@ -44,6 +44,7 @@
 #    3. Xiaomi K20 Pro (raphael)
 #    4. OnePlus 7 Pro  (guacamole)
 #    5. OnePlus 7T Pro (hotdog)
+#    6. Poco X3 Pro    (vayu)
 #
 
   DEFINE BUILD_DEVICE_ID	= 0
@@ -90,6 +91,11 @@
   !if $(BUILD_DEVICE_ID) == 5
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1440
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|3120
+  !endif
+#Poco X3 Pro
+  !if $(BUILD_DEVICE_ID) == 6
+        gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
+        gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2400
   !endif
 
 
