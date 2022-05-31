@@ -36,7 +36,8 @@ pwsh ./build_releaseinfo.ps1
 ./build_uefi.sh
 
 # Generate ELF image
-./build.sh
+# Notice: DEVICE_ID is a number. 
+./build.sh DEVICE_ID
 ```
 
 ## Acknowledgements
