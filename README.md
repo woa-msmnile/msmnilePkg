@@ -1,5 +1,5 @@
 ## This Repo Is Based On [SurfaceDuoPkg](https://github.com/Woa-Project/SurfaceDuoPkg/)
- Thanks for Gus's instructions!
+ Thanks for [Gus](https://github.com/gus33000)'s instructions!
 
 # Project Mu UEFI Implementation for Other SM8150 Devices
 
