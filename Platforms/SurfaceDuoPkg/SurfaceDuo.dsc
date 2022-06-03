@@ -40,7 +40,7 @@
 #
 #    0. Xiaomi Mix3 5g (andromeda)
 #    1. Xiaomi Pad 5   (nabu)                                         
-#    2. LG G8          (waiting...)
+#    2. LG G8          (alphalm)
 #    3. Xiaomi K20 Pro (raphael)
 #    4. OnePlus 7 Pro  (guacamole)
 #    5. OnePlus 7T Pro (hotdog)
