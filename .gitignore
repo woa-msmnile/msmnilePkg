@@ -20,8 +20,6 @@ UpdateAcpi.sh
 DSDT.aml
 build_uefi.sh
 DXEupdate.sh
-D*.*
-F*.*
 uefi_*.img
 
 
