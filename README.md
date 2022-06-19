@@ -11,32 +11,38 @@ Quick notes for building:
 - Generate ACPI tables with IASL
 - Follow this quick draft
 
-```
-# Setup environment
-./setup_env.sh
 
-# Activate Workspace
+1. Setup environment
+```
+./setup_env.sh
+pip install --upgrade -r pip-requirements.txt
+```
+
+2. Activate Workspace
+```
 python3 -m venv SurfaceDuo
 source SurfaceDuo/bin/activate
+```
 
-#Switch Device
-
+3. Switch Device
+```
 nano Platform/SurfaceDuo.dsc
-
-#You will find:
-
+```
+ * You will find:
+```
 DEFINE BUILD_DEVICE_ID        = 0
+```
+ * Refer to the Build ID Table Above the macro and change the value.
 
-#Refer to the Build ID Table Above the macro and change the value.
-
-# Build UEFI
-pip install --upgrade -r pip-requirements.txt
-# Stamp build:
+4. Build UEFI
+```
 pwsh ./build_releaseinfo.ps1
 ./build_uefi.sh
+```
 
-# Generate ELF image
-# Notice: DEVICE_ID is a number. 
+5. Generate ELF image
+ * Notice: DEVICE_ID is a number. 
+```
 ./build.sh DEVICE_ID
 ```
 
