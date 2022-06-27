@@ -12,7 +12,7 @@ Quick notes for building:
 - Follow this quick draft
 
 
-1. Setup environment
+1. Setup Base environment
 ```
 ./setup_env.sh
 pip install --upgrade -r pip-requirements.txt
@@ -24,7 +24,12 @@ python3 -m venv SurfaceDuo
 source SurfaceDuo/bin/activate
 ```
 
-3. Switch Device
+3.Setup Mu environment
+```
+./setup_uefi.sh
+```
+
+4. Switch Device
 ```
 nano Platform/SurfaceDuo.dsc
 ```
@@ -34,13 +39,13 @@ DEFINE BUILD_DEVICE_ID        = 0
 ```
  * Refer to the Build ID Table Above the macro and change the value.
 
-4. Build UEFI
+5. Build UEFI
 ```
 pwsh ./build_releaseinfo.ps1
 ./build_uefi.sh
 ```
 
-5. Generate ELF image
+6. Generate ELF image
  * Notice: DEVICE_ID is a number. 
 ```
 ./build.sh DEVICE_ID
