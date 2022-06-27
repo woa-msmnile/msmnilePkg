@@ -46,8 +46,11 @@
 #    5. OnePlus 7T Pro (hotdog)
 #    6. Poco X3 Pro    (vayu)
 #
-
   DEFINE BUILD_DEVICE_ID	= 0
+
+#Support 8GB or 6GB , Default 6GB
+  DEFINE RAM_SIZE               = 6
+
 
 [BuildOptions.common]
 !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
@@ -59,40 +62,47 @@
 [PcdsFixedAtBuild.common]
 
   # Platform-specific
-  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # 6GB
-  gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000        # 6GB
+  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x080000000		# 6GB
+  gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000		# 6GB
+  !if $(RAM_SIZE) == 8
+	gArmTokenSpaceGuid.PcdSystemMemorySize|0x200000000	# 8GB
+  !endif
   
   #
   # Screen Resolution Config (Do Not Edit)
   #
 
-#Mi MIX 3 5G
+# Mi MIX 3 5G
   !if $(BUILD_DEVICE_ID) == 0
 	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
 	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2340
   !endif
-#Mi Pad5
+# Mi Pad5
   !if $(BUILD_DEVICE_ID) == 1
 	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1600
 	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2560
   !endif
-#Mi K20 Pro
+# LG G8
+  !if $(BUILD_DEVICE_ID) == 2
+        gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1440
+        gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|3120
+  !endif
+# Mi K20 Pro
   !if $(BUILD_DEVICE_ID) == 3
 	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
 	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2340
   !endif
-
-#OnePlus 7 Pro
+# OnePlus 7 Pro
   !if $(BUILD_DEVICE_ID) == 4
 	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1440
 	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|3120
   !endif
-#OnePlus 7T Pro
+# OnePlus 7T Pro
   !if $(BUILD_DEVICE_ID) == 5
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1440
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|3120
   !endif
-#Poco X3 Pro
+# Poco X3 Pro
   !if $(BUILD_DEVICE_ID) == 6
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2400

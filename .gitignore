@@ -18,6 +18,8 @@ tags/
 BuildConfig.conf
 UpdateAcpi.sh
 DSDT.aml
+DSDT.AML
+DSDT.dsl
 build_uefi.sh
 DXEupdate.sh
 uefi_*.img

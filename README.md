@@ -24,7 +24,7 @@ python3 -m venv SurfaceDuo
 source SurfaceDuo/bin/activate
 ```
 
-3.Setup Mu environment
+3. Setup Mu environment
 ```
 ./setup_uefi.sh
 ```
