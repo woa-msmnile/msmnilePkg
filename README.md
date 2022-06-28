@@ -31,7 +31,7 @@ source SurfaceDuo/bin/activate
 
 4. Switch Device
 ```
-nano Platform/SurfaceDuo.dsc
+nano Platform/SurfaceDuoPkg/SurfaceDuo.dsc
 ```
  * You will find:
 ```
