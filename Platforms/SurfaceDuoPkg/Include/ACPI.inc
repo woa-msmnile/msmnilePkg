@@ -18,7 +18,7 @@ FILE FREEFORM = 7E374E25-8E01-4FEE-87F2-390C23C606CD {
 #	SECTION RAW = SurfaceDuoPkg/AcpiTables/8150/builtin/TPM2.aml
 ##	SECTION RAW = SurfaceDuoPkg/AcpiTables/8150/builtin/XSDT.aml
 
-# Use a old set of ACPI
+# A old set of ACPI
 	 SECTION RAW = SurfaceDuoPkg/AcpiTables/CustomizedACPI/Facp.acpi
 	 SECTION RAW = SurfaceDuoPkg/AcpiTables/CustomizedACPI/Gtdt.acpi
 	 SECTION RAW = SurfaceDuoPkg/AcpiTables/CustomizedACPI/Madt.acpi
@@ -31,5 +31,13 @@ FILE FREEFORM = 7E374E25-8E01-4FEE-87F2-390C23C606CD {
 	 SECTION RAW = SurfaceDuoPkg/AcpiTables/CustomizedACPI/Mcfg.acpi
 	 SECTION RAW = SurfaceDuoPkg/AcpiTables/CustomizedACPI/TPM2.acpi
 	 SECTION RAW = SurfaceDuoPkg/AcpiTables/CustomizedACPI/dbg2.acpi
+
+## minimal ACPI
+
+#	 SECTION RAW = SurfaceDuoPkg/AcpiTables/CustomizedACPI/minimal/0.raw
+#	 SECTION RAW = SurfaceDuoPkg/AcpiTables/CustomizedACPI/minimal/1.raw
+#	 SECTION RAW = SurfaceDuoPkg/AcpiTables/CustomizedACPI/minimal/2.raw
+#	 SECTION RAW = SurfaceDuoPkg/AcpiTables/CustomizedACPI/minimal/3.raw
+#	 SECTION RAW = SurfaceDuoPkg/AcpiTables/CustomizedACPI/minimal/4.raw
 	SECTION UI = "AcpiTables" 
 }
