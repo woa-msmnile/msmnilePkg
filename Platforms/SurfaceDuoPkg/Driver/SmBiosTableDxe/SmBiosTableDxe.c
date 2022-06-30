@@ -489,7 +489,7 @@ SMBIOS_TABLE_TYPE16 mPhyMemArrayInfoType16 = {
     0xFFFFFFFF,                     // MaximumCapacity;
     0xFFFE,                         // MemoryErrorInformationHandle;
     1,                              // NumberOfMemoryDevices;
-    0x180000000ULL,                 // ExtendedMaximumCapacity;
+    0x200000000ULL,                 // ExtendedMaximumCapacity;
 };
 CHAR8 *mPhyMemArrayInfoType16Strings[] = {NULL};
 

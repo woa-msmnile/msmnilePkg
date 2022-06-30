@@ -48,27 +48,44 @@
 #    6. Xiaomi Poco X3 Pro	(vayu)
 #    7. Samsung Galaxy S10	(beyond1qlte)
 
-  DEFINE BUILD_DEVICE_ID	= 6
+  DEFINE BUILD_DEVICE_ID	= 7
 
 # Support 8GB or 6GB , Default 6GB
-  DEFINE RAM_SIZE               = 6
+  DEFINE RAM_SIZE               = 8
 
 
 [BuildOptions.common]
+
+#
+# Add flags if you know what you are doing.
+# * A Foolish judgement here. Waiting for your ideas.
+#
+
+GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150 -DRAM_SIZE=6
+
 !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
-  GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
-!else
   GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150 -DUSE_MEMORY_FOR_SERIAL_OUTPUT=1
 !endif
-  
+
+!if $(BUILD_DEVICE_ID) == 0
+  GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150 -DSDX=1
+!endif
+
+!if $(RAM_SIZE) == 8
+  GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150 -DRAM_SIZE=8
+!endif
+
+
+
 [PcdsFixedAtBuild.common]
 
   # Platform-specific
-  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x080000000		# 6GB
+  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x080000000		# Common Base Address
+!if $(RAM_SIZE) == 8
+  gArmTokenSpaceGuid.PcdSystemMemorySize|0x200000000		# 8GB
+!else
   gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000		# 6GB
-  !if $(RAM_SIZE) == 8
-	gArmTokenSpaceGuid.PcdSystemMemorySize|0x200000000	# 8GB
-  !endif
+!endif
   
   #
   # Screen Resolution Config (Do Not Edit)
