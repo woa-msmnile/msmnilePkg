@@ -83,8 +83,7 @@
 
     FILE DRIVER = 4db5dea6-5302-4d1a-8a82-677a683b0d29 {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-4db5dea6-5302-4d1a-8a82-677a683b0d29/section0.dxe.depex
-#            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-4db5dea6-5302-4d1a-8a82-677a683b0d29/section1.pe
-		SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/OnePlus/Guacamole_7_Pro/ClockDxe.efi
+            SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/OnePlus/Guacamole_7_Pro/ClockDxe.efi
             SECTION UI = "ClockDxe"
     }
 
@@ -108,18 +107,10 @@
     INF MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
     INF MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
     INF MdeModulePkg/Universal/FvSimpleFileSystemDxe/FvSimpleFileSystemDxe.inf
-#
-#    FILE DRIVER = f10f76db-42c1-533f-34a8-69be24653110 {
-#            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-f10f76db-42c1-533f-34a8-69be24653110/section0.dxe.depex
-#            SECTION RAW = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-f10f76db-42c1-533f-34a8-69be24653110/section1.raw
-#            SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/OnePlus/Guacamole_7_Pro/SdccDxe.efi
-#            SECTION UI = "SdccDxe"
-#    }
 
     FILE DRIVER = 0d35cd8e-97ea-4f9a-96af-0f0d89f76567 {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-0d35cd8e-97ea-4f9a-96af-0f0d89f76567/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoPkg/PatchedBinaries/UFSDxe.efi
-#	    SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/845/UFSDxe.efi
+            SECTION PE32 = SurfaceDuoPkg/PatchedBinaries/OnePlus/Guacamole_7_Pro/UFSDxe.efi
             SECTION UI = "UFSDxe"
     }
 
@@ -203,12 +194,6 @@
             SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-04de8591-d2b3-4077-bbbe-b12070094eb6/section1.pe
             SECTION UI = "I2C"
     }
-#
-#    FILE DRIVER = 6201ace5-5f41-4eb5-bfad-6980ea341d63 {
-#            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202201/volume-0/file-2/section0/section1/volume-0/file-6201ace5-5f41-4eb5-bfad-6980ea341d63/section0.dxe.depex
-#            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202201/volume-0/file-2/section0/section1/volume-0/file-6201ace5-5f41-4eb5-bfad-6980ea341d63/section1.pe
-#            SECTION UI = "EXTFG"
-#    }
 
     FILE DRIVER = 5a5cb8ca-9382-4e0c-b383-77fb517cd9eb {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-5a5cb8ca-9382-4e0c-b383-77fb517cd9eb/section0.dxe.depex
@@ -221,18 +206,6 @@
             SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/OnePlus/Guacamole_7_Pro/UsbPwrCtrlDxe.efi
             SECTION UI = "UsbPwrCtrlDxe"
     }
-#
-#    FILE DRIVER = 4bce7f36-428e-4393-99e3-7e0844404dba {
-#            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-4bce7f36-428e-4393-99e3-7e0844404dba/section0.dxe.depex
-#            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-4bce7f36-428e-4393-99e3-7e0844404dba/section1.pe
-#            SECTION UI = "QcomChargerDxeLA"
-#    }
-#
-#    FILE DRIVER = 2e3042f3-2bb9-463f-8866-56d75b7c4ab0 {
-#            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-2e3042f3-2bb9-463f-8866-56d75b7c4ab0/section0.dxe.depex
-#            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-2e3042f3-2bb9-463f-8866-56d75b7c4ab0/section1.pe
-#            SECTION UI = "ChargerExDxe"
-#    }
 
     FILE DRIVER = 94f8a6a7-dc34-4101-88c1-99179cceae83 {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-94f8a6a7-dc34-4101-88c1-99179cceae83/section0.dxe.depex
@@ -242,7 +215,6 @@
 
     FILE DRIVER = cd823a4d-7dec-4531-ae5d-4134fa4127b8 {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-cd823a4d-7dec-4531-ae5d-4134fa4127b8/section0.dxe.depex
-#            SECTION PE32 = SurfaceDuoPkg/PatchedBinaries/UsbConfigDxe.efi
 	    SECTION PE32 = SurfaceDuoPkg/PatchedBinaries/OnePlus/Guacamole_7_Pro/UsbConfigDxe.efi
             SECTION UI = "UsbConfigDxe"
     }
@@ -271,12 +243,6 @@
             SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/OnePlus/Guacamole_7_Pro/GpiDxe.efi
             SECTION UI = "GpiDxe"
     }
-#
-#    FILE DRIVER = 88abf42e-efa7-4d72-a9c8-8b29acdcf64f {
-#            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-88abf42e-efa7-4d72-a9c8-8b29acdcf64f/section0.dxe.depex
-#            SECTION PE32 = SurfaceDuoPkg/CustomizedBinaries/OnePlus/Guacamole_7_Pro/MpPowerDxe.efi
-#            SECTION UI = "MpPowerDxe"
-#    }
 
     FILE DRIVER = 3adf8dda-1850-44c5-8c63-bb991849bc6f {
             SECTION UI = "HashDxe"
@@ -304,12 +270,6 @@
             SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-ce044919-3000-4998-82af-ddb4e17c6b66/section1.pe
             SECTION UI = "AdapterInformationDxe"
     }
-#
-#    FILE DRIVER = 1b52138d-3fa3-4e50-b958-20887353f809 {
-#            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section0.dxe.depex
-#            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section1.pe
-#            SECTION UI = "CPRDxe"
-#    }
 
     FILE DRIVER = 5246dcd6-1968-4bc6-b50e-620a0b629dc3 {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-5246dcd6-1968-4bc6-b50e-620a0b629dc3/section0.dxe.depex
@@ -347,12 +307,6 @@
             SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-53d39438-814a-4d9c-87c1-07e8c713f4c4/section1.pe
             SECTION UI = "QcomMpmTimerDxe"
     }
-
-#    FILE DRIVER = 7a32bd23-f735-4f57-aa1a-447d2fe3be0d {
-#            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-7a32bd23-f735-4f57-aa1a-447d2fe3be0d/section0.dxe.depex
-#            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-7a32bd23-f735-4f57-aa1a-447d2fe3be0d/section1.pe
-#            SECTION UI = "SPI"
-#    }
 
     FILE DRIVER = 5af77f10-90df-4e7e-8325-a17ec09d5443 {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-5af77f10-90df-4e7e-8325-a17ec09d5443/section0.dxe.depex
@@ -411,18 +365,6 @@
             SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-3977d4c4-b0eb-4548-96b9-671fa2e36820/section1.pe
             SECTION UI = "MsEarlyGraphicsDxe"
     }
-#
-#    FILE DRIVER = 4138022f-06c7-4f79-9c94-7e33b511a4e7 {
-#            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-4138022f-06c7-4f79-9c94-7e33b511a4e7/section0.dxe.depex
-#            SECTION PE32 = SurfaceDuoPkg/PatchedBinaries/Xiaomi/DisplayDxe.efi
-#            SECTION UI = "DisplayDxe"
-#    }
-
-
-#    FILE FREEFORM = 708A5B80-136B-45A9-A03E-98F450FC24BF {
-#            SECTION UI = "Panel_samsung_ea8076_fhd_amoled_cmd.xml"
-#            SECTION RAW = Platforms/SurfaceDuoPkg/CustomizedBinaries/OnePlus/Guacamole_7_Pro/Panel_samsung_ea8076_fhd_amoled_cmd.xml.raw
-#    }
 
     FILE FREEFORM = a91d838e-a5fa-4138-825d-455e2303079e {
             SECTION UI = "BDS_Menu.cfg"

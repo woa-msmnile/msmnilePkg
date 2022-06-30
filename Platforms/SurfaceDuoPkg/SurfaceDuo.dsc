@@ -35,20 +35,22 @@
   DEFINE USE_MEMORY_FOR_SERIAL_OUTPUT = 0
 
 #
-# Build ID Tables
+# Build ID Table
 #
-#
-#    0. Xiaomi Mix3 5g (andromeda)
-#    1. Xiaomi Pad 5   (nabu)                                         
-#    2. LG G8          (alphalm)
-#    3. Xiaomi K20 Pro (raphael)
-#    4. OnePlus 7 Pro  (guacamole)
-#    5. OnePlus 7T Pro (hotdog)
-#    6. Poco X3 Pro    (vayu)
-#
-  DEFINE BUILD_DEVICE_ID	= 0
 
-#Support 8GB or 6GB , Default 6GB
+#
+#    0. Xiaomi Mix3 5g		(andromeda)
+#    1. Xiaomi Pad 5		(nabu)                                         
+#    2. LG G8			(alphalm)
+#    3. Xiaomi K20 Pro		(raphael)
+#    4. OnePlus 7 Pro		(guacamole)
+#    5. OnePlus 7T Pro		(hotdog)
+#    6. Xiaomi Poco X3 Pro	(vayu)
+#    7. Samsung Galaxy S10	(beyond1qlte)
+
+  DEFINE BUILD_DEVICE_ID	= 6
+
+# Support 8GB or 6GB , Default 6GB
   DEFINE RAM_SIZE               = 6
 
 
@@ -102,10 +104,16 @@
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1440
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|3120
   !endif
-# Poco X3 Pro
+# Mi Poco X3 Pro
   !if $(BUILD_DEVICE_ID) == 6
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2400
+  !endif
+# Samsung Galaxy S10
+  !if $(BUILD_DEVICE_ID) == 7
+        gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1440
+        gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|3040
+	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0x9C400000
   !endif
 
 
