@@ -27,6 +27,7 @@ esac
 
 echo You are building $DEVICE
 
+rm uefi_*
 cp ./Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/FV/SM8150_EFI.fd ./ImageResources/
 gzip ./ImageResources/SM8150_EFI.fd
 mv ./ImageResources/SM8150_EFI.fd.gz ./ImageResources/tmp.gz

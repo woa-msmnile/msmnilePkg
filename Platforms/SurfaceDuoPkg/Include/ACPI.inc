@@ -1,7 +1,7 @@
 FILE FREEFORM = 7E374E25-8E01-4FEE-87F2-390C23C606CD {
 
 # We do not provide ACPI support. 
-
+#
 #	SECTION RAW = SurfaceDuoPkg/AcpiTables/8150/builtin/APIC.aml
 ##	SECTION RAW = SurfaceDuoPkg/AcpiTables/8150/builtin/BERT.aml
 ##	SECTION RAW = SurfaceDuoPkg/AcpiTables/8150/builtin/BGRT.aml

@@ -96,23 +96,26 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
 
     /* RAM partition regions */
 
-#if SDX == 1
-    // 5GB avaliable on devices with sdx50m
-    {"MLVM_APSS",         0xA0000000, 0x04C00000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
-    {"RAM Partition",     0xA4C00000, 0x03C00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
-    {"MLVM_1",            0xA8800000, 0x07800000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
-    {"RAM Partition",     0xB0000000, 0x00400000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
-    {"MLVM",              0xB0400000, 0x09000000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
-    {"RAM Partition",     0xB9400000, 0x03800000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
-#else
-    // 6GB available on devices without sdx50m
-    {"RAM Partition",     0xA0000000, 0x1CC00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+#if   (SDX+RAM_SIZE) == 7
+    {"MLVM",              0xA0000000, 0x1CC00000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
+#elif (SDX+RAM_SIZE) == 9
+    {"MLVM",              0xA0000000, 0x1BB00000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
+#elif (SDX+RAM_SIZE) == 6
+    {"RAM Partition",     0xA0000000, 0x1CC00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv, WRITE_BACK_XN},
+#elif (SDX+RAM_SIZE) == 8
+    {"RAM Partition",     0xA0000000, 0x1BB00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv, WRITE_BACK_XN},
 #endif
 
+    //6GB
     // Memory hole: 0xBCC00000 - 0xBFFFFFFF
     // Size: 0x33FFFFF
 
+    //8GB
+    // Memory hole: 0xBBB00000 - 0xBFFFFFFF
+    // Size: 0x44FFFFF
+
     {"RAM Partition",     0x0C0000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+
 #if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
     {"RAM Partition",     0x140000000, 0x3FE00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
     {"PStore",            0x17FE00000, 0x00200000, AddMem, MEM_RES, SYS_MEM_CAP, Reserv, WRITE_THROUGH_XN},
@@ -121,9 +124,9 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
     {"RAM Partition",     0x140000000, 0xC0000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
 #endif
 
-     /* 2GB Extra Region For 8GB RAM Devices */
 #if RAM_SIZE == 8
-     {"RAM Partition",    0x200000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+    /* 2GB Extra Region For 8GB RAM Devices */
+    {"RAM Partition",     0x200000000,0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
 #endif
 
     /* Other memory regions */
