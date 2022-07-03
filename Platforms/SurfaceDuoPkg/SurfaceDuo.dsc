@@ -41,17 +41,20 @@
 #
 #    0. Xiaomi Mix3 5g		(andromeda)
 #    1. Xiaomi Pad 5		(nabu)                                         
-#    2. LG G8			(alphalm)
+#    2. LG G8			(alphaplus)
 #    3. Xiaomi K20 Pro		(raphael)
 #    4. OnePlus 7 Pro		(guacamole)
 #    5. OnePlus 7T Pro		(hotdog)
 #    6. Xiaomi Poco X3 Pro	(vayu)
 #    7. Samsung Galaxy S10	(beyond1qlte)
+#    8. LG V50			(flashlm)
+#    9. LG V50			(flashlmdd)
+#   10. LG G8			(alphalm)
 
-  DEFINE BUILD_DEVICE_ID	= 3
+  DEFINE BUILD_DEVICE_ID	= 2
 
 # Support 8GB or 6GB , Default 6GB
-  DEFINE RAM_SIZE               = 8
+  DEFINE RAM_SIZE               = 6
 
 
 [BuildOptions.common]
@@ -68,6 +71,10 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
 !endif
 
 !if $(BUILD_DEVICE_ID) == 0
+  GCC:*_*_AARCH64_CC_FLAGS = -DSDX=1
+!endif
+
+!if $(BUILD_DEVICE_ID) == 8
   GCC:*_*_AARCH64_CC_FLAGS = -DSDX=1
 !endif
 
@@ -107,6 +114,7 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
   !if $(BUILD_DEVICE_ID) == 2
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1440
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|3120
+	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0x9D200000
   !endif
 # Mi K20 Pro
   !if $(BUILD_DEVICE_ID) == 3

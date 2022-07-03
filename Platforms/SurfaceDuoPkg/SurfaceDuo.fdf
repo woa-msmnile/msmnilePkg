@@ -118,6 +118,11 @@ READ_LOCK_STATUS   = TRUE
     !include SurfaceDuoPkg/Include/DXE1.inc
   !endif
 
+# LG G8
+  !if $(BUILD_DEVICE_ID) == 2
+    !include SurfaceDuoPkg/Include/DXE2.inc
+  !endif
+
 # Mi K20 Pro
   !if $(BUILD_DEVICE_ID) == 3
     !include SurfaceDuoPkg/Include/DXE3.inc

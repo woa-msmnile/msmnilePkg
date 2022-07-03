@@ -6,7 +6,7 @@ echo -e 'Example: ./build.sh 0\n\n'
 DEVICE_ID=$1
 DEVICE_0=Andromeda
 DEVICE_1=Nabu
-DEVICE_2=G8
+DEVICE_2=Alphaplus
 DEVICE_3=Raphael
 DEVICE_4=Guacamole
 DEVICE_5=Hotdog
