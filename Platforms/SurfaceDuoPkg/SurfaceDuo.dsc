@@ -48,10 +48,10 @@
 #    6. Xiaomi Poco X3 Pro	(vayu)
 #    7. Samsung Galaxy S10	(beyond1qlte)
 
-  DEFINE BUILD_DEVICE_ID	= 0
+  DEFINE BUILD_DEVICE_ID	= 3
 
 # Support 8GB or 6GB , Default 6GB
-  DEFINE RAM_SIZE               = 6
+  DEFINE RAM_SIZE               = 8
 
 
 [BuildOptions.common]
