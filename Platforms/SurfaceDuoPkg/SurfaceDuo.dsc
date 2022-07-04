@@ -47,14 +47,12 @@
 #    5. OnePlus 7T Pro		(hotdog)
 #    6. Xiaomi Poco X3 Pro	(vayu)
 #    7. Samsung Galaxy S10	(beyond1qlte)
-#    8. LG V50			(flashlm)
-#    9. LG V50			(flashlmdd)
-#   10. LG G8			(alphalm)
+#    8. LG V50S				(mh2lm)
 
-  DEFINE BUILD_DEVICE_ID	= 2
+  DEFINE BUILD_DEVICE_ID	= 8
 
 # Support 8GB or 6GB , Default 6GB
-  DEFINE RAM_SIZE               = 6
+  DEFINE RAM_SIZE               = 8
 
 
 [BuildOptions.common]
@@ -105,37 +103,44 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
 	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
 	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2340
   !endif
+
 # Mi Pad5
   !if $(BUILD_DEVICE_ID) == 1
 	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1600
 	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2560
   !endif
+
 # LG G8
   !if $(BUILD_DEVICE_ID) == 2
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1440
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|3120
 	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0x9D200000
   !endif
+
 # Mi K20 Pro
   !if $(BUILD_DEVICE_ID) == 3
 	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
 	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2340
   !endif
+
 # OnePlus 7 Pro
   !if $(BUILD_DEVICE_ID) == 4
 	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1440
 	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|3120
   !endif
+
 # OnePlus 7T Pro
   !if $(BUILD_DEVICE_ID) == 5
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1440
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|3120
   !endif
+
 # Mi Poco X3 Pro
   !if $(BUILD_DEVICE_ID) == 6
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2400
   !endif
+
 # Samsung Galaxy S10
   !if $(BUILD_DEVICE_ID) == 7
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1440
@@ -143,6 +148,11 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
 	gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0x9C400000
   !endif
 
+# LG V50S
+  !if $(BUILD_DEVICE_ID) == 8
+        gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
+        gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2340
+  !endif
 
 !include SurfaceDuoPkg/Shared.dsc.inc
 !include SurfaceDuoPkg/FrontpageDsc.inc
