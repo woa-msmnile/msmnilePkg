@@ -214,13 +214,6 @@
             SECTION UI = "UsbPwrCtrlDxe"
     }
 
-
-	FILE DRIVER = C9C6BB00-44FC-4C87-8AF9-F93218E17C10 {
-			SECTION DXE_DEPEX = SurfaceDuoPkg/PatchedBinaries/LG/UsbcSetDrpDxe.depex
-			SECTION PE32 = SurfaceDuoPkg/PatchedBinaries/LG/UsbcSetDrpDxe.efi
-			SECTION UI = "UsbcSetDrpDxe"
-	}
-
     FILE DRIVER = 94f8a6a7-dc34-4101-88c1-99179cceae83 {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-94f8a6a7-dc34-4101-88c1-99179cceae83/section0.dxe.depex
             SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-94f8a6a7-dc34-4101-88c1-99179cceae83/section1.pe
