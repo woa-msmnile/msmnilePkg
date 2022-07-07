@@ -41,13 +41,13 @@
 #
 #    0. Xiaomi Mix3 5g		(andromeda)
 #    1. Xiaomi Pad 5		(nabu)                                         
-#    2. LG G8				(alphaplus)
+#    2. LG G8			(alphaplus)
 #    3. Xiaomi K20 Pro		(raphael)
 #    4. OnePlus 7 Pro		(guacamole)
 #    5. OnePlus 7T Pro		(hotdog)
 #    6. Xiaomi Poco X3 Pro	(vayu)
 #    7. Samsung Galaxy S10	(beyond1qlte)
-#    8. LG V50S				(mh2lm)
+#    8. LG V50S			(mh2lm)
 
   DEFINE BUILD_DEVICE_ID	= 8
 
