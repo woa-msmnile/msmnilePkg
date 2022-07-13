@@ -153,6 +153,11 @@ READ_LOCK_STATUS   = TRUE
     !include SurfaceDuoPkg/Include/DXE8.inc
   !endif
 
+# LG V50S
+  !if $(BUILD_DEVICE_ID) == 9
+    !include SurfaceDuoPkg/Include/DXE9.inc
+  !endif
+
 ######################## END LINE ########################
 
   # Debug heartbeat
