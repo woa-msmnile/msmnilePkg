@@ -96,13 +96,13 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
 
     /* RAM partition regions */
 
-#if   (SDX+RAM_SIZE) == 7
+#if   (VM+RAM_SIZE) == 7
     {"MLVM",              0xA0000000, 0x1CC00000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
-#elif (SDX+RAM_SIZE) == 9
+#elif (VM+RAM_SIZE) == 9
     {"MLVM",              0xA0000000, 0x1BB00000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
-#elif (SDX+RAM_SIZE) == 6
+#elif (VM+RAM_SIZE) == 6
     {"RAM Partition",     0xA0000000, 0x1CC00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv, WRITE_BACK_XN},
-#elif (SDX+RAM_SIZE) == 8
+#elif (VM+RAM_SIZE) == 8
     {"RAM Partition",     0xA0000000, 0x1BB00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv, WRITE_BACK_XN},
 #endif
 

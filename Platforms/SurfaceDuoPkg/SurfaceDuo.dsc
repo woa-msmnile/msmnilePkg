@@ -3,6 +3,7 @@
 #  Copyright (c) 2014, Linaro Limited. All rights reserved.
 #  Copyright (c) 2015 - 2016, Intel Corporation. All rights reserved.
 #  Copyright (c) 2018, Bingxing Wang. All rights reserved.
+#  Copyright (c) 2022, Gustave Monce. All rights reserved.
 #
 #  This program and the accompanying materials
 #  are licensed and made available under the terms and conditions of the BSD License
@@ -48,19 +49,15 @@
 #    6. Xiaomi Poco X3 Pro	(vayu)
 #    7. Samsung Galaxy S10	(beyond1qlte)
 #    8. LG V50S			(mh2lm)
+#    9. ASUS ROG2		(I001DC)
 
-  DEFINE BUILD_DEVICE_ID	= 8
+  DEFINE BUILD_DEVICE_ID	= 9
 
 # Support 8GB or 6GB , Default 6GB
   DEFINE RAM_SIZE               = 8
 
 
 [BuildOptions.common]
-
-#
-# Add flags if you know what you are doing.
-# * A Foolish judgement here. Waiting for your ideas.
-#
 
 GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
 
@@ -69,11 +66,11 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
 !endif
 
 !if $(BUILD_DEVICE_ID) == 0
-  GCC:*_*_AARCH64_CC_FLAGS = -DSDX=1
+  GCC:*_*_AARCH64_CC_FLAGS = -DVM=1
 !endif
 
 !if $(BUILD_DEVICE_ID) == 8
-  GCC:*_*_AARCH64_CC_FLAGS = -DSDX=1
+  GCC:*_*_AARCH64_CC_FLAGS = -DVM=1
 !endif
 
 !if $(RAM_SIZE) == 8
@@ -94,9 +91,9 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
   gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000		# 6GB
 !endif
   
-  #
-  # Screen Resolution Config (Do Not Edit)
-  #
+#
+# Screen Resolution Config
+#
 
 # Mi MIX 3 5G
   !if $(BUILD_DEVICE_ID) == 0
@@ -150,6 +147,12 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
 
 # LG V50S
   !if $(BUILD_DEVICE_ID) == 8
+        gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
+        gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2340
+  !endif
+
+# ASUS ROG2
+  !if $(BUILD_DEVICE_ID) == 9
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2340
   !endif
