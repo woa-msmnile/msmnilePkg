@@ -19,7 +19,6 @@
 
 [Sources]
  MsPlatformDevicesLib.c
- HypervisorMvCalls.c
 
 [Packages]
   MdePkg/MdePkg.dec
@@ -33,7 +32,6 @@
   MemoryAllocationLib
   DevicePathLib
   UefiBootServicesTableLib
-  BaseMemoryLib
 
 [Protocols]
   gEfiGraphicsOutputProtocolGuid
