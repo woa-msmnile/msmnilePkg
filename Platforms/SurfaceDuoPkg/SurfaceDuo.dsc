@@ -51,10 +51,10 @@
 #    8. LG V50S			(mh2lm)
 #    9. ASUS ROG2		(I001DC)
 
-  DEFINE BUILD_DEVICE_ID	= 9
+  DEFINE BUILD_DEVICE_ID	= 2
 
 # Support 8GB or 6GB , Default 6GB
-  DEFINE RAM_SIZE               = 8
+  DEFINE RAM_SIZE               = 6
 
 
 [BuildOptions.common]
