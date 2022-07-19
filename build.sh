@@ -4,6 +4,7 @@ echo -e '\nTip: ./build.sh + device id'
 echo -e 'Example: ./build.sh 0\n\n' 
 
 DEVICE_ID=$1
+
 DEVICE_0=Andromeda
 DEVICE_1=Nabu
 DEVICE_2=Alphaplus
@@ -13,6 +14,8 @@ DEVICE_5=Hotdog
 DEVICE_6=Vayu
 DEVICE_7=Beyond1qlte
 DEVICE_8=Mh2lm
+DEVICE_9=I001DC
+DEVICE_10=Hercules
 
 case $DEVICE_ID in
 	0) DEVICE=$DEVICE_0;;
@@ -24,7 +27,8 @@ case $DEVICE_ID in
 	6) DEVICE=$DEVICE_6;;
 	7) DEVICE=$DEVICE_7;;
 	8) DEVICE=$DEVICE_8;;
-
+	9) DEVICE=$DEVICE_9;;
+	10)DEVICE=$DEVICE_10;;
 	*) echo -e 'Please enter correct value\n' && exit;
 esac
 

@@ -50,11 +50,12 @@
 #    7. Samsung Galaxy S10	(beyond1qlte)
 #    8. LG V50S			(mh2lm)
 #    9. ASUS ROG2		(I001DC)
+#   10. Xiaomi Hercules		(Hercules)
 
-  DEFINE BUILD_DEVICE_ID	= 0
+  DEFINE BUILD_DEVICE_ID	= 10
 
 # Support 8GB or 6GB , Default 6GB
-  DEFINE RAM_SIZE               = 6
+  DEFINE RAM_SIZE               = 8
 
 
 [BuildOptions.common]
@@ -153,6 +154,12 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
 
 # ASUS ROG2
   !if $(BUILD_DEVICE_ID) == 9
+        gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
+        gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2340
+  !endif
+
+# Xiaomi Hercules
+  !if $(BUILD_DEVICE_ID) == 10
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2340
   !endif
