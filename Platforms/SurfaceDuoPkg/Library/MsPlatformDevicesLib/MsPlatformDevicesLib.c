@@ -234,8 +234,11 @@ BDS_CONSOLE_CONNECT_ENTRY *EFIAPI GetPlatformConsoleList(VOID)
   // Allow MPSS and HLOS to access the allocated RFS Shared Memory Region
   // Normally this would be done by a driver in Linux
   // TODO: Move to a better place!
+#if MI == 1
+  RFSProtectSharedArea(0xC0000000, 0x00300000);
+#else
   RFSProtectSharedArea(0x85D00000, 0x00200000);
-
+#endif
   return pConsoleConnectEntries;
 }
 
