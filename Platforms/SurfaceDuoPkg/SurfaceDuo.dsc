@@ -52,10 +52,10 @@
 #    9. ASUS ROG2		(I001DC)
 #   10. Xiaomi Hercules		(Hercules)
 
-  DEFINE BUILD_DEVICE_ID	= 10
+  DEFINE BUILD_DEVICE_ID	= 2
 
 # Support 8GB or 6GB , Default 6GB
-  DEFINE RAM_SIZE               = 8
+  DEFINE RAM_SIZE               = 6
 
 
 [BuildOptions.common]
@@ -67,7 +67,7 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
 !endif
 
 !if $(BUILD_DEVICE_ID) == 0
-  GCC:*_*_AARCH64_CC_FLAGS = -DVM=1
+  GCC:*_*_AARCH64_CC_FLAGS = -DVM=1 -DMI=1
 !endif
 
 !if $(BUILD_DEVICE_ID) == 8
