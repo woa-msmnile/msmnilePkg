@@ -51,11 +51,11 @@
 #    8. LG V50S			(mh2lm)
 #    9. ASUS ROG2		(I001DC)
 #   10. Xiaomi Hercules		(Hercules)
-
-  DEFINE BUILD_DEVICE_ID	= 2
+#   11. Xiaomi 9		(Cepheus)
+  DEFINE BUILD_DEVICE_ID	= 7
 
 # Support 8GB or 6GB , Default 6GB
-  DEFINE RAM_SIZE               = 6
+  DEFINE RAM_SIZE               = 8
 
 
 [BuildOptions.common]
