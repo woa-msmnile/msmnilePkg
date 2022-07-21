@@ -17,9 +17,7 @@ tags/
 *.bak
 BuildConfig.conf
 UpdateAcpi.sh
-DSDT.aml
 DSDT.AML
-DSDT.dsl
 ACPI.inc
 build_uefi.sh
 DXEupdate.sh
