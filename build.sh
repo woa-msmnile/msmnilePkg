@@ -17,6 +17,8 @@ DEVICE_8=Mh2lm
 DEVICE_9=I001DC
 DEVICE_10=Hercules
 
+DEVICE_12=Flashlmdd
+
 case $DEVICE_ID in
 	0) DEVICE=$DEVICE_0;;
 	1) DEVICE=$DEVICE_1;;
@@ -29,6 +31,8 @@ case $DEVICE_ID in
 	8) DEVICE=$DEVICE_8;;
 	9) DEVICE=$DEVICE_9;;
 	10)DEVICE=$DEVICE_10;;
+	
+	12)DEVICE=$DEVICE_12;;
 	*) echo -e 'Please enter correct value\n' && exit;
 esac
 
