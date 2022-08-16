@@ -74,6 +74,10 @@ FILE FREEFORM = 7E374E25-8E01-4FEE-87F2-390C23C606CD {
 		SECTION RAW = SurfaceDuoPkg/AcpiTables/CustomizedACPI/Xiaomi/Hercules/DSDT.aml
 	  !endif
 
+	# LG V50	
+	  !if $(BUILD_DEVICE_ID) == 12
+		SECTION RAW = SurfaceDuoPkg/AcpiTables/CustomizedACPI/LG/Flashlmdd_V50/DSDT.aml
+	  !endif
 
 #
 # Boot Test ACPI
