@@ -52,7 +52,8 @@
 #    9. ASUS ROG2		(I001DC)
 #   10. Xiaomi Hercules		(Hercules)
 #   11. Xiaomi 9		(Cepheus)
-  DEFINE BUILD_DEVICE_ID	= 7
+#   12. LG V50				(flashlmdd)
+  DEFINE BUILD_DEVICE_ID	= 8
 
 # Support 8GB or 6GB , Default 6GB
   DEFINE RAM_SIZE               = 8
@@ -71,7 +72,11 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
 !endif
 
 !if $(BUILD_DEVICE_ID) == 8
-  GCC:*_*_AARCH64_CC_FLAGS = -DVM=1
+  GCC:*_*_AARCH64_CC_FLAGS = -DVM=1 -DLG=1
+!endif
+
+!if $(BUILD_DEVICE_ID) == 12
+  GCC:*_*_AARCH64_CC_FLAGS = -DVM=1 -DLG=1
 !endif
 
 !if $(RAM_SIZE) == 8
@@ -162,6 +167,12 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
   !if $(BUILD_DEVICE_ID) == 10
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
         gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2340
+  !endif
+
+# LG V50
+  !if $(BUILD_DEVICE_ID) == 12
+        gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1440
+        gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|3120
   !endif
 
 !include SurfaceDuoPkg/Shared.dsc.inc

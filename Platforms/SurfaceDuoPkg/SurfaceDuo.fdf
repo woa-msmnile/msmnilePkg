@@ -162,6 +162,11 @@ READ_LOCK_STATUS   = TRUE
   !if $(BUILD_DEVICE_ID) == 10
     !include SurfaceDuoPkg/Include/DXE10.inc
   !endif
+  
+# LG V50
+  !if $(BUILD_DEVICE_ID) == 12
+    !include SurfaceDuoPkg/Include/DXE12.inc
+  !endif
 
 ######################## END LINE ########################
 
