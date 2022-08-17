@@ -7,7 +7,7 @@
 
 Quick notes for building:
 
-- Use Ubuntu 20.04 x64
+- Use Ubuntu 20.04 x64 (or use docker-compose under other distros)
 - Generate ACPI tables with IASL
 - Follow this quick draft
 
@@ -17,6 +17,11 @@ Quick notes for building:
 ./setup_env.sh
 pip install --upgrade -r pip-requirements.txt
 ```
+Alternatively, use docker-compose if you don't have Ubuntu 20.04 environment
+```
+docker-compose run mu
+```
+Then finish the following process in docker environment
 
 2. Activate Workspace
 ```
@@ -31,7 +36,7 @@ source SurfaceDuo/bin/activate
 
 4. Switch Device
 ```
-nano Platform/SurfaceDuoPkg/SurfaceDuo.dsc
+nano Platforms/SurfaceDuoPkg/SurfaceDuo.dsc
 ```
  * You will find:
 ```
