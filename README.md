@@ -40,6 +40,11 @@ source SurfaceDuo/bin/activate
 ./setup_uefi.sh
 ```
 
+4. Stamp build
+```
+python3 ./Platforms/SurfaceDuoPkg/StampBuild.py
+```
+
 5. Build UEFI
 
 ```
