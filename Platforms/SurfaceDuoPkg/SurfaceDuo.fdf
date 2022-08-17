@@ -24,6 +24,10 @@
 #
 ################################################################################
 
+!ifndef TARGET_DEVICE
+!error "TARGET_DEVICE must be defined"
+!endif
+
 [FD.SM8150_EFI]
 BaseAddress   = 0x9FC00000|gArmTokenSpaceGuid.PcdFdBaseAddress #The base address of the FLASH Device.
 Size          = 0x00300000|gArmTokenSpaceGuid.PcdFdSize        #The size in bytes of the FLASH Device
@@ -103,70 +107,8 @@ READ_LOCK_CAP      = TRUE
 READ_LOCK_STATUS   = TRUE
 
   !include SurfaceDuoPkg/Include/APRIORI.inc
+  !include SurfaceDuoPkg/Device/$(TARGET_DEVICE)/DXE.fdf.inc
 
-#
-# Choose Binaries Configuration Here.
-#
-
-# Mi MIX3 5G
-  !if $(BUILD_DEVICE_ID) == 0
-    !include SurfaceDuoPkg/Include/DXE0.inc
-  !endif
-
-# Mi Pad 5
-  !if $(BUILD_DEVICE_ID) == 1
-    !include SurfaceDuoPkg/Include/DXE1.inc
-  !endif
-
-# LG G8
-  !if $(BUILD_DEVICE_ID) == 2
-    !include SurfaceDuoPkg/Include/DXE2.inc
-  !endif
-
-# Mi K20 Pro
-  !if $(BUILD_DEVICE_ID) == 3
-    !include SurfaceDuoPkg/Include/DXE3.inc
-  !endif
-
-# OnePlus 7 Pro
-  !if $(BUILD_DEVICE_ID) == 4
-    !include SurfaceDuoPkg/Include/DXE4.inc
-  !endif
-
-# OnePlus 7T Pro
-  !if $(BUILD_DEVICE_ID) == 5
-    !include SurfaceDuoPkg/Include/DXE5.inc
-  !endif
-
-# Mi Poco X3 Pro
-  !if $(BUILD_DEVICE_ID) == 6
-    !include SurfaceDuoPkg/Include/DXE6.inc
-  !endif
-
-# Samsung Galaxy S10
-  !if $(BUILD_DEVICE_ID) == 7
-    !include SurfaceDuoPkg/Include/DXE7.inc
-  !endif
-
-# LG V50S
-  !if $(BUILD_DEVICE_ID) == 8
-    !include SurfaceDuoPkg/Include/DXE8.inc
-  !endif
-
-# ASUS ROG2 
-  !if $(BUILD_DEVICE_ID) == 9
-    !include SurfaceDuoPkg/Include/DXE9.inc
-  !endif
-
-# Xiaomi Hercules
-  !if $(BUILD_DEVICE_ID) == 10
-    !include SurfaceDuoPkg/Include/DXE10.inc
-  !endif
-  
-# LG V50
-  !if $(BUILD_DEVICE_ID) == 12
-    !include SurfaceDuoPkg/Include/DXE12.inc
-  !endif
 
 ######################## END LINE ########################
 
@@ -211,7 +153,7 @@ READ_LOCK_STATUS   = TRUE
   INF SurfaceDuoPkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
 
   # ACPI Tables
-  !include SurfaceDuoPkg/Include/ACPI.inc
+  !include SurfaceDuoPkg/Device/$(TARGET_DEVICE)/ACPI.fdf.inc
 
   # DT
   INF EmbeddedPkg/Drivers/DtPlatformDxe/DtPlatformDxe.inf
