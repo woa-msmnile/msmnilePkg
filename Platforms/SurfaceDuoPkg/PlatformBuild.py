@@ -4,6 +4,7 @@
 # Copyright (c) Microsoft Corporation.
 # SPDX-License-Identifier: BSD-2-Clause-Patent
 ##
+import importlib
 import os
 import logging
 import io
@@ -20,6 +21,10 @@ from edk2toolext.invocables.edk2_setup import SetupSettingsManager, RequiredSubm
 from edk2toolext.invocables.edk2_update import UpdateSettingsManager
 from edk2toolext.invocables.edk2_pr_eval import PrEvalSettingsManager
 from edk2toollib.utility_functions import RunCmd
+
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), 'PythonLibs'))
+import sdbuild
 
 
     # ####################################################################################### #
@@ -144,6 +149,7 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
 class PlatformBuilder( UefiBuilder, BuildSettingsManager):
     def __init__(self):
         UefiBuilder.__init__(self)
+        sdbuild.builder = self
 
     def AddCommandLineOptions(self, parserObj):
         ''' Add command line options to the argparser '''
@@ -172,6 +178,22 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
     def GetActiveScopes(self):
         ''' return tuple containing scopes that should be active for this process '''
         return CommonPlatform.Scopes
+
+    def GetOutputDirectory(self):
+        ''' Return the output directory for this platform '''
+        return self.env.GetValue("OUTPUT_DIRECTORY")
+
+    def GetOutputBinDirectory(self):
+        ''' Return the output directory with binaries '''
+        toolchain_tag = self.env.GetValue("TOOL_CHAIN_TAG")
+        target = self.env.GetValue("TARGET")
+        out_dir = self.env.GetValue("OUTPUT_DIRECTORY")
+        return os.path.join(out_dir, f"{target}_{toolchain_tag}")
+
+    def GetTargetDeviceDirectory(self):
+        ''' Return the output directory with binaries '''
+        target_device = self.env.GetValue("TARGET_DEVICE")
+        return os.path.join("Platforms", "SurfaceDuoPkg", "Device", target_device)
 
     def GetName(self):
         ''' Get the name of the repo, platform, or product being build '''
@@ -204,14 +226,27 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
         self.env.SetValue("BUILDREPORT_TYPES", "PCD DEPEX FLASH BUILD_FLAGS LIBRARY FIXED_ADDRESS HASH", "Setting build report types")
         # Include the MFCI test cert by default, override on the commandline with "BLD_*_SHIP_MODE=TRUE" if you want the retail MFCI cert
         self.env.SetValue("BLD_*_SHIP_MODE", "FALSE", "Default")
-
+        self.env.SetValue("BLD_*_TARGET_DEVICE", self.env.GetValue("TARGET_DEVICE"), "Default")
+        self.env.SetValue("BLD_*_TARGET_RAM_SIZE", self.env.GetValue("TARGET_RAM_SIZE"), "Default")
         return 0
 
     def PlatformPreBuild(self):
+        self.RunTargetDeviceScript("PreBuild.py")
         return 0
 
     def PlatformPostBuild(self):
+        self.RunTargetDeviceScript("PostBuild.py")
         return 0
+
+    def RunTargetDeviceScript(self, script_name):
+        script_file = os.path.join(self.GetTargetDeviceDirectory(), script_name)
+        if os.path.exists(script_file):
+            logging.info("Running %s", script_name)
+            loader = importlib.machinery.SourceFileLoader(script_name, script_file)
+            spec = importlib.util.spec_from_loader(loader.name, loader)
+            mod = importlib.util.module_from_spec(spec)
+            loader.exec_module(mod)
+
 
     def FlashRomImage(self):
         return 0

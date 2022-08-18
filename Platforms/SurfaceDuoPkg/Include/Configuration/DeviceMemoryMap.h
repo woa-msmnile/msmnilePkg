@@ -60,7 +60,7 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
     {"DBI Dump",          0x82A00000, 0x00D22000, NoHob,  MMAP_IO, INITIALIZED, Reserv, UNCACHED_UNBUFFERED_XN},
     {"HLOS 1",            0x83722000, 0x01FDE000, AddMem, SYS_MEM, SYS_MEM_CAP, BsData, WRITE_BACK_XN},
     {"Hypervisor",        0x85700000, 0x00600000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, NS_DEVICE}, /* Added */
-#if MI == 1
+#if MEMMAP_XIAOMI_HACKS == 1
     {"RAM Partition",     0x85D00000, 0x00200000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
 #else
     {"MPSS_EFS",          0x85D00000, 0x00200000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, UNCACHED_UNBUFFERED_XN},
@@ -73,7 +73,7 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
     {"TZ",                0x86200000, 0x01800000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, NS_DEVICE}, /* Added */
     {"TZApps",            0x87A00000, 0x02100000, NoHob,  SYS_MEM, SYS_MEM_CAP, Reserv, NS_DEVICE},
     {"RAM Partition",     0x89B00000, 0x01C00000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
-#if LG == 1
+#if MEMMAP_LG_HACKS == 1
 	{"PIL_REGION",        0x8B700000, 0x0F800000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, UNCACHED_UNBUFFERED_XN},
     {"DXE Heap",          0x9AF00000, 0x00D00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
 #else
@@ -104,14 +104,22 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
 
     /* RAM partition regions */
 
-#if   (VM+RAM_SIZE) == 7
+#if HAS_MLVM == 1
+
+#if RAM_SIZE == 6
     {"MLVM",              0xA0000000, 0x1CC00000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
-#elif (VM+RAM_SIZE) == 9
+#elif RAM_SIZE == 8
     {"MLVM",              0xA0000000, 0x1BB00000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
-#elif (VM+RAM_SIZE) == 6
+#endif
+
+#else
+
+#if RAM_SIZE == 6
     {"RAM Partition",     0xA0000000, 0x1CC00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv, WRITE_BACK_XN},
-#elif (VM+RAM_SIZE) == 8
+#elif RAM_SIZE == 8
     {"RAM Partition",     0xA0000000, 0x1BB00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv, WRITE_BACK_XN},
+#endif
+
 #endif
 
     //6GB
@@ -121,7 +129,7 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
     //8GB
     // Memory hole: 0xBBB00000 - 0xBFFFFFFF
     // Size: 0x44FFFFF
-#if MI ==1
+#if MEMMAP_XIAOMI_HACKS == 1
     {"MPSS_EFS",          0x0C0000000, 0x00300000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, UNCACHED_UNBUFFERED_XN},
     {"RAM Partition",     0x0C0300000, 0x7FD00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
 #else
