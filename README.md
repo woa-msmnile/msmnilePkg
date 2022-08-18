@@ -48,8 +48,10 @@ python3 ./Platforms/SurfaceDuoPkg/StampBuild.py
 5. Build UEFI
 
 ```
-./build_uefi.sh <target-name>
+./build_uefi.sh <target-name> <traget-ram-size>
 ```
+Ram size should be 6 or 8.
+You will find Build/<target-name>/uefi.img if build successfully.
 
 ## Target list
 

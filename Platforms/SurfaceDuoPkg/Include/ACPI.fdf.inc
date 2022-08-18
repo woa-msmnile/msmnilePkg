@@ -1,4 +1,8 @@
-FILE FREEFORM = 7E374E25-8E01-4FEE-87F2-390C23C606CD {       
+FILE FREEFORM = 7E374E25-8E01-4FEE-87F2-390C23C606CD {
+
+    # Customized DSDT
+    SECTION RAW = SurfaceDuoPkg/Device/$(TARGET_DEVICE)/ACPI/DSDT.aml
+    # Common Tables
     SECTION RAW = SurfaceDuoPkg/AcpiTables/8150/builtin/APIC.aml
     # SECTION RAW = SurfaceDuoPkg/AcpiTables/8150/builtin/BERT.aml
     # SECTION RAW = SurfaceDuoPkg/AcpiTables/8150/builtin/BGRT.aml
@@ -13,8 +17,5 @@ FILE FREEFORM = 7E374E25-8E01-4FEE-87F2-390C23C606CD {
     SECTION RAW = SurfaceDuoPkg/AcpiTables/8150/builtin/PPTT.aml
     SECTION RAW = SurfaceDuoPkg/AcpiTables/8150/builtin/TPM2.aml
     # SECTION RAW = SurfaceDuoPkg/AcpiTables/8150/builtin/XSDT.aml
-
-    SECTION RAW = SurfaceDuoPkg/Device/asus-I001DC/ACPI/DSDT.aml
-
-	SECTION UI = "AcpiTables" 
+    SECTION UI = "AcpiTables" 
 }

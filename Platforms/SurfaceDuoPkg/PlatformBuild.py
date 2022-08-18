@@ -227,7 +227,7 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
         # Include the MFCI test cert by default, override on the commandline with "BLD_*_SHIP_MODE=TRUE" if you want the retail MFCI cert
         self.env.SetValue("BLD_*_SHIP_MODE", "FALSE", "Default")
         self.env.SetValue("BLD_*_TARGET_DEVICE", self.env.GetValue("TARGET_DEVICE"), "Default")
-
+        self.env.SetValue("BLD_*_TARGET_RAM_SIZE", self.env.GetValue("TARGET_RAM_SIZE"), "Default")
         return 0
 
     def PlatformPreBuild(self):
