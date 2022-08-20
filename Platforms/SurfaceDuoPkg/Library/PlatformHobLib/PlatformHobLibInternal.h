@@ -12,6 +12,7 @@
 
 // This varies by device
 #include <Configuration/DeviceMemoryMap.h>
+#include <Configuration/DeviceConfigurationMap.h>
 
 typedef EFI_STATUS (*GET_CONFIG_STRING)(
     CHAR8 *Key, CHAR8 *Value, UINTN *ValBuffSize);

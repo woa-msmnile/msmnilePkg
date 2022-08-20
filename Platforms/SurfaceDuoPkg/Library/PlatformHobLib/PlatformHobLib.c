@@ -1,5 +1,5 @@
-#include "Sm8150PlatformHobInternal.h"
-#include "Sm8150PlatformHob.h"
+#include "PlatformHobLibInternal.h"
+#include <Library/PlatformHobLib.h>
 
 STATIC
 EFI_STATUS
@@ -73,158 +73,18 @@ STATIC
 EFI_STATUS
 CfgGetCfgInfoVal(CHAR8 *Key, UINT32 *Value)
 {
+  PCONFIGURATION_DESCRIPTOR_EX ConfigurationDescriptorEx =
+      gDeviceConfigurationDescriptorEx;
+
   DEBUG((EFI_D_INFO, "[PlatformHob] CfgGetCfgInfoVal(%a) Entry...\n", Key));
 
-  if (AsciiStriCmp(Key, "NumCpusFuseAddr") == 0) {
-    *Value = 0x5C04C;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "EnableShell") == 0) {
-    *Value = 0x1;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "SharedIMEMBaseAddr") == 0) {
-    *Value = 0x146BF000;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "DloadCookieAddr") == 0) {
-    *Value = 0x01FD3000;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "DloadCookieValue") == 0) {
-    *Value = 0x10;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "NumCpus") == 0) {
-    *Value = 8;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "NumActiveCores") == 0) {
-    *Value = 8;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "MaxLogFileSize") == 0) {
-    *Value = 0x400000;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "UefiMemUseThreshold") == 0) {
-    *Value = 0x77;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "USBHS1_Config") == 0) {
-    *Value = 0x0;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "UsbFnIoRevNum") == 0) {
-    *Value = 0x00010001;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "PwrBtnShutdownFlag") == 0) {
-    *Value = 0x0;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "Sdc1GpioConfigOn") == 0) {
-    *Value = 0x1E92;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "Sdc2GpioConfigOn") == 0) {
-    *Value = 0x1E92;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "Sdc1GpioConfigOff") == 0) {
-    *Value = 0xA00;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "Sdc2GpioConfigOff") == 0) {
-    *Value = 0xA00;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "EnableSDHCSwitch") == 0) {
-    *Value = 0x1;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "EnableUfsIOC") == 0) {
-    *Value = 0;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "UfsSmmuConfigForOtherBootDev") == 0) {
-    *Value = 1;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "SecurityFlag") == 0) {
-    *Value = 0xC4;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "TzAppsRegnAddr") == 0) {
-    *Value = 0x87900000;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "TzAppsRegnSize") == 0) {
- // *Value = 0x02200000;
- // Xiaomi uses this size
-    *Value = 0x03E00000;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "EnableLogFsSyncInRetail") == 0) {
-    *Value = 0x1;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "ShmBridgememSize") == 0) {
-    *Value = 0xA00000;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "EnableMultiThreading") == 0) {
-    *Value = 1;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "MaxCoreCnt") == 0) {
-    *Value = 8;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "EarlyInitCoreCnt") == 0) {
-    *Value = 1;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "EnableDisplayThread") == 0) {
-    *Value = 1;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "EnableUefiSecAppDebugLogDump") == 0) {
-    *Value = 0;
-    return EFI_SUCCESS;
-  }
-
-  if (AsciiStriCmp(Key, "AllowNonPersistentVarsInRetail") == 0) {
-    *Value = 1;
-    return EFI_SUCCESS;
+  // Run through each configuration descriptor
+  while (ConfigurationDescriptorEx->Value != 0xFFFFFFFF) {
+    if (AsciiStriCmp(Key, ConfigurationDescriptorEx->Name) == 0) {
+      *Value = (UINT32)(ConfigurationDescriptorEx->Value & 0xFFFFFFFF);
+      return EFI_SUCCESS;
+    }
+    ConfigurationDescriptorEx++;
   }
 
   DEBUG(
@@ -237,13 +97,18 @@ STATIC
 EFI_STATUS
 CfgGetCfgInfoVal64(CHAR8 *Key, UINT64 *Value)
 {
+  PCONFIGURATION_DESCRIPTOR_EX ConfigurationDescriptorEx =
+      gDeviceConfigurationDescriptorEx;
+
   DEBUG((EFI_D_INFO, "[PlatformHob] CfgGetCfgInfoVal64(%a) Entry...\n", Key));
 
-  UINT32 TmpValue = 0;
-
-  if (CfgGetCfgInfoVal(Key, &TmpValue) == EFI_SUCCESS) {
-    *Value = TmpValue;
-    return EFI_SUCCESS;
+  // Run through each configuration descriptor
+  while (ConfigurationDescriptorEx->Value != 0xFFFFFFFF) {
+    if (AsciiStriCmp(Key, ConfigurationDescriptorEx->Name) == 0) {
+      *Value = ConfigurationDescriptorEx->Value;
+      return EFI_SUCCESS;
+    }
+    ConfigurationDescriptorEx++;
   }
 
   DEBUG(

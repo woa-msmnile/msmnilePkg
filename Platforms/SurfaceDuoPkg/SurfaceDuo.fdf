@@ -162,7 +162,11 @@ READ_LOCK_STATUS   = TRUE
     SECTION RAW = SurfaceDuoPkg/FdtBlob/sm8150-microsoft-surface-duo.dtb
   }
 
+  INF MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
+
   !include SurfaceDuoPkg/FrontpageFdf.inc
+
+  INF SurfaceDuoPkg/UFP/ufpdevicefw.inf
 
 [FV.FVMAIN_COMPACT]
 FvAlignment        = 8

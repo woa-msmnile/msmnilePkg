@@ -25,7 +25,7 @@
 #include <Library/PrePiLib.h>
 #include <Library/SerialPortLib.h>
 
-#include "Sm8150PlatformHob.h"
+#include <Library/PlatformHobLib.h>
 
 #define TLMM_WEST  0x03100000
 #define TLMM_EAST  0x03500000
@@ -202,6 +202,18 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
   // FV.
   Status = DecompressFirstFv();
   ASSERT_EFI_ERROR(Status);
+
+  // Windows requires Cache Coherency for the UFS to work at its best
+  // The UFS device is currently attached to the main IOMMU on Context Bank 1 (Previous firmware)
+  // But said configuration is non cache coherent compliant, fix it.
+  MmioWrite32(0x15081000, 0x9F00E0);
+  MmioWrite32(0x15081020, 0x0);
+  MmioWrite32(0x15081024, 0x0);
+  MmioWrite32(0x15081028, 0x0);
+  MmioWrite32(0x1508102C, 0x0);
+  MmioWrite32(0x15081038, 0x0);
+  MmioWrite32(0x1508103C, 0x0);
+  MmioWrite32(0x15081030, 0x0);
 
   // Load the DXE Core and transfer control to it
   Status = LoadDxeCoreFromFv(NULL, 0);
