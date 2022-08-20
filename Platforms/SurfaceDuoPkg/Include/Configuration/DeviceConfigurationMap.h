@@ -48,7 +48,7 @@ static CONFIGURATION_DESCRIPTOR_EX gDeviceConfigurationDescriptorEx[] = {
     {"Sdc2GpioConfigOn", 0x1E92},
     {"SecurityFlag", 0x1C77},
     {"SerialPortBufferSize", 0x8000},
-    {"SharedIMEMBaseAddr   ", 0x146BF000},
+    {"SharedIMEMBaseAddr", 0x146BF000},
     {"ShmBridgememSize", 0xA00000},
     {"TzAppsRegnAddr", 0x87900000},
     {"TzAppsRegnSize", 0x02200000},

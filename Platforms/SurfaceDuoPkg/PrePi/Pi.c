@@ -26,6 +26,7 @@
 #include <Library/SerialPortLib.h>
 
 #include <Library/PlatformHobLib.h>
+#include <Configuration/DeviceMemoryMap.h>
 
 #define TLMM_WEST  0x03100000
 #define TLMM_EAST  0x03500000
@@ -51,6 +52,27 @@ typedef VOID (*LINUX_KERNEL) (UINT64 ParametersBase,
                               UINT64 Reserved2);
 
 VOID EFIAPI ProcessLibraryConstructorList(VOID);
+
+PARM_MEMORY_REGION_DESCRIPTOR_EX PStoreMemoryRegion = NULL;
+
+EFI_STATUS
+EFIAPI
+SerialPortLocateArea(PARM_MEMORY_REGION_DESCRIPTOR_EX* MemoryDescriptor)
+{
+  PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
+      gDeviceMemoryDescriptorEx;
+
+  // Run through each memory descriptor
+  while (MemoryDescriptorEx->Length != 0) {
+    if (AsciiStriCmp("PStore", MemoryDescriptorEx->Name) == 0) {
+      *MemoryDescriptor = MemoryDescriptorEx;
+	return EFI_SUCCESS;
+    }
+    MemoryDescriptorEx++;
+  }
+
+  return EFI_NOT_FOUND;
+}
 
 STATIC VOID UartInit(VOID)
 {
@@ -100,9 +122,11 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
   //UINT32 Lid0Status    = 0;
 
 #if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
+  SerialPortLocateArea(&PStoreMemoryRegion);
+
   // Clear PStore area
-  UINT8 *base = (UINT8 *)0x17fe00000ull;
-  for (UINTN i = 0; i < 0x200000; i++) {
+  UINT8 *base = (UINT8 *)PStoreMemoryRegion->Address;
+  for (UINTN i = 0; i < PStoreMemoryRegion->Length; i++) {
     base[i] = 0;
   }
 #endif
