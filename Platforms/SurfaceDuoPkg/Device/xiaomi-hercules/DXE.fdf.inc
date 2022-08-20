@@ -45,6 +45,7 @@
             SECTION UI = "PlatformInfoDxeDriver"
     }
 
+    # TODO: Patch this driver.
     FILE DRIVER = 9a00771f-36d4-4dd5-8916-c48ed9b16b86 {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-9a00771f-36d4-4dd5-8916-c48ed9b16b86/section0.dxe.depex
             SECTION PE32 = SurfaceDuoPkg/Device/xiaomi-hercules/CustomizedBinaries/HALIOMMU.efi
@@ -114,6 +115,7 @@
             SECTION UI = "UFSDxe"
     }
 
+    INF MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
     INF FatPkg/EnhancedFatDxe/Fat.inf
 
     FILE DRIVER = 6925fad3-e243-4b69-ad61-3f978c8abc60 {
@@ -245,6 +247,12 @@
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-569ea0de-b557-4043-84cf-01103fe516e5/section0.dxe.depex
             SECTION PE32 = SurfaceDuoPkg/Device/xiaomi-hercules/CustomizedBinaries/GpiDxe.efi
             SECTION UI = "GpiDxe"
+    }
+
+    FILE DRIVER = c62f4b20-681e-11df-8f0d-0002a5d5c51b {
+            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-c62f4b20-681e-11df-8f0d-0002a5d5c51b/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoPkg/PatchedBinaries/PciHostBridgeDxe.efi
+            SECTION UI = "PciHostBridge"
     }
 
     FILE DRIVER = 3adf8dda-1850-44c5-8c63-bb991849bc6f {
