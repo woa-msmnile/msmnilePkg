@@ -7,7 +7,6 @@
 
 [Sources.common]
   Pi.c
-  Sm8150PlatformHob.c
 
 [Sources.AARCH64]
   ReleaseInfo.S | GCC
@@ -45,6 +44,7 @@
   # Platform-specific libraries
   MemoryInitPeiLib
   PlatformPeiLib
+  PlatformHobLib
 
 [Guids]
   gEfiSystemNvDataFvGuid

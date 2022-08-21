@@ -4,11 +4,14 @@
 #include <Library/CacheMaintenanceLib.h>
 #include <Library/HobLib.h>
 #include <Library/SerialPortLib.h>
+#include <Configuration/DeviceMemoryMap.h>
 
 #include <Resources/FbColor.h>
 #include <Resources/font5x12.h>
 
 #include <Library/FrameBufferSerialPortLib.h>
+
+PARM_MEMORY_REGION_DESCRIPTOR_EX PStoreMemoryRegion = NULL;
 
 FBCON_POSITION m_Position;
 FBCON_POSITION m_MaxPosition;
@@ -33,6 +36,25 @@ void FbConFlush(void);
 
 RETURN_STATUS
 EFIAPI
+SerialPortLocateArea(PARM_MEMORY_REGION_DESCRIPTOR_EX* MemoryDescriptor)
+{
+  PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
+      gDeviceMemoryDescriptorEx;
+
+  // Run through each memory descriptor
+  while (MemoryDescriptorEx->Length != 0) {
+    if (AsciiStriCmp("PStore", MemoryDescriptorEx->Name) == 0) {
+      *MemoryDescriptor = MemoryDescriptorEx;
+	return RETURN_SUCCESS;
+    }
+    MemoryDescriptorEx++;
+  }
+
+  return RETURN_UNSUPPORTED;
+}
+
+RETURN_STATUS
+EFIAPI
 SerialPortInitialize(VOID)
 {
   UINTN InterruptState = 0;
@@ -48,19 +70,12 @@ SerialPortInitialize(VOID)
   // Reset console
   FbConReset();
 
-#if 0
-  UINT8* base = (UINT8*)0x17fe00000ull;
-  for (UINTN i = 0; i < 0x200000; i++) {
-    base[i] = 0;
-  }
-#endif
-
   // Set flag
   m_Initialized = TRUE;
 
   if (InterruptState)
     ArmEnableInterrupts();
-  return RETURN_SUCCESS;
+  return SerialPortLocateArea(&PStoreMemoryRegion);
 }
 
 void ResetFb(void)
@@ -299,8 +314,8 @@ void FbConFlush(void)
 
 static void mem_putchar(UINT8 c)
 {
-  static const UINTN size   = 0x200000 - sizeof(UINTN);
-  UINT8 *            base   = (UINT8 *)0x17fe00000ull;
+  static const UINTN size   = PStoreMemoryRegion->Length - sizeof(UINTN);
+  UINT8 *            base   = (UINT8 *)PStoreMemoryRegion->Address;
   UINTN *            offset = (UINTN *)((UINTN)base + size);
 
   *offset                   = *offset % size;
