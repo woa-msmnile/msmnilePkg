@@ -61,6 +61,7 @@ You will find Build/<target-name>/uefi.img if build successfully.
 | LG G8              | lg-alphaplus        | ✅           | [sunflower2333](https://github.com/sunflower2333)  |
 | LG V50             | lg-flashlmdd        | ✅           | [AKA](https://github.com/AKAsaliza)                |
 | LG V50S            | lg-mh2lm            | ✅           | [AKA](https://github.com/AKAsaliza)                |
+| Nubia Mini 5G      | nubia-tp1803        | ✅           | [Alula](https://github.com/alula)                  |
 | OnePlus 7 Pro      | oneplus-guacamole   | ❌           | [Waseem Alkurdi](https://github.com/WaseemAlkurdi) |
 | OnePlus 7T Pro     | oneplus-hotdog      | ❌           | [Waseem Alkurdi](https://github.com/WaseemAlkurdi) |
 | Samsung Galaxy S10 | samsung-beyond1qlte | ✅           | [w](https://github.com/Idonotkno)                  |
