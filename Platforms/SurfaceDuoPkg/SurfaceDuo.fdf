@@ -107,7 +107,7 @@ READ_LOCK_CAP      = TRUE
 READ_LOCK_STATUS   = TRUE
 
   !include SurfaceDuoPkg/Include/APRIORI.inc
-  !include SurfaceDuoPkg/Device/$(TARGET_DEVICE)/DXE.fdf.inc
+  !include SurfaceDuoPkg/Include/DXE.fdf.inc
 
 
 ######################## END LINE ########################

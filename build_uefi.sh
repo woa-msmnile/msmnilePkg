@@ -24,7 +24,7 @@ fi
 
 if  [ -z ${TARGET_RAM_SIZE} ]; then
 	echo -e "\e[1;36mMissing ram size, default 6GB\e[0m"
-	sleep 3
+	sleep 2
 	TARGET_RAM_SIZE=6
 fi
 
