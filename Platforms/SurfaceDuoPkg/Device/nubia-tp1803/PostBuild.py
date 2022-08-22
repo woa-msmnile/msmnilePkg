@@ -11,7 +11,7 @@ device_dir = sdbuild.builder.GetTargetDeviceDirectory()
 bootpayload_path = os.path.join(output_dir, 'bootpayload.bin')
 output_path = os.path.join(output_dir, 'uefi.img')
 fd_path = os.path.join(outputbin_dir, 'FV', 'SM8150_EFI.fd')
-dtb_path = "./ImageResources/dtb"
+dtb_path = os.path.join(device_dir, 'tp1803.dtb')
 
 logging.info("Generating bootpayload.bin")
 
