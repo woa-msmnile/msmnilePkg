@@ -35,9 +35,24 @@
   SKUID_IDENTIFIER               = DEFAULT
   FLASH_DEFINITION               = SurfaceDuoPkg/SurfaceDuo.fdf
 
+  ################################################################################
+  # Platform-specific defines, overridable in Defines.dsc.inc
+  ################################################################################
+
+  # Debugging
+  DEFINE USE_SCREEN_FOR_SERIAL_OUTPUT = TRUE
+  DEFINE USE_MEMORY_FOR_SERIAL_OUTPUT = FALSE
+  DEFINE SEND_HEARTBEAT_TO_SERIAL     = FALSE
+  
+  # Included Drivers
   DEFINE SECURE_BOOT_ENABLE           = TRUE
-  DEFINE USE_SCREEN_FOR_SERIAL_OUTPUT = 1
-  DEFINE USE_MEMORY_FOR_SERIAL_OUTPUT = 0
+  DEFINE USE_SIMPLEFBDXE              = TRUE
+  DEFINE USE_DISPLAYDXE               = FALSE
+  
+  # Device-specific memory map hacks
+  DEFINE HAS_MLVM                     = FALSE
+  DEFINE MEMMAP_XIAOMI_HACKS          = FALSE
+  DEFINE MEMMAP_LG_HACKS              = FALSE
 
 !include SurfaceDuoPkg/Device/$(TARGET_DEVICE)/Defines.dsc.inc
 
@@ -45,19 +60,19 @@
 
 GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
 
-!if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
+!if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == TRUE
   GCC:*_*_AARCH64_CC_FLAGS = -DUSE_MEMORY_FOR_SERIAL_OUTPUT=1
 !endif
 
-!if $(HAS_MLVM) == 1
+!if $(HAS_MLVM) == TRUE
   GCC:*_*_AARCH64_CC_FLAGS = -DHAS_MLVM=1
 !endif
 
-!if $(MEMMAP_XIAOMI_HACKS) == 1
+!if $(MEMMAP_XIAOMI_HACKS) == TRUE
   GCC:*_*_AARCH64_CC_FLAGS = -DMEMMAP_XIAOMI_HACKS=1
 !endif
 
-!if $(MEMMAP_LG_HACKS) == 1
+!if $(MEMMAP_LG_HACKS) == TRUE
   GCC:*_*_AARCH64_CC_FLAGS = -DMEMMAP_LG_HACKS=1
 !endif
 

@@ -258,14 +258,14 @@
 !endif
 
   # Platform Drivers
-!if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == 1
-!if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
+!if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == TRUE
+!if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == TRUE
   SerialPortLib|SurfaceDuoPkg/Library/FrameBufferInMemorySerialPortLib/FrameBufferInMemorySerialPortLib.inf
 !else
   SerialPortLib|SurfaceDuoPkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf
 !endif
 !else
-!if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
+!if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == TRUE
   SerialPortLib|SurfaceDuoPkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
 !else
   SerialPortLib|MdePkg/Library/BaseSerialPortLibNull/BaseSerialPortLibNull.inf
@@ -406,14 +406,14 @@
   # PrePI
   SurfaceDuoPkg/PrePi/PrePi.inf {
     <LibraryClasses>
-    !if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == 1
-    !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
+    !if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == TRUE
+    !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == TRUE
       SerialPortLib|SurfaceDuoPkg/Library/FrameBufferInMemorySerialPortLib/FrameBufferInMemorySerialPortLib.inf
     !else
       SerialPortLib|SurfaceDuoPkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf
     !endif
     !else
-    !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
+    !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == TRUE
       SerialPortLib|SurfaceDuoPkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
     !else
       SerialPortLib|MdePkg/Library/BaseSerialPortLibNull/BaseSerialPortLibNull.inf
@@ -447,7 +447,7 @@
   }
 
   # Debug heartbeat
-!if $(SEND_HEARTBEAT_TO_SERIAL) == 1
+!if $(SEND_HEARTBEAT_TO_SERIAL) == TRUE
   SurfaceDuoPkg/Driver/HeartbeatDxe/HeartbeatDxe.inf
 !endif
 
@@ -489,7 +489,10 @@
   MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
 
   # Graphics Driver
+  
+!if $(USE_SIMPLEFBDXE) == TRUE
   SurfaceDuoPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
+!endif
 
   # HID Support
   HidPkg/HidKeyboardDxe/HidKeyboardDxe.inf
