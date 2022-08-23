@@ -24,18 +24,19 @@
             SECTION UI = "ButtonsDxe"
     }
 
-#
-#    FILE DRIVER = 1b52138d-3fa3-4e50-b958-20887353f809 {
-#            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section0.dxe.depex
-#            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section1.pe
-#            SECTION UI = "CPRDxe"
-#    }
-#
-#    FILE DRIVER = 4138022f-06c7-4f79-9c94-7e33b511a4e7 {
-#            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-4138022f-06c7-4f79-9c94-7e33b511a4e7/section0.dxe.depex
-#            SECTION PE32 = SurfaceDuoPkg/PatchedBinaries/Xiaomi/DisplayDxe.efi
-#            SECTION UI = "DisplayDxe"
-#    }
+!if $(USE_DISPLAYDXE) == TRUE
+    FILE DRIVER = 1b52138d-3fa3-4e50-b958-20887353f809 {
+            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section1.pe
+            SECTION UI = "CPRDxe"
+    }
+
+    FILE DRIVER = 4138022f-06c7-4f79-9c94-7e33b511a4e7 {
+            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-4138022f-06c7-4f79-9c94-7e33b511a4e7/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/DisplayDxe.efi
+            SECTION UI = "DisplayDxe"
+    }
+!endif
 
     FILE FREEFORM = F9F359EE-EEE5-4BAB-9231-376811C5A332 {
             SECTION UI = "Panel_jdi_hx83112a_1080p_vid.xml"

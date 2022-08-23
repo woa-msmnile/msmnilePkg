@@ -113,15 +113,15 @@ READ_LOCK_STATUS   = TRUE
 ######################## END LINE ########################
 
   # Debug heartbeat
-!if $(SEND_HEARTBEAT_TO_SERIAL) == 1
+!if $(SEND_HEARTBEAT_TO_SERIAL) == TRUE
   INF SurfaceDuoPkg/Driver/HeartbeatDxe/HeartbeatDxe.inf
 !endif
 
   # Secure Boot Key Enroll
-  !if $(SECURE_BOOT_ENABLE) == TRUE
-    INF SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
-    # INF SurfaceDuoPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
-  !endif
+!if $(SECURE_BOOT_ENABLE) == TRUE
+  INF SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
+  # INF SurfaceDuoPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
+!endif
 
   INF EmbeddedPkg/Drivers/VirtualKeyboardDxe/VirtualKeyboardDxe.inf
 
