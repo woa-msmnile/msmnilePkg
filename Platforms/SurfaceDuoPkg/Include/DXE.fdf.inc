@@ -344,11 +344,13 @@
             SECTION UI = "SharedCryptoDxe"
     }
 
+!if $(USE_DISPLAYDXE) == FALSE
     FILE DRIVER = 3977d4c4-b0eb-4548-96b9-671fa2e36820 {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-3977d4c4-b0eb-4548-96b9-671fa2e36820/section0.dxe.depex
             SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-3977d4c4-b0eb-4548-96b9-671fa2e36820/section1.pe
             SECTION UI = "MsEarlyGraphicsDxe"
     }
+!endif
 
     FILE FREEFORM = a91d838e-a5fa-4138-825d-455e2303079e {
             SECTION UI = "BDS_Menu.cfg"

@@ -142,7 +142,9 @@ READ_LOCK_STATUS   = TRUE
   }
 
   # MemAttSet Need by Display Region
+!if $(USE_SIMPLEFBDXE) == TRUE
   INF SurfaceDuoPkg/Driver/MemAttSetDxe/MemAttSet.inf
+!endif
   # Disk IO
   INF MdeModulePkg/Bus/Scsi/ScsiBusDxe/ScsiBusDxe.inf
   INF MdeModulePkg/Bus/Scsi/ScsiDiskDxe/ScsiDiskDxe.inf
