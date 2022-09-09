@@ -60,8 +60,15 @@
 
 GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
 
+# TODO: Re-do the memory map stuff at one point so it's not defined in static variable and put 
+# those defines only in modules that need them, so changing anything here doesn't rebuild EVERY DAMN THING.
+
 !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == TRUE
   GCC:*_*_AARCH64_CC_FLAGS = -DUSE_MEMORY_FOR_SERIAL_OUTPUT=1
+!endif
+
+!if $(USE_DISPLAYDXE) == TRUE
+  GCC:*_*_AARCH64_CC_FLAGS = -DUSE_DISPLAYDXE=1
 !endif
 
 !if $(HAS_MLVM) == TRUE

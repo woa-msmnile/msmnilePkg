@@ -510,8 +510,9 @@
   MdeModulePkg/Bus/Usb/UsbMouseAbsolutePointerDxe/UsbMouseAbsolutePointerDxe.inf
 
   #Memory Attributes Set ( Display Region )
+!if $(USE_SIMPLEFBDXE) == TRUE
   SurfaceDuoPkg/Driver/MemAttSetDxe/MemAttSet.inf
-  
+!endif
 
 
   # DT
