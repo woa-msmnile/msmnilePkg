@@ -40,6 +40,6 @@
 
     FILE FREEFORM = F9F359EE-EEE5-4BAB-9231-376811C5A332 {
             SECTION UI = "Panel_jdi_hx83112a_1080p_vid.xml"
-            SECTION RAW = SurfaceDuoPkg/Device/nubia-tp1803/CustomizedBinaries/Panel_jdi_hx83112a_1080p_vid.xml.raw
+            SECTION RAW = SurfaceDuoPkg/Device/nubia-tp1803/PatchedBinaries/Panel_jdi_hx83112a_1080p_vid.xml.raw
     }
 
