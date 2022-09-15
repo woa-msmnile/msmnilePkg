@@ -1,0 +1,22 @@
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = SurfaceDuo1Pkg
+  PACKAGE_GUID                   = 5fd522a5-b671-429f-957f-75113dd02435
+  PACKAGE_VERSION                = 0.1
+
+[Includes.common]
+  Include                        # Root include for the package
+
+[Guids.common]
+  gSurfaceDuo1PkgTokenSpaceGuid = { 0x4c59628e, 0x0a8a, 0x4099, { 0x8d, 0xe5, 0xf2, 0x08, 0xff, 0x80, 0xc4, 0xbf } }
+
+[Protocols]
+
+[PcdsFixedAtBuild.common]
+  # FD
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdFdBaseAddress|0x9FC00000|UINT64|0x0000a103
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdFdSize|0x00300000|UINT32|0x0000a104
+
+  # Memory allocation
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x1AB00000|UINT64|0x00000a106
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdUefiMemPoolSize|0x3500000|UINT32|0x00000a107

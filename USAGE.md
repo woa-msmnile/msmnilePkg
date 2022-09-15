@@ -2,8 +2,9 @@
 
 ## Requirements:
 
-- A copy of this UEFI
+- A copy of this UEFI (uefi.img)
 - A Surface Duo (Gen 1) (Any Storage Capacity)
+- ⚠️ Surface Duo (Gen 2) support is currently experimental/PoC!
 - Google's Android Platform Tools: https://developer.android.com/studio/releases/platform-tools
 
 ## Unlock Surface Duo Bootloader
@@ -25,4 +26,4 @@
 
 - Run in a command prompt: ```adb reboot bootloader```
 - Wait for the device to reboot in bootloader mode
-- Run in a command prompt: ```fastboot boot <path to boot.img downloaded or built from this repository>```
+- Run in a command prompt: ```fastboot boot <path to uefi.img downloaded or built from this repository>```
