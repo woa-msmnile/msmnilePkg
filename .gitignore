@@ -1,5 +1,6 @@
 # Dynamic Generated
-Platforms/SurfaceDuoPkg/Include/Resources/ReleaseInfo.h
+Platforms/SurfaceDuo1Pkg/Include/Resources/ReleaseInfo.h
+Platforms/SurfaceDuo2Pkg/Include/Resources/ReleaseInfo.h
 
 # Local
 .DS_Store
@@ -22,7 +23,6 @@ ACPI.inc
 build_uefi.sh
 DXEupdate.sh
 uefi_*.img
-
 
 /Conf/
 /SurfaceDuo/
