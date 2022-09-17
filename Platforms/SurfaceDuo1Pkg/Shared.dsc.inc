@@ -503,6 +503,8 @@
 
   MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
 
+  SurfaceDuo1Pkg/Driver/GpioButtons/GpioButtons.inf
+
   SurfacePkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
 
   SurfacePkg/UFP/ufpdevicefw.inf
