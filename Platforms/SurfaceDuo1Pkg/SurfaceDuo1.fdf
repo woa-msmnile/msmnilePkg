@@ -134,6 +134,8 @@ READ_LOCK_STATUS   = TRUE
 
   INF SurfacePkg/UFP/ufpdevicefw.inf
 
+  INF SurfaceDuo1Pkg/Driver/GpioButtons/GpioButtons.inf
+
 [FV.FVMAIN_COMPACT]
 FvAlignment        = 8
 ERASE_POLARITY     = 1
