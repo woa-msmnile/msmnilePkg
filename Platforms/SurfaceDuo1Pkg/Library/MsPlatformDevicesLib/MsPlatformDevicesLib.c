@@ -20,28 +20,6 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 
 #include <Library/RFSProtectionLib.h>
 
-/**
-Library function used to provide the platform SD Card device path
-**/
-EFI_DEVICE_PATH_PROTOCOL *EFIAPI GetSdCardDevicePath(VOID) { return NULL; }
-
-/**
-  Library function used to determine if the DevicePath is a valid bootable 'USB'
-device. USB here indicates the port connection type not the device protocol.
-  With TBT or USB4 support PCIe storage devices are valid 'USB' boot options.
-**/
-BOOLEAN
-EFIAPI
-PlatformIsDevicePathUsb(IN EFI_DEVICE_PATH_PROTOCOL *DevicePath)
-{
-  return FALSE;
-}
-
-/**
-Library function used to provide the list of platform devices that MUST be
-connected at the beginning of BDS
-**/
-EFI_DEVICE_PATH_PROTOCOL **EFIAPI GetPlatformConnectList(VOID) { return NULL; }
 
 EFI_DEVICE_PATH_PROTOCOL **EFIAPI
 GetDevicePathsFromProtocolGuid(IN EFI_GUID *ProtocolGuid, OUT UINTN *Count)
@@ -81,6 +59,29 @@ GetDevicePathsFromProtocolGuid(IN EFI_GUID *ProtocolGuid, OUT UINTN *Count)
 
   return pDevicePaths;
 }
+
+/**
+Library function used to provide the platform SD Card device path
+**/
+EFI_DEVICE_PATH_PROTOCOL *EFIAPI GetSdCardDevicePath(VOID) { return NULL; }
+
+/**
+  Library function used to determine if the DevicePath is a valid bootable 'USB'
+device. USB here indicates the port connection type not the device protocol.
+  With TBT or USB4 support PCIe storage devices are valid 'USB' boot options.
+**/
+BOOLEAN
+EFIAPI
+PlatformIsDevicePathUsb(IN EFI_DEVICE_PATH_PROTOCOL *DevicePath)
+{
+  return FALSE;
+}
+
+/**
+Library function used to provide the list of platform devices that MUST be
+connected at the beginning of BDS
+**/
+EFI_DEVICE_PATH_PROTOCOL **EFIAPI GetPlatformConnectList(VOID) { return NULL; }
 
 /**
  * Library function used to provide the list of platform console devices.
