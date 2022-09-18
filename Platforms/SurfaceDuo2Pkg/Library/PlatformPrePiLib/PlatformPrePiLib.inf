@@ -43,3 +43,14 @@
   # MpPark
   ArmSmcLib
   PrintLib
+
+[Pcd]
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString
+
+[FixedPcd]
+  gArmTokenSpaceGuid.PcdGicDistributorBase
+  gArmTokenSpaceGuid.PcdGicRedistributorsBase
+  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferAddress
+  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferWidth
+  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferHeight
+  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp
