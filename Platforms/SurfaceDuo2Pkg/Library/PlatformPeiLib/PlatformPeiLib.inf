@@ -20,14 +20,21 @@
 
 [Packages]
   ArmPkg/ArmPkg.dec
-  SurfacePkg/SurfacePkg.dec
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
+  SurfacePkg/SurfacePkg.dec
+  SurfaceDuo2Pkg/SurfaceDuo2Pkg.dec
 
 [LibraryClasses]
+  ArmLib
+  ArmMmuLib
+  BaseLib
   DebugLib
   HobLib
+  IoLib
+  MemoryAllocationLib
+  SerialPortLib
 
 [FixedPcd]
   gArmTokenSpaceGuid.PcdFvSize

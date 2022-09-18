@@ -109,6 +109,10 @@
   gEfiKernelProtocolGuid =             { 0xB5062BE7, 0x170B, 0x4A32, { 0xBE, 0x21, 0x68, 0x92, 0x62, 0xFF, 0x43, 0x99 } }
 
 [PcdsFixedAtBuild.common]
+  # Memory allocation
+  gSurfacePkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x1AB00000|UINT64|0x00000a106
+  gSurfacePkgTokenSpaceGuid.PcdUefiMemPoolSize|0x3500000|UINT32|0x00000a107
+
   # Debug Screen Serial
   gSurfacePkgTokenSpaceGuid.PcdEnableScreenSerial|FALSE|BOOLEAN|0x00000a105
 
