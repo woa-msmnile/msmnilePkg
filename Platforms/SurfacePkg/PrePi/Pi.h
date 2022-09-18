@@ -18,17 +18,8 @@
 #include <Library/IoLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/HobLib.h>
-#include <Library/SerialPortLib.h>
-#include <Library/PrintLib.h>
-#include <Library/BaseLib.h>
 
 extern UINT64  mSystemMemoryEnd;
-
-RETURN_STATUS
-EFIAPI
-TimerConstructor (
-  VOID
-  );
 
 EFI_STATUS
 EFIAPI

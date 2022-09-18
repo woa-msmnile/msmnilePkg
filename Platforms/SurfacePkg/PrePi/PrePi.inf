@@ -8,7 +8,6 @@
 [Sources.common]
   Pi.c
   LinuxUtils.c
-  PlatformUtils.c
 
 [Sources.AARCH64]
   ModuleEntryPoint.S | GCC
@@ -26,30 +25,19 @@
 
 [LibraryClasses]
   ArmLib
-  ArmMmuLib
   BaseLib
-  DebugLib
-  IoLib
-  ExtractGuidedSectionLib
-  LzmaDecompressLib
-  PeCoffGetEntryPointLib
-  PrePiHobListPointerLib
   CacheMaintenanceLib
-  DebugAgentLib
-  SerialPortLib
-  MemoryAllocationLib
-  PrePiMemoryAllocationLib
-  PerformanceLib
+  DebugLib
+  ExtractGuidedSectionLib
   HobLib
-  CompilerIntrinsicsLib
-  # Platform-specific libraries
+  IoLib
+  LzmaDecompressLib
+  MemoryAllocationLib
   MemoryInitPeiLib
   PlatformPeiLib
   PlatformPrePiLib
-  TimerLib
-  # MpPark
-  ArmSmcLib
-  PrintLib
+  PrePiHobListPointerLib
+  PrePiLib
 
 [Guids]
   gEfiSystemNvDataFvGuid
