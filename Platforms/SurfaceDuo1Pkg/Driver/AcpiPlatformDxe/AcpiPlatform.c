@@ -429,7 +429,7 @@ AcpiPlatformProcess (
         Size -= 8;
       }
     } else if (OpCode != 0x00) {
-      DEBUG((EFI_D_WARN, "%s ACPI Table encountered an unexpected OpCode (OpCode %c)\n", OpCode));
+      DEBUG((EFI_D_WARN, "ACPI Table encountered an unexpected OpCode (OpCode %c)\n", OpCode));
       break;
     }
   }
