@@ -446,8 +446,9 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         Device (SCHG)
         {
             Name (_HID, "SMB1380")  // _HID: Hardware ID
-            Name (_DEP, Package (0x03)  // _DEP: Dependencies
+            Name (_DEP, Package (0x04)  // _DEP: Dependencies
             {
+                \_SB.PMIC, 
                 \_SB.I2C2, 
                 \_SB.BAT1, 
                 \_SB.BAT2
@@ -460,8 +461,212 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         AddressingMode7Bit, "\\_SB.I2C2",
                         0x00, ResourceConsumer, , Exclusive,
                         )
+                    GpioIo (Exclusive, PullDown, 0x0000, 0x0000, IoRestrictionInputOnly,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x020F
+                        }
+                    GpioIo (Exclusive, PullDown, 0x0000, 0x0000, IoRestrictionInputOnly,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x020C
+                        }
+                    GpioIo (Exclusive, PullDown, 0x0000, 0x0000, IoRestrictionInputOnly,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0212
+                        }
+                    GpioIo (Exclusive, PullDown, 0x0000, 0x0000, IoRestrictionInputOnly,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0211
+                        }
+                    GpioIo (Exclusive, PullDown, 0x0000, 0x0000, IoRestrictionInputOnly,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0208
+                        }
+                    GpioIo (Exclusive, PullDown, 0x0000, 0x0000, IoRestrictionInputOnly,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0209
+                        }
+                    GpioIo (Exclusive, PullDown, 0x0000, 0x0000, IoRestrictionInputOnly,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x020A
+                        }
+                    GpioIo (Exclusive, PullDown, 0x0000, 0x0000, IoRestrictionInputOnly,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x020B
+                        }
+                    GpioInt (Edge, ActiveBoth, Shared, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0140
+                        }
+                    GpioInt (Edge, ActiveBoth, Shared, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0141
+                        }
+                    GpioInt (Edge, ActiveHigh, Shared, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0142
+                        }
+                    GpioInt (Edge, ActiveHigh, Shared, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0143
+                        }
+                    GpioInt (Edge, ActiveBoth, Shared, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0144
+                        }
+                    GpioInt (Edge, ActiveHigh, Shared, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0145
+                        }
+                    GpioInt (Edge, ActiveBoth, Shared, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0146
+                        }
+                    GpioInt (Edge, ActiveBoth, Shared, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0147
+                        }
+                    GpioInt (Edge, ActiveBoth, Shared, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0148
+                        }
+                    GpioInt (Edge, ActiveBoth, Shared, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0149
+                        }
+                    GpioInt (Edge, ActiveHigh, Shared, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x014B
+                        }
+                    GpioInt (Edge, ActiveBoth, Shared, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0150
+                        }
+                    GpioInt (Edge, ActiveBoth, Shared, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0151
+                        }
+                    GpioInt (Edge, ActiveBoth, Shared, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0153
+                        }
+                    GpioInt (Edge, ActiveBoth, Shared, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0154
+                        }
+                    GpioInt (Edge, ActiveBoth, Shared, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0160
+                        }
+                    GpioInt (Edge, ActiveBoth, Shared, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0161
+                        }
+                    GpioInt (Edge, ActiveBoth, Shared, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0162
+                        }
+                    GpioInt (Edge, ActiveBoth, Shared, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0163
+                        }
+                    GpioInt (Edge, ActiveBoth, Shared, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0164
+                        }
                 })
                 Return (RBUF) /* \_SB_.SCHG._CRS.RBUF */
+            }
+
+            Method (BCLQ, 0, NotSerialized)
+            {
+                Name (CFG0, Package (0x1C)
+                {
+                    "CELL_PACK1_DISC", 
+                    "CELL_PACK2_DISC", 
+                    "BYPASS_SHDN_N", 
+                    "RSHARE_CTRL", 
+                    "VREF_CTRL_1", 
+                    "VREF_CTRL_2", 
+                    "VREF_CTRL_3", 
+                    "VREF_CTRL_4", 
+                    "SOC_UPDT", 
+                    "SOC_READY", 
+                    "BSOC_DELTA", 
+                    "MSOC_DELTA", 
+                    "MSOC_LOW", 
+                    "MSOC_EMPTY", 
+                    "MSOC_HIGH", 
+                    "MSOC_FULL", 
+                    "VBT_LOW", 
+                    "VBT_PRD_DELTA", 
+                    "ESR_DELTA", 
+                    "BT_MISS", 
+                    "BT_ID", 
+                    "BT_TMPR_HOT", 
+                    "BT_TMPR_COLD", 
+                    "IMA_RDY", 
+                    "IMA_XCP", 
+                    "DMA_XCP", 
+                    "MEM_GNT", 
+                    "MEM_ATTN"
+                })
+                Return (CFG0) /* \_SB_.SCHG.BCLQ.CFG0 */
             }
         }
 
