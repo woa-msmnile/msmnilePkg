@@ -1,34 +1,17 @@
 // Pi.c: Entry point for SEC(Security).
 
-#include "Pi.h"
-
-#include <Pi/PiBootMode.h>
-#include <Pi/PiHob.h>
-#include <PiDxe.h>
 #include <PiPei.h>
+#include <Pi/PiBootMode.h>
 
-#include <Guid/LzmaDecompress.h>
-#include <Ppi/GuidedSectionExtraction.h>
-#include <Ppi/SecPerformance.h>
-
-#include <Library/ArmLib.h>
-#include <Library/BaseMemoryLib.h>
-#include <Library/CacheMaintenanceLib.h>
-#include <Library/DebugAgentLib.h>
-#include <Library/DebugLib.h>
-#include <Library/FrameBufferSerialPortLib.h>
-#include <Library/HobLib.h>
-#include <Library/IoLib.h>
-#include <Library/MemoryAllocationLib.h>
-#include <Library/PcdLib.h>
-#include <Library/PeCoffGetEntryPointLib.h>
-#include <Library/PerformanceLib.h>
-#include <Library/PrePiHobListPointerLib.h>
 #include <Library/PrePiLib.h>
-#include <Library/SerialPortLib.h>
-#include <Library/TimerLib.h>
-
+#include <Library/PrintLib.h>
+#include <Library/PrePiHobListPointerLib.h>
+#include <Library/CacheMaintenanceLib.h>
 #include <Library/PlatformPrePiLib.h>
+
+#include <Ppi/GuidedSectionExtraction.h>
+
+#include "Pi.h"
 
 #define IS_XIP()  (((UINT64)FixedPcdGet64 (PcdFdBaseAddress) > mSystemMemoryEnd) ||\
                   ((FixedPcdGet64 (PcdFdBaseAddress) + FixedPcdGet32 (PcdFdSize)) <= FixedPcdGet64 (PcdSystemMemoryBase)))
