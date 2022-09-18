@@ -250,6 +250,7 @@
 
   MemoryInitPeiLib|SurfaceDuo1Pkg/Library/MemoryInitPeiLib/PeiMemoryAllocationLib.inf
   PlatformPeiLib|SurfaceDuo1Pkg/Library/PlatformPeiLib/PlatformPeiLib.inf
+  PlatformPrePiLib|SurfaceDuo1Pkg/Library/PlatformPrePiLib/PlatformPrePiLib.inf
   RFSProtectionLib|SurfaceDuo1Pkg/Library/RFSProtectionLib/RFSProtectionLib.inf
 
   # System Reset
