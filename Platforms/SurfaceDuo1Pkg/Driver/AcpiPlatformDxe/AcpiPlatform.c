@@ -21,19 +21,9 @@
 
 #include <Configuration/DeviceMemoryMap.h>
 
-/* Used to read chip serial number */
 #include <Protocol/EFIChipInfo.h>
-
-/* Used to read SMEM addresses */
 #include <Protocol/EFISmem.h>
-
-/* Used to read platform information */
 #include <Protocol/EFIPlatformInfo.h>
-
-/* Protocol reference */
-EFI_CHIPINFO_PROTOCOL     *mBoardProtocol = NULL;
-EFI_SMEM_PROTOCOL         *pEfiSmemProtocol = NULL;
-EFI_PLATFORMINFO_PROTOCOL *pEfiPlatformInfoProtocol = NULL;
 
 /**
   Locate the first instance of a protocol.  If the protocol requested is an
@@ -151,19 +141,29 @@ MemoryMapLocateArea(PARM_MEMORY_REGION_DESCRIPTOR_EX* MemoryDescriptor, CHAR8* N
   return EFI_NOT_FOUND;
 }
 
-VOID
+EFI_STATUS
 AcpiPlatformProcess (
   IN UINT8  *Buffer,
   IN UINTN  Size
   )
 {
+  EFI_STATUS Status;
+
+  PARM_MEMORY_REGION_DESCRIPTOR_EX MPSSEFSRegion = NULL;
+  PARM_MEMORY_REGION_DESCRIPTOR_EX ADSPEFSRegion = NULL;
+  PARM_MEMORY_REGION_DESCRIPTOR_EX TGCMRegion = NULL;
+
+  EFI_CHIPINFO_PROTOCOL     *mBoardProtocol = NULL;
+  EFI_SMEM_PROTOCOL         *pEfiSmemProtocol = NULL;
+  EFI_PLATFORMINFO_PROTOCOL *pEfiPlatformInfoProtocol = NULL;
+
   CHAR8 Name[5] = { 0 };
   UINT8 OpCode = 0;
   UINT32 SmemSize = 0;
   UINT64 NullVal = 0;
 
   if (Size < 4) {
-    return;
+    return EFI_ABORTED;
   }
 
   CopyMem(Name, Buffer, 4);
@@ -172,12 +172,43 @@ AcpiPlatformProcess (
   Buffer += 4;
   Size -= 4;
 
-  DEBUG((EFI_D_WARN, "Processing %s ACPI Table\n", Name));
+  DEBUG((EFI_D_WARN, "Processing %a ACPI Table\n", Name));
 
   if (CompareMem("DSDT", Name, 4)) {
-    DEBUG((EFI_D_WARN, "%s ACPI Table does not need any processing\n", Name));
-    return;
+    DEBUG((EFI_D_WARN, "%a ACPI Table does not need any processing\n", Name));
+    return EFI_SUCCESS;
   }
+
+  //
+  // Find the ChipInfo protocol
+  //
+  Status = gBS->LocateProtocol(
+      &gEfiChipInfoProtocolGuid, NULL, (VOID *)&mBoardProtocol);
+  if (EFI_ERROR (Status)) {
+    return EFI_ABORTED;
+  }
+
+  //
+  // Find the SMEM protocol
+  //
+  Status = gBS->LocateProtocol(
+      &gEfiSMEMProtocolGuid, NULL, (VOID **)&pEfiSmemProtocol);
+  if (EFI_ERROR (Status)) {
+    return EFI_ABORTED;
+  }
+
+  //
+  // Find the PlatformInfo protocol
+  //
+  Status = gBS->LocateProtocol(
+      &gEfiPlatformInfoProtocolGuid, NULL, (VOID **)&pEfiPlatformInfoProtocol);
+  if (EFI_ERROR (Status)) {
+    return EFI_ABORTED;
+  }
+
+  MemoryMapLocateArea(&MPSSEFSRegion, "MPSS_EFS");
+  MemoryMapLocateArea(&ADSPEFSRegion, "ADSP_EFS");
+  MemoryMapLocateArea(&TGCMRegion, "TGCM");
 
   Buffer += 0x29;
   Size -= 0x29;
@@ -188,7 +219,7 @@ AcpiPlatformProcess (
     Size--;
 
     if (OpCode == 0x5B) {
-      DEBUG((EFI_D_WARN, "%s ACPI Table finished processing (OpCode 0x5B)\n", Name));
+      DEBUG((EFI_D_WARN, "%a ACPI Table finished processing (OpCode 0x5B)\n", Name));
       break;
     } else if (OpCode == 0x08) {
       CopyMem(Name, Buffer, 4);
@@ -196,9 +227,11 @@ AcpiPlatformProcess (
       Size -= 4;
 
       OpCode = *Buffer;
-      
+
       Buffer++;
       Size--;
+
+      DEBUG((EFI_D_WARN, "Processing %a variable\n", Name));
 
       if (!CompareMem("SOID", Name, 4) && OpCode == 0x0C) {
         UINT32 SOID = 0;
@@ -259,9 +292,8 @@ AcpiPlatformProcess (
       }
 
       if (!CompareMem("SIDT", Name, 4) && OpCode == 0x0C) {
-        //UINT32 *pSIDT = (UINT32*)0x784130;
-        //UINT32 SIDT = ((*pSIDT & 0xFFFFFFFF) >> 14) & 0xFF;
-        UINT32 SIDT = 0x1; // TODO: Fix on ACPI side or UEFI side.
+        UINT32 *pSIDT = (UINT32*)0x784130;
+        UINT32 SIDT = (*pSIDT & 0xFF00000) >> 20;
         CopyMem(Buffer, &SIDT, 4);
       }
 
@@ -275,72 +307,59 @@ AcpiPlatformProcess (
       }
 
       if (!CompareMem("PLST", Name, 4) && OpCode == 0x0C) {
-        //EFI_PLATFORMINFO_PLATFORM_INFO_TYPE PlatformInfo;
-        //pEfiPlatformInfoProtocol->GetPlatformInfo(pEfiPlatformInfoProtocol, &PlatformInfo);
-        //UINT32 PLST = PlatformInfo.subtype;
-        UINT32 PLST = 0x0; // TODO: Fix on ACPI side, returns Surface Duo platform type (e.g.: MP_A (16))
+        EFI_PLATFORMINFO_PLATFORM_INFO_TYPE PlatformInfo;
+        pEfiPlatformInfoProtocol->GetPlatformInfo(pEfiPlatformInfoProtocol, &PlatformInfo);
+        UINT32 PLST = PlatformInfo.subtype;
         CopyMem(Buffer, &PLST, 4);
       }
 
       if (!CompareMem("RMTB", Name, 4) && OpCode == 0x0C) {
-        PARM_MEMORY_REGION_DESCRIPTOR_EX RMTBRegion = NULL;
-        MemoryMapLocateArea(&RMTBRegion, "MPSS_EFS");
-        if (RMTBRegion == NULL) {
+        if (MPSSEFSRegion == NULL) {
           CopyMem(Buffer, &NullVal, 4);
         } else {
-          CopyMem(Buffer, &RMTBRegion->Address, 4);
+          CopyMem(Buffer, &MPSSEFSRegion->Address, 4);
         }
       }
 
       if (!CompareMem("RMTX", Name, 4) && OpCode == 0x0C) {
-        PARM_MEMORY_REGION_DESCRIPTOR_EX RMTXRegion = NULL;
-        MemoryMapLocateArea(&RMTXRegion, "MPSS_EFS");
-        if (RMTXRegion == NULL) {
+        if (MPSSEFSRegion == NULL) {
           CopyMem(Buffer, &NullVal, 4);
         } else {
-          CopyMem(Buffer, &RMTXRegion->Length, 4);
+          CopyMem(Buffer, &MPSSEFSRegion->Length, 4);
         }
       }
 
       if (!CompareMem("RFMB", Name, 4) && OpCode == 0x0C) {
-        PARM_MEMORY_REGION_DESCRIPTOR_EX RFMBRegion = NULL;
-        MemoryMapLocateArea(&RFMBRegion, "ADSP_EFS");
-        if (RFMBRegion == NULL) {
+        if (ADSPEFSRegion == NULL) {
           CopyMem(Buffer, &NullVal, 4);
         } else {
-          UINT64 Base = RFMBRegion->Address + RFMBRegion->Length / 2;
+          UINT64 Base = ADSPEFSRegion->Address + ADSPEFSRegion->Length / 2;
           CopyMem(Buffer, &Base, 4);
         }
       }
 
       if (!CompareMem("RFMS", Name, 4) && OpCode == 0x0C) {
-        PARM_MEMORY_REGION_DESCRIPTOR_EX RFMSRegion = NULL;
-        MemoryMapLocateArea(&RFMSRegion, "ADSP_EFS");
-        if (RFMSRegion == NULL) {
+        if (ADSPEFSRegion == NULL) {
           CopyMem(Buffer, &NullVal, 4);
         } else {
-          UINT64 Length = RFMSRegion->Length / 2;
+          UINT64 Length = ADSPEFSRegion->Length / 2;
           CopyMem(Buffer, &Length, 4);
         }
       }
 
       if (!CompareMem("RFAB", Name, 4) && OpCode == 0x0C) {
-        PARM_MEMORY_REGION_DESCRIPTOR_EX RFABRegion = NULL;
-        MemoryMapLocateArea(&RFABRegion, "ADSP_EFS");
-        if (RFABRegion == NULL) {
+        if (ADSPEFSRegion == NULL) {
           CopyMem(Buffer, &NullVal, 4);
         } else {
-          CopyMem(Buffer, &RFABRegion->Address, 4);
+          CopyMem(Buffer, &ADSPEFSRegion->Address, 4);
         }
       }
 
       if (!CompareMem("RFAS", Name, 4) && OpCode == 0x0C) {
-        PARM_MEMORY_REGION_DESCRIPTOR_EX RFASRegion = NULL;
-        MemoryMapLocateArea(&RFASRegion, "ADSP_EFS");
-        if (RFASRegion == NULL) {
+        if (ADSPEFSRegion == NULL) {
           CopyMem(Buffer, &NullVal, 4);
         } else {
-          UINT64 Length = RFASRegion->Length / 2;
+          UINT64 Length = ADSPEFSRegion->Length / 2;
           CopyMem(Buffer, &Length, 4);
         }
       }
@@ -356,22 +375,18 @@ AcpiPlatformProcess (
       }
 
       if (!CompareMem("TCMA", Name, 4) && OpCode == 0x0C) {
-        PARM_MEMORY_REGION_DESCRIPTOR_EX TCMARegion = NULL;
-        MemoryMapLocateArea(&TCMARegion, "TGCM");
-        if (TCMARegion == NULL) {
+        if (TGCMRegion == NULL) {
           CopyMem(Buffer, &NullVal, 4);
         } else {
-          CopyMem(Buffer, &TCMARegion->Address, 4);
+          CopyMem(Buffer, &TGCMRegion->Address, 4);
         }
       }
 
       if (!CompareMem("TCML", Name, 4) && OpCode == 0x0C) {
-        PARM_MEMORY_REGION_DESCRIPTOR_EX TCMLRegion = NULL;
-        MemoryMapLocateArea(&TCMLRegion, "TGCM");
-        if (TCMLRegion == NULL) {
+        if (TGCMRegion == NULL) {
           CopyMem(Buffer, &NullVal, 4);
         } else {
-          CopyMem(Buffer, &TCMLRegion->Length, 4);
+          CopyMem(Buffer, &TGCMRegion->Length, 4);
         }
       }
 
@@ -401,22 +416,22 @@ AcpiPlatformProcess (
         CopyMem(Buffer, &PRP3, 4);
       }
 
+      if (!CompareMem("SIDS", Name, 4) && OpCode == 0x0D) {
+        CHAR8 SIDS[EFICHIPINFO_MAX_ID_LENGTH];
+        mBoardProtocol->GetChipIdString(mBoardProtocol, SIDS, EFICHIPINFO_MAX_ID_LENGTH);
+        CopyMem(Buffer, SIDS, EFICHIPINFO_MAX_ID_LENGTH);
+      }
+
       if (OpCode == 0x0A) {
         Buffer++;
         Size--;
-      }
-
-      if (OpCode == 0x0B) {
+      } else if (OpCode == 0x0B) {
         Buffer += 2;
         Size -= 2;
-      }
-
-      if (OpCode == 0x0C) {
+      } else if (OpCode == 0x0C) {
         Buffer += 4;
         Size -= 4;
-      }
-
-      if (OpCode == 0x0D) {
+      } else if (OpCode == 0x0D) {
         while (1) {
           if (*Buffer == 0) {
             break;
@@ -424,17 +439,20 @@ AcpiPlatformProcess (
           Buffer++;
           Size--;
         }
-      }
-
-      if (OpCode == 0x0E) {
+      } else if (OpCode == 0x0E) {
         Buffer += 8;
         Size -= 8;
+      } else {
+        DEBUG((EFI_D_WARN, "ACPI Table encountered an unexpected type OpCode (OpCode %c)\n", OpCode));
+        break;
       }
     } else if (OpCode != 0x00) {
       DEBUG((EFI_D_WARN, "ACPI Table encountered an unexpected OpCode (OpCode %c)\n", OpCode));
       break;
     }
   }
+
+  return Status;
 }
 
 /**
@@ -501,33 +519,6 @@ AcpiPlatformEntryPoint (
   // Find the AcpiTable protocol
   //
   Status = gBS->LocateProtocol (&gEfiAcpiTableProtocolGuid, NULL, (VOID **)&AcpiTable);
-  if (EFI_ERROR (Status)) {
-    return EFI_ABORTED;
-  }
-
-  //
-  // Find the ChipInfo protocol
-  //
-  Status = gBS->LocateProtocol(
-      &gEfiChipInfoProtocolGuid, NULL, (VOID *)&mBoardProtocol);
-  if (EFI_ERROR (Status)) {
-    return EFI_ABORTED;
-  }
-
-  //
-  // Find the SMEM protocol
-  //
-  Status = gBS->LocateProtocol(
-      &gEfiSMEMProtocolGuid, NULL, (VOID **)&pEfiSmemProtocol);
-  if (EFI_ERROR (Status)) {
-    return EFI_ABORTED;
-  }
-
-  //
-  // Find the PlatformInfo protocol
-  //
-  Status = gBS->LocateProtocol(
-      &gEfiPlatformInfoProtocolGuid, NULL, (VOID **)&pEfiPlatformInfoProtocol);
   if (EFI_ERROR (Status)) {
     return EFI_ABORTED;
   }
