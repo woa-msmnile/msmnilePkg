@@ -249,8 +249,7 @@
 !endif
 
   MemoryInitPeiLib|SurfaceDuo1Pkg/Library/MemoryInitPeiLib/PeiMemoryAllocationLib.inf
-  PlatformPeiLib|SurfacePkg/Library/PlatformPeiLib/PlatformPeiLib.inf
-  PlatformHobLib|SurfaceDuo1Pkg/Library/PlatformHobLib/PlatformHobLib.inf
+  PlatformPeiLib|SurfaceDuo1Pkg/Library/PlatformPeiLib/PlatformPeiLib.inf
   RFSProtectionLib|SurfaceDuo1Pkg/Library/RFSProtectionLib/RFSProtectionLib.inf
 
   # System Reset
@@ -380,7 +379,7 @@
 
 [Components.common]
   # PrePI
-  SurfaceDuo1Pkg/PrePi/PrePi.inf {
+  SurfacePkg/PrePi/PrePi.inf {
     <LibraryClasses>
     !if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == TRUE
     !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == TRUE

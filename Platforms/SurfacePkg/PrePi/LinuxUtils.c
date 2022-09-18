@@ -1,6 +1,7 @@
 #include "Pi.h"
-#include "PlatformUtils.h"
 #include "LinuxUtils.h"
+
+#include <Library/PlatformPrePiLib.h>
 
 BOOLEAN IsLinuxAvailable(IN VOID *KernelLoadAddress)
 {
