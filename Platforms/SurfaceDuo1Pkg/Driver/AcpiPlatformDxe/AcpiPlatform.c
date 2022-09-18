@@ -298,7 +298,7 @@ AcpiPlatformProcess (
         if (RMTXRegion == NULL) {
           CopyMem(Buffer, &NullVal, 4);
         } else {
-          CopyMem(Buffer, &RMTXRegion->Address, 4);
+          CopyMem(Buffer, &RMTXRegion->Length, 4);
         }
       }
 
