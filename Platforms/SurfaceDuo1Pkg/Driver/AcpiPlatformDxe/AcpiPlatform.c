@@ -259,8 +259,9 @@ AcpiPlatformProcess (
       }
 
       if (!CompareMem("SIDT", Name, 4) && OpCode == 0x0C) {
-        UINT32 *pSIDT = (UINT32*)0x784130;
-        UINT32 SIDT = ((*pSIDT & 0xFFFFFFFF) >> 14) & 0xFF;
+        //UINT32 *pSIDT = (UINT32*)0x784130;
+        //UINT32 SIDT = ((*pSIDT & 0xFFFFFFFF) >> 14) & 0xFF;
+        UINT32 SIDT = 0x1; // TODO: Fix on ACPI side or UEFI side.
         CopyMem(Buffer, &SIDT, 4);
       }
 
@@ -274,9 +275,10 @@ AcpiPlatformProcess (
       }
 
       if (!CompareMem("PLST", Name, 4) && OpCode == 0x0C) {
-        EFI_PLATFORMINFO_PLATFORM_INFO_TYPE PlatformInfo;
-        pEfiPlatformInfoProtocol->GetPlatformInfo(pEfiPlatformInfoProtocol, &PlatformInfo);
-        UINT32 PLST = PlatformInfo.subtype;
+        //EFI_PLATFORMINFO_PLATFORM_INFO_TYPE PlatformInfo;
+        //pEfiPlatformInfoProtocol->GetPlatformInfo(pEfiPlatformInfoProtocol, &PlatformInfo);
+        //UINT32 PLST = PlatformInfo.subtype;
+        UINT32 PLST = 0x0; // TODO: Fix on ACPI side, returns Surface Duo platform type (e.g.: MP_A (16))
         CopyMem(Buffer, &PLST, 4);
       }
 
