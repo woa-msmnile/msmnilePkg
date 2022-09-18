@@ -77,10 +77,27 @@ VOID UartInit(VOID)
 VOID SetWatchdogState(BOOLEAN Enable)
 {
   ARM_SMC_ARGS StubArgsSmc;
-  StubArgsSmc.Arg0 = QHEE_SMC_VENDOR_HYP_WDOG_CONTROL;
-  StubArgsSmc.Arg1 = Enable ? 3 : 2;
-  ArmCallSmc(&StubArgsSmc);
-  if (StubArgsSmc.Arg0 != 0) {
+
+  UINT32 AttemptCount = 0;
+
+  do {
+    StubArgsSmc.Arg0 = QHEE_SMC_VENDOR_HYP_WDOG_CONTROL;
+    StubArgsSmc.Arg1 = Enable ? 3 : 2;
+    StubArgsSmc.Arg2 = 0;
+    StubArgsSmc.Arg3 = 0;
+    StubArgsSmc.Arg4 = 0;
+    StubArgsSmc.Arg5 = 0;
+    StubArgsSmc.Arg6 = 0;
+    StubArgsSmc.Arg7 = 0;
+    ArmCallSmc(&StubArgsSmc);
+    AttemptCount++;
+  } while (StubArgsSmc.Arg0 == 1 && AttemptCount < 1000); // Interrupted error code
+
+  if (StubArgsSmc.Arg0 == 1) {
+    DEBUG(
+        (EFI_D_ERROR,
+         "Qualcomm Watchdog Reboot timer could not be disabled due to SMC call processing being interrupted by another CPU.\n"));
+  } else if (StubArgsSmc.Arg0 != 0) {
     DEBUG(
         (EFI_D_ERROR,
          "Disabling Qualcomm Watchdog Reboot timer failed! Status=%d\n",
