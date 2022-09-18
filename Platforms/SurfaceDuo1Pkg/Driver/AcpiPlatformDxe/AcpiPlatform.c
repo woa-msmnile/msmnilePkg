@@ -179,8 +179,8 @@ AcpiPlatformProcess (
     return;
   }
 
-  Buffer += 0x2D;
-  Size -= 0x2D;
+  Buffer += 0x29;
+  Size -= 0x29;
 
   while (1) {
     OpCode = *Buffer;
