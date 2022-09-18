@@ -420,7 +420,7 @@ AcpiPlatformProcess (
         CHAR8 SIDS[EFICHIPINFO_MAX_ID_LENGTH] = { 0 };
         mBoardProtocol->GetChipIdString(mBoardProtocol, SIDS, EFICHIPINFO_MAX_ID_LENGTH);
         DEBUG((EFI_D_WARN, "SIDS: %a\n", SIDS));
-        AsciiStrnCpyS((CHAR8 *)Buffer, EFICHIPINFO_MAX_ID_LENGTH, SIDS, EFICHIPINFO_MAX_ID_LENGTH);
+        CopyMem(Buffer, SIDS, EFICHIPINFO_MAX_ID_LENGTH);
       }
 
       if (OpCode == 0x0A) {
