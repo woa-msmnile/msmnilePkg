@@ -172,7 +172,10 @@ AcpiPlatformProcess (
   Buffer += 4;
   Size -= 4;
 
-  if (AsciiStrCmp("DSDT", Name)) {
+  DEBUG((EFI_D_WARN, "Processing %s ACPI Table\n", Name));
+
+  if (CompareMem("DSDT", Name, 4)) {
+    DEBUG((EFI_D_WARN, "%s ACPI Table does not need any processing\n", Name));
     return;
   }
 
@@ -185,6 +188,7 @@ AcpiPlatformProcess (
     Size--;
 
     if (OpCode == 0x5B) {
+      DEBUG((EFI_D_WARN, "%s ACPI Table finished processing (OpCode 0x5B)\n", Name));
       break;
     } else if (OpCode == 0x08) {
       CopyMem(Name, Buffer, 4);
@@ -196,71 +200,71 @@ AcpiPlatformProcess (
       Buffer++;
       Size--;
 
-      if (!AsciiStrCmp("SOID", Name) && OpCode == 0x0C) {
+      if (!CompareMem("SOID", Name, 4) && OpCode == 0x0C) {
         UINT32 SOID = 0;
         mBoardProtocol->GetChipId(mBoardProtocol, &SOID);
         CopyMem(Buffer, &SOID, 4);
       }
 
-      if (!AsciiStrCmp("STOR", Name) && OpCode == 0x0C) {
+      if (!CompareMem("STOR", Name, 4) && OpCode == 0x0C) {
         UINT32 STOR = 0x1;
         CopyMem(Buffer, &STOR, 4);
       }
 
-      if (!AsciiStrCmp("SIDV", Name) && OpCode == 0x0C) {
+      if (!CompareMem("SIDV", Name, 4) && OpCode == 0x0C) {
         UINT32 SIDV = 0;
         mBoardProtocol->GetChipVersion(mBoardProtocol, &SIDV);
         CopyMem(Buffer, &SIDV, 4);
       }
 
-      if (!AsciiStrCmp("SVMJ", Name) && OpCode == 0x0B) {
+      if (!CompareMem("SVMJ", Name, 4) && OpCode == 0x0B) {
         UINT32 SIDV = 0;
         mBoardProtocol->GetChipVersion(mBoardProtocol, &SIDV);
         UINT16 SVMJ = (UINT16)((SIDV >> 16) & 0xFFFF);
         CopyMem(Buffer, &SVMJ, 2);
       }
 
-      if (!AsciiStrCmp("SVMI", Name) && OpCode == 0x0B) {
+      if (!CompareMem("SVMI", Name, 4) && OpCode == 0x0B) {
         UINT32 SIDV = 0;
         mBoardProtocol->GetChipVersion(mBoardProtocol, &SIDV);
         UINT16 SVMI = (UINT16)(SIDV & 0xFFFF);
         CopyMem(Buffer, &SVMI, 2);
       }
 
-      if (!AsciiStrCmp("SDFE", Name) && OpCode == 0x0B) {
+      if (!CompareMem("SDFE", Name, 4) && OpCode == 0x0B) {
         UINT16 SDFE = 0;
         mBoardProtocol->GetChipFamily(mBoardProtocol, (EFIChipInfoFamilyType *)&SDFE);
         CopyMem(Buffer, &SDFE, 2);
       }
 
-      if (!AsciiStrCmp("SIDM", Name) && OpCode == 0x0E) {
+      if (!CompareMem("SIDM", Name, 4) && OpCode == 0x0E) {
         UINT16 SIDM = 0;
         mBoardProtocol->GetModemSupport(mBoardProtocol, (EFIChipInfoModemType *)&SIDM);
         CopyMem(Buffer, &SIDM, 2);
       }
 
-      if (!AsciiStrCmp("SUFS", Name) && OpCode == 0x0C) {
+      if (!CompareMem("SUFS", Name, 4) && OpCode == 0x0C) {
         UINT32 SUFS = 0xffffffff;
         CopyMem(Buffer, &SUFS, 4);
       }
 
-      if (!AsciiStrCmp("PUS3", Name) && OpCode == 0x0C) {
+      if (!CompareMem("PUS3", Name, 4) && OpCode == 0x0C) {
         UINT32 PUS3 = 0x1;
         CopyMem(Buffer, &PUS3, 4);
       }
 
-      if (!AsciiStrCmp("SUS3", Name) && OpCode == 0x0C) {
+      if (!CompareMem("SUS3", Name, 4) && OpCode == 0x0C) {
         UINT32 SUS3 = 0xffffffff;
         CopyMem(Buffer, &SUS3, 4);
       }
 
-      if (!AsciiStrCmp("SIDT", Name) && OpCode == 0x0C) {
+      if (!CompareMem("SIDT", Name, 4) && OpCode == 0x0C) {
         UINT32 *pSIDT = (UINT32*)0x784130;
         UINT32 SIDT = ((*pSIDT & 0xFFFFFFFF) >> 14) & 0xFF;
         CopyMem(Buffer, &SIDT, 4);
       }
 
-      if (!AsciiStrCmp("SOSN", Name) && OpCode == 0x0E) {
+      if (!CompareMem("SOSN", Name, 4) && OpCode == 0x0E) {
         UINT32 SOSN1 = 0;
         UINT32 SOSN2 = 0;
         mBoardProtocol->GetSerialNumber(mBoardProtocol, (EFIChipInfoSerialNumType *)&SOSN1);
@@ -269,14 +273,14 @@ AcpiPlatformProcess (
         CopyMem(Buffer, &SOSN, 8);
       }
 
-      if (!AsciiStrCmp("PLST", Name) && OpCode == 0x0C) {
+      if (!CompareMem("PLST", Name, 4) && OpCode == 0x0C) {
         EFI_PLATFORMINFO_PLATFORM_INFO_TYPE PlatformInfo;
         pEfiPlatformInfoProtocol->GetPlatformInfo(pEfiPlatformInfoProtocol, &PlatformInfo);
         UINT32 PLST = PlatformInfo.subtype;
         CopyMem(Buffer, &PLST, 4);
       }
 
-      if (!AsciiStrCmp("RMTB", Name) && OpCode == 0x0C) {
+      if (!CompareMem("RMTB", Name, 4) && OpCode == 0x0C) {
         PARM_MEMORY_REGION_DESCRIPTOR_EX RMTBRegion = NULL;
         MemoryMapLocateArea(&RMTBRegion, "MPSS_EFS");
         if (RMTBRegion == NULL) {
@@ -286,7 +290,7 @@ AcpiPlatformProcess (
         }
       }
 
-      if (!AsciiStrCmp("RMTX", Name) && OpCode == 0x0C) {
+      if (!CompareMem("RMTX", Name, 4) && OpCode == 0x0C) {
         PARM_MEMORY_REGION_DESCRIPTOR_EX RMTXRegion = NULL;
         MemoryMapLocateArea(&RMTXRegion, "MPSS_EFS");
         if (RMTXRegion == NULL) {
@@ -296,7 +300,7 @@ AcpiPlatformProcess (
         }
       }
 
-      if (!AsciiStrCmp("RFMB", Name) && OpCode == 0x0C) {
+      if (!CompareMem("RFMB", Name, 4) && OpCode == 0x0C) {
         PARM_MEMORY_REGION_DESCRIPTOR_EX RFMBRegion = NULL;
         MemoryMapLocateArea(&RFMBRegion, "ADSP_EFS");
         if (RFMBRegion == NULL) {
@@ -307,7 +311,7 @@ AcpiPlatformProcess (
         }
       }
 
-      if (!AsciiStrCmp("RFMS", Name) && OpCode == 0x0C) {
+      if (!CompareMem("RFMS", Name, 4) && OpCode == 0x0C) {
         PARM_MEMORY_REGION_DESCRIPTOR_EX RFMSRegion = NULL;
         MemoryMapLocateArea(&RFMSRegion, "ADSP_EFS");
         if (RFMSRegion == NULL) {
@@ -318,7 +322,7 @@ AcpiPlatformProcess (
         }
       }
 
-      if (!AsciiStrCmp("RFAB", Name) && OpCode == 0x0C) {
+      if (!CompareMem("RFAB", Name, 4) && OpCode == 0x0C) {
         PARM_MEMORY_REGION_DESCRIPTOR_EX RFABRegion = NULL;
         MemoryMapLocateArea(&RFABRegion, "ADSP_EFS");
         if (RFABRegion == NULL) {
@@ -328,7 +332,7 @@ AcpiPlatformProcess (
         }
       }
 
-      if (!AsciiStrCmp("RFAS", Name) && OpCode == 0x0C) {
+      if (!CompareMem("RFAS", Name, 4) && OpCode == 0x0C) {
         PARM_MEMORY_REGION_DESCRIPTOR_EX RFASRegion = NULL;
         MemoryMapLocateArea(&RFASRegion, "ADSP_EFS");
         if (RFASRegion == NULL) {
@@ -339,17 +343,17 @@ AcpiPlatformProcess (
         }
       }
 
-      if (!AsciiStrCmp("TPMA", Name) && OpCode == 0x0C) {
+      if (!CompareMem("TPMA", Name, 4) && OpCode == 0x0C) {
         UINT32 TPMA = 0x1;
         CopyMem(Buffer, &TPMA, 4);
       }
 
-      if (!AsciiStrCmp("TDTV", Name) && OpCode == 0x0C) {
+      if (!CompareMem("TDTV", Name, 4) && OpCode == 0x0C) {
         UINT32 TDTV = 0x6654504d;
         CopyMem(Buffer, &TDTV, 4);
       }
 
-      if (!AsciiStrCmp("TCMA", Name) && OpCode == 0x0C) {
+      if (!CompareMem("TCMA", Name, 4) && OpCode == 0x0C) {
         PARM_MEMORY_REGION_DESCRIPTOR_EX TCMARegion = NULL;
         MemoryMapLocateArea(&TCMARegion, "TGCM");
         if (TCMARegion == NULL) {
@@ -359,7 +363,7 @@ AcpiPlatformProcess (
         }
       }
 
-      if (!AsciiStrCmp("TCML", Name) && OpCode == 0x0C) {
+      if (!CompareMem("TCML", Name, 4) && OpCode == 0x0C) {
         PARM_MEMORY_REGION_DESCRIPTOR_EX TCMLRegion = NULL;
         MemoryMapLocateArea(&TCMLRegion, "TGCM");
         if (TCMLRegion == NULL) {
@@ -369,28 +373,28 @@ AcpiPlatformProcess (
         }
       }
 
-      if (!AsciiStrCmp("SOSI", Name) && OpCode == 0x0E) {
+      if (!CompareMem("SOSI", Name, 4) && OpCode == 0x0E) {
         UINT64 SOSI = 0;
         pEfiSmemProtocol->GetFunc(137, &SmemSize, (VOID **)&SOSI);
         CopyMem(Buffer, &SOSI, 8);
       }
 
-      if (!AsciiStrCmp("PRP0", Name) && OpCode == 0x0C) {
+      if (!CompareMem("PRP0", Name, 4) && OpCode == 0x0C) {
         UINT32 PRP0 = 0xffffffff;
         CopyMem(Buffer, &PRP0, 4);
       }
 
-      if (!AsciiStrCmp("PRP1", Name) && OpCode == 0x0C) {
+      if (!CompareMem("PRP1", Name, 4) && OpCode == 0x0C) {
         UINT32 PRP1 = 0xffffffff;
         CopyMem(Buffer, &PRP1, 4);
       }
 
-      if (!AsciiStrCmp("PRP2", Name) && OpCode == 0x0C) {
+      if (!CompareMem("PRP2", Name, 4) && OpCode == 0x0C) {
         UINT32 PRP2 = 0xffffffff;
         CopyMem(Buffer, &PRP2, 4);
       }
 
-      if (!AsciiStrCmp("PRP3", Name) && OpCode == 0x0C) {
+      if (!CompareMem("PRP3", Name, 4) && OpCode == 0x0C) {
         UINT32 PRP3 = 0xffffffff;
         CopyMem(Buffer, &PRP3, 4);
       }
@@ -425,6 +429,7 @@ AcpiPlatformProcess (
         Size -= 8;
       }
     } else if (OpCode != 0x00) {
+      DEBUG((EFI_D_WARN, "%s ACPI Table encountered an unexpected OpCode (OpCode %c)\n", OpCode));
       break;
     }
   }
