@@ -182,7 +182,6 @@ UpdateNameAslCode (
   UINT32                       *Signature;
   UINT8                        *DsdtPointer;
   UINTN                        Handle;
-  UINT8                        DataSize;
 
   if (mAcpiTable == NULL) {
     InitializeAslUpdateLib ();
@@ -233,21 +232,7 @@ UpdateNameAslCode (
       /// Look for Name Encoding
       ///
       if (*(DsdtPointer-1) == AML_NAME_OP) {
-        ///
-        /// Check if size of new and old data is the same
-        ///
-        DataSize = *(DsdtPointer+4);
-        if (((Length == 1) && (DataSize == 0xA)) ||
-            ((Length == 2) && (DataSize == 0xB)) ||
-            ((Length == 4) && (DataSize == 0xC)))
-        {
-          CopyMem (DsdtPointer+5, Buffer, Length);
-        } else if ((Length == 1) && (((*(UINT8 *)Buffer) == 0) || ((*(UINT8 *)Buffer) == 1)) && ((DataSize == 0) || (DataSize == 1))) {
-          CopyMem (DsdtPointer+4, Buffer, Length);
-        } else {
-          FreePool (Table);
-          return EFI_BAD_BUFFER_SIZE;
-        }
+        CopyMem (DsdtPointer+5, Buffer, Length);
 
         Status = mAcpiTable->UninstallAcpiTable (
                                mAcpiTable,
@@ -298,7 +283,6 @@ UpdateSsdtNameAslCode (
   UINT32                       *Signature;
   UINT8                        *SsdtPointer;
   UINTN                        Handle;
-  UINT8                        DataSize;
 
   if (mAcpiTable == NULL) {
     InitializeAslUpdateLib ();
@@ -345,20 +329,7 @@ UpdateSsdtNameAslCode (
       /// Look for Name Encoding
       ///
       if (*(SsdtPointer-1) == AML_NAME_OP) {
-        ///
-        /// Check if size of new and old data is the same
-        ///
-        DataSize = *(SsdtPointer+4);
-        if (((Length == 1) && (DataSize == 0xA)) ||
-            ((Length == 2) && (DataSize == 0xB)) ||
-            ((Length == 4) && (DataSize == 0xC)))
-        {
-          CopyMem (SsdtPointer+5, Buffer, Length);
-        } else if ((Length == 1) && (((*(UINT8 *)Buffer) == 0) || ((*(UINT8 *)Buffer) == 1)) && ((DataSize == 0) || (DataSize == 1))) {
-          CopyMem (SsdtPointer+4, Buffer, Length);
-        } else {
-          return EFI_BAD_BUFFER_SIZE;
-        }
+        CopyMem (SsdtPointer+5, Buffer, Length);
 
         AcpiPlatformChecksum (
           Table,

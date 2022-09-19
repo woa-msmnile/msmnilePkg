@@ -52,6 +52,25 @@ BDS_CONSOLE_CONNECT_ENTRY gPlatformConsoles[] =
 
 EFI_DEVICE_PATH_PROTOCOL *gPlatformConInDeviceList[] = {NULL};
 
+EFI_STATUS
+EFIAPI
+MemoryMapLocateArea(PARM_MEMORY_REGION_DESCRIPTOR_EX* MemoryDescriptor, CHAR8* Name)
+{
+  PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
+      gDeviceMemoryDescriptorEx;
+
+  // Run through each memory descriptor
+  while (MemoryDescriptorEx->Length != 0) {
+    if (AsciiStriCmp(Name, MemoryDescriptorEx->Name) == 0) {
+      *MemoryDescriptor = MemoryDescriptorEx;
+      return EFI_SUCCESS;
+    }
+    MemoryDescriptorEx++;
+  }
+
+  return EFI_NOT_FOUND;
+}
+
 VOID
 PlatformUpdateAcpiTables(VOID)
 {
