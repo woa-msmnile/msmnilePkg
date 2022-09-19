@@ -93,7 +93,7 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
 [PcdsFixedAtBuild.common]
   # Platform-specific
   gArmTokenSpaceGuid.PcdSystemMemoryBase|0x080000000		# Common Base Address
-!if $(RAM_SIZE) == 8
+!if $(TARGET_RAM_SIZE) == 8
   gArmTokenSpaceGuid.PcdSystemMemorySize|0x200000000		# 8GB
 !else
   gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000		# 6GB
