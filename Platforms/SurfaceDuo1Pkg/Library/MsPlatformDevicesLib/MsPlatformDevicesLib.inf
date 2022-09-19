@@ -32,7 +32,6 @@
   DebugLib
   DevicePathLib
   IoLib
-  PciLib
   UefiBootServicesTableLib
   UefiLib
   RFSProtectionLib
