@@ -8,62 +8,148 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 
 #include <Uefi.h>
 
+#include <Protocol/DevicePath.h>
+
+#include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>
 #include <Library/DeviceBootManagerLib.h>
 #include <Library/DevicePathLib.h>
-#include <Library/MemoryAllocationLib.h>
+#include <Library/IoLib.h>
 #include <Library/MsPlatformDevicesLib.h>
-#include <Library/PrintLib.h>
+#include <Library/PcdLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiLib.h>
-#include <Library/UefiRuntimeServicesTableLib.h>
 
 #include <Library/RFSProtectionLib.h>
 
+typedef struct {
+  VENDOR_DEVICE_PATH       VendorDevicePath;
+  EFI_DEVICE_PATH_PROTOCOL EndDevicePath;
+} EFI_KEYPAD_DEVICE_PATH;
 
-EFI_DEVICE_PATH_PROTOCOL **EFIAPI
-GetDevicePathsFromProtocolGuid(IN EFI_GUID *ProtocolGuid, OUT UINTN *Count)
-{
-  EFI_STATUS                 Status;
-  EFI_HANDLE                *Handles;
-  UINTN                      NoHandles;
-  UINTN                      Idx;
-  EFI_DEVICE_PATH_PROTOCOL **pDevicePaths;
-  EFI_DEVICE_PATH_PROTOCOL  *pDevicePath;
+typedef struct {
+  VENDOR_DEVICE_PATH       DisplayDevicePath;
+  EFI_DEVICE_PATH_PROTOCOL EndDevicePath;
+} EFI_DISPLAY_DEVICE_PATH;
 
-  Status = gBS->LocateHandleBuffer(
-      ByProtocol, ProtocolGuid, NULL /* SearchKey */, &NoHandles, &Handles);
-  if (EFI_ERROR(Status)) {
-    //
-    // This is not an error, just an informative condition.
-    //
-    DEBUG((EFI_D_VERBOSE, "%a: %g: %r\n", __FUNCTION__, ProtocolGuid, Status));
-    return NULL;
+typedef struct {
+   VENDOR_DEVICE_PATH SdCardDevicePath;
+   EFI_DEVICE_PATH    EndDevicePath;
+} EFI_SDCARD_DEVICE_PATH;
+
+#define EFI_KEYPAD_DEVICE_GUID                                                 \
+  {                                                                            \
+    0xD7F58A0E, 0xBED2, 0x4B5A,                                                \
+    {                                                                          \
+      0xBB, 0x43, 0x8A, 0xB2, 0x3D, 0xD0, 0xE2, 0xB0                           \
+    }                                                                          \
   }
 
-  ASSERT(NoHandles > 0);
+#define EFI_SDCARD_DEVICE_PATH_GUID                                            \
+  {                                                                            \
+    0xD1531D41, 0x3F80, 0x4091,                                                \
+    {                                                                          \
+      0x8D, 0x0A, 0x54, 0x1F, 0x59, 0x23, 0x6D, 0x66                           \
+    }                                                                          \
+  }
 
-  pDevicePaths = (EFI_DEVICE_PATH_PROTOCOL **)AllocateZeroPool(
-      (NoHandles + 1) * sizeof(EFI_DEVICE_PATH_PROTOCOL *));
-
-  *Count = 0;
-  for (Idx = 0; Idx < NoHandles; ++Idx) {
-    pDevicePath = DevicePathFromHandle(Handles[Idx]);
-    if (pDevicePath != NULL) {
-      *(pDevicePaths + *Count) = pDevicePath;
-      *Count                   = *Count + 1;
+EFI_KEYPAD_DEVICE_PATH KeypadDevicePath =
+{
+  {
+    {
+      HARDWARE_DEVICE_PATH,
+      HW_VENDOR_DP,
+      {
+        (UINT8)(sizeof(VENDOR_DEVICE_PATH)),
+        (UINT8)((sizeof(VENDOR_DEVICE_PATH)) >> 8)
+      }
+    },
+    EFI_KEYPAD_DEVICE_GUID
+  },
+  {
+    END_DEVICE_PATH_TYPE,
+    END_ENTIRE_DEVICE_PATH_SUBTYPE,
+    {
+      (UINT8)(END_DEVICE_PATH_LENGTH),
+      (UINT8)((END_DEVICE_PATH_LENGTH) >> 8)
     }
   }
+};
 
-  gBS->FreePool(Handles);
+static EFI_DISPLAY_DEVICE_PATH DisplayDevicePath =
+{
+  {
+    {
+      HARDWARE_DEVICE_PATH,
+      HW_VENDOR_DP,
+      {
+        (UINT8)(sizeof(VENDOR_DEVICE_PATH)),
+        (UINT8)((sizeof(VENDOR_DEVICE_PATH)) >> 8)
+      }
+    },
+    EFI_GRAPHICS_OUTPUT_PROTOCOL_GUID
+  },
+  {
+    END_DEVICE_PATH_TYPE,
+    END_ENTIRE_DEVICE_PATH_SUBTYPE,
+    {
+      (UINT8)(END_DEVICE_PATH_LENGTH),
+      (UINT8)((END_DEVICE_PATH_LENGTH) >> 8)
+    }
+  }
+};
 
-  return pDevicePaths;
-}
+EFI_SDCARD_DEVICE_PATH SdcardDevicePath =
+{
+  {
+    {
+      HARDWARE_DEVICE_PATH,
+      HW_VENDOR_DP,
+      {
+        (UINT8)(sizeof(VENDOR_DEVICE_PATH)),
+        (UINT8)((sizeof(VENDOR_DEVICE_PATH)) >> 8)
+      }
+    },
+    EFI_SDCARD_DEVICE_PATH_GUID
+  },
+  {
+    END_DEVICE_PATH_TYPE,
+    END_ENTIRE_DEVICE_PATH_SUBTYPE,
+    {
+      (UINT8)(END_DEVICE_PATH_LENGTH),
+      (UINT8)((END_DEVICE_PATH_LENGTH) >> 8)
+    }
+  }
+};
+
+//
+// Predefined platform default console device path
+//
+BDS_CONSOLE_CONNECT_ENTRY gPlatformConsoles[] =
+{
+  {
+    (EFI_DEVICE_PATH_PROTOCOL *)&KeypadDevicePath,
+    CONSOLE_IN
+  },
+  {
+    (EFI_DEVICE_PATH_PROTOCOL *)&DisplayDevicePath,
+    CONSOLE_OUT | STD_ERROR
+  },
+  {
+    NULL,
+    0
+  }
+};
+
+static EFI_DEVICE_PATH_PROTOCOL *gPlatformConInDeviceList[] = {NULL};
 
 /**
 Library function used to provide the platform SD Card device path
 **/
-EFI_DEVICE_PATH_PROTOCOL *EFIAPI GetSdCardDevicePath(VOID) { return NULL; }
+EFI_DEVICE_PATH_PROTOCOL *EFIAPI GetSdCardDevicePath(VOID)
+{
+  return (EFI_DEVICE_PATH_PROTOCOL *)&SdcardDevicePath;
+}
 
 /**
   Library function used to determine if the DevicePath is a valid bootable 'USB'
@@ -74,6 +160,19 @@ BOOLEAN
 EFIAPI
 PlatformIsDevicePathUsb(IN EFI_DEVICE_PATH_PROTOCOL *DevicePath)
 {
+  EFI_DEVICE_PATH_PROTOCOL *Node;
+
+  for (Node = DevicePath; !IsDevicePathEnd(Node); Node = NextDevicePathNode(Node))
+    {
+      if ((DevicePathType(Node) == MESSAGING_DEVICE_PATH) &&
+          ((DevicePathSubType(Node) == MSG_USB_CLASS_DP) ||
+           (DevicePathSubType(Node) == MSG_USB_WWID_DP) ||
+           (DevicePathSubType(Node) == MSG_USB_DP)))
+      {
+        return TRUE;
+      }
+    }
+
   return FALSE;
 }
 
@@ -81,66 +180,32 @@ PlatformIsDevicePathUsb(IN EFI_DEVICE_PATH_PROTOCOL *DevicePath)
 Library function used to provide the list of platform devices that MUST be
 connected at the beginning of BDS
 **/
-EFI_DEVICE_PATH_PROTOCOL **EFIAPI GetPlatformConnectList(VOID) { return NULL; }
+EFI_DEVICE_PATH_PROTOCOL **EFIAPI GetPlatformConnectList(VOID)
+{
+  // Allow MPSS and HLOS to access the allocated RFS Shared Memory Region
+  // Normally this would be done by a driver in Linux
+  // TODO: Move to a better place!
+  RFSLocateAndProtectSharedArea();
+
+  return NULL;
+}
 
 /**
  * Library function used to provide the list of platform console devices.
  */
 BDS_CONSOLE_CONNECT_ENTRY *EFIAPI GetPlatformConsoleList(VOID)
 {
-  BDS_CONSOLE_CONNECT_ENTRY *pConsoleConnectEntries;
-  UINTN                      simpleTextDevicePathCount     = 0;
-  UINTN                      graphicsOutputDevicePathCount = 0;
-  UINTN                      Idx;
-  UINTN                      Jdx = 0;
-  EFI_DEVICE_PATH_PROTOCOL **pSimpleTextDevicePaths;
-  EFI_DEVICE_PATH_PROTOCOL **pGraphicsOutputDevicePaths;
-
-  pSimpleTextDevicePaths = GetDevicePathsFromProtocolGuid(
-      &gEfiSimpleTextInProtocolGuid, &simpleTextDevicePathCount);
-
-  ASSERT(simpleTextDevicePathCount > 0);
-
-  pGraphicsOutputDevicePaths = GetDevicePathsFromProtocolGuid(
-      &gEfiGraphicsOutputProtocolGuid, &graphicsOutputDevicePathCount);
-
-  ASSERT(graphicsOutputDevicePathCount > 0);
-
-  pConsoleConnectEntries = (BDS_CONSOLE_CONNECT_ENTRY *)AllocateZeroPool(
-      (simpleTextDevicePathCount + graphicsOutputDevicePathCount + 1) *
-      sizeof(BDS_CONSOLE_CONNECT_ENTRY));
-
-  for (Idx = 0; Idx < simpleTextDevicePathCount; Idx++) {
-    (pConsoleConnectEntries + Jdx)->DevicePath =
-        *(pSimpleTextDevicePaths + Idx);
-    (pConsoleConnectEntries + Jdx++)->ConnectType = CONSOLE_IN;
-  }
-
-  for (Idx = 0; Idx < graphicsOutputDevicePathCount; Idx++) {
-    (pConsoleConnectEntries + Jdx)->DevicePath =
-        *(pGraphicsOutputDevicePaths + Idx);
-    (pConsoleConnectEntries + Jdx++)->ConnectType = CONSOLE_OUT | STD_ERROR;
-  }
-
-  gBS->FreePool(pSimpleTextDevicePaths);
-  gBS->FreePool(pGraphicsOutputDevicePaths);
-
-  // Allow MPSS and HLOS to access the allocated RFS Shared Memory Region
-  // Normally this would be done by a driver in Linux
-  // TODO: Move to a better place!
-  RFSLocateAndProtectSharedArea();
-
-  return pConsoleConnectEntries;
+  return (BDS_CONSOLE_CONNECT_ENTRY *)&gPlatformConsoles;
 }
 
 /**
 Library function used to provide the list of platform devices that MUST be
 connected to support ConsoleIn activity.  This call occurs on the ConIn connect
-event, and allows platforms to do enable specific devices ConsoleIn support.
+event, and allows platforms to do specific enablement for ConsoleIn support.
 **/
 EFI_DEVICE_PATH_PROTOCOL **EFIAPI GetPlatformConnectOnConInList(VOID)
 {
-  return NULL;
+  return (EFI_DEVICE_PATH_PROTOCOL **)&gPlatformConInDeviceList;
 }
 
 /**
@@ -152,5 +217,37 @@ EFI_HANDLE
 EFIAPI
 GetPlatformPreferredConsole(OUT EFI_DEVICE_PATH_PROTOCOL **DevicePath)
 {
-  return NULL;
+  EFI_STATUS                Status;
+  EFI_HANDLE                Handle = NULL;
+  EFI_DEVICE_PATH_PROTOCOL *TempDevicePath;
+
+  TempDevicePath = (EFI_DEVICE_PATH_PROTOCOL *)&DisplayDevicePath;
+
+  Status = gBS->LocateDevicePath(
+      &gEfiGraphicsOutputProtocolGuid, &TempDevicePath, &Handle);
+  if (!EFI_ERROR(Status) && IsDevicePathEnd(TempDevicePath)) {
+  }
+  else {
+    DEBUG(
+        (DEBUG_ERROR,
+         "%a - Unable to locate platform preferred console. Code=%r\n",
+         __FUNCTION__, Status));
+    Status = EFI_DEVICE_ERROR;
+  }
+
+  if (Handle != NULL) {
+    //
+    // Connect the GOP driver
+    //
+    gBS->ConnectController(Handle, NULL, NULL, TRUE);
+
+    //
+    // Get the GOP device path
+    // NOTE: We may get a device path that contains Controller node in it.
+    //
+    TempDevicePath = EfiBootManagerGetGopDevicePath(Handle);
+    *DevicePath    = TempDevicePath;
+  }
+
+  return Handle;
 }

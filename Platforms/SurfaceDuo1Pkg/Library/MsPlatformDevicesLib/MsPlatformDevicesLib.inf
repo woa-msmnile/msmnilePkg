@@ -28,12 +28,11 @@
   SurfaceDuo1Pkg/SurfaceDuo1Pkg.dec
 
 [LibraryClasses]
+  BaseMemoryLib
   DebugLib
-  MemoryAllocationLib
   DevicePathLib
+  IoLib
+  PciLib
   UefiBootServicesTableLib
+  UefiLib
   RFSProtectionLib
-
-[Protocols]
-  gEfiGraphicsOutputProtocolGuid
-  gEfiSimpleTextInProtocolGuid
