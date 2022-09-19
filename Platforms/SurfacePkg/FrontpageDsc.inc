@@ -239,6 +239,8 @@
      gDfciPkgTokenSpaceGuid.PcdSettingsManagerInstallProvider|TRUE
   }
 
+  MsCorePkg/MuCryptoDxe/MuCryptoDxe.inf
+
   DfciPkg/IdentityAndAuthManager/IdentityAndAuthManagerDxe.inf
   
   #
