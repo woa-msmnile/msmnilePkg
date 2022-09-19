@@ -103,7 +103,7 @@ PlatformUpdateAcpiTables(VOID)
   Status = gBS->LocateProtocol(
       &gEfiChipInfoProtocolGuid, NULL, (VOID *)&mBoardProtocol);
   if (EFI_ERROR (Status)) {
-    return EFI_ABORTED;
+    return;
   }
 
   //
@@ -112,7 +112,7 @@ PlatformUpdateAcpiTables(VOID)
   Status = gBS->LocateProtocol(
       &gEfiSMEMProtocolGuid, NULL, (VOID **)&pEfiSmemProtocol);
   if (EFI_ERROR (Status)) {
-    return EFI_ABORTED;
+    return;
   }
 
   //
@@ -121,7 +121,7 @@ PlatformUpdateAcpiTables(VOID)
   Status = gBS->LocateProtocol(
       &gEfiPlatformInfoProtocolGuid, NULL, (VOID **)&pEfiPlatformInfoProtocol);
   if (EFI_ERROR (Status)) {
-    return EFI_ABORTED;
+    return;
   }
 
   MemoryMapLocateArea(&MPSSEFSRegion, "MPSS_EFS");
@@ -134,9 +134,11 @@ PlatformUpdateAcpiTables(VOID)
   mBoardProtocol->GetModemSupport(mBoardProtocol, (EFIChipInfoModemType *)&SIDM);
   mBoardProtocol->GetSerialNumber(mBoardProtocol, (EFIChipInfoSerialNumType *)&SOSN1);
   mBoardProtocol->GetQFPROMChipId(mBoardProtocol, (EFIChipInfoQFPROMChipIdType *)&SOSN2);
-  pEfiPlatformInfoProtocol->GetPlatformInfo(pEfiPlatformInfoProtocol, &PlatformInfo);
-  pEfiSmemProtocol->GetFunc(137, &SmemSize, (VOID **)&SOSI);
   mBoardProtocol->GetChipIdString(mBoardProtocol, SIDS, EFICHIPINFO_MAX_ID_LENGTH);
+
+  pEfiSmemProtocol->GetFunc(137, &SmemSize, (VOID **)&SOSI);
+
+  pEfiPlatformInfoProtocol->GetPlatformInfo(pEfiPlatformInfoProtocol, &PlatformInfo);
 
   UINT16 SVMJ = (UINT16)((SIDV >> 16) & 0xFFFF);
   UINT16 SVMI = (UINT16)(SIDV & 0xFFFF);
