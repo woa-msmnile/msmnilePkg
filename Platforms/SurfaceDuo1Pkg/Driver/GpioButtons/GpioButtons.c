@@ -92,7 +92,7 @@ ButtonsInit(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 
   DEBUG((DEBUG_ERROR, "%a \n", __FUNCTION__));
 
-  ButtonsDxeDevicePath = (EFI_DEVICE_PATH_PROTOCOL *)&KeyPadDxeDevicePath;
+  ButtonsDxeDevicePath = (EFI_DEVICE_PATH_PROTOCOL *)&KeypadDevicePath;
 
   Status = gBS->LocateDevicePath(
       &gEfiSimpleTextInputExProtocolGuid, &ButtonsDxeDevicePath, &Handle);
