@@ -25,6 +25,7 @@
   PcBdsPkg/PcBdsPkg.dec
   MsCorePkg/MsCorePkg.dec
   MdeModulePkg/MdeModulePkg.dec
+  SurfacePkg/SurfacePkg.dec
   SurfaceDuo1Pkg/SurfaceDuo1Pkg.dec
 
 [LibraryClasses]
@@ -34,4 +35,10 @@
   IoLib
   UefiBootServicesTableLib
   UefiLib
+  AslUpdateLib
   RFSProtectionLib
+
+[Protocols]
+  gEfiChipInfoProtocolGuid                      ## CONSUMES
+  gEfiSMEMProtocolGuid                          ## CONSUMES
+  gEfiPlatformInfoProtocolGuid                  ## CONSUMES
