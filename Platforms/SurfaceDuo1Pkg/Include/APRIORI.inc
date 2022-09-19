@@ -363,9 +363,9 @@ APRIORI DXE {
     INF MdeModulePkg/Universal/SmbiosDxe/SmbiosDxe.inf
     INF SurfacePkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
 
+    INF MsGraphicsPkg/MsUiTheme/Dxe/MsUiThemeProtocol.inf
     INF DfciPkg/SettingsManager/SettingsManagerDxe.inf
     INF DfciPkg/IdentityAndAuthManager/IdentityAndAuthManagerDxe.inf
-    INF MsGraphicsPkg/MsUiTheme/Dxe/MsUiThemeProtocol.inf
     INF MsGraphicsPkg/SimpleWindowManagerDxe/SimpleWindowManagerDxe.inf
     INF MsGraphicsPkg/RenderingEngineDxe/RenderingEngineDxe.inf
 # END CHANGE
