@@ -24,6 +24,27 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 
 #include <Configuration/BootDevices.h>
 
+//
+// Predefined platform default console device path
+//
+BDS_CONSOLE_CONNECT_ENTRY gPlatformConsoles[] =
+{
+  {
+    (EFI_DEVICE_PATH_PROTOCOL *)&KeypadDevicePath,
+    CONSOLE_IN
+  },
+  {
+    (EFI_DEVICE_PATH_PROTOCOL *)&DisplayDevicePath,
+    CONSOLE_OUT | STD_ERROR
+  },
+  {
+    NULL,
+    0
+  }
+};
+
+EFI_DEVICE_PATH_PROTOCOL *gPlatformConInDeviceList[] = {NULL};
+
 /**
 Library function used to provide the platform SD Card device path
 **/
