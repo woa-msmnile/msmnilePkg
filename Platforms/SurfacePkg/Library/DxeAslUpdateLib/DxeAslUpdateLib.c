@@ -200,7 +200,6 @@ UpdateNameAslCode (
              &Handle
              );
   if (EFI_ERROR (Status)) {
-    DEBUG((EFI_D_ERROR, "Finding DSDT failed.\n"));
     return Status;
   }
 
@@ -209,7 +208,6 @@ UpdateNameAslCode (
   ///
   CurrPtr = (UINT8 *)Table;
   if (CurrPtr == NULL) {
-    DEBUG((EFI_D_ERROR, "CurrPtr is NULL.\n"));
     return EFI_NOT_FOUND;
   }
 
@@ -226,10 +224,6 @@ UpdateNameAslCode (
     /// Get a pointer to compare for signature
     ///
     Signature = (UINT32 *)DsdtPointer;
-
-    DEBUG((EFI_D_ERROR, "ACPI Table Name Requested Signature = %d\n", AslSignature));
-    DEBUG((EFI_D_ERROR, "ACPI Table Name Signature = %d\n", *Signature));
-
     ///
     /// Check if this is the Device Object signature we are looking for
     ///
@@ -490,13 +484,11 @@ LocateAcpiTableBySignature (
   do {
     Status = mAcpiSdt->GetAcpiTable (Index, (EFI_ACPI_SDT_HEADER **)&OrgTable, &Version, Handle);
     if (Status == EFI_NOT_FOUND) {
-      DEBUG((EFI_D_ERROR, "ACPI Table Signature = %d was found!\n", OrgTable->Signature));
       break;
     }
 
     ASSERT_EFI_ERROR (Status);
     Index++;
-    DEBUG((EFI_D_ERROR, "ACPI Table Signature = %d\n", OrgTable->Signature));
   } while (OrgTable->Signature != Signature);
 
   if (Status != EFI_NOT_FOUND) {
