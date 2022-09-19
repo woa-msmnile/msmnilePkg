@@ -181,6 +181,15 @@ PlatformUpdateAcpiTables(VOID)
     TCML = TGCMRegion->Length;
   }
 
+  DEBUG((EFI_D_WARN, "Chip Id: %d\n", SOID));
+  DEBUG((EFI_D_WARN, "Chip Major Version: %d\n", SVMJ));
+  DEBUG((EFI_D_WARN, "Chip Minor Version: %d\n", SVMI));
+  DEBUG((EFI_D_WARN, "Chip Modem Support: %d\n", SIDM));
+  DEBUG((EFI_D_WARN, "Chip Serial Number: 0x%x\n", SOSN));
+  DEBUG((EFI_D_WARN, "Chip Name: %a\n", SIDS));
+  DEBUG((EFI_D_WARN, "Chip Info Address: 0x%x\n", SOSI));
+  DEBUG((EFI_D_WARN, "Platform Subtype: %d\n", PLST));
+
   UpdateNameAslCode(SIGNATURE_32('S','O','I','D'), &SOID, 4);
   UpdateNameAslCode(SIGNATURE_32('S','T','O','R'), &STOR, 4);
   UpdateNameAslCode(SIGNATURE_32('S','I','D','V'), &SIDV, 4);
