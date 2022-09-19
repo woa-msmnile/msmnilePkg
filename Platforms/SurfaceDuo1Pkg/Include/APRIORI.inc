@@ -359,17 +359,6 @@ APRIORI DXE {
 
     INF EmbeddedPkg/SimpleTextInOutSerial/SimpleTextInOutSerial.inf
 
-# CHANGE
-    INF MdeModulePkg/Universal/SmbiosDxe/SmbiosDxe.inf
-    INF SurfacePkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
-
-    INF MsGraphicsPkg/MsUiTheme/Dxe/MsUiThemeProtocol.inf
-    INF DfciPkg/SettingsManager/SettingsManagerDxe.inf
-    INF DfciPkg/IdentityAndAuthManager/IdentityAndAuthManagerDxe.inf
-    INF MsGraphicsPkg/SimpleWindowManagerDxe/SimpleWindowManagerDxe.inf
-    INF MsGraphicsPkg/RenderingEngineDxe/RenderingEngineDxe.inf
-# END CHANGE
-
     INF MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
     INF MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
 
@@ -377,10 +366,6 @@ APRIORI DXE {
             SECTION PE32 = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-cccb0c28-4b24-11d5-9a5a-0090273fc14d/section0.pe
             SECTION UI = "GraphicsConsoleDxe"
     }
-
-# CHANGE
-    INF MsGraphicsPkg/GopOverrideDxe/GopOverrideDxe.inf
-# END CHANGE
 
     INF MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
     }
