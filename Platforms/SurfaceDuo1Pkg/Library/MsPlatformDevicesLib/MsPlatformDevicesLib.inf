@@ -21,6 +21,7 @@
  MsPlatformDevicesLib.c
 
 [Packages]
+  ArmPkg/ArmPkg.dec
   MdePkg/MdePkg.dec
   PcBdsPkg/PcBdsPkg.dec
   MsCorePkg/MsCorePkg.dec
