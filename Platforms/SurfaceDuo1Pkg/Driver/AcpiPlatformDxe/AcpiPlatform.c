@@ -172,10 +172,10 @@ AcpiPlatformProcess (
   Buffer += 4;
   Size -= 4;
 
-  DEBUG((EFI_D_WARN, "Processing %a ACPI Table\n", Name));
+  DEBUG((EFI_D_INFO, "Processing %a ACPI Table\n", Name));
 
   if (CompareMem("DSDT", Name, 4)) {
-    DEBUG((EFI_D_WARN, "%a ACPI Table does not need any processing\n", Name));
+    DEBUG((EFI_D_INFO, "%a ACPI Table does not need any processing\n", Name));
     return EFI_SUCCESS;
   }
 
@@ -219,7 +219,7 @@ AcpiPlatformProcess (
     Size--;
 
     if (OpCode == 0x5B) {
-      DEBUG((EFI_D_WARN, "%a ACPI Table finished processing (OpCode 0x5B)\n", Name));
+      DEBUG((EFI_D_INFO, "%a ACPI Table finished processing (OpCode 0x5B)\n", Name));
       break;
     } else if (OpCode == 0x08) {
       CopyMem(Name, Buffer, 4);
@@ -231,7 +231,7 @@ AcpiPlatformProcess (
       Buffer++;
       Size--;
 
-      DEBUG((EFI_D_WARN, "Processing %a variable\n", Name));
+      DEBUG((EFI_D_INFO, "Processing %a variable\n", Name));
 
       if (!CompareMem("SOID", Name, 4) && OpCode == 0x0C) {
         UINT32 SOID = 0;
@@ -443,11 +443,11 @@ AcpiPlatformProcess (
         Buffer += 8;
         Size -= 8;
       } else {
-        DEBUG((EFI_D_WARN, "ACPI Table encountered an unexpected type OpCode (OpCode %c)\n", OpCode));
+        DEBUG((EFI_D_ERROR, "ACPI Table encountered an unexpected type OpCode (OpCode %c)\n", OpCode));
         break;
       }
     } else if (OpCode != 0x00) {
-      DEBUG((EFI_D_WARN, "ACPI Table encountered an unexpected OpCode (OpCode %c)\n", OpCode));
+      DEBUG((EFI_D_ERROR, "ACPI Table encountered an unexpected OpCode (OpCode %c)\n", OpCode));
       break;
     }
   }
