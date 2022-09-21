@@ -15,7 +15,7 @@ fd_path = os.path.join(outputbin_dir, 'FV', 'SM8150_EFI.fd')
 bootshim_path = os.path.join(root_dir, 'BootShim', 'BootShim.Epsilon.bin')
 dtb_path = os.path.join(root_dir, 'ImageResources', 'Mh2lm', 'dtb')
 ramdisk_path = os.path.join(root_dir, 'ImageResources', 'Mh2lm', 'ramdisk')
-kernel_path = os.path.join(root_dir, 'ImageResources', 'dummykernel')
+kernel_path = os.path.join(root_dir, 'ImageResources', 'Mh2lm', 'kernel')
 
 logging.info("Generating bootpayload.bin")
 
@@ -31,13 +31,6 @@ with open(bootpayload_path, 'wb') as bootpayload_file:
         data = kernel_file.read()
         bootpayload_file.write(data)
 
-# with open(bootpayload_path, 'wb') as f:
-#     logging.info("Writing UEFI...")
-#     with open(fd_path, 'rb') as fd:
-#         data = fd.read()
-#         data = gzip.compress(data, 9)
-#         f.write(data)
-
     
 logging.info("Writing uefi.img")
 
@@ -48,7 +41,7 @@ mkbootimg.main([
     "-o", output_path,
     "--pagesize", "4096",
     "--header_version", "2",
-    "--cmdline", "",
+    "--cmdline", "androidboot.memcg=1 lpm_levels.sleep_disabled=1 video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 firmware_class.path=/vendor/firmware_mnt/image loop.max_part=7 androidboot.usbcontroller=a600000.dwc3 swapaccount=0 dhash_entries=131072 ihash_entries=131072 androidboot.vbmeta.avb_version=1.0 androidboot.hardware=mh2lm buildvariant=userdebug",
     "--base", "0x0",
     "--os_version", "12.0.0",
     "--os_patch_level", "2022-06"
