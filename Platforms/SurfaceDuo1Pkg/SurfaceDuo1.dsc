@@ -28,7 +28,7 @@
   PLATFORM_GUID                  = b6325ac2-9f3f-4b1d-b129-ac7b35ddde60
   PLATFORM_VERSION               = 0.1
   DSC_SPECIFICATION              = 0x00010005
-  OUTPUT_DIRECTORY               = Build/SurfaceDuo1-$(ARCH)
+  OUTPUT_DIRECTORY               = Build/$(TARGET_DEVICE)-$(ARCH)
   SUPPORTED_ARCHITECTURES        = AARCH64
   BUILD_TARGETS                  = DEBUG|RELEASE
   SKUID_IDENTIFIER               = DEFAULT
