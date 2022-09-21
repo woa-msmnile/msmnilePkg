@@ -7,12 +7,13 @@ import os
 outputbin_dir = sdbuild.builder.GetOutputBinDirectory()
 output_dir = sdbuild.builder.GetOutputDirectory()
 device_dir = sdbuild.builder.GetTargetDeviceDirectory()
+root_dir = sdbuild.builder.GetWorkspaceRoot()
 
 bootpayload_path = os.path.join(output_dir, 'bootpayload.bin')
 output_path = os.path.join(output_dir, 'uefi.img')
 fd_path = os.path.join(outputbin_dir, 'FV', 'SM8150_EFI.fd')
-dtb_path = os.path.join(device_dir, 'dtb')
-ramdisk_path = os.path.join(device_dir, 'ramdisk')
+dtb_path = os.path.join(root_dir, 'ImageResources', 'Mh2lm', 'dtb')
+ramdisk_path = os.path.join(root_dir, 'ImageResources', 'Mh2lm', 'ramdisk')
 
 logging.info("Generating bootpayload.bin")
 
