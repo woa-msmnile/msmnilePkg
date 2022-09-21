@@ -98,7 +98,7 @@
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize|44
 
   gSurfaceDuo1PkgTokenSpaceGuid.PcdUefiMemPoolSize|0x3500000
-  gSurfaceDuo1PkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x1AB00000  # Start here
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x20000000  # Start here
 
   ## Default Terminal Type
   ## 0-PCANSI, 1-VT100, 2-VT00+, 3-UTF8, 4-TTYTERM
