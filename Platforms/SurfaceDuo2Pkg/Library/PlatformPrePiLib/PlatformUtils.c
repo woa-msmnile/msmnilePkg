@@ -80,6 +80,8 @@ VOID SetWatchdogState(BOOLEAN Enable)
 
   UINT32 AttemptCount = 0;
 
+  ArmEnableInterrupts();
+
   do {
     StubArgsSmc.Arg0 = QHEE_SMC_VENDOR_HYP_WDOG_CONTROL;
     StubArgsSmc.Arg1 = Enable ? 3 : 2;
@@ -92,6 +94,8 @@ VOID SetWatchdogState(BOOLEAN Enable)
     ArmCallSmc(&StubArgsSmc);
     AttemptCount++;
   } while (StubArgsSmc.Arg0 == 1 && AttemptCount < 1000); // Interrupted error code
+
+  ArmDisableInterrupts();
 
   if (StubArgsSmc.Arg0 == 1) {
     DEBUG(
