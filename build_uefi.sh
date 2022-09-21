@@ -43,3 +43,5 @@ if [ ${TARGET_DEVICE} = 'all' ]; then
 else
     stuart_build -c Platforms/SurfaceDuo1Pkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG38 "TARGET_DEVICE=${TARGET_DEVICE}" "TARGET_RAM_SIZE=${TARGET_RAM_SIZE}"
 fi
+
+bash ./build_boot_shim.sh

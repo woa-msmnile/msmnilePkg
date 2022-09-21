@@ -12,23 +12,33 @@ root_dir = sdbuild.builder.GetWorkspaceRoot()
 bootpayload_path = os.path.join(output_dir, 'bootpayload.bin')
 output_path = os.path.join(output_dir, 'uefi.img')
 fd_path = os.path.join(outputbin_dir, 'FV', 'SM8150_EFI.fd')
+bootshim_path = os.path.join(root_dir, 'BootShim', 'BootShim.Epsilon.bin')
 dtb_path = os.path.join(root_dir, 'ImageResources', 'Mh2lm', 'dtb')
 ramdisk_path = os.path.join(root_dir, 'ImageResources', 'Mh2lm', 'ramdisk')
+kernel_path = os.path.join(root_dir, 'ImageResources', 'dummykernel')
 
 logging.info("Generating bootpayload.bin")
 
-with open(bootpayload_path, 'wb') as f:
+with open(bootpayload_path, 'wb') as bootpayload_file:
     logging.info("Writing UEFI...")
-    with open(fd_path, 'rb') as fd:
-        data = fd.read()
-        data = gzip.compress(data, 9)
-        f.write(data)
-    
-    # logging.info("Writing DTB...")
-    # with open(dtb_path, 'rb') as dtb:
-    #     data = dtb.read()
-    #     f.write(data)
+    with open(bootshim_path, 'rb') as bootshim_file:
+        data = bootshim_file.read()
+        bootpayload_file.write(data)
+    with open(fd_path, 'rb') as fd_file:
+        data = fd_file.read()
+        bootpayload_file.write(data)
+    with open(kernel_path, 'rb') as kernel_file:
+        data = kernel_file.read()
+        bootpayload_file.write(data)
 
+# with open(bootpayload_path, 'wb') as f:
+#     logging.info("Writing UEFI...")
+#     with open(fd_path, 'rb') as fd:
+#         data = fd.read()
+#         data = gzip.compress(data, 9)
+#         f.write(data)
+
+    
 logging.info("Writing uefi.img")
 
 mkbootimg.main([
