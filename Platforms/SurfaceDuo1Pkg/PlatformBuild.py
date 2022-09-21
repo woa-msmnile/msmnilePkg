@@ -12,6 +12,7 @@ import glob
 import time
 import xml.etree.ElementTree
 import tempfile
+import importlib
 
 from edk2toolext.environment import shell_environment
 from edk2toolext.environment.uefi_build import UefiBuilder

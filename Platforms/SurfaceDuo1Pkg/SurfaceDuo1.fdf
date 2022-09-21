@@ -87,7 +87,7 @@ READ_LOCK_CAP      = TRUE
 READ_LOCK_STATUS   = TRUE
 
   !include SurfaceDuo1Pkg/Include/APRIORI.inc
-  !include SurfaceDuo1Pkg/Include/DXE.fdf.inc
+  !include SurfaceDuo1Pkg/Include/DXE.inc
 
   # Secure Boot Key Enroll
   !if $(SECURE_BOOT_ENABLE) == TRUE

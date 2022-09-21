@@ -44,10 +44,10 @@ Essay:
 	     !if $(BUILD_DEVICE_ID) == 0 
 				       ^--                                    This is the ID you defined for your device before.
 
-	           gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080    
+	           gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080    
 	                                                          ^---------- This is Width. 
 
-	           gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2340
+	           gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2340
 								  ^---------- This is Height. Don't mix them up.
 	   !endif
 
@@ -59,7 +59,7 @@ Essay:
 
 	Each device has its own firmwares and you need to add it before building.
 
-	 You can also see Readme file under Platforms/SurfaceDuoPkg/FirmwareBinaries/,which tells a way to get firmware binaries.
+	 You can also see Readme file under Platforms/SurfaceDuoBinaries/,which tells a way to get firmware binaries.
 
 	 (But I prefer to use 7z it extract binaries form xbl.elf :D)
 
