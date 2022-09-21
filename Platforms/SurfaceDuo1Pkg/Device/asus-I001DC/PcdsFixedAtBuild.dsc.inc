@@ -1,3 +1,3 @@
 # Place to set Screen Resolution
-gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
-gSurfaceDuoPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2340
+gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
+gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2340

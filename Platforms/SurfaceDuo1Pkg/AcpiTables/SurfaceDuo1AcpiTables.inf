@@ -41,5 +41,5 @@
   EmbeddedPkg/EmbeddedPkg.dec
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
-  SurfaceDuoPkg/SurfaceDuoPkg.dec
-  SurfaceDuoPkg/AcpiTables/SurfaceDuoAcpiPreGen.dec
+  SurfaceDuo1Pkg/SurfaceDuo1Pkg.dec
+  SurfaceDuo1Pkg/AcpiTables/SurfaceDuo1AcpiPreGen.dec
