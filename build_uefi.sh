@@ -29,4 +29,17 @@ if  [ -z ${TARGET_RAM_SIZE} ]; then
 fi
 
 # Start the actual build:
-stuart_build -c Platforms/SurfaceDuo1Pkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG38 "TARGET_DEVICE=${TARGET_DEVICE}" "TARGET_RAM_SIZE=${TARGET_RAM_SIZE}"
+if [ ${TARGET_DEVICE} = 'all' ]; then
+    for i in $(ls Platforms/SurfaceDuo1Pkg/Device); do
+        # skip if the directory is empty
+
+        if [ -z "$(ls Platforms/SurfaceDuo1Pkg/Device/${i})" ]; then
+            continue
+        fi
+
+        TARGET_DEVICE=$(basename ${i})
+        stuart_build -c Platforms/SurfaceDuo1Pkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG38 "TARGET_DEVICE=${TARGET_DEVICE}" "TARGET_RAM_SIZE=${TARGET_RAM_SIZE}"
+    done
+else
+    stuart_build -c Platforms/SurfaceDuo1Pkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG38 "TARGET_DEVICE=${TARGET_DEVICE}" "TARGET_RAM_SIZE=${TARGET_RAM_SIZE}"
+fi
