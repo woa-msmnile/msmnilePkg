@@ -99,8 +99,8 @@
   gEmbeddedTokenSpaceGuid.PcdInterruptBaseAddress|0x09bc0000
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize|44
 
-  gSurfaceDuo1PkgTokenSpaceGuid.PcdUefiMemPoolSize|0x3500000
-  gSurfaceDuo1PkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x20000000  # Start here
+  gSurfacePkgTokenSpaceGuid.PcdUefiMemPoolSize|0x3500000
+  gSurfacePkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x20000000  # Start here
 
   ## Default Terminal Type
   ## 0-PCANSI, 1-VT100, 2-VT00+, 3-UTF8, 4-TTYTERM
