@@ -7,12 +7,13 @@ _Head:
 
 	/* Fake Linux kernel header */
 
+_StackBase:
 	/* Text Offset */
-	.quad 0x9F000000
+	.quad UEFI_BASE
 
 _StackSize:
 	/* Image Size */
-	.quad 0x01DF5200
+	.quad UEFI_SIZE
 
 	/* Flags */
 	.quad 0
@@ -33,12 +34,25 @@ _StackSize:
 	.long 0
 
 _Start:
-	/* Location of the device tree for said kernel image */
-	ldr		x0, _StackSize
-	add     x0, x0, x1
+	mov		x4, x1
+	ldr		x5, _StackBase
+	cmp		x4, x5
+	beq		_Entry
+	ldr		x6,  _StackSize
 
-	/* Reserved */
-	mov     x1, #0
+_CopyLoop:
+	ldp		x2, x3, [x4], #16
+	stp		x2, x3, [x5], #16
+	subs	x6, x6, #16
+	b.ne	_CopyLoop
+	ldr		x5, _StackBase
+
+_Entry:
+	br		x5
+
+_Dead:
+	/* We should never get here */
+	b		_Dead
 
 .text
 .align 4
