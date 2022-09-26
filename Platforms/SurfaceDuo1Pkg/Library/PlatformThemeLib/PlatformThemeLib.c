@@ -36,7 +36,7 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
     };
 
 // Scale is a percentage of 3000x2000 (long story)
-#define SCALE  90
+#define SCALE  54
 
 // The fonts for this platform are:
 #include <Resources/FontPackage_Selawik_Regular_22pt.h>
