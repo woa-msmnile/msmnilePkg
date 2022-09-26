@@ -41,10 +41,13 @@ typedef struct {
 #define Reserv EfiReservedMemoryType
 #define Conv EfiConventionalMemory
 #define BsData EfiBootServicesData
+#define BsCode EfiBootServicesCode
 #define RtData EfiRuntimeServicesData
+#define RtCode EfiRuntimeServicesCode
 #define MmIO EfiMemoryMappedIO
 
 #define NS_DEVICE ARM_MEMORY_REGION_ATTRIBUTE_NONSECURE_DEVICE
+#define DEVICE ARM_MEMORY_REGION_ATTRIBUTE_NONSECURE_DEVICE
 #define WRITE_THROUGH ARM_MEMORY_REGION_ATTRIBUTE_WRITE_THROUGH
 #define WRITE_THROUGH_XN ARM_MEMORY_REGION_ATTRIBUTE_WRITE_THROUGH
 #define WRITE_BACK ARM_MEMORY_REGION_ATTRIBUTE_WRITE_BACK
