@@ -4,15 +4,21 @@ CROSS_COMPILE     = $(TARGET)-
 CC                = $(CROSS_COMPILE)gcc
 OBJCOPY           = $(CROSS_COMPILE)objcopy
 
-all: BootShim.Epsilon.elf BootShim.Epsilon.bin BootShim.Zeta.elf BootShim.Zeta.bin
+all: BootShim.Epsilon.elf BootShim.Epsilon.bin BootShim.SimpleInit.elf BootShim.SimpleInit.bin BootShim.Zeta.elf BootShim.Zeta.bin
 
 BootShim.Epsilon.bin: BootShim.Epsilon.elf
+	$(OBJCOPY) -O binary $< $@
+
+BootShim.SimpleInit.bin: BootShim.SimpleInit.elf
 	$(OBJCOPY) -O binary $< $@
 
 BootShim.Zeta.bin: BootShim.Zeta.elf
 	$(OBJCOPY) -O binary $< $@
 
 BootShim.Epsilon.elf: BootShim.Epsilon.S
+	$(CC) -c $< -o $@
+
+BootShim.SimpleInit.elf: BootShim.SimpleInit.S
 	$(CC) -c $< -o $@
 
 BootShim.Zeta.elf: BootShim.Zeta.S

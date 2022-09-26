@@ -510,4 +510,5 @@
 
   SurfacePkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
 
-  SurfacePkg/UFP/ufpdevicefw.inf
+ # SurfacePkg/UFP/ufpdevicefw.inf
+ SurfacePkg/SimpleInitBin/SimpleInitBin.inf

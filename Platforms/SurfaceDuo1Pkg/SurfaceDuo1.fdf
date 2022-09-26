@@ -29,11 +29,11 @@
 !endif
 
 [FD.SM8150_EFI]
-BaseAddress   = 0x9FC00000|gArmTokenSpaceGuid.PcdFdBaseAddress #The base address of the FLASH Device.
-Size          = 0x00300000|gArmTokenSpaceGuid.PcdFdSize        #The size in bytes of the FLASH Device
+BaseAddress   = 0xD0000000|gArmTokenSpaceGuid.PcdFdBaseAddress #The base address of the FLASH Device.
+Size          = 0x00600000|gArmTokenSpaceGuid.PcdFdSize        #The size in bytes of the FLASH Device
 ErasePolarity = 1
 BlockSize     = 0x200
-NumBlocks     = 0x1800
+NumBlocks     = 0x3000
 
 ################################################################################
 #
@@ -50,7 +50,7 @@ NumBlocks     = 0x1800
 # RegionType <FV, DATA, or FILE>
 #
 ################################################################################
-0x00000000|0x00300000
+0x00000000|0x00600000
 gArmTokenSpaceGuid.PcdFvBaseAddress|gArmTokenSpaceGuid.PcdFvSize
 FV = FVMAIN_COMPACT
 
@@ -132,7 +132,8 @@ READ_LOCK_STATUS   = TRUE
 
   !include SurfacePkg/FrontpageFdf.inc
 
-  INF SurfacePkg/UFP/ufpdevicefw.inf
+  # INF SurfacePkg/UFP/ufpdevicefw.inf
+  INF SurfacePkg/SimpleInitBin/SimpleInitBin.inf
 
   INF SurfaceDuo1Pkg/Driver/GpioButtons/GpioButtons.inf
 
