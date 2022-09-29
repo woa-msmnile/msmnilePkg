@@ -40,6 +40,7 @@
 
 [Guids]
   gMsBootPolicyFileGuid
+  gSwitchSlotsAppFileGuid
 
 [Protocols]
   gEfiFirmwareVolume2ProtocolGuid

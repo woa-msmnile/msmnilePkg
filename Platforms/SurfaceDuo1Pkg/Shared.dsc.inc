@@ -303,6 +303,7 @@
   MuSecureBootKeySelectorLib|MsCorePkg/Library/MuSecureBootKeySelectorLib/MuSecureBootKeySelectorLib.inf
   UpdateFacsHardwareSignatureLib|PcBdsPkg/Library/UpdateFacsHardwareSignatureLib/UpdateFacsHardwareSignatureLib.inf
   FrameBufferMemDrawLib|MsGraphicsPkg/Library/FrameBufferMemDrawLib/FrameBufferMemDrawLib.inf
+  BootSlotLib|SurfacePkg/Library/BootSlotLib/BootSlotLib.inf
 
 [LibraryClasses.common.SEC]
   HobLib|EmbeddedPkg/Library/PrePiHobLib/PrePiHobLib.inf
@@ -507,4 +508,6 @@
   SurfacePkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
 
  # SurfacePkg/UFP/ufpdevicefw.inf
- SurfacePkg/SimpleInitBin/SimpleInitBin.inf
+  SurfacePkg/SimpleInitBin/SimpleInitBin.inf
+  SurfacePkg/Driver/BootSlotDxe/BootSlotDxe.inf
+  SurfacePkg/Application/SwitchSlotsApp/SwitchSlotsApp.inf
