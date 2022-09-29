@@ -28,6 +28,8 @@ if  [ -z ${TARGET_RAM_SIZE} ]; then
 	TARGET_RAM_SIZE=6
 fi
 
+bash ./build_boot_shim.sh
+
 # Start the actual build:
 if [ ${TARGET_DEVICE} = 'all' ]; then
     for i in $(ls Platforms/SurfaceDuo1Pkg/Device); do
@@ -43,5 +45,3 @@ if [ ${TARGET_DEVICE} = 'all' ]; then
 else
     stuart_build -c Platforms/SurfaceDuo1Pkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG38 "TARGET_DEVICE=${TARGET_DEVICE}" "TARGET_RAM_SIZE=${TARGET_RAM_SIZE}"
 fi
-
-bash ./build_boot_shim.sh
