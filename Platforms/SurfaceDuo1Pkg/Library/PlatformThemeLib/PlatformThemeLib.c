@@ -36,7 +36,7 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
     };
 
 // Scale is a percentage of 3000x2000 (long story)
-#define SCALE  54
+// #define SCALE  90
 
 // The fonts for this platform are:
 #include <Resources/FontPackage_Selawik_Regular_22pt.h>
@@ -60,7 +60,7 @@ FONT_DECL (LargeFont, Selawik_Regular_48pt)
 static  MS_UI_THEME_DESCRIPTION gMsUiPlatformTheme = {
   MS_UI_THEME_PROTOCOL_SIGNATURE,
   MS_UI_THEME_PROTOCOL_VERSION,
-  SCALE,
+  FILLED_AT_RUNTIME,
   0,
   FILLED_AT_RUNTIME,
   FILLED_AT_RUNTIME,
@@ -100,6 +100,7 @@ PlatformThemeGet (
   gMsUiPlatformTheme.StandardFont = FONT_PTR_SET &StandardFont;
   gMsUiPlatformTheme.MediumFont   = FONT_PTR_SET &MediumFont;
   gMsUiPlatformTheme.LargeFont    = FONT_PTR_SET &LargeFont;
+  gMsUiPlatformTheme.Scale        = (UINT16)MIN(FixedPcdGet32(PcdMipiFrameBufferWidth) / 3000.0,FixedPcdGet32(PcdMipiFrameBufferHeight) / 2000.0);
 
   return &gMsUiPlatformTheme;
 }
