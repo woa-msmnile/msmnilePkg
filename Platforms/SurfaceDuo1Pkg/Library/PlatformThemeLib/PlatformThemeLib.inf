@@ -26,6 +26,7 @@
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
   MsGraphicsPkg/MsGraphicsPkg.dec
+  SurfacePkg/SurfacePkg.dec
 
 [LibraryClasses]
   DebugLib
@@ -33,3 +34,7 @@
 [Protocols]
 
 [Guids]
+
+[FixedPcd]
+  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferWidth
+  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferHeight
