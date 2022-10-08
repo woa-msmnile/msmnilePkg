@@ -108,9 +108,9 @@ _SetupPrimaryCoreStack:
 
   mov v4.d[0], xzr
   mov v4.d[1], xzr
-  mov v5.2d, v4.2d 
-  mov v6.2d, v4.2d
-  mov v7.2d, v4.2d 
+  mov v5.16b, v4.16b
+  mov v6.16b, v4.16b
+  mov v7.16b, v4.16b
 
 _ClearStack: 
   /* Assumes StackBase is 128-bit aligned, StackSize is a multiple of 64B */
