@@ -108,13 +108,13 @@ _SetupPrimaryCoreStack:
 
   mov v4.d[0], xzr
   mov v4.d[1], xzr
-  mov v5.2d, v4.2d 
-  mov v6.2d, v4.2d
-  mov v7.2d, v4.2d 
-
+  mov v5.16b, v4.16b
+  mov v6.16b, v4.16b
+  mov v7.16b, v4.16b
+  
 _ClearStack: 
   /* Assumes StackBase is 128-bit aligned, StackSize is a multiple of 64B */
-  st4     {v4.2d, v5.2d, v6.2d, v7.2d}, [x3], #64  /* Fill every 64 bytes */
+  st4     {v4.16b, v5.16b, v6.16b, v7.16b}, [x3], #64  /* Fill every 64 bytes */
   cmp     x3, x2                                   /* Compare Size */ 
   b.lt     _ClearStack 
 
