@@ -8,7 +8,7 @@
 
     FILE DRIVER = 0d35cd8e-97ea-4f9a-96af-0f0d89f76567 {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-0d35cd8e-97ea-4f9a-96af-0f0d89f76567/section0.dxe.depex
-            SECTION PE32 = SurfaceDuo1Pkg/PatchedBinaries/UFSDxe.efi
+            SECTION PE32 = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UFSDxe.efi
             SECTION UI = "UFSDxe"
     }
 
