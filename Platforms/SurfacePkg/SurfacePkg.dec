@@ -129,7 +129,7 @@
   gSurfacePkgTokenSpaceGuid.PcdSmbiosBoardModel|"Surface Duo"|VOID*|0x0000a306
 
   # Simple FrameBuffer
-  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0x80600000|UINT32|0x0000a400
+  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0x9C000000|UINT32|0x0000a400
   gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1350|UINT32|0x0000a401
   gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferHeight|1800|UINT32|0x0000a402
   gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|32|UINT32|0x0000a403
