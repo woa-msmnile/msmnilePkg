@@ -70,7 +70,7 @@ You will find Build/<target-name>/uefi.img if build successfully.
 | Xiaomi Hercules    | xiaomi-hercules     | ❌           | NONE                                               |
 | Xiaomi K20 Pro     | xiaomi-raphael      | ❌           | NONE                                               |
 | Xiaomi Mix3 5G     | xiaomi-andromeda    | ✅           | [sunflower2333](https://github.com/sunflower2333)  |
-| Xiaomi Pad 5       | xiaomi-nabu         | ❌           | NONE                                               |
+| Xiaomi Pad 5       | xiaomi-nabu         | ✅           | [map220v](https://github.com/map220v)              |
 | Xiaomi Poco X3 Pro | xiaomi-vayu         | ❌           | [mcusr120](https://github.com/mcusr120)            |
 
 ## Acknowledgements
