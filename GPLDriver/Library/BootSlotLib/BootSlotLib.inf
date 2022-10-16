@@ -34,7 +34,7 @@
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
-  SurfacePkg/SurfacePkg.dec
+  SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
 
 [LibraryClasses]
   UefiLib

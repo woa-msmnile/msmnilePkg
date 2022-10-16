@@ -26,7 +26,7 @@
   PcBdsPkg/PcBdsPkg.dec
   MsCorePkg/MsCorePkg.dec
   MdeModulePkg/MdeModulePkg.dec
-  SurfacePkg/SurfacePkg.dec
+  SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
   SurfaceDuo1Pkg/SurfaceDuo1Pkg.dec
 
 [LibraryClasses]

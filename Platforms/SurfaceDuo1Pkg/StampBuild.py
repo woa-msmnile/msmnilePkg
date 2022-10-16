@@ -42,7 +42,7 @@ def stamp_build():
 #define __EDK2_RELEASE__ "{edk2_commit}"
 #endif"""
 
-    with open("Platforms/SurfacePkg/Include/Resources/ReleaseInfo.h", "w") as f:
+    with open("Platforms/SurfaceDuoFamilyPkg/Include/Resources/ReleaseInfo.h", "w") as f:
         f.write(release_info)
         
     
