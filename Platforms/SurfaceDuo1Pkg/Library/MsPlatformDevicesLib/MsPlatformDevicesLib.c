@@ -28,8 +28,8 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 #include <Configuration/DeviceMemoryMap.h>
 
 #include <Protocol/EFIChipInfo.h>
-#include <Protocol/EFISmem.h>
 #include <Protocol/EFIPlatformInfo.h>
+#include <Protocol/EFISmem.h>
 
 //
 // Predefined platform default console device path
@@ -54,7 +54,7 @@ EFI_DEVICE_PATH_PROTOCOL *gPlatformConInDeviceList[] = {NULL};
 
 EFI_STATUS
 EFIAPI
-MemoryMapLocateArea(PARM_MEMORY_REGION_DESCRIPTOR_EX* MemoryDescriptor, CHAR8* Name)
+MemoryMapLocateArea(PARM_MEMORY_REGION_DESCRIPTOR_EX *MemoryDescriptor, CHAR8 *Name)
 {
   PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
       gDeviceMemoryDescriptorEx;
@@ -78,40 +78,40 @@ PlatformUpdateAcpiTables(VOID)
 
   PARM_MEMORY_REGION_DESCRIPTOR_EX MPSSEFSRegion = NULL;
   PARM_MEMORY_REGION_DESCRIPTOR_EX ADSPEFSRegion = NULL;
-  PARM_MEMORY_REGION_DESCRIPTOR_EX TGCMRegion = NULL;
+  PARM_MEMORY_REGION_DESCRIPTOR_EX TGCMRegion    = NULL;
 
-  UINT32 SOID = 0;
-  UINT32 STOR = 0x1;
-  UINT32 SIDV = 0;
-  UINT16 SDFE = 0;
-  UINT16 SIDM = 0;
-  UINT32 SUFS = 0xffffffff;
-  UINT32 PUS3 = 0x0;
-  UINT32 SUS3 = 0xffffffff;
-  UINT32 *pSIDT = (UINT32*)0x784130;
-  UINT32 SIDT = (*pSIDT & 0xFF00000) >> 20;
-  UINT32 SOSN1 = 0;
-  UINT32 SOSN2 = 0;
-  UINT32 TPMA = 0x1;
-  UINT32 TDTV = 0x6654504d;
-  UINT64 SOSI = 0;
-  UINT32 PRP0 = 0xffffffff;
-  UINT32 PRP1 = 0xffffffff;
-  UINT32 PRP2 = 0xffffffff;
-  UINT32 PRP3 = 0xffffffff;
-  CHAR8 SIDS[EFICHIPINFO_MAX_ID_LENGTH] = { 0 };
+  UINT32                              SOID  = 0;
+  UINT32                              STOR  = 0x1;
+  UINT32                              SIDV  = 0;
+  UINT16                              SDFE  = 0;
+  UINT16                              SIDM  = 0;
+  UINT32                              SUFS  = 0xffffffff;
+  UINT32                              PUS3  = 0x0;
+  UINT32                              SUS3  = 0xffffffff;
+  UINT32                             *pSIDT = (UINT32 *)0x784130;
+  UINT32                              SIDT  = (*pSIDT & 0xFF00000) >> 20;
+  UINT32                              SOSN1 = 0;
+  UINT32                              SOSN2 = 0;
+  UINT32                              TPMA  = 0x1;
+  UINT32                              TDTV  = 0x6654504d;
+  UINT64                              SOSI  = 0;
+  UINT32                              PRP0  = 0xffffffff;
+  UINT32                              PRP1  = 0xffffffff;
+  UINT32                              PRP2  = 0xffffffff;
+  UINT32                              PRP3  = 0xffffffff;
+  CHAR8                               SIDS[EFICHIPINFO_MAX_ID_LENGTH] = {0};
   EFI_PLATFORMINFO_PLATFORM_INFO_TYPE PlatformInfo;
-  UINT32 RMTB = 0;
-  UINT32 RMTX = 0;
-  UINT32 RFMB = 0;
-  UINT32 RFMS = 0;
-  UINT32 RFAB = 0;
-  UINT32 RFAS = 0;
-  UINT32 TCMA = 0;
-  UINT32 TCML = 0;
+  UINT32                              RMTB = 0;
+  UINT32                              RMTX = 0;
+  UINT32                              RFMB = 0;
+  UINT32                              RFMS = 0;
+  UINT32                              RFAB = 0;
+  UINT32                              RFAS = 0;
+  UINT32                              TCMA = 0;
+  UINT32                              TCML = 0;
 
-  EFI_CHIPINFO_PROTOCOL     *mBoardProtocol = NULL;
-  EFI_SMEM_PROTOCOL         *pEfiSmemProtocol = NULL;
+  EFI_CHIPINFO_PROTOCOL     *mBoardProtocol           = NULL;
+  EFI_SMEM_PROTOCOL         *pEfiSmemProtocol         = NULL;
   EFI_PLATFORMINFO_PROTOCOL *pEfiPlatformInfoProtocol = NULL;
 
   UINT32 SmemSize = 0;
@@ -121,7 +121,7 @@ PlatformUpdateAcpiTables(VOID)
   //
   Status = gBS->LocateProtocol(
       &gEfiChipInfoProtocolGuid, NULL, (VOID *)&mBoardProtocol);
-  if (EFI_ERROR (Status)) {
+  if (EFI_ERROR(Status)) {
     return;
   }
 
@@ -130,7 +130,7 @@ PlatformUpdateAcpiTables(VOID)
   //
   Status = gBS->LocateProtocol(
       &gEfiSMEMProtocolGuid, NULL, (VOID **)&pEfiSmemProtocol);
-  if (EFI_ERROR (Status)) {
+  if (EFI_ERROR(Status)) {
     return;
   }
 
@@ -139,7 +139,7 @@ PlatformUpdateAcpiTables(VOID)
   //
   Status = gBS->LocateProtocol(
       &gEfiPlatformInfoProtocolGuid, NULL, (VOID **)&pEfiPlatformInfoProtocol);
-  if (EFI_ERROR (Status)) {
+  if (EFI_ERROR(Status)) {
     return;
   }
 
@@ -182,43 +182,44 @@ PlatformUpdateAcpiTables(VOID)
   }
 
   DEBUG((EFI_D_WARN, "Chip Id: %d\n", SOID));
+  DEBUG((EFI_D_WARN, "Chip Family Id: %d\n", SDFE));
   DEBUG((EFI_D_WARN, "Chip Major Version: %d\n", SVMJ));
   DEBUG((EFI_D_WARN, "Chip Minor Version: %d\n", SVMI));
-  DEBUG((EFI_D_WARN, "Chip Modem Support: %d\n", SIDM));
+  DEBUG((EFI_D_WARN, "Chip Modem Support: 0x%x\n", SIDM));
   DEBUG((EFI_D_WARN, "Chip Serial Number: 0x%x\n", SOSN));
   DEBUG((EFI_D_WARN, "Chip Name: %a\n", SIDS));
   DEBUG((EFI_D_WARN, "Chip Info Address: 0x%x\n", SOSI));
   DEBUG((EFI_D_WARN, "Platform Subtype: %d\n", PLST));
 
-  UpdateNameAslCode(SIGNATURE_32('S','O','I','D'), &SOID, 4);
-  UpdateNameAslCode(SIGNATURE_32('S','T','O','R'), &STOR, 4);
-  UpdateNameAslCode(SIGNATURE_32('S','I','D','V'), &SIDV, 4);
-  UpdateNameAslCode(SIGNATURE_32('S','V','M','J'), &SVMJ, 2);
-  UpdateNameAslCode(SIGNATURE_32('S','V','M','I'), &SVMI, 2);
-  UpdateNameAslCode(SIGNATURE_32('S','D','F','E'), &SDFE, 2);
-  UpdateNameAslCode(SIGNATURE_32('S','I','D','M'), &SIDM, 2);
-  UpdateNameAslCode(SIGNATURE_32('S','U','F','S'), &SUFS, 4);
-  UpdateNameAslCode(SIGNATURE_32('P','U','S','3'), &PUS3, 4);
-  UpdateNameAslCode(SIGNATURE_32('S','U','S','3'), &SUS3, 4);
-  UpdateNameAslCode(SIGNATURE_32('S','I','D','T'), &SIDT, 4);
-  UpdateNameAslCode(SIGNATURE_32('S','O','S','N'), &SOSN, 8);
-  UpdateNameAslCode(SIGNATURE_32('P','L','S','T'), &PLST, 4);
-  UpdateNameAslCode(SIGNATURE_32('R','M','T','B'), &RMTB, 4);
-  UpdateNameAslCode(SIGNATURE_32('R','M','T','X'), &RMTX, 4);
-  UpdateNameAslCode(SIGNATURE_32('R','F','M','B'), &RFMB, 4);
-  UpdateNameAslCode(SIGNATURE_32('R','F','M','S'), &RFMS, 4);
-  UpdateNameAslCode(SIGNATURE_32('R','F','A','B'), &RFAB, 4);
-  UpdateNameAslCode(SIGNATURE_32('R','F','A','S'), &RFAS, 4);
-  UpdateNameAslCode(SIGNATURE_32('T','P','M','A'), &TPMA, 4);
-  UpdateNameAslCode(SIGNATURE_32('T','D','T','V'), &TDTV, 4);
-  UpdateNameAslCode(SIGNATURE_32('T','C','M','A'), &TCMA, 4);
-  UpdateNameAslCode(SIGNATURE_32('T','C','M','L'), &TCML, 4);
-  UpdateNameAslCode(SIGNATURE_32('S','O','S','I'), &SOSI, 8);
-  UpdateNameAslCode(SIGNATURE_32('P','R','P','0'), &PRP0, 4);
-  UpdateNameAslCode(SIGNATURE_32('P','R','P','1'), &PRP1, 4);
-  UpdateNameAslCode(SIGNATURE_32('P','R','P','2'), &PRP2, 4);
-  UpdateNameAslCode(SIGNATURE_32('P','R','P','3'), &PRP3, 4);
-  UpdateNameAslCode(SIGNATURE_32('S','I','D','S'), &SIDS, EFICHIPINFO_MAX_ID_LENGTH);
+  UpdateNameAslCode(SIGNATURE_32('S', 'O', 'I', 'D'), &SOID, 4);
+  UpdateNameAslCode(SIGNATURE_32('S', 'T', 'O', 'R'), &STOR, 4);
+  UpdateNameAslCode(SIGNATURE_32('S', 'I', 'D', 'V'), &SIDV, 4);
+  UpdateNameAslCode(SIGNATURE_32('S', 'V', 'M', 'J'), &SVMJ, 2);
+  UpdateNameAslCode(SIGNATURE_32('S', 'V', 'M', 'I'), &SVMI, 2);
+  UpdateNameAslCode(SIGNATURE_32('S', 'D', 'F', 'E'), &SDFE, 2);
+  UpdateNameAslCode(SIGNATURE_32('S', 'I', 'D', 'M'), &SIDM, 2);
+  UpdateNameAslCode(SIGNATURE_32('S', 'U', 'F', 'S'), &SUFS, 4);
+  UpdateNameAslCode(SIGNATURE_32('P', 'U', 'S', '3'), &PUS3, 4);
+  UpdateNameAslCode(SIGNATURE_32('S', 'U', 'S', '3'), &SUS3, 4);
+  UpdateNameAslCode(SIGNATURE_32('S', 'I', 'D', 'T'), &SIDT, 4);
+  UpdateNameAslCode(SIGNATURE_32('S', 'O', 'S', 'N'), &SOSN, 8);
+  UpdateNameAslCode(SIGNATURE_32('P', 'L', 'S', 'T'), &PLST, 4);
+  UpdateNameAslCode(SIGNATURE_32('R', 'M', 'T', 'B'), &RMTB, 4);
+  UpdateNameAslCode(SIGNATURE_32('R', 'M', 'T', 'X'), &RMTX, 4);
+  UpdateNameAslCode(SIGNATURE_32('R', 'F', 'M', 'B'), &RFMB, 4);
+  UpdateNameAslCode(SIGNATURE_32('R', 'F', 'M', 'S'), &RFMS, 4);
+  UpdateNameAslCode(SIGNATURE_32('R', 'F', 'A', 'B'), &RFAB, 4);
+  UpdateNameAslCode(SIGNATURE_32('R', 'F', 'A', 'S'), &RFAS, 4);
+  UpdateNameAslCode(SIGNATURE_32('T', 'P', 'M', 'A'), &TPMA, 4);
+  UpdateNameAslCode(SIGNATURE_32('T', 'D', 'T', 'V'), &TDTV, 4);
+  UpdateNameAslCode(SIGNATURE_32('T', 'C', 'M', 'A'), &TCMA, 4);
+  UpdateNameAslCode(SIGNATURE_32('T', 'C', 'M', 'L'), &TCML, 4);
+  UpdateNameAslCode(SIGNATURE_32('S', 'O', 'S', 'I'), &SOSI, 8);
+  UpdateNameAslCode(SIGNATURE_32('P', 'R', 'P', '0'), &PRP0, 4);
+  UpdateNameAslCode(SIGNATURE_32('P', 'R', 'P', '1'), &PRP1, 4);
+  UpdateNameAslCode(SIGNATURE_32('P', 'R', 'P', '2'), &PRP2, 4);
+  UpdateNameAslCode(SIGNATURE_32('P', 'R', 'P', '3'), &PRP3, 4);
+  UpdateNameAslCode(SIGNATURE_32('S', 'I', 'D', 'S'), &SIDS, EFICHIPINFO_MAX_ID_LENGTH);
 }
 
 /**
@@ -240,16 +241,15 @@ PlatformIsDevicePathUsb(IN EFI_DEVICE_PATH_PROTOCOL *DevicePath)
 {
   EFI_DEVICE_PATH_PROTOCOL *Node;
 
-  for (Node = DevicePath; !IsDevicePathEnd(Node); Node = NextDevicePathNode(Node))
-    {
-      if ((DevicePathType(Node) == MESSAGING_DEVICE_PATH) &&
-          ((DevicePathSubType(Node) == MSG_USB_CLASS_DP) ||
-           (DevicePathSubType(Node) == MSG_USB_WWID_DP) ||
-           (DevicePathSubType(Node) == MSG_USB_DP)))
-      {
-        return TRUE;
-      }
+  for (Node = DevicePath; !IsDevicePathEnd(Node);
+       Node = NextDevicePathNode(Node)) {
+    if ((DevicePathType(Node) == MESSAGING_DEVICE_PATH) &&
+        ((DevicePathSubType(Node) == MSG_USB_CLASS_DP) ||
+         (DevicePathSubType(Node) == MSG_USB_WWID_DP) ||
+         (DevicePathSubType(Node) == MSG_USB_DP))) {
+      return TRUE;
     }
+  }
 
   return FALSE;
 }

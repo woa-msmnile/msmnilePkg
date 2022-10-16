@@ -170,13 +170,13 @@ APRIORI DXE {
     }
 
 !if $(USE_SIMPLEFBDXE) == TRUE
-    INF SurfacePkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
+    INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
 !endif
 
 !if $(USE_DISPLAYDXE) == TRUE
     FILE DRIVER = 4138022f-06c7-4f79-9c94-7e33b511a4e7 {
-            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-4138022f-06c7-4f79-9c94-7e33b511a4e7/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-4138022f-06c7-4f79-9c94-7e33b511a4e7/section1.pe
+            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-4138022f-06c7-4f79-9c94-7e33b511a4e7/section0.dxe.depex
+            SECTION PE32 = SurfaceDuo1Pkg/PatchedBinaries/DisplayDxe.efi
             SECTION UI = "DisplayDxe"
     }
 !endif

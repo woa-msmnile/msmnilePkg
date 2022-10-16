@@ -85,10 +85,15 @@ READ_LOCK_STATUS   = TRUE
   !include SurfaceDuo1Pkg/Include/APRIORI.inc
   !include SurfaceDuo1Pkg/Include/DXE.inc
 
+  # Debug heartbeat
+!if $(SEND_HEARTBEAT_TO_SERIAL) == 1
+  INF SurfaceDuoFamilyPkg/Driver/HeartbeatDxe/HeartbeatDxe.inf
+!endif
+
   # Secure Boot Key Enroll
   !if $(SECURE_BOOT_ENABLE) == TRUE
     INF SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
-    # INF SurfacePkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
+    # INF SurfaceDuoFamilyPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
   !endif
 
   INF EmbeddedPkg/Drivers/VirtualKeyboardDxe/VirtualKeyboardDxe.inf
@@ -115,7 +120,7 @@ READ_LOCK_STATUS   = TRUE
   # ACPI and SMBIOS
   INF MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
   INF MdeModulePkg/Universal/Acpi/AcpiPlatformDxe/AcpiPlatformDxe.inf
-  INF SurfacePkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
+  INF SurfaceDuoFamilyPkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
 
   # ACPI Tables
   !include SurfaceDuo1Pkg/Include/ACPI.inc
@@ -126,14 +131,20 @@ READ_LOCK_STATUS   = TRUE
 
   INF MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
 
-  !include SurfacePkg/FrontpageFdf.inc
+  !include SurfaceDuoFamilyPkg/Frontpage.fdf.inc
 
-  # INF SurfacePkg/UFP/ufpdevicefw.inf
-  INF SurfacePkg/SimpleInitBin/SimpleInitBin.inf
+  FILE FREEFORM = PCD(gMsCorePkgTokenSpaceGuid.PcdRegulatoryGraphicFileGuid) {
+    SECTION RAW = SurfaceDuo1Pkg/Include/Resources/RegulatoryLogos.png
+  }
+
+  # INF SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
+  INF SurfaceDuoFamilyPkg/SimpleInitBin/SimpleInitBin.inf
   INF GPLDriver/Application/SwitchSlotsApp/SwitchSlotsApp.inf
   INF GPLDriver/Driver/BootSlotDxe/BootSlotDxe.inf
 
   INF SurfaceDuo1Pkg/Driver/GpioButtons/GpioButtons.inf
+
+  INF SurfaceDuo1Pkg/Driver/KernelErrataPatcher/KernelErrataPatcher.inf
 
 [FV.FVMAIN_COMPACT]
 FvAlignment        = 8
@@ -153,7 +164,7 @@ READ_STATUS        = TRUE
 READ_LOCK_CAP      = TRUE
 READ_LOCK_STATUS   = TRUE
 
-  INF SurfacePkg/PrePi/PrePi.inf
+  INF SurfaceDuoFamilyPkg/PrePi/PrePi.inf
 
   FILE FV_IMAGE = 9E21FD93-9C72-4c15-8C4B-E77F1DB2D792 {
     SECTION GUIDED EE4E5898-3914-4259-9D6E-DC7BD79403CF PROCESSING_REQUIRED = TRUE {
@@ -161,4 +172,4 @@ READ_LOCK_STATUS   = TRUE
     }
   }
 
-  !include SurfaceDuo1.fdf.inc
+  !include SurfaceDuoFamilyPkg/SurfaceDuoFamily.fdf.inc

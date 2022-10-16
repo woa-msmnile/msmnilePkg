@@ -234,7 +234,8 @@
 [588h 1416   4]                ATS Attribute : 00000001
 [58Ch 1420   4]           PCI Segment Number : 00000000
 [590h 1424   1]            Memory Size Limit : 80
-[591h 1425   3]                     Reserved : 870300
+[591h 1425   2]           PASID Capabilities : 0300
+[593h 1427   1]                     Reserved : 87
 
 [590h 1424   4]                   Input base : 87030080
 [594h 1428   4]                     ID Count : 0000007F
@@ -271,9 +272,8 @@
                             Device Attribute : 0
 [5D4h 1492   1]            Memory Size Limit : 28
 [5D5h 1493  10]                  Device Name : "\_SB.GPU0"
-[5DFh 1503  22]                      Padding : \
-    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 \
-    00 00 00 00 00 00 
+[5DFh 1503  22]                      Padding : 49 4F 52 54 51 18 00 00 00 67 51 43 4F 4D 20 20 /* IORTQ....gQCOM   */\
+/* 5EFh 1519   6 */                            51 43 4F 4D 45 44                               /* QCOMED */\
 
 [5F5h 1525   4]                   Input base : 030A0000
 [5F9h 1529   4]                     ID Count : 00000000
@@ -653,9 +653,8 @@
                             Device Attribute : 0
 [A0Dh 2573   1]            Memory Size Limit : 24
 [A0Eh 2574  10]                  Device Name : "\_SB.JPGE"
-[A18h 2584  22]                      Padding : \
-    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 \
-    00 00 00 00 00 00 
+[A18h 2584  22]                      Padding : 49 4F 52 54 51 18 00 00 00 67 51 43 4F 4D 20 20 /* IORTQ....gQCOM   */\
+/* A28h 2600   6 */                            51 43 4F 4D 45 44                               /* QCOMED */\
 
 [A2Eh 2606   4]                   Input base : 02030000
 [A32h 2610   4]                     ID Count : 00000000
@@ -692,9 +691,8 @@
                             Device Attribute : 0
 [A72h 2674   1]            Memory Size Limit : 24
 [A73h 2675  10]                  Device Name : "\_SB.ARPC"
-[A7Dh 2685  22]                      Padding : \
-    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 \
-    00 00 00 00 00 00 
+[A7Dh 2685  22]                      Padding : 49 4F 52 54 51 18 00 00 00 67 51 43 4F 4D 20 20 /* IORTQ....gQCOM   */\
+/* A8Dh 2701   6 */                            51 43 4F 4D 45 44                               /* QCOMED */\
 
 [A93h 2707   4]                   Input base : 17030010
 [A97h 2711   4]                     ID Count : 00000000
@@ -1116,9 +1114,8 @@
                             Device Attribute : 0
 [F23h 3875   1]            Memory Size Limit : 24
 [F24h 3876   9]                  Device Name : "\_SB.IPA"
-[F2Dh 3885  23]                      Padding : \
-    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 \
-    00 00 00 00 00 00 00 
+[F2Dh 3885  23]                      Padding : 49 4F 52 54 51 18 00 00 00 67 51 43 4F 4D 20 20 /* IORTQ....gQCOM   */\
+/* F3Dh 3901   7 */                            51 43 4F 4D 45 44 4B                            /* QCOMEDK */\
 
 [F44h 3908   4]                   Input base : 0B030000
 [F48h 3912   4]                     ID Count : 00000002
@@ -1148,9 +1145,8 @@
                             Device Attribute : 0
 [F74h 3956   1]            Memory Size Limit : 24
 [F75h 3957  10]                  Device Name : "\_SB.USBA"
-[F7Fh 3967  22]                      Padding : \
-    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 \
-    00 00 00 00 00 00 
+[F7Fh 3967  22]                      Padding : 49 4F 52 54 51 18 00 00 00 67 51 43 4F 4D 20 20 /* IORTQ....gQCOM   */\
+/* F8Fh 3983   6 */                            51 43 4F 4D 45 44                               /* QCOMED */\
 
 [F95h 3989   4]                   Input base : 0703000A
 [F99h 3993   4]                     ID Count : 00000000
@@ -1180,9 +1176,8 @@
                             Device Attribute : 0
 [FC5h 4037   1]            Memory Size Limit : 24
 [FC6h 4038  10]                  Device Name : "\_SB.NPU0"
-[FD0h 4048  22]                      Padding : \
-    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 \
-    00 00 00 00 00 00 
+[FD0h 4048  22]                      Padding : 49 4F 52 54 51 18 00 00 00 67 51 43 4F 4D 20 20 /* IORTQ....gQCOM   */\
+/* FE0h 4064   6 */                            51 43 4F 4D 45 44                               /* QCOMED */\
 
 [FE6h 4070   4]                   Input base : 18030000
 [FEAh 4074   4]                     ID Count : 00000000
@@ -1233,9 +1228,8 @@
                             Device Attribute : 0
 [1052h 4178   1]            Memory Size Limit : 24
 [1053h 4179  10]                  Device Name : "\_SB.QDSS"
-[105Dh 4189  22]                      Padding : \
-    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 \
-    00 00 00 00 00 00 
+[105Dh 4189  22]                      Padding : 49 4F 52 54 51 18 00 00 00 67 51 43 4F 4D 20 20 /* IORTQ....gQCOM   */\
+/* 106Dh 4205   6 */                            51 43 4F 4D 45 44                               /* QCOMED */\
 
 [1073h 4211   4]                   Input base : 89030000
 [1077h 4215   4]                     ID Count : 00000000
@@ -1272,7 +1266,7 @@
                             Device Attribute : 0
 [10B7h 4279   1]            Memory Size Limit : 24
 [10B8h 4280  20]                  Device Name : "\_SB.ADSP.SLM1.ADCM"
-[10CCh 4300  12]                      Padding : 00 00 00 00 00 00 00 00 00 00 00 00 
+[10CCh 4300  12]                      Padding : 49 4F 52 54 51 18 00 00 00 67 51 43             /* IORTQ....gQC */\
 
 [10D8h 4312   4]                   Input base : 07030000
 [10DCh 4316   4]                     ID Count : 00000000
@@ -1337,9 +1331,8 @@
                             Device Attribute : 0
 [116Ch 4460   1]            Memory Size Limit : 24
 [116Dh 4461  11]                  Device Name : "\_SB.QSPI0"
-[1178h 4472  21]                      Padding : \
-    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 \
-    00 00 00 00 00 
+[1178h 4472  21]                      Padding : 49 4F 52 54 51 18 00 00 00 67 51 43 4F 4D 20 20 /* IORTQ....gQCOM   */\
+/* 1188h 4488   5 */                            51 43 4F 4D 45                                  /* QCOME */\
 
 [118Dh 4493   4]                   Input base : 14030000
 [1191h 4497   4]                     ID Count : 00000000
@@ -1369,9 +1362,8 @@
                             Device Attribute : 0
 [11BDh 4541   1]            Memory Size Limit : 24
 [11BEh 4542  11]                  Device Name : "\_SB.QSPI1"
-[11C9h 4553  21]                      Padding : \
-    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 \
-    00 00 00 00 00 
+[11C9h 4553  21]                      Padding : 49 4F 52 54 51 18 00 00 00 67 51 43 4F 4D 20 20 /* IORTQ....gQCOM   */\
+/* 11D9h 4569   5 */                            51 43 4F 4D 45                                  /* QCOME */\
 
 [11DEh 4574   4]                   Input base : 14030001
 [11E2h 4578   4]                     ID Count : 00000000
@@ -1401,9 +1393,8 @@
                             Device Attribute : 0
 [120Eh 4622   1]            Memory Size Limit : 24
 [120Fh 4623   9]                  Device Name : "\_SB.QUP"
-[1218h 4632  23]                      Padding : \
-    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 \
-    00 00 00 00 00 00 00 
+[1218h 4632  23]                      Padding : 49 4F 52 54 51 18 00 00 00 67 51 43 4F 4D 20 20 /* IORTQ....gQCOM   */\
+/* 1228h 4648   7 */                            51 43 4F 4D 45 44 4B                            /* QCOMEDK */\
 
 [122Fh 4655   4]                   Input base : 13030000
 [1233h 4659   4]                     ID Count : 00000000
@@ -1454,9 +1445,8 @@
                             Device Attribute : 0
 [129Bh 4763   1]            Memory Size Limit : 24
 [129Ch 4764  10]                  Device Name : "\_SB.SDC2"
-[12A6h 4774  22]                      Padding : \
-    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 \
-    00 00 00 00 00 00 
+[12A6h 4774  22]                      Padding : 49 4F 52 54 51 18 00 00 00 67 51 43 4F 4D 20 20 /* IORTQ....gQCOM   */\
+/* 12B6h 4790   6 */                            51 43 4F 4D 45 44                               /* QCOMED */\
 
 [12BCh 4796   4]                   Input base : 86030000
 [12C0h 4800   4]                     ID Count : 00000000
@@ -1493,9 +1483,8 @@
                             Device Attribute : 0
 [1300h 4864   1]            Memory Size Limit : 24
 [1301h 4865  10]                  Device Name : "\_SB.SEN1"
-[130Bh 4875  22]                      Padding : \
-    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 \
-    00 00 00 00 00 00 
+[130Bh 4875  22]                      Padding : 49 4F 52 54 51 18 00 00 00 67 51 43 4F 4D 20 20 /* IORTQ....gQCOM   */\
+/* 131Bh 4891   6 */                            51 43 4F 4D 45 44                               /* QCOMED */\
 
 [1321h 4897   4]                   Input base : 85030000
 [1325h 4901   4]                     ID Count : 00000000
@@ -1532,9 +1521,8 @@
                             Device Attribute : 0
 [1365h 4965   1]            Memory Size Limit : 24
 [1366h 4966  10]                  Device Name : "\_SB.TSC5"
-[1370h 4976  22]                      Padding : \
-    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 \
-    00 00 00 00 00 00 
+[1370h 4976  22]                      Padding : 49 4F 52 54 51 18 00 00 00 67 51 43 4F 4D 20 20 /* IORTQ....gQCOM   */\
+/* 1380h 4992   6 */                            51 43 4F 4D 45 44                               /* QCOMED */\
 
 [1386h 4998   4]                   Input base : 88030000
 [138Ah 5002   4]                     ID Count : 0000000F
@@ -1564,9 +1552,8 @@
                             Device Attribute : 0
 [13B6h 5046   1]            Memory Size Limit : 24
 [13B7h 5047  10]                  Device Name : "\_SB.UFS0"
-[13C1h 5057  22]                      Padding : \
-    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 \
-    00 00 00 00 00 00 
+[13C1h 5057  22]                      Padding : 49 4F 52 54 51 18 00 00 00 67 51 43 4F 4D 20 20 /* IORTQ....gQCOM   */\
+/* 13D1h 5073   6 */                            51 43 4F 4D 45 44                               /* QCOMED */\
 
 [13D7h 5079   4]                   Input base : 81030000
 [13DBh 5083   4]                     ID Count : 00000000
@@ -1610,9 +1597,8 @@
                             Device Attribute : 0
 [142Fh 5167   1]            Memory Size Limit : 24
 [1430h 5168  10]                  Device Name : "\_SB.URS0"
-[143Ah 5178  22]                      Padding : \
-    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 \
-    00 00 00 00 00 00 
+[143Ah 5178  22]                      Padding : 49 4F 52 54 51 18 00 00 00 67 51 43 4F 4D 20 20 /* IORTQ....gQCOM   */\
+/* 144Ah 5194   6 */                            51 43 4F 4D 45 44                               /* QCOMED */\
 
 [1450h 5200   4]                   Input base : 80030000
 [1454h 5204   4]                     ID Count : 00000000
@@ -1642,9 +1628,8 @@
                             Device Attribute : 0
 [1480h 5248   1]            Memory Size Limit : 24
 [1481h 5249  10]                  Device Name : "\_SB.USB0"
-[148Bh 5259  22]                      Padding : \
-    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 \
-    00 00 00 00 00 00 
+[148Bh 5259  22]                      Padding : 49 4F 52 54 51 18 00 00 00 67 51 43 4F 4D 20 20 /* IORTQ....gQCOM   */\
+/* 149Bh 5275   6 */                            51 43 4F 4D 45 44                               /* QCOMED */\
 
 [14A1h 5281   4]                   Input base : 80030000
 [14A5h 5285   4]                     ID Count : 00000000
@@ -1674,9 +1659,8 @@
                             Device Attribute : 0
 [14D1h 5329   1]            Memory Size Limit : 24
 [14D2h 5330  10]                  Device Name : "\_SB.URS1"
-[14DCh 5340  22]                      Padding : \
-    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 \
-    00 00 00 00 00 00 
+[14DCh 5340  22]                      Padding : 49 4F 52 54 51 18 00 00 00 67 51 43 4F 4D 20 20 /* IORTQ....gQCOM   */\
+/* 14ECh 5356   6 */                            51 43 4F 4D 45 44                               /* QCOMED */\
 
 [14F2h 5362   4]                   Input base : 80030001
 [14F6h 5366   4]                     ID Count : 00000000
@@ -1706,9 +1690,8 @@
                             Device Attribute : 0
 [1522h 5410   1]            Memory Size Limit : 24
 [1523h 5411  10]                  Device Name : "\_SB.USB1"
-[152Dh 5421  22]                      Padding : \
-    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 \
-    00 00 00 00 00 00 
+[152Dh 5421  22]                      Padding : 49 4F 52 54 51 18 00 00 00 67 51 43 4F 4D 20 20 /* IORTQ....gQCOM   */\
+/* 153Dh 5437   6 */                            51 43 4F 4D 45 44                               /* QCOMED */\
 
 [1543h 5443   4]                   Input base : 80030001
 [1547h 5447   4]                     ID Count : 00000000
@@ -1738,9 +1721,8 @@
                             Device Attribute : 0
 [1573h 5491   1]            Memory Size Limit : 24
 [1574h 5492  15]                  Device Name : "\_SB.GPU0.AVS0"
-[1583h 5507  17]                      Padding : \
-    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 \
-    00 
+[1583h 5507  17]                      Padding : 49 4F 52 54 51 18 00 00 00 67 51 43 4F 4D 20 20 /* IORTQ....gQCOM   */\
+/* 1593h 5523   1 */                            51                                              /* Q */\
 
 [1594h 5524   4]                   Input base : 01030000
 [1598h 5528   4]                     ID Count : 00000000
@@ -1980,9 +1962,8 @@
                             Device Attribute : 0
 [181Ch 6172   1]            Memory Size Limit : 24
 [181Dh 6173  15]                  Device Name : "\_SB.AMSS.QWLN"
-[182Ch 6188  17]                      Padding : \
-    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 \
-    00 
+[182Ch 6188  17]                      Padding : 49 4F 52 54 51 18 00 00 00 67 51 43 4F 4D 20 20 /* IORTQ....gQCOM   */\
+/* 183Ch 6204   1 */                            51                                              /* Q */\
 
 [183Dh 6205   4]                   Input base : 11030000
 [1841h 6209   4]                     ID Count : 00000001

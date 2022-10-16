@@ -69,6 +69,12 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         Name (PRP1, 0xFFFFFFFF)
         Name (PRP2, 0xFFFFFFFF)
         Name (PRP3, 0xFFFFFFFF)
+        Device (AUDS)
+        {
+            Name (_HID, "QCOM05D2")  // _HID: Hardware ID
+            Name (_UID, Zero)  // _UID: Unique ID
+        }
+
         Device (UFS0)
         {
             Method (_STA, 0, NotSerialized)  // _STA: Status
@@ -186,7 +192,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 \_SB.PEP0
             })
-            Name (_HID, "QCOM0427")  // _HID: Hardware ID
+            Name (_HID, "QCOM0527")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, Zero)  // _UID: Unique ID
             OperationRegion (ROP1, GenericSerialBus, Zero, 0x0100)
@@ -208,7 +214,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 \_SB.SPMI
             })
-            Name (_HID, "QCOM042E")  // _HID: Hardware ID
+            Name (_HID, "QCOM052E")  // _HID: Hardware ID
             Name (_CID, "PNP0CA3")  // _CID: Compatible ID
             Alias (\_SB.PSUB, _SUB)
             Method (PMCF, 0, NotSerialized)
@@ -240,7 +246,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (PM01)
         {
-            Name (_HID, "QCOM0430")  // _HID: Hardware ID
+            Name (_HID, "QCOM0530")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, One)  // _UID: Unique ID
             Name (_DEP, Package (One)  // _DEP: Dependencies
@@ -311,7 +317,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (PMAP)
         {
-            Name (_HID, "QCOM042F")  // _HID: Hardware ID
+            Name (_HID, "QCOM052F")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_DEP, Package (0x03)  // _DEP: Dependencies
             {
@@ -663,7 +669,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (BCL1)
         {
-            Name (_HID, "QCOM047F")  // _HID: Hardware ID
+            Name (_HID, "QCOM057F")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_DEP, Package (One)  // _DEP: Dependencies
             {
@@ -744,7 +750,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (PTCC)
         {
-            Name (_HID, "QCOM0482")  // _HID: Hardware ID
+            Name (_HID, "QCOM0582")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_DEP, Package (One)  // _DEP: Dependencies
             {
@@ -831,13 +837,13 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 \_SB.PMIC
             })
-            Name (_HID, "QCOM04CE")  // _HID: Hardware ID
+            Name (_HID, "QCOM05CE")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
         }
 
         Device (PEP0)
         {
-            Name (_HID, "QCOM0419")  // _HID: Hardware ID
+            Name (_HID, "QCOM0519")  // _HID: Hardware ID
             Name (_CID, "PNP0D80" /* Windows-compatible System Power Management Controller */)  // _CID: Compatible ID
             Method (THTZ, 4, NotSerialized)
             {
@@ -3028,7 +3034,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 Return (Package (0x01)
                 {
-                    "ACPI\\VEN_QCOM&DEV_0419"
+                    "ACPI\\VEN_QCOM&DEV_0519"
                 })
             }
         }
@@ -57920,7 +57926,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (BAM1)
         {
-            Name (_HID, "QCOM040A")  // _HID: Hardware ID
+            Name (_HID, "QCOM050A")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, One)  // _UID: Unique ID
             Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
@@ -57943,7 +57949,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (BAM5)
         {
-            Name (_HID, "QCOM040A")  // _HID: Hardware ID
+            Name (_HID, "QCOM050A")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, 0x05)  // _UID: Unique ID
             Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
@@ -57966,7 +57972,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (BAM6)
         {
-            Name (_HID, "QCOM040A")  // _HID: Hardware ID
+            Name (_HID, "QCOM050A")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, 0x06)  // _UID: Unique ID
             Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
@@ -57989,7 +57995,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (BAM7)
         {
-            Name (_HID, "QCOM040A")  // _HID: Hardware ID
+            Name (_HID, "QCOM050A")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, 0x07)  // _UID: Unique ID
             Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
@@ -58012,7 +58018,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (BAMD)
         {
-            Name (_HID, "QCOM040A")  // _HID: Hardware ID
+            Name (_HID, "QCOM050A")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, 0x0D)  // _UID: Unique ID
             Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
@@ -58035,7 +58041,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (BAME)
         {
-            Name (_HID, "QCOM040A")  // _HID: Hardware ID
+            Name (_HID, "QCOM050A")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, 0x0E)  // _UID: Unique ID
             Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
@@ -58058,7 +58064,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (BAMF)
         {
-            Name (_HID, "QCOM040A")  // _HID: Hardware ID
+            Name (_HID, "QCOM050A")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, 0x0F)  // _UID: Unique ID
             Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
@@ -58081,7 +58087,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (BAMG)
         {
-            Name (_HID, "QCOM040A")  // _HID: Hardware ID
+            Name (_HID, "QCOM050A")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, 0x10)  // _UID: Unique ID
             Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
@@ -58104,7 +58110,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (UARD)
         {
-            Name (_HID, "QCOM0418")  // _HID: Hardware ID
+            Name (_HID, "QCOM0518")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, 0x0D)  // _UID: Unique ID
             Name (_DEP, Package (0x01)  // _DEP: Dependencies
@@ -58137,7 +58143,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (UR18)
         {
-            Name (_HID, "QCOM0418")  // _HID: Hardware ID
+            Name (_HID, "QCOM0518")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, 0x12)  // _UID: Unique ID
             Name (_DEP, Package (0x01)  // _DEP: Dependencies
@@ -58175,7 +58181,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (I2C2)
         {
-            Name (_HID, "QCOM0411")  // _HID: Hardware ID
+            Name (_HID, "QCOM0511")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, 0x02)  // _UID: Unique ID
             Name (_DEP, Package (0x01)  // _DEP: Dependencies
@@ -58202,7 +58208,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (I2C5)
         {
-            Name (_HID, "QCOM0411")  // _HID: Hardware ID
+            Name (_HID, "QCOM0511")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, 0x05)  // _UID: Unique ID
             Name (_DEP, Package (0x01)  // _DEP: Dependencies
@@ -58229,7 +58235,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (IC18)
         {
-            Name (_HID, "QCOM0411")  // _HID: Hardware ID
+            Name (_HID, "QCOM0511")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, 0x12)  // _UID: Unique ID
             Name (_DEP, Package (0x01)  // _DEP: Dependencies
@@ -58256,7 +58262,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (IC20)
         {
-            Name (_HID, "QCOM0411")  // _HID: Hardware ID
+            Name (_HID, "QCOM0511")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, 0x14)  // _UID: Unique ID
             Name (_DEP, Package (0x01)  // _DEP: Dependencies
@@ -58283,7 +58289,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (SPI4)
         {
-            Name (_HID, "QCOM040F")  // _HID: Hardware ID
+            Name (_HID, "QCOM050F")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, 0x04)  // _UID: Unique ID
             Name (_DEP, Package (0x03)  // _DEP: Dependencies
@@ -58312,7 +58318,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (SPI8)
         {
-            Name (_HID, "QCOM040F")  // _HID: Hardware ID
+            Name (_HID, "QCOM050F")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, 0x08)  // _UID: Unique ID
             Name (_DEP, Package (0x03)  // _DEP: Dependencies
@@ -60457,13 +60463,13 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (RPEN)
         {
-            Name (_HID, "QCOM0433")  // _HID: Hardware ID
+            Name (_HID, "QCOM0533")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
         }
 
         Device (PILC)
         {
-            Name (_HID, "QCOM041B")  // _HID: Hardware ID
+            Name (_HID, "QCOM051B")  // _HID: Hardware ID
         }
 
         Device (CDI)
@@ -60473,7 +60479,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 \_SB.PILC, 
                 \_SB.RPEN
             })
-            Name (_HID, "QCOM0432")  // _HID: Hardware ID
+            Name (_HID, "QCOM0532")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -60493,7 +60499,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 \_SB.SSDD, 
                 \_SB.ARPC
             })
-            Name (_HID, "QCOM0421")  // _HID: Hardware ID
+            Name (_HID, "QCOM0521")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -60525,7 +60531,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 \_SB.SSDD, 
                 \_SB.ARPC
             })
-            Name (_HID, "QCOM041D")  // _HID: Hardware ID
+            Name (_HID, "QCOM051D")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -60644,7 +60650,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         Return (Package (0x01)
                         {
-                            "ADCM\\QCOM0425"
+                            "ADCM\\QCOM0525"
                         })
                     }
 
@@ -60684,8 +60690,8 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         {
                             Name (CH, Package (0x02)
                             {
-                                "AUDD\\QCOM0437", 
-                                "AUDD\\QCOM042C"
+                                "AUDD\\QCOM0537", 
+                                "AUDD\\QCOM052C"
                             })
                             Return (CH) /* \_SB_.ADSP.SLM1.ADCM.AUDD.CHLD.CH__ */
                         }
@@ -60744,7 +60750,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 \_SB.RPEN, 
                 \_SB.SSDD
             })
-            Name (_HID, "QCOM041E")  // _HID: Hardware ID
+            Name (_HID, "QCOM051E")  // _HID: Hardware ID
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
             {
                 Name (RBUF, ResourceTemplate ()
@@ -60864,7 +60870,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 Device (COEX)
                 {
-                    Name (_HID, "QCOM045F")  // _HID: Hardware ID
+                    Name (_HID, "QCOM055F")  // _HID: Hardware ID
                     Alias (\_SB.PSUB, _SUB)
                 }
             }
@@ -60891,7 +60897,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (QSM)
         {
-            Name (_HID, "QCOM0420")  // _HID: Hardware ID
+            Name (_HID, "QCOM0520")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_DEP, Package (0x04)  // _DEP: Dependencies
             {
@@ -60920,7 +60926,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (SSDD)
         {
-            Name (_HID, "QCOM0422")  // _HID: Hardware ID
+            Name (_HID, "QCOM0522")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_DEP, Package (0x03)  // _DEP: Dependencies
             {
@@ -60932,7 +60938,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (MPTM)
         {
-            Name (_HID, "QCOM04AF")  // _HID: Hardware ID
+            Name (_HID, "QCOM05AF")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_DEP, Package (One)  // _DEP: Dependencies
             {
@@ -60942,7 +60948,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (PDSR)
         {
-            Name (_HID, "QCOM047C")  // _HID: Hardware ID
+            Name (_HID, "QCOM057C")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_DEP, Package (0x03)  // _DEP: Dependencies
             {
@@ -60964,7 +60970,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 \_SB.SSDD, 
                 \_SB.ARPC
             })
-            Name (_HID, "QCOM0423")  // _HID: Hardware ID
+            Name (_HID, "QCOM0523")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -60992,7 +60998,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 \_SB.PILC, 
                 \_SB.RPEN
             })
-            Name (_HID, "QCOM0499")  // _HID: Hardware ID
+            Name (_HID, "QCOM0599")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -61034,7 +61040,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (TFTP)
         {
-            Name (_HID, "QCOM048B")  // _HID: Hardware ID
+            Name (_HID, "QCOM058B")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_DEP, Package (One)  // _DEP: Dependencies
             {
@@ -61114,7 +61120,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 \_SB.PEP0
             })
-            Name (_HID, "QCOM048C")  // _HID: Hardware ID
+            Name (_HID, "QCOM058C")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Alias (\_SB.SVMJ, _HRV)
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
@@ -61139,7 +61145,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (MMU0)
         {
-            Name (_HID, "QCOM0409")  // _HID: Hardware ID
+            Name (_HID, "QCOM0509")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Alias (\_SB.PSUB, _SUB)
             Alias (\_SB.SVMJ, _HRV)
@@ -61389,7 +61395,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (MMU1)
         {
-            Name (_HID, "QCOM0409")  // _HID: Hardware ID
+            Name (_HID, "QCOM0509")  // _HID: Hardware ID
             Name (_UID, One)  // _UID: Unique ID
             Alias (\_SB.PSUB, _SUB)
             Alias (\_SB.SVMJ, _HRV)
@@ -61443,14 +61449,14 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (IMM0)
         {
-            Name (_HID, "QCOM049B")  // _HID: Hardware ID
+            Name (_HID, "QCOM059B")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, Zero)  // _UID: Unique ID
         }
 
         Device (IMM1)
         {
-            Name (_HID, "QCOM049B")  // _HID: Hardware ID
+            Name (_HID, "QCOM059B")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, One)  // _UID: Unique ID
         }
@@ -61462,7 +61468,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (GPU0)
         {
-            Name (_HID, "QCOM043A")  // _HID: Hardware ID
+            Name (_HID, "QCOM053A")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Alias (\_SB.SIDT, _IDT)
             Name (_UID, Zero)  // _UID: Unique ID
@@ -61991,7 +61997,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "GmemSize", 
-                                    0x00200000
+                                    0x00100000
                                 }, 
 
                                 Package (0x02)
@@ -72594,14 +72600,14 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (SCM0)
         {
-            Name (_HID, "QCOM040B")  // _HID: Hardware ID
+            Name (_HID, "QCOM050B")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, Zero)  // _UID: Unique ID
         }
 
         Device (TREE)
         {
-            Name (_HID, "QCOM0476")  // _HID: Hardware ID
+            Name (_HID, "QCOM0576")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, Zero)  // _UID: Unique ID
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
@@ -72629,7 +72635,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (SPMI)
         {
-            Name (_HID, "QCOM040C")  // _HID: Hardware ID
+            Name (_HID, "QCOM050C")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_CID, "PNP0CA2")  // _CID: Compatible ID
             Name (_UID, One)  // _UID: Unique ID
@@ -72661,7 +72667,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (GIO0)
         {
-            Name (_HID, "QCOM040D")  // _HID: Hardware ID
+            Name (_HID, "QCOM050D")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Alias (\_SB.PSUB, _SUB)
             OperationRegion (GPOR, GeneralPurposeIo, Zero, One)
@@ -73221,7 +73227,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (QPPX)
         {
-            Name (_HID, "QCOM04A2")  // _HID: Hardware ID
+            Name (_HID, "QCOM05A2")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
             Alias (\_SB.PSUB, _SUB)
@@ -74634,7 +74640,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 \_SB.GLNK
             })
-            Name (_HID, "QCOM040E")  // _HID: Hardware ID
+            Name (_HID, "QCOM050E")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
         }
 
@@ -74644,7 +74650,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 \_SB.RPEN
             })
-            Name (_HID, "QCOM048D")  // _HID: Hardware ID
+            Name (_HID, "QCOM058D")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, Zero)  // _UID: Unique ID
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
@@ -74700,7 +74706,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 \_SB.GLNK, 
                 \_SB.SCM0
             })
-            Name (_HID, "QCOM0460")  // _HID: Hardware ID
+            Name (_HID, "QCOM0560")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
         }
 
@@ -74711,7 +74717,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 \_SB.ADSP, 
                 \_SB.ARPC
             })
-            Name (_HID, "QCOM048A")  // _HID: Hardware ID
+            Name (_HID, "QCOM058A")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
         }
 
@@ -74721,7 +74727,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 \_SB.IPC0
             })
-            Name (_HID, "QCOM0417")  // _HID: Hardware ID
+            Name (_HID, "QCOM0517")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
             {
@@ -74775,7 +74781,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 \_SB.GSI, 
                 \_SB.GLNK
             })
-            Name (_HID, "QCOM0470")  // _HID: Hardware ID
+            Name (_HID, "QCOM0570")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, Zero)  // _UID: Unique ID
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
@@ -74819,7 +74825,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 \_SB.PEP0
             })
-            Name (_HID, "QCOM0483")  // _HID: Hardware ID
+            Name (_HID, "QCOM0583")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, Zero)  // _UID: Unique ID
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
@@ -74864,7 +74870,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 \_SB.GLNK
             })
-            Name (_HID, "QCOM0414")  // _HID: Hardware ID
+            Name (_HID, "QCOM0514")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
         }
 
@@ -74875,7 +74881,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 \_SB.GLNK, 
                 \_SB.TREE
             })
-            Name (_HID, "QCOM0415")  // _HID: Hardware ID
+            Name (_HID, "QCOM0515")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -76375,7 +76381,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 \_SB.GLNK
             })
-            Name (_HID, "QCOM0472")  // _HID: Hardware ID
+            Name (_HID, "QCOM0572")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, Zero)  // _UID: Unique ID
         }
@@ -76401,7 +76407,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (QGP0)
         {
-            Name (_HID, "QCOM0493")  // _HID: Hardware ID
+            Name (_HID, "QCOM0593")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
@@ -76428,7 +76434,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (QGP1)
         {
-            Name (_HID, "QCOM0493")  // _HID: Hardware ID
+            Name (_HID, "QCOM0593")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, One)  // _UID: Unique ID
             Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
@@ -76455,7 +76461,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (QGP2)
         {
-            Name (_HID, "QCOM0493")  // _HID: Hardware ID
+            Name (_HID, "QCOM0593")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, 0x02)  // _UID: Unique ID
             Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
@@ -76474,7 +76480,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (CSEC)
         {
-            Name (_HID, "QCOM04AE")  // _HID: Hardware ID
+            Name (_HID, "QCOM05AE")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
         }
 
@@ -76484,7 +76490,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 \_SB.PEP0
             })
-            Name (_HID, "QCOM0481")  // _HID: Hardware ID
+            Name (_HID, "QCOM0581")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, Zero)  // _UID: Unique ID
             Method (_STA, 0, NotSerialized)  // _STA: Status
@@ -76510,13 +76516,13 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (SARM)
         {
-            Name (_HID, "QCOM04B0")  // _HID: Hardware ID
+            Name (_HID, "QCOM05B0")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
         }
 
         Device (SOCP)
         {
-            Name (_HID, "QCOM04AA")  // _HID: Hardware ID
+            Name (_HID, "QCOM05AA")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Alias (\_SB.STOR, STOR)
         }
@@ -76527,7 +76533,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 \_SB.PEP0
             })
-            Name (_HID, "QCOM045A")  // _HID: Hardware ID
+            Name (_HID, "QCOM055A")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, Zero)  // _UID: Unique ID
             Method (_STA, 0, NotSerialized)  // _STA: Status
@@ -76571,43 +76577,43 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 \_SB.TREE, 
                 \_SB.SPSS
             })
-            Name (_HID, "QCOM0492")  // _HID: Hardware ID
+            Name (_HID, "QCOM0592")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
         }
 
         Device (QCDB)
         {
-            Name (_HID, "QCOM0461")  // _HID: Hardware ID
+            Name (_HID, "QCOM0561")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
         }
 
         Device (SERB)
         {
-            Name (_HID, "QCOM04B2")  // _HID: Hardware ID
+            Name (_HID, "QCOM05B2")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
         }
 
         Device (RMNT)
         {
-            Name (_HID, "QCOM04A1")  // _HID: Hardware ID
+            Name (_HID, "QCOM05A1")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
         }
 
         Device (MBRG)
         {
-            Name (_HID, "QCOM0407")  // _HID: Hardware ID
+            Name (_HID, "QCOM0507")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
         }
 
         Device (RMAT)
         {
-            Name (_HID, "QCOM0408")  // _HID: Hardware ID
+            Name (_HID, "QCOM0508")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
         }
 
         Device (DPLB)
         {
-            Name (_HID, "QCOM0477")  // _HID: Hardware ID
+            Name (_HID, "QCOM0577")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
         }
 
@@ -76714,9 +76720,9 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 \_SB.IPC0, 
                 \_SB.QDIG
             })
-            Name (_HID, "QCOM0491")  // _HID: Hardware ID
+            Name (_HID, "QCOM0591")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
-            Name (_CID, "ACPIQCOM0491")  // _CID: Compatible ID
+            Name (_CID, "ACPIQCOM0591")  // _CID: Compatible ID
             Name (_UID, Zero)  // _UID: Unique ID
         }
 
@@ -76727,7 +76733,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 \_SB.PEP0, 
                 \_SB.PMIC
             })
-            Name (_HID, "QCOM0435")  // _HID: Hardware ID
+            Name (_HID, "QCOM0535")  // _HID: Hardware ID
             Name (_UID, 0x1B)  // _UID: Unique ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
@@ -77208,7 +77214,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 \_SB.MPCS
             })
-            Name (_HID, "QCOM0429")  // _HID: Hardware ID
+            Name (_HID, "QCOM0529")  // _HID: Hardware ID
             Name (_UID, 0x15)  // _UID: Unique ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
@@ -77290,7 +77296,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 \_SB.MPCS
             })
-            Name (_HID, "QCOM0406")  // _HID: Hardware ID
+            Name (_HID, "QCOM0506")  // _HID: Hardware ID
             Name (_UID, 0x1A)  // _UID: Unique ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
@@ -77380,7 +77386,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 \_SB.CAMS, 
                 \_SB.PMAP
             })
-            Name (_HID, "QCOM042A")  // _HID: Hardware ID
+            Name (_HID, "QCOM052A")  // _HID: Hardware ID
             Name (_UID, 0x19)  // _UID: Unique ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
@@ -77404,7 +77410,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 \_SB.CAMP
             })
-            Name (_HID, "QCOM04A4")  // _HID: Hardware ID
+            Name (_HID, "QCOM05A4")  // _HID: Hardware ID
             Name (_UID, 0x18)  // _UID: Unique ID
             Alias (\_SB.PSUB, _SUB)
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
@@ -77455,7 +77461,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 \_SB.CAMP, 
                 \_SB.MMU0
             })
-            Name (_HID, "QCOM0436")  // _HID: Hardware ID
+            Name (_HID, "QCOM0536")  // _HID: Hardware ID
             Name (_UID, 0x17)  // _UID: Unique ID
             Alias (\_SB.PSUB, _SUB)
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
@@ -77542,7 +77548,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 \_SB.PEP0, 
                 \_SB.CAMP
             })
-            Name (_HID, "QCOM0428")  // _HID: Hardware ID
+            Name (_HID, "QCOM0528")  // _HID: Hardware ID
             Name (_UID, 0x16)  // _UID: Unique ID
             Alias (\_SB.PSUB, _SUB)
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
@@ -78358,9 +78364,9 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 \_SB.SCSS, 
                 \_SB.ARPC
             })
-            Name (_HID, "QCOM049F")  // _HID: Hardware ID
+            Name (_HID, "QCOM059F")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
-            Name (_CID, "QCOM046C")  // _CID: Compatible ID
+            Name (_CID, "QCOM056C")  // _CID: Compatible ID
             Name (_PLD, Package (One)  // _PLD: Physical Location of Device
             {
                 Buffer (0x14)
@@ -78381,9 +78387,9 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 \_SB.ARPC, 
                 \_SB.SEN2
             })
-            Name (_HID, "QCOM04A0")  // _HID: Hardware ID
+            Name (_HID, "QCOM05A0")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
-            Name (_CID, "QCOM046C")  // _CID: Compatible ID
+            Name (_CID, "QCOM056C")  // _CID: Compatible ID
             Name (_PLD, Package (One)  // _PLD: Physical Location of Device
             {
                 Buffer (0x14)
@@ -78404,9 +78410,9 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 \_SB.ARPC, 
                 \_SB.SEN3
             })
-            Name (_HID, "QCOM04D1")  // _HID: Hardware ID
+            Name (_HID, "QCOM05D1")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
-            Name (_CID, "QCOM046C")  // _CID: Compatible ID
+            Name (_CID, "QCOM056C")  // _CID: Compatible ID
         }
 
         Device (LID0)
@@ -78449,6 +78455,38 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         }
 
         Name (QUFN, Zero)
+        Name (HPDB, Zero)
+        Name (HPDS, Buffer (One)
+        {
+             0x00                                             // .
+        })
+        Name (PINA, Zero)
+        Name (DPPN, 0x0D)
+        Name (CCST, Buffer (One)
+        {
+             0x02                                             // .
+        })
+        Name (CCS2, 0x02)
+        Name (PORT, Buffer (One)
+        {
+             0x02                                             // .
+        })
+        Name (HIRQ, Buffer (One)
+        {
+             0x00                                             // .
+        })
+        Name (USBC, Buffer (One)
+        {
+             0x0B                                             // .
+        })
+        Name (HSFL, Buffer (One)
+        {
+             0x00                                             // .
+        })
+        Name (MUXC, Buffer (One)
+        {
+             0x00                                             // .
+        })
         Name (DPP0, Buffer (One)
         {
              0x00                                             // .
@@ -78459,11 +78497,11 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 If ((\_SB.QUFN == Zero))
                 {
-                    Return ("QCOM0497")
+                    Return ("QCOM0597")
                 }
                 Else
                 {
-                    Return ("QCOM0498")
+                    Return ("QCOM0598")
                 }
             }
 
@@ -79485,24 +79523,9 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             }
         }
 
-        Name (HPDB, Zero)
-        Name (PINA, Zero)
-        Name (CCST, Buffer (One)
-        {
-             0x02                                             // .
-        })
-        Name (CCS2, 0x02)
-        Name (HSFL, Buffer (One)
-        {
-             0x00                                             // .
-        })
-        Name (USBC, Buffer (One)
-        {
-             0x0B                                             // .
-        })
         Device (UCP0)
         {
-            Name (_HID, "QCOM047D")  // _HID: Hardware ID
+            Name (_HID, "QCOM057D")  // _HID: Hardware ID
             Name (_DEP, Package (0x03)  // _DEP: Dependencies
             {
                 \_SB.PEP0, 
@@ -79742,7 +79765,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 \_SB.CCST = Arg0
                 \_SB.HSFL = Arg1
                 \_SB.CCS2 = Arg0
-                Notify (\_SB.USBA, \_SB.CCS2)
+                Notify (\_SB.CFSA, \_SB.CCS2)
             }
 
             Method (CCVL, 0, NotSerialized)
@@ -79779,7 +79802,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 \_SB.PEP0
             })
-            Name (_HID, "QCOM0475")  // _HID: Hardware ID
+            Name (_HID, "QCOM0575")  // _HID: Hardware ID
             Name (_UID, One)  // _UID: Unique ID
             Name (STVL, Zero)
             Method (_STA, 0, NotSerialized)  // _STA: Status
@@ -79789,6 +79812,16 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         }
 
         Device (USBA)
+        {
+            Name (_DEP, Package (One)  // _DEP: Dependencies
+            {
+                \_SB.IMM0
+            })
+            Name (_HID, "QCOM0590")  // _HID: Hardware ID
+            Alias (\_SB.PSUB, _SUB)
+        }
+
+        Device (CFSA)
         {
             Name (_HID, "FSA4480")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
@@ -79816,13 +79849,13 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             0x0002
                         }
                 })
-                Return (RBUF) /* \_SB_.USBA._CRS.RBUF */
+                Return (RBUF) /* \_SB_.CFSA._CRS.RBUF */
             }
         }
 
         Device (MPA)
         {
-            Name (_HID, "QCOM04B4")  // _HID: Hardware ID
+            Name (_HID, "QCOM05B4")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -79840,7 +79873,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (MPA1)
         {
-            Name (_HID, "QCOM04B5")  // _HID: Hardware ID
+            Name (_HID, "QCOM05B5")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -79858,7 +79891,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (MBJ0)
         {
-            Name (_HID, "QCOM04B6")  // _HID: Hardware ID
+            Name (_HID, "QCOM05B6")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -79876,7 +79909,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (MBJ1)
         {
-            Name (_HID, "QCOM04B7")  // _HID: Hardware ID
+            Name (_HID, "QCOM05B7")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -79894,7 +79927,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (MBJ2)
         {
-            Name (_HID, "QCOM04B8")  // _HID: Hardware ID
+            Name (_HID, "QCOM05B8")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -79912,7 +79945,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (MBJ3)
         {
-            Name (_HID, "QCOM04B9")  // _HID: Hardware ID
+            Name (_HID, "QCOM05B9")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -79930,7 +79963,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (MBS0)
         {
-            Name (_HID, "QCOM04BA")  // _HID: Hardware ID
+            Name (_HID, "QCOM05BA")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -79948,7 +79981,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (MBS1)
         {
-            Name (_HID, "QCOM04BB")  // _HID: Hardware ID
+            Name (_HID, "QCOM05BB")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -79966,7 +79999,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (MBS2)
         {
-            Name (_HID, "QCOM04BC")  // _HID: Hardware ID
+            Name (_HID, "QCOM05BC")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -79984,7 +80017,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (MBS3)
         {
-            Name (_HID, "QCOM04BD")  // _HID: Hardware ID
+            Name (_HID, "QCOM05BD")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -80002,7 +80035,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (MSKN)
         {
-            Name (_HID, "QCOM04BE")  // _HID: Hardware ID
+            Name (_HID, "QCOM05BE")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -80020,7 +80053,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (MJCT)
         {
-            Name (_HID, "QCOM04BF")  // _HID: Hardware ID
+            Name (_HID, "QCOM05BF")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -80038,7 +80071,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ51)
         {
-            Name (_HID, "QCOM04C0")  // _HID: Hardware ID
+            Name (_HID, "QCOM05C0")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_TZD, Package (0x01)  // _TZD: Thermal Zone Devices
             {
@@ -80085,7 +80118,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ52)
         {
-            Name (_HID, "QCOM04C1")  // _HID: Hardware ID
+            Name (_HID, "QCOM05C1")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_TZD, Package (0x01)  // _TZD: Thermal Zone Devices
             {
@@ -80132,7 +80165,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ53)
         {
-            Name (_HID, "QCOM04C2")  // _HID: Hardware ID
+            Name (_HID, "QCOM05C2")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_TZD, Package (0x01)  // _TZD: Thermal Zone Devices
             {
@@ -80179,7 +80212,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ54)
         {
-            Name (_HID, "QCOM04C3")  // _HID: Hardware ID
+            Name (_HID, "QCOM05C3")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_TZD, Package (0x01)  // _TZD: Thermal Zone Devices
             {
@@ -80226,7 +80259,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ55)
         {
-            Name (_HID, "QCOM04C4")  // _HID: Hardware ID
+            Name (_HID, "QCOM05C4")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_TZD, Package (0x01)  // _TZD: Thermal Zone Devices
             {
@@ -80273,7 +80306,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ56)
         {
-            Name (_HID, "QCOM04C5")  // _HID: Hardware ID
+            Name (_HID, "QCOM05C5")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_TZD, Package (0x01)  // _TZD: Thermal Zone Devices
             {
@@ -80320,7 +80353,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ57)
         {
-            Name (_HID, "QCOM04C6")  // _HID: Hardware ID
+            Name (_HID, "QCOM05C6")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_TZD, Package (0x01)  // _TZD: Thermal Zone Devices
             {
@@ -80367,7 +80400,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ58)
         {
-            Name (_HID, "QCOM04C7")  // _HID: Hardware ID
+            Name (_HID, "QCOM05C7")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_TZD, Package (0x01)  // _TZD: Thermal Zone Devices
             {
@@ -80414,7 +80447,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ59)
         {
-            Name (_HID, "QCOM04C8")  // _HID: Hardware ID
+            Name (_HID, "QCOM05C8")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_TZD, Package (0x01)  // _TZD: Thermal Zone Devices
             {
@@ -80461,7 +80494,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ60)
         {
-            Name (_HID, "QCOM04CC")  // _HID: Hardware ID
+            Name (_HID, "QCOM05CC")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_TZD, Package (0x01)  // _TZD: Thermal Zone Devices
             {
@@ -80508,7 +80541,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ61)
         {
-            Name (_HID, "QCOM04CD")  // _HID: Hardware ID
+            Name (_HID, "QCOM05CD")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_TZD, Package (0x01)  // _TZD: Thermal Zone Devices
             {
@@ -80555,7 +80588,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ62)
         {
-            Name (_HID, "QCOM04CB")  // _HID: Hardware ID
+            Name (_HID, "QCOM05CB")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_TZD, Package (0x01)  // _TZD: Thermal Zone Devices
             {
@@ -80616,7 +80649,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ0)
         {
-            Name (_HID, "QCOM045C")  // _HID: Hardware ID
+            Name (_HID, "QCOM055C")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_TZD, Package (0x04)  // _TZD: Thermal Zone Devices
             {
@@ -80636,7 +80669,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ1)
         {
-            Name (_HID, "QCOM045C")  // _HID: Hardware ID
+            Name (_HID, "QCOM055C")  // _HID: Hardware ID
             Name (_UID, One)  // _UID: Unique ID
             Name (_TZD, Package (0x01)  // _TZD: Thermal Zone Devices
             {
@@ -80679,7 +80712,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ2)
         {
-            Name (_HID, "QCOM045D")  // _HID: Hardware ID
+            Name (_HID, "QCOM055D")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_TZD, Package (0x04)  // _TZD: Thermal Zone Devices
             {
@@ -80699,7 +80732,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ3)
         {
-            Name (_HID, "QCOM045D")  // _HID: Hardware ID
+            Name (_HID, "QCOM055D")  // _HID: Hardware ID
             Name (_UID, One)  // _UID: Unique ID
             Name (_TZD, Package (0x01)  // _TZD: Thermal Zone Devices
             {
@@ -80742,7 +80775,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ5)
         {
-            Name (_HID, "QCOM049D")  // _HID: Hardware ID
+            Name (_HID, "QCOM059D")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_TZD, Package (0x01)  // _TZD: Thermal Zone Devices
             {
@@ -80784,7 +80817,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ7)
         {
-            Name (_HID, "QCOM0450")  // _HID: Hardware ID
+            Name (_HID, "QCOM0550")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_TZD, Package (0x01)  // _TZD: Thermal Zone Devices
             {
@@ -80826,7 +80859,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ9)
         {
-            Name (_HID, "QCOM049E")  // _HID: Hardware ID
+            Name (_HID, "QCOM059E")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -80882,7 +80915,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ15)
         {
-            Name (_HID, "QCOM0462")  // _HID: Hardware ID
+            Name (_HID, "QCOM0562")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_TZD, Package (0x0B)  // _TZD: Thermal Zone Devices
             {
@@ -80937,7 +80970,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ16)
         {
-            Name (_HID, "QCOM0462")  // _HID: Hardware ID
+            Name (_HID, "QCOM0562")  // _HID: Hardware ID
             Name (_UID, One)  // _UID: Unique ID
             Name (_TZD, Package (0x01)  // _TZD: Thermal Zone Devices
             {
@@ -80988,7 +81021,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ17)
         {
-            Name (_HID, "QCOM0462")  // _HID: Hardware ID
+            Name (_HID, "QCOM0562")  // _HID: Hardware ID
             Name (_UID, 0x02)  // _UID: Unique ID
             Name (_TZD, Package (0x01)  // _TZD: Thermal Zone Devices
             {
@@ -81043,7 +81076,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ18)
         {
-            Name (_HID, "QCOM0465")  // _HID: Hardware ID
+            Name (_HID, "QCOM0565")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_TZD, Package (0x0B)  // _TZD: Thermal Zone Devices
             {
@@ -81098,7 +81131,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ19)
         {
-            Name (_HID, "QCOM0465")  // _HID: Hardware ID
+            Name (_HID, "QCOM0565")  // _HID: Hardware ID
             Name (_UID, One)  // _UID: Unique ID
             Name (_TZD, Package (0x01)  // _TZD: Thermal Zone Devices
             {
@@ -81149,7 +81182,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ20)
         {
-            Name (_HID, "QCOM0469")  // _HID: Hardware ID
+            Name (_HID, "QCOM0569")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_TZD, Package (0x0B)  // _TZD: Thermal Zone Devices
             {
@@ -81204,7 +81237,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ21)
         {
-            Name (_HID, "QCOM0469")  // _HID: Hardware ID
+            Name (_HID, "QCOM0569")  // _HID: Hardware ID
             Name (_UID, One)  // _UID: Unique ID
             Name (_TZD, Package (0x01)  // _TZD: Thermal Zone Devices
             {
@@ -81255,7 +81288,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ22)
         {
-            Name (_HID, "QCOM0463")  // _HID: Hardware ID
+            Name (_HID, "QCOM0563")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_TZD, Package (0x04)  // _TZD: Thermal Zone Devices
             {
@@ -81278,7 +81311,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ23)
         {
-            Name (_HID, "QCOM0467")  // _HID: Hardware ID
+            Name (_HID, "QCOM0567")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_TZD, Package (0x04)  // _TZD: Thermal Zone Devices
             {
@@ -81301,7 +81334,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ40)
         {
-            Name (_HID, "QCOM044C")  // _HID: Hardware ID
+            Name (_HID, "QCOM054C")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_TZD, Package (0x01)  // _TZD: Thermal Zone Devices
             {
@@ -81343,7 +81376,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ41)
         {
-            Name (_HID, "QCOM045F")  // _HID: Hardware ID
+            Name (_HID, "QCOM055F")  // _HID: Hardware ID
             Name (_UID, One)  // _UID: Unique ID
             Name (_TSP, 0x32)  // _TSP: Thermal Sampling Period
             Name (_TZP, Zero)  // _TZP: Thermal Zone Polling
@@ -81351,7 +81384,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         ThermalZone (TZ99)
         {
-            Name (_HID, "QCOM045E")  // _HID: Hardware ID
+            Name (_HID, "QCOM055E")  // _HID: Hardware ID
             Name (_UID, 0x64)  // _UID: Unique ID
             Name (_TZD, Package (0x12)  // _TZD: Thermal Zone Devices
             {
@@ -82389,13 +82422,13 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (RVRM)
         {
-            Name (_HID, "QCOM04A8")  // _HID: Hardware ID
+            Name (_HID, "QCOM05A8")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
         }
 
         Device (DBUS)
         {
-            Name (_HID, "QCOM04CF")  // _HID: Hardware ID
+            Name (_HID, "QCOM05CF")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (CHLD, 0, NotSerialized)
             {
@@ -82403,7 +82436,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 {
                     Package (0x04)
                     {
-                        "DBUS\\QCOM04D0", 
+                        "DBUS\\QCOM05D0", 
                         Zero, 
                         0x09, 
                         0x09
@@ -82419,7 +82452,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (CCID)
         {
-            Name (_HID, "QCOM04A7")  // _HID: Hardware ID
+            Name (_HID, "QCOM05A7")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
         }
 
@@ -82467,13 +82500,13 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 \_SB.GLNK
             })
-            Name (_HID, "QCOM0413")  // _HID: Hardware ID
+            Name (_HID, "QCOM0513")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
         }
 
         Device (BTH0)
         {
-            Name (_HID, "QCOM0471")  // _HID: Hardware ID
+            Name (_HID, "QCOM0571")  // _HID: Hardware ID
             Name (_DEP, Package (0x03)  // _DEP: Dependencies
             {
                 \_SB.PEP0, 
@@ -82590,7 +82623,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 \_SB.SPMI, 
                 \_SB.PMIC
             })
-            Name (_HID, "QCOM0412")  // _HID: Hardware ID
+            Name (_HID, "QCOM0512")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Alias (\_SB.PSUB, _SUB)
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
@@ -82723,7 +82756,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 \_SB.SPMI, 
                 \_SB.PMIC
             })
-            Name (_HID, "QCOM0412")  // _HID: Hardware ID
+            Name (_HID, "QCOM0512")  // _HID: Hardware ID
             Name (_UID, One)  // _UID: Unique ID
             Alias (\_SB.PSUB, _SUB)
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
@@ -82865,7 +82898,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 \_SB.SPMI, 
                 \_SB.PMIC
             })
-            Name (_HID, "QCOM0412")  // _HID: Hardware ID
+            Name (_HID, "QCOM0512")  // _HID: Hardware ID
             Name (_UID, 0x02)  // _UID: Unique ID
             Alias (\_SB.PSUB, _SUB)
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings

@@ -1,2 +1,2 @@
-gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1440
-gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferHeight|3120
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1440
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|3120

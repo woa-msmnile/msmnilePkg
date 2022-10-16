@@ -1,7 +1,7 @@
 [000h 0000   4]                    Signature : "XSDT"    [Extended System Description Table]
 [004h 0004   4]                 Table Length : 00000094
 [008h 0008   1]                     Revision : 01
-[009h 0009   1]                     Checksum : 14
+[009h 0009   1]                     Checksum : 44
 [00Ah 0010   6]                       Oem ID : "QCOM  "
 [010h 0016   8]                 Oem Table ID : "QCOMEDK2"
 [018h 0024   4]                 Oem Revision : 00008150

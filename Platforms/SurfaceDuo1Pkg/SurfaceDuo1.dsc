@@ -28,25 +28,22 @@
   BUILD_TARGETS                  = DEBUG|RELEASE
   SKUID_IDENTIFIER               = DEFAULT
   FLASH_DEFINITION               = SurfaceDuo1Pkg/SurfaceDuo1.fdf
-
-  ################################################################################
-  # Platform-specific defines, overridable in Defines.dsc.inc
-  ################################################################################
+  SECURE_BOOT_ENABLE             = TRUE
+  USE_PHYSICAL_TIMER             = TRUE
 
   # Debugging
-  DEFINE USE_SCREEN_FOR_SERIAL_OUTPUT = TRUE
-  DEFINE USE_MEMORY_FOR_SERIAL_OUTPUT = FALSE
-  DEFINE SEND_HEARTBEAT_TO_SERIAL     = FALSE
+  USE_SCREEN_FOR_SERIAL_OUTPUT   = 0
+  USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
+  SEND_HEARTBEAT_TO_SERIAL       = 0
   
   # Included Drivers
-  DEFINE SECURE_BOOT_ENABLE           = TRUE
-  DEFINE USE_SIMPLEFBDXE              = TRUE
-  DEFINE USE_DISPLAYDXE               = FALSE
-  
+  USE_SIMPLEFBDXE                = TRUE
+  USE_DISPLAYDXE                 = FALSE
+
   # Device-specific memory map hacks
-  DEFINE HAS_MLVM                     = FALSE
-  DEFINE MEMMAP_XIAOMI_HACKS          = FALSE
-  DEFINE MEMMAP_LG_HACKS              = FALSE
+  HAS_MLVM                       = FALSE
+  MEMMAP_XIAOMI_HACKS            = FALSE
+  MEMMAP_LG_HACKS                = FALSE
 
 !include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Defines.dsc.inc
 
@@ -56,10 +53,6 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
 
 # TODO: Re-do the memory map stuff at one point so it's not defined in static variable and put 
 # those defines only in modules that need them, so changing anything here doesn't rebuild EVERY DAMN THING.
-
-!if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == TRUE
-  GCC:*_*_AARCH64_CC_FLAGS = -DUSE_MEMORY_FOR_SERIAL_OUTPUT=1
-!endif
 
 !if $(USE_DISPLAYDXE) == TRUE
   GCC:*_*_AARCH64_CC_FLAGS = -DUSE_DISPLAYDXE=1
@@ -87,32 +80,28 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
   
 [PcdsFixedAtBuild.common]
   # Platform-specific
-  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x080000000		# Common Base Address
 !if $(TARGET_RAM_SIZE) == 8
   gArmTokenSpaceGuid.PcdSystemMemorySize|0x200000000		# 8GB
 !else
   gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000		# 6GB
 !endif
-  gArmPlatformTokenSpaceGuid.PcdCoreCount|8
-  gArmPlatformTokenSpaceGuid.PcdClusterCount|3
 
   # SMBIOS
-  gSurfacePkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 855 @ 2.84 GHz"
-  gSurfacePkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8150"
-  gSurfacePkgTokenSpaceGuid.PcdSmbiosSystemModel|"Surface Duo"
-  gSurfacePkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"1930"
-  gSurfacePkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"Surface_Duo_1930"
-  gSurfacePkgTokenSpaceGuid.PcdSmbiosBoardModel|"Surface Duo"
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"Surface Duo"
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"1930"
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"Surface_Duo_1930"
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosBoardModel|"Surface Duo"
 
   # PStore
-  gSurfacePkgTokenSpaceGuid.PcdPStoreBufferAddress|0x17FE00000
-  gSurfacePkgTokenSpaceGuid.PcdPStoreBufferSize|0x00200000
-  
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPStoreBufferAddress|0x17FE00000
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPStoreBufferSize|0x00200000
+
 #
 # Screen Resolution Config
 #
 
 !include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PcdsFixedAtBuild.dsc.inc
 
-!include SurfaceDuo1Pkg/Shared.dsc.inc
-!include SurfacePkg/FrontpageDsc.inc
+!include SurfaceDuo1Pkg/Sm8150Family.dsc.inc
+!include SurfaceDuoFamilyPkg/SurfaceDuoFamily.dsc.inc
+!include SurfaceDuoFamilyPkg/Frontpage.dsc.inc
