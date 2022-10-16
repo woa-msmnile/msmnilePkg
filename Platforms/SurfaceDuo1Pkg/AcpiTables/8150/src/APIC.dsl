@@ -1,7 +1,7 @@
 [000h 0000   4]                    Signature : "APIC"    [Multiple APIC Description Table (MADT)]
 [004h 0004   4]                 Table Length : 000002EC
 [008h 0008   1]                     Revision : 05
-[009h 0009   1]                     Checksum : 0E
+[009h 0009   1]                     Checksum : 3D
 [00Ah 0010   6]                       Oem ID : "QCOM  "
 [010h 0016   8]                 Oem Table ID : "QCOMEDK2"
 [018h 0024   4]                 Oem Revision : 00008150
@@ -184,7 +184,7 @@
 [294h 0660   4]        Virtual GIC Interrupt : 00000018
 [298h 0664   8]   Redistributor Base Address : 0000000000000000
 [2A0h 0672   8]                    ARM MPIDR : 0000000000000700
-[2A8h 0680   1]             Efficiency Class : 01
+[2A8h 0680   1]             Efficiency Class : 02
 [2A9h 0681   1]                     Reserved : 00
 [2AAh 0682   2]       SPE Overflow Interrupt : 0000
 
