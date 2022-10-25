@@ -33,7 +33,12 @@
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize|44
 
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdUefiMemPoolSize|0x3500000
+!if $(HAS_MLVM) == 1
+  # 0xA0000000 is occupied by MLVM, so we need to move this up a bit.
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x30000000  # Start here
+!else
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x20000000  # Start here
+!endif
 
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 855 @ 2.84 GHz"
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8150"
