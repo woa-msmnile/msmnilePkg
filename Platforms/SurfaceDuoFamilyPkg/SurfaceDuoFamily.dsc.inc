@@ -484,5 +484,5 @@
 
   SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
   SurfaceDuoFamilyPkg/SimpleInitBin/SimpleInitBin.inf
-  GPLDriver/Driver/BootSlotDxe/BootSlotDxe.inf
-  GPLDriver/Application/SwitchSlotsApp/SwitchSlotsApp.inf
+  # GPLDriver/Driver/BootSlotDxe/BootSlotDxe.inf
+  # GPLDriver/Application/SwitchSlotsApp/SwitchSlotsApp.inf
