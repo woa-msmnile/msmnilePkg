@@ -138,7 +138,7 @@ READ_LOCK_STATUS   = TRUE
   }
 
   # INF SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
-  INF SurfaceDuoFamilyPkg/SimpleInitBin/SimpleInitBin.inf
+  INF SurfaceDuoFamilyPkg/Applications/SimpleInitBin/SimpleInitBin.inf
   # INF GPLDriver/Application/SwitchSlotsApp/SwitchSlotsApp.inf
   # INF GPLDriver/Driver/BootSlotDxe/BootSlotDxe.inf
 

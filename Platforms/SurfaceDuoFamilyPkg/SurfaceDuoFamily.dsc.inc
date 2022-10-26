@@ -491,6 +491,6 @@
   SurfaceDuoFamilyPkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
 
   SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
-  SurfaceDuoFamilyPkg/SimpleInitBin/SimpleInitBin.inf
+  SurfaceDuoFamilyPkg/Applications/SimpleInitBin/SimpleInitBin.inf
   # GPLDriver/Driver/BootSlotDxe/BootSlotDxe.inf
   # GPLDriver/Application/SwitchSlotsApp/SwitchSlotsApp.inf
