@@ -123,6 +123,7 @@
 
   # Debug Screen Serial
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdEnableScreenSerial|FALSE|BOOLEAN|0x00000a105
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdDebugUartPortBase|0xa90000|UINT64|0x00000a108
 
   # SMBIOS
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 855 @ 2.84 GHz"|VOID*|0x0000a301

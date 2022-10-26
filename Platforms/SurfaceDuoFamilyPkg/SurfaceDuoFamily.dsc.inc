@@ -221,7 +221,11 @@
 !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
   SerialPortLib|SurfaceDuoFamilyPkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
 !else
+!if $(USE_UART_FOR_SERIAL_OUTPUT) == 1
+  SerialPortLib|SurfaceDuoFamilyPkg/Library/QcomGeniSerialPortLib/QcomGeniSerialPortLib.inf
+!else
   SerialPortLib|MdePkg/Library/BaseSerialPortLibNull/BaseSerialPortLibNull.inf
+!endif
 !endif
 !endif
 
@@ -371,7 +375,11 @@
     !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
       SerialPortLib|SurfaceDuoFamilyPkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
     !else
+    !if $(USE_UART_FOR_SERIAL_OUTPUT) == 1
+      SerialPortLib|SurfaceDuoFamilyPkg/Library/QcomGeniSerialPortLib/QcomGeniSerialPortLib.inf
+    !else
       SerialPortLib|MdePkg/Library/BaseSerialPortLibNull/BaseSerialPortLibNull.inf
+    !endif
     !endif
     !endif
   }
