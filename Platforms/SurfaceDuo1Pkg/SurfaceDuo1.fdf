@@ -127,7 +127,7 @@ READ_LOCK_STATUS   = TRUE
 
   # DT
   INF EmbeddedPkg/Drivers/DtPlatformDxe/DtPlatformDxe.inf
-  !include SurfaceDuo1Pkg/Include/FDT.inc
+  !include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/FDT.inc
 
   INF MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
 
