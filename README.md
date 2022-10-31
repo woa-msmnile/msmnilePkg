@@ -50,28 +50,28 @@ python3 ./Platforms/SurfaceDuoPkg/StampBuild.py
 ```
 ./build_uefi.sh <target-name> <traget-ram-size>
 ```
-Ram size should be 6 or 8.
+Ram size should be 6, 8, or 12.
 You will find Build/<target-name>/uefi.img if build successfully.
 
 ## Target list
 
-| Device             | Target name         | DSDT Support | maintainers                                        |
-| ------------------ | ------------------- | ------------ | -------------------------------------------------- |
-| ASUS ROG2          | asus-I001DC         | ❌           | NONE                                               |
-| LG G8              | lg-alphaplus        | ✅           | [sunflower2333](https://github.com/sunflower2333)  |
+| Device             | Target name         | DSDT Support | Maintainers                                        |
+|--------------------|---------------------|--------------| ---------------------------------------------------|
+| ASUS ROG2          | asus-I001DC         | ✅           | [Ww](https://github.com/Idonotkno)                 |
+| LG G8              | lg-alphaplus        | ✅           | [Molly Sophia](https://github.com/MollySophia)     |
 | LG G8X             | lg-mh2lm            | ✅           | [Molly Sophia](https://github.com/MollySophia)     |
 | LG V50             | lg-flashlmdd        | ✅           | [AKA](https://github.com/AKAsaliza)                |
 | LG V50S            | lg-mh2lm-5G         | ✅           | [AKA](https://github.com/AKAsaliza)                |
 | Nubia Mini 5G      | nubia-tp1803        | ✅           | [Alula](https://github.com/alula)                  |
-| OnePlus 7 Pro      | oneplus-guacamole   | ❌           | [Waseem Alkurdi](https://github.com/WaseemAlkurdi) |
-| OnePlus 7T Pro     | oneplus-hotdog      | ❌           | [Waseem Alkurdi](https://github.com/WaseemAlkurdi) |
-| Samsung Galaxy S10 | samsung-beyond1qlte | ✅           | [w](https://github.com/Idonotkno)                  |
+| OnePlus 7 Pro      | oneplus-guacamole   | ✅           | [Waseem Alkurdi](https://github.com/WaseemAlkurdi) |
+| OnePlus 7T Pro     | oneplus-hotdog      | ✅           | [sunflower2333](https://github.com/sunflower2333)  |
+| Samsung Galaxy S10 | samsung-beyond1qlte | ✅           | [Ww](https://github.com/Idonotkno)                 |
 | Xiaomi 9           | xiaomi-cepheus      | ❌           | NONE                                               |
-| Xiaomi Hercules    | xiaomi-hercules     | ❌           | NONE                                               |
-| Xiaomi K20 Pro     | xiaomi-raphael      | ❌           | NONE                                               |
+| Xiaomi Hercules    | xiaomi-hercules     | ✅           | [Ww](https://github.com/Idonotkno)                 |
+| Xiaomi K20 Pro     | xiaomi-raphael      | ✅           | [sunflower2333](https://github.com/sunflower2333)  |
 | Xiaomi Mix3 5G     | xiaomi-andromeda    | ✅           | [sunflower2333](https://github.com/sunflower2333)  |
-| Xiaomi Pad 5       | xiaomi-nabu         | ✅           | [map220v](https://github.com/map220v)              |
-| Xiaomi Poco X3 Pro | xiaomi-vayu         | ❌           | [mcusr120](https://github.com/mcusr120)            |
+| Xiaomi Pad 5       | xiaomi-nabu         | ✅           | [Map220v](https://github.com/map220v)              |
+| Xiaomi Poco X3 Pro | xiaomi-vayu         | ❌           | [Mcusr120](https://github.com/mcusr120)            |
 
 ## Acknowledgements
 
