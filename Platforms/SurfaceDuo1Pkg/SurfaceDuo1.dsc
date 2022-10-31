@@ -10,7 +10,7 @@
 ##
 
 !ifndef TARGET_DEVICE
-!error "TARGET_DEVICE must be defined"
+    !error "TARGET_DEVICE must be defined"
 !endif
 
 ################################################################################
@@ -71,6 +71,10 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
   GCC:*_*_AARCH64_CC_FLAGS = -DMEMMAP_LG_HACKS=1
 !endif
 
+!if $(TARGET_RAM_SIZE) == 12
+  GCC:*_*_AARCH64_CC_FLAGS = -DRAM_SIZE=12
+!endif
+
 !if $(TARGET_RAM_SIZE) == 8
   GCC:*_*_AARCH64_CC_FLAGS = -DRAM_SIZE=8
 !endif
@@ -81,11 +85,20 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
   
 [PcdsFixedAtBuild.common]
   # Platform-specific
-!if $(TARGET_RAM_SIZE) == 8
-  gArmTokenSpaceGuid.PcdSystemMemorySize|0x200000000		# 8GB
-!else
-  gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000		# 6GB
-!endif
+  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x080000000            # Common Base Address
+
+  !if $(TARGET_RAM_SIZE) == 6
+  gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000            # 6GB
+  !endif
+
+  !if $(TARGET_RAM_SIZE) == 8
+  gArmTokenSpaceGuid.PcdSystemMemorySize|0x200000000            # 8GB
+  !endif
+
+  !if $(TARGET_RAM_SIZE) == 12
+  gArmTokenSpaceGuid.PcdSystemMemorySize|0x300000000            # 12GB
+  !endif
+
 
   # SMBIOS
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"Surface Duo"
