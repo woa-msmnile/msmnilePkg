@@ -1,6 +1,6 @@
 ## This Repo Is Based On [SurfaceDuoPkg](https://github.com/Woa-Project/SurfaceDuoPkg/)
 
-Thanks for [Gus](https://github.com/gus33000)'s instructions!
+Thanks for [Gustave](https://github.com/gus33000)'s instructions!
 
 # Project Mu UEFI Implementation for SM8150 Devices
 
@@ -48,7 +48,7 @@ python3 ./Platforms/SurfaceDuoPkg/StampBuild.py
 5. Build UEFI
 
 ```
-./build_uefi.sh <target-name> <traget-ram-size>
+./build_uefi.sh <target-name> <traget-ram-size> [ -m <Model> -r <RetailModel> -s <RetailSku> -b <BoardModel> ]
 ```
 Ram size should be 6, 8, or 12.
 You will find Build/<target-name>/uefi.img if build successfully.

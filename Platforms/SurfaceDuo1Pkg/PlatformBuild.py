@@ -228,7 +228,10 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
         self.env.SetValue("BLD_*_SHIP_MODE", "FALSE", "Default")
         self.env.SetValue("BLD_*_TARGET_DEVICE", self.env.GetValue("TARGET_DEVICE"), "Default")
         self.env.SetValue("BLD_*_TARGET_RAM_SIZE", self.env.GetValue("TARGET_RAM_SIZE"), "Default")
-
+        self.env.SetValue("BLD_*_Model", self.env.GetValue("Model"), "Default")
+        self.env.SetValue("BLD_*_RetailModel", self.env.GetValue("RetailModel"), "Default")
+        self.env.SetValue("BLD_*_RetailSku", self.env.GetValue("RetailSku"), "Default")
+        self.env.SetValue("BLD_*_BoardModel", self.env.GetValue("BoardModel"), "Default")
         return 0
 
     def PlatformPreBuild(self):
