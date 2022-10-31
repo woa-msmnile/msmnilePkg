@@ -14,8 +14,8 @@ output_path = os.path.join(output_dir, 'uefi.img')
 fd_path = os.path.join(outputbin_dir, 'FV', 'SM8150_EFI.fd')
 bootshim_path = os.path.join(root_dir, 'BootShim', 'BootShim.SimpleInit.bin')
 dtb_path = os.path.join(root_dir, 'ImageResources', 'Mh2lm', 'dtb')
-ramdisk_path = os.path.join(root_dir, 'ImageResources', 'Mh2lm', 'ramdisk')
-kernel_path = os.path.join(root_dir, 'ImageResources', 'Mh2lm', 'kernel')
+ramdisk_path = os.path.join(root_dir, 'ImageResources', 'emptyramdisk')
+kernel_path = os.path.join(root_dir, 'ImageResources', 'dummykernel')
 
 logging.info("Generating bootpayload.bin")
 
