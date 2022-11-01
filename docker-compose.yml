@@ -1,5 +1,11 @@
 services:
-  mu:
-    build: .
-    volumes:
-      - .:/build
+        buildall:
+                image: ubuntu:20.04
+                container_name: mubuild
+                volumes:
+                        - ./:/root/
+                restart: no
+                command: bash /root/scripts/container_setup.sh
+                environment: 
+                        TZ: Asia/Shanghai
+                        DEBIAN_FRONTEND: noninteractive

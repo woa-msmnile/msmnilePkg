@@ -22,7 +22,8 @@ pip install --upgrade -r pip-requirements.txt
 Alternatively, use docker-compose if you don't have Ubuntu 20.04 environment
 
 ```
-docker-compose run mu
+docker build -t mu:v1 .
+docker run -it mu:v1 -v ./:/build/
 ```
 
 Then finish the following process in docker environment
@@ -42,7 +43,7 @@ source SurfaceDuo/bin/activate
 
 4. Stamp build
 ```
-python3 ./Platforms/SurfaceDuoPkg/StampBuild.py
+python3 ./Platforms/SurfaceDuo1Pkg/StampBuild.py
 ```
 or 
 ```
