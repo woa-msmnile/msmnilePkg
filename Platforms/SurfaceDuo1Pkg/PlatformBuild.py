@@ -195,6 +195,14 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
         target_device = self.env.GetValue("TARGET_DEVICE")
         return os.path.join("Platforms", "SurfaceDuo1Pkg", "Device", target_device)
 
+    def GetDTBName(self):
+        ''' Return the name of device's dtb '''
+        target_device = self.env.GetValue("TARGET_DEVICE")
+        linenum = target_device.find('-') + 1
+        #print("The num is fsfsds: "+linenum);
+        dtbname = target_device[(linenum):] + '.dtb'
+        return dtbname
+
     def GetName(self):
         ''' Get the name of the repo, platform, or product being build '''
         ''' Used for naming the log file, among others '''
@@ -232,6 +240,7 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
         self.env.SetValue("BLD_*_RETAILMODEL", self.env.GetValue("RETAILMODEL"), "Default")
         self.env.SetValue("BLD_*_RETAILSKU", self.env.GetValue("RETAILSKU"), "Default")
         self.env.SetValue("BLD_*_BOARDMODEL", self.env.GetValue("BOARDMODEL"), "Default")
+        self.env.SetValue("BLD_*_FDT", self.GetDTBName(), "Default")
         return 0
 
     def PlatformPreBuild(self):
@@ -239,7 +248,7 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
         return 0
 
     def PlatformPostBuild(self):
-        self.RunTargetDeviceScript("PostBuild.py")
+        self.RunTargetDeviceScript("..//..//PostBuild.py")
         return 0
 
     def RunTargetDeviceScript(self, script_name):

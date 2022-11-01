@@ -86,9 +86,9 @@ READ_LOCK_STATUS   = TRUE
   !include SurfaceDuo1Pkg/Include/DXE.inc
 
   # Debug heartbeat
-!if $(SEND_HEARTBEAT_TO_SERIAL) == 1
-  INF SurfaceDuoFamilyPkg/Driver/HeartbeatDxe/HeartbeatDxe.inf
-!endif
+  !if $(SEND_HEARTBEAT_TO_SERIAL) == 1
+    INF SurfaceDuoFamilyPkg/Driver/HeartbeatDxe/HeartbeatDxe.inf
+  !endif
 
   # Secure Boot Key Enroll
   !if $(SECURE_BOOT_ENABLE) == TRUE
@@ -127,7 +127,9 @@ READ_LOCK_STATUS   = TRUE
 
   # DT
   INF EmbeddedPkg/Drivers/DtPlatformDxe/DtPlatformDxe.inf
-  !include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/FDT.inc
+  FILE FREEFORM = 25462CDA-221F-47DF-AC1D-259CFAA4E326 {
+    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/$(FDT)
+  }
 
   INF MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
 

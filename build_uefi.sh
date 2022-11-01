@@ -36,32 +36,33 @@ if [ -z ${TARGET_DEVICE} ]; then
     exit 1
 fi
 
-if  [ -z ${TARGET_RAM_SIZE} ]; then
-	echo -e "\e[1;36mMissing ram size, default 6GB\e[0m"
-	TARGET_RAM_SIZE=6
-fi
+function checkargs {
+  if  [ -z ${TARGET_RAM_SIZE} ]; then
+    echo -e "\e[1;36mMissing ram size, default 6GB\e[0m"
+    TARGET_RAM_SIZE=6
+  fi
 
-if [ -z ${Model} ]; then
+  if [ -z ${Model} ]; then
     Model=${TARGET_DEVICE}
     echo -e "\e[1;36mMissing Model. Default ${Model}\e[0m"
-fi
+  fi
 
-if [ -z ${RetailModel} ]; then
+  if [ -z ${RetailModel} ]; then
     RetailModel=${Model}
     echo -e "\e[1;36mMissing RetailModel. Default ${RetailModel}\e[0m"
-fi
+  fi
 
-if [ -z ${RetailSku} ]; then
+  if [ -z ${RetailSku} ]; then
     RetailSku=${Model}
     echo -e "\e[1;36mMissing RetailSku. Default ${RetailSku}\e[0m"
-fi
+  fi
 
-if [ -z ${BoardModel} ]; then
+  if [ -z ${BoardModel} ]; then
     BoardModel=${Model}
     echo -e "\e[1;36mMissing BoardModel. Default ${BoardModel}\e[0m"
-fi
-
-sleep 2
+  fi
+  sleep 2
+}
 
 # Boot Boot shim.
 bash ./build_boot_shim.sh
@@ -76,8 +77,10 @@ if [ ${TARGET_DEVICE} = 'all' ]; then
         fi
 
         TARGET_DEVICE=$(basename ${i})
-        stuart_build -c Platforms/SurfaceDuo1Pkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG38 "TARGET_DEVICE=${TARGET_DEVICE}" "TARGET_RAM_SIZE=${TARGET_RAM_SIZE}"
+	checkargs
+        stuart_build -c Platforms/SurfaceDuo1Pkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG38 "TARGET_DEVICE=${TARGET_DEVICE}" "TARGET_RAM_SIZE=${TARGET_RAM_SIZE}" "BOARDMODEL=${BoardModel}" "MODEL=${Model}" "RETAILSKU=${RetailSku}" "RETAILMODEL=${BoardModel}"
     done
 else
+    checkargs
     stuart_build -c Platforms/SurfaceDuo1Pkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG38 "TARGET_DEVICE=${TARGET_DEVICE}" "TARGET_RAM_SIZE=${TARGET_RAM_SIZE}" "BOARDMODEL=${BoardModel}" "MODEL=${Model}" "RETAILSKU=${RetailSku}" "RETAILMODEL=${BoardModel}"
 fi
