@@ -28,4 +28,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
+          name: uefi-images
           path: Build/*/*.img
