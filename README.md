@@ -42,7 +42,7 @@ source SurfaceDuo/bin/activate
 
 4. Stamp build
 ```
-python3 ./Platforms/SurfaceDuoPkg/StampBuild.py
+python3 ./Platforms/SurfaceDuo1Pkg/StampBuild.py
 ```
 or 
 ```
@@ -54,7 +54,7 @@ or
 >Optional: -m <Model> -r <RetailModel> -u <RetailSku> -b <BoardModel>
 
 ```
-./build_uefi.sh -d <target-name> -s <traget-ram-size> [ -m <Model> -r <RetailModel> -u <RetailSku> -b <BoardModel> ]
+./build_uefi.sh -d <target-name> -s <target-ram-size> [ -m <Model> -r <RetailModel> -u <RetailSku> -b <BoardModel> ]
 ```
 Ram size should be 6, 8, or 12.
 You will find Build/<target-name>/uefi.img if it builds successfully.
