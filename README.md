@@ -44,14 +44,20 @@ source SurfaceDuo/bin/activate
 ```
 python3 ./Platforms/SurfaceDuoPkg/StampBuild.py
 ```
+or 
+```
+./build_releaseinfo.ps1
+```
 
 5. Build UEFI
+>Usage: build_uefi.sh -d <target_device> -s <ram_size>
+>Optional: -m <Model> -r <RetailModel> -u <RetailSku> -b <BoardModel>
 
 ```
-./build_uefi.sh <target-name> <traget-ram-size> [ -m <Model> -r <RetailModel> -s <RetailSku> -b <BoardModel> ]
+./build_uefi.sh -d <target-name> -s <traget-ram-size> [ -m <Model> -r <RetailModel> -u <RetailSku> -b <BoardModel> ]
 ```
 Ram size should be 6, 8, or 12.
-You will find Build/<target-name>/uefi.img if build successfully.
+You will find Build/<target-name>/uefi.img if it builds successfully.
 
 ## Target list
 
