@@ -4,7 +4,7 @@ services:
                 container_name: mubuild
                 volumes:
                         - ./:/root/
-                restart: no
+                restart: "no"
                 command: bash /root/scripts/container_setup.sh
                 environment: 
                         TZ: Asia/Shanghai
