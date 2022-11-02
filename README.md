@@ -66,6 +66,7 @@ or
 |--------------------|---------------------|--------------| ---------------------------------------------------|
 | ASUS ROG2          | asus-I001DC         | ✅           | [Ww](https://github.com/Idonotkno)                 |
 | LG G8              | lg-alphaplus        | ✅           | [Molly Sophia](https://github.com/MollySophia)     |
+| LG G8S             | lg-betalm           | ✅           | [J0SH1X](https://github.com/J0SH1X)                |
 | LG G8X             | lg-mh2lm            | ✅           | [Molly Sophia](https://github.com/MollySophia)     |
 | LG V50             | lg-flashlmdd        | ✅           | [AKA](https://github.com/AKAsaliza)                |
 | LG V50S            | lg-mh2lm-5G         | ✅           | [AKA](https://github.com/AKAsaliza)                |
