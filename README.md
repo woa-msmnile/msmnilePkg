@@ -19,7 +19,7 @@ Quick notes for building:
 pip install --upgrade -r pip-requirements.txt
 ```
 
-Alternatively, use docker-compose if you don't have Ubuntu 20.04 environment
+Alternatively, use docker if you don't have Ubuntu 20.04 environment
 
 ```
 docker build -t mu:v1 .
