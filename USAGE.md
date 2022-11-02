@@ -3,24 +3,13 @@
 ## Requirements:
 
 - A copy of this UEFI (uefi.img)
-- A Surface Duo (Gen 1) (Any Storage Capacity)
-- ⚠️ Surface Duo (Gen 2) support is currently experimental/PoC!
+- A Phone with sm8150 SoC (Any Storage Capacity)
 - Google's Android Platform Tools: https://developer.android.com/studio/releases/platform-tools
 
-## Unlock Surface Duo Bootloader
+## Unlock Bootloader
+#### Notice: The device will wipe itself.
 
-⚠️ Unlocking the bootloader will wipe all user data on the device, make backups prior doing so!
-
-- Open ```Settings```
-- Go to ```about```
-- Tap 10 times on the ```Build Number``` field, enter pin code if requested, you should have ```Developer options``` enabled
-- Go to ```system```, ```developer options```
-- Turn on ```Allow OEM Unlocking```
-- Run in a command prompt: ```adb reboot bootloader```
-- Wait for the device to reboot in bootloader mode
-- Run in a command prompt: ```fastboot flashing unlock```
-- Select ```yes``` to the ```unlock bootloader``` question
-- Let the device wipe itself
+- Ask Google for the way to unlock your phone's bootloader.
 
 ## Boot the UEFI firmware
 

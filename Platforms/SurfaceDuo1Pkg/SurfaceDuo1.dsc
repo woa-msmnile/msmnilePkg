@@ -10,7 +10,7 @@
 ##
 
 !ifndef TARGET_DEVICE
-    !error "TARGET_DEVICE must be defined"
+  !error "TARGET_DEVICE must be defined"
 !endif
 
 ################################################################################
@@ -32,7 +32,7 @@
   USE_PHYSICAL_TIMER             = TRUE
 
   # Debugging
-  USE_SCREEN_FOR_SERIAL_OUTPUT   = 0
+  USE_SCREEN_FOR_SERIAL_OUTPUT   = 1
   USE_UART_FOR_SERIAL_OUTPUT     = 0
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
   SEND_HEARTBEAT_TO_SERIAL       = 0
@@ -61,6 +61,8 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
 
 !if $(HAS_MLVM) == TRUE
   GCC:*_*_AARCH64_CC_FLAGS = -DHAS_MLVM=1
+!else
+  GCC:*_*_AARCH64_CC_FLAGS = -DHAS_MLVM=0
 !endif
 
 !if $(MEMMAP_XIAOMI_HACKS) == TRUE
@@ -71,40 +73,29 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
   GCC:*_*_AARCH64_CC_FLAGS = -DMEMMAP_LG_HACKS=1
 !endif
 
-!if $(TARGET_RAM_SIZE) == 12
-  GCC:*_*_AARCH64_CC_FLAGS = -DRAM_SIZE=12
-!endif
+  GCC:*_*_AARCH64_CC_FLAGS = -DRAM_SIZE=$(TARGET_RAM_SIZE)
 
-!if $(TARGET_RAM_SIZE) == 8
-  GCC:*_*_AARCH64_CC_FLAGS = -DRAM_SIZE=8
-!endif
-
-!if $(TARGET_RAM_SIZE) == 6
-  GCC:*_*_AARCH64_CC_FLAGS = -DRAM_SIZE=6
-!endif
-  
 [PcdsFixedAtBuild.common]
   # Platform-specific
-  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x080000000            # Common Base Address
+  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x080000000              # Common Base Address
 
   !if $(TARGET_RAM_SIZE) == 6
-  gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000            # 6GB
+    gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000            # 6GB
   !endif
 
   !if $(TARGET_RAM_SIZE) == 8
-  gArmTokenSpaceGuid.PcdSystemMemorySize|0x200000000            # 8GB
+    gArmTokenSpaceGuid.PcdSystemMemorySize|0x200000000            # 8GB
   !endif
 
   !if $(TARGET_RAM_SIZE) == 12
-  gArmTokenSpaceGuid.PcdSystemMemorySize|0x300000000            # 12GB
+    gArmTokenSpaceGuid.PcdSystemMemorySize|0x300000000            # 12GB
   !endif
 
-
   # SMBIOS
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"Surface Duo"
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"1930"
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"Surface_Duo_1930"
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosBoardModel|"Surface Duo"
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"$(MODEL)"
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"$(RETAILMODEL)"
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"$(RETAIlSKU)"
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosBoardModel|"$(BOARDMODEL)"
 
   # PStore
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPStoreBufferAddress|0x17FE00000
