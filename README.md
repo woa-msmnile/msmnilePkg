@@ -1,6 +1,6 @@
 ## This Repo Is Based On [SurfaceDuoPkg](https://github.com/Woa-Project/SurfaceDuoPkg/)
 
-Thanks for [Gus](https://github.com/gus33000)'s instructions!
+Thanks for [Gustave](https://github.com/gus33000)'s instructions!
 
 # Project Mu UEFI Implementation for SM8150 Devices
 
@@ -22,7 +22,8 @@ pip install --upgrade -r pip-requirements.txt
 Alternatively, use docker-compose if you don't have Ubuntu 20.04 environment
 
 ```
-docker-compose run mu
+docker build -t mu:v1 .
+docker run -it mu:v1 -v ./:/build/
 ```
 
 Then finish the following process in docker environment
@@ -42,16 +43,22 @@ source SurfaceDuo/bin/activate
 
 4. Stamp build
 ```
-python3 ./Platforms/SurfaceDuoPkg/StampBuild.py
+python3 ./Platforms/SurfaceDuo1Pkg/StampBuild.py
+```
+or 
+```
+./build_releaseinfo.ps1
 ```
 
 5. Build UEFI
+>Usage: build_uefi.sh -d <target_device> -s <ram_size>
+>Optional: -m <Model> -r <RetailModel> -u <RetailSku> -b <BoardModel>
 
 ```
-./build_uefi.sh <target-name> <traget-ram-size>
+./build_uefi.sh -d <target-name> -s <traget-ram-size> [ -m <Model> -r <RetailModel> -u <RetailSku> -b <BoardModel> ]
 ```
 Ram size should be 6, 8, or 12.
-You will find Build/<target-name>/uefi.img if build successfully.
+You will find Build/<target-name>/uefi.img if it builds successfully.
 
 ## Target list
 
