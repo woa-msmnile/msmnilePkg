@@ -16,6 +16,7 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdGetSmBiosInfoFormDT
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorModel
@@ -30,6 +31,9 @@
   MdeModulePkg/MdeModulePkg.dec
   SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
 
+[Guids]
+  gDtPlatformDefaultDtbFileGuid
+
 [LibraryClasses]
   BaseLib
   ReportStatusCodeLib
@@ -39,6 +43,9 @@
   BaseMemoryLib
   DebugLib
   CompilerIntrinsicsLib
+  FdtLib
+  DxeServicesLib
+  MemoryAllocationLib
 
 [Protocols]
   gEfiSmbiosProtocolGuid

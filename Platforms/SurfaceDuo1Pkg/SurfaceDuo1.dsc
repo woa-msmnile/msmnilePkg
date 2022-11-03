@@ -92,6 +92,9 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
   !endif
 
   # SMBIOS
+  !if $(GET_INFO_FROM_DT) == FALSE
+    gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdGetSmBiosInfoFormDT|FALSE
+  !endif
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"$(MODEL)"
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"$(RETAILMODEL)"
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"$(RETAIlSKU)"
