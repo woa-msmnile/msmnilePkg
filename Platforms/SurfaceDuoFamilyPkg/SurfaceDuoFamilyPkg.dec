@@ -50,6 +50,8 @@
   gEfiMdtpPartitionGuid =               { 0x3878408A, 0xE263, 0x4B67, { 0xB8, 0x78, 0x63, 0x40, 0xB3, 0x5B, 0x11, 0xE3 } }
   gBlockIoRefreshGuid =                 { 0xb1eb3d10, 0x9d67, 0x40ca, { 0x95, 0x59, 0xf1, 0x48, 0x8b, 0x1b, 0x2d, 0xdb } }
   gEfiRNGAlgRawGuid =                   { 0xe43176d7, 0xb6e8, 0x4827, { 0xb7, 0x84, 0x7f, 0xfd, 0xc4, 0xb6, 0x85, 0x61 } }
+  # File GUID for default DTB image embedded in the firmware volume
+  gDtPlatformDefaultDtbFileGuid = { 0x25462cda, 0x221f, 0x47df, { 0xac, 0x1d, 0x25, 0x9c, 0xfa, 0xa4, 0xe3, 0x26 } }
 
 [Protocols]
   # From https://git.codelinaro.org/clo/la/abl/tianocore/edk2/-/tree/LA.UM.9.14.r1-20200.01-LAHAINA.QSSI12.0
@@ -120,7 +122,7 @@
   # Memory allocation
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x1AB00000|UINT64|0x00000a106
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdUefiMemPoolSize|0x3500000|UINT32|0x00000a107
-
+  
   # Debug Screen Serial
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdEnableScreenSerial|FALSE|BOOLEAN|0x00000a105
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdDebugUartPortBase|0xa90000|UINT64|0x00000a108
@@ -132,6 +134,7 @@
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"1930"|VOID*|0x0000a304
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"Surface_Duo_1930"|VOID*|0x0000a305
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosBoardModel|"Surface Duo"|VOID*|0x0000a306
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdGetSmBiosInfoFormDT|TRUE|BOOLEAN|0x0000a307
 
   # Simple FrameBuffer
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0x9C000000|UINT32|0x0000a400
