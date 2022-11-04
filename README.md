@@ -74,7 +74,7 @@ or
 | OnePlus 7 Pro      | oneplus-guacamole   | ✅           | [Waseem Alkurdi](https://github.com/WaseemAlkurdi) |
 | OnePlus 7T Pro     | oneplus-hotdog      | ✅           | [sunflower2333](https://github.com/sunflower2333)  |
 | Samsung Galaxy S10 | samsung-beyond1qlte | ✅           | [Ww](https://github.com/Idonotkno)                 |
-| Xiaomi 9           | xiaomi-cepheus      | ❌           | NONE                                               |
+| Xiaomi 9           | xiaomi-cepheus      | ✅           | [qaz6750](https://github.com/qaz6750)              |
 | Xiaomi Hercules    | xiaomi-hercules     | ✅           | [Ww](https://github.com/Idonotkno)                 |
 | Xiaomi K20 Pro     | xiaomi-raphael      | ✅           | [sunflower2333](https://github.com/sunflower2333)  |
 | Xiaomi Mix3 5G     | xiaomi-andromeda    | ✅           | [sunflower2333](https://github.com/sunflower2333)  |
