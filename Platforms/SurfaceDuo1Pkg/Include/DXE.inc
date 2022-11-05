@@ -191,11 +191,6 @@
             SECTION UI = "AdcDxe"
     }
 
-    FILE DRIVER = 11faed4c-b21f-4d88-8e48-c4c28a1e50df {
-            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-11faed4c-b21f-4d88-8e48-c4c28a1e50df/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-11faed4c-b21f-4d88-8e48-c4c28a1e50df/section1.pe
-            SECTION UI = "UsbPwrCtrlDxe"
-    }
 
     FILE DRIVER = 94f8a6a7-dc34-4101-88c1-99179cceae83 {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-94f8a6a7-dc34-4101-88c1-99179cceae83/section0.dxe.depex
