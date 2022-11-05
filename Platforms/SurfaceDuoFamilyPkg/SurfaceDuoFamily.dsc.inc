@@ -39,7 +39,7 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdInstallAcpiSdtProtocol|TRUE
 
 [PcdsFixedAtBuild.common]
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor|L"DuoWoA authors"
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor|L"DuoWoA authors & RP authors"
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString|L"2210.48"
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareRevision|0x00160F0C
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemId|"QCOM  "
@@ -491,6 +491,6 @@
   SurfaceDuoFamilyPkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
 
   SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
-  SurfaceDuoFamilyPkg/Applications/SimpleInitBin/SimpleInitBin.inf
+  #SurfaceDuoFamilyPkg/Applications/SimpleInitBin/SimpleInitBin.inf
   # GPLDriver/Driver/BootSlotDxe/BootSlotDxe.inf
   # GPLDriver/Application/SwitchSlotsApp/SwitchSlotsApp.inf
