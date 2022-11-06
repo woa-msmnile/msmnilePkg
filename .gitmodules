@@ -21,6 +21,6 @@
 [submodule "Platforms/SurfaceDuoBinaries"]
 	path = Platforms/SurfaceDuoBinaries
 	url = https://github.com/WOA-Project/SurfaceDuoBinaries.git
-[submodule "Common/SimpleInit"]
-	path = Common/SimpleInit
-	url = https://github.com/sunflower2333/simple-init.git
+[submodule "Platforms/SimpleInit"]
+	path = Platforms/SimpleInit
+	url = https://github.com/BigfootACA/simple-init.git
