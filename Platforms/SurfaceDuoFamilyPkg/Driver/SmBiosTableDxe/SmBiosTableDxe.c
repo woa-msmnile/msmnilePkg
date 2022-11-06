@@ -42,19 +42,21 @@ be found at http://opensource.org/licenses/bsd-license.php
 **/
 
 #include <Base.h>
+#include <libfdt.h>
 
 #include <Guid/SmBios.h>
 #include <IndustryStandard/SmBios.h>
-#include <Protocol/Smbios.h>
 
+#include <Protocol/Smbios.h>
 #include <Library/BaseLib.h>
-#include <Library/BaseMemoryLib.h>
+#include <Library/UefiLib.h>
 #include <Library/DebugLib.h>
 #include <Library/PrintLib.h>
+#include <Library/BaseMemoryLib.h>
+#include <Library/DxeServicesLib.h>
 #include <Library/MemoryAllocationLib.h>
-#include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiDriverEntryPoint.h>
-#include <Library/UefiLib.h>
+#include <Library/UefiBootServicesTableLib.h>
 
 /* Used to read chip serial number */
 #include <Protocol/EFIChipInfo.h>
@@ -679,8 +681,33 @@ VOID BIOSInfoUpdateSmbiosType0(VOID)
 
 VOID SysInfoUpdateSmbiosType1(CHAR8 *serialNo, EFIChipInfoSerialNumType serial)
 {
+  CHAR8       *name = "model";
+  EFI_STATUS   Status;
+  VOID        *Fdt;
+  CONST VOID  *model;
+  UINTN        OrigDtbSize;
+
+  DEBUG((EFI_D_INFO, "[SmbiosDXE] You Choosed %a\n", PcdGetBool (PcdGetSmBiosInfoFormDT) ? "DT" : "CUST"));
+
+  if(PcdGetBool (PcdGetSmBiosInfoFormDT)){
+    Status = GetSectionFromAnyFv (
+               &gDtPlatformDefaultDtbFileGuid,
+               EFI_SECTION_RAW,
+               0,
+               &Fdt,
+               &OrigDtbSize
+               );
+
+    if (EFI_ERROR (Status)) {
+      DEBUG((EFI_D_ERROR, "[SmbiosDXE] FDT Not Found\n"));
+    }
+    model = fdt_getprop(Fdt, 0, name, NULL);
+    mSysInfoType1Strings[1] = (CHAR8 *)model; // Smbios System Model
+  }
+  else
+    mSysInfoType1Strings[1] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemModel); // Smbios System Model
+
   // Update string table before proceeds
-  mSysInfoType1Strings[1] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemModel);
   mSysInfoType1Strings[2] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemRetailModel);
   mSysInfoType1Strings[4] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemRetailSku);
 

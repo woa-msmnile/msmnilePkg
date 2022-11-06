@@ -69,7 +69,7 @@ or
 | LG G8S             | lg-betalm           | ✅           | [J0SH1X](https://github.com/J0SH1X)                |
 | LG G8X             | lg-mh2lm            | ✅           | [Molly Sophia](https://github.com/MollySophia)     |
 | LG V50             | lg-flashlmdd        | ✅           | [AKA](https://github.com/AKAsaliza)                |
-| LG V50S            | lg-mh2lm-5G         | ✅           | [AKA](https://github.com/AKAsaliza)                |
+| LG V50S            | lg-mh2lm5g          | ✅           | [AKA](https://github.com/AKAsaliza)                |
 | Nubia Mini 5G      | nubia-tp1803        | ✅           | [Alula](https://github.com/alula)                  |
 | OnePlus 7 Pro      | oneplus-guacamole   | ✅           | [Waseem Alkurdi](https://github.com/WaseemAlkurdi) |
 | OnePlus 7T Pro     | oneplus-hotdog      | ✅           | [sunflower2333](https://github.com/sunflower2333)  |
