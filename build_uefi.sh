@@ -44,7 +44,10 @@ function checkargs {
 
   if [ -z ${Model} ]; then
     Model=${TARGET_DEVICE}
-    echo -e "\e[1;36mMissing Model. Default ${Model}\e[0m"
+    GetSmbiosInfoFromDT=TRUE
+    echo -e "\e[1;36mMissing Model. Will Read Info Form DT\e[0m"
+  else
+    GetSmbiosInfoFromDT=FALSE
   fi
 
   if [ -z ${RetailModel} ]; then
@@ -78,9 +81,9 @@ if [ ${TARGET_DEVICE} = 'all' ]; then
 
         TARGET_DEVICE=$(basename ${i})
 	checkargs
-        stuart_build -c Platforms/SurfaceDuo1Pkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG38 "TARGET_DEVICE=${TARGET_DEVICE}" "TARGET_RAM_SIZE=${TARGET_RAM_SIZE}" "BOARDMODEL=${BoardModel}" "MODEL=${Model}" "RETAILSKU=${RetailSku}" "RETAILMODEL=${BoardModel}"
+        stuart_build -c Platforms/SurfaceDuo1Pkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG38 "TARGET_DEVICE=${TARGET_DEVICE}" "TARGET_RAM_SIZE=${TARGET_RAM_SIZE}" "BOARDMODEL=${BoardModel}" "MODEL=${Model}" "RETAILSKU=${RetailSku}" "RETAILMODEL=${BoardModel}" "GET_INFO_FROM_DT=${GetSmbiosInfoFromDT}"
     done
 else
     checkargs
-    stuart_build -c Platforms/SurfaceDuo1Pkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG38 "TARGET_DEVICE=${TARGET_DEVICE}" "TARGET_RAM_SIZE=${TARGET_RAM_SIZE}" "BOARDMODEL=${BoardModel}" "MODEL=${Model}" "RETAILSKU=${RetailSku}" "RETAILMODEL=${BoardModel}"
+    stuart_build -c Platforms/SurfaceDuo1Pkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG38 "TARGET_DEVICE=${TARGET_DEVICE}" "TARGET_RAM_SIZE=${TARGET_RAM_SIZE}" "BOARDMODEL=${BoardModel}" "MODEL=${Model}" "RETAILSKU=${RetailSku}" "RETAILMODEL=${BoardModel}" "GET_INFO_FROM_DT=${GetSmbiosInfoFromDT}"
 fi

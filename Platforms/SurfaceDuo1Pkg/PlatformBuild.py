@@ -240,6 +240,7 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
         self.env.SetValue("BLD_*_RETAILMODEL", self.env.GetValue("RETAILMODEL"), "Default")
         self.env.SetValue("BLD_*_RETAILSKU", self.env.GetValue("RETAILSKU"), "Default")
         self.env.SetValue("BLD_*_BOARDMODEL", self.env.GetValue("BOARDMODEL"), "Default")
+        self.env.SetValue("BLD_*_GET_INFO_FROM_DT", self.env.GetValue("GET_INFO_FROM_DT"), "Default")
         self.env.SetValue("BLD_*_FDT", self.GetDTBName(), "Default")
         return 0
 
@@ -248,7 +249,7 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
         return 0
 
     def PlatformPostBuild(self):
-        self.RunTargetDeviceScript("..//..//PostBuild.py")
+        self.RunTargetDeviceScript("../../PostBuild.py")
         return 0
 
     def RunTargetDeviceScript(self, script_name):
