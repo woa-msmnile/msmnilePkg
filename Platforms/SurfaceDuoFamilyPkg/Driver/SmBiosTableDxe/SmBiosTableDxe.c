@@ -137,11 +137,12 @@ SMBIOS_TABLE_TYPE0 mBIOSInfoType0 = {
     0xFF, // EmbeddedControllerFirmwareMinorRelease
 };
 
-CHAR8 *mBIOSInfoType0Strings[] = {"DuoWoA authors", // Vendor String
-                                  __IMPL_COMMIT_ID__ " (EDK2 "__EDK2_RELEASE__
-                                                     ")", // BiosVersion String
-                                  __RELEASE_DATE__, // BiosReleaseDate String
-                                  NULL};
+CHAR8 *mBIOSInfoType0Strings[] = {
+    "DuoWoA authors & RP authors", // Vendor String
+    __IMPL_COMMIT_ID__ " (EDK2 "__EDK2_RELEASE__
+                       ")", // BiosVersion String
+    __RELEASE_DATE__,       // BiosReleaseDate String
+    NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE1  System Information
@@ -172,8 +173,13 @@ SMBIOS_TABLE_TYPE1 mSysInfoType1 = {
     6, // Family String
 };
 CHAR8 *mSysInfoType1Strings[] = {
-    "Microsoft Corporation", "Not Specified", "Not Specified", "Not Specified",
-    "Not Specified",      "Surface",        NULL};
+    "Microsoft Corporation",
+    "Not Specified",
+    "Not Specified",
+    "Not Specified",
+    "Not Specified",
+    "Surface",
+    NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE2  Board Information
@@ -201,31 +207,41 @@ SMBIOS_TABLE_TYPE2 mBoardInfoType2 = {
     {0}                       // ContainedObjectHandles[1];
 };
 CHAR8 *mBoardInfoType2Strings[] = {
-    "Microsoft Corporation", "Not Specified", "Not Specified", "Not Specified", "Not Specified", "Not Specified", NULL};
-
+    "Microsoft Corporation",
+    "Not Specified",
+    "Not Specified",
+    "Not Specified",
+    "Not Specified",
+    "Not Specified",
+    NULL};
 /***********************************************************************
         SMBIOS data definition  TYPE3  Enclosure Information
 ************************************************************************/
 SMBIOS_TABLE_TYPE3 mEnclosureInfoType3 = {
     {EFI_SMBIOS_TYPE_SYSTEM_ENCLOSURE, sizeof(SMBIOS_TABLE_TYPE3), 0},
-    1,                         // Manufacturer String
-    MiscChassisTypePortable,   // Type;
-    2,                         // Version String
-    3,                         // SerialNumber String
-    4,                         // AssetTag String
-    ChassisStateUnknown,       // BootupState;
-    ChassisStateUnknown,       // PowerSupplyState;
-    ChassisStateUnknown,       // ThermalState;
-    ChassisStateUnknown,       // SecurityStatus;
-    {0, 0, 0, 0},              // OemDefined[4];
-    0,                         // Height;
-    0,                         // NumberofPowerCords;
-    0,                         // ContainedElementCount;
-    0,                         // ContainedElementRecordLength;
-    {{0}},                     // ContainedElements[1];
+    1,                       // Manufacturer String
+    MiscChassisTypePortable, // Type;
+    2,                       // Version String
+    3,                       // SerialNumber String
+    4,                       // AssetTag String
+    ChassisStateUnknown,     // BootupState;
+    ChassisStateUnknown,     // PowerSupplyState;
+    ChassisStateUnknown,     // ThermalState;
+    ChassisStateUnknown,     // SecurityStatus;
+    {0, 0, 0, 0},            // OemDefined[4];
+    0,                       // Height;
+    0,                       // NumberofPowerCords;
+    0,                       // ContainedElementCount;
+    0,                       // ContainedElementRecordLength;
+    {{0}},                   // ContainedElements[1];
 };
-CHAR8 *mEnclosureInfoType3Strings[] = {"Microsoft Corporation", "Not Specified", "Not Specified", "Not Specified",
-                                       NULL};
+
+CHAR8 *mEnclosureInfoType3Strings[] = {
+    "Microsoft Corporation",
+    "Not Specified",
+    "Not Specified",
+    "Not Specified",
+    NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE4  Processor Information
@@ -317,8 +333,7 @@ SMBIOS_TABLE_TYPE4 mProcessorInfoType4 = {
 };
 
 CHAR8 *mProcessorInfoType4Strings[] = {
-    "Qualcomm", "Qualcomm Technologies Inc", "Not Specified",
-    "Not Specified", NULL};
+    "Qualcomm", "Qualcomm Technologies Inc", "Not Specified", "Not Specified", NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE7  Cache Information
@@ -351,9 +366,9 @@ SMBIOS_TABLE_TYPE7 mCacheInfoType7_L1IC = {
         0, // Asynchronous      :1
         0  // Reserved          :9
     },
-    0,                     // Cache Speed unknown
-    CacheErrorParity,      // Error Correction Multi
-    CacheTypeInstruction,      // System Cache Type
+    0,                      // Cache Speed unknown
+    CacheErrorParity,       // Error Correction Multi
+    CacheTypeInstruction,   // System Cache Type
     CacheAssociativity16Way // Associativity
 };
 CHAR8 *mCacheInfoType7_L1ICStrings[] = {"L1 Instruction Cache", NULL};
@@ -389,9 +404,9 @@ SMBIOS_TABLE_TYPE7 mCacheInfoType7_L1DC = {
         0, // Asynchronous      :1
         0  // Reserved          :9
     },
-    0,                     // Cache Speed unknown
-    CacheErrorParity,      // Error Correction Multi
-    CacheTypeData,      // System Cache Type
+    0,                      // Cache Speed unknown
+    CacheErrorParity,       // Error Correction Multi
+    CacheTypeData,          // System Cache Type
     CacheAssociativity16Way // Associativity
 };
 CHAR8 *mCacheInfoType7_L1DCStrings[] = {"L1 Data Cache", NULL};
@@ -488,7 +503,7 @@ SMBIOS_TABLE_TYPE16 mPhyMemArrayInfoType16 = {
     0xFFFFFFFF,                     // MaximumCapacity;
     0xFFFE,                         // MemoryErrorInformationHandle;
     1,                              // NumberOfMemoryDevices;
-    0x180000000ULL,                 // ExtendedMaximumCapacity;
+    FixedPcdGet64(PcdSystemMemorySize), // ExtendedMaximumCapacity;
 };
 CHAR8 *mPhyMemArrayInfoType16Strings[] = {NULL};
 
@@ -502,7 +517,7 @@ SMBIOS_TABLE_TYPE17 mMemDevInfoType17 = {
     0xFFFE, // MemoryErrorInformationHandle;
     0xFFFF, // TotalWidth;
     0xFFFF, // DataWidth;
-    0x1800, // Size; // When bit 15 is 0: Size in MB
+    0xFFFF, // Size; // When bit 15 is 0: Size in MB
             // When bit 15 is 1: Size in KB, and continues in ExtendedSize
     MemoryFormFactorRowOfChips, // FormFactor;                     ///< The
                                 // enumeration value from MEMORY_FORM_FACTOR.
@@ -540,7 +555,15 @@ SMBIOS_TABLE_TYPE17 mMemDevInfoType17 = {
     0,    // ConfiguredMemoryClockSpeed;
 };
 
-CHAR8 *mMemDevInfoType17Strings[] = {"Top - on board", "Bank 0", "Hynix", "Not Specified", "Not Specified", "H9HKNNNEBMAVAR-NEH", NULL};
+CHAR8 *mMemDevInfoType17Strings[] = {
+  "Top - on board",
+  "Bank 0",
+  "Hynix",
+  "Not Specified",
+  "Not Specified",
+  "H9HKNNNEBMAVAR-NEH",
+  NULL,
+};
 
 /***********************************************************************
         SMBIOS data definition  TYPE19  Memory Array Mapped Address Information
@@ -551,12 +574,12 @@ SMBIOS_TABLE_TYPE19 mMemArrMapInfoType19 = {
         sizeof(SMBIOS_TABLE_TYPE19),
         0,
     },
-    0xFFFFFFFF, // StartingAddress;
-    0xFFFFFFFF, // EndingAddress;
-    0,          // MemoryArrayHandle;
-    0,          // PartitionWidth;
-    0x3FFFFFFFC00,          // ExtendedStartingAddress;
-    0x3FFFFFFFFFF,          // ExtendedEndingAddress;
+    0xFFFFFFFF,    // StartingAddress;
+    0xFFFFFFFF,    // EndingAddress;
+    0,             // MemoryArrayHandle;
+    0,             // PartitionWidth;
+    0x3FFFFFFFC00, // ExtendedStartingAddress;
+    0x3FFFFFFFFFF, // ExtendedEndingAddress;
 };
 CHAR8 *mMemArrMapInfoType19Strings[] = {NULL};
 
@@ -599,13 +622,13 @@ LogSmbiosData(
     OUT EFI_SMBIOS_HANDLE *DataSmbiosHande)
 {
   EFI_STATUS               Status;
-  EFI_SMBIOS_PROTOCOL *    Smbios;
+  EFI_SMBIOS_PROTOCOL     *Smbios;
   EFI_SMBIOS_HANDLE        SmbiosHandle;
   EFI_SMBIOS_TABLE_HEADER *Record;
   UINTN                    Index;
   UINTN                    StringSize;
   UINTN                    Size;
-  CHAR8 *                  Str;
+  CHAR8                   *Str;
 
   //
   // Locate Smbios protocol.
@@ -756,16 +779,16 @@ VOID ProcessorInfoUpdateSmbiosType4(IN UINTN MaxCpus)
   EFI_SMBIOS_HANDLE SmbiosHandle;
 
   LogSmbiosData(
-      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_L1DC, mCacheInfoType7_L1DCStrings,
-      &SmbiosHandle);
+      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_L1DC,
+      mCacheInfoType7_L1DCStrings, &SmbiosHandle);
   mProcessorInfoType4.L1CacheHandle = (UINT16)SmbiosHandle;
   LogSmbiosData(
-      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_L2C, mCacheInfoType7_L2CStrings,
-      &SmbiosHandle);
+      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_L2C,
+      mCacheInfoType7_L2CStrings, &SmbiosHandle);
   mProcessorInfoType4.L2CacheHandle = (UINT16)SmbiosHandle;
   LogSmbiosData(
-      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_L3C, mCacheInfoType7_L3CStrings,
-      &SmbiosHandle);
+      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_L3C,
+      mCacheInfoType7_L3CStrings, &SmbiosHandle);
   mProcessorInfoType4.L3CacheHandle = (UINT16)SmbiosHandle;
 
   // Update string table before proceeds
@@ -785,8 +808,8 @@ VOID ProcessorInfoUpdateSmbiosType4(IN UINTN MaxCpus)
 VOID CacheInfoUpdateSmbiosType7(VOID)
 {
   LogSmbiosData(
-      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_L1IC, mCacheInfoType7_L1ICStrings,
-      NULL);
+      (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_L1IC,
+      mCacheInfoType7_L1ICStrings, NULL);
 }
 
 /***********************************************************************
@@ -795,8 +818,6 @@ VOID CacheInfoUpdateSmbiosType7(VOID)
 VOID PhyMemArrayInfoUpdateSmbiosType16(VOID)
 {
   EFI_SMBIOS_HANDLE MemArraySmbiosHande;
-
-  mPhyMemArrayInfoType16.ExtendedMaximumCapacity = FixedPcdGet64(PcdSystemMemorySize);
 
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mPhyMemArrayInfoType16,
@@ -813,6 +834,7 @@ VOID PhyMemArrayInfoUpdateSmbiosType16(VOID)
 ************************************************************************/
 VOID MemDevInfoUpdateSmbiosType17(VOID)
 {
+  mMemDevInfoType17.Size = FixedPcdGet64(PcdSystemMemorySize) / 0x100000;
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mMemDevInfoType17, mMemDevInfoType17Strings,
       NULL);
@@ -846,7 +868,7 @@ SmBiosTableDxeInitialize(
   EFI_STATUS               Status;
   CHAR8                    serialNo[EFICHIPINFO_MAX_ID_LENGTH];
   EFIChipInfoSerialNumType serial;
-  EFI_CHIPINFO_PROTOCOL    *mBoardProtocol = NULL;
+  EFI_CHIPINFO_PROTOCOL   *mBoardProtocol = NULL;
 
   // Locate Qualcomm Board Protocol
   Status = gBS->LocateProtocol(
