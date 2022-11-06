@@ -50,7 +50,7 @@
 
 [BuildOptions.common]
 
-GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
+GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150 -DENABLE_LINUX_SIMPLE_MASS_STORAGE
 
 # TODO: Re-do the memory map stuff at one point so it's not defined in static variable and put 
 # those defines only in modules that need them, so changing anything here doesn't rebuild EVERY DAMN THING.
