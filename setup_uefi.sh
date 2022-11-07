@@ -5,5 +5,6 @@ stuart_update -c Platforms/SurfaceDuo1Pkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG3
 
 echo -e "\e[1;36mBuilding SimpleInit Root\e[0m"
 export CROSS_COMPILE=aarch64-linux-gnu-
-mkdir Common/SimpleInit/build
-bash Common/SimpleInit/scripts/gen-rootfs-source.sh Common/SimpleInit/ Common/SimpleInit/build Common/SimpleInit/root
+export SIMPLE_PATH=Platforms/SimpleInit
+mkdir ${SIMPLE_PATH}/build
+bash Platforms/SimpleInit/scripts/gen-rootfs-source.sh Platforms/SimpleInit/ Platforms/SimpleInit/build Platforms/SimpleInit/root

@@ -134,8 +134,8 @@ READ_LOCK_STATUS   = TRUE
   INF MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
 
   #Simple Init App
-  INF src/kernelfdt/KernelFdtDxe.inf
-  INF src/main/SimpleInitMain.inf
+  INF SimpleInit/src/kernelfdt/KernelFdtDxe.inf
+  INF SimpleInit/src/main/SimpleInitMain.inf
 
   !include SurfaceDuoFamilyPkg/Frontpage.fdf.inc
 
