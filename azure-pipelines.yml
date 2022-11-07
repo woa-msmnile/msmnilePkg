@@ -47,42 +47,12 @@ steps:
 - script: chmod +x ./build_releaseinfo.ps1 && ./build_releaseinfo.ps1
   displayName: 'Prepare pre-build environment, phase 2'
 
-- script: chmod +x ./build_uefi_epsilon.sh && ./build_uefi_epsilon.sh
-  displayName: 'UEFI build (Epsilon)'
-
-- script: chmod +x ./build_uefi_zeta.sh && ./build_uefi_zeta.sh
-  displayName: 'UEFI build (Zeta)'
-
-- script: chmod +x ./build_boot_shim.sh && ./build_boot_shim.sh
-  displayName: 'BootShim build'
-
-- script: chmod +x ./build_boot_images.sh && ./build_boot_images.sh
-  displayName: 'UEFI boot image build'
+- script: chmod +x ./build_uefi.sh && ./build_uefi.sh -d all -s 6 && ./build_uefi.sh -d all -s 8
+  displayName: 'UEFI build'
 
 # Publish UEFI (1 target)
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish SM8150 UEFI build (Surface Duo 1)'
+  displayName: 'Publish SM8150 UEFI build'
   inputs:
-    pathtoPublish: ./ImageResources/Epsilon/uefi.img
-    artifactName: SM8150 UEFI (Surface Duo 1)
-
-# Publish Boot (1 target)
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish SM8150 Boot build (Surface Duo 1)'
-  inputs:
-    pathtoPublish: ./ImageResources/Epsilon/boot.img
-    artifactName: SM8150 Boot (Surface Duo 1)
-
-# Publish UEFI (1 target)
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish SM8350 UEFI build (Surface Duo 2)'
-  inputs:
-    pathtoPublish: ./ImageResources/Zeta/uefi.img
-    artifactName: SM8350 UEFI (Surface Duo 2)
-
-# Publish Boot (1 target)
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish SM8350 Boot build (Surface Duo 2)'
-  inputs:
-    pathtoPublish: ./ImageResources/Zeta/boot.img
-    artifactName: SM8350 Boot (Surface Duo 2)
+    pathtoPublish: ./Build/*/*.img
+    artifactName: SM8150 UEFI

@@ -133,10 +133,6 @@ READ_LOCK_STATUS   = TRUE
 
   INF MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
 
-  #Simple Init App
-  INF SimpleInit/src/kernelfdt/KernelFdtDxe.inf
-  INF SimpleInit/src/main/SimpleInitMain.inf
-
   !include SurfaceDuoFamilyPkg/Frontpage.fdf.inc
 
   FILE FREEFORM = PCD(gMsCorePkgTokenSpaceGuid.PcdRegulatoryGraphicFileGuid) {

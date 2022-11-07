@@ -113,4 +113,3 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150 -DENABLE_LINUX_SIMPLE_MASS_ST
 !include SurfaceDuo1Pkg/Sm8150Family.dsc.inc
 !include SurfaceDuoFamilyPkg/SurfaceDuoFamily.dsc.inc
 !include SurfaceDuoFamilyPkg/Frontpage.dsc.inc
-!include SimpleInit/SimpleInit.inc
