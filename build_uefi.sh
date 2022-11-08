@@ -67,9 +67,6 @@ function checkargs {
   sleep 2
 }
 
-# Boot Boot shim.
-bash ./build_boot_shim.sh
-
 # Start the actual build:
 if [ ${TARGET_DEVICE} = 'all' ]; then
     for i in $(ls Platforms/SurfaceDuo1Pkg/Device); do
