@@ -140,14 +140,13 @@ READ_LOCK_STATUS   = TRUE
   }
 
   # INF SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
-  INF SurfaceDuoFamilyPkg/Applications/SimpleInitBin/SimpleInitBin.inf
+  # INF SurfaceDuoFamilyPkg/Applications/SimpleInitBin/SimpleInitBin.inf
   # INF GPLDriver/Application/SwitchSlotsApp/SwitchSlotsApp.inf
   # INF GPLDriver/Driver/BootSlotDxe/BootSlotDxe.inf
 
   INF SurfaceDuo1Pkg/Driver/GpioButtons/GpioButtons.inf
 
   INF SurfaceDuo1Pkg/Driver/KernelErrataPatcher/KernelErrataPatcher.inf
-
 [FV.FVMAIN_COMPACT]
 FvAlignment        = 8
 ERASE_POLARITY     = 1

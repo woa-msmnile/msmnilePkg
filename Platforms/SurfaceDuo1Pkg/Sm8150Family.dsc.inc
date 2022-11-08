@@ -32,10 +32,10 @@
   gEmbeddedTokenSpaceGuid.PcdInterruptBaseAddress|0x09bc0000
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize|44
 
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdUefiMemPoolSize|0x3500000
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdUefiMemPoolSize|0x8000000
 !if $(HAS_MLVM) == 1
   # 0xA0000000 is occupied by MLVM, so we need to move this up a bit.
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x30000000  # Start here
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x40300000  # Start here
 !else
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x20000000  # Start here
 !endif
