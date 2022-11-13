@@ -79,7 +79,7 @@ or
 | Xiaomi K20 Pro     | xiaomi-raphael      | ✅           | [sunflower2333](https://github.com/sunflower2333)  |
 | Xiaomi Mix3 5G     | xiaomi-andromeda    | ✅           | [sunflower2333](https://github.com/sunflower2333)  |
 | Xiaomi Pad 5       | xiaomi-nabu         | ✅           | [Map220v](https://github.com/map220v)              |
-| Xiaomi Poco X3 Pro | xiaomi-vayu         | ❌           | [Mcusr120](https://github.com/mcusr120)            |
+| Xiaomi Poco X3 Pro | xiaomi-vayu         | ✅           | [Degdag](https://github.com/degdag)            |
 | Meizu 16T          | meizu-m928q         | ❌           | NONE                                               |
 
 ## Acknowledgements
