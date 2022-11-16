@@ -52,7 +52,7 @@ or
 
 5. Build UEFI
 > Usage: build_uefi.sh -d <target-device> -s <target-ram-size>  
-> Optional: -m <Model> -r <RetailModel> -u <RetailSku> -b <BoardModel>
+> Optional:  -B <Brand> -m <Model> -r <RetailModel> -u <RetailSku> -b <BoardModel>
 
 ```
 ./build_uefi.sh -d <target-name> -s <target-ram-size> [-m <Model> -r <RetailModel> -u <RetailSku> -b <BoardModel>]

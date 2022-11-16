@@ -22,7 +22,7 @@
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorModel
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosBoardModel
-
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand
 [Packages]
   ArmPkg/ArmPkg.dec
   ArmPlatformPkg/ArmPlatformPkg.dec
@@ -50,7 +50,7 @@
 [Protocols]
   gEfiSmbiosProtocolGuid
   gEfiChipInfoProtocolGuid
-  
+
 [Depex]
   gEfiSmbiosProtocolGuid
 
