@@ -2,7 +2,7 @@
 
 cd "$(dirname "$0")"
 
-while getopts  ":d:s:m:r:u:b:" opt; do
+while getopts  ":d:s:m:r:u:b:B:" opt; do
     case ${opt} in
         d) TARGET_DEVICE=${OPTARG};;
         s) TARGET_RAM_SIZE=${OPTARG};;
