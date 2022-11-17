@@ -57,13 +57,13 @@ or
 ```
 ./build_uefi.sh -d <target-name> -s <target-ram-size> [-m <Model> -r <RetailModel> -u <RetailSku> -b <BoardModel>]
 ```
-- Ram size should be 6, 8, or 12.  
+- Ram size should be 6, 8, or 12.
 - You will find Build/&lt;target-name&gt;/&lt;target-name&gt;_&lt;target-ram-size&gt;G.img if it builds successfully.
 
 ## Target list
 
-| Device             | Target name         | DSDT Support | Maintainers                                        |
-|--------------------|---------------------|--------------| ---------------------------------------------------|
+| Device             | Target name         | DSDT Support    | Maintainers                                        |
+|--------------------|---------------------|-----------------|----------------------------------------------------|
 | ASUS ROG2          | asus-I001DC         | ✅           | [Ww](https://github.com/Idonotkno)                 |
 | LG G8              | lg-alphaplus        | ✅           | [Molly Sophia](https://github.com/MollySophia)     |
 | LG G8S             | lg-betalm           | ✅           | [J0SH1X](https://github.com/J0SH1X)                |
@@ -79,8 +79,9 @@ or
 | Xiaomi K20 Pro     | xiaomi-raphael      | ✅           | [sunflower2333](https://github.com/sunflower2333)  |
 | Xiaomi Mix3 5G     | xiaomi-andromeda    | ✅           | [sunflower2333](https://github.com/sunflower2333)  |
 | Xiaomi Pad 5       | xiaomi-nabu         | ✅           | [Map220v](https://github.com/map220v)              |
-| Xiaomi Poco X3 Pro | xiaomi-vayu         | ✅           | [Degdag](https://github.com/degdag)            |
+| Xiaomi Poco X3 Pro | xiaomi-vayu         | ✅           | [Degdag](https://github.com/degdag)                |
 | Meizu 16T          | meizu-m928q         | ❌           | NONE                                               |
+| HTC 5G Hub         | htc-hub             | ❌           | NONE                                               |
 
 ## Acknowledgements
 
