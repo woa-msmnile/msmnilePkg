@@ -138,7 +138,7 @@ SMBIOS_TABLE_TYPE0 mBIOSInfoType0 = {
 };
 
 CHAR8 *mBIOSInfoType0Strings[] = {
-    "DuoWoA authors & RP authors", // Vendor String
+    "DuoWoA authors & wm authors", // Vendor String
     __IMPL_COMMIT_ID__ " (EDK2 "__EDK2_RELEASE__
                        ")", // BiosVersion String
     __RELEASE_DATE__,       // BiosReleaseDate String
@@ -705,7 +705,6 @@ VOID BIOSInfoUpdateSmbiosType0(VOID)
 VOID SysInfoUpdateSmbiosType1(CHAR8 *serialNo, EFIChipInfoSerialNumType serial)
 {
   CHAR8       *name = "model";
-  EFI_STATUS   Status;
   VOID        *Fdt;
   CONST VOID  *model;
   UINTN        OrigDtbSize;
