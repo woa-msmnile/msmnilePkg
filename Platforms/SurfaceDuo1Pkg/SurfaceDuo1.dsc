@@ -79,6 +79,10 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
   # Platform-specific
   gArmTokenSpaceGuid.PcdSystemMemoryBase|0x080000000              # Common Base Address
 
+  !if $(TARGET_RAM_SIZE) == 4
+    gArmTokenSpaceGuid.PcdSystemMemorySize|0x100000000            # 6GB
+  !endif
+
   !if $(TARGET_RAM_SIZE) == 6
     gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000            # 6GB
   !endif
