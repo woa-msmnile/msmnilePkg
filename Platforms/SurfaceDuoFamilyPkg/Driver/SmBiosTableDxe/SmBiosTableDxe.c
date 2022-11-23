@@ -42,8 +42,6 @@ be found at http://opensource.org/licenses/bsd-license.php
 **/
 
 #include <Base.h>
-#include <libfdt.h>
-
 #include <Guid/SmBios.h>
 #include <IndustryStandard/SmBios.h>
 
@@ -60,6 +58,8 @@ be found at http://opensource.org/licenses/bsd-license.php
 
 /* Used to read chip serial number */
 #include <Protocol/EFIChipInfo.h>
+/* Used to read model from dtb */
+#include <libfdt.h>
 
 /* Build-time generated ReleaseInfo.h will override the default one */
 #include <Resources/ReleaseStampStub.h>
@@ -138,7 +138,7 @@ SMBIOS_TABLE_TYPE0 mBIOSInfoType0 = {
 };
 
 CHAR8 *mBIOSInfoType0Strings[] = {
-    "DuoWoA authors & RP authors", // Vendor String
+    "DuoWoA authors & wm authors", // Vendor String
     __IMPL_COMMIT_ID__ " (EDK2 "__EDK2_RELEASE__
                        ")", // BiosVersion String
     __RELEASE_DATE__,       // BiosReleaseDate String
@@ -173,7 +173,7 @@ SMBIOS_TABLE_TYPE1 mSysInfoType1 = {
     6, // Family String
 };
 CHAR8 *mSysInfoType1Strings[] = {
-    "Microsoft Corporation",
+    "Not Specified",
     "Not Specified",
     "Not Specified",
     "Not Specified",
@@ -705,31 +705,25 @@ VOID BIOSInfoUpdateSmbiosType0(VOID)
 VOID SysInfoUpdateSmbiosType1(CHAR8 *serialNo, EFIChipInfoSerialNumType serial)
 {
   CHAR8       *name = "model";
-  EFI_STATUS   Status;
   VOID        *Fdt;
   CONST VOID  *model;
   UINTN        OrigDtbSize;
 
   DEBUG((EFI_D_INFO, "[SmbiosDXE] You Choosed %a\n", PcdGetBool (PcdGetSmBiosInfoFormDT) ? "DT" : "CUST"));
 
-  if(PcdGetBool (PcdGetSmBiosInfoFormDT)){
-    Status = GetSectionFromAnyFv (
+  if(PcdGetBool (PcdGetSmBiosInfoFormDT && !EFI_ERROR (GetSectionFromAnyFv (
                &gDtPlatformDefaultDtbFileGuid,
                EFI_SECTION_RAW,
                0,
                &Fdt,
                &OrigDtbSize
-               );
-
-    if (EFI_ERROR (Status)) {
-      DEBUG((EFI_D_ERROR, "[SmbiosDXE] FDT Not Found\n"));
-    }
-    model = fdt_getprop(Fdt, 0, name, NULL);
+               )))){
+    model = fdt_getprop(Fdt, 0, name, NULL);  // Read model info from DTB
     mSysInfoType1Strings[1] = (CHAR8 *)model; // Smbios System Model
-  }
-  else
+  }else
     mSysInfoType1Strings[1] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemModel); // Smbios System Model
 
+  mSysInfoType1Strings[0] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemBrand); // Smbios Brand Info
   // Update string table before proceeds
   mSysInfoType1Strings[2] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemRetailModel);
   mSysInfoType1Strings[4] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemRetailSku);
