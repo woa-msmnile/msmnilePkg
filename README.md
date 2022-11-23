@@ -91,6 +91,7 @@ or
 - [Googulator](https://github.com/Googulator/)
 - [Ben (Bingxing) Wang](https://github.com/imbushuo/)
 - [Renegade Project](https://github.com/edk2-porting/)
+- Lemon ICE
 
 ## License
 
