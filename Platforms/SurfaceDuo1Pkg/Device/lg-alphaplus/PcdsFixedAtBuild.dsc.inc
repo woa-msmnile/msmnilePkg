@@ -1,3 +1,4 @@
+[PcdsFixedAtBuild.common]
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1440
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|3120
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0x9D200000
