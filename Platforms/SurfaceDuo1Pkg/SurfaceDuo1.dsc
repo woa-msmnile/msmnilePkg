@@ -113,8 +113,7 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
 # Screen Resolution Config
 #
 
-!include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PcdsFixedAtBuild.dsc.inc
-
 !include SurfaceDuo1Pkg/Sm8150Family.dsc.inc
+!include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PcdsFixedAtBuild.dsc.inc
 !include SurfaceDuoFamilyPkg/SurfaceDuoFamily.dsc.inc
 !include SurfaceDuoFamilyPkg/Frontpage.dsc.inc
