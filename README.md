@@ -2,7 +2,7 @@
 
 Thanks for [Gustave](https://github.com/gus33000)'s instructions!
 
-# Project Mu UEFI Implementation for SM8150 Devices
+# [Project Mu](https://microsoft.github.io/mu/) UEFI Implementation for SM8150 Devices
 
 ## Build
 
@@ -85,11 +85,11 @@ or
 
 ## Acknowledgements
 
-- [EFIDroid Project](http://efidroid.org)
 - Andrei Warkentin and his [RaspberryPiPkg](https://github.com/andreiw/RaspberryPiPkg)
 - Sarah Purohit
 - [Googulator](https://github.com/Googulator/)
 - [Ben (Bingxing) Wang](https://github.com/imbushuo/)
+- Samuel Tulach and his [Rainbow Patcher](https://github.com/SamuelTulach/rainbow)
 - [Renegade Project](https://github.com/edk2-porting/)
 - Lemon ICE
 
