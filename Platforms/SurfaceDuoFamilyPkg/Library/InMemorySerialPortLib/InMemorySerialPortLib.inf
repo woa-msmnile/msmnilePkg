@@ -40,7 +40,4 @@
   ArmLib
   BaseLib
   CacheMaintenanceLib
-
-[Pcd]
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPStoreBufferAddress
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPStoreBufferSize
+  MemoryMapHelperLib

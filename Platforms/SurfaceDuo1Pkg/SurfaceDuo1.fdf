@@ -86,9 +86,9 @@ READ_LOCK_STATUS   = TRUE
   !include SurfaceDuo1Pkg/Include/DXE.inc
 
   # Debug heartbeat
-  !if $(SEND_HEARTBEAT_TO_SERIAL) == 1
-    INF SurfaceDuoFamilyPkg/Driver/HeartbeatDxe/HeartbeatDxe.inf
-  !endif
+!if $(SEND_HEARTBEAT_TO_SERIAL) == 1
+  INF SurfaceDuoFamilyPkg/Driver/HeartbeatDxe/HeartbeatDxe.inf
+!endif
 
   # Secure Boot Key Enroll
   !if $(SECURE_BOOT_ENABLE) == TRUE
@@ -146,7 +146,61 @@ READ_LOCK_STATUS   = TRUE
 
   INF SurfaceDuo1Pkg/Driver/GpioButtons/GpioButtons.inf
 
-  INF SurfaceDuo1Pkg/Driver/KernelErrataPatcher/KernelErrataPatcher.inf
+  INF SurfaceDuoFamilyPkg/Driver/KernelErrataPatcher/KernelErrataPatcher.inf
+
+  INF AdvLoggerPkg/AdvancedFileLogger/AdvancedFileLogger.inf
+  INF ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
+  INF ArmPkg/Drivers/CpuDxe/CpuDxe.inf
+  INF ArmPkg/Drivers/TimerDxe/TimerDxe.inf
+  INF CryptoPkg/Driver/CryptoDxe.inf
+  INF EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
+  INF EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf
+  INF FatPkg/EnhancedFatDxe/Fat.inf
+  INF MdeModulePkg/Bus/Pci/NvmExpressDxe/NvmExpressDxe.inf
+  INF MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
+  INF MdeModulePkg/Bus/Usb/UsbMouseAbsolutePointerDxe/UsbMouseAbsolutePointerDxe.inf
+  INF MdeModulePkg/Core/Dxe/DxeMain.inf
+  INF MdeModulePkg/Core/RuntimeDxe/RuntimeDxe.inf
+  INF MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
+  INF MdeModulePkg/Universal/Acpi/FirmwarePerformanceDataTableDxe/FirmwarePerformanceDxe.inf
+  INF MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
+  INF MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
+  INF MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
+  INF MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
+  INF MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
+  INF MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
+  INF MdeModulePkg/Universal/FvSimpleFileSystemDxe/FvSimpleFileSystemDxe.inf
+  INF MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
+  INF MdeModulePkg/Universal/MemoryTest/NullMemoryTestDxe/NullMemoryTestDxe.inf
+  INF MdeModulePkg/Universal/PCD/Dxe/Pcd.inf
+  INF MdeModulePkg/Universal/PrintDxe/PrintDxe.inf
+  INF MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/ReportStatusCodeRouterRuntimeDxe.inf
+  INF MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf
+  INF MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf
+  INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
+  INF MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
+  # INF MsCorePkg/MuVarPolicyFoundationDxe/MuVarPolicyFoundationDxe.inf
+  # INF NetworkPkg/ArpDxe/ArpDxe.inf
+  # INF NetworkPkg/Dhcp4Dxe/Dhcp4Dxe.inf
+  # INF NetworkPkg/Dhcp6Dxe/Dhcp6Dxe.inf
+  # INF NetworkPkg/DnsDxe/DnsDxe.inf
+  # INF NetworkPkg/DpcDxe/DpcDxe.inf
+  # INF NetworkPkg/HttpDxe/HttpDxe.inf
+  # INF NetworkPkg/HttpUtilitiesDxe/HttpUtilitiesDxe.inf
+  # INF NetworkPkg/Ip4Dxe/Ip4Dxe.inf
+  # INF NetworkPkg/Ip6Dxe/Ip6Dxe.inf
+  # INF NetworkPkg/MnpDxe/MnpDxe.inf
+  # INF NetworkPkg/Mtftp4Dxe/Mtftp4Dxe.inf
+  # INF NetworkPkg/Mtftp6Dxe/Mtftp6Dxe.inf
+  # INF NetworkPkg/SnpDxe/SnpDxe.inf
+  # INF NetworkPkg/TcpDxe/TcpDxe.inf
+  # INF NetworkPkg/TlsDxe/TlsDxe.inf
+  # INF NetworkPkg/Udp4Dxe/Udp4Dxe.inf
+  # INF NetworkPkg/Udp6Dxe/Udp6Dxe.inf
+  # INF NetworkPkg/UefiPxeBcDxe/UefiPxeBcDxe.inf
+  # INF NetworkPkg/VlanConfigDxe/VlanConfigDxe.inf
+  INF SurfaceDuoFamilyPkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
+
 [FV.FVMAIN_COMPACT]
 FvAlignment        = 8
 ERASE_POLARITY     = 1

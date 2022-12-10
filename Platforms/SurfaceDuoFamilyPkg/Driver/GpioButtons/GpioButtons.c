@@ -126,6 +126,9 @@ ButtonsInit(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 
   KeyData.Key.ScanCode = SCAN_UP;
 
+  // Prevent Key persistence when chainload
+  SimpleEx->Reset(SimpleEx, TRUE);
+
   Status = SimpleEx->RegisterKeyNotify(
       SimpleEx, &KeyData, &KeyNotify, &NotifyHandle);
   if (EFI_ERROR(Status)) {

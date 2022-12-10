@@ -1,84 +1,22 @@
-#include <Library/PcdLib.h>
-#include <Library/ArmLib.h>
-#include <Library/BaseMemoryLib.h>
-#include <Library/DebugLib.h>
+#include <PiPei.h>
 #include <Library/IoLib.h>
-#include <Library/MemoryAllocationLib.h>
-#include <Library/HobLib.h>
-#include <Library/SerialPortLib.h>
-#include <Library/PrintLib.h>
-#include <Library/BaseLib.h>
-
-#include <IndustryStandard/ArmStdSmc.h>
-#include <Library/ArmSmcLib.h>
 #include <Library/PlatformPrePiLib.h>
-
 #include "PlatformUtils.h"
-#include <Configuration/DeviceMemoryMap.h>
 
-BOOLEAN IsLinuxBootRequested()
+BOOLEAN IsLinuxBootRequested(VOID)
 {
   return FALSE;
   // return (MmioRead32(LID0_GPIO121_STATUS_ADDR) & 1) == 1;
 }
 
-EFI_STATUS
-EFIAPI
-SerialPortLocateArea(PARM_MEMORY_REGION_DESCRIPTOR_EX* MemoryDescriptor)
+VOID ConfigureIOMMUContextBankCacheSetting(
+    UINT32 ContextBankId, BOOLEAN CacheCoherent)
 {
-  PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
-      gDeviceMemoryDescriptorEx;
-
-  // Run through each memory descriptor
-  while (MemoryDescriptorEx->Length != 0) {
-    if (AsciiStriCmp("PStore", MemoryDescriptorEx->Name) == 0) {
-      *MemoryDescriptor = MemoryDescriptorEx;
-      return EFI_SUCCESS;
-    }
-    MemoryDescriptorEx++;
-  }
-
-  return EFI_NOT_FOUND;
-}
-
-VOID InitializeSharedUartBuffers(VOID)
-{
-#if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
-  PARM_MEMORY_REGION_DESCRIPTOR_EX PStoreMemoryRegion = NULL;
-#endif
-
-  INTN* pFbConPosition = (INTN*)(FixedPcdGet32(PcdMipiFrameBufferAddress) + (FixedPcdGet32(PcdMipiFrameBufferWidth) * 
-                                                                              FixedPcdGet32(PcdMipiFrameBufferHeight) * 
-                                                                              FixedPcdGet32(PcdMipiFrameBufferPixelBpp) / 8));
-
-  *(pFbConPosition + 0) = 0;
-  *(pFbConPosition + 1) = 0;
-
-#if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
-  // Clear PStore area
-  SerialPortLocateArea(&PStoreMemoryRegion);
-  UINT8 *base = (UINT8 *)PStoreMemoryRegion->Address;
-  for (UINTN i = 0; i < PStoreMemoryRegion->Length; i++) {
-    base[i] = 0;
-  }
-#endif
-}
-
-VOID UartInit(VOID)
-{
-  SerialPortInitialize();
-  InitializeSharedUartBuffers();
-
-  DEBUG((EFI_D_INFO, "\nProjectMu on Duo 1 (AArch64)\n"));
-  DEBUG(
-      (EFI_D_INFO, "Firmware version %s built %a %a\n\n",
-       (CHAR16 *)PcdGetPtr(PcdFirmwareVersionString), __TIME__, __DATE__));
-}
-
-VOID ConfigureIOMMUContextBankCacheSetting(UINT32 ContextBankId, BOOLEAN CacheCoherent)
-{
-  UINT32 ContextBankAddr = SMMU_BASE + SMMU_CTX_BANK_0_OFFSET + ContextBankId * SMMU_CTX_BANK_SIZE;
-  MmioWrite32(ContextBankAddr + SMMU_CTX_BANK_SCTLR_OFFSET, CacheCoherent ? SMMU_CCA_SCTLR : SMMU_NON_CCA_SCTLR);
+  UINT32 ContextBankAddr =
+      SMMU_BASE + SMMU_CTX_BANK_0_OFFSET + ContextBankId * SMMU_CTX_BANK_SIZE;
+  MmioWrite32(
+      ContextBankAddr + SMMU_CTX_BANK_SCTLR_OFFSET,
+      CacheCoherent ? SMMU_CCA_SCTLR : SMMU_NON_CCA_SCTLR);
   MmioWrite32(ContextBankAddr + SMMU_CTX_BANK_TTBR0_0_OFFSET, 0);
   MmioWrite32(ContextBankAddr + SMMU_CTX_BANK_TTBR0_1_OFFSET, 0);
   MmioWrite32(ContextBankAddr + SMMU_CTX_BANK_TTBR1_0_OFFSET, 0);
@@ -90,9 +28,11 @@ VOID ConfigureIOMMUContextBankCacheSetting(UINT32 ContextBankId, BOOLEAN CacheCo
 
 VOID DisableMDSSDSIController(UINT32 MdssDsiBase)
 {
-  UINT32 DsiControlAddr = MdssDsiBase + DSI_CTRL;
+  UINT32 DsiControlAddr  = MdssDsiBase + DSI_CTRL;
   UINT32 DsiControlValue = MmioRead32(DsiControlAddr);
-  DsiControlValue &= ~(DSI_CTRL_ENABLE | DSI_CTRL_VIDEO_MODE_ENABLE | DSI_CTRL_COMMAND_MODE_ENABLE);
+  DsiControlValue &=
+      ~(DSI_CTRL_ENABLE | DSI_CTRL_VIDEO_MODE_ENABLE |
+        DSI_CTRL_COMMAND_MODE_ENABLE);
   MmioWrite32(DsiControlAddr, DsiControlValue);
 }
 
@@ -101,10 +41,8 @@ VOID SetWatchdogState(BOOLEAN Enable)
   MmioWrite32(APSS_WDT_BASE + APSS_WDT_ENABLE_OFFSET, Enable);
 }
 
-VOID PlatformInitialize()
+VOID PlatformInitialize(VOID)
 {
-  UartInit();
-
   // Disable MDSS DSI0 Controller
   // DisableMDSSDSIController(MDSS_DSI0);
 

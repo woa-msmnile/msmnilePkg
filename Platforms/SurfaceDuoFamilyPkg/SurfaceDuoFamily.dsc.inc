@@ -10,8 +10,8 @@
 ##
 
 [BuildOptions.common]
-  *_CLANG38_AARCH64_CC_FLAGS = -Wno-unused-const-variable -Wno-sometimes-uninitialized -D CLANG
-  *_*_*_CC_FLAGS = -march=armv8.2-a+crypto+rcpc -D DISABLE_NEW_DEPRECATED_INTERFACES -D HAS_MEMCPY_INTRINSICS -DSILICON_PLATFORM=$(SILICON_PLATFORM) -DUSE_MEMORY_FOR_SERIAL_OUTPUT=$(USE_MEMORY_FOR_SERIAL_OUTPUT)
+  *_CLANG38_AARCH64_CC_FLAGS = -Wno-unused-const-variable -Wno-sometimes-uninitialized -Wno-unaligned-access -D CLANG
+  *_*_*_CC_FLAGS = -march=armv8.2-a+crypto+rcpc -DUSE_MEMORY_FOR_SERIAL_OUTPUT=$(USE_MEMORY_FOR_SERIAL_OUTPUT) -DUSE_SCREEN_FOR_SERIAL_OUTPUT=$(USE_SCREEN_FOR_SERIAL_OUTPUT)
 
 [BuildOptions.common.EDKII.DXE_CORE,BuildOptions.common.EDKII.DXE_DRIVER,BuildOptions.common.EDKII.UEFI_DRIVER,BuildOptions.common.EDKII.UEFI_APPLICATION]
   *_*_*_DLINK_FLAGS = -z common-page-size=0x1000
@@ -39,9 +39,9 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdInstallAcpiSdtProtocol|TRUE
 
 [PcdsFixedAtBuild.common]
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor|L"DuoWoA authors & RP authors"
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString|L"2210.48"
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareRevision|0x00160F0C
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor|L"DuoWoA authors"
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString|L"2212.12"
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareRevision|0x0016040C
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemId|"QCOM  "
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemTableId|0x324B44454D4F4351
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorId|0x4D4F4351
@@ -88,9 +88,6 @@
   # Boot Manager
   gEfiMdePkgTokenSpaceGuid.PcdPlatformBootTimeOut|2
 
-  # Enable Debug
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdEnableScreenSerial|TRUE
-
   # PCI Express
   gEfiMdeModulePkgTokenSpaceGuid.PcdSrIovSupport|FALSE
   gEfiMdeModulePkgTokenSpaceGuid.PcdAriSupport|FALSE
@@ -117,8 +114,8 @@
   # 4042708A-0F2D-4823-AC60-0D77B3111889
   gEfiMdeModulePkgTokenSpaceGuid.PcdBootManagerMenuFile|{ 0x8A, 0x70, 0x42, 0x40, 0x2D, 0x0F, 0x23, 0x48, 0xAC, 0x60, 0x0D, 0x77, 0xB3, 0x11, 0x18, 0x89 }
 
-  gOemPkgTokenSpaceGuid.PcdUefiVersionNumber|0x1160A30 # 1.22.10.48
-  gOemPkgTokenSpaceGuid.PcdUefiBuildDate|0x160F0C # 10/15/2022
+  gOemPkgTokenSpaceGuid.PcdUefiVersionNumber|0x1160C0C # 1.22.12.12
+  gOemPkgTokenSpaceGuid.PcdUefiBuildDate|0x16040C # 12/4/2022
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxVariableSize|0x2000
 
@@ -202,7 +199,7 @@
   RngLib|MdePkg/Library/BaseRngLibTimerLib/BaseRngLibTimerLib.inf
   IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
   OpensslLib|CryptoPkg/Library/OpensslLib/OpensslLibCrypto.inf
-  PlatformSecureLib|SecurityPkg/Library/PlatformSecureLibNull/PlatformSecureLibNull.inf
+  PlatformSecureLib|SurfaceDuoFamilyPkg/Library/PlatformSecureLib/PlatformSecureLib.inf
   AuthVariableLib|SecurityPkg/Library/AuthVariableLib/AuthVariableLib.inf
   SecureBootVariableLib|SecurityPkg/Library/SecureBootVariableLib/SecureBootVariableLib.inf
   SecureBootVariableProvisionLib|SecurityPkg/Library/SecureBootVariableProvisionLib/SecureBootVariableProvisionLib.inf
@@ -246,6 +243,9 @@
   VariableFlashInfoLib|MdeModulePkg/Library/BaseVariableFlashInfoLib/BaseVariableFlashInfoLib.inf
   PlatformPKProtectionLib|SecurityPkg/Library/PlatformPKProtectionLibVarPolicy/PlatformPKProtectionLibVarPolicy.inf
 
+  MemoryInitPeiLib|SurfaceDuoFamilyPkg/Library/MemoryInitPeiLib/PeiMemoryAllocationLib.inf
+  MemoryMapHelperLib|SurfaceDuoFamilyPkg/Library/MemoryMapHelperLib/MemoryMapHelperLib.inf
+
   BaseCryptLib|CryptoPkg/Library/BaseCryptLib/BaseCryptLib.inf
   CapsulePersistLib|MdeModulePkg/Library/CapsulePersistLibNull/CapsulePersistLibNull.inf      ## MU_CHANGE
   DebugAgentTimerLib|EmbeddedPkg/Library/DebugAgentTimerLibNull/DebugAgentTimerLibNull.inf
@@ -279,6 +279,12 @@
   MuSecureBootKeySelectorLib|MsCorePkg/Library/MuSecureBootKeySelectorLib/MuSecureBootKeySelectorLib.inf
   UpdateFacsHardwareSignatureLib|PcBdsPkg/Library/UpdateFacsHardwareSignatureLib/UpdateFacsHardwareSignatureLib.inf
   FrameBufferMemDrawLib|MsGraphicsPkg/Library/FrameBufferMemDrawLib/FrameBufferMemDrawLib.inf
+  LockBoxLib|MdeModulePkg/Library/LockBoxNullLib/LockBoxNullLib.inf
+  AdvancedLoggerAccessLib|AdvLoggerPkg/Library/AdvancedLoggerAccessLib/AdvancedLoggerAccessLib.inf
+  MemoryBinOverrideLib|MdeModulePkg/Library/MemoryBinOverrideLibNull/MemoryBinOverrideLibNull.inf
+
+  TlsLib|CryptoPkg/Library/TlsLib/TlsLib.inf
+
   BootSlotLib|GPLDriver/Library/BootSlotLib/BootSlotLib.inf
 
 [LibraryClasses.common.SEC]
@@ -437,8 +443,6 @@
 
   MsCorePkg/MuVarPolicyFoundationDxe/MuVarPolicyFoundationDxe.inf
 
-  DfciPkg/Application/DfciMenu/DfciMenu.inf
-
   # BDS
   MdeModulePkg/Universal/PrintDxe/PrintDxe.inf
   MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
@@ -477,20 +481,46 @@
   MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
   MdeModulePkg/Universal/Acpi/AcpiPlatformDxe/AcpiPlatformDxe.inf
   MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
+  MdeModulePkg/Universal/Acpi/FirmwarePerformanceDataTableDxe/FirmwarePerformanceDxe.inf
 
   # Pci
   MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
+  MdeModulePkg/Bus/Pci/NvmExpressDxe/NvmExpressDxe.inf
 
   MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/ReportStatusCodeRouterRuntimeDxe.inf
   MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf
   EmbeddedPkg/SimpleTextInOutSerial/SimpleTextInOutSerial.inf
   MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
-
   MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
 
   SurfaceDuoFamilyPkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
-
   SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
   #SurfaceDuoFamilyPkg/Applications/SimpleInitBin/SimpleInitBin.inf
   # GPLDriver/Driver/BootSlotDxe/BootSlotDxe.inf
   # GPLDriver/Application/SwitchSlotsApp/SwitchSlotsApp.inf
+  SurfaceDuoFamilyPkg/Driver/KernelErrataPatcher/KernelErrataPatcher.inf
+
+  AdvLoggerPkg/AdvancedFileLogger/AdvancedFileLogger.inf
+  MdeModulePkg/Universal/MemoryTest/NullMemoryTestDxe/NullMemoryTestDxe.inf
+
+  # NetworkPkg/ArpDxe/ArpDxe.inf
+  # NetworkPkg/Dhcp4Dxe/Dhcp4Dxe.inf
+  # NetworkPkg/Dhcp6Dxe/Dhcp6Dxe.inf
+  # NetworkPkg/DnsDxe/DnsDxe.inf
+  # NetworkPkg/DpcDxe/DpcDxe.inf
+  # NetworkPkg/HttpDxe/HttpDxe.inf
+  # NetworkPkg/HttpUtilitiesDxe/HttpUtilitiesDxe.inf
+  # NetworkPkg/Ip4Dxe/Ip4Dxe.inf
+  # NetworkPkg/Ip6Dxe/Ip6Dxe.inf
+  # NetworkPkg/MnpDxe/MnpDxe.inf
+  # NetworkPkg/Mtftp4Dxe/Mtftp4Dxe.inf
+  # NetworkPkg/Mtftp6Dxe/Mtftp6Dxe.inf
+  # NetworkPkg/SnpDxe/SnpDxe.inf
+  # NetworkPkg/TcpDxe/TcpDxe.inf
+  # NetworkPkg/TlsDxe/TlsDxe.inf
+  # NetworkPkg/Udp4Dxe/Udp4Dxe.inf
+  # NetworkPkg/Udp6Dxe/Udp6Dxe.inf
+  # NetworkPkg/UefiPxeBcDxe/UefiPxeBcDxe.inf
+  # NetworkPkg/VlanConfigDxe/VlanConfigDxe.inf
+
+  CryptoPkg/Driver/CryptoDxe.inf
