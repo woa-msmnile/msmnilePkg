@@ -15,6 +15,12 @@
     INF EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
     INF ArmPkg/Drivers/TimerDxe/TimerDxe.inf
 
+    FILE DRIVER = 90A49AFD-422F-08AE-9611-E788D3804845 {
+            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-90a49afd-422f-08ae-9611-e788d3804845/section0.dxe.depex
+            SECTION PE32 = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/CustomizedBinaries/EnvDxe.efi
+            SECTION UI = "EnvDxe"
+    }
+
     FILE DRIVER = f541d663-4a48-40aa-aabf-ff158ccae34c {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-f541d663-4a48-40aa-aabf-ff158ccae34c/section0.dxe.depex
             SECTION PE32 = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/CustomizedBinaries/SmemDxe.efi
