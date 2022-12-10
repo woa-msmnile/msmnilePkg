@@ -1,6 +1,6 @@
 #ifndef UARTQUPV3_H
 #define UARTQUPV3_H
-#define UART_DEBUG_PORT_BASE                             FixedPcdGet64(PcdDebugUartPortBase)
+#define UART_DEBUG_PORT_BASE                             FixedPcdGet64(PcdUartSerialBase)
 #define UART_BASE_ADDR                                   UART_DEBUG_PORT_BASE
 #define RING_SIZE                                        256
 #define MemWrite(off1,off2,val)                          (*((volatile UINT32*)(UINTN)(UART_BASE_ADDR+(off1)+(off2)))=((UINT32)(val)))

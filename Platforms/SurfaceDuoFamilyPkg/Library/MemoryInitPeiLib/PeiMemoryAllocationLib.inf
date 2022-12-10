@@ -23,12 +23,13 @@
   EmbeddedPkg/EmbeddedPkg.dec
   ArmPkg/ArmPkg.dec
   ArmPlatformPkg/ArmPlatformPkg.dec
-  SurfaceDuo1Pkg/SurfaceDuo1Pkg.dec
+  SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
 
 [LibraryClasses]
   DebugLib
   HobLib
   ArmMmuLib
+  PlatformMemoryMapLib
 
 [Guids]
   gEfiMemoryTypeInformationGuid

@@ -37,7 +37,7 @@
   USE_UART_FOR_SERIAL_OUTPUT     = 0
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
   SEND_HEARTBEAT_TO_SERIAL       = 0
-  
+
   # Included Drivers
   USE_SIMPLEFBDXE                = TRUE
   USE_DISPLAYDXE                 = FALSE
@@ -76,12 +76,7 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
 
 [PcdsFixedAtBuild.common]
   # Platform-specific
-  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x080000000              # Common Base Address
-  gArmTokenSpaceGuid.PcdSystemMemorySize|0x100000000              # Map 4GB by Default
-
-  # PStore
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPStoreBufferAddress|0x17FE00000
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPStoreBufferSize|0x00200000
+  gArmTokenSpaceGuid.PcdSystemMemorySize|0x100000000            # 6GB
 
 !include SurfaceDuo1Pkg/Sm8150Family.dsc.inc
 !include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PcdsFixedAtBuild.dsc.inc

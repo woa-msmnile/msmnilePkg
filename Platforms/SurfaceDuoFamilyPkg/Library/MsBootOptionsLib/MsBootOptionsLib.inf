@@ -50,6 +50,7 @@
 [Pcd]
   gEfiMdeModulePkgTokenSpaceGuid.PcdBootManagerMenuFile
   gPcBdsPkgTokenSpaceGuid.PcdShellFile
+  gPcBdsPkgTokenSpaceGuid.PcdShellFvGuid
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdUFPMenuFile
 
 [Depex]

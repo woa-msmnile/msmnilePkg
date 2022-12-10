@@ -42,19 +42,20 @@ be found at http://opensource.org/licenses/bsd-license.php
 **/
 
 #include <Base.h>
+
 #include <Guid/SmBios.h>
 #include <IndustryStandard/SmBios.h>
-
 #include <Protocol/Smbios.h>
+
 #include <Library/BaseLib.h>
-#include <Library/UefiLib.h>
-#include <Library/DebugLib.h>
-#include <Library/PrintLib.h>
 #include <Library/BaseMemoryLib.h>
-#include <Library/DxeServicesLib.h>
+#include <Library/DebugLib.h>
 #include <Library/MemoryAllocationLib.h>
-#include <Library/UefiDriverEntryPoint.h>
+#include <Library/PrintLib.h>
 #include <Library/UefiBootServicesTableLib.h>
+#include <Library/UefiDriverEntryPoint.h>
+#include <Library/UefiLib.h>
+#include <Library/DxeServicesLib.h>
 
 /* Used to read chip serial number */
 #include <Protocol/EFIChipInfo.h>
@@ -137,7 +138,7 @@ SMBIOS_TABLE_TYPE0 mBIOSInfoType0 = {
 };
 
 CHAR8 *mBIOSInfoType0Strings[] = {
-    "DuoWoA authors & wm authors", // Vendor String
+    "DuoWoA authors & msmnile WoA authors", // Vendor String
     __IMPL_COMMIT_ID__ " (EDK2 "__EDK2_RELEASE__
                        ")", // BiosVersion String
     __RELEASE_DATE__,       // BiosReleaseDate String
@@ -213,6 +214,7 @@ CHAR8 *mBoardInfoType2Strings[] = {
     "Not Specified",
     "Not Specified",
     NULL};
+
 /***********************************************************************
         SMBIOS data definition  TYPE3  Enclosure Information
 ************************************************************************/
@@ -234,12 +236,8 @@ SMBIOS_TABLE_TYPE3 mEnclosureInfoType3 = {
     0,                       // ContainedElementRecordLength;
     {{0}},                   // ContainedElements[1];
 };
-
 CHAR8 *mEnclosureInfoType3Strings[] = {
-    "Microsoft Corporation",
-    "Not Specified",
-    "Not Specified",
-    "Not Specified",
+    "Microsoft Corporation", "Not Specified", "Not Specified", "Not Specified",
     NULL};
 
 /***********************************************************************
@@ -332,7 +330,8 @@ SMBIOS_TABLE_TYPE4 mProcessorInfoType4 = {
 };
 
 CHAR8 *mProcessorInfoType4Strings[] = {
-    "Qualcomm", "Qualcomm Technologies Inc", "Not Specified", "Not Specified", NULL};
+    "Qualcomm", "Qualcomm Technologies Inc", "Not Specified", "Not Specified",
+    NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE7  Cache Information
@@ -502,7 +501,7 @@ SMBIOS_TABLE_TYPE16 mPhyMemArrayInfoType16 = {
     0xFFFFFFFF,                     // MaximumCapacity;
     0xFFFE,                         // MemoryErrorInformationHandle;
     1,                              // NumberOfMemoryDevices;
-    FixedPcdGet64(PcdSystemMemorySize), // ExtendedMaximumCapacity;
+    FixedPcdGet64(PcdSystemMemorySize) // ExtendedMaximumCapacity;
 };
 CHAR8 *mPhyMemArrayInfoType16Strings[] = {NULL};
 
@@ -555,14 +554,8 @@ SMBIOS_TABLE_TYPE17 mMemDevInfoType17 = {
 };
 
 CHAR8 *mMemDevInfoType17Strings[] = {
-  "Top - on board",
-  "Bank 0",
-  "Hynix",
-  "Not Specified",
-  "Not Specified",
-  "H9HKNNNEBMAVAR-NEH",
-  NULL,
-};
+    "Top - on board",     "Bank 0", "Hynix", "Not Specified", "Not Specified",
+    "H9HKNNNEBMAVAR-NEH", NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE19  Memory Array Mapped Address Information
@@ -710,7 +703,7 @@ VOID SysInfoUpdateSmbiosType1(CHAR8 *serialNo, EFIChipInfoSerialNumType serial)
   mSysInfoType1Strings[0] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemBrand);
 
   // Update serial number from Board DXE
-  mSysInfoType1Strings[3] = serialNo;
+  mSysInfoType1Strings[3]  = serialNo;
   mSysInfoType1.Uuid.Data1 = serial;
 
   LogSmbiosData(
@@ -809,6 +802,7 @@ VOID PhyMemArrayInfoUpdateSmbiosType16(IN UINT32 SystemMemorySize)
 ************************************************************************/
 VOID MemDevInfoUpdateSmbiosType17(IN UINT32 SystemMemorySize)
 {
+
   mMemDevInfoType17.Size = SystemMemorySize / 0x100000;
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mMemDevInfoType17, mMemDevInfoType17Strings,
