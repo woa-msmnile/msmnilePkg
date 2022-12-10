@@ -58,8 +58,7 @@ be found at http://opensource.org/licenses/bsd-license.php
 
 /* Used to read chip serial number */
 #include <Protocol/EFIChipInfo.h>
-/* Used to read model from dtb */
-#include <libfdt.h>
+#include <Protocol/EFIRamPartition.h>
 
 /* Build-time generated ReleaseInfo.h will override the default one */
 #include <Resources/ReleaseStampStub.h>
@@ -704,29 +703,11 @@ VOID BIOSInfoUpdateSmbiosType0(VOID)
 
 VOID SysInfoUpdateSmbiosType1(CHAR8 *serialNo, EFIChipInfoSerialNumType serial)
 {
-  CHAR8       *name = "model";
-  VOID        *Fdt;
-  CONST VOID  *model;
-  UINTN        OrigDtbSize;
-
-  DEBUG((EFI_D_INFO, "[SmbiosDXE] You Choosed %a\n", PcdGetBool (PcdGetSmBiosInfoFormDT) ? "DT" : "CUST"));
-
-  if(PcdGetBool (PcdGetSmBiosInfoFormDT && !EFI_ERROR (GetSectionFromAnyFv (
-               &gDtPlatformDefaultDtbFileGuid,
-               EFI_SECTION_RAW,
-               0,
-               &Fdt,
-               &OrigDtbSize
-               )))){
-    model = fdt_getprop(Fdt, 0, name, NULL);  // Read model info from DTB
-    mSysInfoType1Strings[1] = (CHAR8 *)model; // Smbios System Model
-  }else
-    mSysInfoType1Strings[1] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemModel); // Smbios System Model
-
-  mSysInfoType1Strings[0] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemBrand); // Smbios Brand Info
   // Update string table before proceeds
   mSysInfoType1Strings[2] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemRetailModel);
   mSysInfoType1Strings[4] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemRetailSku);
+  mSysInfoType1Strings[1] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemModel);
+  mSysInfoType1Strings[0] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemBrand);
 
   // Update serial number from Board DXE
   mSysInfoType1Strings[3] = serialNo;
@@ -809,10 +790,10 @@ VOID CacheInfoUpdateSmbiosType7(VOID)
 /***********************************************************************
         SMBIOS data update  TYPE16  Physical Memory Array Information
 ************************************************************************/
-VOID PhyMemArrayInfoUpdateSmbiosType16(VOID)
+VOID PhyMemArrayInfoUpdateSmbiosType16(IN UINT32 SystemMemorySize)
 {
   EFI_SMBIOS_HANDLE MemArraySmbiosHande;
-
+  mPhyMemArrayInfoType16Strings[7] = SystemMemorySize;
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mPhyMemArrayInfoType16,
       mPhyMemArrayInfoType16Strings, &MemArraySmbiosHande);
@@ -826,9 +807,9 @@ VOID PhyMemArrayInfoUpdateSmbiosType16(VOID)
 /***********************************************************************
         SMBIOS data update  TYPE17  Memory Device Information
 ************************************************************************/
-VOID MemDevInfoUpdateSmbiosType17(VOID)
+VOID MemDevInfoUpdateSmbiosType17(IN UINT32 SystemMemorySize)
 {
-  mMemDevInfoType17.Size = FixedPcdGet64(PcdSystemMemorySize) / 0x100000;
+  mMemDevInfoType17.Size = SystemMemorySize / 0x100000;
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mMemDevInfoType17, mMemDevInfoType17Strings,
       NULL);
@@ -837,12 +818,12 @@ VOID MemDevInfoUpdateSmbiosType17(VOID)
 /***********************************************************************
         SMBIOS data update  TYPE19  Memory Array Map Information
 ************************************************************************/
-VOID MemArrMapInfoUpdateSmbiosType19(VOID)
+VOID MemArrMapInfoUpdateSmbiosType19(IN UINT32 SystemMemorySize)
 {
   mMemArrMapInfoType19.StartingAddress =
       FixedPcdGet64(PcdSystemMemoryBase) / 1024;
   mMemArrMapInfoType19.EndingAddress =
-      (FixedPcdGet64(PcdSystemMemorySize) + FixedPcdGet64(PcdSystemMemoryBase) -
+      (SystemMemorySize + FixedPcdGet64(PcdSystemMemoryBase) -
        1) /
       1024;
 
@@ -859,10 +840,14 @@ EFIAPI
 SmBiosTableDxeInitialize(
     IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 {
-  EFI_STATUS               Status;
-  CHAR8                    serialNo[EFICHIPINFO_MAX_ID_LENGTH];
-  EFIChipInfoSerialNumType serial;
-  EFI_CHIPINFO_PROTOCOL   *mBoardProtocol = NULL;
+  EFI_STATUS                 Status;
+  CHAR8                      serialNo[EFICHIPINFO_MAX_ID_LENGTH];
+  EFIChipInfoSerialNumType   serial;
+  EFI_CHIPINFO_PROTOCOL     *mBoardProtocol = NULL;
+  EFI_RAMPARTITION_PROTOCOL *mRamPartitionProtocol = NULL;
+  RamPartitionEntry         *RamPartitions = NULL;
+  UINT32                     NumPartitions = 0;
+  UINT64                     SystemMemorySize = 0;
 
   // Locate Qualcomm Board Protocol
   Status = gBS->LocateProtocol(
@@ -873,15 +858,49 @@ SmBiosTableDxeInitialize(
     AsciiSPrint(serialNo, sizeof(serialNo), "%lld", serial);
   }
 
+  // Locate Qualcomm RamPartition Protocol
+  Status = gBS->LocateProtocol(
+      &gEfiRamPartitionProtocolGuid, NULL, (VOID *)&mRamPartitionProtocol);
+
+  // Get the SystemMemorySize
+  if (mRamPartitionProtocol != NULL) {
+      Status = mRamPartitionProtocol->GetRamPartitions(
+            mRamPartitionProtocol, NULL, &NumPartitions);
+
+      if (Status == EFI_BUFFER_TOO_SMALL) {
+          RamPartitions = AllocateZeroPool(NumPartitions * sizeof (RamPartitionEntry));
+          Status = mRamPartitionProtocol->GetRamPartitions(
+                mRamPartitionProtocol, RamPartitions, &NumPartitions);
+
+          if (EFI_ERROR (Status) || (NumPartitions < 1)) {
+              DEBUG ((EFI_D_ERROR, "Failed to get RAM partitions"));
+              FreePool (RamPartitions);
+              RamPartitions = NULL;
+              SystemMemorySize = FixedPcdGet64(PcdSystemMemorySize);
+          }
+      }
+
+      // Update SystemMemorySize if meet no issue above,
+      //   otherwise SystemMemorySize == FixedPcdGet64(PcdSystemMemorySize
+      if(SystemMemorySize != FixedPcdGet64(PcdSystemMemorySize)){
+          for (UINTN i = 0; i < NumPartitions; i++) {
+              if(SystemMemorySize <  RamPartitions[i].Base + RamPartitions[i].AvailableLength)
+                  SystemMemorySize = RamPartitions[i].Base + RamPartitions[i].AvailableLength;
+          }
+          DEBUG((EFI_D_ERROR, "The Highest Address is 0x%016llx \n", SystemMemorySize));
+          SystemMemorySize = SystemMemorySize - FixedPcdGet64(PcdSystemMemoryBase);
+          DEBUG((EFI_D_ERROR, "The SystemMemorySize is 0x%016llx \n", SystemMemorySize));
+      }
+  }
+
   BIOSInfoUpdateSmbiosType0();
   SysInfoUpdateSmbiosType1(serialNo, serial);
   BoardInfoUpdateSmbiosType2(serialNo);
   EnclosureInfoUpdateSmbiosType3(serialNo);
   ProcessorInfoUpdateSmbiosType4(PcdGet32(PcdCoreCount));
   CacheInfoUpdateSmbiosType7();
-  PhyMemArrayInfoUpdateSmbiosType16();
-  MemDevInfoUpdateSmbiosType17();
-  MemArrMapInfoUpdateSmbiosType19();
-
+  PhyMemArrayInfoUpdateSmbiosType16(SystemMemorySize);
+  MemDevInfoUpdateSmbiosType17(SystemMemorySize);
+  MemArrMapInfoUpdateSmbiosType19(SystemMemorySize);
   return EFI_SUCCESS;
 }

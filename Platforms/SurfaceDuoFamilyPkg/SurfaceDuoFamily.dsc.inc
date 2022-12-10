@@ -440,6 +440,7 @@
   DfciPkg/Application/DfciMenu/DfciMenu.inf
 
   # BDS
+  SurfaceDuoFamilyPkg/Driver/RamPartitionDxe/RamPartitionDxe.inf
   MdeModulePkg/Universal/PrintDxe/PrintDxe.inf
   MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
   MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf

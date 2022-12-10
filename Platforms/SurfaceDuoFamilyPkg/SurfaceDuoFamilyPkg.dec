@@ -134,7 +134,6 @@
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"1930"|VOID*|0x0000a304
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"Surface_Duo_1930"|VOID*|0x0000a305
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosBoardModel|"Surface Duo"|VOID*|0x0000a306
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdGetSmBiosInfoFormDT|TRUE|BOOLEAN|0x0000a307
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"Microsoft Corporation"|VOID*|0x0000a308
 
   # Simple FrameBuffer

@@ -111,36 +111,36 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
     {"Log Buffer",        0x9FFF7000, 0x00008000, AddMem, SYS_MEM, SYS_MEM_CAP, RtData, WRITE_BACK_XN},
     {"Info Blk",          0x9FFFF000, 0x00001000, AddMem, SYS_MEM, SYS_MEM_CAP, RtData, WRITE_BACK_XN},
 
-    /* RAM partition regions */
-    #if HAS_MLVM == 1
-        #if   RAM_SIZE == 6
-            {"MLVM",              0xA0000000, 0x1CC00000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
-        #elif RAM_SIZE == 8
-            {"MLVM",              0xA0000000, 0x1BB00000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
-        #elif RAM_SIZE == 12
-            {"MLVM",              0xA0000000, 0x19900000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
-        #elif RAM_SIZE == 4
-            {"MLVM",              0xA0000000, 0x1DD00000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
-        #else
-            #error Unknown RAM size
-        #endif
-    #elif HAS_MLVM == 0
-        #if   RAM_SIZE == 6
-            {"RAM Partition",     0xA0000000, 0x1CC00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv, WRITE_BACK_XN},
-        #elif RAM_SIZE == 8
-            {"RAM Partition",     0xA0000000, 0x1BB00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv, WRITE_BACK_XN},
-        #elif RAM_SIZE == 12
-            {"RAM Partition",     0xA0000000, 0x19900000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv, WRITE_BACK_XN},
-        #elif RAM_SIZE == 4
-            {"RAM Partition",     0xA0000000, 0x1DD00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv, WRITE_BACK_XN},
-        #else
-            #error Unknown RAM size
-        #endif
-    #else
-        #error Unknown MLVM Value
-    #endif
+//    /* RAM partition regions */
+//    #if HAS_MLVM == 1
+//        #if   RAM_SIZE == 6
+//            {"MLVM",              0xA0000000, 0x1CC00000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
+//        #elif RAM_SIZE == 8
+//            {"MLVM",              0xA0000000, 0x1BB00000, AddMem, MEM_RES, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
+//        #elif RAM_SIZE == 12
+//            {"MLVM",              0xA0000000, 0x19900000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
+//        #elif RAM_SIZE == 4
+//            {"MLVM",              0xA0000000, 0x1DD00000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
+//        #else
+//            #error Unknown RAM size
+//        #endif
+//    #elif HAS_MLVM == 0
+//        #if   RAM_SIZE == 6
+//            {"RAM Partition",     0xA0000000, 0x1CC00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv, WRITE_BACK_XN},
+//        #elif RAM_SIZE == 8
+//            {"RAM Partition",     0xA0000000, 0x1BB00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv, WRITE_BACK_XN},
+//        #elif RAM_SIZE == 12
+//            {"RAM Partition",     0xA0000000, 0x19900000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv, WRITE_BACK_XN},
+//        #elif RAM_SIZE == 4
+//            {"RAM Partition",     0xA0000000, 0x1DD00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv, WRITE_BACK_XN},
+//        #else
+//            #error Unknown RAM size
+//        #endif
+//    #else
+//        #error Unknown MLVM Value
+//    #endif
 
-    //4GB "Only Guess"
+    //4GB
     // Memory hole: 0xBDD00000 - 0xBFFFFFFF
     // Size: 0x23FFFFF
 
@@ -151,6 +151,10 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
     //8GB
     // Memory hole: 0xBBB00000 - 0xBFFFFFFF
     // Size: 0x44FFFFF
+
+    //10GB
+    // Memory hole: 0xBAA00000 - 0xBFFFFFFF
+    // Size: 0x55FFFFF
 
     //12GB
     // Memory hole: 0xB9900000 - 0xBFFFFFFF
@@ -163,7 +167,6 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
         {"RAM Partition",     0x0C0000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
     #endif
 
-
     #if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
         {"RAM Partition",     0x140000000, 0x3FE00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
         {"PStore",            0x17FE00000, 0x00200000, AddMem, MEM_RES, SYS_MEM_CAP, Reserv, WRITE_THROUGH_XN},
@@ -171,20 +174,22 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
         {"RAM Partition",     0x140000000, 0x40000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
     #endif
 
-    #if RAM_SIZE == 6
-        /* 2GB Extra Region For 6GB RAM Devices (2GB per region) */
-        {"RAM Partition",     0x180000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
-    #elif RAM_SIZE == 8
-        /* 4GB Extra Region For 8GB RAM Devices (2GB per region) */
-        {"RAM Partition",     0x180000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
-        {"RAM Partition",     0x200000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
-    #elif RAM_SIZE == 12
-        /* 8GB Extra Region For 12GB RAM Devices (2GB per region) */
-        {"RAM Partition",     0x180000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
-        {"RAM Partition",     0x200000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
-        {"RAM Partition",     0x280000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
-        {"RAM Partition",     0x300000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
-    #endif
+/*----4GB till Here----*/
+
+//    #if RAM_SIZE == 6
+//        /* 2GB Extra Region For 6GB RAM Devices (2GB per region) */
+//        {"RAM Partition",     0x180000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+//    #elif RAM_SIZE == 8
+//        /* 4GB Extra Region For 8GB RAM Devices (2GB per region) */
+//        {"RAM Partition",     0x180000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+//        {"RAM Partition",     0x200000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+//    #elif RAM_SIZE == 12
+//        /* 8GB Extra Region For 12GB RAM Devices (2GB per region) */
+//        {"RAM Partition",     0x180000000, 0x80000000, AddMem, MEM_RES, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+//        {"RAM Partition",     0x200000000, 0x80000000, AddMem, MEM_RES, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+//        {"RAM Partition",     0x280000000, 0x80000000, AddMem, MEM_RES, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+//        {"RAM Partition",     0x300000000, 0x80000000, AddMem, MEM_RES, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+//    #endif
 
     /* Other memory regions */
     {"AOP_SS_MSG_RAM",    0x0C300000, 0x00100000,  NoHob,  MMAP_IO, INITIALIZED, Conv,   NS_DEVICE},

@@ -51,14 +51,14 @@ or
 ```
 
 5. Build UEFI
-> Usage: build_uefi.sh -d \<target-device\> -s \<target-ram-size\>  
+> Usage: build_uefi.sh -d \<target-device\>  
 > Optional:  -B \<Brand\> -m \<Model\> -r \<RetailModel\> -u \<RetailSku\> -b \<BoardModel\>
 
 ```
 ./build_uefi.sh -d <target-name> -s <target-ram-size> [-m <Model> -r <RetailModel> -u <RetailSku> -b <BoardModel>]
 ```
 - Ram size should be 4, 6, 8, or 12.
-- You will see Build/\<target-name\>/\<target-name\>_\<target-ram-size\>G.img if it builds successfully.
+- You will see Build/\<target-name\>/\<target-name\>.img if it builds successfully.
 
 ## Target list
 

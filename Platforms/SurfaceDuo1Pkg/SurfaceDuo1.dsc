@@ -32,6 +32,7 @@
   USE_PHYSICAL_TIMER             = TRUE
 
   # Debugging
+  # Notice: TRUE == 1, FALSE == 0
   USE_SCREEN_FOR_SERIAL_OUTPUT   = 1
   USE_UART_FOR_SERIAL_OUTPUT     = 0
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
@@ -73,47 +74,37 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
   GCC:*_*_AARCH64_CC_FLAGS = -DMEMMAP_LG_HACKS=1
 !endif
 
-  GCC:*_*_AARCH64_CC_FLAGS = -DRAM_SIZE=$(TARGET_RAM_SIZE)
-
 [PcdsFixedAtBuild.common]
   # Platform-specific
   gArmTokenSpaceGuid.PcdSystemMemoryBase|0x080000000              # Common Base Address
-
-  !if $(TARGET_RAM_SIZE) == 4
-    gArmTokenSpaceGuid.PcdSystemMemorySize|0x100000000            # 6GB
-  !endif
-
-  !if $(TARGET_RAM_SIZE) == 6
-    gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000            # 6GB
-  !endif
-
-  !if $(TARGET_RAM_SIZE) == 8
-    gArmTokenSpaceGuid.PcdSystemMemorySize|0x200000000            # 8GB
-  !endif
-
-  !if $(TARGET_RAM_SIZE) == 12
-    gArmTokenSpaceGuid.PcdSystemMemorySize|0x300000000            # 12GB
-  !endif
-
-  # SMBIOS
-  !if $(GET_INFO_FROM_DT) == FALSE
-    gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdGetSmBiosInfoFormDT|FALSE
-  !endif
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"$(BRAND)"
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"$(MODEL)"
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"$(RETAILMODEL)"
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"$(RETAIlSKU)"
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosBoardModel|"$(BOARDMODEL)"
+  gArmTokenSpaceGuid.PcdSystemMemorySize|0x100000000              # Map 4GB by Default
 
   # PStore
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPStoreBufferAddress|0x17FE00000
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPStoreBufferSize|0x00200000
 
-#
-# Screen Resolution Config
-#
-
 !include SurfaceDuo1Pkg/Sm8150Family.dsc.inc
 !include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PcdsFixedAtBuild.dsc.inc
 !include SurfaceDuoFamilyPkg/SurfaceDuoFamily.dsc.inc
 !include SurfaceDuoFamilyPkg/Frontpage.dsc.inc
+
+  # SMBIOS
+  !if $(BRAND) == 0
+      gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"Microsoft Corporation"
+  !endif
+
+  !if $(MODEL) == 0
+      gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"SDM855 MTP"
+  !endif
+
+  !if $(RETAILMODEL) == 0
+      gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"SM8150 MTP"
+  !endif
+
+  !if $(RETAIlSKU) == 0
+      gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"v1.0"
+  !endif
+
+  !if $(BOARDMODEL) == 0
+      gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosBoardModel|"MP"
+  !endif
