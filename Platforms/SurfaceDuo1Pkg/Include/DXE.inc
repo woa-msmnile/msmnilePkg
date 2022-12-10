@@ -1,19 +1,19 @@
 
     # First, install the PCD driver and call DxeInit
-    INF MdeModulePkg/Core/Dxe/DxeMain.inf
-    INF MdeModulePkg/Universal/PCD/Dxe/Pcd.inf
+    # INF MdeModulePkg/Core/Dxe/DxeMain.inf
+    # INF MdeModulePkg/Universal/PCD/Dxe/Pcd.inf
 
-    INF MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/ReportStatusCodeRouterRuntimeDxe.inf
-    INF MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf
-    INF MdeModulePkg/Core/RuntimeDxe/RuntimeDxe.inf
+    # INF MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/ReportStatusCodeRouterRuntimeDxe.inf
+    # INF MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf
+    # INF MdeModulePkg/Core/RuntimeDxe/RuntimeDxe.inf
 
     # Next, install cpu protocol and enable the interrupt controller
-    INF ArmPkg/Drivers/CpuDxe/CpuDxe.inf
-    INF ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
+    # INF ArmPkg/Drivers/CpuDxe/CpuDxe.inf
+    # INF ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
 
     # Core Drivers
-    INF EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
-    INF ArmPkg/Drivers/TimerDxe/TimerDxe.inf
+    # INF EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
+    # INF ArmPkg/Drivers/TimerDxe/TimerDxe.inf
 
     FILE DRIVER = 90A49AFD-422F-08AE-9611-E788D3804845 {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-90a49afd-422f-08ae-9611-e788d3804845/section0.dxe.depex
@@ -105,10 +105,10 @@
     }
 
     INF MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
-    INF MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
-    INF MdeModulePkg/Universal/FvSimpleFileSystemDxe/FvSimpleFileSystemDxe.inf
-    INF MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
-    INF FatPkg/EnhancedFatDxe/Fat.inf
+    # INF MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
+    # INF MdeModulePkg/Universal/FvSimpleFileSystemDxe/FvSimpleFileSystemDxe.inf
+    # INF MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
+    # INF FatPkg/EnhancedFatDxe/Fat.inf
 
     FILE DRIVER = 6925fad3-e243-4b69-ad61-3f978c8abc60 {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-6925fad3-e243-4b69-ad61-3f978c8abc60/section0.dxe.depex
@@ -116,7 +116,7 @@
             SECTION UI = "TzDxe"
     }
 
-    INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
+    # INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
 
     FILE DRIVER = 040e1e61-0afb-411b-9ec9-00f3fc59cc13 {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-040e1e61-0afb-411b-9ec9-00f3fc59cc13/section0.dxe.depex
@@ -158,7 +158,7 @@
             SECTION UI = "PILDxe"
     }
 
-    INF MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
+    # INF MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
 
     FILE DRIVER = 5550445c-7b09-4d69-8198-7060f9c1c732 {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-5550445c-7b09-4d69-8198-7060f9c1c732/section0.dxe.depex
@@ -170,12 +170,12 @@
 
     INF EmbeddedPkg/EmbeddedMonotonicCounter/EmbeddedMonotonicCounter.inf
     INF MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
-    INF EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf
+    # INF EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf
 
-    INF MdeModulePkg/Universal/PrintDxe/PrintDxe.inf
-    INF MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
+#    INF MdeModulePkg/Universal/PrintDxe/PrintDxe.inf
+#    INF MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
 
-    INF MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
+#    INF MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
 
     FILE DRIVER = ed15ffd5-bc96-4107-9118-95366600188e {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-ed15ffd5-bc96-4107-9118-95366600188e/section0.dxe.depex
@@ -183,7 +183,7 @@
             SECTION UI = "FontDxe"
     }
 
-    INF MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
+#    INF MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
 
     FILE DRIVER = 04de8591-d2b3-4077-bbbe-b12070094eb6 {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-04de8591-d2b3-4077-bbbe-b12070094eb6/section0.dxe.depex
@@ -275,17 +275,17 @@
     }
 
     INF EmbeddedPkg/SimpleTextInOutSerial/SimpleTextInOutSerial.inf
-    INF MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
-    INF MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
+    # INF MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
+    # INF MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
 
     FILE DRIVER = cccb0c28-4b24-11d5-9a5a-0090273fc14d {
             SECTION PE32 = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/CustomizedBinaries/GraphicsConsoleDxe.efi
             SECTION UI = "GraphicsConsoleDxe"
     }
 
-    INF MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
-    INF MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf
-    INF MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
+    # INF MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
+    # INF MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf
+    # INF MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
 
     FILE DRIVER = 53d39438-814a-4d9c-87c1-07e8c713f4c4 {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-53d39438-814a-4d9c-87c1-07e8c713f4c4/section0.dxe.depex
@@ -326,7 +326,7 @@
             SECTION UI = "UsbKbDxe"
     }
 
-    INF MdeModulePkg/Bus/Usb/UsbMouseAbsolutePointerDxe/UsbMouseAbsolutePointerDxe.inf
+    # INF MdeModulePkg/Bus/Usb/UsbMouseAbsolutePointerDxe/UsbMouseAbsolutePointerDxe.inf
 
     FILE DRIVER = 9FB4B4A7-42C0-4BCD-8540-9BCC6711F83E {
             SECTION PE32 = SurfaceDuoBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-9fb4b4a7-42c0-4bcd-8540-9bcc6711f83e/section0.pe
@@ -339,11 +339,11 @@
             SECTION UI = "UsbInitDxe"
     }
 
-    FILE DRIVER = fea01457-e381-4135-9475-c6afd0076c61 {
-            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-fea01457-e381-4135-9475-c6afd0076c61/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-fea01457-e381-4135-9475-c6afd0076c61/section1.pe
-            SECTION UI = "SharedCryptoDxe"
-    }
+#    FILE DRIVER = fea01457-e381-4135-9475-c6afd0076c61 {
+#            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-fea01457-e381-4135-9475-c6afd0076c61/section0.dxe.depex
+#            SECTION PE32 = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-fea01457-e381-4135-9475-c6afd0076c61/section1.pe
+#            SECTION UI = "SharedCryptoDxe"
+#    }
 
 !if $(USE_DISPLAYDXE) == FALSE
     FILE DRIVER = 3977d4c4-b0eb-4548-96b9-671fa2e36820 {

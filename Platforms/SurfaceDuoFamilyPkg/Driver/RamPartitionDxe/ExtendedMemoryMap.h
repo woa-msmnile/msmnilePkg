@@ -1,5 +1,5 @@
 // Get Macros for parent map
-#include <Configuration/DeviceMemoryMap.h>
+#include <Library/PlatformMemoryMapLib.h>
 
 static ARM_MEMORY_REGION_DESCRIPTOR_EX gExtendedMemoryDescriptorEx[] = {
     /* Name               Address     Length      HobOption        ResourceAttribute    ArmAttributes

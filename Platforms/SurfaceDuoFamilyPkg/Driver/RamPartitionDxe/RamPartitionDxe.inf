@@ -9,6 +9,7 @@
 [Sources.common]
   RamPartitionDxe.c
   ExtendedMemoryMap.h
+
 [FixedPcd]
   gArmTokenSpaceGuid.PcdSystemMemoryBase
   gArmTokenSpaceGuid.PcdSystemMemorySize
@@ -21,6 +22,7 @@
   MdeModulePkg/MdeModulePkg.dec
   SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
   SurfaceDuo1Pkg/SurfaceDuo1Pkg.dec
+
 [Guids]
   gEfiDxeServicesTableGuid
 
@@ -36,6 +38,7 @@
   CompilerIntrinsicsLib
   HobLib
   IoLib
+  ArmMmuLib
 
 [Protocols]
   gEfiRamPartitionProtocolGuid
