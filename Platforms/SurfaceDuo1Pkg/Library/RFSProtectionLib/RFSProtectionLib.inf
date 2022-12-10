@@ -28,6 +28,7 @@
   MemoryAllocationLib
   DevicePathLib
   UefiBootServicesTableLib
+  MemoryMapHelperLib
 
 [Protocols]
   gEfiGraphicsOutputProtocolGuid

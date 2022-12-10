@@ -30,16 +30,15 @@
   CacheMaintenanceLib
   FrameBufferBltLib
   PcdLib
+  MemoryMapHelperLib
 
 [Protocols]
   gEfiGraphicsOutputProtocolGuid ## PRODUCES
   gEfiCpuArchProtocolGuid
 
 [FixedPcd]
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferAddress
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdEnableScreenSerial
 
 [Guids]
   gEfiMdeModulePkgTokenSpaceGuid

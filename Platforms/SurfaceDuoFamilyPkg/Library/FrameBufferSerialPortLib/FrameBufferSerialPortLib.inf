@@ -10,8 +10,8 @@
   FrameBufferSerialPortLib.c
 
 [Packages]
-  MdePkg/MdePkg.dec
   ArmPkg/ArmPkg.dec
+  MdePkg/MdePkg.dec
   SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
 
 [LibraryClasses]
@@ -21,10 +21,9 @@
   HobLib
   CompilerIntrinsicsLib
   CacheMaintenanceLib
+  MemoryMapHelperLib
 
 [Pcd]
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferAddress
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdEnableScreenSerial

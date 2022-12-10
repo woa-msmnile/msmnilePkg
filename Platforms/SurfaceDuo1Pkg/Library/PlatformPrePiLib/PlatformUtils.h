@@ -1,8 +1,6 @@
 #ifndef _PLATFORM_UTILS_H_
 #define _PLATFORM_UTILS_H_
 
-#include <Library/PcdLib.h>
-
 #define TLMM_WEST 0x03100000
 #define TLMM_EAST 0x03500000
 #define TLMM_NORTH 0x03900000
@@ -47,8 +45,5 @@
 
 #define APSS_WDT_BASE 0x17C10000
 #define APSS_WDT_ENABLE_OFFSET 0x8
-
-VOID PlatformInitialize();
-BOOLEAN IsLinuxBootRequested(VOID);
 
 #endif /* _PLATFORM_UTILS_H_ */
