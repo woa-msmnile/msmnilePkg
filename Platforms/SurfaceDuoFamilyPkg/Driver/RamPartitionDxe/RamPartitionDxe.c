@@ -61,10 +61,9 @@
 #include "ExtendedMemoryMap.h"
 
 /*-------------------------Macros------------------------------*/
-#define GENERIC_RAM_BASE 0x80000000
+#define GENERIC_RAM_BASE FixedPcdGet64(PcdSystemMemoryBase)
 #define MLVM_BASE 0xA0000000
 #define GAP_END_ADDR 0xC0000000
-#define MAPPED_SIZE 0x180000000 - GENERIC_RAM_BASE
 #define SIZE_2GB 0x80000000
 
 /*-------------------------Global_Variable------------------------------*/
@@ -232,25 +231,27 @@ RamPartitionDxeInitialize(
         }
         SpiltAndAddRamPartitions(MemoryDescriptorEx[0].Address, MemoryDescriptorEx[0].Length, MemoryDescriptorEx->ArmAttributes);
 #endif
+
         // Update RAM Partitions.
         // It has mapped 4GB RAM in PEI stage.
         // End Address of 4GB: 0x180000000
-        // TODO replace GAP_END_ADDR with system base, make 0xC0000000 more flexible.
-        if(RamPartitionEntries[i].Base == GAP_END_ADDR){
-                if(RamPartitionEntries[i].AvailableLength > 0xC0000000) {
-                        MemoryDescriptorEx[Index].Address       = 0x180000000;
-                        MemoryDescriptorEx[Index].Length        = RamPartitionEntries[i].AvailableLength - 0xC0000000;
-                        Index++;
-                }
-                continue;
-        }
+//        if(RamPartitionEntries[i].Base == GAP_END_ADDR){
+//                if(RamPartitionEntries[i].AvailableLength > 0xC0000000) {
+//                        MemoryDescriptorEx[Index].Address       = 0x180000000;
+//                        MemoryDescriptorEx[Index].Length        = RamPartitionEntries[i].AvailableLength - 0xC0000000;
+//                        Index++;
+//                }
+//                continue;
+//        }
 
         if((RamPartitionEntries[i].Base < 0x180000000) && ((RamPartitionEntries[i].Base + RamPartitionEntries[i].AvailableLength) > 0x180000000)){
                 MemoryDescriptorEx[Index].Address       = 0x180000000;
                 MemoryDescriptorEx[Index].Length        = RamPartitionEntries[i].Base + RamPartitionEntries[i].AvailableLength - 0x180000000;
                 Index++;
                 continue;
-        }
+        } else
+            if((RamPartitionEntries[i].Base < 0x180000000) && ((RamPartitionEntries[i].Base + RamPartitionEntries[i].AvailableLength) <= 0x180000000))
+              continue;
 
         MemoryDescriptorEx[Index].Address       = RamPartitionEntries[i].Base;
         MemoryDescriptorEx[Index].Length        = RamPartitionEntries[i].AvailableLength;
