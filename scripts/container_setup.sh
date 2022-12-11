@@ -16,6 +16,5 @@ source SurfaceDuo/bin/activate
 git config --global --add safe.directory '*'
 ./setup_uefi.sh
 python3 ./Platforms/SurfaceDuo1Pkg/StampBuild.py
-./build_uefi.sh -d all -s 6
-./build_uefi.sh -d all -s 8
+./build_uefi.sh -d all
 exit

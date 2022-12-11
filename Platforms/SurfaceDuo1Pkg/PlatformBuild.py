@@ -234,11 +234,6 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
         # Include the MFCI test cert by default, override on the commandline with "BLD_*_SHIP_MODE=TRUE" if you want the retail MFCI cert
         self.env.SetValue("BLD_*_SHIP_MODE", "FALSE", "Default")
         self.env.SetValue("BLD_*_TARGET_DEVICE", self.env.GetValue("TARGET_DEVICE"), "Default")
-        self.env.SetValue("BLD_*_MODEL", self.env.GetValue("MODEL"), "Default")
-        self.env.SetValue("BLD_*_BRAND", self.env.GetValue("BRAND"), "Default")
-        self.env.SetValue("BLD_*_RETAILMODEL", self.env.GetValue("RETAILMODEL"), "Default")
-        self.env.SetValue("BLD_*_RETAILSKU", self.env.GetValue("RETAILSKU"), "Default")
-        self.env.SetValue("BLD_*_BOARDMODEL", self.env.GetValue("BOARDMODEL"), "Default")
         self.env.SetValue("BLD_*_FDT", self.GetDTBName(), "Default")
         return 0
 
