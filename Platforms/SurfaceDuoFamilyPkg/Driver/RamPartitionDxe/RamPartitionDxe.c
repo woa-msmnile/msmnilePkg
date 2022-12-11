@@ -3,6 +3,8 @@
    Add RAM Partitions.
    Read Ram Partitions Info by EFI_RAMPARTITION_PROTOCOL and add them.
 
+ * Copyright (c) 2022. Sunflower2333. All rights reserved.
+
  * Reference Codes
  * abl/edk2/QcomModulePkg/Library/BootLib/Board.c
 

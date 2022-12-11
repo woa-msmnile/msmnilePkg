@@ -783,10 +783,10 @@ VOID CacheInfoUpdateSmbiosType7(VOID)
 /***********************************************************************
         SMBIOS data update  TYPE16  Physical Memory Array Information
 ************************************************************************/
-VOID PhyMemArrayInfoUpdateSmbiosType16(IN UINT32 SystemMemorySize)
+VOID PhyMemArrayInfoUpdateSmbiosType16(IN UINT64 SystemMemorySize)
 {
   EFI_SMBIOS_HANDLE MemArraySmbiosHande;
-  mPhyMemArrayInfoType16Strings[7] = SystemMemorySize;
+  mPhyMemArrayInfoType16.ExtendedMaximumCapacity = SystemMemorySize;
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mPhyMemArrayInfoType16,
       mPhyMemArrayInfoType16Strings, &MemArraySmbiosHande);
@@ -800,7 +800,7 @@ VOID PhyMemArrayInfoUpdateSmbiosType16(IN UINT32 SystemMemorySize)
 /***********************************************************************
         SMBIOS data update  TYPE17  Memory Device Information
 ************************************************************************/
-VOID MemDevInfoUpdateSmbiosType17(IN UINT32 SystemMemorySize)
+VOID MemDevInfoUpdateSmbiosType17(IN UINT64 SystemMemorySize)
 {
 
   mMemDevInfoType17.Size = SystemMemorySize / 0x100000;
@@ -812,7 +812,7 @@ VOID MemDevInfoUpdateSmbiosType17(IN UINT32 SystemMemorySize)
 /***********************************************************************
         SMBIOS data update  TYPE19  Memory Array Map Information
 ************************************************************************/
-VOID MemArrMapInfoUpdateSmbiosType19(IN UINT32 SystemMemorySize)
+VOID MemArrMapInfoUpdateSmbiosType19(IN UINT64 SystemMemorySize)
 {
   mMemArrMapInfoType19.StartingAddress =
       FixedPcdGet64(PcdSystemMemoryBase) / 1024;
