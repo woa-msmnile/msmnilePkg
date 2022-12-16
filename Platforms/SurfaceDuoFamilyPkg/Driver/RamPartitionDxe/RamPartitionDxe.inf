@@ -45,6 +45,7 @@
   
 [Depex]
   gEfiRamPartitionProtocolGuid
-  AND gEfiDxeServicesTableGuid
-[BuildOptions.AARCH64]
-  GCC:*_*_*_CC_FLAGS = -Wno-unused-function
+
+#[BuildOptions.AARCH64]
+#  GCC:*_*_*_CC_FLAGS = -Wno-unused-function
+

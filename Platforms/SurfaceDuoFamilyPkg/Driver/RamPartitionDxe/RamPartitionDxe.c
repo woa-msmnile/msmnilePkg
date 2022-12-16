@@ -52,7 +52,6 @@
 
 #include <Library/ArmMmuLib.h>
 #include <Library/ArmPlatformLib.h>
-#include <Library/HobLib.h>
 #include <Library/PcdLib.h>
 #include <Library/IoLib.h>
 
@@ -62,10 +61,12 @@
 
 /*-------------------------Macros------------------------------*/
 #define GENERIC_RAM_BASE FixedPcdGet64(PcdSystemMemoryBase)
-#define MLVM_BASE 0xA0000000
-#define GAP_END_ADDR 0xC0000000
+//#define GAP_END_ADDR 0xC0000000
 #define SIZE_2GB 0x80000000
 
+#ifdef HAS_MLVM
+  #define MLVM_BASE 0xA0000000
+#endif
 /*-------------------------Global_Variable------------------------------*/
 RamPartitionEntry *RamPartitionEntries = NULL;
 
@@ -129,18 +130,35 @@ EFIAPI
 AddRamPartition(
   IN EFI_PHYSICAL_ADDRESS Base,
   IN UINT64 Length,
-  IN UINT64 ArmAttributes
+  IN UINT64 ArmAttributes,
+  IN EFI_MEMORY_TYPE EfiMemoryType
 ) {
-  EFI_STATUS               Status = EFI_SUCCESS;
+  EFI_STATUS            Status = EFI_SUCCESS;
+  EFI_GCD_MEMORY_TYPE   EfiGcdMemoryType = EfiGcdMemoryTypeReserved;
+
+  switch(EfiMemoryType){
+      case EfiReservedMemoryType:
+          EfiGcdMemoryType = EfiGcdMemoryTypeReserved;
+          DEBUG((EFI_D_INFO, "Default Type: EfiGcdMemoryTypeReserved\n"));
+          break;
+      case EfiConventionalMemory:
+          EfiGcdMemoryType = EfiGcdMemoryTypeSystemMemory;
+          DEBUG((EFI_D_INFO, "Default Type: EfiGcdMemoryTypeSystemMemory\n"));
+          break;
+      default:
+          EfiGcdMemoryType = EfiGcdMemoryTypeReserved;
+          DEBUG((EFI_D_INFO, "Choose Type: EfiGcdMemoryTypeReserved\n"));
+          break;
+  }
 
   if(Length == 0) return EFI_INVALID_PARAMETER;
 
-  Status = gDS->AddMemorySpace(EfiGcdMemoryTypeSystemMemory, Base, Length, 0xF);
+  DEBUG((EFI_D_ERROR, "Adding Memory Space: 0x%08llx 0x%08llx\n", Base, Length));
+  Status = gDS->AddMemorySpace(EfiGcdMemoryType, Base, Length, 0xF);
   if (EFI_ERROR(Status)) {
     DEBUG((EFI_D_ERROR, "AddMemorySpace Failed ! %r\n", Status));
     return Status;
   }
-  DEBUG((EFI_D_ERROR, "Added Memory Space: 0x%08llx 0x%08llx\n", Base, Length));
 
   Status = ArmSetMemoryAttributes(Base, Length, ArmAttributes);
   if (EFI_ERROR(Status)) {
@@ -152,7 +170,7 @@ AddRamPartition(
   if (EFI_ERROR(Status)) {
     DEBUG((EFI_D_ERROR, "ArmClearMemoryRegionNoExec Failed ! %r\n", Status));
     return Status;
-    }
+  }
 
   Status = ArmClearMemoryRegionReadOnly(Base, Length);
   if (EFI_ERROR(Status)) {
@@ -174,21 +192,22 @@ EFIAPI
 SpiltAndAddRamPartitions(
   IN EFI_PHYSICAL_ADDRESS Base,
   IN UINT64 Length,
-  IN UINT64 ArmAttributes
+  IN UINT64 ArmAttributes,
+  IN EFI_MEMORY_TYPE EfiMemoryType
 ) {
   EFI_STATUS Status = EFI_SUCCESS;
 
   if( Length > SIZE_2GB ){
       for(UINT16 parts = Length / SIZE_2GB; parts > 0; parts--){
-        Status = AddRamPartition(Base, SIZE_2GB, ArmAttributes);
-        Base = Base + SIZE_2GB;
+          Status = AddRamPartition(Base, SIZE_2GB, ArmAttributes, EfiMemoryType);
+          Base = Base + SIZE_2GB;
       }
-      Status = AddRamPartition(Base, Length % SIZE_2GB, ArmAttributes);
+      Status = AddRamPartition(Base, Length % SIZE_2GB, ArmAttributes, EfiMemoryType);
       goto exit;
   }
 
   if(Length <= SIZE_2GB) {
-    Status = AddRamPartition(Base, Length, ArmAttributes);
+      Status = AddRamPartition(Base, Length, ArmAttributes, EfiMemoryType);
   }
 
 exit:
@@ -207,69 +226,56 @@ RamPartitionDxeInitialize(
   EFI_STATUS Status = EFI_SUCCESS;
   UINT32 i, NumPartitionEntries = 0;
   PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx = gExtendedMemoryDescriptorEx;
-  //ARM_MEMORY_REGION_DESCRIPTOR MemoryDescriptor[MAX_ARM_MEMORY_REGION_DESCRIPTOR_COUNT];
   UINTN Index = 1;
 
   // Get RAM Partition Info
   if (RamPartitionEntries == NULL) {
-    NumPartitionEntries = 0;
-    Status = GetRamPartitions(&RamPartitionEntries, &NumPartitionEntries);
+      NumPartitionEntries = 0;
+      Status = GetRamPartitions(&RamPartitionEntries, &NumPartitionEntries);
   }
 
   // Update Extended Memory Map, although it's meaningless.
   DEBUG((EFI_D_ERROR, "RAM Partitions\n"));
   if(!EFI_ERROR(Status)){
-    for (i = 0; i < NumPartitionEntries; i++) {
-        DEBUG((EFI_D_ERROR, "RAM Entry %d: Base:  0x%016lx ", i, RamPartitionEntries[i].Base));
-        DEBUG((EFI_D_ERROR, "AvailableLength: 0x%016lx \n", RamPartitionEntries[i].AvailableLength));
+      for (i = 0; i < NumPartitionEntries; i++) {
+          DEBUG((EFI_D_ERROR, "RAM Entry %d: Base:  0x%016lx ", i, RamPartitionEntries[i].Base));
+          DEBUG((EFI_D_ERROR, "AvailableLength: 0x%016lx \n", RamPartitionEntries[i].AvailableLength));
 
 #ifdef HAS_MLVM
         // Update the first MLVM region for 855 Platform.
-        if(RamPartitionEntries[i].Base == GENERIC_RAM_BASE){
-                MemoryDescriptorEx[0].Length = RamPartitionEntries[i].AvailableLength + GENERIC_RAM_BASE - MLVM_BASE;
-                continue;
-        }
-        SpiltAndAddRamPartitions(MemoryDescriptorEx[0].Address, MemoryDescriptorEx[0].Length, MemoryDescriptorEx->ArmAttributes);
+          if(RamPartitionEntries[i].Base == GENERIC_RAM_BASE){
+              MemoryDescriptorEx[0].Length = RamPartitionEntries[i].AvailableLength + GENERIC_RAM_BASE - MLVM_BASE;
+              SpiltAndAddRamPartitions(MemoryDescriptorEx[0].Address, MemoryDescriptorEx[0].Length, MemoryDescriptorEx[0].ArmAttributes, MemoryDescriptorEx[0].MemoryType);
+              continue;
+          }
 #endif
 
         // Update RAM Partitions.
         // It has mapped 4GB RAM in PEI stage.
         // End Address of 4GB: 0x180000000
-//        if(RamPartitionEntries[i].Base == GAP_END_ADDR){
-//                if(RamPartitionEntries[i].AvailableLength > 0xC0000000) {
-//                        MemoryDescriptorEx[Index].Address       = 0x180000000;
-//                        MemoryDescriptorEx[Index].Length        = RamPartitionEntries[i].AvailableLength - 0xC0000000;
-//                        Index++;
-//                }
-//                continue;
-//        }
-
-        if((RamPartitionEntries[i].Base < 0x180000000) && ((RamPartitionEntries[i].Base + RamPartitionEntries[i].AvailableLength) > 0x180000000)){
-                MemoryDescriptorEx[Index].Address       = 0x180000000;
-                MemoryDescriptorEx[Index].Length        = RamPartitionEntries[i].Base + RamPartitionEntries[i].AvailableLength - 0x180000000;
-                Index++;
-                continue;
-        } else
-            if((RamPartitionEntries[i].Base < 0x180000000) && ((RamPartitionEntries[i].Base + RamPartitionEntries[i].AvailableLength) <= 0x180000000))
+          if((RamPartitionEntries[i].Base < 0x180000000) && ((RamPartitionEntries[i].Base + RamPartitionEntries[i].AvailableLength) > 0x180000000)){
+              MemoryDescriptorEx[Index].Address       = 0x180000000;
+              MemoryDescriptorEx[Index].Length        = RamPartitionEntries[i].Base + RamPartitionEntries[i].AvailableLength - 0x180000000;
+              Index++;
+              continue;
+          } else
+          if((RamPartitionEntries[i].Base < 0x180000000) && ((RamPartitionEntries[i].Base + RamPartitionEntries[i].AvailableLength) <= 0x180000000))
               continue;
 
-        MemoryDescriptorEx[Index].Address       = RamPartitionEntries[i].Base;
-        MemoryDescriptorEx[Index].Length        = RamPartitionEntries[i].AvailableLength;
-        Index++;
-    }
+          MemoryDescriptorEx[Index].Address       = RamPartitionEntries[i].Base;
+          MemoryDescriptorEx[Index].Length        = RamPartitionEntries[i].AvailableLength;
+          Index++;
+      }
   }
 
   Index = 1;
-  while (MemoryDescriptorEx->Length != 0) {
-
-    ASSERT(Index < MAX_ARM_MEMORY_REGION_DESCRIPTOR_COUNT);
-    SpiltAndAddRamPartitions(MemoryDescriptorEx->Address, MemoryDescriptorEx->Length, MemoryDescriptorEx->ArmAttributes);
-
-    Index++;
-    MemoryDescriptorEx++;
+  while (MemoryDescriptorEx[Index].Length != 0) {
+      ASSERT(Index < MAX_ARM_MEMORY_REGION_DESCRIPTOR_COUNT);
+      SpiltAndAddRamPartitions(MemoryDescriptorEx[Index].Address, MemoryDescriptorEx[Index].Length,
+                                MemoryDescriptorEx[Index].ArmAttributes, MemoryDescriptorEx[Index].MemoryType);
+      Index++;
   }
 
   FreePool (RamPartitionEntries);
-//while(1);
   return Status;
 }
