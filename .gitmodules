@@ -21,3 +21,6 @@
 [submodule "Platforms/SurfaceDuoBinaries"]
 	path = Platforms/SurfaceDuoBinaries
 	url = https://github.com/WOA-Project/SurfaceDuoBinaries.git
+[submodule "Binaries"]
+	path = Binaries
+	url = https://github.com/WOA-Project/SurfaceDuoBinaries

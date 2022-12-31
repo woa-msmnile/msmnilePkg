@@ -408,6 +408,7 @@
   ArmPkg/Drivers/CpuDxe/CpuDxe.inf
   ArmPkg/Drivers/TimerDxe/TimerDxe.inf
   ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
+  ArmPkg/Drivers/ArmPsciMpServicesDxe/ArmPsciMpServicesDxe.inf
   MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
   EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
   EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf {

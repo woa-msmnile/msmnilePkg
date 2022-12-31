@@ -44,8 +44,6 @@
 
   # Device-specific memory map hacks
   HAS_MLVM                       = FALSE
-  MEMMAP_XIAOMI_HACKS            = FALSE
-  MEMMAP_LG_HACKS                = FALSE
 
 !include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Defines.dsc.inc
 
@@ -66,40 +64,34 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
   GCC:*_*_AARCH64_CC_FLAGS = -DHAS_MLVM=0
 !endif
 
-!if $(MEMMAP_XIAOMI_HACKS) == TRUE
-  GCC:*_*_AARCH64_CC_FLAGS = -DMEMMAP_XIAOMI_HACKS=1
-!endif
-
-!if $(MEMMAP_LG_HACKS) == TRUE
-  GCC:*_*_AARCH64_CC_FLAGS = -DMEMMAP_LG_HACKS=1
-!endif
-
 [PcdsFixedAtBuild.common]
   # Platform-specific
-  gArmTokenSpaceGuid.PcdSystemMemorySize|0x100000000            # 6GB
+  gArmTokenSpaceGuid.PcdSystemMemorySize|0x100000000            # 4GB
+
+
+  # SMBIOS
+#  !if $(BRAND) == 0
+#      gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"Microsoft Corporation"
+#  !endif
+#
+#  !if $(MODEL) == 0
+#      gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"SDM855 MTP"
+#  !endif
+#
+#  !if $(RETAILMODEL) == 0
+#      gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"SM8150 MTP"
+#  !endif
+#
+#  !if $(RETAIlSKU) == 0
+#      gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"v1.0"
+#  !endif
+#
+#  !if $(BOARDMODEL) == 0
+#      gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosBoardModel|"MP"
+#  !endif
 
 !include SurfaceDuo1Pkg/Sm8150Family.dsc.inc
 !include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PcdsFixedAtBuild.dsc.inc
 !include SurfaceDuoFamilyPkg/SurfaceDuoFamily.dsc.inc
 !include SurfaceDuoFamilyPkg/Frontpage.dsc.inc
-
-  # SMBIOS
-  !if $(BRAND) == 0
-      gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"Microsoft Corporation"
-  !endif
-
-  !if $(MODEL) == 0
-      gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"SDM855 MTP"
-  !endif
-
-  !if $(RETAILMODEL) == 0
-      gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"SM8150 MTP"
-  !endif
-
-  !if $(RETAIlSKU) == 0
-      gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"v1.0"
-  !endif
-
-  !if $(BOARDMODEL) == 0
-      gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosBoardModel|"MP"
-  !endif
+!include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/DXE.dsc.inc

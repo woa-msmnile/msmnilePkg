@@ -52,13 +52,11 @@ or
 
 5. Build UEFI
 > Usage: build_uefi.sh -d \<target-device\>  
-> Optional:  -B \<Brand\> -m \<Model\> -r \<RetailModel\> -u \<RetailSku\> -b \<BoardModel\>
 
 ```
-./build_uefi.sh -d <target-name> -s <target-ram-size> [-m <Model> -r <RetailModel> -u <RetailSku> -b <BoardModel>]
+./build_uefi.sh -d <target-name>
 ```
-- Ram size should be 4, 6, 8, or 12.
-- You will see Build/\<target-name\>/\<target-name\>.img if it builds successfully.
+- You will see Build/\<target-name\>.img if it builds successfully.
 
 ## Target list
 
@@ -82,6 +80,7 @@ or
 | Xiaomi Poco X3 Pro | xiaomi-vayu         | ✅           | [Degdag](https://github.com/degdag)                |
 | Meizu 16T          | meizu-m928q         | ❌           | NONE                                               |
 | HTC 5G Hub         | htc-rtx             | ❌           | NONE                                               |
+| Xiaomi Mix Alpha u2| xiaomi-draco        | ❌           | NONE                                               |
 
 ## Acknowledgements
 
