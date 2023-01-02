@@ -1,11 +1,11 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
         && sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 
 RUN apt-get update && apt-get -y install build-essential uuid-dev iasl nasm gcc-aarch64-linux-gnu \
-        python3 python3-distutils python3-pil python3-git python3-pip gettext locales wine \
+        python3 python3-distutils python3-pil python3-git python3-pip gettext locales wine\
         gnupg ca-certificates python3-venv git git-core clang llvm curl nano vim 
 
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
