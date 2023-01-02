@@ -40,7 +40,6 @@
 
   # Included Drivers
   USE_SIMPLEFBDXE                = TRUE
-  USE_DISPLAYDXE                 = FALSE
 
   # Device-specific memory map hacks
   HAS_MLVM                       = FALSE
@@ -53,11 +52,6 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
 
 # TODO: Re-do the memory map stuff at one point so it's not defined in static variable and put 
 # those defines only in modules that need them, so changing anything here doesn't rebuild EVERY DAMN THING.
-
-!if $(USE_DISPLAYDXE) == TRUE
-  GCC:*_*_AARCH64_CC_FLAGS = -DUSE_DISPLAYDXE=1
-!endif
-
 !if $(HAS_MLVM) == TRUE
   GCC:*_*_AARCH64_CC_FLAGS = -DHAS_MLVM=1
 !else
@@ -67,28 +61,6 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
 [PcdsFixedAtBuild.common]
   # Platform-specific
   gArmTokenSpaceGuid.PcdSystemMemorySize|0x100000000            # 4GB
-
-
-  # SMBIOS
-#  !if $(BRAND) == 0
-#      gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"Microsoft Corporation"
-#  !endif
-#
-#  !if $(MODEL) == 0
-#      gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"SDM855 MTP"
-#  !endif
-#
-#  !if $(RETAILMODEL) == 0
-#      gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"SM8150 MTP"
-#  !endif
-#
-#  !if $(RETAIlSKU) == 0
-#      gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"v1.0"
-#  !endif
-#
-#  !if $(BOARDMODEL) == 0
-#      gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosBoardModel|"MP"
-#  !endif
 
 !include SurfaceDuo1Pkg/Sm8150Family.dsc.inc
 !include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PcdsFixedAtBuild.dsc.inc

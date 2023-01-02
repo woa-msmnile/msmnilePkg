@@ -100,7 +100,7 @@ INF SurfaceDuo1Pkg/PatchedBinaries/05472C14-ACB9-4458-A354-A68357AC3BF0.inf
 INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PatchedBinaries/ButtonsDxe.inf
 INF SurfaceDuo1Pkg/PatchedBinaries/HALIOMMUDxe.inf
 INF SurfaceDuo1Pkg/PatchedBinaries/PciHostBridgeDxe.inf
-INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UFSDxe.inf
+INF SurfaceDuo1Pkg/PatchedBinaries/UFSDxe.inf
 INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UsbConfigDxe.inf
 
 # DXE without depex

@@ -56,7 +56,7 @@ or
 ```
 ./build_uefi.sh -d <target-name>
 ```
-- You will see Build/\<target-name\>.img if it builds successfully.
+- You will see Build/\<target-device\>.img if it builds successfully.
 
 ## Target list
 

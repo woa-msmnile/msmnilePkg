@@ -74,7 +74,7 @@ ___
     ```
     ~/mu-msmnile/Platforms/SurfaceDuo1Pkg/Device$ tree -L 1  nubia-tp1803/
     |-- ACPI
-    |-- CustomizedBinaries
+    |-- Binaries
     |-- DXE_Spec.inc
     |-- Defines.dsc.inc
     |-- PatchedBinaries
@@ -83,10 +83,8 @@ ___
     ```
     - **ACPI/**
       * *Stores device's dsdt table.*
-    - **CustomizedBinaries/**
+    - **Binaries/**
       * *Stores device's firmware binaries.*
-    - **DXE_Spec.inc**
-      * *Config of device's specific uefi drives (e.g. Patched binaries).*
     - **Defines.dsc.inc**
       * *Config of special flags.*
     - **PatchedBinaries/**
@@ -101,30 +99,45 @@ ___
   - For example, porting uefi for meizu 16T.
     1. Search for its code name: m928q.
     2. Copy `oneplus-guacamole/` to `meizu-m928q/`. (brand-codename).
-    3. Remove all files under `meizu-m928q/CustomizedBinaries` & `meizu-m928q/PatchedBinaries.`
-    4. Extract files from your device's xbl and put them under CustomizedBinaries.
-        + *Install 7zip on your computer.*
+    3. Remove all files under `meizu-m928q/Binaries` & `meizu-m928q/PatchedBinaries.`
+    4. Extract files from your device's xbl and put them under Binaries.
+        + *Download and compile [UefiReader](https://github.com/WOA-Project/UEFIReader)*
         + *Connect your phone to your computer and execute the command on your computer.*
           ```
           adb shell su -c "dd if=/dev/block/by-name/xbl_a of=/sdcard/xbl.img"
+          adb pull /sdcard/xbl.img .
           ```
-        + *Move `/sdcard/xbl.img` to your computer.*
-        + *Right Click -> 7zip- > extract -> #:e -> 4.gz.*
-        + *Decompress 4.gz and put them under `meizu-m928q/CustomizedBinaries`.*
-    5. Enable MLVM in `Defines.dsc.inc` (FALSE -> TRUE)
-    6. Edit resolution in `PcdFixedAtBuild.dsc.inc`.
-    7. Patch your device's dxe and put them under `PatchedBinaries/`.
-    8. Replace `guacamole.dtb` with `m928q.dtb` (you can find your device's dtb in `/sys/firmware/fdt`.)
-    9. Build it.
-    10. Test it.
+        + *Execute UefiReader.exe <Path-to-xbl.img> <Path-to-output-folder>*
+        + *Put output into `meizu-m928q/Binaries`.*
+    5. Edit `${brand-codename}/DXE.inc`, `${brand-codename}/APRIORI.inc`, `${brand-codename}/DXE.dsc.inc`.
+        + *See the difference by `diff`*
+          ```
+          $ diff meizu-m928q/Binaries/DXE.inc oneplus-guacamole/Binaries/DXE.inc 
+          23d22
+          < INF QcomPkg/Drivers/SimpleTextInOutSerialDxe/SimpleTextInOutSerial.inf
+          97,102d95
+          < FILE FREEFORM = A91D838E-A5FA-4138-825D-455E23030795 {
+          <     SECTION UI = "logo2_ChargingMode.bmp"
+          <     SECTION RAW = RawFiles/logo2_ChargingMode.bmp
+          < }
+            ...
+          ```
+        + *So you have to edit `Raw Files` part in `${brand-codename}/DXE.inc` and add SimpleTextInOutSerial in `${brand-codename}/DXE.inc` and `${brand-codename}/DXE.dsc.inc`*
+        + *If SimpleTextInOutSerial is also set in Binaries/APRIORI.inc, you need to add it into `${brand-codename}/APRIORI.inc`*
+    6. Enable MLVM in `Defines.dsc.inc` (FALSE -> TRUE)
+    7. Edit resolution in `PcdFixedAtBuild.dsc.inc`.
+    8. Patch your device's dxe and put them under `PatchedBinaries/`.
+    9. Replace `guacamole.dtb` with `m928q.dtb` (you can find your device's dtb in `/sys/firmware/fdt`, or see [Additions](#additions))
+    10. Build it.
+    11. Test it.
         + *Connect your phone to your computer and execute it on your computer.*
           ```
           adb reboot bootloader
-          fastboot boot Build/meizu-m928q/meizu-m928q_${ram-size}G.img
+          fastboot boot Build/meizu-m928q/meizu-m928q.img
           ```
   - Your device will enter UEFI Shell if porting success.
   - What if it stacks, reboots or crashes ?
-    * See part 3 and patch your device's firmware binaries.
+    * See part 3 and patch your device's firmware binaries, or contact us.
 ___
 ## **Part 2.** Try to boot windows.
   *The DSDT for guacamole is the basic DSDT. It only contains USB & UFS.*
@@ -132,7 +145,7 @@ ___
   - Try to boot into Windows PE.
   - What if it stacks, reboots or crashes ?
     * Check UFS CCA in dsdt, it should be 0.
-    * Check [MemoryMap](../Platforms/SurfaceDuo1Pkg/Include/Configuration/DeviceMemoryMap.h).
+    * Check MemoryMap *(${device}/Library/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.c)*.
     * Check HAS_MLVM in `Defines.dsc.inc`, if windows hangs at boot, set it to `TRUE`.
   - Usb not working with external power supply?
     * Patch firmware binaries.
@@ -145,7 +158,7 @@ ___
     * If your phone can not usb button in uefi stage, patch ButtonsDxe.
   - Where to patch ?
     * The most simple way to know where to pacth:
-      + Find one device's original xxxDxe.efi and the pacthed xxxDxe.efi .
+      + Find one other device's original xxxDxe.efi and its pacthed xxxDxe.efi .
       + Dump hex and get where & what to patch.
         ```
         hexdump -C a_xxxDxe.efi > a.txt
@@ -175,5 +188,33 @@ ___
       + Put the patched binaries under `PatchedBinaries/`.
       + Check DXE_Spec.inc for the paths to your device's patched binaries.
 ___
-***Don't forget to add your device and maintainer into README.***  
+## **Additions**
+  - How to get dtb of my device? *assume in termux environment*
+    * Clone and compile [split-appended-dtb](https://github.com/MoetaYuko/split-appended-dtb)
+      ```
+      git clone https://github.com/MoetaYuko/split-appended-dtb.git ~/split-appended-dtb
+      cd ~/split-appended-dtb
+      gcc split-appended-dtb.c -o split-appended-dtb
+      ```
+    * Get boot image from your phone.
+      ```
+      sudo cp /dev/block/by-name/boot ~/split-appended-dtb/myboot.img
+      ```
+    * Split dtbs from you phone's boot.
+      ```
+      ./split-appended-dtb myboot.img
+      ```
+    * Choose the `SM8150 V2` one. *or V1? It depends on what your phone has.*
+      ```
+      $ grep -rn "SM8150 V2"
+        dtbdump_8.dtb: binary file matches
+      ```
+    * So the dtbdump_8.dtb is your phone's basic dtb. 
+    * Renamed it to `codename.dtb` and put it into Device/*brand-codename*/.
+  - Should MLVM always be `TRUE`?
+    * In early test you can set it to `TRUE` to avoid MLVM issue.
+    * If you can boot windows, turn it to `FALSE` and have a try.
+    * Set MLVM to `TRUE` will occupy about 300MB Ram.
+___
+***Don't forget to add your device and maintainer into [README](../README.md).***  
 ***Thanks for your hard works.***
