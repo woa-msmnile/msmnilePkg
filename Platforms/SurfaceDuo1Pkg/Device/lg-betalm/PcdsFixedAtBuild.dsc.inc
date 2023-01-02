@@ -1,3 +1,9 @@
 [PcdsFixedAtBuild.common]
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2248
+
+# Smbios Info
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"LG Electronics"
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"G8s"
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"betalm"
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"MP"

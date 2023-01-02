@@ -2,3 +2,8 @@
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|2088
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2250
 
+# Smbios Info
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"Xiaomi"
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"MIX Alpha u2"
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"avenger"
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"MP"

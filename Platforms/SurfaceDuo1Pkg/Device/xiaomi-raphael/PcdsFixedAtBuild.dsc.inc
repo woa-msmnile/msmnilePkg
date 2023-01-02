@@ -1,3 +1,9 @@
 [PcdsFixedAtBuild.common]
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2340
+
+# Smbios Info
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"Xiaomi"
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"K20 Pro"
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"raphael"
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"MP"
