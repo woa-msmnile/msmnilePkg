@@ -32,19 +32,17 @@
   USE_PHYSICAL_TIMER             = TRUE
 
   # Debugging
+  # Notice: TRUE == 1, FALSE == 0
   USE_SCREEN_FOR_SERIAL_OUTPUT   = 1
   USE_UART_FOR_SERIAL_OUTPUT     = 0
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
   SEND_HEARTBEAT_TO_SERIAL       = 0
-  
+
   # Included Drivers
   USE_SIMPLEFBDXE                = TRUE
-  USE_DISPLAYDXE                 = FALSE
 
   # Device-specific memory map hacks
   HAS_MLVM                       = FALSE
-  MEMMAP_XIAOMI_HACKS            = FALSE
-  MEMMAP_LG_HACKS                = FALSE
 
 !include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Defines.dsc.inc
 
@@ -54,66 +52,18 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
 
 # TODO: Re-do the memory map stuff at one point so it's not defined in static variable and put 
 # those defines only in modules that need them, so changing anything here doesn't rebuild EVERY DAMN THING.
-
-!if $(USE_DISPLAYDXE) == TRUE
-  GCC:*_*_AARCH64_CC_FLAGS = -DUSE_DISPLAYDXE=1
-!endif
-
 !if $(HAS_MLVM) == TRUE
   GCC:*_*_AARCH64_CC_FLAGS = -DHAS_MLVM=1
 !else
   GCC:*_*_AARCH64_CC_FLAGS = -DHAS_MLVM=0
 !endif
 
-!if $(MEMMAP_XIAOMI_HACKS) == TRUE
-  GCC:*_*_AARCH64_CC_FLAGS = -DMEMMAP_XIAOMI_HACKS=1
-!endif
-
-!if $(MEMMAP_LG_HACKS) == TRUE
-  GCC:*_*_AARCH64_CC_FLAGS = -DMEMMAP_LG_HACKS=1
-!endif
-
-  GCC:*_*_AARCH64_CC_FLAGS = -DRAM_SIZE=$(TARGET_RAM_SIZE)
-
 [PcdsFixedAtBuild.common]
   # Platform-specific
-  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x080000000              # Common Base Address
-
-  !if $(TARGET_RAM_SIZE) == 4
-    gArmTokenSpaceGuid.PcdSystemMemorySize|0x100000000            # 6GB
-  !endif
-
-  !if $(TARGET_RAM_SIZE) == 6
-    gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000            # 6GB
-  !endif
-
-  !if $(TARGET_RAM_SIZE) == 8
-    gArmTokenSpaceGuid.PcdSystemMemorySize|0x200000000            # 8GB
-  !endif
-
-  !if $(TARGET_RAM_SIZE) == 12
-    gArmTokenSpaceGuid.PcdSystemMemorySize|0x300000000            # 12GB
-  !endif
-
-  # SMBIOS
-  !if $(GET_INFO_FROM_DT) == FALSE
-    gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdGetSmBiosInfoFormDT|FALSE
-  !endif
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"$(BRAND)"
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"$(MODEL)"
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"$(RETAILMODEL)"
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"$(RETAIlSKU)"
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosBoardModel|"$(BOARDMODEL)"
-
-  # PStore
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPStoreBufferAddress|0x17FE00000
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPStoreBufferSize|0x00200000
-
-#
-# Screen Resolution Config
-#
+  gArmTokenSpaceGuid.PcdSystemMemorySize|0x100000000            # 4GB
 
 !include SurfaceDuo1Pkg/Sm8150Family.dsc.inc
 !include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PcdsFixedAtBuild.dsc.inc
 !include SurfaceDuoFamilyPkg/SurfaceDuoFamily.dsc.inc
 !include SurfaceDuoFamilyPkg/Frontpage.dsc.inc
+!include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/DXE.dsc.inc

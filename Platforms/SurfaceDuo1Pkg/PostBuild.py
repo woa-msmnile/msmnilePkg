@@ -9,7 +9,7 @@ output_dir = sdbuild.builder.GetOutputDirectory()
 device_dir = sdbuild.builder.GetTargetDeviceDirectory()
 dtb_name = sdbuild.builder.GetDTBName()
 root_dir = sdbuild.builder.GetWorkspaceRoot()
-image_name = sdbuild.builder.env.GetValue("TARGET_DEVICE") + "_" + sdbuild.builder.env.GetValue("TARGET_RAM_SIZE")+ 'G.img'
+image_name = sdbuild.builder.env.GetValue("TARGET_DEVICE")+'.img'
 
 bootpayload_path = os.path.join(output_dir, 'bootpayload.bin')
 output_path = os.path.join(output_dir, image_name)

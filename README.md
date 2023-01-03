@@ -2,7 +2,7 @@
 
 Thanks for [Gustave](https://github.com/gus33000)'s instructions!
 
-# Project Mu UEFI Implementation for SM8150 Devices
+# [Project Mu](https://microsoft.github.io/mu/) UEFI Implementation for SM8150 Devices
 
 ## Build
 
@@ -51,14 +51,12 @@ or
 ```
 
 5. Build UEFI
-> Usage: build_uefi.sh -d \<target-device\> -s \<target-ram-size\>  
-> Optional:  -B \<Brand\> -m \<Model\> -r \<RetailModel\> -u \<RetailSku\> -b \<BoardModel\>
+> Usage: build_uefi.sh -d \<target-device\>  
 
 ```
-./build_uefi.sh -d <target-name> -s <target-ram-size> [-m <Model> -r <RetailModel> -u <RetailSku> -b <BoardModel>]
+./build_uefi.sh -d <target-name>
 ```
-- Ram size should be 4, 6, 8, or 12.
-- You will see Build/\<target-name\>/\<target-name\>_\<target-ram-size\>G.img if it builds successfully.
+- You will see Build/\<target-device\>.img if it builds successfully.
 
 ## Target list
 
@@ -82,14 +80,15 @@ or
 | Xiaomi Poco X3 Pro | xiaomi-vayu         | ✅           | [Degdag](https://github.com/degdag)                |
 | Meizu 16T          | meizu-m928q         | ❌           | NONE                                               |
 | HTC 5G Hub         | htc-rtx             | ❌           | NONE                                               |
+| Xiaomi Mix Alpha u2| xiaomi-avenger      | ❌           | NONE                                               |
 
 ## Acknowledgements
 
-- [EFIDroid Project](http://efidroid.org)
 - Andrei Warkentin and his [RaspberryPiPkg](https://github.com/andreiw/RaspberryPiPkg)
 - Sarah Purohit
 - [Googulator](https://github.com/Googulator/)
 - [Ben (Bingxing) Wang](https://github.com/imbushuo/)
+- Samuel Tulach and his [Rainbow Patcher](https://github.com/SamuelTulach/rainbow)
 - [Renegade Project](https://github.com/edk2-porting/)
 - Lemon ICE
 

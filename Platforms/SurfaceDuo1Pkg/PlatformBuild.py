@@ -39,7 +39,7 @@ class CommonPlatform():
     TargetsSupported = ("DEBUG", "RELEASE", "NOOPT")
     Scopes = ('SurfaceDuo1', 'edk2-build', 'cibuild')
     WorkspaceRoot = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    PackagesPath = ("Platforms", "MU_BASECORE", "Common/MU", "Common/MU_TIANO", "Common/MU_OEM_SAMPLE", "Silicon/ARM/TIANO")
+    PackagesPath = ("Binaries", "Platforms", "MU_BASECORE", "Common/MU", "Common/MU_TIANO", "Common/MU_OEM_SAMPLE", "Silicon/ARM/TIANO")
 
 
     # ####################################################################################### #
@@ -199,7 +199,6 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
         ''' Return the name of device's dtb '''
         target_device = self.env.GetValue("TARGET_DEVICE")
         linenum = target_device.find('-') + 1
-        #print("The num is fsfsds: "+linenum);
         dtbname = target_device[(linenum):] + '.dtb'
         return dtbname
 
@@ -235,13 +234,6 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
         # Include the MFCI test cert by default, override on the commandline with "BLD_*_SHIP_MODE=TRUE" if you want the retail MFCI cert
         self.env.SetValue("BLD_*_SHIP_MODE", "FALSE", "Default")
         self.env.SetValue("BLD_*_TARGET_DEVICE", self.env.GetValue("TARGET_DEVICE"), "Default")
-        self.env.SetValue("BLD_*_TARGET_RAM_SIZE", self.env.GetValue("TARGET_RAM_SIZE"), "Default")
-        self.env.SetValue("BLD_*_MODEL", self.env.GetValue("MODEL"), "Default")
-        self.env.SetValue("BLD_*_BRAND", self.env.GetValue("BRAND"), "Default")
-        self.env.SetValue("BLD_*_RETAILMODEL", self.env.GetValue("RETAILMODEL"), "Default")
-        self.env.SetValue("BLD_*_RETAILSKU", self.env.GetValue("RETAILSKU"), "Default")
-        self.env.SetValue("BLD_*_BOARDMODEL", self.env.GetValue("BOARDMODEL"), "Default")
-        self.env.SetValue("BLD_*_GET_INFO_FROM_DT", self.env.GetValue("GET_INFO_FROM_DT"), "Default")
         self.env.SetValue("BLD_*_FDT", self.GetDTBName(), "Default")
         return 0
 

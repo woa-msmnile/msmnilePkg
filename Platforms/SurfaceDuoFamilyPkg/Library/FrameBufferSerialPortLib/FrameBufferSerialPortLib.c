@@ -3,6 +3,7 @@
 #include <Library/ArmLib.h>
 #include <Library/CacheMaintenanceLib.h>
 #include <Library/HobLib.h>
+#include <Library/MemoryMapHelperLib.h>
 #include <Library/SerialPortLib.h>
 
 #include <Resources/FbColor.h>
@@ -10,7 +11,9 @@
 
 #include <Library/FrameBufferSerialPortLib.h>
 
-FBCON_POSITION* p_Position = (FBCON_POSITION*)(FixedPcdGet32(PcdMipiFrameBufferAddress) + (FixedPcdGet32(PcdMipiFrameBufferWidth) * FixedPcdGet32(PcdMipiFrameBufferHeight) * FixedPcdGet32(PcdMipiFrameBufferPixelBpp) / 8));
+ARM_MEMORY_REGION_DESCRIPTOR_EX DisplayMemoryRegion;
+
+FBCON_POSITION* p_Position = NULL;
 FBCON_POSITION m_MaxPosition;
 FBCON_COLOR    m_Color;
 BOOLEAN        m_Initialized = FALSE;
@@ -39,6 +42,9 @@ SerialPortInitialize(VOID)
   if (m_Initialized)
     return RETURN_SUCCESS;
 
+  LocateMemoryMapAreaByName("Display Reserved", &DisplayMemoryRegion);
+  p_Position = (FBCON_POSITION*)(DisplayMemoryRegion.Address + (FixedPcdGet32(PcdMipiFrameBufferWidth) * FixedPcdGet32(PcdMipiFrameBufferHeight) * FixedPcdGet32(PcdMipiFrameBufferPixelBpp) / 8));
+
   // Reset console
   FbConReset();
 
@@ -51,7 +57,7 @@ SerialPortInitialize(VOID)
 void ResetFb(void)
 {
   // Clear current screen.
-  char *Pixels  = (void *)FixedPcdGet32(PcdMipiFrameBufferAddress);
+  char *Pixels  = (void *)DisplayMemoryRegion.Address;
   UINTN BgColor = FB_BGRA8888_BLACK;
 
   // Set to black color.
@@ -109,7 +115,7 @@ paint:
   BOOLEAN intstate = ArmGetInterruptState();
   ArmDisableInterrupts();
 
-  Pixels = (void *)FixedPcdGet32(PcdMipiFrameBufferAddress);
+  Pixels = (void *)DisplayMemoryRegion.Address;
   Pixels += p_Position->y * ((gBpp / 8) * FONT_HEIGHT * gWidth);
   Pixels += p_Position->x * scale_factor * ((gBpp / 8) * (FONT_WIDTH + 1));
 
@@ -245,7 +251,7 @@ void FbConDrawglyph(
 /* TODO: Take stride into account */
 void FbConScrollUp(void)
 {
-  unsigned short *dst   = (void *)FixedPcdGet32(PcdMipiFrameBufferAddress);
+  unsigned short *dst   = (void *)DisplayMemoryRegion.Address;
   unsigned short *src   = dst + (gWidth * FONT_HEIGHT);
   unsigned        count = gWidth * (gHeight - FONT_HEIGHT);
 
@@ -271,7 +277,7 @@ void FbConFlush(void)
   bytes_per_bpp = (gBpp / 8);
 
   WriteBackInvalidateDataCacheRange(
-      (void *)FixedPcdGet32(PcdMipiFrameBufferAddress),
+      (void *)DisplayMemoryRegion.Address,
       (total_x * total_y * bytes_per_bpp));
 }
 

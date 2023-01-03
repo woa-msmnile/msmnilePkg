@@ -20,19 +20,7 @@ EFI_STATUS
 CfgGetMemInfoByName(
     CHAR8 *RegionName, ARM_MEMORY_REGION_DESCRIPTOR_EX *MemRegions)
 {
-  PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
-      gDeviceMemoryDescriptorEx;
-
-  // Run through each memory descriptor
-  while (MemoryDescriptorEx->Length != 0) {
-    if (AsciiStriCmp(RegionName, MemoryDescriptorEx->Name) == 0) {
-      *MemRegions = *MemoryDescriptorEx;
-      return EFI_SUCCESS;
-    }
-    MemoryDescriptorEx++;
-  }
-
-  return EFI_NOT_FOUND;
+  return LocateMemoryMapAreaByName(RegionName, MemRegions);
 }
 
 STATIC
@@ -40,19 +28,7 @@ EFI_STATUS
 CfgGetMemInfoByAddress(
     UINT64 RegionBaseAddress, ARM_MEMORY_REGION_DESCRIPTOR_EX *MemRegions)
 {
-  PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
-      gDeviceMemoryDescriptorEx;
-
-  // Run through each memory descriptor
-  while (MemoryDescriptorEx->Length != 0) {
-    if (MemoryDescriptorEx->Address == RegionBaseAddress) {
-      *MemRegions = *MemoryDescriptorEx;
-      return EFI_SUCCESS;
-    }
-    MemoryDescriptorEx++;
-  }
-
-  return EFI_NOT_FOUND;
+  return LocateMemoryMapAreaByAddress(RegionBaseAddress, MemRegions);
 }
 
 STATIC
@@ -187,11 +163,12 @@ VOID InstallPlatformHob()
 
   if (!initialized) {
     UINTN Data  = (UINTN)&ShLib;
-    UINTN Data2 = 0x9FFFF000;
+    ARM_MEMORY_REGION_DESCRIPTOR_EX InfoBlk;
+    LocateMemoryMapAreaByName("Info Blk", &InfoBlk);
 
     BuildMemHobForFv(EFI_HOB_TYPE_FV2);
     BuildGuidDataHob(&gEfiShLibHobGuid, &Data, sizeof(Data));
-    BuildGuidDataHob(&gEfiInfoBlkHobGuid, &Data2, sizeof(Data2));
+    BuildGuidDataHob(&gEfiInfoBlkHobGuid, &InfoBlk.Address, sizeof(InfoBlk.Address));
 
     initialized = 1;
   }
