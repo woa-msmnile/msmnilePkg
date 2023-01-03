@@ -2,7 +2,6 @@
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2400
 
-
 # Smbios Info
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"Xiaomi"
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"Poco X3 Pro"
