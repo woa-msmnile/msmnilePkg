@@ -2,7 +2,7 @@
 Platforms/SurfaceDuoFamilyPkg/Include/Resources/ReleaseInfo.h
 Platforms/SurfaceDuo1Pkg/Include/Resources/ReleaseInfo.h
 Platforms/SurfaceDuo2Pkg/Include/Resources/ReleaseInfo.h
-Platforms/SurfacePkg/Include/Resources/ReleaseInfo.h
+Platforms/SurfaceDuo1Pkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.c
 
 # Local
 .DS_Store
@@ -19,8 +19,6 @@ tags/
 .vscode/
 *.bak
 BuildConfig.conf
-UpdateAcpi.sh
-DSDT.AML
 ACPI.inc
 build_uefi.sh
 DXEupdate.sh

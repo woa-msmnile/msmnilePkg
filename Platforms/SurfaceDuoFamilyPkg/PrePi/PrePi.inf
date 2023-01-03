@@ -7,6 +7,7 @@
 
 [Sources.common]
   Pi.c
+  InitializationUtils.c
   LinuxUtils.c
 
 [Sources.AARCH64]
@@ -37,6 +38,7 @@
   PlatformPrePiLib
   PrePiHobListPointerLib
   PrePiLib
+  MemoryMapHelperLib
 
 [Guids]
   gEfiSystemNvDataFvGuid
@@ -50,13 +52,15 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString
 
 [FixedPcd]
-  gArmTokenSpaceGuid.PcdSystemMemoryBase
-  gArmTokenSpaceGuid.PcdSystemMemorySize
   gArmTokenSpaceGuid.PcdCpuVectorBaseAddress
   gArmTokenSpaceGuid.PcdFdBaseAddress
   gArmTokenSpaceGuid.PcdFdSize
+  gArmTokenSpaceGuid.PcdGicRedistributorsBase
+  gArmTokenSpaceGuid.PcdSystemMemoryBase
+  gArmTokenSpaceGuid.PcdSystemMemorySize
   gEmbeddedTokenSpaceGuid.PcdPrePiStackBase
   gEmbeddedTokenSpaceGuid.PcdPrePiStackSize
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPreAllocatedMemorySize
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdUefiMemPoolSize
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp

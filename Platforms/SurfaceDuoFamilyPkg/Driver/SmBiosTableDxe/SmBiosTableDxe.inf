@@ -16,7 +16,6 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdGetSmBiosInfoFormDT
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorModel
@@ -43,13 +42,13 @@
   BaseMemoryLib
   DebugLib
   CompilerIntrinsicsLib
-  FdtLib
   DxeServicesLib
   MemoryAllocationLib
 
 [Protocols]
   gEfiSmbiosProtocolGuid
   gEfiChipInfoProtocolGuid
+  gEfiRamPartitionProtocolGuid
 
 [Depex]
   gEfiSmbiosProtocolGuid

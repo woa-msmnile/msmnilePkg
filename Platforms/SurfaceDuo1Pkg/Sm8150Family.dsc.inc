@@ -32,14 +32,6 @@
   gEmbeddedTokenSpaceGuid.PcdInterruptBaseAddress|0x09bc0000
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize|44
 
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdUefiMemPoolSize|0x8000000
-!if $(HAS_MLVM) == 1
-  # 0xA0000000 is occupied by MLVM, so we need to move this up a bit.
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x40300000  # Start here
-!else
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x20000000  # Start here
-!endif
-
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 855 @ 2.84 GHz"
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8150"
 
@@ -47,24 +39,27 @@
   gArmPlatformTokenSpaceGuid.PcdCoreCount|8
   gArmPlatformTokenSpaceGuid.PcdClusterCount|3
 
+  # UART
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdUartSerialBase|0x00A90000
+
 [LibraryClasses.common]
-  MemoryInitPeiLib|SurfaceDuo1Pkg/Library/MemoryInitPeiLib/PeiMemoryAllocationLib.inf
+  PlatformMemoryMapLib|SurfaceDuo1Pkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
   PlatformPeiLib|SurfaceDuo1Pkg/Library/PlatformPeiLib/PlatformPeiLib.inf
   PlatformPrePiLib|SurfaceDuo1Pkg/Library/PlatformPrePiLib/PlatformPrePiLib.inf
   AslUpdateLib|SurfaceDuoFamilyPkg/Library/DxeAslUpdateLib/DxeAslUpdateLib.inf
   RFSProtectionLib|SurfaceDuo1Pkg/Library/RFSProtectionLib/RFSProtectionLib.inf
 
-  MsPlatformDevicesLib|SurfaceDuo1Pkg/Library/MsPlatformDevicesLib/MsPlatformDevicesLib.inf
+  AcpiPlatformUpdateLib|SurfaceDuo1Pkg/Library/AcpiPlatformUpdateLib/AcpiPlatformUpdateLib.inf
   PlatformThemeLib|SurfaceDuo1Pkg/Library/PlatformThemeLib/PlatformThemeLib.inf
 
 [Components.common]
   # ACPI and SMBIOS
   # We use pre-built ACPI tables, so only core components are loaded
-  SurfaceDuo1Pkg/AcpiTables/SurfaceDuo1AcpiTables.inf
+  # SurfaceDuo1Pkg/AcpiTables/SurfaceDuo1AcpiTables.inf
 
-  SurfaceDuo1Pkg/Driver/KernelErrataPatcher/KernelErrataPatcher.inf
+  SurfaceDuoFamilyPkg/Driver/KernelErrataPatcher/KernelErrataPatcher.inf
 
-  SurfaceDuo1Pkg/Driver/GpioButtons/GpioButtons.inf
+  SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
 
   # Graphics Driver
 !if $(USE_SIMPLEFBDXE) == TRUE

@@ -11,44 +11,8 @@
 
 [Packages]
   MdePkg/MdePkg.dec
-  MdeModulePkg/MdeModulePkg.dec
-  EmbeddedPkg/EmbeddedPkg.dec
-  ArmPkg/ArmPkg.dec
   SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
-  SurfaceDuo1Pkg/SurfaceDuo1Pkg.dec
 
 [LibraryClasses]
-  ArmLib
-  ArmMmuLib
   BaseLib
-  DebugLib
   IoLib
-  ExtractGuidedSectionLib
-  LzmaDecompressLib
-  PeCoffGetEntryPointLib
-  PrePiHobListPointerLib
-  CacheMaintenanceLib
-  DebugAgentLib
-  SerialPortLib
-  MemoryAllocationLib
-  PrePiMemoryAllocationLib
-  PerformanceLib
-  HobLib
-  CompilerIntrinsicsLib
-  # Platform-specific libraries
-  MemoryInitPeiLib
-  PlatformPeiLib
-  PlatformPrePiLib
-  TimerLib
-  # MpPark
-  ArmSmcLib
-  PrintLib
-
-[Pcd]
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString
-
-[FixedPcd]
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferAddress
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp

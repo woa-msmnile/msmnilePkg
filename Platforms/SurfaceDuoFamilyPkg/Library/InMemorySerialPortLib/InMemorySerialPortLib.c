@@ -17,6 +17,9 @@ be found at http://opensource.org/licenses/bsd-license.php.
 #include <Library/BaseLib.h>
 #include <Library/CacheMaintenanceLib.h>
 #include <Library/SerialPortLib.h>
+#include <Library/MemoryMapHelperLib.h>
+
+ARM_MEMORY_REGION_DESCRIPTOR_EX PStore;
 
 /**
   Initialize the serial device hardware.
@@ -34,13 +37,13 @@ RETURN_STATUS
 EFIAPI
 SerialPortInitialize(VOID)
 {
-  return RETURN_SUCCESS;
+  return LocateMemoryMapAreaByName("PStore", &PStore);
 }
 
 static void mem_putchar(UINT8 c)
 {
-  UINTN              size   = FixedPcdGet32(PcdPStoreBufferSize) - sizeof(UINTN);
-  UINT8 *            base   = (UINT8 *)FixedPcdGet64(PcdPStoreBufferAddress);
+  UINTN              size   = PStore.Length - sizeof(UINTN);
+  UINT8 *            base   = (UINT8 *)PStore.Address;
   UINTN *            offset = (UINTN *)((UINTN)base + size);
 
   *offset                   = *offset % size;
