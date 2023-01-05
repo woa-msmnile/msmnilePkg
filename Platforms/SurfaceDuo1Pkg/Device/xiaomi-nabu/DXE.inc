@@ -143,16 +143,16 @@ FILE DRIVER = cccb0c28-4b24-11d5-9a5a-0090273fc14d {
     SECTION PE32 = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.efi
     SECTION UI = "GraphicsConsoleDxe"
 }
-
-FILE DRIVER = 32C71E68-83A8-46ED-AED1-094E71B12057 {
-    SECTION PE32 = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SecRSADxe/SecRSADxe.efi
-    SECTION UI = "SecRSADxe"
-}
-
-FILE DRIVER = C2F9A4F5-F7B4-43E7-BA99-5EA804CC103A {
-    SECTION PE32 = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ASN1X509Dxe/ASN1X509Dxe.inf
-    SECTION UI = "ASN1X509Dxe"
-}
+#
+#FILE DRIVER = 32C71E68-83A8-46ED-AED1-094E71B12057 {
+#    SECTION PE32 = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SecRSADxe/SecRSADxe.efi
+#    SECTION UI = "SecRSADxe"
+#}
+#
+#FILE DRIVER = C2F9A4F5-F7B4-43E7-BA99-5EA804CC103A {
+#    SECTION PE32 = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ASN1X509Dxe/ASN1X509Dxe.inf
+#    SECTION UI = "ASN1X509Dxe"
+#}
 
 FILE DRIVER = B7F50E91-A759-412C-ADE4-DCD03E7F7C28 {
     SECTION PE32 = Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/XhciDxe/XhciDxe.efi

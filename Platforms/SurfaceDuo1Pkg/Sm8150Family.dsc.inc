@@ -55,7 +55,7 @@
 [Components.common]
   # ACPI and SMBIOS
   # We use pre-built ACPI tables, so only core components are loaded
-  # SurfaceDuo1Pkg/AcpiTables/SurfaceDuo1AcpiTables.inf
+  #SurfaceDuo1Pkg/AcpiTables/SurfaceDuo1AcpiTables.inf
 
   SurfaceDuoFamilyPkg/Driver/KernelErrataPatcher/KernelErrataPatcher.inf
 
