@@ -95,6 +95,9 @@ python3 ./Platforms/SurfaceDuo1Pkg/StampBuild.py
 | Meizu 16T          | meizu-m928q         | ❌           | NONE                                               |
 | HTC 5G Hub         | htc-rtx             | ❌           | NONE                                               |
 | Xiaomi Mix Alpha u2| xiaomi-avenger      | ❌           | NONE                                               |
+| OPPO Reno 10X      | oppo-op46c3         | ❌           | NONE                                               |
+| OPPO Reno ACE      | oppo-pclm10         | ❌           | NONE                                               |
+| Realme X3          | realme-rmx2086      | ❌           | NONE                                               |
 
 ## Acknowledgements
 
