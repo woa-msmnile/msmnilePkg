@@ -68,8 +68,9 @@ python3 ../ImageResources/mkbootimg.py \
   --os_patch_level 2022-06-01 \
   --second_offset 0x0 \
 
-echo Builded.
-echo Path: ../Build/${TARGET_DEVICE}-AARCH64/${TARGET_DEVICE}_boot.img
+echo -e "\033[32mBuilt Image.\033[0m"
+echo -e "\033[36mPath: ../Build/${TARGET_DEVICE}-AARCH64/${TARGET_DEVICE}_boot.img\033[0m"
 
 # Clean Tmp
 rm -rf ../Build/${TARGET_DEVICE}-AARCH64/payload.bin ./BootShimTmp
+echo "Cleaned Up."
