@@ -60,7 +60,7 @@
   SurfaceDuoFamilyPkg/Driver/KernelErrataPatcher/KernelErrataPatcher.inf
 
   SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
-
+  SurfaceDuoFamilyPkg/Driver/LicenseDxe/LicenseDxe.inf
   # Graphics Driver
 !if $(USE_SIMPLEFBDXE) == TRUE
   SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
