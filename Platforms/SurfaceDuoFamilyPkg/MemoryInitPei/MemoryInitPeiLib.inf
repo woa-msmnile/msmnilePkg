@@ -1,21 +1,21 @@
 #/** @file
 #
 #  Copyright (c) 2011-2014, ARM Ltd. All rights reserved.<BR>
-#  Copyright (c) 2016, Linaro, Ltd. All rights reserved.<BR>
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
 #
 #**/
 
 [Defines]
   INF_VERSION                    = 0x00010005
-  BASE_NAME                      = MemoryInitPeiLib
-  FILE_GUID                      = 4bbc9c10-a100-43fb-8311-332ba497d1b4
+  BASE_NAME                      = ArmMemoryInitPeiLib
+  FILE_GUID                      = 55ddb6e0-70b5-11e0-b33e-0002a5d5c51b
   MODULE_TYPE                    = BASE
   VERSION_STRING                 = 1.0
   LIBRARY_CLASS                  = MemoryInitPeiLib|SEC PEIM
 
 [Sources]
   MemoryInitPeiLib.c
+
 
 [Packages]
   MdePkg/MdePkg.dec
@@ -30,13 +30,14 @@
   HobLib
   ArmMmuLib
   PlatformMemoryMapLib
+
 [Guids]
   gEfiMemoryTypeInformationGuid
 
 [FeaturePcd]
   gEmbeddedTokenSpaceGuid.PcdPrePiProduceMemoryTypeInformationHob
 
-[FixedPcd]
+[Pcd]
   gArmTokenSpaceGuid.PcdSystemMemoryBase
   gArmTokenSpaceGuid.PcdSystemMemorySize
 

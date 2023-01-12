@@ -12,6 +12,7 @@
 [BuildOptions.common]
   *_CLANG38_AARCH64_CC_FLAGS = -Wno-unused-const-variable -Wno-sometimes-uninitialized -Wno-unaligned-access -D CLANG
   *_*_*_CC_FLAGS = -march=armv8.2-a+crypto+rcpc -DUSE_MEMORY_FOR_SERIAL_OUTPUT=$(USE_MEMORY_FOR_SERIAL_OUTPUT) -DUSE_SCREEN_FOR_SERIAL_OUTPUT=$(USE_SCREEN_FOR_SERIAL_OUTPUT)
+  *_*_*_PP_FLAGS = -DICC_SGI1R=ICC_SGI1R_EL1
 
 [BuildOptions.common.EDKII.DXE_CORE,BuildOptions.common.EDKII.DXE_DRIVER,BuildOptions.common.EDKII.UEFI_DRIVER,BuildOptions.common.EDKII.UEFI_APPLICATION]
   *_*_*_DLINK_FLAGS = -z common-page-size=0x1000
@@ -133,6 +134,8 @@
   ArmGicLib|ArmPkg/Drivers/ArmGic/ArmGicLib.inf
   ArmHvcLib|ArmPkg/Library/ArmHvcLib/ArmHvcLib.inf
   ArmSmcLib|ArmPkg/Library/ArmSmcLib/ArmSmcLib.inf
+  ArmPlatformLib|SurfaceDuoFamilyPkg/Library/ArmPlatformLib/ArmPlatformLib.inf
+  ArmPlatformStackLib|ArmPlatformPkg/Library/ArmPlatformStackLib/ArmPlatformStackLib.inf
   TimerLib|ArmPkg/Library/ArmArchTimerLib/ArmArchTimerLib.inf
   BaseLib|MdePkg/Library/BaseLib/BaseLib.inf
   BaseMemoryLib|MdePkg/Library/BaseMemoryLib/BaseMemoryLib.inf
@@ -243,7 +246,7 @@
   VariableFlashInfoLib|MdeModulePkg/Library/BaseVariableFlashInfoLib/BaseVariableFlashInfoLib.inf
   PlatformPKProtectionLib|SecurityPkg/Library/PlatformPKProtectionLibVarPolicy/PlatformPKProtectionLibVarPolicy.inf
 
-  MemoryInitPeiLib|SurfaceDuoFamilyPkg/Library/MemoryInitPeiLib/PeiMemoryAllocationLib.inf
+  MemoryInitPeiLib|SurfaceDuoFamilyPkg/MemoryInitPei/MemoryInitPeiLib.inf
   MemoryMapHelperLib|SurfaceDuoFamilyPkg/Library/MemoryMapHelperLib/MemoryMapHelperLib.inf
 
   BaseCryptLib|CryptoPkg/Library/BaseCryptLib/BaseCryptLib.inf
@@ -369,7 +372,7 @@
 
 [Components.common]
   # PrePI
-  SurfaceDuoFamilyPkg/PrePi/PrePi.inf {
+   SurfaceDuoFamilyPkg/PrePi/PeiUniCore.inf {
     <LibraryClasses>
     !if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == 1
     !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
@@ -387,6 +390,10 @@
       SerialPortLib|MdePkg/Library/BaseSerialPortLibNull/BaseSerialPortLibNull.inf
     !endif
     !endif
+    !endif
+
+    !if $(CUST_PLATFORM_PRE_PI_LIB) == 1
+      PlatformPrePiLib|SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Library/PlatformPrePiLib/PlatformPrePiLib.inf
     !endif
   }
 

@@ -18,8 +18,21 @@
 #include <Library/IoLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/HobLib.h>
+#include <Library/SerialPortLib.h>
+#include <Library/ArmPlatformLib.h>
 
 extern UINT64  mSystemMemoryEnd;
+
+RETURN_STATUS
+EFIAPI
+TimerConstructor (
+  VOID
+  );
+
+VOID
+PrePiMain (
+  IN  UINT64  StartTimeStamp
+  );
 
 EFI_STATUS
 EFIAPI
@@ -37,6 +50,24 @@ PlatformPeim (
 // Either implemented by PrePiLib or by MemoryInitPei
 VOID
 BuildMemoryTypeInformationHob (
+  VOID
+  );
+
+EFI_STATUS
+GetPlatformPpi (
+  IN  EFI_GUID  *PpiGuid,
+  OUT VOID      **Ppi
+  );
+
+// Initialize the Architecture specific controllers
+VOID
+ArchInitialize (
+  VOID
+  );
+
+VOID
+EFIAPI
+ProcessLibraryConstructorList (
   VOID
   );
 

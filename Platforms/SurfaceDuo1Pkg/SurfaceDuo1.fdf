@@ -25,11 +25,11 @@
 !endif
 
 [FD.SM8150_EFI]
-BaseAddress   = 0xD0000000|gArmTokenSpaceGuid.PcdFdBaseAddress #The base address of the FLASH Device.
-Size          = 0x00600000|gArmTokenSpaceGuid.PcdFdSize        #The size in bytes of the FLASH Device
+BaseAddress   = 0x9FC00000|gArmTokenSpaceGuid.PcdFdBaseAddress #The base address of the FLASH Device.
+Size          = 0x00300000|gArmTokenSpaceGuid.PcdFdSize        #The size in bytes of the FLASH Device
 ErasePolarity = 1
 BlockSize     = 0x200
-NumBlocks     = 0x3000
+NumBlocks     = 0x1800
 
 ################################################################################
 #
@@ -46,7 +46,7 @@ NumBlocks     = 0x3000
 # RegionType <FV, DATA, or FILE>
 #
 ################################################################################
-0x00000000|0x00600000
+0x00000000|0x00300000
 gArmTokenSpaceGuid.PcdFvBaseAddress|gArmTokenSpaceGuid.PcdFvSize
 FV = FVMAIN_COMPACT
 
@@ -130,6 +130,12 @@ READ_LOCK_STATUS   = TRUE
   INF EmbeddedPkg/Drivers/DtPlatformDxe/DtPlatformDxe.inf
   FILE FREEFORM = 25462CDA-221F-47DF-AC1D-259CFAA4E326 {
     SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/$(FDT)
+  }
+
+  # License
+  INF SurfaceDuoFamilyPkg/Driver/LicenseDxe/LicenseDxe.inf
+  FILE FREEFORM = 5343A3C2-B6DA-8FF4-EF3A-23FEF9941C76 {
+    SECTION RAW = SurfaceDuo1Pkg/Include/Resources/License.txt
   }
 
   INF MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
@@ -220,7 +226,7 @@ READ_STATUS        = TRUE
 READ_LOCK_CAP      = TRUE
 READ_LOCK_STATUS   = TRUE
 
-  INF SurfaceDuoFamilyPkg/PrePi/PrePi.inf
+  INF SurfaceDuoFamilyPkg/PrePi/PeiUniCore.inf
 
   FILE FV_IMAGE = 9E21FD93-9C72-4c15-8C4B-E77F1DB2D792 {
     SECTION GUIDED EE4E5898-3914-4259-9D6E-DC7BD79403CF PROCESSING_REQUIRED = TRUE {

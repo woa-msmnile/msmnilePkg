@@ -1,12 +1,7 @@
-#include <Library/ArmLib.h>
 #include <Library/BaseLib.h>
-#include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>
-#include <Library/HobLib.h>
 #include <Library/IoLib.h>
-#include <Library/MemoryAllocationLib.h>
 #include <Library/PcdLib.h>
-#include <Library/PrintLib.h>
 #include <Library/SerialPortLib.h>
 
 #include <Library/MemoryMapHelperLib.h>
@@ -61,4 +56,7 @@ VOID EarlyInitialization(VOID)
   MmioWrite32(
       GICR_WAKER_CURRENT_CPU,
       (MmioRead32(GICR_WAKER_CURRENT_CPU) & ~GIC_WAKER_PROCESSORSLEEP));
+
+  // Do platform specific initialization here
+  PlatformInitialize();
 }

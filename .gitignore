@@ -9,6 +9,7 @@ Platforms/SurfaceDuo1Pkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.c
 .vs
 .vscode
 .img
+scripts/padding
 
 /Build/
 .DS_Store

@@ -7,5 +7,5 @@ sudo apt -y install python3-venv pip git mono-devel build-essential nuget build-
 # Clang LLVM
 sudo apt install -y clang llvm gcc-aarch64-linux-gnu
 
-export CLANG38_BIN=/usr/lib/llvm-38/bin/
+export CLANG38_BIN=/usr/lib/llvm-11/bin/
 export CLANG38_AARCH64_PREFIX=aarch64-linux-gnu-

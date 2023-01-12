@@ -30,9 +30,6 @@
   MdeModulePkg/MdeModulePkg.dec
   SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
 
-[Guids]
-  gDtPlatformDefaultDtbFileGuid
-
 [LibraryClasses]
   BaseLib
   ReportStatusCodeLib

@@ -16,28 +16,26 @@
 #include <Library/PcdLib.h>
 #include <Library/PlatformMemoryMapLib.h>
 
-extern UINT64 mSystemMemoryEnd;
-
-VOID BuildMemoryTypeInformationHob(VOID);
-
+VOID
+BuildMemoryTypeInformationHob (
+  VOID
+  );
 
 STATIC
-VOID InitMmu(IN ARM_MEMORY_REGION_DESCRIPTOR *MemoryTable)
+VOID
+InitMmu (
+  IN ARM_MEMORY_REGION_DESCRIPTOR  *MemoryTable
+  )
 {
+  VOID           *TranslationTableBase;
+  UINTN          TranslationTableSize;
+  RETURN_STATUS  Status;
 
-  VOID *        TranslationTableBase;
-  UINTN         TranslationTableSize;
-  RETURN_STATUS Status;
-
-  // Note: Because we called PeiServicesInstallPeiMemory() before
-  // to call InitMmu() the MMU Page Table resides in
-  // RAM (even at the top of DRAM as it is the first permanent memory
-  // allocation)
-  Status = ArmConfigureMmu(
-      MemoryTable, &TranslationTableBase, &TranslationTableSize);
-
-  if (EFI_ERROR(Status)) {
-    DEBUG((EFI_D_ERROR, "Error: Failed to enable MMU: %r\n", Status));
+  // Note: Because we called PeiServicesInstallPeiMemory() before to call InitMmu() the MMU Page Table resides in
+  //      DRAM (even at the top of DRAM as it is the first permanent memory allocation)
+  Status = ArmConfigureMmu (MemoryTable, &TranslationTableBase, &TranslationTableSize);
+  if (EFI_ERROR (Status)) {
+    DEBUG ((DEBUG_ERROR, "Error: Failed to enable MMU\n"));
   }
 }
 
@@ -74,28 +72,31 @@ Returns:
 --*/
 EFI_STATUS
 EFIAPI
-MemoryPeim(IN EFI_PHYSICAL_ADDRESS UefiMemoryBase, IN UINT64 UefiMemorySize)
+MemoryPeim (
+  IN EFI_PHYSICAL_ADDRESS  UefiMemoryBase,
+  IN UINT64                UefiMemorySize
+  )
 {
 
   PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
       GetPlatformMemoryMap();
   ARM_MEMORY_REGION_DESCRIPTOR
-        MemoryDescriptor[MAX_ARM_MEMORY_REGION_DESCRIPTOR_COUNT];
+        MemoryTable[MAX_ARM_MEMORY_REGION_DESCRIPTOR_COUNT];
   UINTN Index = 0;
 
   // Ensure PcdSystemMemorySize has been set
-  ASSERT(PcdGet64(PcdSystemMemorySize) != 0);
+  ASSERT (PcdGet64 (PcdSystemMemorySize) != 0);
 
   // Run through each memory descriptor
   while (MemoryDescriptorEx->Length != 0) {
     switch (MemoryDescriptorEx->HobOption) {
     case AddMem:
+    case AddDev:
     case HobOnlyNoCacheSetting:
     case AllocOnly:
       AddHob(MemoryDescriptorEx);
       break;
     case NoHob:
-    case AddDev:
     default:
       goto update;
     }
@@ -108,10 +109,10 @@ MemoryPeim(IN EFI_PHYSICAL_ADDRESS UefiMemoryBase, IN UINT64 UefiMemorySize)
   update:
     ASSERT(Index < MAX_ARM_MEMORY_REGION_DESCRIPTOR_COUNT);
 
-    MemoryDescriptor[Index].PhysicalBase = MemoryDescriptorEx->Address;
-    MemoryDescriptor[Index].VirtualBase  = MemoryDescriptorEx->Address;
-    MemoryDescriptor[Index].Length       = MemoryDescriptorEx->Length;
-    MemoryDescriptor[Index].Attributes   = MemoryDescriptorEx->ArmAttributes;
+    MemoryTable[Index].PhysicalBase = MemoryDescriptorEx->Address;
+    MemoryTable[Index].VirtualBase  = MemoryDescriptorEx->Address;
+    MemoryTable[Index].Length       = MemoryDescriptorEx->Length;
+    MemoryTable[Index].Attributes   = MemoryDescriptorEx->ArmAttributes;
 
     Index++;
     MemoryDescriptorEx++;
@@ -119,19 +120,17 @@ MemoryPeim(IN EFI_PHYSICAL_ADDRESS UefiMemoryBase, IN UINT64 UefiMemorySize)
 
   // Last one (terminator)
   ASSERT(Index < MAX_ARM_MEMORY_REGION_DESCRIPTOR_COUNT);
-  MemoryDescriptor[Index].PhysicalBase = 0;
-  MemoryDescriptor[Index].VirtualBase  = 0;
-  MemoryDescriptor[Index].Length       = 0;
-  MemoryDescriptor[Index].Attributes   = 0;
+  MemoryTable[Index].PhysicalBase = 0;
+  MemoryTable[Index].VirtualBase  = 0;
+  MemoryTable[Index].Length       = 0;
+  MemoryTable[Index].Attributes   = 0;
 
   // Build Memory Allocation Hob
-  DEBUG((EFI_D_INFO, "Configure MMU In \n"));
-  InitMmu(MemoryDescriptor);
-  DEBUG((EFI_D_INFO, "Configure MMU Out \n"));
+  InitMmu (MemoryTable);
 
-  if (FeaturePcdGet(PcdPrePiProduceMemoryTypeInformationHob)) {
+  if (FeaturePcdGet (PcdPrePiProduceMemoryTypeInformationHob)) {
     // Optional feature that helps prevent EFI memory map fragmentation.
-    BuildMemoryTypeInformationHob();
+    BuildMemoryTypeInformationHob ();
   }
 
   return EFI_SUCCESS;

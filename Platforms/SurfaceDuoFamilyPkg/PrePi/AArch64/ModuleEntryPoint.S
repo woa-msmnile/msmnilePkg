@@ -1,22 +1,16 @@
-#include <Library/PcdLib.h>
+//
+//  Copyright (c) 2011 - 2020, Arm Limited. All rights reserved.<BR>
+//
+//  SPDX-License-Identifier: BSD-2-Clause-Patent
+//
+//
+
 #include <AsmMacroIoLibV8.h>
-#include <Chipset/AArch64.h>
 
 .text
 .align 3
 
 .set CTRL_SPAN_BIT, (1 << 23)
-
-GCC_ASM_IMPORT (CEntryPoint)
-GCC_ASM_IMPORT (SecondaryCEntryPoint)
-GCC_ASM_IMPORT (ContinueToLinuxIfAllowed)
-
-GCC_ASM_IMPORT (ArmEnableInstructionCache)
-GCC_ASM_IMPORT (ArmEnableDataCache)
-GCC_ASM_IMPORT (ArmInvalidateTlb)
-
-GCC_ASM_EXPORT (_ModuleEntryPoint)
-GCC_ASM_EXPORT (SecondaryCpuEntry)
 
 .global _StackBase
 .global _StackSize
@@ -27,10 +21,16 @@ _StackBase:
 _StackSize:
   .quad FixedPcdGet32(PcdPrePiStackSize)
 
-_ModuleEntryPoint:
-  /* Continue to linux if allowed */
-  bl ASM_PFX(ContinueToLinuxIfAllowed)
+ASM_FUNC(_ModuleEntryPoint)
+  // Do early platform specific actions
+  bl    ASM_PFX(ArmPlatformPeiBootAction)
 
+  // Get ID of this CPU in multi-core system
+  bl    ASM_PFX(ArmReadMpidr)
+  // Keep a copy of the MpId register value
+  mov   x10, x0
+
+_SetSVCMode:
   mov x0, #0
   mov x1, #0
 
@@ -54,12 +54,7 @@ _SetupExceptionVector:
   ldr x0, =FixedPcdGet64(PcdCpuVectorBaseAddress)
   bl ArmWriteVBar
 
-  mrs     x4, mpidr_el1
-  and     x4, x4, #0xFFFF
-  lsr     x4, x4, #8
-  cbnz    x4, SecondaryCpuEntry
-
-  ldr x1, dead
+  ldr x1, _NeverReturn
   add x2, x0, #0x800
   mov x3, x0
 
@@ -103,48 +98,23 @@ _EnableCache:
   bl ASM_PFX(ArmEnableDataCache)
 
 _PrepareArguments:
-  /* x0 = _StackBase and x1 = _StackSize */
-  ldr x0, _StackBase     /* Stack base arg0 */
-  ldr x1, _StackSize     /* Stack size arg1 */
+  mov   x0, x10
+  mov   x1, x11
+  mov   x2, x12
 
-  bl CEntryPoint
+  // Move sec startup address into a data register
+  // Ensure we're jumping to FV version of the code (not boot remapped alias)
+  ldr   x4, =ASM_PFX(CEntryPoint)
+
+  // Set the frame pointer to NULL so any backtraces terminate here
+  mov   x29, xzr
+
+  // Jump to PrePiCore C code
+  //    x0 = MpId
+  //    x1 = UefiMemoryBase
+  //    x2 = StacksBase
+  blr   x4
 
 .align 3
-dead:
-  b dead                      /* We should never get here */
-
-SecondaryCpuEntry:
-  /* Keep the incoming index */
-  mov x19, x4
-
-  mov x5, #0x8
-  sub x4, x5, x4
-
-  ubfiz x2, x4, #15, #8
-
-_SetupSecondaryCoreStack:
-  ldr x3, _StackBase     /* Stack base arg0 */
-
-  add x2, x3, x2
-  sub x3, x2, #0x8000    /* Stack size arg1 */
-
-  mov x4, xzr
-  mov x5, xzr
-
-_ClearStackSecondary:
-  /* Assumes StackBase is 128-bit aligned, StackSize is a multiple of 16B */
-  stp     x4, x5, [x3], #16
-  cmp     x3, x2                                   /* Compare Size */
-  b.lt    _ClearStackSecondary
-
-  add sp, x2, xzr                                  /* Initalize SP */
-
-  bl ArmInvalidateDataCache
-
-  /* Enter MpPark spin */
-  mov x0, x19
-  bl SecondaryCEntryPoint
-
-secondarydead:
-  wfe
-  b secondarydead                      /* We should never get here */
+_NeverReturn:
+  b _NeverReturn
