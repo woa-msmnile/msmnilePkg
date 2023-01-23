@@ -54,7 +54,7 @@ ___
     `-- PythonLibs
     ```
     - **AcpiTables/**
-      * *Stores ACPI tables except DSDT table.*
+      * *Stores ACPI tables.*
     - **Device/**
       * *Stores each device's specific binaries and configurations.*
       * *The subfolder's name should be `brand-codename`.*
@@ -73,27 +73,44 @@ ___
   - Let's take a closer look at `Device/nubia-tp1803`. 
     ```
     ~/mu-msmnile/Platforms/SurfaceDuo1Pkg/Device$ tree -L 1  nubia-tp1803/
-    |-- ACPI
-    |-- Binaries
-    |-- DXE_Spec.inc
-    |-- Defines.dsc.inc
-    |-- PatchedBinaries
-    |-- PcdsFixedAtBuild.dsc.inc
-    `-- tp1803.dtb
+    ├── ACPI
+    ├── APRIORI.inc
+    ├── Binaries
+    ├── Defines.dsc.inc
+    ├── DeviceTreeBlob
+    ├── DXE.dsc.inc
+    ├── DXE.inc
+    ├── Library
+    ├── PatchedBinaries
+    └── PcdsFixedAtBuild.dsc.inc
     ```
     - **ACPI/**
       * *Stores device's dsdt table.*
     - **Binaries/**
       * *Stores device's firmware binaries.*
-    - **Defines.dsc.inc**
-      * *Config of special flags.*
     - **PatchedBinaries/**
       * *As its name, it stores patched binaries for the device.*
+    - **Library/**
+      * *Put device specific Library*
+    - **DeviceTreeBlob/**
+      * *Put device tree blob*
+        - *In subdir `Linux` stores mainline linux dtb, file name must be `linux-codename.dtb`*
+        - *In subdir `Android` store Android dtb, file name must be `android-codename.dtb`*
+    - **APRIORI.inc**
+      * *Load Order of Dxe*
+      * *Included by SurfaceDuo1.fdf*
+    - **DXE.dsc**
+      * *Declare Drivers*
+      * *Included by SurfaceDuo1.fdf*
+    - **DXE.dsc.inc**
+      * *Declare Drivers*
+      * *Included by SurfaceDuo1.dsc*
+    - **Defines.dsc.inc**
+      * *Macros for special use.*
+      * *For detailed about Macros, please read [DefinesGuidance.md](DefinesGuidance.md)*
     - **PcdsFixedAtBuild.dsc.inc**
       * *Included by SurfaceDuo1.dsc.*
       * *Stores device specific pcds. (e.g Screen resolution)*
-    - **tp1803.dtb**
-      * *must be `codename.dtb`.*
 ___
 ## **Part 1.** Early porting and tests.
   - For example, porting uefi for meizu 16T.
@@ -127,9 +144,10 @@ ___
     6. Enable MLVM in `Defines.dsc.inc` (FALSE -> TRUE)
     7. Edit resolution in `PcdFixedAtBuild.dsc.inc`.
     8. Patch your device's dxe and put them under `PatchedBinaries/`.
-    9. Replace `guacamole.dtb` with `m928q.dtb` (you can find your device's dtb in `/sys/firmware/fdt`, or see [Additions](#additions))
-    10. Build it.
-    11. Test it.
+    9. Replace `android-guacamole.dtb` with `android-m928q.dtb` (you can find your device's dtb in `/sys/firmware/fdt`, or see [Additions](#additions))
+    10. Replace `linux-guacamole.dtb` with `linux-m928q.dtb`.(if you do not have, create a dummy one by `touch linux-m928q.dtb`)
+    11. Build it.
+    12. Test it.
         + *Connect your phone to your computer and execute it on your computer.*
           ```
           adb reboot bootloader
@@ -190,27 +208,16 @@ ___
 ___
 ## **Additions**
   - How to get dtb of my device? *assume in termux environment*
-    * Clone and compile [split-appended-dtb](https://github.com/MoetaYuko/split-appended-dtb)
-      ```
-      git clone https://github.com/MoetaYuko/split-appended-dtb.git ~/split-appended-dtb
-      cd ~/split-appended-dtb
-      gcc split-appended-dtb.c -o split-appended-dtb
-      ```
+    * Download Magiskboot. ([Prebuilt](https://github.com/TeamWin/external_magisk-prebuilt/blob/android-11/prebuilt/))
     * Get boot image from your phone.
       ```
       sudo cp /dev/block/by-name/boot ~/split-appended-dtb/myboot.img
       ```
     * Split dtbs from you phone's boot.
       ```
-      ./split-appended-dtb myboot.img
+      ./magiskboot_arm unpack myboot.img
       ```
-    * Choose the `SM8150 V2` one. *or V1? It depends on what your phone has.*
-      ```
-      $ grep -rn "SM8150 V2"
-        dtbdump_8.dtb: binary file matches
-      ```
-    * So the dtbdump_8.dtb is your phone's basic dtb. 
-    * Renamed it to `codename.dtb` and put it into Device/*brand-codename*/.
+    * Renamed `kernel_dtb` to android-`codename`.dtb and put it into Device/*\<brand-codename\>*/DeviceTreeBlob/Android/.
   - Should MLVM always be `TRUE`?
     * In early test you can set it to `TRUE` to avoid MLVM issue.
     * If you can boot windows, turn it to `FALSE` and have a try.
