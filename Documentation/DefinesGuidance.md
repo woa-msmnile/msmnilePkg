@@ -1,6 +1,6 @@
 ## This Doc will indroduce some Defines you may need in Defines.dsc.inc
 ___
-> `HAS_MLVM`  
+> **HAS_MLVM**  
   * Type
     - Boolean
   * Why define it ?
@@ -12,7 +12,7 @@ ___
   * Where used it ?
     - `HAS_MLVM` is used in Platforms/SurfaceDuoFamilyPkg/Driver/RamPartitionDxe/ExtendedMemoryMap.h.
 
-> `CUST_PLATFORM_PRE_PI_LIB`  
+> **CUST_PLATFORM_PRE_PI_LIB**  
   * Type
     - Boolean
   * Why define it ?
