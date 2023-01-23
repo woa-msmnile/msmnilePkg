@@ -15,7 +15,7 @@ bootpayload_path = os.path.join(output_dir, 'bootpayload.bin')
 output_path = os.path.join(output_dir, image_name)
 fd_path = os.path.join(outputbin_dir, 'FV', 'SM8150_EFI.fd')
 bootshim_path = os.path.join(root_dir, 'BootShim', 'BootShim.bin')
-dtb_path = os.path.join(device_dir, dtb_name)
+dtb_path = os.path.join(device_dir, 'DeviceTreeBlob', 'Android', 'android-' + dtb_name)
 
 logging.info("Generating bootpayload.bin")
 

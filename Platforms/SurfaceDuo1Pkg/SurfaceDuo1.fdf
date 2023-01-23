@@ -129,7 +129,7 @@ READ_LOCK_STATUS   = TRUE
   # DT
   INF EmbeddedPkg/Drivers/DtPlatformDxe/DtPlatformDxe.inf
   FILE FREEFORM = 25462CDA-221F-47DF-AC1D-259CFAA4E326 {
-    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/$(FDT)
+    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/DeviceTreeBlob/Linux/linux-$(FDT)
   }
 
   # License

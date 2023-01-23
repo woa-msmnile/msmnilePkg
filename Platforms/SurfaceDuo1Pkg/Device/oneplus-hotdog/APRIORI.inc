@@ -16,7 +16,6 @@ APRIORI DXE {
     INF ArmPkg/Drivers/TimerDxe/TimerDxe.inf
     INF ArmPkg/Drivers/ArmPsciMpServicesDxe/ArmPsciMpServicesDxe.inf
     INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
-    INF SurfaceDuoFamilyPkg/Driver/LicenseDxe/LicenseDxe.inf
     INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/EnvDxe/EnvDxe.inf
     INF SurfaceDuoFamilyPkg/Driver/RamPartitionDxe/RamPartitionDxe.inf
     INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SmemDxe/SmemDxe.inf
@@ -168,4 +167,13 @@ APRIORI DXE {
             SECTION PE32 = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.efi
             SECTION UI = "GraphicsConsoleDxe"
     }
+
+
+ FILE DRIVER = ded3572e-8f28-498c-af6d-94c3dec9292c {
+            SECTION DXE_DEPEX = SurfaceDuo1Pkg/Device/xiaomi-andromeda/Binaries/PciHelperDxe.depex
+            SECTION PE32 = SurfaceDuo1Pkg/Device/xiaomi-andromeda/Binaries/PciHelperDxe.efi
+            SECTION UI = "PciHelperDxe"
+    }
+    INF SurfaceDuoFamilyPkg/Driver/LicenseDxe/LicenseDxe.inf
+
 }
