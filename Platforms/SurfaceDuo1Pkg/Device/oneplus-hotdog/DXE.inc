@@ -5,12 +5,6 @@ FILE FREEFORM = DDE58710-41CD-4306-DBFB-3FA90BB1D2DD {
     SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/uefiplat.cfg
 }
 
- FILE DRIVER = ded3572e-8f28-498c-af6d-94c3dec9292c {
-            SECTION DXE_DEPEX = SurfaceDuo1Pkg/Device/xiaomi-andromeda/Binaries/PciHelperDxe.depex
-            SECTION PE32 = SurfaceDuo1Pkg/Device/xiaomi-andromeda/Binaries/PciHelperDxe.efi
-            SECTION UI = "PciHelperDxe"
-    }
-
 INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/AdapterInformationDxe/AdapterInformationDxe.inf
 INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/CPRDxe/CPRDxe.inf
 INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/GLinkDxe/GLinkDxe.inf
