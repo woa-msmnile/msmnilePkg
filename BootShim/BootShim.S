@@ -1,17 +1,17 @@
 _Head:
 	/* Set _Entry address */
-	adr		x1, _Payload //Kernel Addr
+	adr		x1, _Payload // 保存Payload地址到x1
 	/* Jump to the real code */
-	b		_Start
+	b		_Start       // 跳转到_Start处运行
 	/* Fake Linux kernel header */
 
 _StackBase:
 	/* Text Offset */
-	.quad UEFI_BASE
+	.quad UEFI_BASE // UEFI FD 基地址
 
 _StackSize:
 	/* Image Size */
-	.quad UEFI_SIZE
+	.quad UEFI_SIZE // UEFI FD 大小
 
 	/* Flags */
 	.quad 0
@@ -33,16 +33,16 @@ _StackSize:
 
 // Alignment Patch Start
 _PaddingSize:
-    .quad PADDING_SIZE
+    .quad PADDING_SIZE // 2MB对齐 空白文件大小
 // Alignment Patch End
 
 _Start:
-    adr     x7, _Head   // 保存abl头地址到x7
-	mov		x4, x1         // 将Payload的起始地址保存到x4之中
-	ldr		x5, _StackBase // 将StackBase保存到x5
-	cmp		x4, x5         // 判断 StackBase是否为UEFI FD地址
-	beq		_Entry         // 如果是，那么就直接跳转到Entry
-	ldr		x6, _StackSize // 将StackSize 保存到 x6
+    adr     x7, _Head       // 保存abl头地址到x7
+	mov		x4, x1          // 将Payload的起始地址保存到x4之中
+	ldr		x5, _StackBase  // 将StackBase保存到x5
+	cmp		x4, x5          // 判断 StackBase是否为UEFI FD地址
+	beq		_Entry          // 如果是，那么就直接跳转到Entry
+	ldr		x6, _StackSize  // 将StackSize 保存到 x6
 
 // 拷贝UEFI FD 到Stack Base, 拷贝的大小为Stack Size
 _CopyLoop:
@@ -54,12 +54,11 @@ _CopyLoop:
 
 // Alignment Patch Start
 _PatchPayLoadAddr:
-    // Save PaddingSize to reg
     // x1: Payload Addr
     // x1 + FD Size + Padding Size = Linux Kernel
     // Linux Utils will add FD Size later.
-    ldr x2, _PaddingSize
-    add x1, x1, x2
+    ldr x2, _PaddingSize // 将_PaddingSize中的内容加载到x2中
+    add x1, x1, x2          // 计算x1与x2的和
 // Alignment Patch End
 
 _Entry:
@@ -67,7 +66,7 @@ _Entry:
 
 _Dead:
 	/* We should never get here */
-	b		_Dead
+	b		_Dead // 死循环
 
 .text
 .align 4
