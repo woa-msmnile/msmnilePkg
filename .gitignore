@@ -21,9 +21,8 @@ tags/
 *.bak
 BuildConfig.conf
 ACPI.inc
-build_uefi.sh
-DXEupdate.sh
 uefi_*.img
+android-boot.img
 
 /Conf/
 /SurfaceDuo/
