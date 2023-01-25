@@ -99,7 +99,7 @@ if [ ${HEADERVER} -eq 1 ]; then
       --second_offset 0x0
 fi
 
-if [ ${HEADERVER} -eq 2 ]; then
+if [ ${HEADERVER} -eq 2 ] || [ ${HEADERVER} -eq 3 ]; then
     # Make Payload
     cat  ./tmp/BootShimTmp/BootShim.bin ${FD} ./tmp/padding ${KERNEL} > ./tmp/payload.bin
 
@@ -110,7 +110,7 @@ if [ ${HEADERVER} -eq 2 ]; then
       -o android-boot.img \
       --dtb  ${DT} \
       --pagesize 0x1000 \
-      --header_version 2 \
+      --header_version ${HEADERVER} \
       --cmdline "${cmds}" \
       --base 0x0 \
       --os_version 11.0.0 \
