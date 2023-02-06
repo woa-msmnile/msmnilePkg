@@ -77,14 +77,18 @@ python3 ./Platforms/SurfaceDuo1Pkg/StampBuild.py
 | Device             | Target name            | DSDT Support    | Maintainers                                        |
 |--------------------|------------------------|-----------------|----------------------------------------------------|
 | ASUS ROG2          | asus-I001DC            | ✅              | [Ww](https://github.com/Idonotkno)                 |
+| BlackShark 2       | blackshark-skywalker   | ❌              | NONE                                               |
 | BlackShark 2 Pro   | blackshark-darklighter | ❌              | NONE                                               |
 | HTC 5G Hub         | htc-rtx                | ❌              | NONE                                               |
+| LG G8              | iqoo-pd1936            | ❌              | NONE                                               |
 | LG G8              | lg-alphaplus           | ✅              | [Yanhua](https://github.com/yanhua-tj)             |
 | LG G8S             | lg-betalm              | ✅              | [J0SH1X](https://github.com/J0SH1X)                |
 | LG G8X             | lg-mh2lm               | ✅              | [Molly Sophia](https://github.com/MollySophia)     |
 | LG V50             | lg-flashlmdd           | ✅              | [AKA](https://github.com/AKAsaliza)                |
 | LG V50S            | lg-mh2lm5g             | ✅              | [AKA](https://github.com/AKAsaliza)                |
 | Meizu 16T          | meizu-m928q            | ❌              | NONE                                               |
+| Nubia RedMagic 3   | nubia-nx629j           | ❌              | NONE                                               |
+| Nubia RedMagic 3S  | nubia-nx629jv1s        | ❌              | NONE                                               |
 | Nubia Mini 5G      | nubia-tp1803           | ✅              | [Alula](https://github.com/alula)                  |
 | OnePlus 7          | oneplus-guacamoleb     | ❌              | NONE                                               |
 | OnePlus 7 Pro      | oneplus-guacamole      | ✅              | [Waseem Alkurdi](https://github.com/WaseemAlkurdi) |
