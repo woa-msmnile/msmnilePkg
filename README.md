@@ -74,31 +74,36 @@ python3 ./Platforms/SurfaceDuo1Pkg/StampBuild.py
 
 ## Target list
 
-| Device             | Target name         | DSDT Support    | Maintainers                                        |
-|--------------------|---------------------|-----------------|----------------------------------------------------|
-| ASUS ROG2          | asus-I001DC         | ✅           | [Ww](https://github.com/Idonotkno)                 |
-| HTC 5G Hub         | htc-rtx             | ❌           | NONE                                               |
-| LG G8              | lg-alphaplus        | ✅           | [Yanhua](https://github.com/yanhua-tj)             |
-| LG G8S             | lg-betalm           | ✅           | [J0SH1X](https://github.com/J0SH1X)                |
-| LG G8X             | lg-mh2lm            | ✅           | [Molly Sophia](https://github.com/MollySophia)     |
-| LG V50             | lg-flashlmdd        | ✅           | [AKA](https://github.com/AKAsaliza)                |
-| LG V50S            | lg-mh2lm5g          | ✅           | [AKA](https://github.com/AKAsaliza)                |
-| Meizu 16T          | meizu-m928q         | ❌           | NONE                                               |
-| Nubia Mini 5G      | nubia-tp1803        | ✅           | [Alula](https://github.com/alula)                  |
-| OnePlus 7          | oneplus-guacamoleb  | ❌           | NONE                                               |
-| OnePlus 7 Pro      | oneplus-guacamole   | ✅           | [Waseem Alkurdi](https://github.com/WaseemAlkurdi) |
-| OnePlus 7T Pro     | oneplus-hotdog      | ✅           | [sunflower2333](https://github.com/sunflower2333)&[Morc](https://github.com/TheMorc)|
-| OPPO Reno 10X      | oppo-op46c3         | ❌           | NONE                                               |
-| OPPO Reno ACE      | oppo-pclm10         | ❌           | NONE                                               |
-| Realme X3          | realme-rmx2086      | ❌           | NONE                                               |
-| Samsung Galaxy S10 | samsung-beyond1qlte | ✅           | [Ww](https://github.com/Idonotkno)                 |
-| Xiaomi 9           | xiaomi-cepheus      | ✅           | [qaz6750](https://github.com/qaz6750)              |
-| Xiaomi Hercules    | xiaomi-hercules     | ✅           | [Ww](https://github.com/Idonotkno)                 |
-| Xiaomi K20 Pro     | xiaomi-raphael      | ✅           | [sunflower2333](https://github.com/sunflower2333)  |
-| Xiaomi Mix3 5G     | xiaomi-andromeda    | ✅           | [sunflower2333](https://github.com/sunflower2333)  |
-| Xiaomi Pad 5       | xiaomi-nabu         | ✅           | [Map220v](https://github.com/map220v)              |
-| Xiaomi Poco X3 Pro | xiaomi-vayu         | ✅           | [Degdag](https://github.com/degdag)                |
-| Xiaomi Mix Alpha u2| xiaomi-avenger      | ❌           | NONE                                               |
+| Device             | Target name            | DSDT Support    | Maintainers                                        |
+|--------------------|------------------------|-----------------|----------------------------------------------------|
+| ASUS ROG2          | asus-I001DC            | ✅              | [Ww](https://github.com/Idonotkno)                 |
+| BlackShark 2       | blackshark-skywalker   | ❌              | NONE                                               |
+| BlackShark 2 Pro   | blackshark-darklighter | ❌              | NONE                                               |
+| HTC 5G Hub         | htc-rtx                | ❌              | NONE                                               |
+| LG G8              | iqoo-pd1936            | ❌              | NONE                                               |
+| LG G8              | lg-alphaplus           | ✅              | [Yanhua](https://github.com/yanhua-tj)             |
+| LG G8S             | lg-betalm              | ✅              | [J0SH1X](https://github.com/J0SH1X)                |
+| LG G8X             | lg-mh2lm               | ✅              | [Molly Sophia](https://github.com/MollySophia)     |
+| LG V50             | lg-flashlmdd           | ✅              | [AKA](https://github.com/AKAsaliza)                |
+| LG V50S            | lg-mh2lm5g             | ✅              | [AKA](https://github.com/AKAsaliza)                |
+| Meizu 16T          | meizu-m928q            | ❌              | NONE                                               |
+| Nubia RedMagic 3   | nubia-nx629j           | ❌              | NONE                                               |
+| Nubia RedMagic 3S  | nubia-nx629jv1s        | ❌              | NONE                                               |
+| Nubia Mini 5G      | nubia-tp1803           | ✅              | [Alula](https://github.com/alula)                  |
+| OnePlus 7          | oneplus-guacamoleb     | ❌              | NONE                                               |
+| OnePlus 7 Pro      | oneplus-guacamole      | ✅              | [Waseem Alkurdi](https://github.com/WaseemAlkurdi) |
+| OnePlus 7T Pro     | oneplus-hotdog         | ✅              | [sunflower2333](https://github.com/sunflower2333)&[Morc](https://github.com/TheMorc)|
+| OPPO Reno 10X      | oppo-op46c3            | ❌              | NONE                                               |
+| OPPO Reno ACE      | oppo-pclm10            | ❌              | NONE                                               |
+| Realme X3          | realme-rmx2086         | ❌              | NONE                                               |
+| Samsung Galaxy S10 | samsung-beyond1qlte    | ✅              | [Ww](https://github.com/Idonotkno)                 |
+| Xiaomi 9           | xiaomi-cepheus         | ✅              | [qaz6750](https://github.com/qaz6750)              |
+| Xiaomi Hercules    | xiaomi-hercules        | ✅              | [Ww](https://github.com/Idonotkno)                 |
+| Xiaomi K20 Pro     | xiaomi-raphael         | ✅              | [sunflower2333](https://github.com/sunflower2333)  |
+| Xiaomi Mix3 5G     | xiaomi-andromeda       | ✅              | [sunflower2333](https://github.com/sunflower2333)  |
+| Xiaomi Pad 5       | xiaomi-nabu            | ✅              | [Map220v](https://github.com/map220v)              |
+| Xiaomi Poco X3 Pro | xiaomi-vayu            | ✅              | [Degdag](https://github.com/degdag)                |
+| Xiaomi Mix Alpha u2| xiaomi-avenger         | ❌              | NONE                                               |
 
 ## Acknowledgements
 
