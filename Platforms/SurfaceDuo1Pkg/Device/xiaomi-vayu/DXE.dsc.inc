@@ -85,9 +85,9 @@ SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Application/QcomChargerA
 #QcomPkg/Drivers/ShmBridgeDxe/ShmBridgeDxeLA.inf
 SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/MiPkg/Protocol/MiToken/MiToken.inf
 
-SurfaceDuo1Pkg/PatchedBinaries/05472C14-ACB9-4458-A354-A68357AC3BF0.inf
-SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PatchedBinaries/ButtonsDxe.inf
-SurfaceDuo1Pkg/PatchedBinaries/HALIOMMUDxe.inf
-SurfaceDuo1Pkg/PatchedBinaries/PciHostBridgeDxe.inf
+QcomPkg/PatchedBinaries/05472C14-ACB9-4458-A354-A68357AC3BF0.inf
+QcomPkg/PatchedBinaries/HALIOMMUDxe.inf
+QcomPkg/PatchedBinaries/PciHostBridgeDxe.inf
 SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UFSDxe.inf
 SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UsbConfigDxe.inf
+SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PatchedBinaries/ButtonsDxe.inf

@@ -275,7 +275,6 @@ RamPartitionDxeInitialize(
                                 MemoryDescriptorEx[Index].ArmAttributes, MemoryDescriptorEx[Index].MemoryType);
       Index++;
   }
-
   FreePool (RamPartitionEntries);
   return Status;
 }

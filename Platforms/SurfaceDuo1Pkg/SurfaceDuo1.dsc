@@ -23,23 +23,20 @@
   PLATFORM_GUID                  = b6325ac2-9f3f-4b1d-b129-ac7b35ddde60
   PLATFORM_VERSION               = 0.1
   DSC_SPECIFICATION              = 0x00010005
-  OUTPUT_DIRECTORY               = Build/$(TARGET_DEVICE)-$(ARCH)
+  OUTPUT_DIRECTORY               = Build/SurfaceDuo1-$(ARCH)
   SUPPORTED_ARCHITECTURES        = AARCH64
   BUILD_TARGETS                  = DEBUG|RELEASE
   SKUID_IDENTIFIER               = DEFAULT
   FLASH_DEFINITION               = SurfaceDuo1Pkg/SurfaceDuo1.fdf
-  SECURE_BOOT_ENABLE             = TRUE
-  USE_PHYSICAL_TIMER             = TRUE
 
-  # Debugging
   # Notice: TRUE == 1, FALSE == 0
+  SECURE_BOOT_ENABLE             = 1
+  USE_PHYSICAL_TIMER             = 1
   USE_SCREEN_FOR_SERIAL_OUTPUT   = 1
   USE_UART_FOR_SERIAL_OUTPUT     = 0
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
   SEND_HEARTBEAT_TO_SERIAL       = 0
-
-  # Included Drivers
-  USE_SIMPLEFBDXE                = TRUE
+  USE_SIMPLEFBDXE                = 1
 
   # Device-specific memory map hacks
   HAS_MLVM                       = FALSE
@@ -62,8 +59,21 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
   # Platform-specific
   gArmTokenSpaceGuid.PcdSystemMemorySize|0x100000000            # 4GB
 
-!include SurfaceDuo1Pkg/Sm8150Family.dsc.inc
+[Components.common]
+  # Graphics Driver
+!if $(USE_SIMPLEFBDXE) == TRUE
+  SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
+!endif
+
+  # Device Specific Drivers
+!include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/DXE.dsc.inc
+
+[LibraryClasses.common]
+  # Move PlatformMemoryMapLib to Device/<device>/Library
+  PlatformMemoryMapLib|SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
+
+
+!include QcomPkg/QcomPkg.dsc.inc
 !include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PcdsFixedAtBuild.dsc.inc
 !include SurfaceDuoFamilyPkg/SurfaceDuoFamily.dsc.inc
 !include SurfaceDuoFamilyPkg/Frontpage.dsc.inc
-!include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/DXE.dsc.inc

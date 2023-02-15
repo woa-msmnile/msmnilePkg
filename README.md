@@ -80,7 +80,7 @@ python3 ./Platforms/SurfaceDuo1Pkg/StampBuild.py
 | BlackShark 2       | blackshark-skywalker   | ❌              | NONE                                               |
 | BlackShark 2 Pro   | blackshark-darklighter | ❌              | NONE                                               |
 | HTC 5G Hub         | htc-rtx                | ❌              | NONE                                               |
-| LG G8              | iqoo-pd1936            | ❌              | NONE                                               |
+| LG G8              | iqoo-pd1936g           | ❌              | NONE                                               |
 | LG G8              | lg-alphaplus           | ✅              | [Yanhua](https://github.com/yanhua-tj)             |
 | LG G8S             | lg-betalm              | ✅              | [J0SH1X](https://github.com/J0SH1X)                |
 | LG G8X             | lg-mh2lm               | ✅              | [Molly Sophia](https://github.com/MollySophia)     |

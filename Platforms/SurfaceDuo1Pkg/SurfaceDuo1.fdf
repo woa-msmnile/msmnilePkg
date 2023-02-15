@@ -20,10 +20,6 @@
 #
 ################################################################################
 
-!ifndef TARGET_DEVICE
-!error "TARGET_DEVICE must be defined"
-!endif
-
 [FD.SM8150_EFI]
 BaseAddress   = 0x9FC00000|gArmTokenSpaceGuid.PcdFdBaseAddress #The base address of the FLASH Device.
 Size          = 0x00300000|gArmTokenSpaceGuid.PcdFdSize        #The size in bytes of the FLASH Device
@@ -91,7 +87,7 @@ READ_LOCK_STATUS   = TRUE
 !endif
 
   # Secure Boot Key Enroll
-  !if $(SECURE_BOOT_ENABLE) == TRUE
+  !if $(SECURE_BOOT_ENABLE) == 1
     INF SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
     # INF SurfaceDuoFamilyPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
   !endif
@@ -109,11 +105,8 @@ READ_LOCK_STATUS   = TRUE
   # INF HidPkg/HidMouseAbsolutePointerDxe/HidMouseAbsolutePointerDxe.inf
 
   # Why is this different yet using the same names and GUIDs? (Uses different function signatures for callbacks...)
-#  FILE DRIVER = d4e2f6ad-f3ad-40c5-aa14-183e68f4b5bd  {
-#    SECTION PE32 = SurfaceDuoBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-d4e2f6ad-f3ad-40c5-aa14-183e68f4b5bd/section0.pe
-#    SECTION UI = "HidMouseAbsolutePointerDxe"
-#  }
   INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/MsSurfaceCorePkg/HidMouseAbsolutePointerDxe/HidMouseAbsolutePointerDxe.inf
+
   # Disk IO
   INF MdeModulePkg/Bus/Scsi/ScsiBusDxe/ScsiBusDxe.inf
   INF MdeModulePkg/Bus/Scsi/ScsiDiskDxe/ScsiDiskDxe.inf
@@ -128,15 +121,7 @@ READ_LOCK_STATUS   = TRUE
 
   # DT
   INF EmbeddedPkg/Drivers/DtPlatformDxe/DtPlatformDxe.inf
-  FILE FREEFORM = 25462CDA-221F-47DF-AC1D-259CFAA4E326 {
-    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/DeviceTreeBlob/Linux/linux-$(FDT)
-  }
-
-  # License
-  INF SurfaceDuoFamilyPkg/Driver/LicenseDxe/LicenseDxe.inf
-  FILE FREEFORM = 5343A3C2-B6DA-8FF4-EF3A-23FEF9941C76 {
-    SECTION RAW = SurfaceDuo1Pkg/Include/Resources/License.txt
-  }
+  !include SurfaceDuo1Pkg/Include/FDT.inc
 
   INF MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
 
@@ -147,11 +132,9 @@ READ_LOCK_STATUS   = TRUE
   }
 
   # INF SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
-  # INF SurfaceDuoFamilyPkg/Applications/SimpleInitBin/SimpleInitBin.inf
   # INF GPLDriver/Application/SwitchSlotsApp/SwitchSlotsApp.inf
   # INF GPLDriver/Driver/BootSlotDxe/BootSlotDxe.inf
-
-  INF SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
+#  INF SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
 
   INF SurfaceDuoFamilyPkg/Driver/KernelErrataPatcher/KernelErrataPatcher.inf
 
@@ -159,6 +142,7 @@ READ_LOCK_STATUS   = TRUE
   INF ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
   INF ArmPkg/Drivers/CpuDxe/CpuDxe.inf
   INF ArmPkg/Drivers/TimerDxe/TimerDxe.inf
+  INF ArmPkg/Drivers/ArmPsciMpServicesDxe/ArmPsciMpServicesDxe.inf
   INF CryptoPkg/Driver/CryptoDxe.inf
   INF EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
   INF EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf
@@ -227,6 +211,11 @@ READ_LOCK_CAP      = TRUE
 READ_LOCK_STATUS   = TRUE
 
   INF SurfaceDuoFamilyPkg/PrePi/PeiUniCore.inf
+
+  FILE FREEFORM = dde58710-41cd-4306-dbfb-3fa90bb1d2dd {
+    SECTION UI = "uefiplat.cfg"
+    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/uefiplat.cfg
+  }
 
   FILE FV_IMAGE = 9E21FD93-9C72-4c15-8C4B-E77F1DB2D792 {
     SECTION GUIDED EE4E5898-3914-4259-9D6E-DC7BD79403CF PROCESSING_REQUIRED = TRUE {
