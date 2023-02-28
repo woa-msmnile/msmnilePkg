@@ -38,10 +38,9 @@ if [ ${TARGET_DEVICE} = 'all' ]; then
 
         TARGET_DEVICE=$(basename ${i})
         # Update Configuration Map for each Device.
-        mkdir Platforms/SurfaceDuo1Pkg/Device/${TARGET_DEVICE}/Include/Resources/
-        #rm Build/SurfaceDuo1-AARCH64/DEBUG_CLANG38/AARCH64/QcomPkg/PlatformPei/ -rf
-        #cp Platforms/SurfaceDuo1Pkg/Device/${TARGET_DEVICE}/Include/Configuration/DeviceConfigurationMap.h Silicon/QC/Sm8150/QcomPkg/Include/Configuration/DeviceConfigurationMap.h
-        #stuart_build -c Platforms/SurfaceDuo1Pkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG38 "TARGET_DEVICE=${TARGET_DEVICE}"
+        rm Build/SurfaceDuo1-AARCH64/DEBUG_CLANG38/AARCH64/QcomPkg/PlatformPei/ -rf
+        cp Platforms/SurfaceDuo1Pkg/Device/${TARGET_DEVICE}/Include/Configuration/DeviceConfigurationMap.h Silicon/QC/Sm8150/QcomPkg/Include/Configuration/DeviceConfigurationMap.h
+        stuart_build -c Platforms/SurfaceDuo1Pkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG38 "TARGET_DEVICE=${TARGET_DEVICE}"
     done
 else
     # Update Configuration Map.
