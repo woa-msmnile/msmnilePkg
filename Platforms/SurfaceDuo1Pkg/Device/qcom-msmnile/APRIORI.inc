@@ -168,4 +168,11 @@ APRIORI DXE {
     }
     INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
     INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SimpleTextInOutSerialDxe/SimpleTextInOutSerial.inf
+
+    FILE DRIVER = C9C6BB00-44FC-4C87-8AF9-F93218E17C10  {
+            SECTION DXE_DEPEX = SurfaceDuo1Pkg/UsbcSetDrpDxe.depex.bin
+            SECTION PE32 = SurfaceDuo1Pkg/UsbcSetDrpDxe.efi
+            SECTION UI = "UsbcSetDrpDxe"
+    }
+
 }

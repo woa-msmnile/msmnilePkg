@@ -73,6 +73,17 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
   PlatformMemoryMapLib|SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
 
 
+# Suggest you updating them to your device's dsc.inc.
+#[PcdsDynamicDefault.common]
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1350
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|1800
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|1350
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|1800
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|94 # 94.73
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|168 # 168.75
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow|94 # 94.73
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn|168 # 168.75
+
 !include QcomPkg/QcomPkg.dsc.inc
 !include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PcdsFixedAtBuild.dsc.inc
 !include SurfaceDuoFamilyPkg/SurfaceDuoFamily.dsc.inc

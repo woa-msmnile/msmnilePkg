@@ -11,9 +11,10 @@
 
 [Packages]
   ArmPkg/ArmPkg.dec
-  MdePkg/MdePkg.dec
-  MdeModulePkg/MdeModulePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  MdePkg/MdePkg.dec
+  QcomPkg/QcomPkg.dec
   SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
 
 [LibraryClasses]

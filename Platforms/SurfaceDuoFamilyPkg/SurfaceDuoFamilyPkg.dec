@@ -8,7 +8,7 @@
   Include                        # Root include for the package
 
 [Guids.common]
-  gSurfaceDuoFamilyPkgTokenSpaceGuid =  { 0x4c59628e, 0x0a8a, 0x4099, { 0x8d, 0xe5, 0xf2, 0x08, 0xff, 0x80, 0xc4, 0xbe } }
+  gSurfaceDuoFamilyPkgTokenSpaceGuid = { 0x4c59628e, 0x0a8a, 0x4099, { 0x8d, 0xe5, 0xf2, 0x08, 0xff, 0x80, 0xc4, 0xbe } }
 
   gSwitchSlotsAppFileGuid =             { 0xD5BC0FB1, 0xA833, 0x4607, { 0xB7, 0xB6, 0x5E, 0xF9, 0xD1, 0x0B, 0xEE, 0xB7 } }
   gLicenseConfigFileGuid =              { 0x5343A3C2, 0xB6DA, 0x8FF4, { 0xEF, 0x3A, 0x23, 0xFE, 0xF9, 0x94, 0x1C, 0x76 } }
@@ -51,8 +51,6 @@
   gEfiMdtpPartitionGuid =               { 0x3878408A, 0xE263, 0x4B67, { 0xB8, 0x78, 0x63, 0x40, 0xB3, 0x5B, 0x11, 0xE3 } }
   gBlockIoRefreshGuid =                 { 0xb1eb3d10, 0x9d67, 0x40ca, { 0x95, 0x59, 0xf1, 0x48, 0x8b, 0x1b, 0x2d, 0xdb } }
   gEfiRNGAlgRawGuid =                   { 0xe43176d7, 0xb6e8, 0x4827, { 0xb7, 0x84, 0x7f, 0xfd, 0xc4, 0xb6, 0x85, 0x61 } }
-  # File GUID for default DTB image embedded in the firmware volume
-  gDtPlatformDefaultDtbFileGuid = { 0x25462cda, 0x221f, 0x47df, { 0xac, 0x1d, 0x25, 0x9c, 0xfa, 0xa4, 0xe3, 0x26 } }
 
 [Protocols]
   # From https://git.codelinaro.org/clo/la/abl/tianocore/edk2/-/tree/LA.UM.9.14.r1-20200.01-LAHAINA.QSSI12.0
@@ -124,7 +122,7 @@
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"1930"|VOID*|0x0000a304
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"Surface_Duo_1930"|VOID*|0x0000a305
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosBoardModel|"Surface Duo"|VOID*|0x0000a306
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"Microsoft Corporation"|VOID*|0x0000a308
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"Microsoft"|VOID*|0x0000a307
 
   # Simple FrameBuffer
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1350|UINT32|0x0000a401
@@ -132,9 +130,9 @@
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|32|UINT32|0x0000a403
 
   # UART
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdUartSerialBase|0x00A90000|UINT32|0x0000a501
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdUartSerialBase|0x0098C000|UINT32|0x0000a501
 
   ## This PCD points to the file name GUID of the UFPMenuApp
   #  Platform can customize the PCD to point to different application for UFP Menu
   # @Prompt UFP Menu File
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdUFPMenuFile|{ 0xBB, 0xB2, 0x77, 0x6D, 0xEB, 0x69, 0xAB, 0x42, 0xBE, 0xCF, 0x4F, 0x40, 0xC8, 0x95, 0x68, 0xC3 }|VOID*|0x00000a602
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdUFPMenuFile|{ 0x88, 0x47, 0x3D, 0x64, 0xC8, 0x63, 0xD2, 0x40, 0xBD, 0x7A, 0x68, 0x42, 0xE6, 0x68, 0x50, 0xD1 }|VOID*|0x00000a602

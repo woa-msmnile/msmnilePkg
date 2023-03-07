@@ -2,7 +2,7 @@
 #include <Library/PlatformHobLib.h>
 #include <Configuration/XblHlosHob.h>
 
-XBL_HLOS_HOB *GetPlatformHob()
+PXBL_HLOS_HOB GetPlatformHob()
 {
-  return (XBL_HLOS_HOB *)0x146BFA94;
+  return (PXBL_HLOS_HOB)0x146BFA94;
 }

@@ -35,10 +35,10 @@
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdUartSerialBase|0x00A90000
 
 [LibraryClasses.common]
-    # Move PlatformMemoryMapLib to Device/<device>/Library
-    # Moved this Line to SurfaceDuo1.dsc
+  # Move PlatformMemoryMapLib to Device/<device>/Library
+  # And moved this Line to SurfaceDuo1.dsc
+  #  PlatformMemoryMapLib|QcomPkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
 
-#  PlatformMemoryMapLib|QcomPkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
   PlatformPeiLib|QcomPkg/PlatformPei/PlatformPeiLib.inf
   PlatformPrePiLib|QcomPkg/Library/PlatformPrePiLib/PlatformPrePiLib.inf
   AslUpdateLib|SurfaceDuoFamilyPkg/Library/DxeAslUpdateLib/DxeAslUpdateLib.inf
@@ -46,5 +46,8 @@
 
   AcpiPlatformUpdateLib|QcomPkg/Library/AcpiPlatformUpdateLib/AcpiPlatformUpdateLib.inf
   PlatformThemeLib|QcomPkg/Library/PlatformThemeLib/PlatformThemeLib.inf
+  ConsoleMsgLib|QcomPkg/Library/ConsoleMsgLib/ConsoleMsgLib.inf
+  PlatformHobLib|QcomPkg/Library/PlatformHobLib/PlatformHobLib.inf
 
-#  PlatformHobLib|QcomPkg/Library/PlatformHobLib/PlatformHobLib.inf
+[Components.common]
+ SurfaceDuoFamilyPkg/Driver/RamPartitionDxe/RamPartitionDxe.inf
