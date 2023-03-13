@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PanelName>NT36672C</PanelName>
+<PanelDescription>NT36672C Single DSI CPhy FHD Plus Video Mode Panel (1080x2400 24bpp)</PanelDescription>
+<Group id="Active Timing">
+ <HorizontalActive>1080</HorizontalActive>
+ <HorizontalFrontPorch>202</HorizontalFrontPorch>
+ <HorizontalBackPorch>56</HorizontalBackPorch>
+ <HorizontalSyncPulse>12</HorizontalSyncPulse>
+ <HorizontalSyncSkew>0</HorizontalSyncSkew>
+ <HorizontalLeftBorder>0</HorizontalLeftBorder>
+ <HorizontalRightBorder>0</HorizontalRightBorder>
+ <VerticalActive>2400</VerticalActive>
+ <VerticalFrontPorch>1291</VerticalFrontPorch>
+ <VerticalBackPorch>10</VerticalBackPorch>
+ <VerticalSyncPulse>10</VerticalSyncPulse>
+ <VerticalSyncSkew>0</VerticalSyncSkew>
+ <VerticalTopBorder>0</VerticalTopBorder>
+ <VerticalBottomBorder>0</VerticalBottomBorder>
+ <InvertDataPolarity>False</InvertDataPolarity>
+ <InvertVsyncPolairty>False</InvertVsyncPolairty>
+ <InvertHsyncPolarity>False</InvertHsyncPolarity>
+ <BorderColor>0x0</BorderColor>
+</Group>
+<Group id="Display Interface">
+ <InterfaceType>8</InterfaceType>
+ <InterfaceColorFormat>3</InterfaceColorFormat>
+</Group>
+<Group id="DSI Interface">
+ <DSIChannelId>1</DSIChannelId>
+ <DSIVirtualId>0</DSIVirtualId>
+ <DSIColorFormat>36</DSIColorFormat>
+ <DSITrafficMode>1</DSITrafficMode>
+ <DSICPhyMode>True</DSICPhyMode>
+ <DSILanes>3</DSILanes>
+   <DSIHsaHseAfterVsVe>False</DSIHsaHseAfterVsVe>
+   <DSILowPowerModeInHFP>False</DSILowPowerModeInHFP>
+   <DSILowPowerModeInHBP>False</DSILowPowerModeInHBP>
+   <DSILowPowerModeInHSA>False</DSILowPowerModeInHSA>
+   <DSILowPowerModeInBLLPEOF>True</DSILowPowerModeInBLLPEOF>
+   <DSILowPowerModeInBLLP>True</DSILowPowerModeInBLLP>
+   <DSIRefreshRate>0x3C0000</DSIRefreshRate>
+ <DSICmdUsingTrigger>False</DSICmdUsingTrigger>
+ <DSIControllerMapping>
+  00
+ </DSIControllerMapping>
+ <DSITimingHSPrepareOverride>True</DSITimingHSPrepareOverride>
+ <DSITimingHSPrepareValue>09</DSITimingHSPrepareValue>
+ <DSITimingHSZeroOverride>True</DSITimingHSZeroOverride>
+ <DSITimingHSZeroValue>36</DSITimingHSZeroValue>
+ <DSITimingHSTrailOverride>True</DSITimingHSTrailOverride>
+ <DSITimingHSTrailValue>09</DSITimingHSTrailValue>
+ <DSITimingHSExitOverride>True</DSITimingHSExitOverride>
+ <DSITimingHSExitValue>38</DSITimingHSExitValue>
+ <DSITimingHSRequestOverride>True</DSITimingHSRequestOverride>
+ <DSITimingHSRequestValue>09</DSITimingHSRequestValue>
+ <DSITimingTAGoOverride>True</DSITimingTAGoOverride>
+ <DSITimingTAGoValue>0x6</DSITimingTAGoValue>
+ <DSITimingTAGetOverride>True</DSITimingTAGetOverride>
+ <DSITimingTAGetValue>2</DSITimingTAGetValue>
+</Group>
+<DSIInitSequence>
+ 29 FF 10
+ 29 FB 01
+ 29 B0 00
+ 29 C0 00
+ 29 C2 1B A0
+ 29 FF 25
+ 29 FB 01
+ 29 18 20
+ 15 FF 2A
+ 15 FB 01
+ 15 27 80
+ 15 28 FD
+ 29 FF F0
+ 29 FB 01
+ 29 5A 00
+ 29 A0 08
+ 29 FF D0
+ 29 FB 01
+ 29 09 AD
+ 15 FF 10
+ 15 FB 01
+ 15 51 FF
+ 15 53 2C
+ 15 FF 23
+ 15 FB 01
+ 15 0A 00
+ 15 0B 00
+ 15 0C 00
+ 15 0D 00
+ 15 11 01
+ 15 12 95
+ 15 15 68
+ 15 16 0B
+ 15 6F 00
+ 15 70 00
+ 15 71 00
+ 15 A0 11
+ 15 FF F0
+ 15 FB 01
+ 15 D2 52
+ 29 FF 10
+ 29 35 00
+ 05 11 00
+ FF 78 
+ 05 29 00
+ FF 14
+</DSIInitSequence>
+<DSITermSequence>
+ 05 28
+ FF 14
+ 05 10
+ FF 78
+</DSITermSequence>
+<PMICGPIODefaultHigh>0x4 0xA</PMICGPIODefaultHigh>
+<Group id='Backlight Configuration'>
+ <BacklightType>1</BacklightType>
+ <BacklightPmicControlType>2</BacklightPmicControlType>
+</Group>
