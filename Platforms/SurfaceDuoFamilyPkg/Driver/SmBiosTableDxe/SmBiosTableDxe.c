@@ -42,10 +42,11 @@ be found at http://opensource.org/licenses/bsd-license.php
 **/
 
 #include <Base.h>
+
 #include <Guid/SmBios.h>
 #include <IndustryStandard/SmBios.h>
-
 #include <Protocol/Smbios.h>
+
 #include <Library/BaseLib.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>
@@ -54,16 +55,15 @@ be found at http://opensource.org/licenses/bsd-license.php
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiDriverEntryPoint.h>
 #include <Library/UefiLib.h>
-#include <Library/DxeServicesLib.h>
 
 /* Used to read chip serial number */
 #include <Protocol/EFIChipInfo.h>
+
+/* Used to read Ram Info */
 #include <Protocol/EFIRamPartition.h>
 
-/* Build-time generated ReleaseInfo.h will override the default one */
-#include <Resources/ReleaseStampStub.h>
-// Must come in order
-#include <Resources/ReleaseInfo.h>
+/* Used to read UEFI release information */
+#include <Library/MuUefiVersionLib.h>
 
 /***********************************************************************
         SMBIOS data definition  TYPE0  BIOS Information
@@ -138,9 +138,8 @@ SMBIOS_TABLE_TYPE0 mBIOSInfoType0 = {
 
 CHAR8 *mBIOSInfoType0Strings[] = {
     "DuoWoA authors", // Vendor String
-    __IMPL_COMMIT_ID__ " (EDK2 "__EDK2_RELEASE__
-                       ")", // BiosVersion String
-    __RELEASE_DATE__,       // BiosReleaseDate String
+    "UnknownVersion", // BiosVersion String
+    "UnknownRel", // BiosReleaseDate String
     NULL};
 
 /***********************************************************************
@@ -172,7 +171,7 @@ SMBIOS_TABLE_TYPE1 mSysInfoType1 = {
     6, // Family String
 };
 CHAR8 *mSysInfoType1Strings[] = {
-    "Not Specified",
+    "Microsoft Corporation",
     "Not Specified",
     "Not Specified",
     "Not Specified",
@@ -213,6 +212,7 @@ CHAR8 *mBoardInfoType2Strings[] = {
     "Not Specified",
     "Not Specified",
     NULL};
+
 /***********************************************************************
         SMBIOS data definition  TYPE3  Enclosure Information
 ************************************************************************/
@@ -684,6 +684,12 @@ LogSmbiosData(
 ************************************************************************/
 VOID BIOSInfoUpdateSmbiosType0(VOID)
 {
+  UINTN VersionBufferLength  = 15;
+//  UINTN DateBufferLength     = 11;
+
+  GetUefiVersionStringAscii(mBIOSInfoType0Strings[1], &VersionBufferLength);
+  GetBuildDateStringAscii(mBIOSInfoType0Strings[2], &VersionBufferLength);
+
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mBIOSInfoType0, mBIOSInfoType0Strings, NULL);
 }
@@ -695,10 +701,17 @@ VOID BIOSInfoUpdateSmbiosType0(VOID)
 VOID SysInfoUpdateSmbiosType1(CHAR8 *serialNo, EFIChipInfoSerialNumType serial)
 {
   // Update string table before proceeds
+  mSysInfoType1Strings[1] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemModel);
   mSysInfoType1Strings[2] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemRetailModel);
   mSysInfoType1Strings[4] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemRetailSku);
-  mSysInfoType1Strings[1] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemModel);
+
+//
+// PcdSmbiosSystemBrand modification Start
+//
   mSysInfoType1Strings[0] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemBrand);
+//
+// PcdSmbiosSystemBrand modification End
+//
 
   // Update serial number from Board DXE
   mSysInfoType1Strings[3]  = serialNo;
@@ -781,6 +794,26 @@ VOID CacheInfoUpdateSmbiosType7(VOID)
 /***********************************************************************
         SMBIOS data update  TYPE16  Physical Memory Array Information
 ************************************************************************/
+
+//
+// Dynamic Ram Detect Patch End
+//
+
+// Original Code
+//VOID PhyMemArrayInfoUpdateSmbiosType16(VOID)
+//{
+//  EFI_SMBIOS_HANDLE MemArraySmbiosHande;
+//
+//  LogSmbiosData(
+//      (EFI_SMBIOS_TABLE_HEADER *)&mPhyMemArrayInfoType16,
+//      mPhyMemArrayInfoType16Strings, &MemArraySmbiosHande);
+//
+//  //
+//  // Update the memory device information
+//  //
+//  mMemDevInfoType17.MemoryArrayHandle = MemArraySmbiosHande;
+//}
+
 VOID PhyMemArrayInfoUpdateSmbiosType16(IN UINT64 SystemMemorySize)
 {
   EFI_SMBIOS_HANDLE MemArraySmbiosHande;
@@ -795,21 +828,64 @@ VOID PhyMemArrayInfoUpdateSmbiosType16(IN UINT64 SystemMemorySize)
   mMemDevInfoType17.MemoryArrayHandle = MemArraySmbiosHande;
 }
 
+//
+// Dynamic Ram Detect Patch End
+//
+
 /***********************************************************************
         SMBIOS data update  TYPE17  Memory Device Information
 ************************************************************************/
+
+//
+// Dynamic Ram Detect Patch Start
+//
+
+// Original Code:
+//VOID MemDevInfoUpdateSmbiosType17(VOID)
+//{
+//  mMemDevInfoType17.Size = FixedPcdGet64(PcdSystemMemorySize) / 0x100000;
+//
+//  LogSmbiosData(
+//      (EFI_SMBIOS_TABLE_HEADER *)&mMemDevInfoType17, mMemDevInfoType17Strings,
+//      NULL);
+//}
+
 VOID MemDevInfoUpdateSmbiosType17(IN UINT64 SystemMemorySize)
 {
-
   mMemDevInfoType17.Size = SystemMemorySize / 0x100000;
+
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mMemDevInfoType17, mMemDevInfoType17Strings,
       NULL);
 }
 
+//
+// Dynamic Ram Detect Patch End
+//
+
 /***********************************************************************
         SMBIOS data update  TYPE19  Memory Array Map Information
 ************************************************************************/
+
+//
+// Dynamic Ram Detect Patch Start
+//
+
+// Original Code:
+//VOID MemArrMapInfoUpdateSmbiosType19(VOID)
+//{
+//  mMemArrMapInfoType19.StartingAddress =
+//      FixedPcdGet64(PcdSystemMemoryBase) / 1024;
+//  mMemArrMapInfoType19.EndingAddress =
+//      (FixedPcdGet64(PcdSystemMemorySize) + FixedPcdGet64(PcdSystemMemoryBase) -
+//       1) /
+//      1024;
+//
+//  LogSmbiosData(
+//      (EFI_SMBIOS_TABLE_HEADER *)&mMemArrMapInfoType19,
+//      mMemArrMapInfoType19Strings, NULL);
+//}
+
 VOID MemArrMapInfoUpdateSmbiosType19(IN UINT64 SystemMemorySize)
 {
   mMemArrMapInfoType19.StartingAddress =
@@ -824,6 +900,10 @@ VOID MemArrMapInfoUpdateSmbiosType19(IN UINT64 SystemMemorySize)
       mMemArrMapInfoType19Strings, NULL);
 }
 
+//
+// Dynamic Ram Detect Patch End
+//
+
 /***********************************************************************
         Driver Entry
 ************************************************************************/
@@ -832,14 +912,10 @@ EFIAPI
 SmBiosTableDxeInitialize(
     IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 {
-  EFI_STATUS                 Status;
-  CHAR8                      serialNo[EFICHIPINFO_MAX_ID_LENGTH];
-  EFIChipInfoSerialNumType   serial;
-  EFI_CHIPINFO_PROTOCOL     *mBoardProtocol = NULL;
-  EFI_RAMPARTITION_PROTOCOL *mRamPartitionProtocol = NULL;
-  RamPartitionEntry         *RamPartitions = NULL;
-  UINT32                     NumPartitions = 0;
-  UINT64                     SystemMemorySize = 0;
+  EFI_STATUS               Status;
+  CHAR8                    serialNo[EFICHIPINFO_MAX_ID_LENGTH];
+  EFIChipInfoSerialNumType serial;
+  EFI_CHIPINFO_PROTOCOL   *mBoardProtocol = NULL;
 
   // Locate Qualcomm Board Protocol
   Status = gBS->LocateProtocol(
@@ -850,40 +926,65 @@ SmBiosTableDxeInitialize(
     AsciiSPrint(serialNo, sizeof(serialNo), "%lld", serial);
   }
 
-  // Locate Qualcomm RamPartition Protocol
+//
+// Dynamic Ram Detect Patch Start
+//
+
+  // Vars
+  EFI_RAMPARTITION_PROTOCOL *mRamPartitionProtocol = NULL;
+  RamPartitionEntry         *RamPartitions = NULL;
+  UINT32                     NumPartitions = 0;
+  UINT64                     SystemMemorySize = 0;
+
+  // Locate Qualcomm RamPartition Protocol (Needs EnvDxe !)
   Status = gBS->LocateProtocol(
       &gEfiRamPartitionProtocolGuid, NULL, (VOID *)&mRamPartitionProtocol);
 
   // Get the SystemMemorySize
   if (mRamPartitionProtocol != NULL) {
-      Status = mRamPartitionProtocol->GetRamPartitions(
-            mRamPartitionProtocol, NULL, &NumPartitions);
-
-      if (Status == EFI_BUFFER_TOO_SMALL) {
-          RamPartitions = AllocateZeroPool(NumPartitions * sizeof (RamPartitionEntry));
-          Status = mRamPartitionProtocol->GetRamPartitions(
-                mRamPartitionProtocol, RamPartitions, &NumPartitions);
-
-          if (EFI_ERROR (Status) || (NumPartitions < 1)) {
-              DEBUG ((EFI_D_ERROR, "Failed to get RAM partitions"));
-              FreePool (RamPartitions);
-              RamPartitions = NULL;
-              SystemMemorySize = FixedPcdGet64(PcdSystemMemorySize);
-          }
+    Status = mRamPartitionProtocol->GetRamPartitions(mRamPartitionProtocol, NULL, &NumPartitions);
+    if (Status == EFI_BUFFER_TOO_SMALL) {
+      RamPartitions = AllocateZeroPool(NumPartitions * sizeof (RamPartitionEntry));
+      Status = mRamPartitionProtocol->GetRamPartitions(mRamPartitionProtocol, RamPartitions, &NumPartitions);
+      if (EFI_ERROR (Status) || (NumPartitions < 1)) {
+        DEBUG ((EFI_D_ERROR, "Failed to get RAM partitions"));
+        FreePool (RamPartitions);
+        RamPartitions = NULL;
+        SystemMemorySize = FixedPcdGet64(PcdSystemMemorySize);
       }
+    }
 
-      // Update SystemMemorySize if meet no issue above,
-      //   otherwise SystemMemorySize == FixedPcdGet64(PcdSystemMemorySize
-      if(SystemMemorySize != FixedPcdGet64(PcdSystemMemorySize)){
-          for (UINTN i = 0; i < NumPartitions; i++) {
-              if(SystemMemorySize <  RamPartitions[i].Base + RamPartitions[i].AvailableLength)
-                  SystemMemorySize = RamPartitions[i].Base + RamPartitions[i].AvailableLength;
-          }
-          DEBUG((EFI_D_ERROR, "The Highest Address is 0x%016llx \n", SystemMemorySize));
-          SystemMemorySize = SystemMemorySize - FixedPcdGet64(PcdSystemMemoryBase);
-          DEBUG((EFI_D_ERROR, "The SystemMemorySize is 0x%016llx \n", SystemMemorySize));
+    // Update SystemMemorySize if meet no issue above,
+    //   Otherwise SystemMemorySize == FixedPcdGet64(PcdSystemMemorySize)
+    if(SystemMemorySize != FixedPcdGet64(PcdSystemMemorySize)){
+      for (UINTN i = 0; i < NumPartitions; i++) {
+        if(SystemMemorySize < (RamPartitions[i].Base + RamPartitions[i].AvailableLength))
+          SystemMemorySize = RamPartitions[i].Base + RamPartitions[i].AvailableLength;
       }
+      DEBUG((EFI_D_INFO, "The Highest Address is 0x%016llx \n", SystemMemorySize));
+      // Commonly ignored the memory hole size, the highest address - lowest address = Total Size.
+      SystemMemorySize = SystemMemorySize - FixedPcdGet64(PcdSystemMemoryBase);
+      DEBUG((EFI_D_INFO, "The SystemMemorySize is 0x%016llx \n", SystemMemorySize));
+    }
+  } else{
+    // Report FixedPcdGet64(PcdSystemMemorySize) if protocol not found.
+    DEBUG((EFI_D_ERROR, "[SmBiosTableDxe] Locate Ram Partition Protocol Failed! \n"));
+    SystemMemorySize = FixedPcdGet64(PcdSystemMemoryBase);
   }
+
+  // Original Code:
+  //  PhyMemArrayInfoUpdateSmbiosType16();
+  //  MemDevInfoUpdateSmbiosType17();
+  //  MemArrMapInfoUpdateSmbiosType19();
+
+  // Pass Size to functions
+  PhyMemArrayInfoUpdateSmbiosType16(SystemMemorySize);
+  MemDevInfoUpdateSmbiosType17(SystemMemorySize);
+  MemArrMapInfoUpdateSmbiosType19(SystemMemorySize);
+
+//
+// Dynamic Ram Detect Patch End
+//
 
   BIOSInfoUpdateSmbiosType0();
   SysInfoUpdateSmbiosType1(serialNo, serial);
@@ -891,8 +992,6 @@ SmBiosTableDxeInitialize(
   EnclosureInfoUpdateSmbiosType3(serialNo);
   ProcessorInfoUpdateSmbiosType4(PcdGet32(PcdCoreCount));
   CacheInfoUpdateSmbiosType7();
-  PhyMemArrayInfoUpdateSmbiosType16(SystemMemorySize);
-  MemDevInfoUpdateSmbiosType17(SystemMemorySize);
-  MemArrMapInfoUpdateSmbiosType19(SystemMemorySize);
+
   return EFI_SUCCESS;
 }

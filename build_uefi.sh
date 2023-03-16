@@ -37,11 +37,14 @@ if [ ${TARGET_DEVICE} = 'all' ]; then
         fi
 
         TARGET_DEVICE=$(basename ${i})
-        # Copy Memory Map to proper place.
-         cp Platforms/SurfaceDuo1Pkg/Device/${TARGET_DEVICE}/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.c Platforms/SurfaceDuo1Pkg/Library/PlatformMemoryMapLib/
-         stuart_build -c Platforms/SurfaceDuo1Pkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG38 "TARGET_DEVICE=${TARGET_DEVICE}"
+        # Update Configuration Map for each Device.
+        rm Build/SurfaceDuo1-AARCH64/DEBUG_CLANG38/AARCH64/QcomPkg/PlatformPei/ -rf
+        cp Platforms/SurfaceDuo1Pkg/Device/${TARGET_DEVICE}/Include/Configuration/DeviceConfigurationMap.h Silicon/QC/Sm8150/QcomPkg/Include/Configuration/DeviceConfigurationMap.h
+        stuart_build -c Platforms/SurfaceDuo1Pkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG38 "TARGET_DEVICE=${TARGET_DEVICE}"
     done
 else
-    cp Platforms/SurfaceDuo1Pkg/Device/${TARGET_DEVICE}/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.c Platforms/SurfaceDuo1Pkg/Library/PlatformMemoryMapLib/
+    # Update Configuration Map.
+    rm Build/SurfaceDuo1-AARCH64/DEBUG_CLANG38/AARCH64/QcomPkg/PlatformPei/ -rf
+    cp Platforms/SurfaceDuo1Pkg/Device/${TARGET_DEVICE}/Include/Configuration/DeviceConfigurationMap.h Silicon/QC/Sm8150/QcomPkg/Include/Configuration/DeviceConfigurationMap.h
     stuart_build -c Platforms/SurfaceDuo1Pkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG38 "TARGET_DEVICE=${TARGET_DEVICE}"
 fi

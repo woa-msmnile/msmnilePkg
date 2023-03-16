@@ -96,10 +96,6 @@
   #
   MsPlatformPowerCheckLib|PcBdsPkg/Library/MsPlatformPowerCheckLibNull/MsPlatformPowerCheckLibNull.inf
   #
-  # Empty Console Message Library
-  #
-  ConsoleMsgLib|PcBdsPkg/Library/ConsoleMsgLibNull/ConsoleMsgLibNull.inf
-  #
   # Library to help set the console to known points (low res, native res)
   #
   GraphicsConsoleHelperLib|PcBdsPkg/Library/GraphicsConsoleHelperLib/GraphicsConsoleHelper.inf
@@ -149,7 +145,7 @@
   #
   # Library to support Device disable Settings  (get/set)
   #
-  MsBootManagerSettingsLib|PcBdsPkg/Library/MsBootManagerSettingsDxeLib/MsBootManagerSettingsDxeLib.inf
+  MsBootManagerSettingsLib|OemPkg/Library/MsBootManagerSettingsDxeLib/MsBootManagerSettingsDxeLib.inf
   #
   # Library to provide Dialog Boxes in a Simple Window Manager environment.
   #
@@ -186,6 +182,8 @@
 
   Hash2CryptoLib|SecurityPkg/Library/DxeHash2CryptoLib/DxeHash2CryptoLib.inf
 
+  MsPlatformEarlyGraphicsLib|SurfaceDuoFamilyPkg/Library/MsPlatformEarlyGraphicsLib/MsEarlyGraphicsLib.inf
+
 [PcdsFixedAtBuild.common]
   # a PCD that controls the enumeration and connection of ConIn's. When true, ConIn is only connected once a console input is requests 
   gEfiMdeModulePkgTokenSpaceGuid.PcdConInConnectOnDemand|TRUE
@@ -200,6 +198,8 @@
   # The GUID of Frontpage.inf from MU_OEM_SAMPLE
   # 4042708A-0F2D-4823-AC60-0D77B3111889
   gEfiMdeModulePkgTokenSpaceGuid.PcdBootManagerMenuFile|{ 0x8A, 0x70, 0x42, 0x40, 0x2D, 0x0F, 0x23, 0x48, 0xAC, 0x60, 0x0D, 0x77, 0xB3, 0x11, 0x18, 0x89 }
+
+  gOemPkgTokenSpaceGuid.PcdPostBackgroundColor|0x0
 
 [Components.AARCH64]
 
@@ -238,7 +238,7 @@
         NULL|DfciPkg/Library/DfciWpbtSettingLib/DfciWpbtSetting.inf
         NULL|DfciPkg/Library/DfciAssetTagSettingLib/DfciAssetTagSetting.inf
         DfciSettingPermissionLib|DfciPkg/Library/DfciSettingPermissionLib/DfciSettingPermissionLib.inf
-        NULL|PcBdsPkg/Library/MsBootManagerSettingsDxeLib/MsBootManagerSettingsDxeLib.inf
+        NULL|OemPkg/Library/MsBootManagerSettingsDxeLib/MsBootManagerSettingsDxeLib.inf
   <PcdsFeatureFlag>
      gDfciPkgTokenSpaceGuid.PcdSettingsManagerInstallProvider|TRUE
   }
@@ -277,6 +277,8 @@
   #
   MsGraphicsPkg/DisplayEngineDxe/DisplayEngineDxe.inf
 
+  MsGraphicsPkg/MsEarlyGraphics/Dxe/MsEarlyGraphics.inf
+
   MsWheaPkg/HwErrBert/HwErrBert.inf
   MsWheaPkg/MsWheaReport/Dxe/MsWheaReportDxe.inf
 
@@ -284,8 +286,6 @@
   MsWheaPkg/HwhMenu/HwhMenu.inf
 
   MsCorePkg/AcpiRGRT/AcpiRgrt.inf
-
-  DfciPkg/Application/DfciMenu/DfciMenu.inf
 
 #######################################
 #  Shell
@@ -304,3 +304,5 @@
     <PcdsFixedAtBuild>
      gEfiShellPkgTokenSpaceGuid.PcdShellLibAutoInitialize|FALSE
   }
+
+  DfciPkg/Application/DfciMenu/DfciMenu.inf

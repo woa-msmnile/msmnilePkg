@@ -21,32 +21,38 @@
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorModel
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosBoardModel
+
+# PcdSmbiosSystemBrand Patch
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand
+
 [Packages]
   ArmPkg/ArmPkg.dec
   ArmPlatformPkg/ArmPlatformPkg.dec
-  MdePkg/MdePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
   MdeModulePkg/MdeModulePkg.dec
+  MdePkg/MdePkg.dec
+  OemPkg/OemPkg.dec
+  PcBdsPkg/PcBdsPkg.dec
   SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
 
 [LibraryClasses]
   BaseLib
+  BaseMemoryLib
+  CompilerIntrinsicsLib
+  DebugLib
+  MuUefiVersionLib
   ReportStatusCodeLib
-  UefiLib
   UefiBootServicesTableLib
   UefiDriverEntryPoint
-  BaseMemoryLib
-  DebugLib
-  CompilerIntrinsicsLib
-  DxeServicesLib
-  MemoryAllocationLib
+  UefiLib
 
 [Protocols]
   gEfiSmbiosProtocolGuid
   gEfiChipInfoProtocolGuid
-  gEfiRamPartitionProtocolGuid
 
+# Ram Size Detect Patch
+  gEfiRamPartitionProtocolGuid
+  
 [Depex]
   gEfiSmbiosProtocolGuid
 

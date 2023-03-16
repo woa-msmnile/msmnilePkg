@@ -15,9 +15,10 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
     {"GPU PRR",           0x85F40000, 0x00010000, AddMem, MEM_RES, WRITE_COMBINEABLE, Reserv, UNCACHED_UNBUFFERED_XN},
     {"HLOS 2",            0x85F50000, 0x000B0000, AddMem, SYS_MEM, SYS_MEM_CAP, BsData, WRITE_BACK_XN},
     {"SMEM",              0x86000000, 0x00200000, AddMem, MEM_RES, WRITE_COMBINEABLE, Reserv, UNCACHED_UNBUFFERED},
-    {"TZ",                0x86200000, 0x01800000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, NS_DEVICE}, /* Added */
+    {"QTEE",              0x86200000, 0x01800000, NoHob,  SYS_MEM, SYS_MEM_CAP, Reserv, NS_DEVICE}, /* Added */
     {"TZApps",            0x87A00000, 0x03D00000, NoHob,  SYS_MEM, SYS_MEM_CAP, Reserv, NS_DEVICE},
 //    {"RAM Partition",     0x89B00000, 0x01C00000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
+    // TODO Resize it.
     {"PIL_REGION",        0x8B700000, 0x11B00000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, UNCACHED_UNBUFFERED_XN},
 //    {"Sched Heap",        0x9BC00000, 0x01600000, AddMem, SYS_MEM, SYS_MEM_CAP, BsData, WRITE_BACK_XN},
     {"Display Reserved",  0x9D200000, 0x01200000, AddMem, MEM_RES, SYS_MEM_CAP, Reserv, WRITE_THROUGH_XN},

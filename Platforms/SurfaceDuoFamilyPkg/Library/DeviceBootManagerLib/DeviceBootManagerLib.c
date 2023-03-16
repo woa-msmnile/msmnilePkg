@@ -800,7 +800,7 @@ DeviceBootManagerAfterConsole (
     DEBUG ((DEBUG_ERROR, "%a Unabled to set graphics - %r\n", __FUNCTION__, Status));
   }
 
-  ConsoleMsgLibDisplaySystemInfoOnConsole ();
+  //ConsoleMsgLibDisplaySystemInfoOnConsole ();
 
   BootMode = GetBootModeHob ();
 

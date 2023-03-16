@@ -6,7 +6,7 @@ ___
   * Why define it ?
     - Some devices have MLVM region, some do not.
     - If the device has MLVM enabled, MLVM regions will be protected, and they'll be un-readable and un-writeable.
-  * What happened when **TRUE**?
+  * What happened when **1**?
     - If `HAS_MLVM = TRUE`, the MLVM regions will be reserved, so HLOS will not use this region.
     - Total RAM size will decrease about 400MB.
   * Where used it ?
@@ -22,8 +22,18 @@ ___
         * boot to Android
       + return `FALSE`
         * boot to UEFI
-  * What happened when **TRUE**?
+  * What happened when **1**?
     - The build-system will try to find PlatformPrePiLib under Device/$(brand-codename)/Library/PlatformPrePiLib/
   * Where used it ?
     - `CUST_PLATFORM_PRE_PI_LIB`  is used in Platforms/SurfaceDuoFamilyPkg/SurfaceDuoFamily.dsc.inc
     - Line: 395
+
+> **CUST_LOGO**  
+  * Type
+    - Boolean
+  * Why define it ?
+    - Some Device may want it's own logo. (i.e. Brand's Logo)
+  * What happened when **1**?
+    - The Boot Logo will be replaced with the one under Device/$(brand-codename)/Include/Resources/CustBootLogo.bmp
+  * Where used it ?
+    - `CUST_LOGO` is used in Platforms/SurfaceDuoFamilyPkg/Frontpage.fdf.inc

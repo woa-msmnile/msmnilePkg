@@ -14,6 +14,7 @@
   INF DfciPkg/DfciManager/DfciManager.inf
   INF MsGraphicsPkg/OnScreenKeyboardDxe/OnScreenKeyboardDxe.inf
   INF MsGraphicsPkg/SimpleWindowManagerDxe/SimpleWindowManagerDxe.inf
+  INF MsGraphicsPkg/MsEarlyGraphics/Dxe/MsEarlyGraphics.inf
 
   INF MsWheaPkg/HwErrBert/HwErrBert.inf
   INF MsWheaPkg/MsWheaReport/Dxe/MsWheaReportDxe.inf
@@ -25,15 +26,27 @@
 
   INF DfciPkg/Application/DfciMenu/DfciMenu.inf
 
-  # Change AARCH64 to the appropriate architecture for your platform.
+# Change AARCH64 to the appropriate architecture for your platform.
   FILE APPLICATION=PCD(gPcBdsPkgTokenSpaceGuid.PcdShellFile) {
     SECTION PE32=$(OUTPUT_DIRECTORY)/$(TARGET)_$(TOOL_CHAIN_TAG)/AARCH64/Shell.efi
     SECTION UI= "EdkShell"
   }
-  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLogoFile) {
-    SECTION RAW = SurfaceDuoFamilyPkg/Include/Resources/BootLogo.bmp
-    SECTION UI = "Logo"
-  }
+################################################################
+ # CUST_LOGO Change Start.
+ !if $(CUST_LOGO) == 1
+   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLogoFile) {
+     SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Include/Resources/CustBootLogo.bmp
+     SECTION UI = "Logo"
+   }
+ !else
+   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLogoFile) {
+     SECTION RAW = SurfaceDuoFamilyPkg/Include/Resources/BootLogo.bmp
+     SECTION UI = "Logo"
+   }
+ !endif
+# CUST_LOGO Change End.
+################################################################
+
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdFrontPageLogoFile) {
     SECTION RAW = OemPkg/FrontPage/Resources/FrontpageLogo.bmp
   }
