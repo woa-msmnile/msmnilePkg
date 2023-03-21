@@ -14,8 +14,8 @@
 	path = Common/MU_OEM_SAMPLE
 	url = https://github.com/microsoft/mu_oem_sample.git
 	branch = release/202208
-[submodule "Silicon/ARM/TIANO"]
-	path = Silicon/ARM/TIANO
+[submodule "Silicon/Arm/MU_TIANO"]
+	path = Silicon/Arm/MU_TIANO
 	url = https://github.com/microsoft/mu_silicon_arm_tiano.git
 	branch = release/202208
 [submodule "Binaries"]
@@ -24,6 +24,6 @@
 [submodule "Platforms/SurfaceDuoACPI"]
 	path = Platforms/SurfaceDuoACPI
 	url = https://github.com/woa-msmnile/SurfaceDuo-ACPI-fork.git
-[submodule "Common/MU_FEATURE_DFCI"]
-	path = Common/MU_FEATURE_DFCI
-	url = https://github.com/microsoft/mu_feature_dfci.git
+[submodule "Features/DFCI"]
+	path = Features/DFCI
+	url = https://github.com/microsoft/mu_feature_dfci
