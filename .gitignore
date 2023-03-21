@@ -20,7 +20,6 @@ tags/
 .vscode/
 *.bak
 BuildConfig.conf
-ACPI.inc
 uefi_*.img
 android-boot.img
 
