@@ -204,7 +204,7 @@ ___
       + Find the same function(s).
       + Apply the same patch for your device's xxxDxe.efi .
       + Put the patched binaries under `PatchedBinaries/`.
-      + Check DXE_Spec.inc for the paths to your device's patched binaries.
+      + Check DXE.inc and DXE.dsc.inc for the paths to your device's patched binaries.
 ___
 ## **Additions**
   - How to get dtb of my device? *assume in termux environment*
