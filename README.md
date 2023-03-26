@@ -1,10 +1,10 @@
 ## This Repo Is Based On [SurfaceDuoPkg](https://github.com/Woa-Project/SurfaceDuoPkg/)
 
-Thanks for [Gustave](https://github.com/gus33000)'s instructions!
+### Thanks for [Gustave](https://github.com/gus33000)'s instructions!
 
-# [Project Mu](https://microsoft.github.io/mu/) UEFI Implementation for SM8150 Devices
+# [Project Mu](https://microsoft.github.io/mu/) UEFI Implementation for SM8150 & SM7125 Devices
 
-## Build
+## Build ![ActionStatus](https://img.shields.io/github/actions/workflow/status/woa-msmnile/msmnilepkg/main.yml)
 
 ### Minimum System Requirements
 
@@ -33,7 +33,7 @@ Thanks for [Gustave](https://github.com/gus33000)'s instructions!
 pip install --upgrade -r pip-requirements.txt
 ```
 
-*Alternatively, use docker if you don't have Ubuntu 20.04 environment*
+*Alternatively, use docker if you don't have Ubuntu 22.04 environment*
 
 ```
 docker build -t mu:v1 .
@@ -55,24 +55,17 @@ source SurfaceDuo/bin/activate
 ./setup_uefi.sh
 ```
 
-4. Stamp build
-```
-python3 ./Platforms/SurfaceDuo1Pkg/StampBuild.py
-```
-*or*
-```
-./build_releaseinfo.ps1
-```
-
-5. Build UEFI
+4. Build UEFI
 > Usage: build_uefi.sh -d \<target-device\>  
 
 ```
 ./build_uefi.sh -d <target-name>
 ```
-- You will see Build/\<target-device\>.img if it builds successfully.
+- You will see Build/xxxxPkg/\<target-device\>.img if it builds successfully.
 
 ## Target list
+
+### *SM8150*
 
 | Device             | Target name            | DSDT Support    | Maintainers                                        |
 |--------------------|------------------------|-----------------|----------------------------------------------------|
@@ -110,6 +103,16 @@ python3 ./Platforms/SurfaceDuo1Pkg/StampBuild.py
 | Xiaomi Pad 5       | xiaomi-nabu            | ✅              | [Map220v](https://github.com/map220v)              |
 | Xiaomi Poco X3 Pro | xiaomi-vayu            | ✅              | [Degdag](https://github.com/degdag)                |
 
+### *SM7125*
+
+| Device             | Target name            | DSDT Support    | Maintainers                                        |
+| Qcom QRD 720       | qcom-atoll             | ✅              | not sunflower2333                                  |
+
+### *SM8550*
+
+| Device             | Target name            | DSDT Support    | Maintainers                                        |
+| Nubia RedMagic 8Pro| nubia-nx729j           | ❌              | None                                               |
+
 ## Acknowledgements
 
 - Andrei Warkentin and his [RaspberryPiPkg](https://github.com/andreiw/RaspberryPiPkg)
@@ -120,7 +123,6 @@ python3 ./Platforms/SurfaceDuo1Pkg/StampBuild.py
 - [Renegade Project](https://github.com/edk2-porting/)
 - Lemon ICE
 
-## License
-
-All code except drivers in `GPLDriver` directory are licensed under BSD 2-Clause.
+## License ![License](https://img.shields.io/github/license/woa-msmnile/msmnilePkg)
+All code except drivers in `GPLDriver` directory are licensed under BSD 2-Clause.  
 GPL Drivers are licensed under GPLv2 license.
