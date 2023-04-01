@@ -34,4 +34,8 @@ UINTN
 EFIAPI
 SerialPortWriteCritical(IN UINT8 *Buffer, IN UINTN NumberOfBytes);
 
+UINTN
+EFIAPI
+SerialPortWriteWarn(IN UINT8 *Buffer, IN UINTN NumberOfBytes);
+
 #endif

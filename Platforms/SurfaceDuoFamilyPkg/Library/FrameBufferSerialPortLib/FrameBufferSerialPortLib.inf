@@ -22,6 +22,7 @@
   CompilerIntrinsicsLib
   CacheMaintenanceLib
   MemoryMapHelperLib
+  BaseMemoryLib
 
 [Pcd]
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth
