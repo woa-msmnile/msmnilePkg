@@ -190,7 +190,7 @@ READ_LOCK_STATUS   = TRUE
   # INF NetworkPkg/Udp6Dxe/Udp6Dxe.inf
   # INF NetworkPkg/UefiPxeBcDxe/UefiPxeBcDxe.inf
   # INF NetworkPkg/VlanConfigDxe/VlanConfigDxe.inf
-  INF SurfaceDuoFamilyPkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
+  # INF SurfaceDuoFamilyPkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
 
 [FV.FVMAIN_COMPACT]
 FvAlignment        = 8
