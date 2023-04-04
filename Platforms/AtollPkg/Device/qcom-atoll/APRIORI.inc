@@ -2,7 +2,7 @@ APRIORI DXE {
     # First, install the PCD driver and call DxeInit
     INF MdeModulePkg/Core/Dxe/DxeMain.inf
     INF MdeModulePkg/Universal/PCD/Dxe/Pcd.inf
-    INF AtollPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/EnvDxe.inf
+    INF QcomPkg/PatchedBinaries/EnvDxe.inf
 
     # INF MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/ReportStatusCodeRouterRuntimeDxe.inf
     # INF MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf
@@ -21,7 +21,7 @@ APRIORI DXE {
     INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/HWIODxe/HWIODxe.inf
     INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ChipInfoDxe/ChipInfoDxe.inf
     INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/PlatformInfoDxe/PlatformInfoDxe.inf
-    INF AtollPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/HALIOMMUDxe.inf
+    INF QcomPkg/PatchedBinaries/HALIOMMUDxe.inf
     INF EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
     INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/ShmBridgeDxe/ShmBridgeDxe.inf
     INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TzDxe/ScmDxeLA.inf

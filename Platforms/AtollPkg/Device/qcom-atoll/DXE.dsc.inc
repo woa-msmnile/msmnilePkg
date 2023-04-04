@@ -90,8 +90,10 @@ AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/PILDxe/PILDxe.inf
 AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Application/QcomChargerApp/QcomChargerApp.inf
 #QcomPkg/Drivers/ShmBridgeDxe/ShmBridgeDxeLA.inf
 
-AtollPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/EnvDxe.inf
-QcomPkg/PatchedBinaries/78EF0A56-1CF0-4535-B5DA-F6FD2F405A25.inf
-QcomPkg/PatchedBinaries/ButtonsDxe.inf
-AtollPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/HALIOMMUDxe.inf
+# Device Specific Patched DXE
 AtollPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UFSDxe.inf
+AtollPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/ButtonsDxe.inf
+# Platform Specific Patched DXE
+QcomPkg/PatchedBinaries/EnvDxe.inf
+QcomPkg/PatchedBinaries/HALIOMMUDxe.inf
+QcomPkg/PatchedBinaries/78EF0A56-1CF0-4535-B5DA-F6FD2F405A25.inf

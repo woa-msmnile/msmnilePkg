@@ -99,12 +99,14 @@ INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/PILDxe/PILDxe.inf
 INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Application/QcomChargerApp/QcomChargerApp.inf
 #INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ShmBridgeDxe/ShmBridgeDxeLA.inf
 
-# Patched Binaries
-INF AtollPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/EnvDxe.inf
-INF QcomPkg/PatchedBinaries/78EF0A56-1CF0-4535-B5DA-F6FD2F405A25.inf
-INF QcomPkg/PatchedBinaries/ButtonsDxe.inf
-INF AtollPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/HALIOMMUDxe.inf
+## Patched Binaries
+# Device Specific Patched DXE
+INF AtollPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/ButtonsDxe.inf
 INF AtollPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UFSDxe.inf
+# Platform Specific Patched DXE
+INF QcomPkg/PatchedBinaries/EnvDxe.inf
+INF QcomPkg/PatchedBinaries/HALIOMMUDxe.inf
+INF QcomPkg/PatchedBinaries/78EF0A56-1CF0-4535-B5DA-F6FD2F405A25.inf
 
 FILE DRIVER = 6b38f7b4-ad98-40e9-9093-aca2b5a253c4 {
     SECTION PE32 = AtollPkg/Device/$(TARGET_DEVICE)/Binaries/MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.efi
