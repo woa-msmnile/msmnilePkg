@@ -36,7 +36,8 @@ EFI_STATUS
 CfgGetCfgInfoString(CHAR8 *Key, CHAR8 *Value, UINTN *ValBuffSize)
 {
   if (AsciiStriCmp(Key, "OsTypeString") == 0) {
-    AsciiStrCpyS(Value, *ValBuffSize, "LA");
+//    AsciiStrCpyS(Value, *ValBuffSize, "LA");
+    AsciiStrCpyS(Value, *ValBuffSize, "WP");
     return EFI_SUCCESS;
   }
 
@@ -156,6 +157,7 @@ VOID BuildMemHobForFv(IN UINT16 Type)
 
 STATIC GUID gEfiShLibHobGuid   = EFI_SHIM_LIBRARY_GUID;
 STATIC GUID gEfiInfoBlkHobGuid = EFI_INFORMATION_BLOCK_GUID;
+STATIC GUID gEfiProdmodeHobGuid = EFI_PRODMODE_INFORMATION_GUID;
 
 VOID InstallPlatformHob()
 {
@@ -163,12 +165,16 @@ VOID InstallPlatformHob()
 
   if (!initialized) {
     UINTN Data  = (UINTN)&ShLib;
+    BOOLEAN Prodmode = FALSE;
+
     ARM_MEMORY_REGION_DESCRIPTOR_EX InfoBlk;
     LocateMemoryMapAreaByName("Info Blk", &InfoBlk);
 
     BuildMemHobForFv(EFI_HOB_TYPE_FV2);
     BuildGuidDataHob(&gEfiShLibHobGuid, &Data, sizeof(Data));
     BuildGuidDataHob(&gEfiInfoBlkHobGuid, &InfoBlk.Address, sizeof(InfoBlk.Address));
+
+    BuildGuidDataHob (&gEfiProdmodeHobGuid, &Prodmode, sizeof(Prodmode));
 
     initialized = 1;
   }

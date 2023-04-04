@@ -76,11 +76,19 @@ typedef struct {
     }                                                                          \
   }
 
-#define EFI_INFORMATION_BLOCK_GUID                                                  \
+#define EFI_INFORMATION_BLOCK_GUID                                             \
   {                                                                            \
     0x90a49afd, 0x422f, 0x08ae,                                                \
     {                                                                          \
       0x96, 0x11, 0xe7, 0x88, 0xd3, 0x80, 0x48, 0x45                           \
+    }                                                                          \
+  }
+
+#define EFI_PRODMODE_INFORMATION_GUID                                          \
+  {                                                                            \
+    0xd5f8d706, 0xd602, 0x4f39,                                                \
+    {                                                                          \
+      0x96, 0x9d, 0xa0, 0x4f, 0xe2, 0xbb, 0x7f, 0x61                           \
     }                                                                          \
   }
 
