@@ -1,4 +1,5 @@
 # MU-8150pkg Porting Guide. 
+## **[中文版](SimpleGuide_Chinese.md)**
 ## **⚠ Notice, Do not try it on Google devices, Sony devices or Samsung devices.**
 
 > ### The Guide has 4 parts.
