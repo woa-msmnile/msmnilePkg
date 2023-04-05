@@ -1,5 +1,5 @@
-# MU-8150pkg Porting Guide. 
-## **[中文版](SimpleGuide_Chinese.md)**
+# msmnilePkg Porting Guide. 
+## **[中文版](SimpleGuide.CN.md)**
 ## **⚠ Notice, Do not try it on Google devices, Sony devices or Samsung devices.**
 
 > ### The Guide has 4 parts.
@@ -163,9 +163,9 @@ ___
   - Setup Windows PE environment on your device.
   - Try to boot into Windows PE.
   - What if it stacks, reboots or crashes ?
-    * Check UFS CCA in dsdt, it should be 0.
-    * Check MemoryMap *(${device}/Library/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.c)*.
-    * Check HAS_MLVM in `Defines.dsc.inc`, if windows hangs at boot, set it to `TRUE`.
+    * Check MemoryMap *(brand-codename/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.c)*.
+    * Check DeviceConfigurationMap *(brand-codename/Configuration/DeviceConfigurationMap.h)*.
+    * Check HAS_MLVM in `Defines.dsc.inc`, if windows hangs up at boot, try to set it to `TRUE`.
   - Usb not working with external power supply?
     * Patch firmware binaries.
   *It will boot into PE if porting success.*
@@ -173,11 +173,11 @@ ___
 ## **Part 3.** Patch binaries.
   - Which binary needs Patch ?
     * If your phone stack while loading PILDxe, patch UFSDxe.
-    * If your phone can not connect with PC via KDNET, or USB not working in windows(with externel power), pacth UsbConfigDxe.
-    * If your phone can not usb button in uefi stage, patch ButtonsDxe.
+    * If your phone can not connect with PC via KDNET, or USB not working in windows(with externel power), patch UsbConfigDxe.
+    * If your phone can not use button at uefi stage, please patch ButtonsDxe.
   - Where to patch ?
-    * The most simple way to know where to pacth:
-      + Find one other device's original xxxDxe.efi and its pacthed xxxDxe.efi .
+    * The most simple way to know where to patch:
+      + Find one other device's original xxxDxe.efi and its patched xxxDxe.efi .
       + Dump hex and get where & what to patch.
         ```
         hexdump -C a_xxxDxe.efi > a.txt
@@ -214,11 +214,11 @@ ___
       ```
       sudo cp /dev/block/by-name/boot ~/split-appended-dtb/myboot.img
       ```
-    * Split dtbs from you phone's boot.
+    * Split dtb from you phone's boot.
       ```
       ./magiskboot_arm unpack myboot.img
       ```
-    * Renamed `kernel_dtb` to android-`codename`.dtb and put it into Device/*\<brand-codename\>*/DeviceTreeBlob/Android/.
+    * Renamed `kernel_dtb`(or `dtb`) to android-`codename`.dtb and put it into Device/*\<brand-codename\>*/DeviceTreeBlob/Android/.
   - Should MLVM always be `TRUE`?
     * In early test you can set it to `TRUE` to avoid MLVM issue.
     * If you can boot windows, turn it to `FALSE` and have a try.
