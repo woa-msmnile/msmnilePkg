@@ -965,7 +965,7 @@ SmBiosTableDxeInitialize(
       while(SystemMemorySize >= DesignMemroySize)
         DesignMemroySize += 0x40000000;
 
-      DEBUG((EFI_D_WARN, "The Totol DesignMemorySize is 0x%016llx \n", SystemMemorySize));
+      DEBUG((EFI_D_WARN, "The Totol DesignMemorySize is 0x%016llx \n", DesignMemroySize));
       SystemMemorySize = DesignMemroySize;
     }
   } else{
