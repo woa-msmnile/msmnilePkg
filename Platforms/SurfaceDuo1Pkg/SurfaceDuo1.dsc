@@ -32,14 +32,14 @@
   # Notice: TRUE == 1, FALSE == 0
   SECURE_BOOT_ENABLE             = 1
   USE_PHYSICAL_TIMER             = 1
-  USE_SCREEN_FOR_SERIAL_OUTPUT   = 1
+  USE_SCREEN_FOR_SERIAL_OUTPUT   = 0
   USE_UART_FOR_SERIAL_OUTPUT     = 0
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 1
-  SEND_HEARTBEAT_TO_SERIAL       = 1
+  SEND_HEARTBEAT_TO_SERIAL       = 0
   USE_SIMPLEFBDXE                = 1
 
   # Device-specific memory map hacks
-  HAS_MLVM                       = FALSE
+  HAS_MLVM                       = TRUE
 
 !include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Defines.dsc.inc
 
