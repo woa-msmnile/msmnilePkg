@@ -35,7 +35,7 @@
   USE_SCREEN_FOR_SERIAL_OUTPUT   = 1
   USE_UART_FOR_SERIAL_OUTPUT     = 0
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 1
-  SEND_HEARTBEAT_TO_SERIAL       = 0
+  SEND_HEARTBEAT_TO_SERIAL       = 1
   USE_SIMPLEFBDXE                = 0
 
   # Device-specific memory map hacks
