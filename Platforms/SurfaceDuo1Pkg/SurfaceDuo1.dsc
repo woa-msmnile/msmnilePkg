@@ -36,7 +36,7 @@
   USE_UART_FOR_SERIAL_OUTPUT     = 0
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 1
   SEND_HEARTBEAT_TO_SERIAL       = 1
-  USE_SIMPLEFBDXE                = 0
+  USE_SIMPLEFBDXE                = 1
 
   # Device-specific memory map hacks
   HAS_MLVM                       = FALSE
