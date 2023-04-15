@@ -32,11 +32,11 @@
   # Notice: TRUE == 1, FALSE == 0
   SECURE_BOOT_ENABLE             = 1
   USE_PHYSICAL_TIMER             = 1
-  USE_SCREEN_FOR_SERIAL_OUTPUT   = 0
+  USE_SCREEN_FOR_SERIAL_OUTPUT   = 1
   USE_UART_FOR_SERIAL_OUTPUT     = 0
-  USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
+  USE_MEMORY_FOR_SERIAL_OUTPUT   = 1
   SEND_HEARTBEAT_TO_SERIAL       = 0
-  USE_SIMPLEFBDXE                = 1
+  USE_SIMPLEFBDXE                = 0
 
   # Device-specific memory map hacks
   HAS_MLVM                       = FALSE
@@ -45,7 +45,7 @@
 
 [BuildOptions.common]
 
-GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
+GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150 -DMEMMAP_XIAOMI_HACKS=1 -DENABLE_SIMPLE_INIT -DENABLE_LINUX_SIMPLE_MASS_STORAGE
 
 # TODO: Re-do the memory map stuff at one point so it's not defined in static variable and put 
 # those defines only in modules that need them, so changing anything here doesn't rebuild EVERY DAMN THING.
@@ -57,7 +57,7 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
 
 [PcdsFixedAtBuild.common]
   # Platform-specific
-  gArmTokenSpaceGuid.PcdSystemMemorySize|0x100000000            # 4GB
+  gArmTokenSpaceGuid.PcdSystemMemorySize|0x160000000            # 4GB
 
 [Components.common]
   # Graphics Driver
