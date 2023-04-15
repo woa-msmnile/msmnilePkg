@@ -57,7 +57,7 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150 -DMEMMAP_XIAOMI_HACKS=1 -DENA
 
 [PcdsFixedAtBuild.common]
   # Platform-specific
-  gArmTokenSpaceGuid.PcdSystemMemorySize|0x160000000            # 4GB
+  gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000            # 4GB
 
 [Components.common]
   # Graphics Driver
