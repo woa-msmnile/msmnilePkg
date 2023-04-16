@@ -45,7 +45,11 @@
 
 [BuildOptions.common]
 
-GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150 -DMEMMAP_XIAOMI_HACKS=1 -DENABLE_SIMPLE_INIT -DENABLE_LINUX_SIMPLE_MASS_STORAGE
+GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150 -DENABLE_SIMPLE_INIT
+
+!if $(MEMMAP_XIAOMI_HACKS) == TRUE
+  GCC:*_*_AARCH64_CC_FLAGS = -DMEMMAP_XIAOMI_HACKS=1
+!endif
 
 # TODO: Re-do the memory map stuff at one point so it's not defined in static variable and put 
 # those defines only in modules that need them, so changing anything here doesn't rebuild EVERY DAMN THING.
@@ -57,7 +61,7 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150 -DMEMMAP_XIAOMI_HACKS=1 -DENA
 
 [PcdsFixedAtBuild.common]
   # Platform-specific
-  gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000            # 4GB
+  gArmTokenSpaceGuid.PcdSystemMemorySize|0x100000000            # 4GB
 
 [Components.common]
   # Graphics Driver
