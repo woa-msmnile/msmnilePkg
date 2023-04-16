@@ -34,18 +34,15 @@ stuart_update -c Platforms/SurfaceDuo1Pkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG3
 
 # Start the actual build:
 if [ ${TARGET_DEVICE} = 'all' ]; then
-    for i in $(ls Platforms/SurfaceDuo1Pkg/Device); do
-        # skip if the directory is empty
+    if [ -z "$(ls Platforms/SurfaceDuo1Pkg/Device/xiaomi-nabu)" ]; then
+        continue
+    fi
 
-        if [ -z "$(ls Platforms/SurfaceDuo1Pkg/Device/${i})" ]; then
-            continue
-        fi
-
-        TARGET_DEVICE=$(basename ${i})
-        # Update Configuration Map for each Device.
-        rm Build/SurfaceDuo1-AARCH64/DEBUG_CLANG38/AARCH64/QcomPkg/PlatformPei/ -rf
-        cp Platforms/SurfaceDuo1Pkg/Device/${TARGET_DEVICE}/Include/Configuration/DeviceConfigurationMap.h Silicon/QC/Sm8150/QcomPkg/Include/Configuration/DeviceConfigurationMap.h
-        stuart_build -c Platforms/SurfaceDuo1Pkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG38 "TARGET_DEVICE=${TARGET_DEVICE}"
+    TARGET_DEVICE=$(basename xiaomi-nabu)
+    # Update Configuration Map for each Device.
+    rm Build/SurfaceDuo1-AARCH64/DEBUG_CLANG38/AARCH64/QcomPkg/PlatformPei/ -rf
+    cp Platforms/SurfaceDuo1Pkg/Device/${TARGET_DEVICE}/Include/Configuration/DeviceConfigurationMap.h Silicon/QC/Sm8150/QcomPkg/Include/Configuration/DeviceConfigurationMap.h
+    stuart_build -c Platforms/SurfaceDuo1Pkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG38 "TARGET_DEVICE=${TARGET_DEVICE}"
     done
 else
     # Update Configuration Map.
