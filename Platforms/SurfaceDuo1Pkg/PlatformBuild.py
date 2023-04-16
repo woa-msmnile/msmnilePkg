@@ -26,7 +26,6 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), 'PythonLibs'))
 import sdbuild
 
-
     # ####################################################################################### #
     #                                Common Configuration                                     #
     # ####################################################################################### #
@@ -39,7 +38,7 @@ class CommonPlatform():
     TargetsSupported = ("DEBUG", "RELEASE", "NOOPT")
     Scopes = ('SurfaceDuo1', 'edk2-build', 'cibuild')
     WorkspaceRoot = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    PackagesPath = ("Binaries", "Platforms", "MU_BASECORE", "Common/MU", "Common/MU_TIANO", "Common/MU_OEM_SAMPLE", "Common/MU_FEATURE_DFCI", "Silicon/ARM/TIANO", "Silicon/QC/Sm8150")
+    PackagesPath = ("Binaries", "Platforms", "MU_BASECORE", "Common/MU", "Common/MU_TIANO", "Common/MU_OEM_SAMPLE", "Features/DFCI", "Silicon/Arm/MU_TIANO", "Silicon/QC/Sm8150")
 
 
     # ####################################################################################### #
@@ -253,7 +252,6 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
             spec = importlib.util.spec_from_loader(loader.name, loader)
             mod = importlib.util.module_from_spec(spec)
             loader.exec_module(mod)
-
 
     def FlashRomImage(self):
         return 0

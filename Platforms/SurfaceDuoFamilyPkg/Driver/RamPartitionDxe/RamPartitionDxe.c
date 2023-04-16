@@ -3,13 +3,13 @@
    Add RAM Partitions.
    Read Ram Partitions Info by EFI_RAMPARTITION_PROTOCOL and add them.
 
- * Copyright (c) 2022. Sunflower2333. All rights reserved.
 
  * Reference Codes
  * abl/edk2/QcomModulePkg/Library/BootLib/Board.c
 
  - License:
  * Copyright (c) 2015-2018, 2020, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2022. Sunflower2333. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -54,6 +54,8 @@
 #include <Library/ArmPlatformLib.h>
 #include <Library/PcdLib.h>
 #include <Library/IoLib.h>
+
+#include <Library/PlatformMemoryMapLib.h>
 
 #include <Protocol/EFIRamPartition.h>
 
@@ -251,7 +253,7 @@ RamPartitionDxeInitialize(
 #endif
 
         // Update RAM Partitions.
-        // It has mapped 4GB RAM in PEI stage.
+        // You should have mapped 4GB RAM in PEI stage.
         // End Address of 4GB: 0x180000000
           if((RamPartitionEntries[i].Base < 0x180000000) && ((RamPartitionEntries[i].Base + RamPartitionEntries[i].AvailableLength) > 0x180000000)){
               MemoryDescriptorEx[Index].Address       = 0x180000000;

@@ -20,7 +20,7 @@
 #
 ################################################################################
 
-[FD.SM8150_EFI]
+[FD.SM7125_EFI]
 BaseAddress   = 0x9FC00000|gArmTokenSpaceGuid.PcdFdBaseAddress #The base address of the FLASH Device.
 Size          = 0x00300000|gArmTokenSpaceGuid.PcdFdSize        #The size in bytes of the FLASH Device
 ErasePolarity = 1

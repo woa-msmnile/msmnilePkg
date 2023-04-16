@@ -32,7 +32,7 @@
   # Notice: TRUE == 1, FALSE == 0
   SECURE_BOOT_ENABLE             = 1
   USE_PHYSICAL_TIMER             = 1
-  USE_SCREEN_FOR_SERIAL_OUTPUT   = 0
+  USE_SCREEN_FOR_SERIAL_OUTPUT   = 1
   USE_UART_FOR_SERIAL_OUTPUT     = 0
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
   SEND_HEARTBEAT_TO_SERIAL       = 0
@@ -43,6 +43,12 @@
 [BuildOptions.common]
 
 GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=7125
+
+!if $(HAS_MLVM) == TRUE
+  GCC:*_*_AARCH64_CC_FLAGS = -DHAS_MLVM=1
+!else
+  GCC:*_*_AARCH64_CC_FLAGS = -DHAS_MLVM=0
+!endif
 
 [PcdsFixedAtBuild.common]
   # Platform-specific
@@ -63,15 +69,15 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=7125
 
 
 # Suggest you updating them to your device's dsc.inc.
-[PcdsDynamicDefault.common]
-  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1080
-  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|2340
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|1080
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|2340
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|120 # 94.73
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|90 # 168.75
-  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow|120 # 94.73
-  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn|90 # 168.75
+#[PcdsDynamicDefault.common]
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1080
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|2248
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|1080
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|2248
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|120 # 94.73
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|90 # 168.75
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow|120 # 94.73
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn|90 # 168.75
 
 !include QcomPkg/QcomPkg.dsc.inc
 !include AtollPkg/Device/$(TARGET_DEVICE)/PcdsFixedAtBuild.dsc.inc

@@ -5,21 +5,24 @@
 #    SECTION RAW = AtollPkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/uefiplat.cfg
 #}
 
-INF Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/AdapterInformationDxe/AdapterInformationDxe.inf
-INF Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/CPRDxe/CPRDxe.inf
-#INF Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/GLinkDxe/GLinkDxe.inf
-INF Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/OSConfigDxe/OSConfigDxe.inf
-#INF Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/PmicGlinkDxe/PmicGlinkDxe.inf
-INF Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/ShmBridgeDxe/ShmBridgeDxe.inf
-INF Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/UsbDeviceDxe/UsbDeviceDxe.inf
-INF Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/UsbInitDxe/UsbInitDxe.inf
-INF Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/UsbMsdDxe/UsbMsdDxe.inf
-INF Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/UsbPwrCtrlDxe/UsbPwrCtrlDxe.inf
-INF Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/XhciPciEmulationDxe/XhciPciEmulationDxe.inf
-INF Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/DppDxe/DppDxe.inf
-INF Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/RawFileSystemDxe/RawFileSystemDxe.inf
-#INF Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/SecurityDxe/SecurityDxe.inf
-
+INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/AdapterInformationDxe/AdapterInformationDxe.inf
+INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/CPRDxe/CPRDxe.inf
+#INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/GLinkDxe/GLinkDxe.inf
+INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/OSConfigDxe/OSConfigDxe.inf
+#INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/PmicGlinkDxe/PmicGlinkDxe.inf
+INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/ShmBridgeDxe/ShmBridgeDxe.inf
+INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/UsbDeviceDxe/UsbDeviceDxe.inf
+INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/UsbInitDxe/UsbInitDxe.inf
+INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/UsbMsdDxe/UsbMsdDxe.inf
+INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/UsbPwrCtrlDxe/UsbPwrCtrlDxe.inf
+INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/XhciPciEmulationDxe/XhciPciEmulationDxe.inf
+INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/DppDxe/DppDxe.inf
+INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/RawFileSystemDxe/RawFileSystemDxe.inf
+INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/UsbfnChgDxe/UsbfnChgDxe.inf
+INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/UsbConfigDxe/UsbConfigDxe.inf
+INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/UsbfnDwc3Dxe/UsbfnDwc3Dxe.inf
+#INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/SecurityDxe/SecurityDxe.inf
+INF SurfaceDuoFamilyPkg/Driver/RamPartitionDxe/RamPartitionDxe.inf
 INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
 
 #INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/MinidumpTADxe/MinidumpTADxe.inf
@@ -38,7 +41,7 @@ INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TzDxe/TzDxeLA.inf
 #INF MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/SCHandlerRtDxe.inf
 #INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/VariableDxe/VariableDxe.inf
 INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/EmbeddedMonotonicCounter/EmbeddedMonotonicCounter.inf
-#INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SimpleTextInOutSerialDxe/SimpleTextInOutSerial.inf
+INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SimpleTextInOutSerialDxe/SimpleTextInOutSerial.inf
 INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ResetRuntimeDxe/ResetRuntimeDxe.inf
 #INF EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf
 #INF EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
@@ -49,7 +52,6 @@ INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ResetRuntimeDxe/Re
 ##INF MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
 #INF MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
 INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/FontDxe/FontDxe.inf
-#INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/EnvDxe/EnvDxe.inf
 #INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/QcomWDogDxe/QcomWDogDxe.inf
 #INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/QcomMpmTimerDxe/QcomMpmTimerDxe.inf
 #INF ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
@@ -85,15 +87,10 @@ INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/PlatformInfoDxe/Pl
 INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/PmicDxe/PmicDxeLa.inf
 INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ChargerExDxe/ChargerExDxe.inf
 INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/QcomChargerDxe/QcomChargerDxeLA.inf
-#INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/UsbPwrCtrlDxe/UsbPwrCtrlDxe.inf
 INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/AdcDxe/AdcDxe.inf
 INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TsensDxe/TsensDxe.inf
 INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/LimitsDxe/LimitsDxe.inf
 INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/DDRInfoDxe/DDRInfoDxe.inf
-INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/UsbfnDwc3Dxe/UsbfnDwc3Dxe.inf
-#INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/UsbMsdDxe/UsbMsdDxe.inf
-#INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/UsbDeviceDxe/UsbDeviceDxe.inf
-#INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/UsbConfigDxe/UsbConfigDxe.inf
 #INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/HashDxe/HashDxe.inf
 #INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/CipherDxe/CipherDxe.inf
 #INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/RNGDxe/RngDxe.inf
@@ -102,11 +99,14 @@ INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/PILDxe/PILDxe.inf
 INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Application/QcomChargerApp/QcomChargerApp.inf
 #INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ShmBridgeDxe/ShmBridgeDxeLA.inf
 
-INF QcomPkg/PatchedBinaries/78EF0A56-1CF0-4535-B5DA-F6FD2F405A25.inf
-INF QcomPkg/PatchedBinaries/ButtonsDxe.inf
-INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/HALIOMMUDxe/HALIOMMUDxe.inf
-INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/UsbConfigDxe/UsbConfigDxe.inf
+## Patched Binaries
+# Device Specific Patched DXE
+INF AtollPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/ButtonsDxe.inf
 INF AtollPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UFSDxe.inf
+# Platform Specific Patched DXE
+INF QcomPkg/PatchedBinaries/EnvDxe.inf
+INF QcomPkg/PatchedBinaries/HALIOMMUDxe.inf
+INF QcomPkg/PatchedBinaries/78EF0A56-1CF0-4535-B5DA-F6FD2F405A25.inf
 
 FILE DRIVER = 6b38f7b4-ad98-40e9-9093-aca2b5a253c4 {
     SECTION PE32 = AtollPkg/Device/$(TARGET_DEVICE)/Binaries/MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.efi
@@ -118,46 +118,40 @@ FILE DRIVER = 1fa1f39e-feff-4aae-bd7b-38a070a3b609 {
     SECTION UI = "PartitionDxe"
 }
 
-#FILE DRIVER = f09ad92e-4e91-490f-ab99-e69939b840b2 {
-#    SECTION UI = "LimitsDxe"
-#    SECTION RAW = Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/LimitsDxe/LimitsDxe.raw
-#    SECTION PE32 = Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/LimitsDxe/LimitsDxe.efi
-#}
-#
 FILE DRIVER = 3adf8dda-1850-44c5-8c63-bb991849bc6f {
     SECTION UI = "HashDxe"
-#    SECTION RAW = Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/HashDxe/HashDxe.raw
+#    SECTION RAW = Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/HashDxe/HashDxe.raw
     SECTION PE32 = AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/HashDxe/HashDxe.efi
 }
 
 FILE DRIVER = 5f0937cd-73f9-445e-b320-bb6fd5d3cbde {
     SECTION UI = "CipherDxe"
-#    SECTION RAW = Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/CipherDxe/CipherDxe.raw
+#    SECTION RAW = Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/CipherDxe/CipherDxe.raw
     SECTION PE32 = AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/CipherDxe/CipherDxe.efi
 }
 
 FILE DRIVER = b0d3689e-11f8-43c6-8ece-023a29cec35b {
     SECTION UI = "RngDxe"
-#    SECTION RAW = Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/RNGDxe/RngDxe.raw
+#    SECTION RAW = Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/RNGDxe/RngDxe.raw
     SECTION PE32 = AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/RNGDxe/RngDxe.efi
 }
 
 FILE DRIVER = 7861C9D1-43B6-410C-B8A7-C129A9346D9D {
     SECTION UI = "TpmDxe"
-#    SECTION RAW = Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/HashDxe/HashDxe.raw
-    SECTION PE32 = Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/TrEEDxe/TpmDxe.inf
+#    SECTION RAW = Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/HashDxe/HashDxe.raw
+    SECTION PE32 = Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/TrEEDxe/TpmDxe.inf
 }
 
 FILE DRIVER = 59CC11DC-1C60-11E1-A80F-A3B54824019B {
     SECTION UI = "TrEEDxe"
-#    SECTION RAW = Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/HashDxe/HashDxe.raw
-    SECTION PE32 = Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/TrEEDxe/TrEEDxe.efi
+#    SECTION RAW = Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/HashDxe/HashDxe.raw
+    SECTION PE32 = Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/TrEEDxe/TrEEDxe.efi
 }
 
 FILE DRIVER = 5E0EAE60-EAED-4D75-B8BF-EDBBAABC3F09{
     SECTION UI = "SecurityDxe"
-#    SECTION RAW = Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/HashDxe/HashDxe.raw
-    SECTION PE32 = Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/SecurityDxe/SecurityDxe.efi
+#    SECTION RAW = Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/HashDxe/HashDxe.raw
+    SECTION PE32 = Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/SecurityDxe/SecurityDxe.efi
 }
 
 
@@ -178,22 +172,22 @@ FILE DRIVER = cccb0c28-4b24-11d5-9a5a-0090273fc14d {
 #}
 
 FILE DRIVER = B7F50E91-A759-412C-ADE4-DCD03E7F7C28 {
-    SECTION PE32 = Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/XhciDxe/XhciDxe.efi
+    SECTION PE32 = Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/XhciDxe/XhciDxe.efi
     SECTION UI = "XhciDxe"
 }
 
 FILE DRIVER = 240612B7-A063-11D4-9A3A-0090273FC14D {
-    SECTION PE32 = Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/UsbBusDxe/UsbBusDxe.efi
+    SECTION PE32 = Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/UsbBusDxe/UsbBusDxe.efi
     SECTION UI = "UsbBusDxe"
 }
 
 FILE DRIVER = 2D2E62CF-9ECF-43B7-8219-94E7FC713DFE {
-    SECTION PE32 = Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/UsbKbDxe/UsbKbDxe.efi
+    SECTION PE32 = Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/UsbKbDxe/UsbKbDxe.efi
     SECTION UI = "UsbKbDxe"
 }
 
 FILE DRIVER = 9FB4B4A7-42C0-4BCD-8540-9BCC6711F83E {
-    SECTION PE32 = Rennell/BOOT.XF.3.1-00592-SC7180XWZB-1/QcomPkg/Drivers/UsbMassStorageDxe/UsbMassStorageDxe.efi
+    SECTION PE32 = Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/UsbMassStorageDxe/UsbMassStorageDxe.efi
     SECTION UI = "UsbMassStorageDxe"
 }
 

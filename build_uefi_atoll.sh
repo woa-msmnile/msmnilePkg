@@ -27,6 +27,11 @@ if [ -z ${TARGET_DEVICE} ]; then
     exit 1
 fi
 
+# Build BootShim First
+stuart_setup -c Platforms/AtollPkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG38
+stuart_update -c Platforms/AtollPkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG38
+./build_boot_shim.sh
+
 # Start the actual build:
 if [ ${TARGET_DEVICE} = 'all' ]; then
     for i in $(ls Platforms/AtollPkg/Device); do

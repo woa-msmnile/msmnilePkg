@@ -27,12 +27,17 @@ if [ -z ${TARGET_DEVICE} ]; then
     exit 1
 fi
 
+# Build BootShim First
+stuart_setup -c Platforms/SurfaceDuo1Pkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG38
+stuart_update -c Platforms/SurfaceDuo1Pkg/PlatformBuild.py TOOL_CHAIN_TAG=CLANG38
+./build_boot_shim.sh
+
 # Start the actual build:
 if [ ${TARGET_DEVICE} = 'all' ]; then
-    for i in $(ls Platforms/SurfaceDuo1Pkg/Device); do
+    for i in $(ls Platforms/Atoll1Pkg/Device); do
         # skip if the directory is empty
 
-        if [ -z "$(ls Platforms/SurfaceDuo1Pkg/Device/${i})" ]; then
+        if [ -z "$(ls Platforms/Atoll1Pkg/Device/${i})" ]; then
             continue
         fi
 

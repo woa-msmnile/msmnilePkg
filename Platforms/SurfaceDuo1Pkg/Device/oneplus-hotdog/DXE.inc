@@ -173,6 +173,7 @@ FILE DRIVER = 9FB4B4A7-42C0-4BCD-8540-9BCC6711F83E {
 }
 
 # Raw Files
+
 FILE FREEFORM = A91D838E-A5FA-4138-825D-455E2303079E {
     SECTION UI = "BDS_Menu.cfg"
     SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/BDS_Menu.cfg
@@ -245,63 +246,9 @@ FILE FREEFORM = 88CA5ABF-D0AC-4093-A68C-0CFAE1EF9635 {
 }
 
 
-FILE FREEFORM = 645693CB-DB2E-4C3C-9A63-E187D1A49F8C {
-    SECTION UI = "Panel-samsung_sofef00_m_cmd.xml"
-    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel-samsung_sofef00_m_cmd.xml
-}
-
-
 FILE FREEFORM = 45A8FDA2-4FAD-4234-BCDA-D1778611CE13 {
     SECTION UI = "Panel_boe_amoled_wqhd_dsc_vid.xml"
     SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_boe_amoled_wqhd_dsc_vid.xml
-}
-
-
-FILE FREEFORM = 0A7FF25F-FB7A-454D-8759-F4DE42A88927 {
-    SECTION UI = "Panel-samsung_s6e3fc2x01_cmd.xml"
-    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel-samsung_s6e3fc2x01_cmd.xml
-}
-
-
-FILE FREEFORM = 97518758-5DBD-4DE2-914C-F17438FF458A {
-    SECTION UI = "Panel-samsung_s6e3fc2x01_ed173_cmd.xml"
-    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel-samsung_s6e3fc2x01_ed173_cmd.xml
-}
-
-
-FILE FREEFORM = 4DB2B713-142B-462B-94CB-510EE4812980 {
-    SECTION UI = "Panel_samsung_sofef00_m_vid.xml"
-    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_samsung_sofef00_m_vid.xml
-}
-
-
-FILE FREEFORM = 1ADE64D3-4F33-4994-B669-53C6455ADECA {
-    SECTION UI = "Panel-samsung_s9_dsc_cmd.xml"
-    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel-samsung_s9_dsc_cmd.xml
-}
-
-
-FILE FREEFORM = 55211706-C450-400C-A16C-0F1738D2E050 {
-    SECTION UI = "Panel-samsung_findx_dsc_cmd.xml"
-    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel-samsung_findx_dsc_cmd.xml
-}
-
-
-FILE FREEFORM = 101D1522-E68C-4F8C-A50D-465839CCE42E {
-    SECTION UI = "Panel-samsung_oneplus_dsc_cmd.xml"
-    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel-samsung_oneplus_dsc_cmd.xml
-}
-
-
-FILE FREEFORM = 0D23B97F-6237-47E6-87E0-3130B8609AA2 {
-    SECTION UI = "Panel-samsung_sofef03f_m_fhd_dsc_cmd.xml"
-    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel-samsung_sofef03f_m_fhd_dsc_cmd.xml
-}
-
-
-FILE FREEFORM = 1268A7B4-8B74-4EE9-84CD-C72F8B52C2F0 {
-    SECTION UI = "Panel-samsung_oppofhd_cmd.xml"
-    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel-samsung_oppofhd_cmd.xml
 }
 
 
@@ -314,6 +261,60 @@ FILE FREEFORM = 2BCA3B86-E175-4609-AC7F-207908B89C75 {
 FILE FREEFORM = A3607731-F28D-496C-83D3-FB182F885F8C {
     SECTION UI = "Panel_secondary_truly_1080p_cmd.xml"
     SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_secondary_truly_1080p_cmd.xml
+}
+
+
+FILE FREEFORM = AC7992DA-4DE2-49B5-99C1-ABCA7E1600E3 {
+    SECTION UI = "Panel_samsung_s6e3fc2x01_1080_2340_61fps_dsc_cmd.xml"
+    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_samsung_s6e3fc2x01_1080_2340_61fps_dsc_cmd.xml
+}
+
+
+FILE FREEFORM = 11F0CBAF-64C1-4D1B-8F71-78CD71C91723 {
+    SECTION UI = "Panel_samsung_s6e3fc2x01_1080_2340_dsc_cmd.xml"
+    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_samsung_s6e3fc2x01_1080_2340_dsc_cmd.xml
+}
+
+
+FILE FREEFORM = 102C1D92-5FD3-4CB5-A2A9-AECC9F0B613C {
+    SECTION UI = "Panel_samsung_s6e3ha8_1080_2340_dsc_cmd.xml"
+    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_samsung_s6e3ha8_1080_2340_dsc_cmd.xml
+}
+
+
+FILE FREEFORM = 9D4FC41B-F501-4326-8285-F5FB8A4FF115 {
+    SECTION UI = "Panel_samsung_sofef03f_m_amoled_fhd_90fps_dsc_cmd.xml"
+    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_samsung_sofef03f_m_amoled_fhd_90fps_dsc_cmd.xml
+}
+
+
+FILE FREEFORM = 483DC293-9013-481B-B1A7-C84F51326E70 {
+    SECTION UI = "Panel_oppo19696_boe_nt36672c_1080_2400_vid.xml"
+    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_oppo19696_boe_nt36672c_1080_2400_vid.xml
+}
+
+
+FILE FREEFORM = 72AC4108-333A-4FDF-83B6-4C9679C740BD {
+    SECTION UI = "Panel_oppo19696_jdi_nt36672c_1080_2400_vid.xml"
+    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_oppo19696_jdi_nt36672c_1080_2400_vid.xml
+}
+
+
+FILE FREEFORM = 0A7FF25F-FB7A-454D-8759-F4DE42A88927 {
+    SECTION UI = "Panel-samsung_s6e3fc2x01_cmd.xml"
+    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel-samsung_s6e3fc2x01_cmd.xml
+}
+
+
+FILE FREEFORM = 101D1522-E68C-4F8C-A50D-465839CCE42E {
+    SECTION UI = "Panel-samsung_oneplus_dsc_cmd.xml"
+    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel-samsung_oneplus_dsc_cmd.xml
+}
+
+
+FILE FREEFORM = 0D23B97F-6237-47E6-87E0-3130B8609AA2 {
+    SECTION UI = "Panel-samsung_sofef03f_m_fhd_dsc_cmd.xml"
+    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel-samsung_sofef03f_m_fhd_dsc_cmd.xml
 }
 
 
@@ -347,9 +348,23 @@ FILE FREEFORM = 151F4DFB-643B-418D-ACB3-A66BC8D7A4EF {
 }
 
 
+FILE FREEFORM = E9AB199F-773D-4E53-A32D-BA0D30E84727 {
+    SECTION UI = "Panel_oppo19696_boe_nt36672c_1080_2400_vid.xml"
+    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_oppo19696_boe_nt36672c_1080_2400_vid.xml
+}
+
+
+FILE FREEFORM = 5148B874-7A16-46C8-BBC2-CA8D5B97832A {
+    SECTION UI = "boot_charger_poc1.bmp"
+    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/boot_charger_poc1.bmp
+}
+
+
 FILE FREEFORM = 3E5584ED-05D4-4267-9048-0D47F76F4248 {
+    SECTION UI = "boot_charger_low_battery3.bmp"
+    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/boot_charger_low_battery3.bmp.1
     SECTION UI = "battery_symbol_Soc10.bmp"
-    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/battery_symbol_Soc10.bmp
+    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/boot_charger_low_battery3.bmp.2
 }
 
 
@@ -360,20 +375,26 @@ FILE FREEFORM = 4753E815-DDD8-402D-BF69-9B8C4EB7573E {
 
 
 FILE FREEFORM = 03DED53E-BECD-428F-9F79-5ABA64C58445 {
+    SECTION UI = "boot_charger_poc.bmp"
+    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/boot_charger_poc.bmp.1
     SECTION UI = "battery_symbol_Nocharger.bmp"
-    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/battery_symbol_Nocharger.bmp
+    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/boot_charger_poc.bmp.2
 }
 
 
 FILE FREEFORM = 8B86CD38-C772-4FCF-85AA-345B2B3C1AB4 {
+    SECTION UI = "boot_charger_low_battery.bmp"
+    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/boot_charger_low_battery.bmp.1
     SECTION UI = "battery_symbol_LowBatteryCharging.bmp"
-    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/battery_symbol_LowBatteryCharging.bmp
+    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/boot_charger_low_battery.bmp.2
 }
 
 
 FILE FREEFORM = 3FD97907-93F1-4349-AF3C-3B68B0A5E626 {
+    SECTION UI = "boot_charger_low_battery2.bmp"
+    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/boot_charger_low_battery2.bmp.1
     SECTION UI = "battery_symbol_LowBattery.bmp"
-    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/battery_symbol_LowBattery.bmp
+    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/boot_charger_low_battery2.bmp.2
 }
 
 
@@ -416,6 +437,12 @@ FILE FREEFORM = 21E9BDD9-6C3F-4F10-84A5-BBEC322741F1 {
 FILE FREEFORM = 45FE4B7C-150C-45DA-A021-4BEB2048EC6F {
     SECTION UI = "QcomChargerCfg.cfg"
     SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/QcomChargerCfg.cfg
+}
+
+
+FILE FREEFORM = 83EFD2E8-68DD-4772-881C-C735C590DBEC {
+    SECTION UI = "verifyboot.bmp"
+    SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/verifyboot.bmp
 }
 
 

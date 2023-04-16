@@ -89,7 +89,7 @@ READ_LOCK_STATUS   = TRUE
   # Secure Boot Key Enroll
   !if $(SECURE_BOOT_ENABLE) == 1
     INF SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
-    # INF SurfaceDuoFamilyPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
+    #INF SurfaceDuoFamilyPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
   !endif
 
   INF EmbeddedPkg/Drivers/VirtualKeyboardDxe/VirtualKeyboardDxe.inf
@@ -126,16 +126,17 @@ READ_LOCK_STATUS   = TRUE
   INF MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
 
   !include SurfaceDuoFamilyPkg/Frontpage.fdf.inc
-
+  
   FILE FREEFORM = PCD(gMsCorePkgTokenSpaceGuid.PcdRegulatoryGraphicFileGuid) {
     SECTION RAW = SurfaceDuo1Pkg/Include/Resources/RegulatoryLogos.png
   }
 
-  # INF SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
-  # INF GPLDriver/Application/SwitchSlotsApp/SwitchSlotsApp.inf
-  # INF GPLDriver/Driver/BootSlotDxe/BootSlotDxe.inf
+#  INF SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
+#  INF GPLDriver/Application/SwitchSlotsApp/SwitchSlotsApp.inf
+#  INF GPLDriver/Driver/BootSlotDxe/BootSlotDxe.inf
 #  INF SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
 
+  INF SurfaceDuoFamilyPkg/Driver/RamPartitionDxe/RamPartitionDxe.inf
   INF SurfaceDuoFamilyPkg/Driver/KernelErrataPatcher/KernelErrataPatcher.inf
 
   INF AdvLoggerPkg/AdvancedFileLogger/AdvancedFileLogger.inf
@@ -190,7 +191,7 @@ READ_LOCK_STATUS   = TRUE
   # INF NetworkPkg/Udp6Dxe/Udp6Dxe.inf
   # INF NetworkPkg/UefiPxeBcDxe/UefiPxeBcDxe.inf
   # INF NetworkPkg/VlanConfigDxe/VlanConfigDxe.inf
-  INF SurfaceDuoFamilyPkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
+  # INF SurfaceDuoFamilyPkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
 
 [FV.FVMAIN_COMPACT]
 FvAlignment        = 8

@@ -8,3 +8,13 @@ gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"qti"
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"qrd"
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"atoll"
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"NA"
+
+[PcdsDynamicDefault.common]
+gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1080
+gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|2248
+gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|1080
+gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|2248
+gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|120 # 94.73
+gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|90 # 168.75
+gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow|120 # 94.73
+gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn|90 # 168.75

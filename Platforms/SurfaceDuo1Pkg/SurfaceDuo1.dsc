@@ -39,13 +39,17 @@
   USE_SIMPLEFBDXE                = 1
 
   # Device-specific memory map hacks
-  HAS_MLVM                       = FALSE
+  HAS_MLVM                       = FLASE
 
 !include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Defines.dsc.inc
 
 [BuildOptions.common]
 
 GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
+
+!if $(MEMMAP_XIAOMI_HACKS) == TRUE
+  GCC:*_*_AARCH64_CC_FLAGS = -DMEMMAP_XIAOMI_HACKS=1
+!endif
 
 # TODO: Re-do the memory map stuff at one point so it's not defined in static variable and put 
 # those defines only in modules that need them, so changing anything here doesn't rebuild EVERY DAMN THING.

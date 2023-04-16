@@ -1,10 +1,10 @@
 ## This Repo Is Based On [SurfaceDuoPkg](https://github.com/Woa-Project/SurfaceDuoPkg/)
 
-Thanks for [Gustave](https://github.com/gus33000)'s instructions!
+### Thanks for [Gustave](https://github.com/gus33000)'s instructions!
 
-# [Project Mu](https://microsoft.github.io/mu/) UEFI Implementation for SM8150 Devices
+# [Project Mu](https://microsoft.github.io/mu/) UEFI Implementation for SM8150 & SM7125 Devices
 
-## Build
+## Build ![ActionStatus](https://img.shields.io/github/actions/workflow/status/woa-msmnile/msmnilepkg/main.yml)
 
 ### Minimum System Requirements
 
@@ -33,7 +33,7 @@ Thanks for [Gustave](https://github.com/gus33000)'s instructions!
 pip install --upgrade -r pip-requirements.txt
 ```
 
-*Alternatively, use docker if you don't have Ubuntu 20.04 environment*
+*Alternatively, use docker if you don't have Ubuntu 22.04 environment*
 
 ```
 docker build -t mu:v1 .
@@ -42,37 +42,28 @@ docker run -it mu:v1 -v ./:/build/
 
 *Then finish the following process in docker environment*
 
-2. Activate Workspace
-
-```
-python3 -m venv SurfaceDuo
-source SurfaceDuo/bin/activate
-```
-
-3. Setup MU environment
-
-```
-./setup_uefi.sh
-```
-
-4. Stamp build
-```
-python3 ./Platforms/SurfaceDuo1Pkg/StampBuild.py
-```
-*or*
-```
-./build_releaseinfo.ps1
-```
-
-5. Build UEFI
+2. Build UEFI & Generate Android Boot Image
 > Usage: build_uefi.sh -d \<target-device\>  
+- For sm8150:
+  ```
+  ./build_uefi.sh -d <target-name>
+  ```
 
-```
-./build_uefi.sh -d <target-name>
-```
-- You will see Build/\<target-device\>.img if it builds successfully.
+- For sm7125:
+  ```
+  ./build_uefi_atoll.sh -d <target-name>
+  ```
+
+- For sm8550:
+  ```
+  ./build_uefi_kailua.sh -d <target-name>
+  ```
+
+- You will see Build/xxxxPkg/\<target-device\>.img if it builds successfully.
 
 ## Target list
+
+### *SM8150*
 
 | Device             | Target name            | DSDT Support    | Maintainers                                        |
 |--------------------|------------------------|-----------------|----------------------------------------------------|
@@ -81,7 +72,6 @@ python3 ./Platforms/SurfaceDuo1Pkg/StampBuild.py
 | BlackShark 2       | blackshark-skywalker   | ❌              | NONE                                               |
 | BlackShark 2 Pro   | blackshark-darklighter | ❌              | NONE                                               |
 | HTC 5G Hub         | htc-rtx                | ❌              | NONE                                               |
-| LG G8              | iqoo-pd1936g           | ❌              | NONE                                               |
 | LG G8              | lg-alphaplus           | ✅              | [Yanhua](https://github.com/yanhua-tj)             |
 | LG G8S             | lg-betalm              | ✅              | [J0SH1X](https://github.com/J0SH1X)                |
 | LG G8X             | lg-mh2lm               | ✅              | [Molly Sophia](https://github.com/MollySophia)     |
@@ -110,6 +100,19 @@ python3 ./Platforms/SurfaceDuo1Pkg/StampBuild.py
 | Xiaomi Pad 5       | xiaomi-nabu            | ✅              | [Map220v](https://github.com/map220v)              |
 | Xiaomi Poco X3 Pro | xiaomi-vayu            | ✅              | [Degdag](https://github.com/degdag)                |
 
+### *SM7125*
+
+| Device             | Target name            | DSDT Support    | Maintainers                                        |
+|--------------------|------------------------|-----------------|----------------------------------------------------|
+| Qcom QRD 720       | qcom-atoll             | ✅              | not sunflower2333                                  |
+| Xiaomi Note 9S     | xiaomi-miatoll         | ❌              | Icesito                                            |
+
+### *SM8550*
+
+| Device             | Target name            | Support         | Maintainers                                        |
+|--------------------|------------------------|-----------------|----------------------------------------------------|
+| Nubia RedMagic 8Pro| nubia-nx729j           | ❌              | None                                               |
+
 ## Acknowledgements
 
 - Andrei Warkentin and his [RaspberryPiPkg](https://github.com/andreiw/RaspberryPiPkg)
@@ -120,7 +123,6 @@ python3 ./Platforms/SurfaceDuo1Pkg/StampBuild.py
 - [Renegade Project](https://github.com/edk2-porting/)
 - Lemon ICE
 
-## License
-
-All code except drivers in `GPLDriver` directory are licensed under BSD 2-Clause.
+## License ![License](https://img.shields.io/github/license/woa-msmnile/msmnilePkg)
+All code except drivers in `GPLDriver` directory are licensed under BSD 2-Clause.  
 GPL Drivers are licensed under GPLv2 license.
