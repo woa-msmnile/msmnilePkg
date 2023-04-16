@@ -170,7 +170,7 @@ READ_LOCK_STATUS   = TRUE
   INF MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf
   INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
   INF MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
-  INF MsCorePkg/MuVarPolicyFoundationDxe/MuVarPolicyFoundationDxe.inf
+  # INF MsCorePkg/MuVarPolicyFoundationDxe/MuVarPolicyFoundationDxe.inf
   # INF NetworkPkg/ArpDxe/ArpDxe.inf
   # INF NetworkPkg/Dhcp4Dxe/Dhcp4Dxe.inf
   # INF NetworkPkg/Dhcp6Dxe/Dhcp6Dxe.inf
@@ -190,7 +190,7 @@ READ_LOCK_STATUS   = TRUE
   # INF NetworkPkg/Udp6Dxe/Udp6Dxe.inf
   # INF NetworkPkg/UefiPxeBcDxe/UefiPxeBcDxe.inf
   # INF NetworkPkg/VlanConfigDxe/VlanConfigDxe.inf
-    INF SurfaceDuoFamilyPkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
+  # INF SurfaceDuoFamilyPkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
 
 [FV.FVMAIN_COMPACT]
 FvAlignment        = 8
