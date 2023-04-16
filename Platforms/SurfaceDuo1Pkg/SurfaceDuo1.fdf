@@ -127,10 +127,8 @@ READ_LOCK_STATUS   = TRUE
 
   !include SurfaceDuoFamilyPkg/Frontpage.fdf.inc
 
-  INF SurfaceDuo1Pkg/Library/DeviceBootManagerLib/DeviceBootManagerLib.inf
   INF SurfaceDuo1Pkg/Library/MsPlatformEarlyGraphicsLib/MsEarlyGraphicsLib.inf
   INF SurfaceDuo1Pkg/Library/MsPlatformDevicesLib/MsPlatformDevicesLib.inf
-  INF SurfaceDuo1Pkg/Library/MsBootOptionsLib/MsBootOptionsLib.inf
   
   FILE FREEFORM = PCD(gMsCorePkgTokenSpaceGuid.PcdRegulatoryGraphicFileGuid) {
     SECTION RAW = SurfaceDuo1Pkg/Include/Resources/RegulatoryLogos.png
