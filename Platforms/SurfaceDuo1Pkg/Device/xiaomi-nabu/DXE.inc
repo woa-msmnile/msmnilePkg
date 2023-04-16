@@ -1,4 +1,4 @@
-INF QcomPkg/XBLCore/XBLCore.inf
+#INF QcomPkg/XBLCore/XBLCore.inf
 
 #FILE FREEFORM = DDE58710-41CD-4306-DBFB-3FA90BB1D2DD {
 #    SECTION UI = "uefiplat.cfg"
