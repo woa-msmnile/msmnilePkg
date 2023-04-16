@@ -127,7 +127,7 @@ READ_LOCK_STATUS   = TRUE
 
   !include SurfaceDuoFamilyPkg/Frontpage.fdf.inc
 
-  INF SurfaceDuo1Pkg/Library/MsPlatformEarlyGraphicsLib/MsEarlyGraphicsLib.inf
+  #INF SurfaceDuo1Pkg/Library/MsPlatformEarlyGraphicsLib/MsEarlyGraphicsLib.inf
   INF SurfaceDuo1Pkg/Library/MsPlatformDevicesLib/MsPlatformDevicesLib.inf
   
   FILE FREEFORM = PCD(gMsCorePkgTokenSpaceGuid.PcdRegulatoryGraphicFileGuid) {
