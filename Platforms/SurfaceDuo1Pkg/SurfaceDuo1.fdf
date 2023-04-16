@@ -136,7 +136,7 @@ READ_LOCK_STATUS   = TRUE
     SECTION RAW = SurfaceDuo1Pkg/Include/Resources/RegulatoryLogos.png
   }
 
-   INF SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
+#   INF SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
 #   INF SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
 #  INF GPLDriver/Application/SwitchSlotsApp/SwitchSlotsApp.inf
 #  INF GPLDriver/Driver/BootSlotDxe/BootSlotDxe.inf
