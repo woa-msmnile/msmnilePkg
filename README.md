@@ -100,12 +100,21 @@ docker run -it mu:v1 -v ./:/build/
 | Xiaomi Pad 5       | xiaomi-nabu            | ✅              | [Map220v](https://github.com/map220v)              |
 | Xiaomi Poco X3 Pro | xiaomi-vayu            | ✅              | [Degdag](https://github.com/degdag)                |
 
+
 ### *SM7125*
 
 | Device             | Target name            | DSDT Support    | Maintainers                                        |
 |--------------------|------------------------|-----------------|----------------------------------------------------|
 | Qcom QRD 720       | qcom-atoll             | ✅              | not sunflower2333                                  |
 | Xiaomi Note 9S     | xiaomi-miatoll         | ❌              | Icesito                                            |
+
+
+### *SM7325*
+
+| Device             | Target name            | DSDT Support    | Maintainers                                        |
+|--------------------|------------------------|-----------------|----------------------------------------------------|
+| Qcom QRD 778       | qcom-kodiak            | ✅              | Ayu                                                |
+
 
 ### *SM8550*
 

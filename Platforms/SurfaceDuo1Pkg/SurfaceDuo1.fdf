@@ -24,8 +24,8 @@
 BaseAddress   = 0x9FC00000|gArmTokenSpaceGuid.PcdFdBaseAddress #The base address of the FLASH Device.
 Size          = 0x00300000|gArmTokenSpaceGuid.PcdFdSize        #The size in bytes of the FLASH Device
 ErasePolarity = 1
-BlockSize     = 0x200
-NumBlocks     = 0x1800
+BlockSize     = 0x1000
+NumBlocks     = 0x300
 
 ################################################################################
 #
@@ -58,8 +58,8 @@ FV = FVMAIN_COMPACT
 ################################################################################
 
 [FV.FvMain]
-FvNameGuid         = 9a15aa37-d555-4a4e-b541-86391ff68164
-BlockSize          = 0x40
+FvNameGuid         = 631008B0-B2D1-410A-8B49-2C5C4D8ECC7E
+BlockSize          = 0x1000
 NumBlocks          = 0        # This FV gets compressed so make it just big enough
 FvAlignment        = 8        # FV alignment and FV attributes setting.
 ERASE_POLARITY     = 1
@@ -89,7 +89,7 @@ READ_LOCK_STATUS   = TRUE
   # Secure Boot Key Enroll
   !if $(SECURE_BOOT_ENABLE) == 1
     INF SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
-    # INF SurfaceDuoFamilyPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
+    INF SurfaceDuoFamilyPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
   !endif
 
   INF EmbeddedPkg/Drivers/VirtualKeyboardDxe/VirtualKeyboardDxe.inf
@@ -131,10 +131,10 @@ READ_LOCK_STATUS   = TRUE
     SECTION RAW = SurfaceDuo1Pkg/Include/Resources/RegulatoryLogos.png
   }
 
-  # INF SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
   # INF GPLDriver/Application/SwitchSlotsApp/SwitchSlotsApp.inf
   # INF GPLDriver/Driver/BootSlotDxe/BootSlotDxe.inf
-#  INF SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
+  # INF SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
+  # INF SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
 
   INF SurfaceDuoFamilyPkg/Driver/KernelErrataPatcher/KernelErrataPatcher.inf
 
@@ -158,6 +158,7 @@ READ_LOCK_STATUS   = TRUE
   INF MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
   INF MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
   INF MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
+  INF MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
   INF MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
   INF MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
   INF MdeModulePkg/Universal/FvSimpleFileSystemDxe/FvSimpleFileSystemDxe.inf

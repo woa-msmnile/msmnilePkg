@@ -24,6 +24,7 @@
   UefiDriverEntryPoint
   UefiLib
   DeviceStateLib
+  UefiBootServicesTableLib
 
 [Protocols]
   gEfiDevicePathFromTextProtocolGuid
@@ -31,6 +32,7 @@
   gEfiCpuArchProtocolGuid
 
 [Guids]
+  gEfiGlobalVariableGuid         # CONSUMES
   gEfiEndOfDxeEventGroupGuid
 
 [Depex]

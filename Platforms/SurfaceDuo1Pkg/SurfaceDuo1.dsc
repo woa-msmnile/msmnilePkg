@@ -32,7 +32,7 @@
   # Notice: TRUE == 1, FALSE == 0
   SECURE_BOOT_ENABLE             = 1
   USE_PHYSICAL_TIMER             = 1
-  USE_SCREEN_FOR_SERIAL_OUTPUT   = 0
+  USE_SCREEN_FOR_SERIAL_OUTPUT   = 1
   USE_UART_FOR_SERIAL_OUTPUT     = 0
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
   SEND_HEARTBEAT_TO_SERIAL       = 0
@@ -71,7 +71,6 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
 [LibraryClasses.common]
   # Move PlatformMemoryMapLib to Device/<device>/Library
   PlatformMemoryMapLib|SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
-
 
 # Suggest you updating them to your device's dsc.inc.
 #[PcdsDynamicDefault.common]
