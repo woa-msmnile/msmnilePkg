@@ -51,8 +51,6 @@ APRIORI DXE {
     INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/UFSDxe/UFSDxe.inf
     INF FatPkg/EnhancedFatDxe/Fat.inf
 
-#   INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/VerifiedBootDxe/VerifiedBootDxe.inf
-
     INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TzDxe/TzDxeLA.inf
     INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/QcomWDogDxe/QcomWDogDxe.inf
     INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TLMMDxe/TLMMDxe.inf
@@ -77,15 +75,15 @@ APRIORI DXE {
     INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/FontDxe/FontDxe.inf
     INF MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
     #INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SecRSADxe/SecRSADxe.inf
-#    FILE DRIVER = 32C71E68-83A8-46ED-AED1-094E71B12057 {
-#        SECTION PE32 = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SecRSADxe/SecRSADxe.efi
-#        SECTION UI = "SecRSADxe"
-#    }
+    FILE DRIVER = 32C71E68-83A8-46ED-AED1-094E71B12057 {
+        SECTION PE32 = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SecRSADxe/SecRSADxe.efi
+        SECTION UI = "SecRSADxe"
+    }
     #INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ASN1X509Dxe/ASN1X509Dxe.inf
-#    FILE DRIVER = C2F9A4F5-F7B4-43E7-BA99-5EA804CC103A {
-#        SECTION PE32 = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ASN1X509Dxe/ASN1X509Dxe.inf
-#        SECTION UI = "ASN1X509Dxe"
-#    }
+    FILE DRIVER = C2F9A4F5-F7B4-43E7-BA99-5EA804CC103A {
+        SECTION PE32 = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ASN1X509Dxe/ASN1X509Dxe.inf
+        SECTION UI = "ASN1X509Dxe"
+    }
 
     INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/AdcDxe/AdcDxe.inf
     INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/UsbPwrCtrlDxe/UsbPwrCtrlDxe.inf
@@ -119,7 +117,7 @@ APRIORI DXE {
             SECTION UI = "UsbMassStorageDxe"
     }
 
-    INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/UsbConfigDxe/UsbConfigDxe.inf
+    INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UsbConfigDxe.inf
     INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbInitDxe/UsbInitDxe.inf
     INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbDeviceDxe/UsbDeviceDxe.inf
     INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ButtonsDxe/ButtonsDxe.inf
@@ -169,10 +167,12 @@ APRIORI DXE {
     INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
     INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SimpleTextInOutSerialDxe/SimpleTextInOutSerial.inf
 
-    FILE DRIVER = C9C6BB00-44FC-4C87-8AF9-F93218E17C10  {
-            SECTION DXE_DEPEX = SurfaceDuo1Pkg/UsbcSetDrpDxe.depex.bin
-            SECTION PE32 = SurfaceDuo1Pkg/UsbcSetDrpDxe.efi
-            SECTION UI = "UsbcSetDrpDxe"
-    }
+#    FILE DRIVER = C9C6BB00-44FC-4C87-8AF9-F93218E17C10  {
+#            SECTION DXE_DEPEX = SurfaceDuo1Pkg/UsbcSetDrpDxe.depex.bin
+#            SECTION PE32 = SurfaceDuo1Pkg/UsbcSetDrpDxe.efi
+#            SECTION UI = "UsbcSetDrpDxe"
+#    }
 
+    INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/VerifiedBootDxe/VerifiedBootDxe.inf
+    INF SurfaceDuoFamilyPkg/Driver/UsbStartControllerSignalDxe/UsbStartControllerSignalDxe.inf
 }
