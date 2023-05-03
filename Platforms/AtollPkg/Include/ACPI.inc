@@ -1,5 +1,5 @@
 FILE FREEFORM = 7E374E25-8E01-4FEE-87F2-390C23C606CD {
-	SECTION RAW = SurfaceDuoACPI/7125/builtin/APIC.aml
+    SECTION RAW = SurfaceDuoACPI/7125/builtin/APIC.aml
 #	SECTION RAW = SurfaceDuoACPI/7125/builtin/BERT.aml
 #	SECTION RAW = SurfaceDuoACPI/7125/builtin/BGRT.aml
 	SECTION RAW = SurfaceDuoACPI/7125/builtin/CSRT.aml

@@ -56,11 +56,14 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=7125
 
 [Components.common]
   # Graphics Driver
-!if $(USE_SIMPLEFBDXE) == TRUE
-  SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
-!endif
+  !if $(USE_SIMPLEFBDXE) == TRUE
+    SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
+  !endif
 
-  # Device Specific Drivers
+  # Auto Memory Adder
+  SurfaceDuoFamilyPkg/Driver/RamPartitionDxe/RamPartitionDxe.inf
+
+# Device Specific Drivers
 !include AtollPkg/Device/$(TARGET_DEVICE)/DXE.dsc.inc
 
 [LibraryClasses.common]
