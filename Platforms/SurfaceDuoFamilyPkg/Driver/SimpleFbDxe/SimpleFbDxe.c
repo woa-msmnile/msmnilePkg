@@ -242,6 +242,7 @@ SimpleFbDxeInitialize(
   }
 
   ASSERT_EFI_ERROR(Status);
+  ZeroMem((VOID *)FrameBufferAddress, FrameBufferSize);
 
   /* Register handle */
   Status = gBS->InstallMultipleProtocolInterfaces(
