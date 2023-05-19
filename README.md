@@ -146,26 +146,43 @@ All code except drivers in `GPLDriver` directory are licensed under BSD 2-Clause
 GPL Drivers are licensed under GPLv2 license.
 
 
-## About DualBoot
+## Boot Chain
 ```mermaid
-graph LR
-  bootshim[Boot Shim]
-  kernel[Kernel]
-  continue_uefi[Continue Booting Uefi]
-  platform_prepi_lib[PlatformPrePiLib]
+flowchart TD
+  subgraph fake_kernel[Fake Kernel]
 
-    subgraph hlos[High Level Operating System]
-      android[Android]
-      windows[Windows]
-      linux[Linux]
-      etc[...]
+    subgraph bootshim[Boot Shim]
+      kernel_header[ARM64 Magic]
+      copy_fd[Copy UefiFD to stack base]
+      save_args[Save needed arguments to registers]
+      jump[jump to uefi fd base]
     end
 
-  bootshim --> platform_prepi_lib
-  platform_prepi_lib --> uefi
-  platform_prepi_lib --> kernel
-  kernel --> android
-  kernel --> linux
-  continue_uefi --> windows
+    subgraph uefi[Uefi]
+      subgraph platform_prepi_lib[PlatformPrePiLib]
+        is_linux_boot_requested{IsLinuxBootRequested}
+      end
+      continue_uefi[Continue Booting Uefi]
+    end
+    subgraph kernel[Linux Kernel]
+      linux_kernel[Kernel]
+    end
+  end
+  
+  subgraph hlos[HLOS]
+    android[Android]
+    linux[Linux]
+    windows[Windows]
+    etc[...]
+  end
+
+  kernel_header --> copy_fd --> save_args --> jump --> platform_prepi_lib
+  platform_prepi_lib --> is_linux_boot_requested
+  is_linux_boot_requested -- True --> linux_kernel
+  is_linux_boot_requested -- False --> continue_uefi
   continue_uefi --> linux
+  linux_kernel --> linux
+  linux_kernel --> android
+  continue_uefi --> windows
+  fake_kernel ==> hlos
 ```
