@@ -43,25 +43,10 @@ docker run -it mu:v1 -v ./:/build/
 *Then finish the following process in docker environment*
 
 2. Build UEFI & Generate Android Boot Image
-> Usage: build_uefi.sh -d \<target-device\>  
-- For sm8150:
+> Usage: build_uefi.sh -d \<target-device\> -s \<target-silicon\>  
+- Exmaple:
   ```
-  ./build_uefi.sh -d <target-name>
-  ```
-
-- For sm7125:
-  ```
-  ./build_uefi_atoll.sh -d <target-name>
-  ```
-
-- For sm7325:
-  ```
-  ./build_uefi_kodiak.sh -d <target-name>
-  ```
-
-- For sm8550:
-  ```
-  ./build_uefi_kailua.sh -d <target-name>
+  ./build_uefi.sh -s Sm8150 -d <target-name>
   ```
 
 - You will see Build/xxxxPkg/\<target-device\>.img if it builds successfully.
