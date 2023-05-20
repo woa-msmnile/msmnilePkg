@@ -5,7 +5,7 @@ services:
                 volumes:
                         - ./:/root/
                 restart: "no"
-                command: bash /root/scripts/container_setup.sh && ./build_uefi.py -d all -s Sm8150
+                command: bash /root/scripts/container_setup.sh && python3 /root/build_uefi.py -d all -s Sm8150
                 environment:
                         TZ: Asia/Shanghai
                         DEBIAN_FRONTEND: noninteractive
