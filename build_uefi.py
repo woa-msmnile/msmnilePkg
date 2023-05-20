@@ -77,7 +77,7 @@ def check_args(this_target):
         # check if target_device illegal
         device_available = False
         for this_device in available_devices_list:
-            if this_device == this_target.device:
+            if this_device == this_target.device or this_target.device == "all":
                 device_available == True
                 return device_available
 
@@ -131,6 +131,7 @@ def build_single_device(this_target):
 # Build uefi for all devices in one silicon.
 def build_all_devices(this_target):
     # device == "all" here.
+    check_args(this_target)
     device_list = get_devices_list(this_target.package)
     for device_name in device_list:
         this_target.device = device_name
@@ -141,6 +142,7 @@ def build_all_devices(this_target):
 def build_all_silicons(all_the_targets):
     # silicon =="all" here.
     for this_target in all_the_targets:
+        this_target.device = "all"
         build_all_devices(this_target)
 
 # main
