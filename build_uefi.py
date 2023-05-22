@@ -11,7 +11,7 @@
 import argparse
 import os
 import json
-
+import Levenshtein
 
 class target:
     def __init__(self, device, silicon, package, bootshim_uefi_base, bootshim_uefi_size, bootshim_padding_size):
@@ -37,6 +37,14 @@ class target:
 
         if self.bootshim_uefi_size == None:
             self.bootshim_padding_size = target_b.bootshim_uefi_size
+
+    def print_content(self):
+        print("device", self.device)
+        print("silicon", self.silicon)
+        print("package", self.package)
+        print("bootshim_uefi_base", self.bootshim_uefi_base)
+        print("bootshim_uefi_size", self.bootshim_uefi_size)
+        print("bootshim_padding_size", self.bootshim_padding_size)
 
 
 def is_system_supported():
@@ -101,7 +109,25 @@ def check_args(this_target):
         for this_silicon in available_silicons_list:
             print("\t" + this_silicon)
         exit(help_msg)
+
     print()
+
+
+def device_error_exit(device_name, possible_devices_list):
+    usage = "Usage: build_uefi.sh -d <target_device> \n"
+    possible_devices_msg = "Target device not found, did you mean: "
+    not_found_msg = "Target device not found."
+    help_msg = "See \033[32mhttps://github.com/woa-msmnile/msmnilePkg#target-list\033[0m for more details."
+    print(usage)
+    if possible_devices_list == []:
+        print(not_found_msg)
+    else:
+        print(possible_devices_msg)
+        for dev_name in possible_devices_list:
+            print('\t' + dev_name)
+    print()
+    print(help_msg)
+    exit()
 
 
 # This function get a file object and return a target object.
@@ -119,7 +145,7 @@ def parse_cfg(pfile):
 
 # Build uefi for a single device
 def build_single_device(this_target):
-    # Check Arg
+    # Check args
     check_args(this_target)
     # Prepare Environment
     build_bootshim(this_target.bootshim_uefi_base, this_target.bootshim_uefi_size, this_target.bootshim_padding_size)
@@ -145,6 +171,75 @@ def build_all_silicons(all_the_targets):
         this_target.device = "all"
         build_all_devices(this_target)
 
+
+# Align all strings in a list to a fixed length.
+# The rest part will be fill with placeholder
+#  and return a list.
+def string_to_fixed_len(this_list, max_length, ph=" "):
+    if max_length < max([len(i) for i in this_list]):
+        max_length = max([len(i) for i in this_list])
+    # Find the longest device name.
+    aligned_string_list = []
+    for this_string in this_list:
+        # Fill the rest part with ' '
+        aligned_string_list.append(this_string + (max_length - len(this_string))*ph)
+    return aligned_string_list
+
+
+# Find out all devices.
+def find_device_by_name(device_name):
+    if device_name == None:
+        return -1
+    # Get all targets from cfg files.
+    all_targets = []
+    get_all_target(all_targets)
+    des_target = None
+
+    for this_target in all_targets:
+        device_list = get_devices_list(this_target.package)
+        if device_list.count(device_name): # count != 0
+            des_target = this_target
+            des_target.device = device_name
+            return des_target
+
+    # if the given name was not found, provide a guess by calculating
+    # Levenshtein distance
+    possible_dict = {}
+    device_list = []
+    for this_target in all_targets:
+        device_list.extend(get_devices_list(this_target.package))
+
+    device_list = string_to_fixed_len(device_list, 0)
+    for device_name_in_list in device_list:
+        possible_dict[device_name_in_list] = Levenshtein.distance(device_name, device_name_in_list)
+
+    # Sort
+    possible_dict = dict(sorted(possible_dict.items(), key=lambda x:x[1], reverse=False))
+    possible_list = []
+    for i in range(len(possible_dict)):
+        if list(possible_dict.values())[i] - list(possible_dict.values())[0] < 1:
+            possible_list.append(list(possible_dict.keys())[i])
+# Debug Use
+#    for _key,_val in possible_dict.items():
+#        print(_key, _val)
+#
+#    print()
+#    for i in possible_list:
+#        print(i)
+    return possible_list
+
+
+# Parse config files in folder.
+def get_all_target(this_all_targets):
+    config_dir = "build_cfg"
+    config_list = os.listdir(config_dir)
+    for this_config in config_list:
+        if this_config[-5:] == ".json":
+            pfile = open(os.path.join(config_dir, this_config), "r")
+            this_all_targets.append(parse_cfg(pfile))
+            pfile.close()
+
+
 # main
 if __name__ == '__main__':
     # Check host os
@@ -157,30 +252,28 @@ if __name__ == '__main__':
     parser.add_argument('-s', type=str, default=None, help="target silicon")
     args = parser.parse_args()
 
+
     # Initial target object
     current_target = target(args.d, args.s, None, None, None, None)
 
+    destination_target = find_device_by_name(current_target.device) if (current_target.silicon != "all" and current_target.device != "all") else current_target
+    if type(destination_target) != target:
+        device_error_exit(current_target, destination_target) # possible device <class = 'list'>
+    current_target.merge(destination_target)
+
     # Parse Config Files
-    config_dir = "build_cfg"
-    config_list = os.listdir(config_dir)
-    all_target = []
-    for this_config in config_list:
-        if this_config[-5:] == ".json":
-            pfile = open(os.path.join(config_dir, this_config), "r")
-            all_target.append(parse_cfg(pfile))
-            pfile.close()
-
-
-    # Find current target from config and merge.
-    for this_target in all_target:
-        if this_target.silicon == current_target.silicon:
-            current_target.merge(this_target)
-            break
+    all_targets = []
+    get_all_target(all_targets)
 
     # Build all devices in one silicon
     if current_target.silicon == "all":
-        build_all_silicons(all_target)
+        build_all_silicons(all_targets)
     elif current_target.device == "all":
+        # Find current target from config and merge.
+        for this_target in all_targets:
+            if this_target.silicon == current_target.silicon:
+                current_target.merge(this_target)
+                break
         build_all_devices(current_target)
     else:
         build_single_device(current_target)
