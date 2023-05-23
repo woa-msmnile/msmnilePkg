@@ -16,7 +16,6 @@
   - mono-devel
   - git-core, git
   - build-essential
-  - PowerShell Core 7
   - clang38 (or higher), llvm, ggc-aarch64-linux-gnu
 - Exported CLANG38_BIN environment variable pointing to LLVM 10 binary folder
 - Exported CLANG38_AARCH64_PREFIX variable equalling to aarch64-linux-gnu-
@@ -42,14 +41,23 @@ docker run -it mu:v1 -v ./:/build/
 
 *Then finish the following process in docker environment*
 
+*You can also use docker-compose if you know how to use*
+```
+docker-compose up
+```
+
 2. Build UEFI & Generate Android Boot Image
-> Usage: build_uefi.sh -d \<target-device\> -s \<target-silicon\>  
+> Usage: build_uefi.py -d \<target-device\>  
 - Exmaple:
   ```
-  ./build_uefi.sh -s Sm8150 -d <target-name>
+  ./build_uefi.py -d <target-name>
   ```
 
-- You will see Build/xxxxPkg/\<target-device\>.img if it builds successfully.
+- Tips:
+  - use `-s all` to build all devices.
+  - use `-d all -s <target-silicon>` to build all devices in one silicon.
+
+- You will find Build/xxxxPkg/\<target-device\>.img after successfully building.
 
 ## Target list
 
@@ -78,7 +86,7 @@ docker run -it mu:v1 -v ./:/build/
 | OnePlus 7T Pro 5G  | oneplus-hotdogg        | ✅              | NONE                                               |
 | OPPO Reno 10X      | oppo-op46c3            | ❌              | NONE                                               |
 | OPPO Reno ACE      | oppo-pclm10            | ✅              | [sunflower2333](https://github.com/sunflower2333)  |
-| Qcom QRD 855       | qcom-msmnile           | ✅              | sunflower2333                                      |
+| QTI QRD 855        | qcom-msmnile           | ✅              | sunflower2333                                      |
 | Realme X3          | realme-rmx2086         | ❌              | NONE                                               |
 | Samsung Galaxy S10 | samsung-beyond1qlte    | ✅              | [Ww](https://github.com/Idonotkno)                 |
 | Smartisan Pro 3    | smartisan-aries        | ❌              | NONE                                               |
@@ -95,7 +103,7 @@ docker run -it mu:v1 -v ./:/build/
 
 | Device             | Target name            | DSDT Support    | Maintainers                                        |
 |--------------------|------------------------|-----------------|----------------------------------------------------|
-| Qcom QRD 720       | qcom-atoll             | ✅              | sunflower2333                                      |
+| QTI QRD 720        | qcom-atoll             | ✅              | sunflower2333                                      |
 | Xiaomi Note 9S     | xiaomi-miatoll         | ❌              | Icesito                                            |
 | Xiaomi Note 10 Pro | xiaomi-sweet           | ❌              | [dopaemon](https://github.com/dopaemon)            |
 
@@ -104,7 +112,15 @@ docker run -it mu:v1 -v ./:/build/
 
 | Device             | Target name            | DSDT Support    | Maintainers                                        |
 |--------------------|------------------------|-----------------|----------------------------------------------------|
-| Qcom QRD 778       | qcom-kodiak            | ✅              | Ayu                                                |
+| QTI QRD 778        | qcom-kodiak            | ✅              | Ayu                                                |
+
+
+### *SM8350*
+> Comming soon...  
+
+| Device             | Target name            | DSDT Support    | Maintainers                                        |
+|--------------------|------------------------|-----------------|----------------------------------------------------|
+| QTI QRD 888        | qcom-lahaina           | ❌              | None                                               |
 
 
 ### *SM8550*
