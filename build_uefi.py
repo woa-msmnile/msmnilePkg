@@ -59,7 +59,7 @@ def build_bootshim(base ,size, size_padding):
 def prepare_build(package_name):
     stuart_setup_cmd = "stuart_setup -c "+ os.path.join("Platforms", package_name, "PlatformBuild.py") + " TOOL_CHAIN_TAG=CLANG38"
     stuart_update_cmd = "stuart_update -c" + os.path.join("Platforms", package_name, "PlatformBuild.py") + " TOOL_CHAIN_TAG=CLANG38"
-    return os.system(stuart_setup_cmd) and os.system(stuart_update_cmd)
+    return (os.system(stuart_setup_cmd) and os.system(stuart_update_cmd))
 
 
 def get_devices_list(package_name):
