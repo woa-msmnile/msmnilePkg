@@ -15,7 +15,7 @@ if [ -z ${HEADERVER} ] || [ -z ${FD} ] || [ -z ${CMDLINE} ] || [ -z ${KERNEL} ] 
     echo Missimg arguments.
     echo "-v <header-version> -k <Path-kernelFile> -c <Path-cmdlineFile> -t <Path-dtb> -r <Path-ramdisk> -d <Path_fd>"
     echo
-    exit
+    exit -1
 fi
 
 # Get cmdline
