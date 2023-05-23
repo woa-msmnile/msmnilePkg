@@ -71,7 +71,7 @@ def prepare_build(package_name):
 def update_device_configuration_map(this_target):
     # Delete cache.
     try:
-        os.remove(os.path.join("Build", this_target.package[:-3] + "-AARCH64", "DEBUG_CLANG38", "AARCH64", "QcomPkg",
+        shutil.rmtree(os.path.join("Build", this_target.package[:-3] + "-AARCH64", "DEBUG_CLANG38", "AARCH64", "QcomPkg",
                                "PlatformPei"))
     except FileNotFoundError:
         print("First Building...")
