@@ -213,7 +213,7 @@ def string_to_fixed_len(this_list, max_length, ph=" "):
 # Find out all devices.
 def find_device_by_name(device_name):
     if device_name is None:
-        return -1
+        return None
     # Get all targets from cfg files.
     this_all_targets = []
     get_all_target(this_all_targets)
