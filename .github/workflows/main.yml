@@ -22,11 +22,11 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      - name: docker build
-        run: docker-compose up
+      - name: build uefi images
+        run: bash scripts/container_setup.sh && ./build_uefi.py -s all
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: uefi-images
+          name: uefi-images-all
           path: Build/*/*.img

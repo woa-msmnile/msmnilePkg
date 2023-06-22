@@ -11,12 +11,13 @@ INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/GLinkDxe/GLinkDxe.i
 INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/OSConfigDxe/OSConfigDxe.inf
 INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/PmicGlinkDxe/PmicGlinkDxe.inf
 INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/ShmBridgeDxe/ShmBridgeDxe.inf
-INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbDeviceDxe/UsbDeviceDxe.inf
-INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbInitDxe/UsbInitDxe.inf
+#INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbDeviceDxe/UsbDeviceDxe.inf
+#INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbInitDxe/UsbInitDxe.inf
 INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbMsdDxe/UsbMsdDxe.inf
 #INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbPwrCtrlDxe/UsbPwrCtrlDxe.inf
 INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/XhciPciEmulationDxe/XhciPciEmulationDxe.inf
 INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
+INF SurfaceDuoFamilyPkg/Driver/UsbStartControllerSignalDxe/UsbStartControllerSignalDxe.inf
 
 #INF MdeModulePkg/Core/Dxe/DxeMain.inf
 #INF ArmPkg/Drivers/CpuDxe/CpuDxe.inf
@@ -24,7 +25,7 @@ INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
 #INF MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf
 #INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SecRSADxe/SecRSADxe.inf
 #INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ASN1X509Dxe/ASN1X509Dxe.inf
-#INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/VerifiedBootDxe/VerifiedBootDxe.inf
+INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/VerifiedBootDxe/VerifiedBootDxe.inf
 INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TzDxe/ScmDxeLA.inf
 INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TzDxe/TzDxeLA.inf
 #INF MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
@@ -100,7 +101,7 @@ INF QcomPkg/PatchedBinaries/05472C14-ACB9-4458-A354-A68357AC3BF0.inf
 INF QcomPkg/PatchedBinaries/HALIOMMUDxe.inf
 INF QcomPkg/PatchedBinaries/PciHostBridgeDxe.inf
 INF QcomPkg/PatchedBinaries/UFSDxe.inf
-INF QcomPkg/PatchedBinaries/UsbConfigDxe.inf
+INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UsbConfigDxe.inf
 INF QcomPkg/PatchedBinaries/ButtonsDxe.inf
 
 # DXE without depex
@@ -142,16 +143,16 @@ FILE DRIVER = cccb0c28-4b24-11d5-9a5a-0090273fc14d {
     SECTION PE32 = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.efi
     SECTION UI = "GraphicsConsoleDxe"
 }
-#
-#FILE DRIVER = 32C71E68-83A8-46ED-AED1-094E71B12057 {
-#    SECTION PE32 = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SecRSADxe/SecRSADxe.efi
-#    SECTION UI = "SecRSADxe"
-#}
-#
-#FILE DRIVER = C2F9A4F5-F7B4-43E7-BA99-5EA804CC103A {
-#    SECTION PE32 = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ASN1X509Dxe/ASN1X509Dxe.inf
-#    SECTION UI = "ASN1X509Dxe"
-#}
+
+FILE DRIVER = 32C71E68-83A8-46ED-AED1-094E71B12057 {
+    SECTION PE32 = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SecRSADxe/SecRSADxe.efi
+    SECTION UI = "SecRSADxe"
+}
+
+FILE DRIVER = C2F9A4F5-F7B4-43E7-BA99-5EA804CC103A {
+    SECTION PE32 = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ASN1X509Dxe/ASN1X509Dxe.inf
+    SECTION UI = "ASN1X509Dxe"
+}
 
 FILE DRIVER = B7F50E91-A759-412C-ADE4-DCD03E7F7C28 {
     SECTION PE32 = Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/XhciDxe/XhciDxe.efi
@@ -371,9 +372,9 @@ FILE FREEFORM = F780C779-DD7C-47CD-BD1A-5EB414C51704 {
     SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/BATTERY.PROVISION
 }
 
-    FILE DRIVER = C9C6BB00-44FC-4C87-8AF9-F93218E17C10  {
-            SECTION DXE_DEPEX = SurfaceDuo1Pkg/UsbcSetDrpDxe.depex.bin
-            SECTION PE32 = SurfaceDuo1Pkg/UsbcSetDrpDxe.efi
-            SECTION UI = "UsbcSetDrpDxe"
-    }
+#FILE DRIVER = C9C6BB00-44FC-4C87-8AF9-F93218E17C10  {
+#    SECTION DXE_DEPEX = SurfaceDuo1Pkg/UsbcSetDrpDxe.depex.bin
+#    SECTION PE32 = SurfaceDuo1Pkg/UsbcSetDrpDxe.efi
+#    SECTION UI = "UsbcSetDrpDxe"
+#}
 

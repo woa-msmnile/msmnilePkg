@@ -14,6 +14,7 @@ MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/RscRtDxe.inf
 MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/SCHandlerRtDxe.inf
 QcomPkg/Drivers/VariableDxe/VariableDxe.inf
 QcomPkg/Drivers/EmbeddedMonotonicCounter/EmbeddedMonotonicCounter.inf
+QcomPkg/Drivers/SimpleTextInOutSerialDxe/SimpleTextInOutSerial.inf
 QcomPkg/Drivers/ResetRuntimeDxe/ResetRuntimeDxe.inf
 EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf
 EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
@@ -56,10 +57,12 @@ QcomPkg/Drivers/DisplayDxe/DisplayDxe.inf
 QcomPkg/Drivers/PlatformInfoDxe/PlatformInfoDxe.inf
 QcomPkg/Drivers/ButtonsDxe/ButtonsDxe.inf
 QcomPkg/Drivers/PmicDxe/PmicDxeLa.inf
+QcomPkg/Drivers/OGaugeAuthDxe/OGaugeAuth.inf
 QcomPkg/Drivers/ChargerExDxe/ChargerExDxe.inf
 QcomPkg/Drivers/QcomChargerDxe/QcomChargerDxeLA.inf
 QcomPkg/Drivers/UsbPwrCtrlDxe/UsbPwrCtrlDxe.inf
 QcomPkg/Drivers/AdcDxe/AdcDxe.inf
+QcomPkg/Drivers/OcdtDxe/OppoProject.inf
 QcomPkg/Drivers/TsensDxe/TsensDxe.inf
 QcomPkg/Drivers/LimitsDxe/LimitsDxe.inf
 QcomPkg/Drivers/DDRInfoDxe/DDRInfoDxe.inf
@@ -70,6 +73,7 @@ QcomPkg/Drivers/UsbConfigDxe/UsbConfigDxe.inf
 QcomPkg/Drivers/HashDxe/HashDxe.inf
 QcomPkg/Drivers/CipherDxe/CipherDxe.inf
 QcomPkg/Drivers/RNGDxe/RngDxe.inf
+QcomPkg/Drivers/PhoenixDxe/PhoenixDxe.inf
 QcomPkg/Drivers/QcomBds/QcomBds.inf
 QcomPkg/Drivers/PILDxe/PILDxe.inf
 QcomPkg/Application/QcomChargerApp/QcomChargerApp.inf

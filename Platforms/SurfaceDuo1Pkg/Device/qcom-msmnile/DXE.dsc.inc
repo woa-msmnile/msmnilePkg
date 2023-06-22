@@ -12,6 +12,7 @@ Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbMsdDxe/UsbMsdDxe.inf
 #Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbPwrCtrlDxe/UsbPwrCtrlDxe.inf
 Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/XhciPciEmulationDxe/XhciPciEmulationDxe.inf
 SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
+SurfaceDuoFamilyPkg/Driver/UsbStartControllerSignalDxe/UsbStartControllerSignalDxe.inf
 
 #MdeModulePkg/Core/Dxe/DxeMain.inf
 #ArmPkg/Drivers/CpuDxe/CpuDxe.inf
@@ -19,7 +20,7 @@ SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
 #MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf
 #SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SecRSADxe/SecRSADxe.inf
 #SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ASN1X509Dxe/ASN1X509Dxe.inf
-#QcomPkg/Drivers/VerifiedBootDxe/VerifiedBootDxe.inf
+SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/VerifiedBootDxe/VerifiedBootDxe.inf
 SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SimpleTextInOutSerialDxe/SimpleTextInOutSerial.inf
 SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TzDxe/ScmDxeLA.inf
 SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TzDxe/TzDxeLA.inf
@@ -89,5 +90,6 @@ QcomPkg/PatchedBinaries/05472C14-ACB9-4458-A354-A68357AC3BF0.inf
 QcomPkg/PatchedBinaries/HALIOMMUDxe.inf
 QcomPkg/PatchedBinaries/PciHostBridgeDxe.inf
 QcomPkg/PatchedBinaries/UFSDxe.inf
-QcomPkg/PatchedBinaries/UsbConfigDxe.inf
+#QcomPkg/PatchedBinaries/UsbConfigDxe.inf
+SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UsbConfigDxe.inf
 QcomPkg/PatchedBinaries/ButtonsDxe.inf

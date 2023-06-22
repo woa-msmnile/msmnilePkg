@@ -957,14 +957,16 @@ SmBiosTableDxeInitialize(
     // Update SystemMemorySize if meet no issue above,
     //   Otherwise SystemMemorySize == FixedPcdGet64(PcdSystemMemorySize)
     if(SystemMemorySize != FixedPcdGet64(PcdSystemMemorySize)){
-      for (UINTN i = 0; i < NumPartitions; i++) {
-        if(SystemMemorySize < (RamPartitions[i].Base + RamPartitions[i].AvailableLength))
-          SystemMemorySize = RamPartitions[i].Base + RamPartitions[i].AvailableLength;
-      }
-      DEBUG((EFI_D_INFO, "The Highest Address is 0x%016llx \n", SystemMemorySize));
-      // Commonly ignored the memory hole size, the highest address - lowest address = Total Size.
-      SystemMemorySize = SystemMemorySize - FixedPcdGet64(PcdSystemMemoryBase);
-      DEBUG((EFI_D_INFO, "The SystemMemorySize is 0x%016llx \n", SystemMemorySize));
+      for (UINTN i = 0; i < NumPartitions; i++)
+        SystemMemorySize += RamPartitions[i].AvailableLength;
+      DEBUG((EFI_D_WARN, "The Total SystemMemorySize is 0x%016llx \n", SystemMemorySize));
+
+      UINTN DesignMemroySize = 0;
+      while(SystemMemorySize >= DesignMemroySize)
+        DesignMemroySize += 0x40000000;
+
+      DEBUG((EFI_D_WARN, "The Totol DesignMemorySize is 0x%016llx \n", DesignMemroySize));
+      SystemMemorySize = DesignMemroySize;
     }
   } else{
     // Report FixedPcdGet64(PcdSystemMemorySize) if protocol not found.

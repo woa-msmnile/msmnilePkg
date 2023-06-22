@@ -9,7 +9,7 @@ RUN apt-get update && apt-get -y install build-essential uuid-dev iasl nasm gcc-
         gnupg ca-certificates python3-venv git git-core clang llvm curl nano vim 
 
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-RUN echo "deb https://download.mono-project.com/repo/ubuntu stable-focal main" | tee /etc/apt/sources.list.d/mono-official-stable.list
+RUN echo "deb https://download.mono-project.com/repo/ubuntu stable-jammy main" | tee /etc/apt/sources.list.d/mono-official-stable.list
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
 RUN curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list | tee /etc/apt/sources.list.d/microsoft.list
 

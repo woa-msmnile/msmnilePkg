@@ -72,7 +72,6 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
   # Move PlatformMemoryMapLib to Device/<device>/Library
   PlatformMemoryMapLib|SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
 
-
 # Suggest you updating them to your device's dsc.inc.
 #[PcdsDynamicDefault.common]
 #  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1350

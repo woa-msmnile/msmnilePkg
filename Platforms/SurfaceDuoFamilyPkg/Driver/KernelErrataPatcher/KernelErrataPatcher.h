@@ -20,6 +20,8 @@
 #include <Library/UefiLib.h>
 #include <Uefi.h>
 
+#include <Library/ArmLib.h>
+#include <Library/ArmMmuLib.h>
 #include <Library/BaseLib.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>
@@ -33,7 +35,7 @@
 #define ARM64_INSTRUCTION_LENGTH 4
 #define ARM64_TOTAL_INSTRUCTION_LENGTH(x) (ARM64_INSTRUCTION_LENGTH * x)
 
-#define SCAN_MAX 0x5f5e100
+#define SCAN_MAX 0x300000
 #define SEC_TO_MICRO(x) ((UINTN)(x)*1000 * 1000)
 
 #define IN_RANGE(x, a, b) (x >= a && x <= b)
@@ -50,13 +52,16 @@ KernelErrataPatcherExitBootServices(
     IN EFI_HANDLE ImageHandle, IN UINTN MapKey,
     IN PLOADER_PARAMETER_BLOCK loaderBlockX19,
     IN PLOADER_PARAMETER_BLOCK loaderBlockX20,
-    IN EFI_PHYSICAL_ADDRESS    returnAddress);
+    IN PLOADER_PARAMETER_BLOCK loaderBlockX24,
+    IN EFI_PHYSICAL_ADDRESS    fwpKernelSetupPhase1);
 
 EFI_STATUS
 EFIAPI
 ExitBootServicesWrapper(IN EFI_HANDLE ImageHandle, IN UINTN MapKey);
 
 VOID CopyMemory(
+    EFI_PHYSICAL_ADDRESS destination, EFI_PHYSICAL_ADDRESS source, UINTN size);
+VOID CopyToReadOnly(
     EFI_PHYSICAL_ADDRESS destination, EFI_PHYSICAL_ADDRESS source, UINTN size);
 UINT64 FindPattern(
     EFI_PHYSICAL_ADDRESS baseAddress, UINT64 size, const CHAR8 *pattern);

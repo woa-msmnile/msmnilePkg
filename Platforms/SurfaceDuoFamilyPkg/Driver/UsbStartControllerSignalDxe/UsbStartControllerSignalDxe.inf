@@ -1,0 +1,23 @@
+[Defines]
+  INF_VERSION                    = 0x0001001a
+  BASE_NAME                      = UsbStartControllerSignalDxe
+  FILE_GUID                      = 23845379-D600-4546-AF0C-021BC1B1CA6C
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = StartControllerEntry
+  
+[Sources.common]
+  UsbStartControllerSignal.c
+
+[Packages]
+  EmbeddedPkg/EmbeddedPkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  MdePkg/MdePkg.dec
+
+[LibraryClasses]
+  DxeServicesTableLib
+  UefiDriverEntryPoint
+  UefiLib
+
+[Depex]
+  TRUE
