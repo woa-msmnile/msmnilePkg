@@ -38,9 +38,13 @@ class Target:
             self.bootshim_uefi_base = target_b.bootshim_uefi_base
 
         if self.bootshim_uefi_size is None:
-            self.bootshim_padding_size = target_b.bootshim_uefi_size
+            self.bootshim_uefi_size = target_b.bootshim_uefi_size
+
+        if self.bootshim_padding_size is None:
+            self.bootshim_padding_size = target_b.bootshim_padding_size
 
     def print_content(self):
+        print("Target Info: ")
         print("device", self.device)
         print("silicon", self.silicon)
         print("package", self.package)
@@ -54,8 +58,8 @@ def is_system_supported():
 
 
 def build_bootshim(this_target):
-    bootshim_cmd = os.path.abspath("build_boot_shim.sh") + " -a " + str(this_target.bootshim_uefi_base) + "-b " + str(
-        this_target.bootshim_uefi_size) + "-p " + str(this_target.bootshim_padding_size)
+    bootshim_cmd = os.path.abspath("build_boot_shim.sh") + " -a " + str(this_target.bootshim_uefi_base) + " -b " + str(
+        this_target.bootshim_uefi_size) + " -p " + str(this_target.bootshim_padding_size)
     return os.system(bootshim_cmd)
 
 
@@ -167,6 +171,8 @@ def parse_cfg(pfile):
 
 # Build uefi for a single device
 def build_single_device(this_target):
+    # Print args
+    this_target.print_content()
     # Check args
     check_args(this_target)
     # Prepare Environment

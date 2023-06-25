@@ -8,11 +8,14 @@ while getopts "a:b:p" opt; do
         p) SIZE_PADDING=${OPTARG};;
     esac
 done
+echo ${BASE} ${SIZE} ${SIZE_PADDING}
+if [ -z ${SIZE_PADDING} ] ;then
+    SIZE_PADDING=0
+fi
 
-if [ -z ${BASE} ] || [ -z ${SIZE} ] || [ -z ${SIZE_PADDING} ];then
+if [ -z ${BASE} ] || [ -z ${SIZE} ] ;then
     BASE=0x9FC00000
     SIZE=0x00300000
-    SIZE_PADDING=0
 fi
 
 cd BootShim
