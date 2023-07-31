@@ -35,7 +35,7 @@
  # CUST_LOGO Change Start.
  !if $(CUST_LOGO) == 1
    FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLogoFile) {
-     SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Include/Resources/CustBootLogo.bmp
+     SECTION RAW = $(PLATFORM_NAME)Pkg/Device/$(TARGET_DEVICE)/Include/Resources/CustBootLogo.bmp
      SECTION UI = "Logo"
    }
  !else
