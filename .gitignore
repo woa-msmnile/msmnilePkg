@@ -3,9 +3,12 @@ Platforms/SurfaceDuoFamilyPkg/Include/Resources/ReleaseInfo.h
 Platforms/SurfaceDuo1Pkg/Include/Resources/ReleaseInfo.h
 Platforms/SurfaceDuo2Pkg/Include/Resources/ReleaseInfo.h
 
+Silicon/QC/Sdm845/QcomPkg/Include/Configuration/DeviceConfigurationMap.h
 Silicon/QC/Sm7125/QcomPkg/Include/Configuration/DeviceConfigurationMap.h
 Silicon/QC/Sm7325/QcomPkg/Include/Configuration/DeviceConfigurationMap.h
 Silicon/QC/Sm8150/QcomPkg/Include/Configuration/DeviceConfigurationMap.h
+Silicon/QC/Sm8550/QcomPkg/Include/Configuration/DeviceConfigurationMap.h
+
 
 # Local
 .DS_Store
