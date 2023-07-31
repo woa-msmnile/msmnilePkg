@@ -200,17 +200,22 @@
   # ARM PL031 RTC Driver
   RealTimeClockLib|EmbeddedPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
   TimeBaseLib|EmbeddedPkg/Library/TimeBaseLib/TimeBaseLib.inf
+
 !if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == 1
-!if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
-  SerialPortLib|SurfaceDuoFamilyPkg/Library/FrameBufferInMemorySerialPortLib/FrameBufferInMemorySerialPortLib.inf
+    !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
+      SerialPortLib|SurfaceDuoFamilyPkg/Library/FrameBufferInMemorySerialPortLib/FrameBufferInMemorySerialPortLib.inf
+    !else
+      SerialPortLib|SurfaceDuoFamilyPkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf
+    !endif
 !else
-  SerialPortLib|SurfaceDuoFamilyPkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf
+!if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
+    SerialPortLib|SurfaceDuoFamilyPkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
+!else 
+!if $(USE_UART_FOR_SERIAL_OUTPUT) == 1
+    SerialPortLib|SurfaceDuoFamilyPkg/Library/QcomGeniSerialPortLib/QcomGeniSerialPortLib.inf
+!else
+    SerialPortLib|MdePkg/Library/BaseSerialPortLibNull/BaseSerialPortLibNull.inf
 !endif
-!else
-!if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
-  SerialPortLib|SurfaceDuoFamilyPkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
-!else
-  SerialPortLib|MdePkg/Library/BaseSerialPortLibNull/BaseSerialPortLibNull.inf
 !endif
 !endif
 
@@ -467,11 +472,11 @@
   SurfaceDuoFamilyPkg/PrePi/PeiUniCore.inf {
     <LibraryClasses>
     !if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == 1
-    !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
-      SerialPortLib|SurfaceDuoFamilyPkg/Library/FrameBufferInMemorySerialPortLib/FrameBufferInMemorySerialPortLib.inf
-    !else
-      SerialPortLib|SurfaceDuoFamilyPkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf
-    !endif
+      !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
+        SerialPortLib|SurfaceDuoFamilyPkg/Library/FrameBufferInMemorySerialPortLib/FrameBufferInMemorySerialPortLib.inf
+      !else
+        SerialPortLib|SurfaceDuoFamilyPkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf
+      !endif
     !else
     !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
       SerialPortLib|SurfaceDuoFamilyPkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
