@@ -4,10 +4,10 @@ name: Build All Silicons
 
 ## Controls when the workflow will run
 on:
-#  # Triggers the workflow on push or pull request events but only for the "main" branch
-#  push:
-#    branches: [ "main" ]
-#
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -25,8 +25,32 @@ jobs:
       - name: build uefi for all devices in all silicons
         run: bash scripts/container_setup.sh && ./build_uefi.py -s all
 
-      - name: Upload Artifact
+      - name: Upload Hoya's Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: uefi-images-all
-          path: Build/*/*.img
+          name: uefi-images-hoya
+          path: Build/Hoya-AARCH64/*.img
+
+      - name: Upload Atoll's Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: uefi-images-atoll
+          path: Build/Atoll-AARCH64/*.img
+
+      - name: Upload Hana's Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: uefi-images-hana
+          path: Build/SurfaceDuo1-AARCH64/*.img
+
+      - name: Upload Kodiak's Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: uefi-images-kodiak
+          path: Build/Kodiak-AARCH64/*.img
+
+      - name: Upload Kailua's Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: uefi-images-kailua
+          path: Build/Kailua-AARCH64/*.img

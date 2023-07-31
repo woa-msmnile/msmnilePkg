@@ -14,7 +14,5 @@ pip install --upgrade -r pip-requirements.txt
 source SurfaceDuo/bin/activate
 git config --global --add safe.directory '*'
 sudo chown -R root .
-./setup_uefi.sh
-python3 ./Platforms/SurfaceDuo1Pkg/StampBuild.py
 ./build_uefi.py -s all
 exit
