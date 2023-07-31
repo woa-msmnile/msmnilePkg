@@ -19,7 +19,7 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 #include <Protocol/TpmPpProtocol.h>
 
 #include <Library/BaseMemoryLib.h>
-#include <Library/ConsoleMsgLib.h>
+//#include <Library/ConsoleMsgLib.h>
 #include <Library/DebugLib.h>
 #include <Library/DeviceBootManagerLib.h>
 #include <Library/DevicePathLib.h>
