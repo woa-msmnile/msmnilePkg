@@ -70,11 +70,11 @@
   #
   # This library is for showing the main system boot graphics.
   #
-  BootGraphicsLib|MsGraphicsPkg/Library/BootGraphicsLib/BootGraphicsLib.inf
+  BootGraphicsLib|SurfaceDuoFamilyPkg/Library/BootGraphicsLib/BootGraphicsLib.inf
   #
   # BootGraphicsProviderLib that uses PCDs and raw files in the firmware volumes
   #
-  BootGraphicsProviderLib|OemPkg/Library/BootGraphicsProviderLib/BootGraphicsProviderLib.inf
+  BootGraphicsProviderLib|SurfaceDuoFamilyPkg/Library/BootGraphicsProviderLib/BootGraphicsProviderLib.inf
   #
   # This library contains access functions for dealing with the copying of an MS_UI_THEME
   #
@@ -141,7 +141,7 @@
   #
   # This library is for showing the main system boot graphics.
   #
-  BootGraphicsLib|MsGraphicsPkg/Library/BootGraphicsLib/BootGraphicsLib.inf
+  BootGraphicsLib|SurfaceDuoFamilyPkg/Library/BootGraphicsLib/BootGraphicsLib.inf
   #
   # Library to support Device disable Settings  (get/set)
   #
@@ -153,7 +153,7 @@
   #
   # BootGraphicsProviderLib that uses PCDs and raw files in the firmware volumes
   #
-  BootGraphicsProviderLib|OemPkg/Library/BootGraphicsProviderLib/BootGraphicsProviderLib.inf
+  BootGraphicsProviderLib|SurfaceDuoFamilyPkg/Library/BootGraphicsProviderLib/BootGraphicsProviderLib.inf
   #
   # Library that platform implemented to determine boot type
   #
@@ -211,7 +211,7 @@
   #
   # Application that presents and manages FrontPage.
   #
-  OemPkg/FrontPage/FrontPage.inf
+  SurfaceDuoFamilyPkg/FrontPage/FrontPage.inf
   # Surface Boot Manager (Menu) application
   #
   # Application that presents & manages the Boot Menu Setup on Front Page.
@@ -287,6 +287,8 @@
 
   MsCorePkg/AcpiRGRT/AcpiRgrt.inf
 
+  DfciPkg/Application/DfciMenu/DfciMenu.inf
+
 #######################################
 #  Shell
 #######################################
@@ -304,5 +306,3 @@
     <PcdsFixedAtBuild>
      gEfiShellPkgTokenSpaceGuid.PcdShellLibAutoInitialize|FALSE
   }
-
-  DfciPkg/Application/DfciMenu/DfciMenu.inf
