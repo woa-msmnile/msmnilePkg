@@ -1,5 +1,6 @@
 # Dynamic Generated
 Platforms/SurfaceDuoFamilyPkg/Include/Resources/ReleaseInfo.h
+Platforms/SurfaceDuoFamilyPkg/Include/Generated/
 Platforms/SurfaceDuo1Pkg/Include/Resources/ReleaseInfo.h
 Platforms/SurfaceDuo2Pkg/Include/Resources/ReleaseInfo.h
 
