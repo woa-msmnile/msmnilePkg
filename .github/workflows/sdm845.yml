@@ -22,7 +22,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      - name: build uefi for all devices in all silicons
+      - name: build uefi for all devices in HoyaPkg.
         run: bash scripts/container_setup.sh && ./build_uefi.py -d all -s Sdm845
 
       - name: Upload Artifact
