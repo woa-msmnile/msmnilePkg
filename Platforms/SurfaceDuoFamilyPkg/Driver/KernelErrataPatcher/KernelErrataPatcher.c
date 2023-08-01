@@ -9,9 +9,6 @@
 
   Copyright (c) 2021 Samuel Tulach
   Copyright (c) 2022-2023 DuoWoA authors
-  Copyright (c) 2022-2023 Microsoft Corporation/Surface
-
-  CONFIDENTIAL: This version of this file must not be redistributed til fall '24
 
   SPDX-License-Identifier: MIT
 
@@ -54,7 +51,6 @@ VOID KernelErrataPatcherApplyReadAMCNTENSET0EL0Patches(
   UINT8                FixedInstruction0[] = {0x08, 0x00, 0x80, 0xD2};
   EFI_PHYSICAL_ADDRESS IllegalInstruction0 =
       FindPattern(Base, Size, "A8 D2 3B D5");
-//  UINT8 PatchCounter = 0;
 
   while (IllegalInstruction0 != 0) {
     ApplicationPrint(
