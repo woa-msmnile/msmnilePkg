@@ -61,6 +61,13 @@ docker-compose up
 
 ## Target list
 
+### *SDM845*
+
+| Device             | Target name            | DSDT Support    | Maintainers                                        |
+|--------------------|------------------------|-----------------|----------------------------------------------------|
+| HDK 845            | qcom-hdk845            | ✅              | NONE                                               |
+| Xiaomi Mix 2s      | xiaomi-polaris         | ❌              | NONE                                               |
+
 ### *SM8150*
 
 | Device             | Target name            | DSDT Support    | Maintainers                                        |

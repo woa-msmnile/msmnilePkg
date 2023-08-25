@@ -147,7 +147,7 @@ def device_error_exit(device_name, possible_devices_list):
     if not possible_devices_list:
         print(not_found_msg)
     else:
-        possible_devices_msg = "Target device" + device_name + " not found, did you mean: "
+        possible_devices_msg = "Target device \033[31m" + device_name + "\033[0m not found, did you mean: "
         print(possible_devices_msg)
         for dev_name in possible_devices_list:
             print('\t' + dev_name)
