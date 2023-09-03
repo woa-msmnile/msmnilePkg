@@ -35,8 +35,8 @@ pip install --upgrade -r pip-requirements.txt
 *Alternatively, use docker if you don't have Ubuntu 22.04 environment*
 
 ```
-docker build -t mu:v1 .
-docker run -it mu:v1 -v ./:/build/
+sudo docker build -t mu:v1 .
+sudo docker run -v $(pwd):/build/ -it mu:v1
 ```
 
 *Then finish the following process in docker environment*
