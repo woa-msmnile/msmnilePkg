@@ -32,7 +32,7 @@
   # Notice: TRUE == 1, FALSE == 0
   SECURE_BOOT_ENABLE             = 1
   USE_PHYSICAL_TIMER             = 1
-  USE_SCREEN_FOR_SERIAL_OUTPUT   = 0
+  USE_SCREEN_FOR_SERIAL_OUTPUT   = 1
   USE_UART_FOR_SERIAL_OUTPUT     = 0
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
   SEND_HEARTBEAT_TO_SERIAL       = 0
@@ -44,9 +44,6 @@
 !include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Defines.dsc.inc
 
 [BuildOptions.common]
-
-GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
-
 # TODO: Re-do the memory map stuff at one point so it's not defined in static variable and put 
 # those defines only in modules that need them, so changing anything here doesn't rebuild EVERY DAMN THING.
 !if $(HAS_MLVM) == TRUE
@@ -65,6 +62,9 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
   SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
 !endif
 
+#  HidPkg/HidKeyboardDxe/HidKeyboardDxe.inf
+#  HidPkg/HidMouseAbsolutePointerDxe/HidMouseAbsolutePointerDxe.inf
+
   # Device Specific Drivers
 !include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/DXE.dsc.inc
 
@@ -72,18 +72,19 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
   # Move PlatformMemoryMapLib to Device/<device>/Library
   PlatformMemoryMapLib|SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
 
-# Suggest you updating them to your device's dsc.inc.
+# Suggest you updating them to your device's pcds.dsc.inc.
 #[PcdsDynamicDefault.common]
 #  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1350
 #  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|1800
 #  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|1350
 #  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|1800
-#  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|94 # 94.73
-#  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|168 # 168.75
-#  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow|94 # 94.73
-#  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn|168 # 168.75
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|168 # 168.75 = 1350 / EFI_GLYPH_WIDTH(8)
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|94 # 94.73 = 1800 / EFI_GLYPH_HEIGHT(19)
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn|168 # 168.75 = 1350 / EFI_GLYPH_WIDTH(8)
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow|94 # 94.73 = 1800 / EFI_GLYPH_HEIGHT(19)
 
 !include QcomPkg/QcomPkg.dsc.inc
 !include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PcdsFixedAtBuild.dsc.inc
 !include SurfaceDuoFamilyPkg/SurfaceDuoFamily.dsc.inc
 !include SurfaceDuoFamilyPkg/Frontpage.dsc.inc
+

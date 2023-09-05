@@ -99,11 +99,11 @@ READ_LOCK_STATUS   = TRUE
   INF MdeModulePkg/Universal/SmbiosDxe/SmbiosDxe.inf
   INF MdeModulePkg/Universal/SetupBrowserDxe/SetupBrowserDxe.inf
   INF MdeModulePkg/Universal/DriverHealthManagerDxe/DriverHealthManagerDxe.inf
+  INF MdeModulePkg/Universal/Console/TerminalDxe/TerminalDxe.inf
 
   # HID Support
   INF HidPkg/HidKeyboardDxe/HidKeyboardDxe.inf
   INF HidPkg/HidMouseAbsolutePointerDxe/HidMouseAbsolutePointerDxe.inf
-
   # Why is this different yet using the same names and GUIDs? (Uses different function signatures for callbacks...)
   #INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/MsSurfaceCorePkg/HidMouseAbsolutePointerDxe/HidMouseAbsolutePointerDxe.inf
 
@@ -118,6 +118,7 @@ READ_LOCK_STATUS   = TRUE
 
   # ACPI Tables
   !include SurfaceDuo1Pkg/Include/ACPI.inc
+#  INF RuleOverride=ACPITABLE SurfaceDuo1Pkg/AcpiTables/AcpiTables.inf
 
   # DT
   INF EmbeddedPkg/Drivers/DtPlatformDxe/DtPlatformDxe.inf
@@ -149,7 +150,7 @@ READ_LOCK_STATUS   = TRUE
   INF FatPkg/EnhancedFatDxe/Fat.inf
   INF MdeModulePkg/Bus/Pci/NvmExpressDxe/NvmExpressDxe.inf
   INF MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
-  INF MdeModulePkg/Bus/Usb/UsbMouseAbsolutePointerDxe/UsbMouseAbsolutePointerDxe.inf
+#  INF MdeModulePkg/Bus/Usb/UsbMouseAbsolutePointerDxe/UsbMouseAbsolutePointerDxe.inf
   INF MdeModulePkg/Core/Dxe/DxeMain.inf
   INF MdeModulePkg/Core/RuntimeDxe/RuntimeDxe.inf
   INF MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
@@ -158,7 +159,7 @@ READ_LOCK_STATUS   = TRUE
   INF MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
   INF MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
   INF MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
-#  INF MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
+  INF MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
   INF MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
   INF MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
   INF MdeModulePkg/Universal/FvSimpleFileSystemDxe/FvSimpleFileSystemDxe.inf

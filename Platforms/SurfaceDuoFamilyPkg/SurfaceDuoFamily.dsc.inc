@@ -563,12 +563,12 @@
   MdeModulePkg/Universal/SmbiosDxe/SmbiosDxe.inf
   MdeModulePkg/Universal/SetupBrowserDxe/SetupBrowserDxe.inf
   MdeModulePkg/Universal/DriverHealthManagerDxe/DriverHealthManagerDxe.inf
+  MdeModulePkg/Universal/Console/TerminalDxe/TerminalDxe.inf
   MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
 
   # HID Support
   HidPkg/HidKeyboardDxe/HidKeyboardDxe.inf
   HidPkg/HidMouseAbsolutePointerDxe/HidMouseAbsolutePointerDxe.inf
-
   # Disk IO
   MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
   MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
