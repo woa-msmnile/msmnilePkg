@@ -34,6 +34,7 @@ static CONFIGURATION_DESCRIPTOR_EX gDeviceConfigurationDescriptorEx[] = {
     {"GccCe1ClkCntlReg", 0x00152004},
     {"GccCe1ClkCntlVal", 0x00000038},
     {"MaxCoreCnt", 8},
+    {"FastbootUsbInstance", 1},
     {"MaxLogFileSize", 0x800000},
     {"MemoryCaptureModeOffset", 0x1C},
     {"NumActiveCores", 8},
@@ -54,7 +55,7 @@ static CONFIGURATION_DESCRIPTOR_EX gDeviceConfigurationDescriptorEx[] = {
     {"TzAppsRegnSize", 0x02200000},
     {"TzDiagOffset", 0x720},
     {"TzDiagSize", 0x2000},
-    {"UfsSmmuConfigForOtherBootDev", 1},
+    {"UfsSmmuConfigForOtherBootDev", 0},
     {"UsbFnIoRevNum", 0x00010001},
     {"USBHS1_Config", 0x0},
     /* Terminator */
