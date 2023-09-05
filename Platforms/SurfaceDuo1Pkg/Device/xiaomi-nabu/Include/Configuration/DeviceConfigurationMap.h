@@ -31,6 +31,7 @@ static CONFIGURATION_DESCRIPTOR_EX gDeviceConfigurationDescriptorEx[] = {
     {"EnableShell", 0x1},
     {"EnableUfsIOC", 1},
     {"EnableVariablePolicyEngine", 7},
+    {"FastbootUsbInstance", 1},
     {"GccCe1ClkCntlReg", 0x00152004},
     {"GccCe1ClkCntlVal", 0x00000038},
     {"MaxCoreCnt", 8},
