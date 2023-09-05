@@ -41,7 +41,7 @@ INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ResetRuntime
 #INF MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
 #INF MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
 #INF MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
-##INF MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
+#INF MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
 #INF MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
 INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/FontDxe/FontDxe.inf
 INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/EnvDxe/EnvDxe.inf
@@ -138,10 +138,6 @@ FILE DRIVER = b0d3689e-11f8-43c6-8ece-023a29cec35b {
     SECTION PE32 = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/RNGDxe/RngDxe.efi
 }
 
-FILE DRIVER = cccb0c28-4b24-11d5-9a5a-0090273fc14d {
-    SECTION PE32 = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.efi
-    SECTION UI = "GraphicsConsoleDxe"
-}
 #
 #FILE DRIVER = 32C71E68-83A8-46ED-AED1-094E71B12057 {
 #    SECTION PE32 = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SecRSADxe/SecRSADxe.efi
