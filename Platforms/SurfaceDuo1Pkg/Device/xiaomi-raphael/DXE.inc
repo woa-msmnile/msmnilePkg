@@ -17,7 +17,7 @@ INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbMsdDxe/UsbMsdDxe
 INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbPwrCtrlDxe/UsbPwrCtrlDxe.inf
 INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/XhciPciEmulationDxe/XhciPciEmulationDxe.inf
 INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
-
+INF SurfaceDuoFamilyPkg/Driver/UsbStartControllerSignalDxe/UsbStartControllerSignalDxe.inf
 #INF MdeModulePkg/Core/Dxe/DxeMain.inf
 #INF ArmPkg/Drivers/CpuDxe/CpuDxe.inf
 #INF MdeModulePkg/Core/RuntimeDxe/RuntimeDxe.inf
@@ -33,7 +33,7 @@ INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TzDxe/TzDxeL
 #INF MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/SCHandlerRtDxe.inf
 #INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/VariableDxe/VariableDxe.inf
 INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/EmbeddedMonotonicCounter/EmbeddedMonotonicCounter.inf
-INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SimpleTextInOutSerialDxe/SimpleTextInOutSerial.inf
+#INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SimpleTextInOutSerialDxe/SimpleTextInOutSerial.inf
 INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ResetRuntimeDxe/ResetRuntimeDxe.inf
 #INF EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf
 #INF EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
@@ -158,11 +158,11 @@ FILE DRIVER = 240612B7-A063-11D4-9A3A-0090273FC14D {
     SECTION PE32 = Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbBusDxe/UsbBusDxe.efi
     SECTION UI = "UsbBusDxe"
 }
-
-FILE DRIVER = 2D2E62CF-9ECF-43B7-8219-94E7FC713DFE {
-    SECTION PE32 = Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbKbDxe/UsbKbDxe.efi
-    SECTION UI = "UsbKbDxe"
-}
+#
+#FILE DRIVER = 2D2E62CF-9ECF-43B7-8219-94E7FC713DFE {
+#    SECTION PE32 = Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbKbDxe/UsbKbDxe.efi
+#    SECTION UI = "UsbKbDxe"
+#}
 
 FILE DRIVER = 9FB4B4A7-42C0-4BCD-8540-9BCC6711F83E {
     SECTION PE32 = Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbMassStorageDxe/UsbMassStorageDxe.efi
@@ -463,8 +463,8 @@ FILE FREEFORM = 6874E3DE-837A-4D54-90A2-8BDE70A401AC {
     SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/SUNWODA.BATTERY.PROVISION
 }
 
-FILE DRIVER = C9C6BB00-44FC-4C87-8AF9-F93218E17C10  {
-    SECTION DXE_DEPEX = SurfaceDuo1Pkg/UsbcSetDrpDxe.depex.bin
-    SECTION PE32 = SurfaceDuo1Pkg/UsbcSetDrpDxe.efi
-    SECTION UI = "UsbcSetDrpDxe"
-}
+#FILE DRIVER = C9C6BB00-44FC-4C87-8AF9-F93218E17C10  {
+#    SECTION DXE_DEPEX = SurfaceDuo1Pkg/UsbcSetDrpDxe.depex.bin
+#    SECTION PE32 = SurfaceDuo1Pkg/UsbcSetDrpDxe.efi
+#    SECTION UI = "UsbcSetDrpDxe"
+#}
