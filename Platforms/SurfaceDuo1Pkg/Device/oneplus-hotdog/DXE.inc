@@ -158,13 +158,11 @@ FILE DRIVER = 240612B7-A063-11D4-9A3A-0090273FC14D {
     SECTION PE32 = Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbBusDxe/UsbBusDxe.efi
     SECTION UI = "UsbBusDxe"
 }
-#
+# We use mu one instead
 #FILE DRIVER = 2D2E62CF-9ECF-43B7-8219-94E7FC713DFE {
 #    SECTION PE32 = Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbKbDxe/UsbKbDxe.efi
 #    SECTION UI = "UsbKbDxe"
 #}
-    INF HidPkg/UsbKbHidDxe/UsbKbHidDxe.inf
-    INF HidPkg/UsbMouseHidDxe/UsbMouseHidDxe.inf
 
 FILE DRIVER = 9FB4B4A7-42C0-4BCD-8540-9BCC6711F83E {
     SECTION PE32 = Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbMassStorageDxe/UsbMassStorageDxe.efi
@@ -449,9 +447,9 @@ FILE FREEFORM = F780C779-DD7C-47CD-BD1A-5EB414C51704 {
     SECTION UI = "BATTERY.PROVISION"
     SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/BATTERY.PROVISION
 }
-FILE DRIVER = C9C6BB00-44FC-4C87-8AF9-F93218E17C10  {
-    SECTION DXE_DEPEX = SurfaceDuo1Pkg/UsbcSetDrpDxe.depex.bin
-    SECTION PE32 = SurfaceDuo1Pkg/UsbcSetDrpDxe.efi
-    SECTION UI = "UsbcSetDrpDxe"
-}
+#FILE DRIVER = C9C6BB00-44FC-4C87-8AF9-F93218E17C10  {
+#    SECTION DXE_DEPEX = SurfaceDuo1Pkg/UsbcSetDrpDxe.depex.bin
+#    SECTION PE32 = SurfaceDuo1Pkg/UsbcSetDrpDxe.efi
+#    SECTION UI = "UsbcSetDrpDxe"
+#}
     INF SurfaceDuoFamilyPkg/Driver/UsbStartControllerSignalDxe/UsbStartControllerSignalDxe.inf

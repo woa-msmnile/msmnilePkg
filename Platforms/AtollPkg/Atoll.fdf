@@ -95,7 +95,7 @@ READ_LOCK_STATUS   = TRUE
   INF EmbeddedPkg/Drivers/VirtualKeyboardDxe/VirtualKeyboardDxe.inf
 
   # BDS
-  INF SurfaceDuoFamilyPkg/Driver/RamPartitionDxe/RamPartitionDxe.inf
+#  INF SurfaceDuoFamilyPkg/Driver/RamPartitionDxe/RamPartitionDxe.inf
   INF MdeModulePkg/Universal/SmbiosDxe/SmbiosDxe.inf
   INF MdeModulePkg/Universal/SetupBrowserDxe/SetupBrowserDxe.inf
   INF MdeModulePkg/Universal/DriverHealthManagerDxe/DriverHealthManagerDxe.inf
@@ -103,6 +103,8 @@ READ_LOCK_STATUS   = TRUE
   # HID Support
   INF HidPkg/HidKeyboardDxe/HidKeyboardDxe.inf
   INF HidPkg/HidMouseAbsolutePointerDxe/HidMouseAbsolutePointerDxe.inf
+  INF HidPkg/UsbKbHidDxe/UsbKbHidDxe.inf
+  INF HidPkg/UsbMouseHidDxe/UsbMouseHidDxe.inf
 
   # Disk IO
   INF MdeModulePkg/Bus/Scsi/ScsiBusDxe/ScsiBusDxe.inf

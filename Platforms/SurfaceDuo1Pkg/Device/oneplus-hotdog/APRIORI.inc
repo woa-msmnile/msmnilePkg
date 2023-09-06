@@ -112,8 +112,6 @@ APRIORI DXE {
 #            SECTION PE32 = Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbKbDxe/UsbKbDxe.efi
 #            SECTION UI = "UsbKbDxe"
 #    }
-    INF HidPkg/UsbKbHidDxe/UsbKbHidDxe.inf
-    INF HidPkg/UsbMouseHidDxe/UsbMouseHidDxe.inf
 
     # INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbMassStorageDxe/UsbMassStorageDxe.inf
     FILE DRIVER = 9FB4B4A7-42C0-4BCD-8540-9BCC6711F83E {

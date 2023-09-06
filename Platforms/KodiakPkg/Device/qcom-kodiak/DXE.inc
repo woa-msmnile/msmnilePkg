@@ -151,10 +151,10 @@ FILE DRIVER = 240612B7-A063-11D4-9A3A-0090273FC14D {
 }
 
 # INF Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/UsbKbDxe/UsbKbDxe.inf
-FILE DRIVER = 2D2E62CF-9ECF-43B7-8219-94E7FC713DFE {
-    SECTION PE32 = KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/UsbKbDxe/UsbKbDxe.efi
-    SECTION UI = "UsbKbDxe"
-}
+#FILE DRIVER = 2D2E62CF-9ECF-43B7-8219-94E7FC713DFE {
+#    SECTION PE32 = KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/UsbKbDxe/UsbKbDxe.efi
+#    SECTION UI = "UsbKbDxe"
+#}
 
 # INF Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/UsbMassStorageDxe/UsbMassStorageDxe.inf
 FILE DRIVER = 9FB4B4A7-42C0-4BCD-8540-9BCC6711F83E {

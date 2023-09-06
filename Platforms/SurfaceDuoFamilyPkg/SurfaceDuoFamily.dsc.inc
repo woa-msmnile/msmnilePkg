@@ -569,6 +569,9 @@
   # HID Support
   HidPkg/HidKeyboardDxe/HidKeyboardDxe.inf
   HidPkg/HidMouseAbsolutePointerDxe/HidMouseAbsolutePointerDxe.inf
+  HidPkg/UsbKbHidDxe/UsbKbHidDxe.inf
+  HidPkg/UsbMouseHidDxe/UsbMouseHidDxe.inf
+
   # Disk IO
   MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
   MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf

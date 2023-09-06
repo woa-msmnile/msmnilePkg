@@ -62,9 +62,6 @@
   SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
 !endif
 
-#  HidPkg/HidKeyboardDxe/HidKeyboardDxe.inf
-#  HidPkg/HidMouseAbsolutePointerDxe/HidMouseAbsolutePointerDxe.inf
-
   # Device Specific Drivers
 !include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/DXE.dsc.inc
 

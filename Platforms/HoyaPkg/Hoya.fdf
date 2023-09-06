@@ -104,6 +104,8 @@ READ_LOCK_STATUS   = TRUE
   # HID Support
   INF HidPkg/HidKeyboardDxe/HidKeyboardDxe.inf
   INF HidPkg/HidMouseAbsolutePointerDxe/HidMouseAbsolutePointerDxe.inf
+  INF HidPkg/UsbKbHidDxe/UsbKbHidDxe.inf
+  INF HidPkg/UsbMouseHidDxe/UsbMouseHidDxe.inf
 
   # Why is this different yet using the same names and GUIDs? (Uses different function signatures for callbacks...)
   #INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/MsSurfaceCorePkg/HidMouseAbsolutePointerDxe/HidMouseAbsolutePointerDxe.inf
