@@ -67,7 +67,7 @@ def prepare_build(package_name):
     stuart_setup_cmd = "python3 " + os.path.join("Platforms", package_name,
                                                          "PlatformBuild.py") + " --setup TOOL_CHAIN_TAG=CLANG38"
     stuart_update_cmd = "python3 " + os.path.join("Platforms", package_name,
-                                                          "PlatformBuild.py") + " --setup TOOL_CHAIN_TAG=CLANG38"
+                                                          "PlatformBuild.py") + " --update TOOL_CHAIN_TAG=CLANG38"
     os.system(stuart_setup_cmd)
     os.system(stuart_update_cmd)
 
