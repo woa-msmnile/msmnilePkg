@@ -199,7 +199,6 @@
   RealTimeClockLib|EmbeddedPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
   TimeBaseLib|EmbeddedPkg/Library/TimeBaseLib/TimeBaseLib.inf
 
-
 #######################
 # Add UART section here.
 !if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == 1
@@ -629,6 +628,9 @@
   # We use pre-built ACPI tables, so only core components are loaded
   SurfaceDuoFamilyPkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
   SurfaceDuoFamilyPkg/Driver/SurfaceFirmwareProvisioningDataDxe/SurfaceFirmwareProvisioningDataDxe.inf
+
+  # Terminal
+  MdeModulePkg/Universal/Console/TerminalDxe/TerminalDxe.inf
 
   # PrePI
   SurfaceDuoFamilyPkg/PrePi/PeiUniCore.inf {
