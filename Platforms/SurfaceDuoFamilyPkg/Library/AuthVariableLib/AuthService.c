@@ -483,12 +483,12 @@ CheckSignatureListFormat (
 
       CertData = (EFI_SIGNATURE_DATA *)((UINT8 *)SigList + sizeof (EFI_SIGNATURE_LIST) + SigList->SignatureHeaderSize);
       CertLen  = SigList->SignatureSize - sizeof (EFI_GUID);
-      /*if (!RsaGetPublicKeyFromX509 (CertData->SignatureData, CertLen, &RsaContext)) {
+      if (!RsaGetPublicKeyFromX509 (CertData->SignatureData, CertLen, &RsaContext)) {
         RsaFree (RsaContext);
         return EFI_INVALID_PARAMETER;
       }
 
-      RsaFree (RsaContext);*/
+      RsaFree (RsaContext);
     }
 
     if ((SigList->SignatureListSize - sizeof (EFI_SIGNATURE_LIST) - SigList->SignatureHeaderSize) % SigList->SignatureSize != 0) {
@@ -2347,6 +2347,10 @@ VerifyTimeBasedPayloadAndUpdate (
   EFI_VARIABLE_AUTHENTICATION_2  *CertData;
   AUTH_VARIABLE_INFO             OrgVariableInfo;
   BOOLEAN                        IsDel;
+
+  if (EfiAtRuntime()) {
+    return EFI_WRITE_PROTECTED;
+  }
 
   ZeroMem (&OrgVariableInfo, sizeof (OrgVariableInfo));
   FindStatus = mAuthVarLibContextIn->FindVariable (

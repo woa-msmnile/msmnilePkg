@@ -43,6 +43,7 @@
   BaseCryptLib
   PlatformSecureLib
   VariablePolicyLib
+  UefiRuntimeLib
 
 #MU_CHANGE START TCBZ2506
 [FeaturePcd]

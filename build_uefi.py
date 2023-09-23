@@ -64,10 +64,10 @@ def build_bootshim(this_target):
 
 
 def prepare_build(package_name):
-    stuart_setup_cmd = "stuart_setup -c " + os.path.join("Platforms", package_name,
-                                                         "PlatformBuild.py") + " TOOL_CHAIN_TAG=CLANG38"
-    stuart_update_cmd = "stuart_update -c" + os.path.join("Platforms", package_name,
-                                                          "PlatformBuild.py") + " TOOL_CHAIN_TAG=CLANG38"
+    stuart_setup_cmd = "python3 " + os.path.join("Platforms", package_name,
+                                                         "PlatformBuild.py") + " --setup TOOL_CHAIN_TAG=CLANG38"
+    stuart_update_cmd = "python3 " + os.path.join("Platforms", package_name,
+                                                          "PlatformBuild.py") + " --setup TOOL_CHAIN_TAG=CLANG38"
     os.system(stuart_setup_cmd)
     os.system(stuart_update_cmd)
 
@@ -179,9 +179,12 @@ def build_single_device(this_target):
     build_bootshim(this_target)
     update_device_configuration_map(this_target)
     prepare_build(this_target.package)
+    os.environ['CLANG38_BIN'] = '/usr/lib/llvm-14/bin/'
+    os.environ['CLANG38_AARCH64_PREFIX']='aarch64-linux-gnu-'
+
     # Start Actual Build
-    os.system("stuart_build -c" + os.path.join("Platforms", this_target.package, "PlatformBuild.py")
-              + " TOOL_CHAIN_TAG=CLANG38 TARGET_DEVICE=" + this_target.device)
+    os.system("python3 " + os.path.join("Platforms", this_target.package, "PlatformBuild.py")
+              + " --build TOOL_CHAIN_TAG=CLANG38 TARGET_DEVICE=" + this_target.device)
 
 
 # Build uefi for all devices in one silicon.

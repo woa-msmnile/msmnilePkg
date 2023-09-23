@@ -1,4 +1,3 @@
-
 [LibraryClasses.common]
   #
   # Libraries to support Shell
@@ -10,10 +9,6 @@
   BcfgCommandLib|ShellPkg/Library/UefiShellBcfgCommandLib/UefiShellBcfgCommandLib.inf
   NetLib|NetworkPkg/Library/DxeNetLib/DxeNetLib.inf
   #
-  # Contains intrinsics for crypto operations
-  #
-  IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
-  #
   # contains NULL routines to support UI operations associated with DFCI.
   #
   DfciUiSupportLib|OemPkg/Library/DfciUiSupportLib/DfciUiSupportLib.inf
@@ -22,14 +17,9 @@
   #
   DfciRecoveryLib|DfciPkg/Library/DfciRecoveryLib/DfciRecoveryLib.inf
   #
-  # Contains openSSL library used by BaseCryptoLib
-  #
-  OpensslLib|CryptoPkg/Library/OpensslLib/OpensslLib.inf
-  #
   # Functions that should contain base logic for querying, setting, and verifying user passwords.
   #
   PasswordStoreLib|OemPkg/Library/PasswordStoreLib/PasswordStoreLib.inf
-  BaseCryptLib|CryptoPkg/Library/BaseCryptLib/BaseCryptLib.inf
   #
   # Supports DFCI Groups.
   #
@@ -70,11 +60,11 @@
   #
   # This library is for showing the main system boot graphics.
   #
-  BootGraphicsLib|SurfaceDuoFamilyPkg/Library/BootGraphicsLib/BootGraphicsLib.inf
+  BootGraphicsLib|MsGraphicsPkg/Library/BootGraphicsLib/BootGraphicsLib.inf
   #
   # BootGraphicsProviderLib that uses PCDs and raw files in the firmware volumes
   #
-  BootGraphicsProviderLib|SurfaceDuoFamilyPkg/Library/BootGraphicsProviderLib/BootGraphicsProviderLib.inf
+  BootGraphicsProviderLib|OemPkg/Library/BootGraphicsProviderLib/BootGraphicsProviderLib.inf
   #
   # This library contains access functions for dealing with the copying of an MS_UI_THEME
   #
@@ -139,10 +129,6 @@
   #
   MathLib|MsCorePkg/Library/MathLib/MathLib.inf
   #
-  # This library is for showing the main system boot graphics.
-  #
-  BootGraphicsLib|SurfaceDuoFamilyPkg/Library/BootGraphicsLib/BootGraphicsLib.inf
-  #
   # Library to support Device disable Settings  (get/set)
   #
   MsBootManagerSettingsLib|OemPkg/Library/MsBootManagerSettingsDxeLib/MsBootManagerSettingsDxeLib.inf
@@ -151,19 +137,13 @@
   #
   SwmDialogsLib|MsGraphicsPkg/Library/SwmDialogsLib/SwmDialogs.inf
   #
-  # BootGraphicsProviderLib that uses PCDs and raw files in the firmware volumes
-  #
-  BootGraphicsProviderLib|SurfaceDuoFamilyPkg/Library/BootGraphicsProviderLib/BootGraphicsProviderLib.inf
-  #
   # Library that platform implemented to determine boot type
   #
   MsBootPolicyLib|SurfaceDuoFamilyPkg/Library/MsBootPolicyLib/MsBootPolicyLib.inf
-  BmpSupportLib|MdeModulePkg/Library/BaseBmpSupportLib/BaseBmpSupportLib.inf
   #
   # Supplies the theme for this platform to the UEFI settings UI
   #
   MsUiThemeLib|MsGraphicsPkg/Library/MsUiThemeLib/Dxe/MsUiThemeLib.inf
-  SafeIntLib|MdePkg/Library/BaseSafeIntLib/BaseSafeIntLib.inf
   #
   # Library for determining if Manufacturing mode should be enabled on this boot. 
   # This libray is what everyone should use to determine which mode we are in.
@@ -200,6 +180,10 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdBootManagerMenuFile|{ 0x8A, 0x70, 0x42, 0x40, 0x2D, 0x0F, 0x23, 0x48, 0xAC, 0x60, 0x0D, 0x77, 0xB3, 0x11, 0x18, 0x89 }
 
   gOemPkgTokenSpaceGuid.PcdPostBackgroundColor|0x0
+
+[LibraryClasses.AARCH64.DXE_DRIVER, LibraryClasses.AARCH64.UEFI_DRIVER, LibraryClasses.AARCH64.UEFI_APPLICATION, LibraryClasses.AARCH64.DXE_CORE]
+  BaseCryptLib|CryptoPkg/Library/BaseCryptLibOnProtocolPpi/DxeCryptLib.inf
+  TlsLib|CryptoPkg/Library/BaseCryptLibOnProtocolPpi/DxeCryptLib.inf
 
 [Components.AARCH64]
 
@@ -303,6 +287,13 @@
       NULL|ShellPkg/Library/UefiShellDebug1CommandsLib/UefiShellDebug1CommandsLib.inf
       NULL|ShellPkg/Library/UefiShellNetwork1CommandsLib/UefiShellNetwork1CommandsLib.inf
       NULL|ShellPkg/Library/UefiShellNetwork2CommandsLib/UefiShellNetwork2CommandsLib.inf
-    <PcdsFixedAtBuild>
+     <PcdsFixedAtBuild>
      gEfiShellPkgTokenSpaceGuid.PcdShellLibAutoInitialize|FALSE
+  }
+
+  CryptoPkg/Driver/Bin/CryptoDriverBin_STANDARD_Dxe_$(TARGET)_AARCH64.inf
+
+  CryptoPkg/Library/BaseCryptLibOnProtocolPpi/DxeCryptLib.inf {
+    <PcdsFixedAtBuild>
+      !include CryptoPkg/Driver/Bin/Crypto.pcd.STANDARD.inc.dsc
   }

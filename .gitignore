@@ -44,3 +44,15 @@ android-boot.img
 *.i64
 # IDA Pro 32 packaged data
 *.idb
+
+Platforms/SurfaceDuoFamilyPkg/Include/Generated/ConfigServiceGenerated.h
+Platforms/SurfaceDuoFamilyPkg/Include/Generated/ConfigDataGenerated.h
+Platforms/SurfaceDuoFamilyPkg/Include/Generated/ConfigClientGenerated.h
+ImageResources/Zeta/uefi.img
+ImageResources/Zeta/bootpayload.bin
+ImageResources/Epsilon/uefi.img
+ImageResources/Epsilon/bootpayload.bin
+ImageResources/Zeta/uefi_dualboot.img
+ImageResources/Zeta/dualbootbootpayload.bin
+ImageResources/Epsilon/uefi_dualboot.img
+ImageResources/Epsilon/dualbootbootpayload.bin

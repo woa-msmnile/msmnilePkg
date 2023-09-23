@@ -170,5 +170,4 @@ APRIORI DXE {
 #        SECTION PE32 = SurfaceDuo1Pkg/UsbcSetDrpDxe.efi
 #        SECTION UI = "UsbcSetDrpDxe"
 #    }
-    INF SurfaceDuoFamilyPkg/Driver/UsbStartControllerSignalDxe/UsbStartControllerSignalDxe.inf
 }

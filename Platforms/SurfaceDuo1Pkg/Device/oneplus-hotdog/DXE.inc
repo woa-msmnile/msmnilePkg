@@ -452,4 +452,3 @@ FILE FREEFORM = F780C779-DD7C-47CD-BD1A-5EB414C51704 {
 #    SECTION PE32 = SurfaceDuo1Pkg/UsbcSetDrpDxe.efi
 #    SECTION UI = "UsbcSetDrpDxe"
 #}
-    INF SurfaceDuoFamilyPkg/Driver/UsbStartControllerSignalDxe/UsbStartControllerSignalDxe.inf

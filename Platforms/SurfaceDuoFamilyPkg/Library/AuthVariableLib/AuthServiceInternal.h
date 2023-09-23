@@ -27,6 +27,7 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 #include <Library/MemoryAllocationLib.h>
 #include <Library/BaseCryptLib.h>
 #include <Library/PlatformSecureLib.h>
+#include <Library/UefiRuntimeLib.h>
 
 #include <Guid/AuthenticatedVariableFormat.h>
 #include <Guid/ImageAuthentication.h>
