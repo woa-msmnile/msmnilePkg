@@ -56,5 +56,5 @@ VOID PlatformInitialize(VOID)
 //  ConfigureIOMMUContextBankCacheSetting(UFS_CTX_BANK, TRUE);
 
   // Disable WatchDog Timer
-//  SetWatchdogState(FALSE);
+  SetWatchdogState(FALSE);
 }
