@@ -15,6 +15,9 @@ import tempfile
 import uuid
 import string
 import datetime
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), 'PythonLibs'))
+import PostBuild
 
 from edk2toolext.environment import shell_environment
 from edk2toolext.environment.uefi_build import UefiBuilder
@@ -190,6 +193,24 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
         ''' return tuple containing scopes that should be active for this process '''
         return CommonPlatform.Scopes
 
+    def GetOutputDirectory(self):
+        ''' Return the output directory for this platform '''
+        return self.env.GetValue("OUTPUT_DIRECTORY")
+
+    def GetOutputBinDirectory(self):
+        ''' Return the output directory with binaries '''
+        toolchain_tag = self.env.GetValue("TOOL_CHAIN_TAG")
+        target = self.env.GetValue("TARGET")
+        out_dir = self.env.GetValue("OUTPUT_DIRECTORY")
+        return os.path.join(out_dir, f"{target}_{toolchain_tag}")
+
+    def GetDTBName(self):
+        ''' Return the name of device's dtb '''
+        target_device = self.env.GetValue("TARGET_DEVICE")
+        linenum = target_device.find('-') + 1
+        dtbname = target_device[(linenum):] + '.dtb'
+        return dtbname
+
     def GetName(self):
         ''' Get the name of the repo, platform, or product being build '''
         ''' Used for naming the log file, among others '''
@@ -230,12 +251,18 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
         self.env.SetValue("POLICY_DATA_STRUCT_FOLDER", self.mws.join(self.ws, "SurfaceDuoFamilyPkg", "Include"), "Platform Defined")
         self.env.SetValue('POLICY_REPORT_FOLDER', self.mws.join(self.ws, "SurfaceDuoFamilyPkg", "PolicyData"), "Platform Defined")
 
+        # Ship Device Name
+        self.env.SetValue("BLD_*_TARGET_DEVICE", self.env.GetValue("TARGET_DEVICE"), "Default")
+        # Ship DTB Name
+        self.env.SetValue("BLD_*_FDT", self.GetDTBName(), "Default")
         return 0
 
     def PlatformPreBuild(self):
         return 0
 
     def PlatformPostBuild(self):
+        logging.info("Building Android Boot Image.")
+        PostBuild.makeAndroidImage(self.GetOutputBinDirectory(), self.GetOutputDirectory(), self.GetWorkspaceRoot(), self.env.GetValue("TARGET_DEVICE"), self.GetDTBName())
         return 0
 
     def FlashRomImage(self):
