@@ -11,17 +11,18 @@
 #include <Base.h>
 #include <Uefi.h>
 
+#include <Pi/PiFirmwareFile.h>
+
 #include <Library/BaseLib.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>
+#include <Library/DxeServicesLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/PrintLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiDriverEntryPoint.h>
 #include <Library/UefiLib.h>
 #include <Library/UefiRuntimeServicesTableLib.h>
-
-#include "SystemIntegrityPolicyDefaultVars.h"
 
 //
 // Global variables.
@@ -33,12 +34,22 @@ EFI_STATUS
 EFIAPI
 TryWritePlatformSiPolicy(EFI_HANDLE SfsHandle)
 {
-  EFI_STATUS Status               = EFI_SUCCESS;
-  UINT64     mSiPolicyDefaultSize = sizeof(mSiPolicyDefault);
+  EFI_STATUS Status = EFI_SUCCESS;
 
   EFI_SIMPLE_FILE_SYSTEM_PROTOCOL *EfiSfsProtocol;
   EFI_FILE_PROTOCOL               *FileProtocol;
   EFI_FILE_PROTOCOL               *PayloadFileProtocol;
+
+  EFI_GUID *FileGuid             = NULL;
+  UINT8    *mSiPolicyDefault     = NULL;
+  UINTN     mSiPolicyDefaultSize = 0;
+  FileGuid                       = PcdGetPtr(PcdSystemIntegrityPolicyFile);
+
+  // Get the SiPolicy image from FV.
+  //
+  Status = GetSectionFromAnyFv(
+      FileGuid, EFI_SECTION_RAW, 0, (VOID **)&mSiPolicyDefault,
+      &mSiPolicyDefaultSize);
 
   DEBUG(
       (DEBUG_ERROR, "%a: HandleProtocol gEfiSimpleFileSystemProtocolGuid\n",

@@ -40,8 +40,8 @@
 
 [PcdsFixedAtBuild.common]
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor|L"DuoWoA authors"
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString|L"2309.56"
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareRevision|0x01230956
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString|L"2311.26"
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareRevision|0x01231126
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemId|"QCOM  "
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemTableId|0x324B44454D4F4351
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorId|0x4D4F4351
@@ -114,8 +114,8 @@
   # 4042708A-0F2D-4823-AC60-0D77B3111889
   gEfiMdeModulePkgTokenSpaceGuid.PcdBootManagerMenuFile|{ 0x8A, 0x70, 0x42, 0x40, 0x2D, 0x0F, 0x23, 0x48, 0xAC, 0x60, 0x0D, 0x77, 0xB3, 0x11, 0x18, 0x89 }
 
-  gOemPkgTokenSpaceGuid.PcdUefiVersionNumber|0x1230956 # 1.23.09.56
-  gOemPkgTokenSpaceGuid.PcdUefiBuildDate|0x20231209 # 09/17/2023
+  gOemPkgTokenSpaceGuid.PcdUefiVersionNumber|0x1231126 # 1.23.11.26
+  gOemPkgTokenSpaceGuid.PcdUefiBuildDate|0x20231108 # 11/08/2023
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxVariableSize|0x2000
 
@@ -495,7 +495,6 @@
   MdeModulePkg/Core/Dxe/DxeMain.inf {
     <LibraryClasses>
     NULL|MdeModulePkg/Library/DxeCrc32GuidedSectionExtractLib/DxeCrc32GuidedSectionExtractLib.inf
-    NULL|MdeModulePkg/Library/DxeCrc32GuidedSectionExtractLib/DxeCrc32GuidedSectionExtractLib.inf
     NULL|MdeModulePkg/Library/LzmaCustomDecompressLib/LzmaCustomDecompressLib.inf
   }
 
@@ -507,7 +506,11 @@
   MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
   MdeModulePkg/Universal/Acpi/FirmwarePerformanceDataTableDxe/FirmwarePerformanceDxe.inf
 
-  MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
+  MdeModulePkg/Universal/BdsDxe/BdsDxe.inf {
+    <LibraryClasses>
+    NULL|SurfaceDuoFamilyPkg/Library/KernelErrataPatcherLib/KernelErrataPatcherLib.inf
+  }
+
   MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
 
   MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
@@ -616,8 +619,6 @@
   SurfaceDuoFamilyPkg/Driver/HeartbeatDxe/HeartbeatDxe.inf
 !endif
 
-  SurfaceDuoFamilyPkg/Driver/KernelErrataPatcher/KernelErrataPatcher.inf
-
 !if $(SECURE_BOOT_ENABLE) == 1
   SurfaceDuoFamilyPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
 !endif
@@ -638,7 +639,7 @@
     ##############################################################
     # CUST_PLATFORM_PRE_PI_LIB Patch
     !if $(CUST_PLATFORM_PRE_PI_LIB) == 1
-      PlatformPrePiLib|SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Library/PlatformPrePiLib/PlatformPrePiLib.inf
+      PlatformPrePiLib|$(PLATFORM_NAME)Pkg/Device/$(TARGET_DEVICE)/Library/PlatformPrePiLib/PlatformPrePiLib.inf
     !endif
     #
     ##############################################################

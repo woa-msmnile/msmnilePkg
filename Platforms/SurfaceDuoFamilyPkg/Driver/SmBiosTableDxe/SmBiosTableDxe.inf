@@ -15,12 +15,12 @@
   gArmTokenSpaceGuid.PcdSystemMemorySize
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosBoardModel
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorModel
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorModel
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosBoardModel
 
 # PcdSmbiosSystemBrand Patch
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand
@@ -45,15 +45,21 @@
   UefiDriverEntryPoint
   UefiLib
 
+[Guids]
+  gEfiHashAlgorithmSha1Guid
+
 [Protocols]
-  gEfiSmbiosProtocolGuid
   gEfiChipInfoProtocolGuid
-  gSfpdProtocolGuid
-# Ram Size Detect Patch
-  gEfiRamPartitionProtocolGuid
-  
-[Depex]
+  gEfiHash2ProtocolGuid
   gEfiSmbiosProtocolGuid
+  gSfpdProtocolGuid
+  # Ram Size Detect Patch
+  gEfiRamPartitionProtocolGuid
+
+[Depex]
+  gEfiHash2ProtocolGuid AND
+  gEfiSmbiosProtocolGuid AND
+  gSfpdProtocolGuid
 
 [BuildOptions.AARCH64]
-  GCC:*_*_*_CC_FLAGS = -Wno-missing-brace
+  GCC:*_*_*_CC_FLAGS = -Wno-missing-brace -Wno-error

@@ -56,7 +56,7 @@ MsEarlyGraphicsGetFrameBufferInfo(
   UINT32                                CurrentModeNumber;
   UINT32                                CurrentHorizontalResolution;
   UINT32                                CurrentVerticalResolution;
-  INT32                                 MaxMode;
+  UINT32                                MaxMode;
   UINT32                                NewHorizontalResolution;
   UINT32                                NewVerticalResolution;
   EFI_GRAPHICS_OUTPUT_MODE_INFORMATION *Info;

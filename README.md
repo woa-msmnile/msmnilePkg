@@ -2,9 +2,33 @@
 
 ### Thanks for [Gustave](https://github.com/gus33000)'s instructions!
 
-# [Project Mu](https://microsoft.github.io/mu/) UEFI Implementation for Devices on Snapdragon™ Platforms.
+# [Project Mu](https://microsoft.github.io/mu/) UEFI Implementation for Devices with Snapdragon™ inside.
 
-## Build ![ActionStatus](https://img.shields.io/github/actions/workflow/status/woa-msmnile/msmnilepkg/main.yml)
+## For users
+
+You can download the latest UEFI build by clicking [here](https://github.com/woa-msmnile/msmnilePkg/actions).
+
+![ActionStatus](https://img.shields.io/github/actions/workflow/status/woa-msmnile/msmnilepkg/main.yml)
+
+## What's this?
+
+This package demonstrates an AArch64 UEFI implementation for hacked devices with qcom silicons. Currently it is able to boot Windows 10 ARM64 as well as Windows 11 ARM64. Please be aware that devices with no dsdt support have limited support.
+
+## Support Status
+
+Applicable to all supported targets unless noted.
+
+- Low-speed I/O: I2C, SPI, GPIO, SPMI and Pinmux (TLMM).
+- Power Management: PMIC and Resource Power Manager (RPM).
+- High-speed I/O for firmware and HLOS: UFS 3.1
+- Peripherals: side-band buttons (TLMM GPIO and PMIC GPIO), USB
+- Display FrameBuffer
+
+## What can you do?
+
+Please see https://woa-msmnile.github.io for some tutorials.
+
+## Build
 
 ### Minimum System Requirements
 
@@ -55,13 +79,14 @@ docker-compose up
 
 - Tips:
   - use `-s all` to build all devices.
-  - use `-d all -s <target-silicon>` to build all devices in one silicon.
+  - use `-d all -s <target-silicon>` to build all devices in same platform.
 
 - You will find Build/xxxxPkg/\<target-device\>.img after successfully building.
 
 ## Target list
 
 ### *SDM845*
+> Comming soon...  
 
 | Device             | Target name            | DSDT Support    | Maintainers                                        |
 |--------------------|------------------------|-----------------|----------------------------------------------------|
@@ -134,65 +159,24 @@ docker-compose up
 
 | Device                | Target name            | DSDT Support    | Maintainers                                        |
 |-----------------------|------------------------|-----------------|----------------------------------------------------|
-| QTI QRD 8550          | qcom-kailua            | ❌              | Sunflower2333                                      |
-| Nubia RedMagic 8 Pro  | nubia-nx729j           | ❌              | BigfootACA                                         |
+| QTI QRD 8550          | qcom-kailua            | ❌              | None                                               |
+| Nubia RedMagic 8 Pro  | nubia-nx729j           | ❌              | None                                               |
 | Xiaomi 13             | xiaomi-fuxi            | ❌              | None                                               |
 | Xiaomi 13 Pro         | xiaomi-nuwa            | ❌              | None                                               |
 
 ## Acknowledgements
 
 - Gustave Monce and his [SurfaceDuoPkg](https://github.com/Woa-Project/SurfaceDuoPkg/)
+- [EFIDroid Project](http://efidroid.org)
 - Andrei Warkentin and his [RaspberryPiPkg](https://github.com/andreiw/RaspberryPiPkg)
 - Sarah Purohit
 - [Googulator](https://github.com/Googulator/)
 - [Ben (Bingxing) Wang](https://github.com/imbushuo/)
 - Samuel Tulach and his [Rainbow Patcher](https://github.com/SamuelTulach/rainbow)
 - BigfootACA and his [SimpleInit](https://github.com/BigfootACA/simple-init)
-- [Renegade Project](https://github.com/edk2-porting/)
+- Developers in [Renegade Project](https://github.com/edk2-porting)
 - Lemon ICE
 
 ## License ![License](https://img.shields.io/github/license/woa-msmnile/msmnilePkg)
 All code except drivers in `GPLDriver` directory are licensed under BSD 2-Clause.  
 GPL Drivers are licensed under GPLv2 license.
-
-
-## Boot Chain
-```mermaid
-flowchart TD
-  subgraph fake_kernel[Fake Kernel]
-
-    subgraph bootshim[Boot Shim]
-      kernel_header[ARM64 Magic]
-      copy_fd[Copy UefiFD to stack base]
-      save_args[Save needed arguments to registers]
-      jump[jump to uefi fd base]
-    end
-
-    subgraph uefi[Uefi]
-      subgraph platform_prepi_lib[PlatformPrePiLib]
-        is_linux_boot_requested{IsLinuxBootRequested}
-      end
-      continue_uefi[Continue Booting Uefi]
-    end
-    subgraph kernel[Linux Kernel]
-      linux_kernel[Kernel]
-    end
-  end
-  
-  subgraph hlos[HLOS]
-    android[Android]
-    linux[Linux]
-    windows[Windows]
-    etc[...]
-  end
-
-  kernel_header --> copy_fd --> save_args --> jump --> platform_prepi_lib
-  platform_prepi_lib --> is_linux_boot_requested
-  is_linux_boot_requested -- True --> linux_kernel
-  is_linux_boot_requested -- False --> continue_uefi
-  continue_uefi --> linux
-  linux_kernel --> linux
-  linux_kernel --> android
-  continue_uefi --> windows
-  fake_kernel ==> hlos
-```

@@ -17,6 +17,7 @@
 [LibraryClasses]
   BaseLib
   DebugLib
+  UefiBootManagerLib
   UefiBootServicesTableLib
   UefiDriverEntryPoint
   UefiLib

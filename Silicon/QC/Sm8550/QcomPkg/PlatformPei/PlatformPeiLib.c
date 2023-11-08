@@ -159,31 +159,32 @@ VOID BuildMemHobForFv(IN UINT16 Type)
   }
 }
 
-STATIC GUID gEfiShLibHobGuid     = EFI_SHIM_LIBRARY_GUID;
 STATIC GUID gEfiInfoBlkHobGuid   = EFI_INFORMATION_BLOCK_GUID;
+STATIC GUID gFvDecompressHobGuid = EFI_FV_DECOMPRESS_GUID;
+STATIC GUID gEfiShLibHobGuid     = EFI_SHIM_LIBRARY_GUID;
 STATIC GUID gEfiSchedIntfGuid    = EFI_SCHED_INTF_GUID;
 STATIC GUID gEfiSecDtbGuid       = EFI_SEC_DTB_GUID;
-STATIC GUID gFvDecompressHobGuid = EFI_FV_DECOMPRESS_GUID;
 
 VOID InstallPlatformHob()
 {
   static int initialized = 0;
 
   if (!initialized) {
-    UINTN Data  = (UINTN)&ShLib;
     ARM_MEMORY_REGION_DESCRIPTOR_EX InfoBlk;
     LocateMemoryMapAreaByName("Info Blk", &InfoBlk);
     UINTN Data3 = 0xC5F27000; // FV2 Address
-    EFI_KERNEL_PROTOCOL *SchedIntf = (VOID *)PcdGet64(KernelProtocolAddress);
+    UINTN InfoBlkAddress = InfoBlk.Address;
+    UINTN ShLibAddress   = (UINTN)&ShLib;
+    EFI_KERNEL_PROTOCOL   *SchedIntf       = (VOID *)PcdGet64(KernelProtocolAddress);
     EFI_DTB_EXTN_PROTOCOL *DTBExtnProtocol = (VOID *)PcdGet64(XBLDTProtocolAddress);
 
     BuildMemHobForFv(EFI_HOB_TYPE_FV2);
-    BuildGuidDataHob(&gEfiShLibHobGuid, &Data, sizeof(Data));
-    BuildGuidDataHob(&gEfiInfoBlkHobGuid, &InfoBlk.Address, sizeof(InfoBlk.Address));
-
+    BuildGuidDataHob(
+        &gEfiInfoBlkHobGuid, &InfoBlkAddress, sizeof(InfoBlkAddress));
+    BuildGuidDataHob(&gEfiShLibHobGuid, &ShLibAddress, sizeof(ShLibAddress));
     BuildGuidDataHob(&gFvDecompressHobGuid, &Data3, sizeof(Data3));
-    BuildGuidDataHob(&gEfiSchedIntfGuid, &SchedIntf, sizeof(SchedIntf));    // Schedule Interface
-    BuildGuidDataHob(&gEfiSecDtbGuid, &DTBExtnProtocol, sizeof(DTBExtnProtocol)); // XBL DT
+    BuildGuidDataHob(&gEfiSchedIntfGuid, &SchedIntf, sizeof(SchedIntf));            // Schedule Interface
+    BuildGuidDataHob(&gEfiSecDtbGuid, &DTBExtnProtocol, sizeof(DTBExtnProtocol));   // XBL DT
 
     initialized = 1;
   }
@@ -191,9 +192,7 @@ VOID InstallPlatformHob()
 
 EFI_STATUS
 EFIAPI
-PlatformPeim(
-  VOID
-  )
+PlatformPeim(VOID)
 {
 
   BuildFvHob(PcdGet64(PcdFvBaseAddress), PcdGet32(PcdFvSize));

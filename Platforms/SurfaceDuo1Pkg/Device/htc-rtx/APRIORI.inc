@@ -166,4 +166,11 @@ APRIORI DXE {
     INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SimpleTextInOutSerialDxe/SimpleTextInOutSerial.inf
     INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/HtcBoardinfoAndSettingsDxe/HtcBoardinfoAndSettingsDxe.inf
     INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/HtcSecDxe/HtcSecDxe.inf
+    INF ArmPkg/Drivers/ArmPciCpuIo2Dxe/ArmPciCpuIo2Dxe.inf
+    INF X86EmulatorPkg/X86Emulator.inf
+
+    FILE DRIVER = 2BE7CFE5-4DFC-4F21-992A-CA1B71B2EF14 {
+            SECTION PE32 = SurfaceDuoFamilyPkg/HyperSpace/HyperSpace.efi
+            SECTION UI = "HyperSpace"
+    }
 }

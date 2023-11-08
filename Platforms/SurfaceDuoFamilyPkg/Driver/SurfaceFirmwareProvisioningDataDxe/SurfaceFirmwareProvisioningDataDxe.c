@@ -13,6 +13,7 @@
 
 #include <Library/BaseLib.h>
 #include <Library/DebugLib.h>
+#include <Library/UefiBootManagerLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiDriverEntryPoint.h>
 #include <Library/UefiLib.h>
@@ -23,46 +24,44 @@
 
 STATIC EFI_SIMPLE_FILE_SYSTEM_PROTOCOL *sfpdSfsProtocol = NULL;
 
-CHAR8*
-GeturfaceSerialNumber()
+EFI_STATUS
+GetSurfaceSerialNumber(IN OUT UINTN *BufferSize, OUT VOID *Buffer)
 {
   EFI_STATUS         Status              = EFI_SUCCESS;
   EFI_FILE_PROTOCOL *sfpdFileProtocol    = NULL;
   EFI_FILE_PROTOCOL *payloadFileProtocol = NULL;
-  CHAR8              SerialNumber[0x10]  = {0};
-  UINT64             SerialNumberSize    = 0x10;
 
   if (sfpdSfsProtocol == NULL) {
-    return NULL;
+    return EFI_NOT_FOUND;
   }
 
   Status = sfpdSfsProtocol->OpenVolume(sfpdSfsProtocol, &sfpdFileProtocol);
   if (EFI_ERROR(Status)) {
-    return NULL;
+    return Status;
   }
 
   sfpdFileProtocol->Open(
       sfpdFileProtocol, &payloadFileProtocol, L"\\device\\SerialNumber.txt",
       EFI_FILE_MODE_READ, 0);
   if (EFI_ERROR(Status)) {
-    return NULL;
+    return Status;
   }
 
-  Status = payloadFileProtocol->Read(
-      payloadFileProtocol, &SerialNumberSize, SerialNumber);
+  Status =
+      payloadFileProtocol->Read(payloadFileProtocol, BufferSize, Buffer);
   if (EFI_ERROR(Status) && Status != EFI_BUFFER_TOO_SMALL) {
     payloadFileProtocol->Close(payloadFileProtocol);
     sfpdFileProtocol->Close(sfpdFileProtocol);
-    return NULL;
+    return Status;
   }
 
   payloadFileProtocol->Close(payloadFileProtocol);
   sfpdFileProtocol->Close(sfpdFileProtocol);
 
-  return SerialNumber;
+  return Status;
 }
 
-STATIC SFPD_PROTOCOL gSfpd = {GeturfaceSerialNumber};
+STATIC SFPD_PROTOCOL gSfpd = {GetSurfaceSerialNumber};
 
 EFI_STATUS
 OnSfpdPartitionFound()
@@ -274,6 +273,8 @@ SurfaceFirmwareProvisioningDataDxeInitialize(
     IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 {
   EFI_STATUS Status = EFI_SUCCESS;
+
+  EfiBootManagerConnectAll();
 
   TryLocateSfpdOnAllHandles();
   if (sfpdSfsProtocol) {

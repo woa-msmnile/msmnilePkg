@@ -68,6 +68,10 @@ be found at http://opensource.org/licenses/bsd-license.php
 /* Used to read UEFI release information */
 #include <Library/MuUefiVersionLib.h>
 
+/* Used to hash device serial number */
+#include <Protocol/Hash.h>
+#include <Protocol/Hash2.h>
+
 /***********************************************************************
         SMBIOS data definition  TYPE0  BIOS Information
 ************************************************************************/
@@ -576,6 +580,66 @@ SMBIOS_TABLE_TYPE19 mMemArrMapInfoType19 = {
 };
 CHAR8 *mMemArrMapInfoType19Strings[] = {NULL};
 
+EFI_STATUS
+EFIAPI
+GetUUIDFromEFIChipInfoSerialNumType(
+    EFIChipInfoSerialNumType chipSerialNum, VOID *Buffer, UINT32 BufferSize)
+{
+  EFI_STATUS          Status;
+  UINT8               chipSerialNumArray[16];
+  EFI_HASH2_OUTPUT    efiHash2Output;
+  EFI_HASH2_PROTOCOL *efiHash2Protocol = NULL;
+  EFI_GUID           *hashAlgorithm    = &gEfiHashAlgorithmSha1Guid;
+  UINTN               digestSize       = 0;
+
+  if ((Buffer == NULL) || (BufferSize > 16)) {
+    return EFI_INVALID_PARAMETER;
+  }
+
+  ZeroMem(chipSerialNumArray, sizeof(chipSerialNumArray));
+  CopyMem(chipSerialNumArray, &chipSerialNum, sizeof(EFIChipInfoSerialNumType));
+
+  Status = gBS->LocateProtocol(
+      &gEfiHash2ProtocolGuid, NULL, (VOID **)&efiHash2Protocol);
+  if (Status != EFI_SUCCESS) {
+    return Status;
+  }
+
+  Status = efiHash2Protocol->GetHashSize(
+      efiHash2Protocol, hashAlgorithm, &digestSize);
+
+  if (Status != EFI_SUCCESS) {
+    return Status;
+  }
+  if (digestSize != 20) {
+    return Status;
+  }
+
+  Status = efiHash2Protocol->HashInit(efiHash2Protocol, hashAlgorithm);
+  if (Status != EFI_SUCCESS) {
+    return Status;
+  }
+
+  Status = efiHash2Protocol->HashUpdate(
+      efiHash2Protocol, (UINT8 *)&chipSerialNumArray,
+      sizeof(chipSerialNumArray));
+  if (Status != EFI_SUCCESS) {
+    return Status;
+  }
+
+  Status = efiHash2Protocol->HashFinal(efiHash2Protocol, &efiHash2Output);
+  if (Status != EFI_SUCCESS) {
+    return Status;
+  }
+
+  CopyMem(
+      Buffer, (UINT8 *)&efiHash2Output.Sha1Hash[digestSize - BufferSize],
+      BufferSize);
+
+  return Status;
+}
+
+
 /**
 
   Create SMBIOS record.
@@ -687,11 +751,11 @@ LogSmbiosData(
 ************************************************************************/
 VOID BIOSInfoUpdateSmbiosType0(VOID)
 {
-  UINTN VersionBufferLength  = 15;
-//  UINTN DateBufferLength     = 11;
+  UINTN VersionBufferLength = 15;
+  UINTN DateBufferLength    = 11;
 
   GetUefiVersionStringAscii(mBIOSInfoType0Strings[1], &VersionBufferLength);
-  GetBuildDateStringAscii(mBIOSInfoType0Strings[2], &VersionBufferLength);
+  GetBuildDateStringAscii(mBIOSInfoType0Strings[2], &DateBufferLength);
 
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mBIOSInfoType0, mBIOSInfoType0Strings, NULL);
@@ -717,8 +781,9 @@ VOID SysInfoUpdateSmbiosType1(CHAR8 *serialNo, EFIChipInfoSerialNumType serial)
 //
 
   // Update serial number from Board DXE
-  mSysInfoType1Strings[3]  = serialNo;
-  mSysInfoType1.Uuid.Data1 = serial;
+  mSysInfoType1Strings[3] = serialNo;
+  GetUUIDFromEFIChipInfoSerialNumType(
+      serial, &mSysInfoType1.Uuid, sizeof(GUID));
 
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mSysInfoType1, mSysInfoType1Strings, NULL);
@@ -917,6 +982,7 @@ SmBiosTableDxeInitialize(
 {
   EFI_STATUS               Status;
   CHAR8                    serialNo[EFICHIPINFO_MAX_ID_LENGTH];
+  UINTN                    serialNoLength = EFICHIPINFO_MAX_ID_LENGTH;
   EFIChipInfoSerialNumType serial;
   EFI_CHIPINFO_PROTOCOL   *mBoardProtocol  = NULL;
   SFPD_PROTOCOL           *mDeviceProtocol = NULL;
@@ -948,11 +1014,10 @@ SmBiosTableDxeInitialize(
   Status =
       gBS->LocateProtocol(&gSfpdProtocolGuid, NULL, (VOID *)&mDeviceProtocol);
 
-  //if (mDeviceProtocol != NULL) {
-  //  CHAR8 *DeviceSerialNumber = mDeviceProtocol->GetSurfaceSerialNumber();
-  //  if (DeviceSerialNumber != NULL) {
-  //    AsciiSPrint(serialNo, sizeof(serialNo), "%a", DeviceSerialNumber);
-  //}
+  if (mDeviceProtocol != NULL) {
+    ZeroMem(serialNo, serialNoLength);
+//    mDeviceProtocol->GetSurfaceSerialNumber(&serialNoLength, serialNo);
+  }
 
   // Get the SystemMemorySize
   if (mRamPartitionProtocol != NULL) {

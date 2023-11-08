@@ -181,10 +181,6 @@
 
   gOemPkgTokenSpaceGuid.PcdPostBackgroundColor|0x0
 
-[LibraryClasses.AARCH64.DXE_DRIVER, LibraryClasses.AARCH64.UEFI_DRIVER, LibraryClasses.AARCH64.UEFI_APPLICATION, LibraryClasses.AARCH64.DXE_CORE]
-  BaseCryptLib|CryptoPkg/Library/BaseCryptLibOnProtocolPpi/DxeCryptLib.inf
-  TlsLib|CryptoPkg/Library/BaseCryptLibOnProtocolPpi/DxeCryptLib.inf
-
 [Components.AARCH64]
 
   #
@@ -273,6 +269,11 @@
 
   DfciPkg/Application/DfciMenu/DfciMenu.inf
 
+  ArmPkg/Drivers/ArmPciCpuIo2Dxe/ArmPciCpuIo2Dxe.inf
+  X86EmulatorPkg/X86Emulator.inf
+
+  !include SurfaceDuoFamilyPkg/Crypto/CryptoDriver.inc.dsc
+
 #######################################
 #  Shell
 #######################################
@@ -289,11 +290,4 @@
       NULL|ShellPkg/Library/UefiShellNetwork2CommandsLib/UefiShellNetwork2CommandsLib.inf
      <PcdsFixedAtBuild>
      gEfiShellPkgTokenSpaceGuid.PcdShellLibAutoInitialize|FALSE
-  }
-
-  CryptoPkg/Driver/Bin/CryptoDriverBin_STANDARD_Dxe_$(TARGET)_AARCH64.inf
-
-  CryptoPkg/Library/BaseCryptLibOnProtocolPpi/DxeCryptLib.inf {
-    <PcdsFixedAtBuild>
-      !include CryptoPkg/Driver/Bin/Crypto.pcd.STANDARD.inc.dsc
   }

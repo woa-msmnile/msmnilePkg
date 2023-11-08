@@ -5,23 +5,167 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 
 **/
 
-#include <Library/UefiLib.h>
 #include <Uefi.h>
 
-#include <Library/BaseLib.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>
 #include <Library/MemoryAllocationLib.h>
+#include <Library/MsUiThemeLib.h>
+#include <Library/MuUefiVersionLib.h>
 #include <Library/PcdLib.h>
+#include <Library/PlatformHobLib.h>
 #include <Library/PrintLib.h>
 #include <Library/UefiBootServicesTableLib.h>
-
-#include <Library/MuUefiVersionLib.h>
-
-/* Used to read chip serial number */
 #include <Protocol/EFIChipInfo.h>
+#include <Protocol/GraphicsOutput.h>
+#include <Protocol/HiiFont.h>
 
-#include <Library/PlatformHobLib.h>
+GLOBAL_REMOVE_IF_UNREFERENCED EFI_GRAPHICS_OUTPUT_BLT_PIXEL
+    mConsoleEfiColors[16] = {
+        {0x00, 0x00, 0x00, 0x00}, {0x98, 0x00, 0x00, 0x00},
+        {0x00, 0x98, 0x00, 0x00}, {0x98, 0x98, 0x00, 0x00},
+        {0x00, 0x00, 0x98, 0x00}, {0x98, 0x00, 0x98, 0x00},
+        {0x00, 0x98, 0x98, 0x00}, {0x98, 0x98, 0x98, 0x00},
+        {0x10, 0x10, 0x10, 0x00}, {0xff, 0x10, 0x10, 0x00},
+        {0x10, 0xff, 0x10, 0x00}, {0xff, 0xff, 0x10, 0x00},
+        {0x10, 0x10, 0xff, 0x00}, {0xf0, 0x10, 0xff, 0x00},
+        {0x10, 0xff, 0xff, 0x00}, {0xff, 0xff, 0xff, 0x00}};
+
+VOID ConsoleInternalPrintGraphic(
+    IN UINTN PointX, IN UINTN PointY, IN CHAR16 *Buffer)
+{
+  EFI_STATUS                       Status;
+  UINT32                           HorizontalResolution;
+  UINT32                           VerticalResolution;
+  EFI_HII_FONT_PROTOCOL           *HiiFont;
+  EFI_IMAGE_OUTPUT                *Blt;
+  EFI_FONT_DISPLAY_INFO            FontInfo;
+  EFI_GRAPHICS_OUTPUT_PROTOCOL    *GraphicsOutput;
+  EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL *Sto;
+  EFI_HANDLE                       ConsoleHandle;
+
+  HorizontalResolution = 0;
+  VerticalResolution   = 0;
+  Blt                  = NULL;
+
+  ConsoleHandle = gST->ConsoleOutHandle;
+
+  ASSERT(ConsoleHandle != NULL);
+
+  Status = gBS->HandleProtocol(
+      ConsoleHandle, &gEfiGraphicsOutputProtocolGuid, (VOID **)&GraphicsOutput);
+
+  if (EFI_ERROR(Status)) {
+    goto Error;
+  }
+
+  Status = gBS->HandleProtocol(
+      ConsoleHandle, &gEfiSimpleTextOutProtocolGuid, (VOID **)&Sto);
+
+  if (EFI_ERROR(Status)) {
+    goto Error;
+  }
+
+  if (GraphicsOutput != NULL) {
+    HorizontalResolution = GraphicsOutput->Mode->Info->HorizontalResolution;
+    VerticalResolution   = GraphicsOutput->Mode->Info->VerticalResolution;
+  }
+  else {
+    goto Error;
+  }
+
+  ASSERT((HorizontalResolution != 0) && (VerticalResolution != 0));
+
+  Status =
+      gBS->LocateProtocol(&gEfiHiiFontProtocolGuid, NULL, (VOID **)&HiiFont);
+  if (EFI_ERROR(Status)) {
+    goto Error;
+  }
+
+  Blt = (EFI_IMAGE_OUTPUT *)AllocateZeroPool(sizeof(EFI_IMAGE_OUTPUT));
+  if (Blt == NULL) {
+    ASSERT(Blt != NULL);
+    goto Error;
+  }
+
+  Blt->Width  = (UINT16)(HorizontalResolution);
+  Blt->Height = (UINT16)(VerticalResolution);
+
+  ZeroMem(&FontInfo, sizeof(EFI_FONT_DISPLAY_INFO));
+
+  CopyMem(
+      &FontInfo.ForegroundColor,
+      &mConsoleEfiColors[Sto->Mode->Attribute & 0x0f],
+      sizeof(EFI_GRAPHICS_OUTPUT_BLT_PIXEL));
+
+  CopyMem(
+      &FontInfo.BackgroundColor, &mConsoleEfiColors[Sto->Mode->Attribute >> 4],
+      sizeof(EFI_GRAPHICS_OUTPUT_BLT_PIXEL));
+
+  FontInfo.FontInfoMask       = EFI_FONT_INFO_ANY_FONT;
+  FontInfo.FontInfo.FontSize  = MsUiGetFixedFontHeight();
+  FontInfo.FontInfo.FontStyle = EFI_HII_FONT_STYLE_NORMAL;
+
+  if (GraphicsOutput != NULL) {
+    Blt->Image.Screen = GraphicsOutput;
+
+    Status = HiiFont->StringToImage(
+        HiiFont,
+        EFI_HII_IGNORE_IF_NO_GLYPH | EFI_HII_OUT_FLAG_CLIP |
+            EFI_HII_OUT_FLAG_CLIP_CLEAN_X | EFI_HII_OUT_FLAG_CLIP_CLEAN_Y |
+            EFI_HII_IGNORE_LINE_BREAK | EFI_HII_DIRECT_TO_SCREEN,
+        Buffer, &FontInfo, &Blt, PointX, PointY, NULL, NULL, NULL);
+    if (EFI_ERROR(Status)) {
+      goto Error;
+    }
+  }
+  else {
+    goto Error;
+  }
+
+  FreePool(Blt);
+  return;
+
+Error:
+  if (Blt != NULL) {
+    FreePool(Blt);
+  }
+
+  return;
+}
+
+UINTN LineCounter = 0;
+
+VOID EFIAPI ConsolePrint(IN CONST CHAR16 *Format, ...)
+{
+  VA_LIST Marker;
+  CHAR16 *Buffer;
+  UINTN   BufferSize;
+
+  ASSERT(Format != NULL);
+  ASSERT(((UINTN)Format & BIT0) == 0);
+
+  VA_START(Marker, Format);
+
+  BufferSize = (PcdGet32(PcdUefiLibMaxPrintBufferSize) + 1) * sizeof(CHAR16);
+
+  Buffer = (CHAR16 *)AllocatePool(BufferSize);
+  if (Buffer == NULL) {
+    ASSERT(Buffer != NULL);
+    return;
+  }
+
+  UnicodeVSPrint(Buffer, BufferSize, Format, Marker);
+
+  VA_END(Marker);
+
+  ConsoleInternalPrintGraphic(0, LineCounter, Buffer);
+  LineCounter += MsUiGetFixedFontHeight();
+
+  FreePool(Buffer);
+
+  return;
+}
 
 CHAR8 *PlatformSubTypeSkuString[] = {
     [PLATFORM_SUBTYPE_UNKNOWN]         = "Unknown",
@@ -85,7 +229,7 @@ VOID EFIAPI ConsoleMsgLibDisplaySystemInfoOnConsole(VOID)
 
   EFI_CHIPINFO_PROTOCOL *mBoardProtocol = NULL;
 
-  Print(L"Firmware information:\n");
+  ConsolePrint(L"Firmware information:");
 
   Status = GetBuildDateStringAscii(NULL, &DateBufferLength);
   if (Status == EFI_BUFFER_TOO_SMALL) {
@@ -93,7 +237,7 @@ VOID EFIAPI ConsoleMsgLibDisplaySystemInfoOnConsole(VOID)
     if (uefiDate != NULL) {
       Status = GetBuildDateStringAscii(uefiDate, &DateBufferLength);
       if (Status == EFI_SUCCESS) {
-        Print(L"  UEFI build date: %a\n", uefiDate);
+        ConsolePrint(L"  UEFI build date: %a", uefiDate);
       }
       FreePool(uefiDate);
     }
@@ -105,21 +249,21 @@ VOID EFIAPI ConsoleMsgLibDisplaySystemInfoOnConsole(VOID)
     if (uefiVersion != NULL) {
       Status = GetUefiVersionStringAscii(uefiVersion, &VersionBufferLength);
       if (Status == EFI_SUCCESS) {
-        Print(L"  UEFI version:    %a\n", uefiVersion);
+        ConsolePrint(L"  UEFI version:    %a", uefiVersion);
       }
       FreePool(uefiVersion);
     }
   }
 
-  Print(L"  UEFI flavor:     Epsilon\n");
+  ConsolePrint(L"  UEFI flavor:     Epsilon");
 
   PlatformHob = GetPlatformHob();
 
   if (PlatformHob != NULL) {
-    Print(L"  TouchFW version: %a\n", PlatformHob->TouchFWVersion);
+    ConsolePrint(L"  TouchFW version: %a", PlatformHob->TouchFWVersion);
   }
 
-  Print(L"Hardware information:\n");
+  ConsolePrint(L"Hardware information:");
 
   // Locate Qualcomm Board Protocol
   Status = gBS->LocateProtocol(
@@ -129,7 +273,8 @@ VOID EFIAPI ConsoleMsgLibDisplaySystemInfoOnConsole(VOID)
     mBoardProtocol->GetChipVersion(mBoardProtocol, &SoCID);
     chipInfoMajorVersion = (UINT16)((SoCID >> 16) & 0xFFFF);
     chipInfoMinorVersion = (UINT16)(SoCID & 0xFFFF);
-    Print(L"  SoC ID:    %d.%d\n", chipInfoMajorVersion, chipInfoMinorVersion);
+    ConsolePrint(
+        L"  SoC ID:    %d.%d", chipInfoMajorVersion, chipInfoMinorVersion);
   }
 
   if (PlatformHob != NULL) {
@@ -141,8 +286,8 @@ VOID EFIAPI ConsoleMsgLibDisplaySystemInfoOnConsole(VOID)
       BuildID = PlatformSubTypeBuildString[BoardID];
     }
 
-    Print(L"  SKU ID:    %d (%a)\n", BoardID, SKUID);
-    Print(L"  Memory ID: 0 (Hynix 6GB)\n");
-    Print(L"  Build ID:  %d (%a)\n", BoardID, BuildID);
+    ConsolePrint(L"  SKU ID:    %d (%a)", BoardID, SKUID);
+    ConsolePrint(L"  Memory ID: 0 (Hynix 6GB)");
+    ConsolePrint(L"  Build ID:  %d (%a)", BoardID, BuildID);
   }
 }

@@ -22,7 +22,9 @@
   BaseLib
   BaseMemoryLib
   DebugLib
+  DxeServicesLib
   MemoryAllocationLib
+  PcdLib
   ReportStatusCodeLib
   UefiBootServicesTableLib
   UefiDriverEntryPoint
@@ -31,6 +33,9 @@
 
 [Protocols]
   gEfiSimpleFileSystemProtocolGuid ## CONSUMES
+
+[Pcd]
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSystemIntegrityPolicyFile
 
 [Depex]
   gEfiSimpleFileSystemProtocolGuid

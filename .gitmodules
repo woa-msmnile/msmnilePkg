@@ -20,7 +20,7 @@
 	branch = release/202302
 [submodule "Binaries"]
 	path = Binaries
-	url = https://github.com/woa-msmnile/SurfaceDuoBinaries-fork.git
+	url = https://github.com/WOA-Project/SurfaceDuoBinaries.git
 [submodule "Platforms/SurfaceDuoACPI"]
 	path = Platforms/SurfaceDuoACPI
 	url = https://github.com/woa-msmnile/SurfaceDuo-ACPI-fork.git
@@ -30,3 +30,6 @@
 [submodule "Features/CONFIG"]
 	path = Features/CONFIG
 	url = https://github.com/microsoft/mu_feature_config.git
+[submodule "Platforms/X86EmulatorPkg"]
+	path = Platforms/X86EmulatorPkg
+	url = https://github.com/ardbiesheuvel/X86EmulatorPkg.git

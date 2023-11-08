@@ -102,7 +102,7 @@ INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SimpleTextInOutSe
 INF MdeModulePkg/Universal/PrintDxe/PrintDxe.inf
 INF MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
 INF MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
-INF MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
+#INF MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
 #INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/CPRDxe/CPRDxe.inf
 INF Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/CPRDxe/CPRDxe.inf
 INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/GpiDxe/GpiDxe.inf
@@ -300,4 +300,8 @@ FILE FREEFORM = F780C779-DD7C-47CD-BD1A-5EB414C51704 {
     SECTION RAW = KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/BATTERY.PROVISION
 }
 
+FILE DRIVER = cccb0c28-4b24-11d5-9a5a-0090273fc14d {
+        SECTION PE32 = KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.efi
+        SECTION UI = "GraphicsConsoleDxe"
+}
 #INF EmbeddedPkg/Ebl/Ebl.inf

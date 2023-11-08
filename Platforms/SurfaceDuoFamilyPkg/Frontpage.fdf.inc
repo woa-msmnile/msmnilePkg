@@ -45,6 +45,8 @@
     SECTION RAW = SurfaceDuoFamilyPkg/FrontPage/Resources/NoBoot.bmp
   }
 
+  INF ArmPkg/Drivers/ArmPciCpuIo2Dxe/ArmPciCpuIo2Dxe.inf
+
 # Change AARCH64 to the appropriate architecture for your platform.
   FILE APPLICATION=PCD(gPcBdsPkgTokenSpaceGuid.PcdShellFile) {
     SECTION PE32=$(OUTPUT_DIRECTORY)/$(TARGET)_$(TOOL_CHAIN_TAG)/AARCH64/Shell.efi
@@ -66,10 +68,18 @@
  !endif
 # CUST_LOGO Change End.
 ################################################################
-!if $(TARGET) == DEBUG
-  INF CryptoPkg/Driver/Bin/CryptoDriverBin_STANDARD_Dxe_DEBUG_AARCH64.inf
-!endif
 
-!if $(TARGET) == RELEASE
-  INF CryptoPkg/Driver/Bin/CryptoDriverBin_STANDARD_Dxe_RELEASE_AARCH64.inf
-!endif
+  INF X86EmulatorPkg/X86Emulator.inf
+
+  FILE DRIVER = 2BE7CFE5-4DFC-4F21-992A-CA1B71B2EF14 {
+    SECTION PE32 = SurfaceDuoFamilyPkg/HyperSpace/HyperSpace.efi
+    SECTION UI = "HyperSpace"
+  }
+
+  FILE FREEFORM = PCD(gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSystemIntegrityPolicyFile) {
+    SECTION RAW = SurfaceDuoFamilyPkg/Include/Resources/SiPolicy.p7b
+    SECTION UI = "System Integrity Policy Default"
+  }
+
+  !include ArmPlatformPkg/SecureBootDefaultKeys.fdf.inc
+  !include SurfaceDuoFamilyPkg/Crypto/CryptoDriver.DXE.inc.fdf

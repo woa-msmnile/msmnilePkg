@@ -3,6 +3,14 @@
   PACKAGE_NAME                   = SurfaceDuoFamilyPkg
   PACKAGE_GUID                   = 5fd522a5-b671-429f-957f-75113dd02434
   PACKAGE_VERSION                = 0.1
+  DEFAULT_KEYS                   = TRUE
+  PK_DEFAULT_FILE                = SurfaceDuoFamilyPkg/Include/Resources/pk.bin.p7
+  KEK_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/kek.bin.p7
+  DB_DEFAULT_FILE1               = SurfaceDuoFamilyPkg/Include/Resources/db.bin.p7
+  DBX_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/dbx.bin
+
+  DXE_CRYPTO_SERVICES = STANDARD
+  DXE_CRYPTO_ARCH = AARCH64
 
 [Includes.common]
   Include                        # Root include for the package
@@ -137,3 +145,7 @@
   #  Platform can customize the PCD to point to different application for UFP Menu
   # @Prompt UFP Menu File
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdUFPMenuFile|{ 0x88, 0x47, 0x3D, 0x64, 0xC8, 0x63, 0xD2, 0x40, 0xBD, 0x7A, 0x68, 0x42, 0xE6, 0x68, 0x50, 0xD1 }|VOID*|0x00000a602
+
+  ## FFS filename to find the SiPolicy p7b file.
+  # {daf98d6a-6be4-4b60-97b8-4f16e4586258}
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSystemIntegrityPolicyFile |{ 0x6a, 0x8d, 0xf9, 0xda, 0xe4, 0x6b, 0x60, 0x4b, 0xb8, 0x97, 0x4f, 0x16, 0xe4, 0x58, 0x62, 0x58 }|VOID*|0x00000a603

@@ -139,10 +139,12 @@ READ_LOCK_STATUS   = TRUE
 
   # INF GPLDriver/Application/SwitchSlotsApp/SwitchSlotsApp.inf
   # INF GPLDriver/Driver/BootSlotDxe/BootSlotDxe.inf
-  # INF SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
   # INF SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
 
-  INF SurfaceDuoFamilyPkg/Driver/KernelErrataPatcher/KernelErrataPatcher.inf
+#  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLogoFile) {
+#    SECTION RAW = SurfaceDuoFamilyPkg/Include/Resources/BootLogo.bmp
+#    SECTION UI = "BootLogo.bmp"
+#  }
 
   INF AdvLoggerPkg/AdvancedFileLogger/AdvancedFileLogger.inf
   INF ArmPkg/Drivers/ArmGic/ArmGicDxe.inf

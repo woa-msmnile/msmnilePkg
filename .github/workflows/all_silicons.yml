@@ -25,32 +25,26 @@ jobs:
       - name: build uefi for all devices in all silicons
         run: bash scripts/container_setup.sh && ./build_uefi.py -s all
 
-      - name: Upload Hoya's Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: uefi-images-hoya
-          path: Build/Hoya-AARCH64/*.img
-
       - name: Upload Atoll's Artifact
         uses: actions/upload-artifact@v3
         with:
           name: uefi-images-atoll
-          path: Build/Atoll-AARCH64/*.img
+          path: Build/AtollPkg/*.img
 
       - name: Upload Hana's Artifact
         uses: actions/upload-artifact@v3
         with:
           name: uefi-images-hana
-          path: Build/SurfaceDuo1-AARCH64/*.img
+          path: Build/SurfaceDuo1Pkg/*.img
 
       - name: Upload Kodiak's Artifact
         uses: actions/upload-artifact@v3
         with:
           name: uefi-images-kodiak
-          path: Build/Kodiak-AARCH64/*.img
+          path: Build/KodiakPkg/*.img
 
       - name: Upload Kailua's Artifact
         uses: actions/upload-artifact@v3
         with:
           name: uefi-images-kailua
-          path: Build/Kailua-AARCH64/*.img
+          path: Build/KailuaPkg/*.img

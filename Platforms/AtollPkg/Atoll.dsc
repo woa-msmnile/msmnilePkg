@@ -23,7 +23,7 @@
   PLATFORM_GUID                  = b6325ac2-9f3f-4b1d-b129-ac7b35ddde62
   PLATFORM_VERSION               = 0.1
   DSC_SPECIFICATION              = 0x00010005
-  OUTPUT_DIRECTORY               = Build/Atoll-$(ARCH)
+  OUTPUT_DIRECTORY               = Build/AtollPkg
   SUPPORTED_ARCHITECTURES        = AARCH64
   BUILD_TARGETS                  = DEBUG|RELEASE
   SKUID_IDENTIFIER               = DEFAULT
@@ -37,6 +37,13 @@
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
   SEND_HEARTBEAT_TO_SERIAL       = 0
   USE_SIMPLEFBDXE                = 1
+  DEFAULT_KEYS                   = TRUE
+  PK_DEFAULT_FILE                = SurfaceDuoFamilyPkg/Include/Resources/pk.bin.p7
+  KEK_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/kek.bin.p7
+  DB_DEFAULT_FILE1               = SurfaceDuoFamilyPkg/Include/Resources/db.bin.p7
+  DBX_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/dbx.bin
+  DXE_CRYPTO_SERVICES            = STANDARD
+  DXE_CRYPTO_ARCH                = AARCH64
 
 !include AtollPkg/Device/$(TARGET_DEVICE)/Defines.dsc.inc
 

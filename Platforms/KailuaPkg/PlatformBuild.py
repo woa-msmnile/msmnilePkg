@@ -86,6 +86,7 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
             RequiredSubmodule("Platforms/SurfaceDuoACPI", True),
             RequiredSubmodule("Silicon/Arm/MU_TIANO", True),
             RequiredSubmodule("Features/DFCI", True),
+            RequiredSubmodule("Platforms/X86EmulatorPkg", True),
         ]
 
     def SetArchitectures(self, list_of_requested_architectures):

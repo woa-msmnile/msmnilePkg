@@ -37,3 +37,6 @@
   gEfiChipInfoProtocolGuid                      ## CONSUMES
   gEfiSMEMProtocolGuid                          ## CONSUMES
   gEfiPlatformInfoProtocolGuid                  ## CONSUMES
+
+[BuildOptions.AARCH64]
+  GCC:*_*_*_CC_FLAGS = -Wno-unused-variable

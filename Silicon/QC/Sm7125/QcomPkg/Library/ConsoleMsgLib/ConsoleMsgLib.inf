@@ -25,25 +25,28 @@
 
 [Packages]
   MdePkg/MdePkg.dec
+  MsGraphicsPkg/MsGraphicsPkg.dec
   OemPkg/OemPkg.dec
   PcBdsPkg/PcBdsPkg.dec
   QcomPkg/QcomPkg.dec
   SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
 
 [LibraryClasses]
-  BaseMemoryLib
-  DebugLib
   MemoryAllocationLib
+  MsUiThemeLib
   MuUefiVersionLib
+  PcdLib
   PlatformHobLib
-  PrintLib
   UefiBootServicesTableLib
-  UefiLib
 
 [Protocols]
   gEfiChipInfoProtocolGuid
+  gEfiSimpleTextOutProtocolGuid                   ## SOMETIMES_CONSUMES
+  gEfiGraphicsOutputProtocolGuid                  ## SOMETIMES_CONSUMES
+  gEfiHiiFontProtocolGuid                         ## SOMETIMES_CONSUMES
 
 [Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdUefiLibMaxPrintBufferSize   ## SOMETIMES_CONSUMES
 
 [Depex]
-  TRUE
+  gMsUiThemeProtocolGuid

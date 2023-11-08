@@ -5,7 +5,6 @@
 #define FB_BGRA8888_WHITE 0xffffffff
 #define FB_BGRA8888_CYAN 0xff00ffff
 #define FB_BGRA8888_BLUE 0xff0000ff
-#define FB_BGRA8888_PURPLE 0x800080ff
 #define FB_BGRA8888_SILVER 0xffc0c0c0
 #define FB_BGRA8888_YELLOW 0xffffff00
 #define FB_BGRA8888_ORANGE 0xffffa500

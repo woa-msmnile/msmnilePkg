@@ -75,7 +75,7 @@ def prepare_build(package_name):
 def update_device_configuration_map(this_target):
     # Delete cache.
     try:
-        shutil.rmtree(os.path.join("Build", this_target.package[:-3] + "-AARCH64", "DEBUG_CLANG38", "AARCH64", "QcomPkg",
+        shutil.rmtree(os.path.join("Build", this_target.package[:-3] + "-AARCH64", "RELEASE_CLANG38", "AARCH64", "QcomPkg",
                                "PlatformPei"))
     except FileNotFoundError:
         print("First Building...")
@@ -184,7 +184,7 @@ def build_single_device(this_target):
 
     # Start Actual Build
     os.system("python3 " + os.path.join("Platforms", this_target.package, "PlatformBuild.py")
-              + " --build TOOL_CHAIN_TAG=CLANG38 TARGET_DEVICE=" + this_target.device)
+              + " TARGET=RELEASE TARGET_DEVICE=" + this_target.device)
 
 
 # Build uefi for all devices in one silicon.
