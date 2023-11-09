@@ -782,8 +782,9 @@ VOID SysInfoUpdateSmbiosType1(CHAR8 *serialNo, EFIChipInfoSerialNumType serial)
 
   // Update serial number from Board DXE
   mSysInfoType1Strings[3] = serialNo;
-  GetUUIDFromEFIChipInfoSerialNumType(
-      serial, &mSysInfoType1.Uuid, sizeof(GUID));
+//  GetUUIDFromEFIChipInfoSerialNumType(
+//      serial, &mSysInfoType1.Uuid, sizeof(GUID));
+  mSysInfoType1.Uuid.Data1 = serial;
 
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mSysInfoType1, mSysInfoType1Strings, NULL);
@@ -982,10 +983,10 @@ SmBiosTableDxeInitialize(
 {
   EFI_STATUS               Status;
   CHAR8                    serialNo[EFICHIPINFO_MAX_ID_LENGTH];
-  UINTN                    serialNoLength = EFICHIPINFO_MAX_ID_LENGTH;
+//  UINTN                    serialNoLength = EFICHIPINFO_MAX_ID_LENGTH;
   EFIChipInfoSerialNumType serial;
   EFI_CHIPINFO_PROTOCOL   *mBoardProtocol  = NULL;
-  SFPD_PROTOCOL           *mDeviceProtocol = NULL;
+//  SFPD_PROTOCOL           *mDeviceProtocol = NULL;
 
   // Locate Qualcomm Board Protocol
   Status = gBS->LocateProtocol(
@@ -1011,13 +1012,13 @@ SmBiosTableDxeInitialize(
       &gEfiRamPartitionProtocolGuid, NULL, (VOID *)&mRamPartitionProtocol);
 
   // Locate Sfpd Protocol
-  Status =
-      gBS->LocateProtocol(&gSfpdProtocolGuid, NULL, (VOID *)&mDeviceProtocol);
+//  Status =
+//      gBS->LocateProtocol(&gSfpdProtocolGuid, NULL, (VOID *)&mDeviceProtocol);
 
-  if (mDeviceProtocol != NULL) {
-    ZeroMem(serialNo, serialNoLength);
+//  if (mDeviceProtocol != NULL) {
+//    ZeroMem(serialNo, serialNoLength);
 //    mDeviceProtocol->GetSurfaceSerialNumber(&serialNoLength, serialNo);
-  }
+//  }
 
   // Get the SystemMemorySize
   if (mRamPartitionProtocol != NULL) {
