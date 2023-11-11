@@ -37,8 +37,9 @@ PlatformUpdateAcpiTables(VOID)
   UINT32                              SUS3  = 0xFFFFFFFF;
   UINT32                             *pSIDT = (UINT32 *)0x784180;
   UINT32                              SIDT  = (*pSIDT & 0xFF00000) >> 20;
-  UINT32                             *pSJTG = (UINT32 *)0x784180;
-  UINT32                              SJTG  = *pSJTG & 0xFFFFF;
+//  UINT32                             *pSJTG = (UINT32 *)0x784180;
+// Hard Code to IDP here.
+  UINT32                              SJTG  = 0x101930e1;
   UINT32                             *pEMUL = (UINT32 *)0x1FC8004;
   UINT32                              EMUL  = *pEMUL & 0x3;
   UINT32                              SOSN1 = 0;
@@ -58,6 +59,8 @@ PlatformUpdateAcpiTables(VOID)
   UINT32                              RFAS = 0;
   UINT32                              TCMA = 0;
   UINT32                              TCML = 0;
+  UINT32                              SKUV = 1;
+  UINT32                              SDDR = 4;
 
   EFI_CHIPINFO_PROTOCOL     *mBoardProtocol           = NULL;
   EFI_SMEM_PROTOCOL         *pEfiSmemProtocol         = NULL;
@@ -122,19 +125,21 @@ PlatformUpdateAcpiTables(VOID)
   }
 
   if (!EFI_ERROR(LocateMemoryMapAreaByName("ADSP_EFS", &ADSPEFSRegion))) {
-    RFMB = ADSPEFSRegion.Address + ADSPEFSRegion.Length / 2;
-    RFMS = ADSPEFSRegion.Length / 2;
-    RFAB = ADSPEFSRegion.Address;
-    RFAS = ADSPEFSRegion.Length / 2;
+    RFMB = (UINT32)ADSPEFSRegion.Address + (UINT32)ADSPEFSRegion.Length / 2;
+    RFMS = (UINT32)ADSPEFSRegion.Length / 2;
+    RFAB = (UINT32)ADSPEFSRegion.Address;
+    RFAS = (UINT32)ADSPEFSRegion.Length / 2;
   }
 
   if (!EFI_ERROR(LocateMemoryMapAreaByName("TGCM", &TGCMRegion))) {
-    TCMA = TGCMRegion.Address;
-    TCML = TGCMRegion.Length;
+    TCMA = (UINT32)TGCMRegion.Address;
+    TCML = (UINT32)TGCMRegion.Length;
   } else {
     TCMA = 0xDEADBEEF;
     TCML = 0xBEEFDEAD;
   }
+
+  SOID = 0x237;
 
   DEBUG((EFI_D_WARN, "Chip Id: %d\n", SOID));
   DEBUG((EFI_D_WARN, "Chip Family Id: %d\n", SDFE));
@@ -147,6 +152,8 @@ PlatformUpdateAcpiTables(VOID)
   DEBUG((EFI_D_WARN, "Platform Subtype: %d\n", PLST));
 
   UpdateNameAslCode(SIGNATURE_32('S', 'O', 'I', 'D'), &SOID, 4);
+  UpdateNameAslCode(SIGNATURE_32('S', 'K', 'U', 'V'), &SKUV, 4);
+  UpdateNameAslCode(SIGNATURE_32('S', 'D', 'D', 'R'), &SDDR, 4);
   UpdateNameAslCode(SIGNATURE_32('S', 'T', 'O', 'R'), &STOR, 4);
   UpdateNameAslCode(SIGNATURE_32('S', 'I', 'D', 'V'), &SIDV, 4);
   UpdateNameAslCode(SIGNATURE_32('S', 'V', 'M', 'J'), &SVMJ, 2);

@@ -1,11 +1,15 @@
 # Dynamic Generated
 Platforms/SurfaceDuoFamilyPkg/Include/Resources/ReleaseInfo.h
+Platforms/SurfaceDuoFamilyPkg/Include/Generated/
 Platforms/SurfaceDuo1Pkg/Include/Resources/ReleaseInfo.h
 Platforms/SurfaceDuo2Pkg/Include/Resources/ReleaseInfo.h
 
+Silicon/QC/Sdm845/QcomPkg/Include/Configuration/DeviceConfigurationMap.h
 Silicon/QC/Sm7125/QcomPkg/Include/Configuration/DeviceConfigurationMap.h
 Silicon/QC/Sm7325/QcomPkg/Include/Configuration/DeviceConfigurationMap.h
 Silicon/QC/Sm8150/QcomPkg/Include/Configuration/DeviceConfigurationMap.h
+Silicon/QC/Sm8550/QcomPkg/Include/Configuration/DeviceConfigurationMap.h
+
 
 # Local
 .DS_Store
@@ -40,3 +44,15 @@ android-boot.img
 *.i64
 # IDA Pro 32 packaged data
 *.idb
+
+Platforms/SurfaceDuoFamilyPkg/Include/Generated/ConfigServiceGenerated.h
+Platforms/SurfaceDuoFamilyPkg/Include/Generated/ConfigDataGenerated.h
+Platforms/SurfaceDuoFamilyPkg/Include/Generated/ConfigClientGenerated.h
+ImageResources/Zeta/uefi.img
+ImageResources/Zeta/bootpayload.bin
+ImageResources/Epsilon/uefi.img
+ImageResources/Epsilon/bootpayload.bin
+ImageResources/Zeta/uefi_dualboot.img
+ImageResources/Zeta/dualbootbootpayload.bin
+ImageResources/Epsilon/uefi_dualboot.img
+ImageResources/Epsilon/dualbootbootpayload.bin

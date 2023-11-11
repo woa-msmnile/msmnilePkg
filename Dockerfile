@@ -4,9 +4,11 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
         && sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 
-RUN apt-get update && apt-get -y install build-essential uuid-dev iasl nasm gcc-aarch64-linux-gnu \
-        python3 python3-distutils python3-pil python3-git python3-pip gettext locales \
-        gnupg ca-certificates python3-venv git git-core clang llvm curl nano
+RUN apt update && \ 
+    apt upgrade && \
+    apt install python3-venv pip git build-essential nuget build-essential uuid-dev \
+                iasl nasm gcc-aarch64-linux-gnu python3.10 python3-distutils python3-git python3-pip \
+                gettext locales gnupg ca-certificates python3-venv git git-core clang llvm curl
 
 ENV CLANG38_BIN /usr/lib/llvm-14/bin/
 ENV CLANG38_AARCH64_PREFIX aarch64-linux-gnu-

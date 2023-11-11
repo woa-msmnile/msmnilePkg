@@ -23,7 +23,7 @@
   PLATFORM_GUID                  = b6325ac2-9f3f-4b1d-b129-ac7b35ddde60
   PLATFORM_VERSION               = 0.1
   DSC_SPECIFICATION              = 0x00010005
-  OUTPUT_DIRECTORY               = Build/SurfaceDuo1-$(ARCH)
+  OUTPUT_DIRECTORY               = Build/SurfaceDuo1Pkg
   SUPPORTED_ARCHITECTURES        = AARCH64
   BUILD_TARGETS                  = DEBUG|RELEASE
   SKUID_IDENTIFIER               = DEFAULT
@@ -37,16 +37,19 @@
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
   SEND_HEARTBEAT_TO_SERIAL       = 0
   USE_SIMPLEFBDXE                = 1
-
+  DEFAULT_KEYS                   = TRUE
+  PK_DEFAULT_FILE                = SurfaceDuoFamilyPkg/Include/Resources/pk.bin.p7
+  KEK_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/kek.bin.p7
+  DB_DEFAULT_FILE1               = SurfaceDuoFamilyPkg/Include/Resources/db.bin.p7
+  DBX_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/dbx.bin
+  DXE_CRYPTO_SERVICES            = STANDARD
+  DXE_CRYPTO_ARCH                = AARCH64
   # Device-specific memory map hacks
   HAS_MLVM                       = FALSE
 
 !include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Defines.dsc.inc
 
 [BuildOptions.common]
-
-GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
-
 # TODO: Re-do the memory map stuff at one point so it's not defined in static variable and put 
 # those defines only in modules that need them, so changing anything here doesn't rebuild EVERY DAMN THING.
 !if $(HAS_MLVM) == TRUE
@@ -69,21 +72,24 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8150
 !include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/DXE.dsc.inc
 
 [LibraryClasses.common]
-  # Move PlatformMemoryMapLib to Device/<device>/Library
+  # Notice: PlatformMemoryMapLib was moved to Device/<device>/Library/
   PlatformMemoryMapLib|SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
 
-# Suggest you updating them to your device's dsc.inc.
+# Suggest you updating them to your device's pcds.dsc.inc.
 #[PcdsDynamicDefault.common]
 #  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1350
 #  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|1800
 #  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|1350
 #  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|1800
-#  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|94 # 94.73
-#  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|168 # 168.75
-#  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow|94 # 94.73
-#  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn|168 # 168.75
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|168 # 168.75 = 1350 / EFI_GLYPH_WIDTH(8)
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|94 # 94.73 = 1800 / EFI_GLYPH_HEIGHT(19)
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn|168 # 168.75 = 1350 / EFI_GLYPH_WIDTH(8)
+#  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow|94 # 94.73 = 1800 / EFI_GLYPH_HEIGHT(19)
 
 !include QcomPkg/QcomPkg.dsc.inc
 !include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PcdsFixedAtBuild.dsc.inc
 !include SurfaceDuoFamilyPkg/SurfaceDuoFamily.dsc.inc
 !include SurfaceDuoFamilyPkg/Frontpage.dsc.inc
+
+#[Components.common]
+#  SurfaceDuo1Pkg/AcpiTables/AcpiTables.inf

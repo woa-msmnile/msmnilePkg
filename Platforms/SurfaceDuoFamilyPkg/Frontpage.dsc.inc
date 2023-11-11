@@ -1,4 +1,3 @@
-
 [LibraryClasses.common]
   #
   # Libraries to support Shell
@@ -10,10 +9,6 @@
   BcfgCommandLib|ShellPkg/Library/UefiShellBcfgCommandLib/UefiShellBcfgCommandLib.inf
   NetLib|NetworkPkg/Library/DxeNetLib/DxeNetLib.inf
   #
-  # Contains intrinsics for crypto operations
-  #
-  IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
-  #
   # contains NULL routines to support UI operations associated with DFCI.
   #
   DfciUiSupportLib|OemPkg/Library/DfciUiSupportLib/DfciUiSupportLib.inf
@@ -22,14 +17,9 @@
   #
   DfciRecoveryLib|DfciPkg/Library/DfciRecoveryLib/DfciRecoveryLib.inf
   #
-  # Contains openSSL library used by BaseCryptoLib
-  #
-  OpensslLib|CryptoPkg/Library/OpensslLib/OpensslLib.inf
-  #
   # Functions that should contain base logic for querying, setting, and verifying user passwords.
   #
   PasswordStoreLib|OemPkg/Library/PasswordStoreLib/PasswordStoreLib.inf
-  BaseCryptLib|CryptoPkg/Library/BaseCryptLib/BaseCryptLib.inf
   #
   # Supports DFCI Groups.
   #
@@ -139,10 +129,6 @@
   #
   MathLib|MsCorePkg/Library/MathLib/MathLib.inf
   #
-  # This library is for showing the main system boot graphics.
-  #
-  BootGraphicsLib|MsGraphicsPkg/Library/BootGraphicsLib/BootGraphicsLib.inf
-  #
   # Library to support Device disable Settings  (get/set)
   #
   MsBootManagerSettingsLib|OemPkg/Library/MsBootManagerSettingsDxeLib/MsBootManagerSettingsDxeLib.inf
@@ -151,19 +137,13 @@
   #
   SwmDialogsLib|MsGraphicsPkg/Library/SwmDialogsLib/SwmDialogs.inf
   #
-  # BootGraphicsProviderLib that uses PCDs and raw files in the firmware volumes
-  #
-  BootGraphicsProviderLib|OemPkg/Library/BootGraphicsProviderLib/BootGraphicsProviderLib.inf
-  #
   # Library that platform implemented to determine boot type
   #
   MsBootPolicyLib|SurfaceDuoFamilyPkg/Library/MsBootPolicyLib/MsBootPolicyLib.inf
-  BmpSupportLib|MdeModulePkg/Library/BaseBmpSupportLib/BaseBmpSupportLib.inf
   #
   # Supplies the theme for this platform to the UEFI settings UI
   #
   MsUiThemeLib|MsGraphicsPkg/Library/MsUiThemeLib/Dxe/MsUiThemeLib.inf
-  SafeIntLib|MdePkg/Library/BaseSafeIntLib/BaseSafeIntLib.inf
   #
   # Library for determining if Manufacturing mode should be enabled on this boot. 
   # This libray is what everyone should use to determine which mode we are in.
@@ -211,7 +191,7 @@
   #
   # Application that presents and manages FrontPage.
   #
-  OemPkg/FrontPage/FrontPage.inf
+  SurfaceDuoFamilyPkg/FrontPage/FrontPage.inf
   # Surface Boot Manager (Menu) application
   #
   # Application that presents & manages the Boot Menu Setup on Front Page.
@@ -287,6 +267,13 @@
 
   MsCorePkg/AcpiRGRT/AcpiRgrt.inf
 
+  DfciPkg/Application/DfciMenu/DfciMenu.inf
+
+  ArmPkg/Drivers/ArmPciCpuIo2Dxe/ArmPciCpuIo2Dxe.inf
+  X86EmulatorPkg/X86Emulator.inf
+
+  !include SurfaceDuoFamilyPkg/Crypto/CryptoDriver.inc.dsc
+
 #######################################
 #  Shell
 #######################################
@@ -301,8 +288,6 @@
       NULL|ShellPkg/Library/UefiShellDebug1CommandsLib/UefiShellDebug1CommandsLib.inf
       NULL|ShellPkg/Library/UefiShellNetwork1CommandsLib/UefiShellNetwork1CommandsLib.inf
       NULL|ShellPkg/Library/UefiShellNetwork2CommandsLib/UefiShellNetwork2CommandsLib.inf
-    <PcdsFixedAtBuild>
+     <PcdsFixedAtBuild>
      gEfiShellPkgTokenSpaceGuid.PcdShellLibAutoInitialize|FALSE
   }
-
-  DfciPkg/Application/DfciMenu/DfciMenu.inf

@@ -10,31 +10,18 @@
   SecureBootProvisioningDxe.c
 
 [Packages]
-  ArmPkg/ArmPkg.dec
-  ArmPlatformPkg/ArmPlatformPkg.dec
   MdePkg/MdePkg.dec
-  EmbeddedPkg/EmbeddedPkg.dec
-  MdeModulePkg/MdeModulePkg.dec
   MsCorePkg/MsCorePkg.dec
   SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
 
 [LibraryClasses]
   BaseLib
-  ReportStatusCodeLib
-  UefiLib
-  UefiBootServicesTableLib
-  UefiDriverEntryPoint
-  BaseMemoryLib
   DebugLib
   MuSecureBootKeySelectorLib
-  UefiRuntimeServicesTableLib
-  MemoryAllocationLib
-
-[Protocols]
-  gEfiSimpleFileSystemProtocolGuid ## CONSUMES
+  PrintLib
+  UefiDriverEntryPoint
 
 [Depex]
-  gEfiSimpleFileSystemProtocolGuid
-
-[BuildOptions.AARCH64]
-  GCC:*_*_*_CC_FLAGS = -Wno-missing-brace -Wno-error
+  gEfiVariableWriteArchProtocolGuid AND
+  gEfiSimpleTextOutProtocolGuid AND
+  gEfiDevicePathProtocolGuid

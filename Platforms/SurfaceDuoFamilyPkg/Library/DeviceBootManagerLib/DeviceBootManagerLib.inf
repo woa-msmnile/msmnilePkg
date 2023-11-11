@@ -41,7 +41,7 @@
   MsPlatformDevicesLib
   MsNetworkDependencyLib
   MsBootOptionsLib
-  ConsoleMsgLib
+#  ConsoleMsgLib
   MsBootPolicyLib
   MsBootManagerSettingsLib
   MsPlatformPowerCheckLib

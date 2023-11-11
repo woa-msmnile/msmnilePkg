@@ -87,6 +87,7 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
             RequiredSubmodule("Features/CONFIG", True),
             RequiredSubmodule("Binaries", True),
             RequiredSubmodule("Platforms/SurfaceDuoACPI", True),
+            RequiredSubmodule("Platforms/X86EmulatorPkg", True),
         ]
 
     def SetArchitectures(self, list_of_requested_architectures):

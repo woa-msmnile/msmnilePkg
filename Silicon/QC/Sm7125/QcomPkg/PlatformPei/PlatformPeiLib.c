@@ -164,15 +164,16 @@ VOID InstallPlatformHob()
   static int initialized = 0;
 
   if (!initialized) {
-    UINTN Data  = (UINTN)&ShLib;
     BOOLEAN Prodmode = FALSE;
-
     ARM_MEMORY_REGION_DESCRIPTOR_EX InfoBlk;
     LocateMemoryMapAreaByName("Info Blk", &InfoBlk);
+    UINTN InfoBlkAddress = InfoBlk.Address;
+    UINTN ShLibAddress   = (UINTN)&ShLib;
 
     BuildMemHobForFv(EFI_HOB_TYPE_FV2);
-    BuildGuidDataHob(&gEfiShLibHobGuid, &Data, sizeof(Data));
-    BuildGuidDataHob(&gEfiInfoBlkHobGuid, &InfoBlk.Address, sizeof(InfoBlk.Address));
+    BuildGuidDataHob(
+        &gEfiInfoBlkHobGuid, &InfoBlkAddress, sizeof(InfoBlkAddress));
+    BuildGuidDataHob(&gEfiShLibHobGuid, &ShLibAddress, sizeof(ShLibAddress));
 
     BuildGuidDataHob (&gEfiProdmodeHobGuid, &Prodmode, sizeof(Prodmode));
 
@@ -182,9 +183,7 @@ VOID InstallPlatformHob()
 
 EFI_STATUS
 EFIAPI
-PlatformPeim(
-  VOID
-  )
+PlatformPeim(VOID)
 {
 
   BuildFvHob(PcdGet64(PcdFvBaseAddress), PcdGet32(PcdFvSize));

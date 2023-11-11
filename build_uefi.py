@@ -64,10 +64,10 @@ def build_bootshim(this_target):
 
 
 def prepare_build(package_name):
-    stuart_setup_cmd = "stuart_setup -c " + os.path.join("Platforms", package_name,
-                                                         "PlatformBuild.py") + " TOOL_CHAIN_TAG=CLANG38"
-    stuart_update_cmd = "stuart_update -c" + os.path.join("Platforms", package_name,
-                                                          "PlatformBuild.py") + " TOOL_CHAIN_TAG=CLANG38"
+    stuart_setup_cmd = "python3 " + os.path.join("Platforms", package_name,
+                                                         "PlatformBuild.py") + " --setup TOOL_CHAIN_TAG=CLANG38"
+    stuart_update_cmd = "python3 " + os.path.join("Platforms", package_name,
+                                                          "PlatformBuild.py") + " --update TOOL_CHAIN_TAG=CLANG38"
     os.system(stuart_setup_cmd)
     os.system(stuart_update_cmd)
 
@@ -75,7 +75,7 @@ def prepare_build(package_name):
 def update_device_configuration_map(this_target):
     # Delete cache.
     try:
-        shutil.rmtree(os.path.join("Build", this_target.package[:-3] + "-AARCH64", "DEBUG_CLANG38", "AARCH64", "QcomPkg",
+        shutil.rmtree(os.path.join("Build", this_target.package[:-3] + "-AARCH64", "RELEASE_CLANG38", "AARCH64", "QcomPkg",
                                "PlatformPei"))
     except FileNotFoundError:
         print("First Building...")
@@ -147,7 +147,7 @@ def device_error_exit(device_name, possible_devices_list):
     if not possible_devices_list:
         print(not_found_msg)
     else:
-        possible_devices_msg = "Target device" + device_name + " not found, did you mean: "
+        possible_devices_msg = "Target device \033[31m" + device_name + "\033[0m not found, did you mean: "
         print(possible_devices_msg)
         for dev_name in possible_devices_list:
             print('\t' + dev_name)
@@ -179,9 +179,12 @@ def build_single_device(this_target):
     build_bootshim(this_target)
     update_device_configuration_map(this_target)
     prepare_build(this_target.package)
+    os.environ['CLANG38_BIN'] = '/usr/lib/llvm-14/bin/'
+    os.environ['CLANG38_AARCH64_PREFIX']='aarch64-linux-gnu-'
+
     # Start Actual Build
-    os.system("stuart_build -c" + os.path.join("Platforms", this_target.package, "PlatformBuild.py")
-              + " TOOL_CHAIN_TAG=CLANG38 TARGET_DEVICE=" + this_target.device)
+    os.system("python3 " + os.path.join("Platforms", this_target.package, "PlatformBuild.py")
+              + " TARGET=RELEASE TARGET_DEVICE=" + this_target.device)
 
 
 # Build uefi for all devices in one silicon.

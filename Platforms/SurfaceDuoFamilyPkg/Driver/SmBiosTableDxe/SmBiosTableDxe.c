@@ -62,8 +62,15 @@ be found at http://opensource.org/licenses/bsd-license.php
 /* Used to read Ram Info */
 #include <Protocol/EFIRamPartition.h>
 
+/* Used to read device serial number */
+#include <Protocol/SurfaceFirmwareProvisioningDataProtocol.h>
+
 /* Used to read UEFI release information */
 #include <Library/MuUefiVersionLib.h>
+
+/* Used to hash device serial number */
+#include <Protocol/Hash.h>
+#include <Protocol/Hash2.h>
 
 /***********************************************************************
         SMBIOS data definition  TYPE0  BIOS Information
@@ -139,7 +146,7 @@ SMBIOS_TABLE_TYPE0 mBIOSInfoType0 = {
 CHAR8 *mBIOSInfoType0Strings[] = {
     "DuoWoA authors", // Vendor String
     "UnknownVersion", // BiosVersion String
-    "UnknownRel", // BiosReleaseDate String
+    "UnknownRel",     // BiosReleaseDate String
     NULL};
 
 /***********************************************************************
@@ -218,21 +225,21 @@ CHAR8 *mBoardInfoType2Strings[] = {
 ************************************************************************/
 SMBIOS_TABLE_TYPE3 mEnclosureInfoType3 = {
     {EFI_SMBIOS_TYPE_SYSTEM_ENCLOSURE, sizeof(SMBIOS_TABLE_TYPE3), 0},
-    1,                       // Manufacturer String
-    MiscChassisTypePortable, // Type;
-    2,                       // Version String
-    3,                       // SerialNumber String
-    4,                       // AssetTag String
-    ChassisStateUnknown,     // BootupState;
-    ChassisStateUnknown,     // PowerSupplyState;
-    ChassisStateUnknown,     // ThermalState;
-    ChassisStateUnknown,     // SecurityStatus;
-    {0, 0, 0, 0},            // OemDefined[4];
-    0,                       // Height;
-    0,                       // NumberofPowerCords;
-    0,                       // ContainedElementCount;
-    0,                       // ContainedElementRecordLength;
-    {{0}},                   // ContainedElements[1];
+    1,                      // Manufacturer String
+    MiscChassisTypeUnknown, // Type;
+    2,                      // Version String
+    3,                      // SerialNumber String
+    4,                      // AssetTag String
+    ChassisStateUnknown,    // BootupState;
+    ChassisStateUnknown,    // PowerSupplyState;
+    ChassisStateUnknown,    // ThermalState;
+    ChassisStateUnknown,    // SecurityStatus;
+    {0, 0, 0, 0},           // OemDefined[4];
+    0,                      // Height;
+    0,                      // NumberofPowerCords;
+    0,                      // ContainedElementCount;
+    0,                      // ContainedElementRecordLength;
+    {{0}},                  // ContainedElements[1];
 };
 CHAR8 *mEnclosureInfoType3Strings[] = {
     "Microsoft Corporation", "Not Specified", "Not Specified", "Not Specified",
@@ -573,6 +580,66 @@ SMBIOS_TABLE_TYPE19 mMemArrMapInfoType19 = {
 };
 CHAR8 *mMemArrMapInfoType19Strings[] = {NULL};
 
+EFI_STATUS
+EFIAPI
+GetUUIDFromEFIChipInfoSerialNumType(
+    EFIChipInfoSerialNumType chipSerialNum, VOID *Buffer, UINT32 BufferSize)
+{
+  EFI_STATUS          Status;
+  UINT8               chipSerialNumArray[16];
+  EFI_HASH2_OUTPUT    efiHash2Output;
+  EFI_HASH2_PROTOCOL *efiHash2Protocol = NULL;
+  EFI_GUID           *hashAlgorithm    = &gEfiHashAlgorithmSha1Guid;
+  UINTN               digestSize       = 0;
+
+  if ((Buffer == NULL) || (BufferSize > 16)) {
+    return EFI_INVALID_PARAMETER;
+  }
+
+  ZeroMem(chipSerialNumArray, sizeof(chipSerialNumArray));
+  CopyMem(chipSerialNumArray, &chipSerialNum, sizeof(EFIChipInfoSerialNumType));
+
+  Status = gBS->LocateProtocol(
+      &gEfiHash2ProtocolGuid, NULL, (VOID **)&efiHash2Protocol);
+  if (Status != EFI_SUCCESS) {
+    return Status;
+  }
+
+  Status = efiHash2Protocol->GetHashSize(
+      efiHash2Protocol, hashAlgorithm, &digestSize);
+
+  if (Status != EFI_SUCCESS) {
+    return Status;
+  }
+  if (digestSize != 20) {
+    return Status;
+  }
+
+  Status = efiHash2Protocol->HashInit(efiHash2Protocol, hashAlgorithm);
+  if (Status != EFI_SUCCESS) {
+    return Status;
+  }
+
+  Status = efiHash2Protocol->HashUpdate(
+      efiHash2Protocol, (UINT8 *)&chipSerialNumArray,
+      sizeof(chipSerialNumArray));
+  if (Status != EFI_SUCCESS) {
+    return Status;
+  }
+
+  Status = efiHash2Protocol->HashFinal(efiHash2Protocol, &efiHash2Output);
+  if (Status != EFI_SUCCESS) {
+    return Status;
+  }
+
+  CopyMem(
+      Buffer, (UINT8 *)&efiHash2Output.Sha1Hash[digestSize - BufferSize],
+      BufferSize);
+
+  return Status;
+}
+
+
 /**
 
   Create SMBIOS record.
@@ -684,11 +751,11 @@ LogSmbiosData(
 ************************************************************************/
 VOID BIOSInfoUpdateSmbiosType0(VOID)
 {
-  UINTN VersionBufferLength  = 15;
-//  UINTN DateBufferLength     = 11;
+  UINTN VersionBufferLength = 15;
+  UINTN DateBufferLength    = 11;
 
   GetUefiVersionStringAscii(mBIOSInfoType0Strings[1], &VersionBufferLength);
-  GetBuildDateStringAscii(mBIOSInfoType0Strings[2], &VersionBufferLength);
+  GetBuildDateStringAscii(mBIOSInfoType0Strings[2], &DateBufferLength);
 
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mBIOSInfoType0, mBIOSInfoType0Strings, NULL);
@@ -714,7 +781,9 @@ VOID SysInfoUpdateSmbiosType1(CHAR8 *serialNo, EFIChipInfoSerialNumType serial)
 //
 
   // Update serial number from Board DXE
-  mSysInfoType1Strings[3]  = serialNo;
+  mSysInfoType1Strings[3] = serialNo;
+//  GetUUIDFromEFIChipInfoSerialNumType(
+//      serial, &mSysInfoType1.Uuid, sizeof(GUID));
   mSysInfoType1.Uuid.Data1 = serial;
 
   LogSmbiosData(
@@ -914,8 +983,10 @@ SmBiosTableDxeInitialize(
 {
   EFI_STATUS               Status;
   CHAR8                    serialNo[EFICHIPINFO_MAX_ID_LENGTH];
+//  UINTN                    serialNoLength = EFICHIPINFO_MAX_ID_LENGTH;
   EFIChipInfoSerialNumType serial;
-  EFI_CHIPINFO_PROTOCOL   *mBoardProtocol = NULL;
+  EFI_CHIPINFO_PROTOCOL   *mBoardProtocol  = NULL;
+//  SFPD_PROTOCOL           *mDeviceProtocol = NULL;
 
   // Locate Qualcomm Board Protocol
   Status = gBS->LocateProtocol(
@@ -940,6 +1011,15 @@ SmBiosTableDxeInitialize(
   Status = gBS->LocateProtocol(
       &gEfiRamPartitionProtocolGuid, NULL, (VOID *)&mRamPartitionProtocol);
 
+  // Locate Sfpd Protocol
+//  Status =
+//      gBS->LocateProtocol(&gSfpdProtocolGuid, NULL, (VOID *)&mDeviceProtocol);
+
+//  if (mDeviceProtocol != NULL) {
+//    ZeroMem(serialNo, serialNoLength);
+//    mDeviceProtocol->GetSurfaceSerialNumber(&serialNoLength, serialNo);
+//  }
+
   // Get the SystemMemorySize
   if (mRamPartitionProtocol != NULL) {
     Status = mRamPartitionProtocol->GetRamPartitions(mRamPartitionProtocol, NULL, &NumPartitions);
@@ -947,7 +1027,7 @@ SmBiosTableDxeInitialize(
       RamPartitions = AllocateZeroPool(NumPartitions * sizeof (RamPartitionEntry));
       Status = mRamPartitionProtocol->GetRamPartitions(mRamPartitionProtocol, RamPartitions, &NumPartitions);
       if (EFI_ERROR (Status) || (NumPartitions < 1)) {
-        DEBUG ((EFI_D_ERROR, "Failed to get RAM partitions"));
+        DEBUG ((EFI_D_ERROR, "Failed to get RAM partitions\n"));
         FreePool (RamPartitions);
         RamPartitions = NULL;
         SystemMemorySize = FixedPcdGet64(PcdSystemMemorySize);

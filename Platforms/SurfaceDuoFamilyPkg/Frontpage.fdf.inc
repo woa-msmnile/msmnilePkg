@@ -7,7 +7,7 @@
   INF MsGraphicsPkg/RenderingEngineDxe/RenderingEngineDxe.inf
   INF MsGraphicsPkg/DisplayEngineDxe/DisplayEngineDxe.inf
   INF OemPkg/BootMenu/BootMenu.inf
-  INF OemPkg/FrontPage/FrontPage.inf
+  INF SurfaceDuoFamilyPkg/FrontPage/FrontPage.inf
   INF PcBdsPkg/MsBootPolicy/MsBootPolicy.inf
   INF MdeModulePkg/Universal/BootManagerPolicyDxe/BootManagerPolicyDxe.inf
   INF MdeModulePkg/Universal/RegularExpressionDxe/RegularExpressionDxe.inf
@@ -26,16 +26,38 @@
 
   INF DfciPkg/Application/DfciMenu/DfciMenu.inf
 
+  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdFrontPageLogoFile) {
+    SECTION RAW = SurfaceDuoFamilyPkg/FrontPage/Resources/FrontpageLogo.bmp
+  }
+  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLowBatteryFile) {
+    SECTION RAW = SurfaceDuoFamilyPkg/FrontPage/Resources/LBAT.bmp
+  }
+  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdThermalFile) {
+    SECTION RAW = SurfaceDuoFamilyPkg/FrontPage/Resources/THOT.bmp
+  }
+  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdVolumeUpIndicatorFile) {
+    SECTION RAW = SurfaceDuoFamilyPkg/FrontPage/Resources/VolumeUp.bmp
+  }
+  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdFirmwareSettingsIndicatorFile) {
+    SECTION RAW = SurfaceDuoFamilyPkg/FrontPage/Resources/FirmwareSettings.bmp
+  }
+  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdBootFailIndicatorFile) {
+    SECTION RAW = SurfaceDuoFamilyPkg/FrontPage/Resources/NoBoot.bmp
+  }
+
+  INF ArmPkg/Drivers/ArmPciCpuIo2Dxe/ArmPciCpuIo2Dxe.inf
+
 # Change AARCH64 to the appropriate architecture for your platform.
   FILE APPLICATION=PCD(gPcBdsPkgTokenSpaceGuid.PcdShellFile) {
     SECTION PE32=$(OUTPUT_DIRECTORY)/$(TARGET)_$(TOOL_CHAIN_TAG)/AARCH64/Shell.efi
     SECTION UI= "EdkShell"
   }
+
 ################################################################
  # CUST_LOGO Change Start.
  !if $(CUST_LOGO) == 1
    FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLogoFile) {
-     SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Include/Resources/CustBootLogo.bmp
+     SECTION RAW = $(PLATFORM_NAME)Pkg/Device/$(TARGET_DEVICE)/Include/Resources/CustBootLogo.bmp
      SECTION UI = "Logo"
    }
  !else
@@ -47,21 +69,17 @@
 # CUST_LOGO Change End.
 ################################################################
 
-  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdFrontPageLogoFile) {
-    SECTION RAW = OemPkg/FrontPage/Resources/FrontpageLogo.bmp
+  INF X86EmulatorPkg/X86Emulator.inf
+
+  FILE DRIVER = 2BE7CFE5-4DFC-4F21-992A-CA1B71B2EF14 {
+    SECTION PE32 = SurfaceDuoFamilyPkg/HyperSpace/HyperSpace.efi
+    SECTION UI = "HyperSpace"
   }
-  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLowBatteryFile) {
-    SECTION RAW = OemPkg/FrontPage/Resources/LBAT.bmp
+
+  FILE FREEFORM = PCD(gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSystemIntegrityPolicyFile) {
+    SECTION RAW = SurfaceDuoFamilyPkg/Include/Resources/SiPolicy.p7b
+    SECTION UI = "System Integrity Policy Default"
   }
-  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdThermalFile) {
-    SECTION RAW = OemPkg/FrontPage/Resources/THOT.bmp
-  }
-  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdVolumeUpIndicatorFile) {
-    SECTION RAW = OemPkg/FrontPage/Resources/VolumeUp.bmp
-  }
-  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdFirmwareSettingsIndicatorFile) {
-    SECTION RAW = OemPkg/FrontPage/Resources/FirmwareSettings.bmp
-  }
-  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdBootFailIndicatorFile) {
-    SECTION RAW = OemPkg/FrontPage/Resources/NoBoot.bmp
-  }
+
+  !include ArmPlatformPkg/SecureBootDefaultKeys.fdf.inc
+  !include SurfaceDuoFamilyPkg/Crypto/CryptoDriver.DXE.inc.fdf

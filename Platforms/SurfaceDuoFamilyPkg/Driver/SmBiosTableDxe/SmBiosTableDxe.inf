@@ -38,7 +38,6 @@
 [LibraryClasses]
   BaseLib
   BaseMemoryLib
-  CompilerIntrinsicsLib
   DebugLib
   MuUefiVersionLib
   ReportStatusCodeLib
@@ -49,7 +48,7 @@
 [Protocols]
   gEfiSmbiosProtocolGuid
   gEfiChipInfoProtocolGuid
-
+  gSfpdProtocolGuid
 # Ram Size Detect Patch
   gEfiRamPartitionProtocolGuid
   

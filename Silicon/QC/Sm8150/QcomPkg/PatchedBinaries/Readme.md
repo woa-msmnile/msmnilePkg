@@ -14,7 +14,7 @@ This file aims to provide further information about the different patches applie
 
 - ColorbarsDxe: so the driver loads and provides accurate device state.
 
-- FmpDxe: so the driver loads and provides firmware manegement interfaces to FrontPage.
+- FmpDxe: so the driver loads and provides firmware management interfaces to FrontPage.
 
 ## UFSDxe & DisplayDxe
 
@@ -41,15 +41,17 @@ The current PCD Token Store in our UEFI is as follows:
 PcdTokenNumber: 
 ('PcdSKUEnableDfci', 'gDfciPkgTokenSpaceGuid') : 1
 ('PcdSetupUiReducedFunction', 'gDfciPkgTokenSpaceGuid') : 2
-('PcdDeviceStateBitmask', 'gEfiMdeModulePkgTokenSpaceGuid') : 3
-('PcdNvStoreDefaultValueBuffer', 'gEfiMdeModulePkgTokenSpaceGuid') : 7
-('PcdSetNvStoreDefaultId', 'gEfiMdeModulePkgTokenSpaceGuid') : 8
-('PcdTestKeyUsed', 'gEfiMdeModulePkgTokenSpaceGuid') : 4
-('PcdVideoHorizontalResolution', 'gEfiMdeModulePkgTokenSpaceGuid') : 5
-('PcdVideoVerticalResolution', 'gEfiMdeModulePkgTokenSpaceGuid') : 6
-('PcdVpdBaseAddress64', 'gEfiMdeModulePkgTokenSpaceGuid') : 9
-('PcdCurrentPointerState', 'gMsGraphicsPkgTokenSpaceGuid') : 10
-('PcdPostBackgroundColoringSkipCount', 'gMsGraphicsPkgTokenSpaceGuid') : 11
+('PcdConOutColumn', 'gEfiMdeModulePkgTokenSpaceGuid') : 3
+('PcdConOutRow', 'gEfiMdeModulePkgTokenSpaceGuid') : 4
+('PcdDeviceStateBitmask', 'gEfiMdeModulePkgTokenSpaceGuid') : 5
+('PcdTestKeyUsed', 'gEfiMdeModulePkgTokenSpaceGuid') : 6
+('PcdVideoHorizontalResolution', 'gEfiMdeModulePkgTokenSpaceGuid') : 7
+('PcdVideoVerticalResolution', 'gEfiMdeModulePkgTokenSpaceGuid') : 8
+('PcdNvStoreDefaultValueBuffer', 'gEfiMdeModulePkgTokenSpaceGuid') : 9
+('PcdSetNvStoreDefaultId', 'gEfiMdeModulePkgTokenSpaceGuid') : 10
+('PcdVpdBaseAddress64', 'gEfiMdeModulePkgTokenSpaceGuid') : 11
+('PcdCurrentPointerState', 'gMsGraphicsPkgTokenSpaceGuid') : 12
+('PcdPostBackgroundColoringSkipCount', 'gMsGraphicsPkgTokenSpaceGuid') : 13
 ```
 
 ColorbarsDxe depends on the following Dynamic Pcd:
@@ -62,4 +64,4 @@ FmpDxe depends on the following Dynamic Pcd:
 ('PcdTestKeyUsed', 'gEfiMdeModulePkgTokenSpaceGuid') : 3
 ```
 
-The DXEs were patched to check for 3 and 4 instead of 2 and 3 respectively.
+The DXEs were patched to check for 3 and 6 instead of 2 and 3 respectively.

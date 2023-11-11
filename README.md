@@ -2,9 +2,33 @@
 
 ### Thanks for [Gustave](https://github.com/gus33000)'s instructions!
 
-# [Project Mu](https://microsoft.github.io/mu/) UEFI Implementation for Devices on Snapdragon™ Platforms.
+# [Project Mu](https://microsoft.github.io/mu/) UEFI Implementation for Devices with Snapdragon™ inside.
 
-## Build ![ActionStatus](https://img.shields.io/github/actions/workflow/status/woa-msmnile/msmnilepkg/main.yml)
+## For users
+
+You can download the latest UEFI build by clicking [here](https://github.com/woa-msmnile/msmnilePkg/actions).
+
+![ActionStatus](https://img.shields.io/github/actions/workflow/status/woa-msmnile/msmnilepkg/main.yml)
+
+## What's this?
+
+This package demonstrates an AArch64 UEFI implementation for hacked devices with qcom silicons. Currently it is able to boot Windows 10 ARM64 as well as Windows 11 ARM64. Please be aware that devices with no dsdt support have limited support.
+
+## Support Status
+
+Applicable to all supported targets unless noted.
+
+- Low-speed I/O: I2C, SPI, GPIO, SPMI and Pinmux (TLMM).
+- Power Management: PMIC and Resource Power Manager (RPM).
+- High-speed I/O for firmware and HLOS: UFS 3.1
+- Peripherals: side-band buttons (TLMM GPIO and PMIC GPIO), USB
+- Display FrameBuffer
+
+## What can you do?
+
+Please see https://woa-msmnile.github.io for some tutorials.
+
+## Build
 
 ### Minimum System Requirements
 
@@ -55,11 +79,19 @@ docker-compose up
 
 - Tips:
   - use `-s all` to build all devices.
-  - use `-d all -s <target-silicon>` to build all devices in one silicon.
+  - use `-d all -s <target-silicon>` to build all devices in same platform.
 
 - You will find Build/xxxxPkg/\<target-device\>.img after successfully building.
 
 ## Target list
+
+### *SDM845*
+> Comming soon...  
+
+| Device             | Target name            | DSDT Support    | Maintainers                                        |
+|--------------------|------------------------|-----------------|----------------------------------------------------|
+| HDK 845            | qcom-hdk845            | ✅              | NONE                                               |
+| Xiaomi Mix 2s      | xiaomi-polaris         | ❌              | NONE                                               |
 
 ### *SM8150*
 
@@ -82,7 +114,7 @@ docker-compose up
 | Nubia Mini 5G      | nubia-tp1803           | ✅              | [Alula](https://github.com/alula)                  |
 | OnePlus 7          | oneplus-guacamoleb     | ❌              | NONE                                               |
 | OnePlus 7 Pro      | oneplus-guacamole      | ✅              | [Waseem Alkurdi](https://github.com/WaseemAlkurdi) |
-| OnePlus 7T Pro     | oneplus-hotdog         | ✅              | [sunflower2333](https://github.com/sunflower2333)&[Morc](https://github.com/TheMorc)|
+| OnePlus 7T Pro     | oneplus-hotdog         | ✅              | [Morc](https://github.com/TheMorc)                 |
 | OnePlus 7T Pro 5G  | oneplus-hotdogg        | ✅              | NONE                                               |
 | OPPO Reno 10X      | oppo-op46c3            | ❌              | NONE                                               |
 | OPPO Reno ACE      | oppo-pclm10            | ✅              | [sunflower2333](https://github.com/sunflower2333)  |
@@ -93,8 +125,8 @@ docker-compose up
 | Smartisan Pro 3    | smartisan-aries        | ❌              | NONE                                               |
 | Xiaomi 9           | xiaomi-cepheus         | ✅              | [qaz6750](https://github.com/qaz6750)              |
 | Xiaomi Hercules    | xiaomi-hercules        | ✅              | [Ww](https://github.com/Idonotkno)                 |
-| Xiaomi K20 Pro     | xiaomi-raphael         | ✅              | [sunflower2333](https://github.com/sunflower2333)  |
-| Xiaomi Mix3 5G     | xiaomi-andromeda       | ✅              | [sunflower2333](https://github.com/sunflower2333)  |
+| Xiaomi K20 Pro     | xiaomi-raphael         | ✅              | sunflower2333                                      |
+| Xiaomi Mix3 5G     | xiaomi-andromeda       | ✅              | sunflower2333                                      |
 | Xiaomi Mix Alpha u2| xiaomi-avenger         | ❌              | NONE                                               |
 | Xiaomi Pad 5       | xiaomi-nabu            | ✅              | [Map220v](https://github.com/map220v)              |
 | Xiaomi Poco X3 Pro | xiaomi-vayu            | ✅              | [Degdag](https://github.com/degdag)                |
@@ -113,7 +145,7 @@ docker-compose up
 
 | Device             | Target name            | DSDT Support    | Maintainers                                        |
 |--------------------|------------------------|-----------------|----------------------------------------------------|
-| QTI QRD 778        | qcom-kodiak            | ✅              | Ayu                                                |
+| QTI QRD 778        | qcom-kodiak            | ✅              | [Ayu](https://github.com/chenyu0329)&sunflower2333 |
 
 
 ### *SM8350*
@@ -125,66 +157,27 @@ docker-compose up
 
 
 ### *SM8550*
-> Comming soon...  
 
-| Device             | Target name            | Support         | Maintainers                                        |
-|--------------------|------------------------|-----------------|----------------------------------------------------|
-| Nubia RedMagic 8Pro| nubia-nx729j           | ❌              | BigfootACA                                         |
+| Device                | Target name            | DSDT Support    | Maintainers                                        |
+|-----------------------|------------------------|-----------------|----------------------------------------------------|
+| QTI QRD 8550          | qcom-kailua            | ❌              | None                                               |
+| Nubia RedMagic 8 Pro  | nubia-nx729j           | ❌              | None                                               |
+| Xiaomi 13             | xiaomi-fuxi            | ❌              | None                                               |
+| Xiaomi 13 Pro         | xiaomi-nuwa            | ❌              | None                                               |
 
 ## Acknowledgements
 
 - Gustave Monce and his [SurfaceDuoPkg](https://github.com/Woa-Project/SurfaceDuoPkg/)
+- [EFIDroid Project](http://efidroid.org)
 - Andrei Warkentin and his [RaspberryPiPkg](https://github.com/andreiw/RaspberryPiPkg)
 - Sarah Purohit
 - [Googulator](https://github.com/Googulator/)
 - [Ben (Bingxing) Wang](https://github.com/imbushuo/)
 - Samuel Tulach and his [Rainbow Patcher](https://github.com/SamuelTulach/rainbow)
 - BigfootACA and his [SimpleInit](https://github.com/BigfootACA/simple-init)
-- [Renegade Project](https://github.com/edk2-porting/)
+- Developers in [Renegade Project](https://github.com/edk2-porting)
 - Lemon ICE
 
 ## License ![License](https://img.shields.io/github/license/woa-msmnile/msmnilePkg)
 All code except drivers in `GPLDriver` directory are licensed under BSD 2-Clause.  
 GPL Drivers are licensed under GPLv2 license.
-
-
-## Boot Chain
-```mermaid
-flowchart TD
-  subgraph fake_kernel[Fake Kernel]
-
-    subgraph bootshim[Boot Shim]
-      kernel_header[ARM64 Magic]
-      copy_fd[Copy UefiFD to stack base]
-      save_args[Save needed arguments to registers]
-      jump[jump to uefi fd base]
-    end
-
-    subgraph uefi[Uefi]
-      subgraph platform_prepi_lib[PlatformPrePiLib]
-        is_linux_boot_requested{IsLinuxBootRequested}
-      end
-      continue_uefi[Continue Booting Uefi]
-    end
-    subgraph kernel[Linux Kernel]
-      linux_kernel[Kernel]
-    end
-  end
-  
-  subgraph hlos[HLOS]
-    android[Android]
-    linux[Linux]
-    windows[Windows]
-    etc[...]
-  end
-
-  kernel_header --> copy_fd --> save_args --> jump --> platform_prepi_lib
-  platform_prepi_lib --> is_linux_boot_requested
-  is_linux_boot_requested -- True --> linux_kernel
-  is_linux_boot_requested -- False --> continue_uefi
-  continue_uefi --> linux
-  linux_kernel --> linux
-  linux_kernel --> android
-  continue_uefi --> windows
-  fake_kernel ==> hlos
-```
