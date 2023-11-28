@@ -151,7 +151,6 @@
   #
   UIToolKitLib|MsGraphicsPkg/Library/SimpleUIToolKit/SimpleUIToolKit.inf
   ResetUtilityLib|MdeModulePkg/Library/ResetUtilityLib/ResetUtilityLib.inf
-  BaseBinSecurityLib|MdePkg/Library/BaseBinSecurityLibNull/BaseBinSecurityLibNull.inf
   SecurityLockAuditLib|MdeModulePkg/Library/SecurityLockAuditDebugMessageLib/SecurityLockAuditDebugMessageLib.inf
 
   MsWheaEarlyStorageLib|SurfaceDuoFamilyPkg/Library/MsWheaEarlyStorageLib/MsWheaEarlyStorageLib.inf
