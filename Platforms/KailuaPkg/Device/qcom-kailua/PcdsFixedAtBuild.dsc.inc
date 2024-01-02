@@ -9,8 +9,8 @@ gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"kailua"
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"DVT"
 
 # Necessary Addresses
-gKailuaPkgTokenSpaceGuid.KernelProtocolAddress|0xA703B948
-gKailuaPkgTokenSpaceGuid.XBLDTProtocolAddress|0xA703B0C8
+gKailuaPkgTokenSpaceGuid.KernelProtocolAddress|0xA703A948
+gKailuaPkgTokenSpaceGuid.XBLDTProtocolAddress|0xA703A0C8
 
 [PcdsDynamicDefault.common]
 gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1080
