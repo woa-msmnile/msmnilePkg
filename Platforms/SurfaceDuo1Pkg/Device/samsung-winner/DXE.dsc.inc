@@ -84,6 +84,7 @@ SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/AdcDxe/AdcDxe.in
 SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TsensDxe/TsensDxe.inf
 #QcomPkg/Drivers/LimitsDxe/LimitsDxe.inf
 SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/DDRInfoDxe/DDRInfoDxe.inf
+SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/MpPowerDxe/MpPowerDxe.inf
 SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/UsbfnDwc3Dxe/UsbfnDwc3Dxe.inf
 #QcomPkg/Drivers/UsbMsdDxe/UsbMsdDxe.inf
 #QcomPkg/Drivers/UsbDeviceDxe/UsbDeviceDxe.inf
@@ -97,7 +98,7 @@ SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/PILDxe/PILDxe.in
 
 QcomPkg/PatchedBinaries/05472C14-ACB9-4458-A354-A68357AC3BF0.inf
 QcomPkg/PatchedBinaries/ButtonsDxe.inf
-QcomPkg/PatchedBinaries/HALIOMMUDxe.inf
+SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PatchedBinaries//HALIOMMUDxe.inf
 QcomPkg/PatchedBinaries/PciHostBridgeDxe.inf
-QcomPkg/PatchedBinaries/UsbConfigDxe.inf
+SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PatchedBinaries//UsbConfigDxe.inf
 SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UFSDxe.inf
