@@ -4,9 +4,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
         && sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 
-RUN apt update && \ 
-    apt upgrade && \
-    apt install python3-venv pip git build-essential nuget build-essential uuid-dev \
+RUN apt update -y && \ 
+    apt upgrade -y && \
+    apt -y install python3-venv pip git build-essential nuget build-essential uuid-dev \
                 iasl nasm gcc-aarch64-linux-gnu python3.10 python3-distutils python3-git python3-pip \
                 gettext locales gnupg ca-certificates python3-venv git git-core clang llvm curl
 
