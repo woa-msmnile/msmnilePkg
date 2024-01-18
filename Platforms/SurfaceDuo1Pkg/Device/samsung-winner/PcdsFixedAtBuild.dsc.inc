@@ -7,3 +7,13 @@ gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"Samsung"
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"F900F"
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"winner"
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"MP"
+
+[PcdsDynamicDefault.common]
+gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|2152
+gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|1536
+gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|2152
+gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|1536
+gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|269  
+gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|80    
+gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn|269     
+gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow|80         
