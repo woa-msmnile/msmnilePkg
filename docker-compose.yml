@@ -5,7 +5,7 @@ services:
                 volumes:
                         - ./:/root/
                 restart: "no"
-                command: bash scripts/docker_setup.sh
+                command: bash /root/scripts/docker_setup.sh
                 environment:
                         TZ: Asia/Shanghai
                         DEBIAN_FRONTEND: noninteractive
