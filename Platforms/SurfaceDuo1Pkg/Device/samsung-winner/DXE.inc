@@ -87,6 +87,9 @@ INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/PlatformInfo
 #INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ButtonsDxe/ButtonsDxe.inf
 INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/PmicDxe/PmicDxeLa.inf
 #INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/UsbPwrCtrlDxe/UsbPwrCtrlDxe.inf
+INF SurfaceDuo1Pkg/Device/qcom-msmnile/Binaries/QcomPkg/Drivers/ChargerExDxe/ChargerExDxe.inf
+INF SurfaceDuo1Pkg/Device/qcom-msmnile/Binaries/QcomPkg/Drivers/QcomChargerDxe/QcomChargerDxeLA.inf
+INF SurfaceDuo1Pkg/Device/qcom-msmnile/Binaries/QcomPkg/Application/QcomChargerApp/QcomChargerApp.inf
 INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/AdcDxe/AdcDxe.inf
 INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TsensDxe/TsensDxe.inf
 #INF QcomPkg/Drivers/LimitsDxe/LimitsDxe.inf
@@ -270,10 +273,15 @@ FILE FREEFORM = 32C7620B-9746-4BB6-8166-605682A2C58A {
     SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_nt36850_truly_wqhd_cmd.xml
 }
 
-
 FILE FREEFORM = A1E235DE-E825-4591-9623-C43175811826 {
     SECTION UI = "SecParti.cfg"
     SECTION RAW = SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/SecParti.cfg
+}
+
+
+FILE FREEFORM = 45FE4B7C-150C-45DA-A021-4BEB2048EC6F {
+    SECTION UI = "QcomChargerCfg.cfg"
+    SECTION RAW = SurfaceDuo1Pkg/Device/qcom-msmnile/Binaries/RawFiles/QcomChargerCfg.cfg
 }
 
 
