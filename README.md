@@ -65,11 +65,6 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 
 *Then finish the following process in docker environment*
 
-*You can also use docker-compose if you know how to use*
-```
-docker-compose up
-```
-
 2. Build UEFI & Generate Android Boot Image
 > Usage: build_uefi.py -d \<target-device\>  
 - Exmaple:
@@ -95,14 +90,14 @@ docker-compose up
 
 ### *SM8150*
 
-| Device             | Target name            | DSDT Support    | Maintainers                                        |
+| Device             | Target name            | DSDT Support    | Contributors                                       |
 |--------------------|------------------------|-----------------|----------------------------------------------------|
-| ASUS ROG2          | asus-I001DC            | ✅              | [Ww](https://github.com/Idonotkno)                 |
+| ASUS ROG2          | asus-I001DC            | ✅              | [sunflower2333](https://github.com/sunflower2333)  |
 | Axon Stage 5G      | kakao-pine             | ❌              | [AKA](https://github.com/AKAsaliza)                |
 | BlackShark 2       | blackshark-skywalker   | ❌              | NONE                                               |
 | BlackShark 2 Pro   | blackshark-darklighter | ❌              | NONE                                               |
 | HTC 5G Hub         | htc-rtx                | ❌              | NONE                                               |
-| LG G8              | lg-alphaplus           | ✅              | [Yanhua](https://github.com/yanhua-tj)             |
+| LG G8              | lg-alphaplus           | ✅              | sunflower2333                                      |
 | LG G8S             | lg-betalm              | ✅              | [J0SH1X](https://github.com/J0SH1X)                |
 | LG G8X             | lg-mh2lm               | ✅              | [Molly Sophia](https://github.com/MollySophia)     |
 | LG V50             | lg-flashlmdd           | ✅              | [AKA](https://github.com/AKAsaliza)                |
@@ -117,16 +112,16 @@ docker-compose up
 | OnePlus 7T Pro     | oneplus-hotdog         | ✅              | [Morc](https://github.com/TheMorc)                 |
 | OnePlus 7T Pro 5G  | oneplus-hotdogg        | ✅              | NONE                                               |
 | OPPO Reno 10X      | oppo-op46c3            | ❌              | NONE                                               |
-| OPPO Reno ACE      | oppo-pclm10            | ✅              | [sunflower2333](https://github.com/sunflower2333)  |
+| OPPO Reno ACE      | oppo-pclm10            | ✅              | NONE                                               |
 | QTI QRD 855        | qcom-msmnile           | ✅              | sunflower2333                                      |
 | Realme X3          | realme-rmx2086         | ❌              | NONE                                               |
 | Samsung Galaxy S10 | samsung-beyond1qlte    | ✅              | [Ww](https://github.com/Idonotkno)                 |
-| Samsung Galaxy Fold | samsung-winner        | ✅              | [Ost268](https://github.com/Ost268)       |
+| Samsung Galaxy Fold| samsung-winner         | ✅              | [Ost268](https://github.com/Ost268)                |
 | Smartisan Pro 3    | smartisan-aries        | ❌              | NONE                                               |
 | Xiaomi 9           | xiaomi-cepheus         | ✅              | [qaz6750](https://github.com/qaz6750)              |
 | Xiaomi Hercules    | xiaomi-hercules        | ✅              | [Ww](https://github.com/Idonotkno)                 |
-| Xiaomi K20 Pro     | xiaomi-raphael         | ✅              | sunflower2333                                      |
-| Xiaomi Mix3 5G     | xiaomi-andromeda       | ✅              | sunflower2333                                      |
+| Xiaomi K20 Pro     | xiaomi-raphael         | ✅              | [Degdag](https://github.com/degdag)&sunflower2333  |
+| Xiaomi Mix3 5G     | xiaomi-andromeda       | ✅              | NONE                                               |
 | Xiaomi Mix Alpha u2| xiaomi-avenger         | ❌              | NONE                                               |
 | Xiaomi Pad 5       | xiaomi-nabu            | ✅              | [Map220v](https://github.com/map220v)              |
 | Xiaomi Poco X3 Pro | xiaomi-vayu            | ✅              | [Degdag](https://github.com/degdag)                |
@@ -137,7 +132,7 @@ docker-compose up
 | Device             | Target name            | DSDT Support    | Maintainers                                        |
 |--------------------|------------------------|-----------------|----------------------------------------------------|
 | QTI QRD 720        | qcom-atoll             | ✅              | sunflower2333                                      |
-| Xiaomi Note 9S     | xiaomi-miatoll         | ❌              | Icesito                                            |
+| Xiaomi Note 9S     | xiaomi-miatoll         | ✅              | Icesito                                            |
 | Xiaomi Note 10 Pro | xiaomi-sweet           | ❌              | [dopaemon](https://github.com/dopaemon)            |
 
 
@@ -160,6 +155,7 @@ docker-compose up
 
 | Device                | Target name            | DSDT Support    | Maintainers                                        |
 |-----------------------|------------------------|-----------------|----------------------------------------------------|
+| AYN Odin 2            | ayn-odin2              | ❌              | None                                               |
 | QTI QRD 8550          | qcom-kailua            | ❌              | None                                               |
 | Nubia RedMagic 8 Pro  | nubia-nx729j           | ❌              | None                                               |
 | Xiaomi 13             | xiaomi-fuxi            | ❌              | None                                               |
@@ -174,7 +170,7 @@ docker-compose up
 - [Googulator](https://github.com/Googulator/)
 - [Ben (Bingxing) Wang](https://github.com/imbushuo/)
 - Samuel Tulach and his [Rainbow Patcher](https://github.com/SamuelTulach/rainbow)
-- BigfootACA and his [SimpleInit](https://github.com/BigfootACA/simple-init)
+- [BigfootACA](https://github.com/BigfootACA) and his [SimpleInit](https://github.com/BigfootACA/simple-init)
 - Developers in [Renegade Project](https://github.com/edk2-porting)
 - Lemon ICE
 

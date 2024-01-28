@@ -73,19 +73,20 @@ def prepare_build(package_name):
 
 
 def update_device_configuration_map(this_target):
-    # Delete cache.
-    try:
-        shutil.rmtree(os.path.join("Build", this_target.package[:-3] + "-AARCH64", "RELEASE_CLANG38", "AARCH64", "QcomPkg",
-                               "PlatformPei"))
-    except FileNotFoundError:
-        print("First Building...")
     # Get Configuration Map Path.
     src_path = os.path.join("Platforms", this_target.package, "Device", this_target.device, "Include", "Configuration",
                             "DeviceConfigurationMap.h")
     des_path = os.path.join("Silicon", "QC", this_target.silicon, "QcomPkg", "Include", "Configuration",
                             "DeviceConfigurationMap.h")
-    # Copy Header to destination Place.
-    shutil.copy(src_path, des_path)
+    # Delete cache.
+    try:
+        os.remove(des_path)
+        shutil.rmtree(os.path.join("Build", this_target.package[:-3] + "-AARCH64", "RELEASE_CLANG38", "AARCH64", "QcomPkg",
+                               "PlatformPei"))
+    except FileNotFoundError:
+        print("First Building...")
+    # Symbol Link to destination Place.
+    os.symlink(os.path.abspath(src_path), des_path)
 
 
 def get_devices_list(package_name):
