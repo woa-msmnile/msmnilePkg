@@ -8,3 +8,13 @@ gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"Samsung"
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"S10"
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"beyond1qlte"
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"MP"
+
+[PcdsDynamicDefault.common]
+gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1440
+gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|3040
+gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|1440
+gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|3040
+gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|180  
+gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|160    
+gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn|180     
+gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow|160 
