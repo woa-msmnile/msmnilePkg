@@ -76,6 +76,9 @@ SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TLMMDxe/TLMMDxe.
 SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/PlatformInfoDxe/PlatformInfoDxe.inf
 SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/PmicDxe/PmicDxeLa.inf
 #QcomPkg/Drivers/UsbPwrCtrlDxe/UsbPwrCtrlDxe.inf
+SurfaceDuo1Pkg/Device/qcom-msmnile/Binaries/QcomPkg/Drivers/ChargerExDxe/ChargerExDxe.inf
+SurfaceDuo1Pkg/Device/qcom-msmnile/Binaries/QcomPkg/Drivers/QcomChargerDxe/QcomChargerDxeLA.inf
+SurfaceDuo1Pkg/Device/qcom-msmnile/Binaries/QcomPkg/Application/QcomChargerApp/QcomChargerApp.inf
 SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/AdcDxe/AdcDxe.inf
 SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TsensDxe/TsensDxe.inf
 #QcomPkg/Drivers/LimitsDxe/LimitsDxe.inf
