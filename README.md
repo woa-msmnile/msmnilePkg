@@ -112,13 +112,14 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 | Nubia RedMagic 3   | nubia-nx629j           | ❌              | NONE                                               |
 | Nubia RedMagic 3S  | nubia-nx629jv1s        | ❌              | NONE                                               |
 | Nubia Mini 5G      | nubia-tp1803           | ✅              | [Alula](https://github.com/alula)                  |
-| OnePlus 7          | oneplus-guacamoleb     | ❌              | NONE                                               |
+| OnePlus 7          | oneplus-guacamoleb     | ✅              | UNKNOWN                                            |
 | OnePlus 7 Pro      | oneplus-guacamole      | ✅              | [Waseem Alkurdi](https://github.com/WaseemAlkurdi) |
+| OnePlus 7T         | oneplus-hotdogb        | ✅              | UNKNOWN                                            |
 | OnePlus 7T Pro     | oneplus-hotdog         | ✅              | [Morc](https://github.com/TheMorc)                 |
 | OnePlus 7T Pro 5G  | oneplus-hotdogg        | ✅              | NONE                                               |
 | OPPO Reno 10X      | oppo-op46c3            | ❌              | NONE                                               |
 | OPPO Reno ACE      | oppo-pclm10            | ✅              | NONE                                               |
-| QTI QRD 855        | qcom-msmnile           | ✅              | sunflower2333                                      |
+| QTI QRD 855        | qcom-qrd855            | ✅              | sunflower2333                                      |
 | Realme X3          | realme-rmx2086         | ❌              | NONE                                               |
 | Samsung Galaxy S10 | samsung-beyond1qlte    | ✅              | [Ww](https://github.com/Idonotkno)                 |
 | Samsung Galaxy Fold| samsung-winner         | ✅              | [Ost268](https://github.com/Ost268)                |
