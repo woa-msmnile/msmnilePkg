@@ -271,12 +271,17 @@
   !include CryptoPkg/Driver/Bin/CryptoDriver.inc.dsc
 
 ################################################################
+# Hid Change Start
+  HidPkg/UsbKbHidDxe/UsbKbHidDxe.inf
+  HidPkg/UsbMouseHidDxe/UsbMouseHidDxe.inf
+# Hid Change End
+
 # UEFI Shell Change Start
 
 #######################################
 #  Shell
 #######################################
-
+  MdeModulePkg/Universal/Console/TerminalDxe/TerminalDxe.inf
   ShellPkg/Application/Shell/Shell.inf {
     <LibraryClasses>
       NULL|ShellPkg/Library/UefiShellLevel2CommandsLib/UefiShellLevel2CommandsLib.inf
