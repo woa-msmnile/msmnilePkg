@@ -16,13 +16,13 @@ import Levenshtein
 
 
 class Target:
-    def __init__(self, device, silicon, package, bootshim_uefi_base, bootshim_uefi_size, bootshim_padding_size):
+    def __init__(self, device, silicon, package, bootshim_uefi_base, bootshim_uefi_size, secureboot):
         self.device = device
         self.silicon = silicon
         self.package = package
         self.bootshim_uefi_base = bootshim_uefi_base
         self.bootshim_uefi_size = bootshim_uefi_size
-        self.bootshim_padding_size = bootshim_padding_size
+        self.secureboot = secureboot
 
     def merge(self, target_b):
         if self.device is None:
@@ -40,9 +40,6 @@ class Target:
         if self.bootshim_uefi_size is None:
             self.bootshim_uefi_size = target_b.bootshim_uefi_size
 
-        if self.bootshim_padding_size is None:
-            self.bootshim_padding_size = target_b.bootshim_padding_size
-
     def print_content(self):
         print("Target Info: ")
         print("device", self.device)
@@ -50,7 +47,6 @@ class Target:
         print("package", self.package)
         print("bootshim_uefi_base", self.bootshim_uefi_base)
         print("bootshim_uefi_size", self.bootshim_uefi_size)
-        print("bootshim_padding_size", self.bootshim_padding_size)
 
 
 def is_system_supported():
@@ -59,7 +55,7 @@ def is_system_supported():
 
 def build_bootshim(this_target):
     bootshim_cmd = os.path.abspath("build_boot_shim.sh") + " -a " + str(this_target.bootshim_uefi_base) + " -b " + str(
-        this_target.bootshim_uefi_size) + " -p " + str(this_target.bootshim_padding_size)
+        this_target.bootshim_uefi_size)
     return os.system(bootshim_cmd)
 
 
@@ -81,7 +77,7 @@ def update_device_configuration_map(this_target):
     # Delete cache.
     try:
         os.remove(des_path)
-        shutil.rmtree(os.path.join("Build", this_target.package[:-3] + "-AARCH64", "RELEASE_CLANG38", "AARCH64", "QcomPkg",
+        shutil.rmtree(os.path.join("Build", this_target.package[:-3] + "-AARCH64", "RELEASE_CLANGDWARF", "AARCH64", "QcomPkg",
                                "PlatformPei"))
     except FileNotFoundError:
         print("First Building...")
@@ -166,7 +162,6 @@ def parse_cfg(pfile):
     this_target.package = cfg_dict["package"]
     this_target.bootshim_uefi_base = cfg_dict["bootshim"]["UEFI_BASE"]
     this_target.bootshim_uefi_size = cfg_dict["bootshim"]["UEFI_SIZE"]
-    this_target.bootshim_padding_size = cfg_dict["bootshim"]["PADDING_SIZE"]
     return this_target
 
 
@@ -180,13 +175,16 @@ def build_single_device(this_target):
     build_bootshim(this_target)
     update_device_configuration_map(this_target)
     prepare_build(this_target.package)
-    os.environ['CLANGDWARF_BIN'] = '/usr/lib/llvm-38/bin/'
-    os.environ['CLANGDWARF_AARCH64_PREFIX']='aarch64-linux-gnu-'
+#    os.environ['CLANGDWARF_BIN'] = '/usr/lib/llvm-38/bin/'
+#    os.environ['CLANGDWARF_AARCH64_PREFIX']='aarch64-linux-gnu-'
 
     # Start Actual Build
-    os.system("python3 " + os.path.join("Platforms", this_target.package, "PlatformBuild.py")
-              + " TARGET=RELEASE TARGET_DEVICE=" + this_target.device)
-
+    if this_target.secureboot:
+        os.system("python3 " + os.path.join("Platforms", this_target.package, "PlatformBuild.py")
+                  + " TARGET=RELEASE TARGET_DEVICE=" + this_target.device)
+    else:
+        os.system("python3 " + os.path.join("Platforms", this_target.package, "PlatformBuildNoSb.py")
+                  + " TARGET=RELEASE TARGET_DEVICE=" + this_target.device)
 
 # Build uefi for all devices in one silicon.
 def build_all_devices(this_target):
@@ -283,10 +281,11 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Build Uefi for target device.')
     parser.add_argument('-d', type=str, default=None, help="target device")
     parser.add_argument('-s', type=str, default=None, help="target silicon")
+    parser.add_argument('-e', type=bool, default=None, help="secureboot status")
     args = parser.parse_args()
 
     # Initial target object
-    current_target = Target(args.d, args.s, None, None, None, None)
+    current_target = Target(args.d, args.s, None, None, None, args.e)
 
     destination_target = find_device_by_name(current_target.device) if (
             current_target.silicon != "all" and current_target.device != "all") else current_target

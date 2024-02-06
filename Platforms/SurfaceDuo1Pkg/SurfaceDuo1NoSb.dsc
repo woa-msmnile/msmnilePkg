@@ -32,8 +32,8 @@
   # Notice: TRUE == 1, FALSE == 0
   SECURE_BOOT_ENABLE             = FALSE
   USE_PHYSICAL_TIMER             = 1
-  USE_SCREEN_FOR_SERIAL_OUTPUT   = 1
-  USE_UART_FOR_SERIAL_OUTPUT     = 1
+  USE_SCREEN_FOR_SERIAL_OUTPUT   = 0
+  USE_UART_FOR_SERIAL_OUTPUT     = 0
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
   SEND_HEARTBEAT_TO_SERIAL       = 0
   USE_SIMPLEFBDXE                = 1
@@ -49,7 +49,9 @@
   STANDALONEMM_CRYPTO_SERVICES  = NONE
   SMM_CRYPTO_SERVICES           = NONE
   DXE_CRYPTO_ARCH               = AARCH64
-
+  PEI_CRYPTO_ARCH               = AARCH64
+  SMM_CRYPTO_ARCH               = AARCH64
+  STANDALONEMM_CRYPTO_ARCH      = AARCH64
   # Device-specific memory map hacks
   HAS_MLVM                       = FALSE
 

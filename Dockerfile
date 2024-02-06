@@ -8,7 +8,7 @@ RUN apt update -y && \
     apt upgrade -y && \
     apt -y install python3-venv pip git build-essential nuget build-essential uuid-dev \
                 iasl nasm gcc-aarch64-linux-gnu python3.10 python3-distutils python3-git python3-pip \
-                gettext locales gnupg ca-certificates python3-venv git git-core clang llvm curl mono-devel
+                gettext locales gnupg ca-certificates python3-venv git git-core clang llvm curl mono-devel lld
 
 ENV CLANGDWARF_BIN /usr/lib/llvm-38/bin/
 ENV CLANGDWARF_AARCH64_PREFIX aarch64-linux-gnu-

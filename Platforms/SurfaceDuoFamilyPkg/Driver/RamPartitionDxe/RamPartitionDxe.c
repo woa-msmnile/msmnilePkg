@@ -162,23 +162,23 @@ AddRamPartition(
     return Status;
   }
 
-  Status = ArmSetMemoryAttributes(Base, Length, ArmAttributes);
+  Status = ArmSetMemoryAttributes(Base, Length, ArmAttributes, ArmAttributes);
   if (EFI_ERROR(Status)) {
     DEBUG((EFI_D_ERROR, "ArmSetMemoryAttributes Failed ! %r\n", Status));
     return Status;
   }
 
-  Status = ArmClearMemoryRegionNoExec(Base, Length);
-  if (EFI_ERROR(Status)) {
-    DEBUG((EFI_D_ERROR, "ArmClearMemoryRegionNoExec Failed ! %r\n", Status));
-    return Status;
-  }
-
-  Status = ArmClearMemoryRegionReadOnly(Base, Length);
-  if (EFI_ERROR(Status)) {
-    DEBUG((EFI_D_ERROR, "ArmClearMemoryRegionReadOnly Failed ! %r\n", Status));
-    return Status;
-  }
+//  Status = ArmClearMemoryRegionNoExec(Base, Length);
+//  if (EFI_ERROR(Status)) {
+//    DEBUG((EFI_D_ERROR, "ArmClearMemoryRegionNoExec Failed ! %r\n", Status));
+//    return Status;
+//  }
+//
+//  Status = ArmClearMemoryRegionReadOnly(Base, Length);
+//  if (EFI_ERROR(Status)) {
+//    DEBUG((EFI_D_ERROR, "ArmClearMemoryRegionReadOnly Failed ! %r\n", Status));
+//    return Status;
+//  }
 
   Status = gDS->SetMemorySpaceAttributes(Base, Length, EFI_MEMORY_WB);
   if (EFI_ERROR(Status)) {
