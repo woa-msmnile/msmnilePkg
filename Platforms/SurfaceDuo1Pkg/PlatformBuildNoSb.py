@@ -139,7 +139,7 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
 
         The tuple should be (<workspace relative path to dsc file>, <input dictionary of dsc key value pairs>)
         '''
-        return ("SurfaceDuo1Pkg/SurfaceDuo1.dsc", {})
+        return ("SurfaceDuo1Pkg/SurfaceDuo1NoSb.dsc", {})
 
     def GetName(self):
         return "SurfaceDuo1"
@@ -234,7 +234,7 @@ class PlatformBuilder(UefiBuilder, BuildSettingsManager):
     def SetPlatformEnv(self):
         logging.debug("PlatformBuilder SetPlatformEnv")
         self.env.SetValue("PRODUCT_NAME", "SurfaceDuo1", "Platform Hardcoded")
-        self.env.SetValue("ACTIVE_PLATFORM", "SurfaceDuo1Pkg/SurfaceDuo1.dsc", "Platform Hardcoded")
+        self.env.SetValue("ACTIVE_PLATFORM", "SurfaceDuo1Pkg/SurfaceDuo1NoSb.dsc", "Platform Hardcoded")
         self.env.SetValue("TARGET_ARCH", "AARCH64", "Platform Hardcoded")
         self.env.SetValue("TOOL_CHAIN_TAG", "CLANGDWARF", "set default to clangdwarf")
         self.env.SetValue("EMPTY_DRIVE", "FALSE", "Default to false")

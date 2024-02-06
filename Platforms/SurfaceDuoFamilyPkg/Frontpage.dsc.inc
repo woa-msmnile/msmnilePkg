@@ -268,10 +268,10 @@
 
   DfciPkg/Application/DfciMenu/DfciMenu.inf
 
-  ArmPkg/Drivers/ArmPciCpuIo2Dxe/ArmPciCpuIo2Dxe.inf
-  X86EmulatorPkg/X86Emulator.inf
+  !include CryptoPkg/Driver/Bin/CryptoDriver.inc.dsc
 
-  !include SurfaceDuoFamilyPkg/Crypto/CryptoDriver.inc.dsc
+################################################################
+# UEFI Shell Change Start
 
 #######################################
 #  Shell
@@ -290,3 +290,6 @@
      <PcdsFixedAtBuild>
      gEfiShellPkgTokenSpaceGuid.PcdShellLibAutoInitialize|FALSE
   }
+
+# UEFI Shell Change End
+################################################################

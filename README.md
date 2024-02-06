@@ -40,9 +40,9 @@ Please see https://woa-msmnile.github.io for some tutorials.
   - mono-devel
   - git-core, git
   - build-essential
-  - clang38 (or higher), llvm, ggc-aarch64-linux-gnu
-- Exported CLANG38_BIN environment variable pointing to LLVM 10 binary folder
-- Exported CLANG38_AARCH64_PREFIX variable equalling to aarch64-linux-gnu-
+  - clangdwarf (or higher), llvm, ggc-aarch64-linux-gnu
+- Exported CLANGDWARF_BIN environment variable pointing to LLVM 10 binary folder
+- Exported CLANGDWARF_AARCH64_PREFIX variable equalling to aarch64-linux-gnu-
 
 ### Build Instructions
 

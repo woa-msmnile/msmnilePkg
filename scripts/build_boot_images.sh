@@ -99,7 +99,7 @@ if [ ${HEADERVER} -eq 1 ]; then
       --second_offset 0x0
 fi
 
-if [ ${HEADERVER} -eq 2 ] || [ ${HEADERVER} -eq 3 ]; then
+if [ ${HEADERVER} -eq 2 ]; then
     # Make Payload
     cat  ./tmp/BootShimTmp/BootShim.bin ${FD} ./tmp/padding ${KERNEL} > ./tmp/payload.bin
 
@@ -107,11 +107,28 @@ if [ ${HEADERVER} -eq 2 ] || [ ${HEADERVER} -eq 3 ]; then
     python3 ../ImageResources/mkbootimg.py \
       --kernel ./tmp/payload.bin \
       --ramdisk ${RAMDISK} \
-      -o android-boot.img \
+      -o "android_boot.img" \
       --dtb  ${DT} \
       --pagesize 0x1000 \
       --header_version ${HEADERVER} \
       --cmdline "${cmds}" \
+      --base 0x0 \
+      --os_version 11.0.0 \
+      --os_patch_level 2022-06-01 \
+      --second_offset 0x0
+fi
+
+if [ ${HEADERVER} -eq 3 ]; then
+    # Make Payload
+    cat  ./tmp/BootShimTmp/BootShim.bin ${FD} ./tmp/padding ${KERNEL} > ./tmp/payload.bin
+
+    # Make android boot
+    python3 ../ImageResources/mkbootimg.py \
+      --kernel ./tmp/payload.bin \
+      --ramdisk ${RAMDISK} \
+      -o "android_boot.img" \
+      --pagesize 0x1000 \
+      --header_version ${HEADERVER} \
       --base 0x0 \
       --os_version 11.0.0 \
       --os_patch_level 2022-06-01 \

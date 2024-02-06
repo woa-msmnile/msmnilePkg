@@ -1,23 +1,23 @@
 [submodule "MU_BASECORE"]
 	path = MU_BASECORE
 	url = https://github.com/microsoft/mu_basecore.git
-	branch = release/202302
+	branch = release/202311
 [submodule "Common/MU_TIANO"]
 	path = Common/MU_TIANO
 	url = https://github.com/microsoft/mu_tiano_plus.git
-	branch = release/202302
+	branch = release/202311
 [submodule "Common/MU"]
 	path = Common/MU
 	url = https://github.com/microsoft/mu_plus.git
-	branch = release/202302
+	branch = release/202311
 [submodule "Common/MU_OEM_SAMPLE"]
 	path = Common/MU_OEM_SAMPLE
 	url = https://github.com/microsoft/mu_oem_sample.git
-	branch = release/202302
+	branch = release/202311
 [submodule "Silicon/Arm/MU_TIANO"]
 	path = Silicon/Arm/MU_TIANO
 	url = https://github.com/microsoft/mu_silicon_arm_tiano.git
-	branch = release/202302
+	branch = release/202311
 [submodule "Platforms/SurfaceDuoBinaries"]
 	path = Binaries
 	url = https://github.com/woa-msmnile/SurfaceDuoBinaries-fork
@@ -30,6 +30,6 @@
 [submodule "Features/CONFIG"]
 	path = Features/CONFIG
 	url = https://github.com/microsoft/mu_feature_config.git
-[submodule "Platforms/X86EmulatorPkg"]
-	path = Platforms/X86EmulatorPkg
-	url = https://github.com/ardbiesheuvel/X86EmulatorPkg.git
+[submodule "Platforms/OpensslPkg/Library/OpensslLib/openssl"]
+	path = Platforms/OpensslPkg/Library/OpensslLib/openssl
+	url = https://github.com/openssl/openssl.git

@@ -163,16 +163,4 @@ APRIORI DXE {
     INF MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
     INF MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
     INF MdeModulePkg/Universal/Console/TerminalDxe/TerminalDxe.inf
-#    FILE DRIVER = C9C6BB00-44FC-4C87-8AF9-F93218E17C10  {
-#        SECTION DXE_DEPEX = SurfaceDuo1Pkg/UsbcSetDrpDxe.depex.bin
-#        SECTION PE32 = SurfaceDuo1Pkg/UsbcSetDrpDxe.efi
-#        SECTION UI = "UsbcSetDrpDxe"
-#    }
-    INF ArmPkg/Drivers/ArmPciCpuIo2Dxe/ArmPciCpuIo2Dxe.inf
-    INF X86EmulatorPkg/X86Emulator.inf
-
-    FILE DRIVER = 2BE7CFE5-4DFC-4F21-992A-CA1B71B2EF14 {
-            SECTION PE32 = SurfaceDuoFamilyPkg/HyperSpace/HyperSpace.efi
-            SECTION UI = "HyperSpace"
-    }
 }

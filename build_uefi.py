@@ -65,9 +65,9 @@ def build_bootshim(this_target):
 
 def prepare_build(package_name):
     stuart_setup_cmd = "python3 " + os.path.join("Platforms", package_name,
-                                                         "PlatformBuild.py") + " --setup TOOL_CHAIN_TAG=CLANG38"
+                                                         "PlatformBuild.py") + " --setup -t RELEASE"
     stuart_update_cmd = "python3 " + os.path.join("Platforms", package_name,
-                                                          "PlatformBuild.py") + " --update TOOL_CHAIN_TAG=CLANG38"
+                                                          "PlatformBuild.py") + " --update -t RELEASE"
     os.system(stuart_setup_cmd)
     os.system(stuart_update_cmd)
 
@@ -180,8 +180,8 @@ def build_single_device(this_target):
     build_bootshim(this_target)
     update_device_configuration_map(this_target)
     prepare_build(this_target.package)
-    os.environ['CLANG38_BIN'] = '/usr/lib/llvm-14/bin/'
-    os.environ['CLANG38_AARCH64_PREFIX']='aarch64-linux-gnu-'
+    os.environ['CLANGDWARF_BIN'] = '/usr/lib/llvm-38/bin/'
+    os.environ['CLANGDWARF_AARCH64_PREFIX']='aarch64-linux-gnu-'
 
     # Start Actual Build
     os.system("python3 " + os.path.join("Platforms", this_target.package, "PlatformBuild.py")

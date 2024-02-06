@@ -1,12 +1,11 @@
-## @file
 #
 #  Copyright (c) 2011-2015, ARM Limited. All rights reserved.
 #  Copyright (c) 2014-2016, Linaro Limited. All rights reserved.
-#  Copyright (c) 2015 - 2016, Intel Corporation. All rights reserved.
+#  Copyright (c) 2015 - 2017, Intel Corporation. All rights reserved.
+#  Copyright (c) Microsoft Corporation.
 #
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
 #
-##
 
 ################################################################################
 #
@@ -125,4 +124,41 @@
     RAW       ACPI                    |.acpi
     RAW       ASL                     |.aml
     UI        STRING="$(MODULE_NAME)" Optional
+  }
+
+[Rule.Common.MM_CORE_STANDALONE]
+  FILE SEC = $(NAMED_GUID) RELOCS_STRIPPED FIXED {
+    PE32  PE32 Align = Auto             $(INF_OUTPUT)/$(MODULE_NAME).efi
+  }
+
+[Rule.Common.PEIM.BINARY]
+  FILE PEIM = $(NAMED_GUID) {
+    PEI_DEPEX PEI_DEPEX Optional      |.depex
+    PE32      PE32     Align = Auto   |.efi
+    UI        STRING="$(MODULE_NAME)" Optional
+    VERSION   STRING="$(INF_VERSION)" Optional BUILD_NUM=$(BUILD_NUMBER)
+  }
+
+[Rule.Common.DXE_DRIVER.BINARY]
+  FILE DRIVER = $(NAMED_GUID) {
+    DXE_DEPEX DXE_DEPEX Optional      |.depex
+    PE32      PE32                    |.efi
+    UI        STRING="$(MODULE_NAME)" Optional
+    VERSION   STRING="$(INF_VERSION)" Optional BUILD_NUM=$(BUILD_NUMBER)
+  }
+
+[Rule.Common.MM_STANDALONE]
+  FILE MM_STANDALONE = $(NAMED_GUID) {
+    SMM_DEPEX SMM_DEPEX Optional       $(INF_OUTPUT)/$(MODULE_NAME).depex
+    PE32      PE32                     $(INF_OUTPUT)/$(MODULE_NAME).efi
+    UI        STRING="$(MODULE_NAME)" Optional
+    VERSION   STRING="$(INF_VERSION)" Optional BUILD_NUM=$(BUILD_NUMBER)
+  }
+
+[Rule.Common.MM_STANDALONE.BINARY]
+ FILE MM_STANDALONE = $(NAMED_GUID) {
+   SMM_DEPEX SMM_DEPEX Optional      |.depex
+   PE32      PE32                    |.efi
+   UI        STRING="$(MODULE_NAME)" Optional
+   VERSION   STRING="$(INF_VERSION)" Optional BUILD_NUM=$(BUILD_NUMBER)
   }
