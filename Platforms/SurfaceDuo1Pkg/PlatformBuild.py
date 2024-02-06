@@ -1,5 +1,5 @@
 # @file
-# Script to Build Surface Duo 1 UEFI firmware
+# Script to Build UEFI firmware
 #
 # Copyright (c) Microsoft Corporation.
 # SPDX-License-Identifier: BSD-2-Clause-Patent
@@ -12,6 +12,9 @@ from io import StringIO
 from pathlib import Path
 
 ## woa-msmnile patch start
+SiliconName = "Sm8150"
+PlatformName = "SurfaceDuo1"
+PackageName = PlatformName+"Pkg"
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), 'PythonLibs'))
 import PostBuild
@@ -34,10 +37,12 @@ class CommonPlatform():
     ''' Common settings for this platform.  Define static data here and use
         for the different parts of stuart
     '''
-    PackagesSupported = ("SurfaceDuo1Pkg",)
+## woa-msmnile patch start
+    PackagesSupported = (PackageName,)
+## woa-msmnile patch end
     ArchSupported = ("AARCH64",)
     TargetsSupported = ("DEBUG", "RELEASE", "NOOPT")
-    Scopes = ('SurfaceDuo1', 'gcc_aarch64_linux', 'edk2-build', 'cibuild', 'configdata')
+    Scopes = (PlatformName, 'gcc_aarch64_linux', 'edk2-build', 'cibuild', 'configdata')
     WorkspaceRoot = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     PackagesPath = (
         "Platforms",
@@ -49,7 +54,9 @@ class CommonPlatform():
         "Features/DFCI",
         "Features/CONFIG",
         "Binaries",
-        "Silicon/QC/Sm8150"
+## woa-msmnile patch start
+        "Silicon/QC/"+SiliconName
+## woa-msmnile patch end
     )
 
 
@@ -139,10 +146,12 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
 
         The tuple should be (<workspace relative path to dsc file>, <input dictionary of dsc key value pairs>)
         '''
-        return ("SurfaceDuo1Pkg/SurfaceDuo1.dsc", {})
+## woa-msmnile patch start
+        return (PackageName+"/"+PlatfromName+".dsc", {})
 
     def GetName(self):
-        return "SurfaceDuo1"
+        return PackageName
+## woa-msmnile patch end
 
     def GetPackagesPath(self):
         ''' Return a list of paths that should be mapped as edk2 PackagesPath '''
@@ -210,7 +219,9 @@ class PlatformBuilder(UefiBuilder, BuildSettingsManager):
     def GetName(self):
         ''' Get the name of the repo, platform, or product being build '''
         ''' Used for naming the log file, among others '''
-        return "SurfaceDuo1Pkg"
+## woa-msmnile patch start
+        return PackageName
+## woa-msmnile patch end
 
     def GetLoggingLevel(self, loggerType):
         """Get the logging level depending on logger type.
@@ -233,8 +244,10 @@ class PlatformBuilder(UefiBuilder, BuildSettingsManager):
 
     def SetPlatformEnv(self):
         logging.debug("PlatformBuilder SetPlatformEnv")
-        self.env.SetValue("PRODUCT_NAME", "SurfaceDuo1", "Platform Hardcoded")
-        self.env.SetValue("ACTIVE_PLATFORM", "SurfaceDuo1Pkg/SurfaceDuo1.dsc", "Platform Hardcoded")
+## woa-msmnile patch start
+        self.env.SetValue("PRODUCT_NAME", PlatformName, "Platform Hardcoded")
+        self.env.SetValue("ACTIVE_PLATFORM", PackageName+"/"+PlatformName+".dsc", "Platform Hardcoded")
+## woa-msmnile patch end
         self.env.SetValue("TARGET_ARCH", "AARCH64", "Platform Hardcoded")
         self.env.SetValue("TOOL_CHAIN_TAG", "CLANGDWARF", "set default to clangdwarf")
         self.env.SetValue("EMPTY_DRIVE", "FALSE", "Default to false")
@@ -254,6 +267,7 @@ class PlatformBuilder(UefiBuilder, BuildSettingsManager):
 ## woa-msmnile patch start
         # Ship Device Name
         self.env.SetValue("BLD_*_TARGET_DEVICE", self.env.GetValue("TARGET_DEVICE"), "Default")
+        self.env.SetValue("BLD_*_SEC_BOOT", self.env.GetValue("SEC_BOOT"), "Default")
         # Ship DTB Name
         self.env.SetValue("BLD_*_FDT", self.GetDTBName(), "Default")
 ## woa-msmnile patch end

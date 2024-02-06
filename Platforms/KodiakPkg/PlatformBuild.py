@@ -1,30 +1,33 @@
 # @file
-# Script to Build Kodiak UEFI firmware
+# Script to Build UEFI firmware
 #
 # Copyright (c) Microsoft Corporation.
 # SPDX-License-Identifier: BSD-2-Clause-Patent
 ##
-import os
-import logging
-import io
-import shutil
-import glob
-import time
-import xml.etree.ElementTree
-import tempfile
-import uuid
-import string
 import datetime
+import logging
+import os
+import uuid
+from io import StringIO
+from pathlib import Path
+
+## woa-msmnile patch start
+SiliconName = "Sm7325"
+PlatformName = "Kodiak"
+PackageName = PlatformName+"Pkg"
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), 'PythonLibs'))
 import PostBuild
+## woa-msmnile patch end
 
 from edk2toolext.environment import shell_environment
 from edk2toolext.environment.uefi_build import UefiBuilder
 from edk2toolext.invocables.edk2_platform_build import BuildSettingsManager
-from edk2toolext.invocables.edk2_setup import SetupSettingsManager, RequiredSubmodule
-from edk2toolext.invocables.edk2_update import UpdateSettingsManager
 from edk2toolext.invocables.edk2_pr_eval import PrEvalSettingsManager
+from edk2toolext.invocables.edk2_setup import (RequiredSubmodule,
+                                               SetupSettingsManager)
+from edk2toolext.invocables.edk2_update import UpdateSettingsManager
+from edk2toolext.invocables.edk2_parse import ParseSettingsManager
 from edk2toollib.utility_functions import RunCmd
 
     # ####################################################################################### #
@@ -34,10 +37,12 @@ class CommonPlatform():
     ''' Common settings for this platform.  Define static data here and use
         for the different parts of stuart
     '''
-    PackagesSupported = ("KodiakPkg",)
+## woa-msmnile patch start
+    PackagesSupported = (PackageName,)
+## woa-msmnile patch end
     ArchSupported = ("AARCH64",)
     TargetsSupported = ("DEBUG", "RELEASE", "NOOPT")
-    Scopes = ('Kodiak', 'gcc_aarch64_linux', 'edk2-build', 'cibuild', 'configdata')
+    Scopes = (PlatformName, 'gcc_aarch64_linux', 'edk2-build', 'cibuild', 'configdata')
     WorkspaceRoot = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     PackagesPath = (
         "Platforms",
@@ -49,14 +54,16 @@ class CommonPlatform():
         "Features/DFCI",
         "Features/CONFIG",
         "Binaries",
-        "Silicon/QC/Sm7325"
+## woa-msmnile patch start
+        "Silicon/QC/"+SiliconName
+## woa-msmnile patch end
     )
 
 
     # ####################################################################################### #
     #                         Configuration for Update & Setup                                #
     # ####################################################################################### #
-class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSettingsManager):
+class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSettingsManager, ParseSettingsManager):
 
     def GetPackagesSupported(self):
         ''' return iterable of edk2 packages supported by this build.
@@ -73,21 +80,21 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
 
     def GetRequiredSubmodules(self):
         """Return iterable containing RequiredSubmodule objects.
-        
+
         !!! note
             If no RequiredSubmodules return an empty iterable
         """
         return [
-            RequiredSubmodule("MU_BASECORE", True),
-            RequiredSubmodule("Common/MU", True),
-            RequiredSubmodule("Common/MU_TIANO", True),
-            RequiredSubmodule("Common/MU_OEM_SAMPLE", True),
-            RequiredSubmodule("Silicon/Arm/MU_TIANO", True),
-            RequiredSubmodule("Features/DFCI", True),
-            RequiredSubmodule("Features/CONFIG", True),
             RequiredSubmodule("Binaries", True),
+            RequiredSubmodule("Common/MU_OEM_SAMPLE", True),
+            RequiredSubmodule("Common/MU_TIANO", True),
+            RequiredSubmodule("Common/MU", True),
+            RequiredSubmodule("Features/CONFIG", True),
+            RequiredSubmodule("Features/DFCI", True),
+            RequiredSubmodule("MU_BASECORE", True),
+            RequiredSubmodule("Platforms/OpensslPkg/Library/OpensslLib/openssl", True),
             RequiredSubmodule("Platforms/SurfaceDuoACPI", True),
-            RequiredSubmodule("Platforms/X86EmulatorPkg", True),
+            RequiredSubmodule("Silicon/Arm/MU_TIANO", True),
         ]
 
     def SetArchitectures(self, list_of_requested_architectures):
@@ -139,10 +146,12 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
 
         The tuple should be (<workspace relative path to dsc file>, <input dictionary of dsc key value pairs>)
         '''
-        return ("KodiakPkg/Kodiak.dsc", {})
+## woa-msmnile patch start
+        return (PackageName+"/"+PlatfromName+".dsc", {})
 
     def GetName(self):
-        return "Kodiak"
+        return PackageName
+## woa-msmnile patch end
 
     def GetPackagesPath(self):
         ''' Return a list of paths that should be mapped as edk2 PackagesPath '''
@@ -151,7 +160,7 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
     # ####################################################################################### #
     #                         Actual Configuration for Platform Build                         #
     # ####################################################################################### #
-class PlatformBuilder( UefiBuilder, BuildSettingsManager):
+class PlatformBuilder(UefiBuilder, BuildSettingsManager):
     def __init__(self):
         UefiBuilder.__init__(self)
 
@@ -170,13 +179,6 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
         if args.build_arch.upper() != "AARCH64":
             raise Exception("Invalid Arch Specified.  Please see comments in PlatformBuild.py::PlatformBuilder::AddCommandLineOptions")
 
-        shell_environment.GetBuildVars().SetValue(
-            "TARGET_ARCH", args.build_arch.upper(), "From CmdLine")
-
-        shell_environment.GetBuildVars().SetValue(
-            "ACTIVE_PLATFORM", "KodiakPkg/Kodiak.dsc", "From CmdLine")
-
-
     def GetWorkspaceRoot(self):
         ''' get WorkspacePath '''
         return CommonPlatform.WorkspaceRoot
@@ -194,6 +196,7 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
         ''' return tuple containing scopes that should be active for this process '''
         return CommonPlatform.Scopes
 
+## woa-msmnile patch start
     def GetOutputDirectory(self):
         ''' Return the output directory for this platform '''
         return self.env.GetValue("OUTPUT_DIRECTORY")
@@ -211,59 +214,73 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
         linenum = target_device.find('-') + 1
         dtbname = target_device[(linenum):] + '.dtb'
         return dtbname
+## woa-msmnile patch end
 
     def GetName(self):
         ''' Get the name of the repo, platform, or product being build '''
         ''' Used for naming the log file, among others '''
-        return "KodiakPkg"
+## woa-msmnile patch start
+        return PackageName
+## woa-msmnile patch end
 
     def GetLoggingLevel(self, loggerType):
-        ''' Get the logging level for a given type
-        base == lowest logging level supported
-        con  == Screen logging
-        txt  == plain text file logging
-        md   == markdown file logging
-        '''
-        return logging.DEBUG
+        """Get the logging level depending on logger type.
+
+        Args:
+            loggerType (str): type of logger being logged to
+
+        Returns:
+            (Logging.Level): The logging level
+
+        !!! note "loggerType possible values"
+            "base": lowest logging level supported
+
+            "con": logs to screen
+
+            "txt": logs to plain text file
+        """
+        return logging.INFO
         return super().GetLoggingLevel(loggerType)
 
     def SetPlatformEnv(self):
         logging.debug("PlatformBuilder SetPlatformEnv")
-        self.env.SetValue("PRODUCT_NAME", "Kodiak", "Platform Hardcoded")
-        self.env.SetValue("ACTIVE_PLATFORM", "KodiakPkg/Kodiak.dsc", "Platform Hardcoded")
+## woa-msmnile patch start
+        self.env.SetValue("PRODUCT_NAME", PlatformName, "Platform Hardcoded")
+        self.env.SetValue("ACTIVE_PLATFORM", PackageName+"/"+PlatformName+".dsc", "Platform Hardcoded")
+## woa-msmnile patch end
         self.env.SetValue("TARGET_ARCH", "AARCH64", "Platform Hardcoded")
-        self.env.SetValue("TOOL_CHAIN_TAG", "CLANG38", "set default to clang38")
-        # self.env.SetValue("EMPTY_DRIVE", "FALSE", "Default to false")
-        # self.env.SetValue("RUN_TESTS", "FALSE", "Default to false")
-        # self.env.SetValue("SHUTDOWN_AFTER_RUN", "FALSE", "Default to false")
+        self.env.SetValue("TOOL_CHAIN_TAG", "CLANGDWARF", "set default to clangdwarf")
+        self.env.SetValue("EMPTY_DRIVE", "FALSE", "Default to false")
+        self.env.SetValue("RUN_TESTS", "FALSE", "Default to false")
+        self.env.SetValue("SHUTDOWN_AFTER_RUN", "FALSE", "Default to false")
         # needed to make FV size build report happy
-        # self.env.SetValue("BLD_*_BUILDID_STRING", "Unknown", "Default")
-        # # Default turn on build reporting.
+        self.env.SetValue("BLD_*_BUILDID_STRING", "Unknown", "Default")
+        # Default turn on build reporting.
         self.env.SetValue("BUILDREPORTING", "TRUE", "Enabling build report")
         self.env.SetValue("BUILDREPORT_TYPES", "PCD DEPEX FLASH BUILD_FLAGS LIBRARY FIXED_ADDRESS HASH", "Setting build report types")
+        self.env.SetValue("BLD_*_MEMORY_PROTECTION", "TRUE", "Default")
         # Include the MFCI test cert by default, override on the commandline with "BLD_*_SHIP_MODE=TRUE" if you want the retail MFCI cert
         self.env.SetValue("BLD_*_SHIP_MODE", "FALSE", "Default")
-
-        self.env.SetValue("CONF_AUTOGEN_INCLUDE_PATH", self.mws.join(self.ws, "Platforms", "SurfaceDuoFamilyPkg", "Include"), "Platform Hardcoded")
-        self.env.SetValue("MU_SCHEMA_DIR", self.mws.join(self.ws, "Platforms", "SurfaceDuoFamilyPkg", "CfgData"), "Platform Defined")
+        self.env.SetValue("CONF_AUTOGEN_INCLUDE_PATH", self.edk2path.GetAbsolutePathOnThisSystemFromEdk2RelativePath("Platforms", "SurfaceDuoFamilyPkg", "Include"), "Platform Defined")
+        self.env.SetValue("MU_SCHEMA_DIR", self.edk2path.GetAbsolutePathOnThisSystemFromEdk2RelativePath("Platforms", "SurfaceDuoFamilyPkg", "CfgData"), "Platform Defined")
         self.env.SetValue("MU_SCHEMA_FILE_NAME", "SurfaceDuoFamilyPkgCfgData.xml", "Platform Hardcoded")
-
-        self.env.SetValue("YAML_POLICY_FILE", self.mws.join(self.ws, "SurfaceDuoFamilyPkg", "PolicyData", "PolicyDataUsb.yaml"), "Platform Hardcoded")
-        self.env.SetValue("POLICY_DATA_STRUCT_FOLDER", self.mws.join(self.ws, "SurfaceDuoFamilyPkg", "Include"), "Platform Defined")
-        self.env.SetValue('POLICY_REPORT_FOLDER', self.mws.join(self.ws, "SurfaceDuoFamilyPkg", "PolicyData"), "Platform Defined")
-
+## woa-msmnile patch start
         # Ship Device Name
         self.env.SetValue("BLD_*_TARGET_DEVICE", self.env.GetValue("TARGET_DEVICE"), "Default")
+        self.env.SetValue("BLD_*_SEC_BOOT", self.env.GetValue("SEC_BOOT"), "Default")
         # Ship DTB Name
         self.env.SetValue("BLD_*_FDT", self.GetDTBName(), "Default")
+## woa-msmnile patch end
         return 0
 
     def PlatformPreBuild(self):
         return 0
 
     def PlatformPostBuild(self):
+## woa-msmnile patch start
         logging.info("Building Android Boot Image.")
         PostBuild.makeAndroidImage(self.GetOutputBinDirectory(), self.GetOutputDirectory(), self.GetWorkspaceRoot(), self.env.GetValue("TARGET_DEVICE"), self.GetDTBName())
+## woa-msmnile patch end
         return 0
 
     def FlashRomImage(self):
@@ -272,9 +289,10 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
 if __name__ == "__main__":
     import argparse
     import sys
-    from edk2toolext.invocables.edk2_update import Edk2Update
-    from edk2toolext.invocables.edk2_setup import Edk2PlatformSetup
+
     from edk2toolext.invocables.edk2_platform_build import Edk2PlatformBuild
+    from edk2toolext.invocables.edk2_setup import Edk2PlatformSetup
+    from edk2toolext.invocables.edk2_update import Edk2Update
     print("Invoking Stuart")
     print("     ) _     _")
     print("    ( (^)-~-(^)")

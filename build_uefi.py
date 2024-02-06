@@ -40,6 +40,9 @@ class Target:
         if self.bootshim_uefi_size is None:
             self.bootshim_uefi_size = target_b.bootshim_uefi_size
 
+        if self.secureboot is None:
+            self.secureboot = 0;
+
     def print_content(self):
         print("Target Info: ")
         print("device", self.device)
@@ -179,12 +182,9 @@ def build_single_device(this_target):
 #    os.environ['CLANGDWARF_AARCH64_PREFIX']='aarch64-linux-gnu-'
 
     # Start Actual Build
-    if this_target.secureboot:
-        os.system("python3 " + os.path.join("Platforms", this_target.package, "PlatformBuild.py")
-                  + " TARGET=RELEASE TARGET_DEVICE=" + this_target.device)
-    else:
-        os.system("python3 " + os.path.join("Platforms", this_target.package, "PlatformBuildNoSb.py")
-                  + " TARGET=RELEASE TARGET_DEVICE=" + this_target.device)
+    os.system("python3 " + os.path.join("Platforms", this_target.package, "PlatformBuild.py")
+              + " TARGET=RELEASE TARGET_DEVICE=" + this_target.device + " SEC_BOOT=" + str(this_target.secureboot))
+
 
 # Build uefi for all devices in one silicon.
 def build_all_devices(this_target):
@@ -281,7 +281,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Build Uefi for target device.')
     parser.add_argument('-d', type=str, default=None, help="target device")
     parser.add_argument('-s', type=str, default=None, help="target silicon")
-    parser.add_argument('-e', type=bool, default=None, help="secureboot status")
+    parser.add_argument('-e', type=int, default=None, help="secureboot status")
     args = parser.parse_args()
 
     # Initial target object

@@ -30,7 +30,14 @@
   FLASH_DEFINITION               = SurfaceDuo1Pkg/SurfaceDuo1.fdf
 
   # Notice: TRUE == 1, FALSE == 0
+!if SEC_BOOT == 1
   SECURE_BOOT_ENABLE             = TRUE
+  DEFAULT_KEYS                   = TRUE
+!else
+  SECURE_BOOT_ENABLE             = FALSE
+  DEFAULT_KEYS                   = FALSE
+!endif
+
   USE_PHYSICAL_TIMER             = 1
   USE_SCREEN_FOR_SERIAL_OUTPUT   = 0
   USE_UART_FOR_SERIAL_OUTPUT     = 0
@@ -38,7 +45,6 @@
   SEND_HEARTBEAT_TO_SERIAL       = 0
   USE_SIMPLEFBDXE                = 1
 
-  DEFAULT_KEYS                   = TRUE
   PK_DEFAULT_FILE                = SurfaceDuoFamilyPkg/Include/Resources/pk.bin.p7
   KEK_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/kek.bin.p7
   DB_DEFAULT_FILE1               = SurfaceDuoFamilyPkg/Include/Resources/db.bin.p7

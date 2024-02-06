@@ -30,20 +30,35 @@
   FLASH_DEFINITION               = AtollPkg/Atoll.fdf
 
   # Notice: TRUE == 1, FALSE == 0
-  SECURE_BOOT_ENABLE             = 1
+!if SEC_BOOT == 1
+  SECURE_BOOT_ENABLE             = TRUE
+  DEFAULT_KEYS                   = TRUE
+!else
+  SECURE_BOOT_ENABLE             = FALSE
+  DEFAULT_KEYS                   = FALSE
+!endif
+
   USE_PHYSICAL_TIMER             = 1
-  USE_SCREEN_FOR_SERIAL_OUTPUT   = 1
+  USE_SCREEN_FOR_SERIAL_OUTPUT   = 0
   USE_UART_FOR_SERIAL_OUTPUT     = 0
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
   SEND_HEARTBEAT_TO_SERIAL       = 0
   USE_SIMPLEFBDXE                = 1
-  DEFAULT_KEYS                   = TRUE
+
   PK_DEFAULT_FILE                = SurfaceDuoFamilyPkg/Include/Resources/pk.bin.p7
   KEK_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/kek.bin.p7
   DB_DEFAULT_FILE1               = SurfaceDuoFamilyPkg/Include/Resources/db.bin.p7
   DBX_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/dbx.bin
-  DXE_CRYPTO_SERVICES            = STANDARD
-  DXE_CRYPTO_ARCH                = AARCH64
+
+  DXE_CRYPTO_SERVICES           = STANDARD
+  DXE_CRYPTO_ARCH               = AARCH64
+  PEI_CRYPTO_SERVICES           = NONE
+  STANDALONEMM_CRYPTO_SERVICES  = NONE
+  SMM_CRYPTO_SERVICES           = NONE
+  DXE_CRYPTO_ARCH               = AARCH64
+  PEI_CRYPTO_ARCH               = AARCH64
+  SMM_CRYPTO_ARCH               = AARCH64
+
 
 !include AtollPkg/Device/$(TARGET_DEVICE)/Defines.dsc.inc
 
