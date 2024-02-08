@@ -165,11 +165,4 @@ APRIORI DXE {
     INF Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/AdapterInformationDxe/AdapterInformationDxe.inf
     INF MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
     INF Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/PciHostBridgeDxe/PciHostBridgeDxe.inf
-    INF ArmPkg/Drivers/ArmPciCpuIo2Dxe/ArmPciCpuIo2Dxe.inf
-    INF X86EmulatorPkg/X86Emulator.inf
-
-    FILE DRIVER = 2BE7CFE5-4DFC-4F21-992A-CA1B71B2EF14 {
-            SECTION PE32 = SurfaceDuoFamilyPkg/HyperSpace/HyperSpace.efi
-            SECTION UI = "HyperSpace"
-    }
 }

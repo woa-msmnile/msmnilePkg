@@ -5,7 +5,7 @@ import sys
 import mkbootimg
 
 # This Function Generate Boot Header Version 3 Android Boot Image.
-def makeAndroidImage(outputbin_dir, output_dir, root_dir, device_name) :
+def makeAndroidImage(outputbin_dir, output_dir, root_dir, device_name, dtb_name) :
     bootpayload_path = os.path.join(output_dir, 'bootpayload.bin')
     output_path = os.path.join(output_dir, device_name + '.img')
     fd_path = os.path.join(outputbin_dir, 'FV', 'SM8550_EFI.fd')

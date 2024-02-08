@@ -47,13 +47,13 @@
   DBX_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/dbx.bin
 
   DXE_CRYPTO_SERVICES           = STANDARD
-  DXE_CRYPTO_ARCH               = AARCH64
   PEI_CRYPTO_SERVICES           = NONE
   STANDALONEMM_CRYPTO_SERVICES  = NONE
   SMM_CRYPTO_SERVICES           = NONE
   DXE_CRYPTO_ARCH               = AARCH64
   PEI_CRYPTO_ARCH               = AARCH64
   SMM_CRYPTO_ARCH               = AARCH64
+  STANDALONEMM_CRYPTO_ARCH      = AARCH64
 
 !include $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Defines.dsc.inc
 
