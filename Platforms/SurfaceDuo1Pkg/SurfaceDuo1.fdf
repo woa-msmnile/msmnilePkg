@@ -195,8 +195,8 @@ READ_LOCK_STATUS   = TRUE
   # INF NetworkPkg/UefiPxeBcDxe/UefiPxeBcDxe.inf
   # INF NetworkPkg/VlanConfigDxe/VlanConfigDxe.inf
   # INF SurfaceDuoFamilyPkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
-#  INF SurfaceDuoFamilyPkg/Driver/SurfaceFirmwareProvisioningDataDxe/SurfaceFirmwareProvisioningDataDxe.inf
-#  INF SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
+  # INF SurfaceDuoFamilyPkg/Driver/SurfaceFirmwareProvisioningDataDxe/SurfaceFirmwareProvisioningDataDxe.inf
+  # INF SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
 
 [FV.FVMAIN_COMPACT]
 FvAlignment        = 8
