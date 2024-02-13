@@ -199,6 +199,9 @@
 
   PcBdsPkg/MsBootPolicy/MsBootPolicy.inf
 
+  # Apply Variable Policy to Load Option UEFI Variables
+  MsCorePkg/LoadOptionVariablePolicyDxe/LoadOptionVariablePolicyDxe.inf
+
   MdeModulePkg/Universal/BootManagerPolicyDxe/BootManagerPolicyDxe.inf
   #
   # Library to support Remote/IT/Admin Settings such as DFCI
@@ -208,18 +211,19 @@
   # Main component of DFCI. Manages and enforces all DFCI settings.
   #
   DfciPkg/SettingsManager/SettingsManagerDxe.inf {
-        #Platform should add all it settings libs here
-  <LibraryClasses>
-        NULL|ZeroTouchPkg/Library/ZeroTouchSettings/ZeroTouchSettings.inf
-        NULL|DfciPkg/Library/DfciPasswordProvider/DfciPasswordProvider.inf
-        NULL|DfciPkg/Library/DfciSettingsLib/DfciSettingsLib.inf
-        NULL|DfciPkg/Library/DfciVirtualizationSettings/DfciVirtualizationSettings.inf
-        NULL|DfciPkg/Library/DfciWpbtSettingLib/DfciWpbtSetting.inf
-        NULL|DfciPkg/Library/DfciAssetTagSettingLib/DfciAssetTagSetting.inf
-        DfciSettingPermissionLib|DfciPkg/Library/DfciSettingPermissionLib/DfciSettingPermissionLib.inf
-        NULL|OemPkg/Library/MsBootManagerSettingsDxeLib/MsBootManagerSettingsDxeLib.inf
-  <PcdsFeatureFlag>
-     gDfciPkgTokenSpaceGuid.PcdSettingsManagerInstallProvider|TRUE
+    #Platform should add all it settings libs here
+    <LibraryClasses>
+      NULL|ZeroTouchPkg/Library/ZeroTouchSettings/ZeroTouchSettings.inf
+      NULL|DfciPkg/Library/DfciSettingsLib/DfciSettingsLib.inf
+      NULL|DfciPkg/Library/DfciPasswordProvider/DfciPasswordProvider.inf
+      NULL|DfciPkg/Library/DfciVirtualizationSettings/DfciVirtualizationSettings.inf
+      NULL|DfciPkg/Library/DfciWpbtSettingLib/DfciWpbtSetting.inf
+      NULL|DfciPkg/Library/DfciAssetTagSettingLib/DfciAssetTagSetting.inf
+      DfciSettingPermissionLib|DfciPkg/Library/DfciSettingPermissionLib/DfciSettingPermissionLib.inf
+      NULL|OemPkg/Library/MsBootManagerSettingsDxeLib/MsBootManagerSettingsDxeLib.inf
+      NULL|OemPkg/Library/MsSecureBootModeSettingLib/MsSecureBootModeSettingLib.inf
+    <PcdsFeatureFlag>
+      gDfciPkgTokenSpaceGuid.PcdSettingsManagerInstallProvider|TRUE
   }
   MsCorePkg/MuCryptoDxe/MuCryptoDxe.inf
   #

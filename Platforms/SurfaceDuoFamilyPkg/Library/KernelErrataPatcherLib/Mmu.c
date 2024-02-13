@@ -85,7 +85,20 @@ EFI_STATUS
 EFIAPI
 InitMemoryAttributeProtocol()
 {
-  return gBS->LocateProtocol(
+  EFI_STATUS Status = EFI_SUCCESS;
+
+  Status = gBS->LocateProtocol(
       &gEfiMemoryAttributeProtocolGuid, NULL,
       (VOID **)&mMemoryAttributeProtocol);
+
+  if (EFI_ERROR(Status)) {
+    FirmwarePrint(
+        "InitMemoryAttributeProtocol: Could not find memory attribute "
+        "protocol, not initializing unprotect/protect functionality for "
+        "winload. %r\n",
+        Status);
+    Status = EFI_SUCCESS;
+  }
+
+  return Status;
 }

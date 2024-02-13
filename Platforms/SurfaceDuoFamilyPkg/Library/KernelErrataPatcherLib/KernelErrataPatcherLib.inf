@@ -50,6 +50,3 @@
 [Guids]
   gEfiEventExitBootServicesGuid       ## CONSUMES
   gEfiEventReadyToBootGuid
-
-[Depex]
-  gEfiMemoryAttributeProtocolGuid

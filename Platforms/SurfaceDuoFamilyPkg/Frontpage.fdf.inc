@@ -1,30 +1,30 @@
 # Continuation of [FV.FvMain]
-  INF MsGraphicsPkg/GopOverrideDxe/GopOverrideDxe.inf
-  INF MsCorePkg/MuCryptoDxe/MuCryptoDxe.inf
+  INF DfciPkg/Application/DfciMenu/DfciMenu.inf
+  INF DfciPkg/DfciManager/DfciManager.inf
   INF DfciPkg/IdentityAndAuthManager/IdentityAndAuthManagerDxe.inf
   INF DfciPkg/SettingsManager/SettingsManagerDxe.inf
-  INF MsGraphicsPkg/MsUiTheme/Dxe/MsUiThemeProtocol.inf
-  INF MsGraphicsPkg/RenderingEngineDxe/RenderingEngineDxe.inf
-  INF MsGraphicsPkg/DisplayEngineDxe/DisplayEngineDxe.inf
-  INF OemPkg/BootMenu/BootMenu.inf
-  INF SurfaceDuoFamilyPkg/FrontPage/FrontPage.inf
-  INF PcBdsPkg/MsBootPolicy/MsBootPolicy.inf
   INF MdeModulePkg/Universal/BootManagerPolicyDxe/BootManagerPolicyDxe.inf
   INF MdeModulePkg/Universal/RegularExpressionDxe/RegularExpressionDxe.inf
-  INF DfciPkg/DfciManager/DfciManager.inf
-  INF MsGraphicsPkg/OnScreenKeyboardDxe/OnScreenKeyboardDxe.inf
-  INF MsGraphicsPkg/SimpleWindowManagerDxe/SimpleWindowManagerDxe.inf
+  INF MsCorePkg/AcpiRGRT/AcpiRgrt.inf
+  INF MsCorePkg/LoadOptionVariablePolicyDxe/LoadOptionVariablePolicyDxe.inf
+  INF MsCorePkg/MuCryptoDxe/MuCryptoDxe.inf
+  INF MsCorePkg/MuVarPolicyFoundationDxe/MuVarPolicyFoundationDxe.inf
+  INF MsGraphicsPkg/DisplayEngineDxe/DisplayEngineDxe.inf
+  INF MsGraphicsPkg/GopOverrideDxe/GopOverrideDxe.inf
   INF MsGraphicsPkg/MsEarlyGraphics/Dxe/MsEarlyGraphics.inf
-
+  INF MsGraphicsPkg/MsUiTheme/Dxe/MsUiThemeProtocol.inf
+  INF MsGraphicsPkg/OnScreenKeyboardDxe/OnScreenKeyboardDxe.inf
+  INF MsGraphicsPkg/RenderingEngineDxe/RenderingEngineDxe.inf
+  INF MsGraphicsPkg/SimpleWindowManagerDxe/SimpleWindowManagerDxe.inf
   INF MsWheaPkg/HwErrBert/HwErrBert.inf
-  INF MsWheaPkg/MsWheaReport/Dxe/MsWheaReportDxe.inf
 
   # Hardware Health (Menu) application
   INF MsWheaPkg/HwhMenu/HwhMenu.inf
 
-  INF MsCorePkg/AcpiRGRT/AcpiRgrt.inf
-
-  INF DfciPkg/Application/DfciMenu/DfciMenu.inf
+  INF MsWheaPkg/MsWheaReport/Dxe/MsWheaReportDxe.inf
+  INF OemPkg/BootMenu/BootMenu.inf
+  INF PcBdsPkg/MsBootPolicy/MsBootPolicy.inf
+  INF SurfaceDuoFamilyPkg/FrontPage/FrontPage.inf
 
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdFrontPageLogoFile) {
     SECTION RAW = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/RawFiles/Logo
@@ -58,16 +58,12 @@
 
   !if $(SECURE_BOOT_ENABLE) == TRUE
     FILE FREEFORM = PCD(gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSystemIntegrityPolicyFile) {
-      SECTION RAW = SurfaceDuoFamilyPkg/Include/Resources/SiPolicy.p7b
+      SECTION RAW = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/SystemIntegrity/SiPolicy.p7b
       SECTION UI = "System Integrity Policy Default"
     }
 
     !include ArmPlatformPkg/SecureBootDefaultKeys.fdf.inc
   !endif
-
-  !include CryptoPkg/Driver/Bin/CryptoDriver.DXE.inc.fdf
-
-
 ################################################################
 # UEFI Shell Change Start
   FILE APPLICATION=PCD(gPcBdsPkgTokenSpaceGuid.PcdShellFile) {
@@ -90,3 +86,4 @@
   !endif
 # CUST_LOGO Change End.
 ################################################################
+  !include CryptoPkg/Driver/Bin/CryptoDriver.DXE.inc.fdf
