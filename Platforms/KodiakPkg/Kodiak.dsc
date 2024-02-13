@@ -26,7 +26,7 @@
   FLASH_DEFINITION               = KodiakPkg/Kodiak.fdf
 
   # Notice: TRUE == 1, FALSE == 0
-!if SEC_BOOT == 1
+!if $(SEC_BOOT) == 1
   SECURE_BOOT_ENABLE             = TRUE
   DEFAULT_KEYS                   = TRUE
 !else
