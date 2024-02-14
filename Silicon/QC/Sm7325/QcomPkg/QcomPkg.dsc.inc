@@ -29,7 +29,7 @@
 
   gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # 2GB Base
   gArmPlatformTokenSpaceGuid.PcdCoreCount|8
-  gArmPlatformTokenSpaceGuid.PcdClusterCount|3
+  gArmPlatformTokenSpaceGuid.PcdClusterCount|2
 
   # UART
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdUartSerialBase|0x00994000

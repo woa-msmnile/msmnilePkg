@@ -33,7 +33,11 @@
   RFSProtectionLib
   MemoryMapHelperLib
 
+[FixedPcd]
+  gArmPlatformTokenSpaceGuid.PcdClusterCount
+
 [Protocols]
   gEfiChipInfoProtocolGuid                      ## CONSUMES
   gEfiSMEMProtocolGuid                          ## CONSUMES
+  gEfiClockProtocolGuid                         ## CONSUMES
   gEfiPlatformInfoProtocolGuid                  ## CONSUMES

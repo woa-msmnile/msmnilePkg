@@ -36,7 +36,11 @@
 [Protocols]
   gEfiChipInfoProtocolGuid                      ## CONSUMES
   gEfiSMEMProtocolGuid                          ## CONSUMES
+  gEfiClockProtocolGuid                         ## CONSUMES
   gEfiPlatformInfoProtocolGuid                  ## CONSUMES
+
+[FixedPcd]
+  gArmPlatformTokenSpaceGuid.PcdClusterCount
 
 [BuildOptions.AARCH64]
   GCC:*_*_*_CC_FLAGS = -Wno-unused-function -Wno-unused-variable
