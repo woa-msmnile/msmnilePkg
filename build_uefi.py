@@ -16,13 +16,14 @@ import Levenshtein
 
 
 class Target:
-    def __init__(self, device, silicon, package, bootshim_uefi_base, bootshim_uefi_size, secureboot):
+    def __init__(self, device, silicon, package, bootshim_uefi_base, bootshim_uefi_size, secureboot, buildtype):
         self.device = device
         self.silicon = silicon
         self.package = package
         self.bootshim_uefi_base = bootshim_uefi_base
         self.bootshim_uefi_size = bootshim_uefi_size
         self.secureboot = secureboot
+        self.buildtype = buildtype
 
     def merge(self, target_b):
         if self.device is None:
@@ -43,6 +44,13 @@ class Target:
         if self.secureboot is None:
             self.secureboot = 0;
 
+        if self.buildtype is None:
+            self.buildtype = "RELEASE";
+
+        if self.buildtype != "RELEASE" and self.buildtype != "DEBUG":
+            print(f"Unknown build type \"{self.buildtype}\", change to RELEASE by default.")
+            self.buildtype = "RELEASE"
+
     def print_content(self):
         print("Target Info: ")
         print("device", self.device)
@@ -62,11 +70,11 @@ def build_bootshim(this_target):
     return os.system(bootshim_cmd)
 
 
-def prepare_build(package_name):
+def prepare_build(buildtype, package_name):
     stuart_setup_cmd = "python3 " + os.path.join("Platforms", package_name,
-                                                         "PlatformBuild.py") + " --setup -t RELEASE"
+                                                         "PlatformBuild.py") + " --setup -t " + buildtype
     stuart_update_cmd = "python3 " + os.path.join("Platforms", package_name,
-                                                          "PlatformBuild.py") + " --update -t RELEASE"
+                                                          "PlatformBuild.py") + " --update -t " + buildtype
     os.system(stuart_setup_cmd)
     os.system(stuart_update_cmd)
 
@@ -80,7 +88,7 @@ def update_device_configuration_map(this_target):
     # Delete cache.
     try:
         os.remove(des_path)
-        shutil.rmtree(os.path.join("Build", this_target.package[:-3] + "-AARCH64", "RELEASE_CLANGDWARF", "AARCH64", "QcomPkg",
+        shutil.rmtree(os.path.join("Build", this_target.package[:-3] + "-AARCH64", this_target.buildtype + "_CLANGDWARF", "AARCH64", "QcomPkg",
                                "PlatformPei"))
     except FileNotFoundError:
         print("First Building...")
@@ -159,7 +167,7 @@ def device_error_exit(device_name, possible_devices_list):
 # This function get a file object and return a target object.
 # The file must be a json file.
 def parse_cfg(pfile):
-    this_target = Target(None, None, None, None, None, None)
+    this_target = Target(None, None, None, None, None, None, None)
     cfg_dict = json.load(pfile)
     this_target.silicon = cfg_dict["silicon"]
     this_target.package = cfg_dict["package"]
@@ -177,13 +185,13 @@ def build_single_device(this_target):
     # Prepare Environment
     build_bootshim(this_target)
     update_device_configuration_map(this_target)
-    prepare_build(this_target.package)
+    prepare_build(this_target.buildtype, this_target.package)
 #    os.environ['CLANGDWARF_BIN'] = '/usr/lib/llvm-38/bin/'
 #    os.environ['CLANGDWARF_AARCH64_PREFIX']='aarch64-linux-gnu-'
 
     # Start Actual Build
     os.system("python3 " + os.path.join("Platforms", this_target.package, "PlatformBuild.py")
-              + " TARGET=RELEASE TARGET_DEVICE=" + this_target.device + " SEC_BOOT=" + str(this_target.secureboot))
+              + " TARGET=" + this_target.buildtype + " TARGET_DEVICE=" + this_target.device + " SEC_BOOT=" + str(this_target.secureboot))
 
 
 # Build uefi for all devices in one silicon.
@@ -281,11 +289,12 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Build Uefi for target device.')
     parser.add_argument('-d', type=str, default=None, help="target device")
     parser.add_argument('-s', type=str, default=None, help="target silicon")
-    parser.add_argument('-e', type=int, default=None, help="secureboot status")
+    parser.add_argument('-e', type=int, default=None, help="secureboot status, should be 1 or 0")
+    parser.add_argument('-t', type=str, default=None, help="uefi build type, should be DEBUG or RELEASE")
     args = parser.parse_args()
 
     # Initial target object
-    current_target = Target(args.d, args.s, None, None, None, args.e)
+    current_target = Target(args.d, args.s, None, None, None, args.e, args.t)
 
     destination_target = find_device_by_name(current_target.device) if (
             current_target.silicon != "all" and current_target.device != "all") else current_target

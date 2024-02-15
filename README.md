@@ -66,8 +66,8 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 *Then finish the following process in docker environment*
 
 2. Build UEFI & Generate Android Boot Image
-> Usage: build_uefi.py -d \<target-device\> -s \<secureboot status\>  
-- Exmaple:
+> Usage: build_uefi.py -d \<target-device\> -s \<secureboot status\> -t \<build type\>  
+- Exmaple with secure boot off and release build:
   ```
   ./build_uefi.py -d <target-name>
   ```
@@ -75,6 +75,11 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 - Exmaple with secure boot on:
   ```
   ./build_uefi.py -d <target-name> -s 1
+  ```
+
+- Exmaple with secure boot off and DEBUG build:
+  ```
+  ./build_uefi.py -d <target-name> -t DEBUG
   ```
 
 - Tips:
