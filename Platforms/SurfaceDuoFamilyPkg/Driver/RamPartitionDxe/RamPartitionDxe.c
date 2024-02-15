@@ -162,7 +162,7 @@ AddRamPartition(
     return Status;
   }
 
-  Status = ArmSetMemoryAttributes(Base, Length, ArmAttributes, ArmAttributes);
+  Status = ArmSetMemoryAttributes(Base, Length, ArmAttributes, 0);
   if (EFI_ERROR(Status)) {
     DEBUG((EFI_D_ERROR, "ArmSetMemoryAttributes Failed ! %r\n", Status));
     return Status;
