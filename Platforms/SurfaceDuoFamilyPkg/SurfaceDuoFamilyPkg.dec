@@ -16,12 +16,12 @@
 
   DXE_CRYPTO_SERVICES            = STANDARD
   PEI_CRYPTO_SERVICES            = NONE
-  STANDALONEMM_CRYPTO_SERVICES   = NONE
   SMM_CRYPTO_SERVICES            = NONE
+  STANDALONEMM_CRYPTO_SERVICES   = NONE
   DXE_CRYPTO_ARCH                = AARCH64
   PEI_CRYPTO_ARCH                = NONE
-  STANDALONEMM_CRYPTO_ARCH       = NONE
   SMM_CRYPTO_ARCH                = NONE
+  STANDALONEMM_CRYPTO_ARCH       = NONE
 
 [Includes.common]
   Include                        # Root include for the package

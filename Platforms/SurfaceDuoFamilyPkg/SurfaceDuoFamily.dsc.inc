@@ -29,8 +29,8 @@
 
 [PcdsFixedAtBuild.common]
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor|L"DuoWoA authors"
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString|L"2402.17"
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareRevision|0x01240217
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString|L"2402.72"
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareRevision|0x01240272
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemId|"QCOM  "
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemTableId|0x324B44454D4F4351
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorId|0x4D4F4351
@@ -114,8 +114,8 @@
   # 4042708A-0F2D-4823-AC60-0D77B3111889
   gEfiMdeModulePkgTokenSpaceGuid.PcdBootManagerMenuFile|{ 0x8A, 0x70, 0x42, 0x40, 0x2D, 0x0F, 0x23, 0x48, 0xAC, 0x60, 0x0D, 0x77, 0xB3, 0x11, 0x18, 0x89 }
 
-  gOemPkgTokenSpaceGuid.PcdUefiVersionNumber|0x1240217 # 1.24.02.17
-  gOemPkgTokenSpaceGuid.PcdUefiBuildDate|0x20240205 # 05/02/2024
+  gOemPkgTokenSpaceGuid.PcdUefiVersionNumber|0x1240272 # 1.24.02.72
+  gOemPkgTokenSpaceGuid.PcdUefiBuildDate|0x20240221 # 21/02/2024
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxVariableSize|0x2000
 
@@ -245,7 +245,7 @@
   #
   # OpensslPkg libraries needed by multiple firmware features
   #
-  RngLib|MdePkg/Library/BaseRngLibTimerLib/BaseRngLibTimerLib.inf
+  RngLib|MdeModulePkg/Library/BaseRngLibTimerLib/BaseRngLibTimerLib.inf
   Hash2CryptoLib|SecurityPkg/Library/BaseHash2CryptoLibNull/BaseHash2CryptoLibNull.inf
 
   #
