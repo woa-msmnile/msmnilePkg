@@ -1,4 +1,4 @@
-## This Repo Is Based On [SurfaceDuoPkg](https://github.com/Woa-Project/SurfaceDuoPkg/)
+## This Repo Is Based On [mu_andromeda_platforms](https://github.com/WOA-Project/mu_andromeda_platforms/)
 
 ### Thanks for [Gustave](https://github.com/gus33000)'s instructions!
 
@@ -174,7 +174,7 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 
 ## Acknowledgements
 
-- Gustave Monce and his [SurfaceDuoPkg](https://github.com/Woa-Project/SurfaceDuoPkg/)
+- Gustave Monce and his [mu_andromeda_platforms](https://github.com/WOA-Project/mu_andromeda_platforms)
 - [EFIDroid Project](http://efidroid.org)
 - Andrei Warkentin and his [RaspberryPiPkg](https://github.com/andreiw/RaspberryPiPkg)
 - Sarah Purohit
