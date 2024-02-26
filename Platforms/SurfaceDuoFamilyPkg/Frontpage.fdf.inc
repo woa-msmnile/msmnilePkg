@@ -86,4 +86,5 @@
   !endif
 # CUST_LOGO Change End.
 ################################################################
-  !include CryptoPkg/Driver/Bin/CryptoDriver.DXE.inc.fdf
+
+  !include $(SHARED_CRYPTO_PATH)/Driver/Bin/CryptoDriver.DXE.inc.fdf

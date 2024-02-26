@@ -98,6 +98,13 @@
     UI           STRING="$(MODULE_NAME)" Optional
   }
 
+[Rule.Common.DXE_RUNTIME_DRIVER.BINARY]
+  FILE DRIVER = $(NAMED_GUID) {
+    DXE_DEPEX    DXE_DEPEX Optional      |.depex
+    PE32         PE32                    |.efi
+    UI           STRING="$(MODULE_NAME)" Optional
+  }
+
 [Rule.Common.UEFI_APPLICATION]
   FILE APPLICATION = $(NAMED_GUID) {
     UI     STRING ="$(MODULE_NAME)"     Optional

@@ -30,6 +30,3 @@
 [submodule "Features/CONFIG"]
 	path = Features/CONFIG
 	url = https://github.com/microsoft/mu_feature_config.git
-[submodule "Platforms/OpensslPkg/Library/OpensslLib/openssl"]
-	path = Platforms/OpensslPkg/Library/OpensslLib/openssl
-	url = https://github.com/openssl/openssl.git
