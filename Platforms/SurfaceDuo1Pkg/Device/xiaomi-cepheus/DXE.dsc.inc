@@ -13,7 +13,6 @@ Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbPwrCtrlDxe/UsbPwrCtr
 Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/XhciPciEmulationDxe/XhciPciEmulationDxe.inf
 
 SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
-SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
 #MdeModulePkg/Core/Dxe/DxeMain.inf
 #ArmPkg/Drivers/CpuDxe/CpuDxe.inf
 #MdeModulePkg/Core/RuntimeDxe/RuntimeDxe.inf
