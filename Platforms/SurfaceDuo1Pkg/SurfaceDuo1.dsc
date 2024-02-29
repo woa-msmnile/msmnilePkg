@@ -67,6 +67,7 @@
 !if $(USE_SIMPLEFBDXE) == TRUE
   SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
 !endif
+  SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
 
   # Device Specific Drivers
 !include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/DXE.dsc.inc
