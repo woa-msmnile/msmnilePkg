@@ -94,6 +94,7 @@ READ_LOCK_STATUS   = TRUE
 
 #  INF SurfaceDuoFamilyPkg/Driver/SystemIntegrityPolicyProvisioningDxe/SystemIntegrityPolicyProvisioningDxe.inf
 
+  INF SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
   INF EmbeddedPkg/Drivers/VirtualKeyboardDxe/VirtualKeyboardDxe.inf
 
   # BDS
