@@ -138,8 +138,6 @@ READ_LOCK_STATUS   = TRUE
     SECTION RAW = SurfaceDuo1Pkg/Include/Resources/RegulatoryLogos.png
   }
 
-  # INF GPLDriver/Application/SwitchSlotsApp/SwitchSlotsApp.inf
-  # INF GPLDriver/Driver/BootSlotDxe/BootSlotDxe.inf
   INF SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
 
 #  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLogoFile) {
