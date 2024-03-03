@@ -25,6 +25,17 @@ class Target:
         self.secureboot = secureboot
         self.buildtype = buildtype
 
+        if self.secureboot is None:
+            self.secureboot = 0;
+
+        if self.buildtype is None:
+            self.buildtype = "RELEASE";
+
+        if self.buildtype != "RELEASE" and self.buildtype != "DEBUG":
+            print(f"Unknown build type \"{self.buildtype}\", change to RELEASE by default.")
+            self.buildtype = "RELEASE"
+
+
     def merge(self, target_b):
         if self.device is None:
             self.device = target_b.device
@@ -41,15 +52,6 @@ class Target:
         if self.bootshim_uefi_size is None:
             self.bootshim_uefi_size = target_b.bootshim_uefi_size
 
-        if self.secureboot is None:
-            self.secureboot = 0;
-
-        if self.buildtype is None:
-            self.buildtype = "RELEASE";
-
-        if self.buildtype != "RELEASE" and self.buildtype != "DEBUG":
-            print(f"Unknown build type \"{self.buildtype}\", change to RELEASE by default.")
-            self.buildtype = "RELEASE"
 
     def print_content(self):
         print("Target Info: ")
@@ -249,6 +251,7 @@ def build_all_devices(this_target):
 # Build all uefi for all devices.
 def build_all_platforms(all_the_targets):
     # platform =="all" here.
+    # Traverse all platforms here
     for this_target in all_the_targets:
         this_target.device = "all"
         build_all_devices(this_target)
@@ -350,7 +353,7 @@ if __name__ == '__main__':
 
     # Build all devices in one platform
     if current_target.platform == "all":
-        build_all_platforms(all_targets) # Commonly we use this in CI.
+        build_all_platforms(all_targets)    # Commonly we use this in CI.
     elif current_target.device == "all":
         # Find current target from config and merge.
         for the_target in all_targets:
