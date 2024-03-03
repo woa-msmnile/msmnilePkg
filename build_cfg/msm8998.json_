@@ -1,5 +1,5 @@
 {
-    "silicon": "MSM8998",
+    "platform": "MSM8998",
     "package" : "CobaltPkg",
     "bootshim": {
         "UEFI_BASE": "0x9FC00000",

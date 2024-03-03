@@ -1,5 +1,5 @@
 {
-    "silicon": "Sm8350",
+    "platform": "Sm8350",
     "package": "SurfaceDuo2Pkg",
     "bootshim": {
         "UEFI_BASE": "0x9FC00000",

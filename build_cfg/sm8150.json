@@ -1,5 +1,5 @@
 {
-    "silicon": "Sm8150",
+    "platform": "Sm8150",
     "package" : "SurfaceDuo1Pkg",
     "bootshim": {
         "UEFI_BASE": "0x9FC00000",

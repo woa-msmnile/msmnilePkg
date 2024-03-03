@@ -1,5 +1,5 @@
 #!/bin/bash
-echo hello
+echo CI Environment Setup.
 
 # Replace APT Source
 #sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list
@@ -12,4 +12,4 @@ apt -y install sudo python3-venv pip git build-essential nuget build-essential u
 pip install --upgrade -r pip-requirements.txt
 #source SurfaceDuo/bin/activate
 git config --global --add safe.directory '*'
-exit
+

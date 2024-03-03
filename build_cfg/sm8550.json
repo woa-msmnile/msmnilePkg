@@ -1,5 +1,5 @@
 {
-    "silicon": "Sm8550",
+    "platform": "Sm8550",
     "package": "KailuaPkg",
     "bootshim": {
         "UEFI_BASE": "0xC7CC0000",

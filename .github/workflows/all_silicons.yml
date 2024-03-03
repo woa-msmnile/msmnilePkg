@@ -11,6 +11,10 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+# Indicate that we are running in CI
+env:
+  WM_CI_BUILD = true
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -23,28 +27,28 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: build uefi for all devices in all silicons
-        run: bash scripts/container_setup.sh && ./build_uefi.py -s all
+        run: bash scripts/ci_setup.sh && ./build_uefi.py -p all
 
       - name: Upload Atoll's Artifact
         uses: actions/upload-artifact@v3
         with:
           name: uefi-images-atoll
-          path: Build/AtollPkg/*.img
+          path: Build/AtollPkg/ci_artifact
 
       - name: Upload Hana's Artifact
         uses: actions/upload-artifact@v3
         with:
           name: uefi-images-hana
-          path: Build/SurfaceDuo1Pkg/*.img
+          path: Build/SurfaceDuo1Pkg/ci_artifact
 
       - name: Upload Kodiak's Artifact
         uses: actions/upload-artifact@v3
         with:
           name: uefi-images-kodiak
-          path: Build/KodiakPkg/*.img
+          path: Build/KodiakPkg/ci_artifact
 
       - name: Upload Kailua's Artifact
         uses: actions/upload-artifact@v3
         with:
           name: uefi-images-kailua
-          path: Build/KailuaPkg/*.img
+          path: Build/KailuaPkg/ci_artifact

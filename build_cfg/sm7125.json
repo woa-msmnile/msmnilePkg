@@ -1,5 +1,5 @@
 {
-    "silicon": "Sm7125",
+    "platform": "Sm7125",
     "package": "AtollPkg",
     "bootshim": {
         "UEFI_BASE": "0x9FC00000",
