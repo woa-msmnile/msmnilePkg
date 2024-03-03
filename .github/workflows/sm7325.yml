@@ -13,7 +13,7 @@ on:
 
 # Indicate that we are running in CI
 env:
-  WM_CI_BUILD = true
+  WM_CI_BUILD: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
