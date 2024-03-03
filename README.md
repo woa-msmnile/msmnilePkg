@@ -179,5 +179,3 @@ docker-compose up
 - Lemon ICE
 
 ## License ![License](https://img.shields.io/github/license/woa-msmnile/msmnilePkg)
-All code except drivers in `GPLDriver` directory are licensed under BSD 2-Clause.  
-GPL Drivers are licensed under GPLv2 license.
