@@ -198,7 +198,9 @@ def build_single_device(this_target):
 
     # Check if build successfully
     # if CI mode enabled, copy .FD and .img into CI upload directory.
+    print("WM_CI_BUILD:", os.getenv("WM_CI_BUILD"))
     if os.getenv("WM_CI_BUILD") == "true":
+        print("Buiding in CI...")
         # Copy build NOSB output into ci upload dir.
         ci_copy_fd_after_single_device_building(this_target)
         # In CI Environment, we build SB and NOSB at same time, build SB here.
@@ -231,10 +233,12 @@ def ci_copy_fd_after_single_device_building(this_target):
     try:
         # move FD to upload path
         shutil.move(input_fd_path, output_fd_path)
+        print("Successfully move", input_fd_path, "to", output_fd_path)
         # move img to upload path
         shutil.move(input_img_path, output_img_path)
+        print("Successfully move", input_img_path, "to", output_img_path)
     except Exception as e:
-        print("output_file_path", "not found, build process may be failed!\n Exception: ", e)
+        print("Build process may be failed!\n Exception: ", e)
         sys.exit(1)
 
 

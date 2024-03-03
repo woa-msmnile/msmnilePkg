@@ -4,6 +4,10 @@ name: Build uefi for all devices.
 
 ## Controls when the workflow will run
 on:
+  # Triggers the workflow on pr
+  pull_request:
+    types: [opened, reopened]
+
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
@@ -26,7 +30,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      - name: build uefi for all devices in all silicons
+      - name: build uefi for all devices in all platforms
         run: bash scripts/ci_setup.sh && ./build_uefi.py -p all
 
       - name: Upload Atoll's Artifact
