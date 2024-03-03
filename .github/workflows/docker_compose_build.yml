@@ -33,4 +33,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: uefi-images-all
-          path: Build/*/ci_artifact
+          path: Build/*/ci_artifacts

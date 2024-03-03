@@ -33,4 +33,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: uefi-images-sm8550
-          path: Build/*/ci_artifact
+          path: Build/*/ci_artifacts

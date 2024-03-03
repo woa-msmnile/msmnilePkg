@@ -37,22 +37,22 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: uefi-images-atoll
-          path: Build/AtollPkg/ci_artifact
+          path: Build/AtollPkg/ci_artifacts
 
       - name: Upload Hana's Artifact
         uses: actions/upload-artifact@v3
         with:
           name: uefi-images-hana
-          path: Build/SurfaceDuo1Pkg/ci_artifact
+          path: Build/SurfaceDuo1Pkg/ci_artifacts
 
       - name: Upload Kodiak's Artifact
         uses: actions/upload-artifact@v3
         with:
           name: uefi-images-kodiak
-          path: Build/KodiakPkg/ci_artifact
+          path: Build/KodiakPkg/ci_artifacts
 
       - name: Upload Kailua's Artifact
         uses: actions/upload-artifact@v3
         with:
           name: uefi-images-kailua
-          path: Build/KailuaPkg/ci_artifact
+          path: Build/KailuaPkg/ci_artifacts
