@@ -198,7 +198,6 @@ def build_single_device(this_target):
 
     # Check if build successfully
     # if CI mode enabled, copy .FD and .img into CI upload directory.
-    print("WM_CI_BUILD:", os.getenv("WM_CI_BUILD"))
     if os.getenv("WM_CI_BUILD") == "true":
         print("Buiding in CI...")
         # Copy build NOSB output into ci upload dir.
@@ -209,6 +208,8 @@ def build_single_device(this_target):
               + " TARGET=" + this_target.buildtype + " TARGET_DEVICE=" + this_target.device + " SEC_BOOT=" + str(this_target.secureboot))
         # Copy build SB output into ci upload dir.
         ci_copy_fd_after_single_device_building(this_target)
+        # Move secureboot status back.
+        this_target.secureboot = 0
 
 
 def ci_copy_fd_after_single_device_building(this_target):
