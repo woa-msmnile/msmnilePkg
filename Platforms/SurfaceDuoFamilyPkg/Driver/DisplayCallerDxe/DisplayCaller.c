@@ -132,7 +132,7 @@ DisplayCallerDxeInitialize(
     }
 
     /* Waiting 100us for it finishing */
-    // gBS->Stall(100);
+    gBS->Stall(FixedPcdGet64(PcdDisplayCallerStallBeforeEnable));
 
     /* Re-Enable Dispplay */
     Status = EnableDisplay(pDispPwrProtocol);
@@ -143,7 +143,7 @@ DisplayCallerDxeInitialize(
     }
 
     // Hook Exit boot service if device needs disable display after booting.
-    if(FixedPcdGetBool(PcdExitDisableDisplay))
+    if(FixedPcdGetBool(PcdDisplayCallerExitDisableDisplay))
         Status = gBS->CreateEventEx (
                     EVT_NOTIFY_SIGNAL,
                     TPL_NOTIFY,
