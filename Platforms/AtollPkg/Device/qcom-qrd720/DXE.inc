@@ -26,7 +26,8 @@ INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/UsbfnDwc3Dxe/UsbfnD
 INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/TzDxe/ScmDxe.inf
 #INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/TzDxe/TzDxe.inf
 #INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/AcpiPlatformDxe/AcpiPlatformDxe.inf
-INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
+#INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
+INF SurfaceDuoFamilyPkg/Driver/DisplayCallerDxe/DisplayCallerDxe.inf
 
 INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/MinidumpTADxe/MinidumpTADxe.inf
 #INF MdeModulePkg/Core/Dxe/DxeMain.inf
@@ -108,10 +109,11 @@ INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Application/QcomChargerApp
 # Device Specific Patched DXE
 INF AtollPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/ButtonsDxe.inf
 INF AtollPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UFSDxe.inf
+INF AtollPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/DisplayDxe.inf
 # Platform Specific Patched DXE
 INF QcomPkg/PatchedBinaries/EnvDxe.inf
 INF QcomPkg/PatchedBinaries/HALIOMMUDxe.inf
-INF QcomPkg/PatchedBinaries/78EF0A56-1CF0-4535-B5DA-F6FD2F405A25.inf
+#INF QcomPkg/PatchedBinaries/78EF0A56-1CF0-4535-B5DA-F6FD2F405A25.inf
 
 FILE DRIVER = 6b38f7b4-ad98-40e9-9093-aca2b5a253c4 {
     SECTION PE32 = AtollPkg/Device/$(TARGET_DEVICE)/Binaries/MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.efi
@@ -125,19 +127,16 @@ FILE DRIVER = 1fa1f39e-feff-4aae-bd7b-38a070a3b609 {
 
 FILE DRIVER = 3adf8dda-1850-44c5-8c63-bb991849bc6f {
     SECTION UI = "HashDxe"
-#    SECTION RAW = Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/HashDxe/HashDxe.raw
     SECTION PE32 = AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/HashDxe/HashDxe.efi
 }
 
 FILE DRIVER = 5f0937cd-73f9-445e-b320-bb6fd5d3cbde {
     SECTION UI = "CipherDxe"
-#    SECTION RAW = Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/CipherDxe/CipherDxe.raw
     SECTION PE32 = AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/CipherDxe/CipherDxe.efi
 }
 
 FILE DRIVER = b0d3689e-11f8-43c6-8ece-023a29cec35b {
     SECTION UI = "RngDxe"
-#    SECTION RAW = Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/RNGDxe/RngDxe.raw
     SECTION PE32 = AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/RNGDxe/RngDxe.efi
 }
 
@@ -205,11 +204,11 @@ FILE FREEFORM = A91D838E-A5FA-4138-825D-455E23030794 {
     SECTION RAW = AtollPkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/logo1.bmp
 }
 
+FILE FREEFORM = 8CAE2C55-FC5A-410B-812B-8CA22F572F36 {
+    SECTION UI = "Panel_rm69299_amoled_fhd_plus_video.xml"
+    SECTION RAW = AtollPkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_rm69299_amoled_fhd_plus_video.xml
+}
 
-#FILE FREEFORM = 8CAE2C55-FC5A-410B-812B-8CA22F572F36 {
-#    SECTION UI = "Panel_rm69299_amoled_fhd_plus_video.xml"
-#    SECTION RAW = AtollPkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_rm69299_amoled_fhd_plus_video.xml
-#}
 
 FILE FREEFORM = 8CAE2C55-FC5A-410B-812B-8CA22F557623 {
     SECTION UI = "Panel_rm69299_amoled_fhd_plus_cmd.xml"
@@ -217,11 +216,10 @@ FILE FREEFORM = 8CAE2C55-FC5A-410B-812B-8CA22F557623 {
 }
 
 
-#FILE FREEFORM = CE09CA21-74A1-41F1-A2A2-6C3114EB5AD7 {
-#    SECTION UI = "Panel_nt36672c_boe_fhd_plus_video.xml"
-#    SECTION RAW = AtollPkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_nt36672c_boe_fhd_plus_video.xml
-#}
-
+FILE FREEFORM = CE09CA21-74A1-41F1-A2A2-6C3114EB5AD7 {
+    SECTION UI = "Panel_nt36672c_boe_fhd_plus_video.xml"
+    SECTION RAW = AtollPkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_nt36672c_boe_fhd_plus_video.xml
+}
 
 FILE FREEFORM = 3E5584ED-05D4-4267-9048-0D47F76F4248 {
     SECTION UI = "battery_symbol_Soc10.bmp"
