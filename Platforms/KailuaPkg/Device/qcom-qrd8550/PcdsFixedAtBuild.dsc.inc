@@ -2,6 +2,10 @@
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2400
 
+# Display Caller
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdDisplayCallerExitDisableDisplay|FALSE
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdDisplayCallerStallBeforeEnable|0
+
 # Smbios Info
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"QTI"
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"QRD Snapdragon 8 Gen2"

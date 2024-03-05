@@ -89,8 +89,11 @@ APRIORI DXE {
             SECTION PE32 = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/FeatureEnablerDxe.efi
             SECTION UI = "FeatureEnablerDxe"
     }
-    # INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/DisplayDxe/DisplayDxe.inf
-    INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
+
+    INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/DisplayDxe/DisplayDxe.inf
+    INF SurfaceDuoFamilyPkg/Driver/DisplayCallerDxe/DisplayCallerDxe.inf
+
+#    INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
     INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/FvUtilsDxe/FvUtilsDxe.inf
 
     FILE DRIVER = 3CF7F36E-5A97-496A-BB4B-D4F9937FA311 {
@@ -185,10 +188,10 @@ APRIORI DXE {
         SECTION UI = "SecRSADxe"
     }
 
-   FILE DRIVER =  FD975FB5-92C3-40B3-B05C-9C434326AB64 {
-        SECTION PE32 = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/VerifiedBootDxe/VerifiedBootDxe.efi
-        SECTION UI = "VerifiedBootDxe"
-    }
+#   FILE DRIVER =  FD975FB5-92C3-40B3-B05C-9C434326AB64 {
+#        SECTION PE32 = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/VerifiedBootDxe/VerifiedBootDxe.efi
+#        SECTION UI = "VerifiedBootDxe"
+#    }
 
     INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/RscDxe/RscDxe.inf
 }
