@@ -101,42 +101,43 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 
 ### *SM8150*
 
-| Device             | Target name            | DSDT Support    | Contributors                                       |
-|--------------------|------------------------|-----------------|----------------------------------------------------|
-| ASUS ROG2          | asus-I001DC            | ✅              | [sunflower2333](https://github.com/sunflower2333)  |
-| Axon Stage 5G      | kakao-pine             | ❌              | [AKA](https://github.com/AKAsaliza)                |
-| BlackShark 2       | blackshark-skywalker   | ❌              | NONE                                               |
-| BlackShark 2 Pro   | blackshark-darklighter | ❌              | NONE                                               |
-| HTC 5G Hub         | htc-rtx                | ❌              | NONE                                               |
-| LG G8              | lg-alphaplus           | ✅              | sunflower2333                                      |
-| LG G8S             | lg-betalm              | ✅              | [J0SH1X](https://github.com/J0SH1X)                |
-| LG G8X             | lg-mh2lm               | ✅              | [Molly Sophia](https://github.com/MollySophia)     |
-| LG V50             | lg-flashlmdd           | ✅              | [AKA](https://github.com/AKAsaliza)                |
-| LG V50S            | lg-mh2lm5g             | ✅              | [AKA](https://github.com/AKAsaliza)                |
-| Meizu 16T          | meizu-m928q            | ❌              | NONE                                               |
-| Meizu 16s          | meizu-m971q            | ❌              | NONE                                               |
-| Nubia RedMagic 3   | nubia-nx629j           | ❌              | NONE                                               |
-| Nubia RedMagic 3S  | nubia-nx629jv1s        | ❌              | NONE                                               |
-| Nubia Mini 5G      | nubia-tp1803           | ✅              | [Alula](https://github.com/alula)                  |
-| OnePlus 7          | oneplus-guacamoleb     | ✅              | UNKNOWN                                            |
-| OnePlus 7 Pro      | oneplus-guacamole      | ✅              | [Waseem Alkurdi](https://github.com/WaseemAlkurdi) |
-| OnePlus 7T         | oneplus-hotdogb        | ✅              | UNKNOWN                                            |
-| OnePlus 7T Pro     | oneplus-hotdog         | ✅              | [Morc](https://github.com/TheMorc)                 |
-| OnePlus 7T Pro 5G  | oneplus-hotdogg        | ✅              | NONE                                               |
-| OPPO Reno 10X      | oppo-op46c3            | ❌              | NONE                                               |
-| OPPO Reno ACE      | oppo-pclm10            | ✅              | NONE                                               |
-| QTI QRD 855        | qcom-qrd855            | ✅              | sunflower2333                                      |
-| Realme X3          | realme-rmx2086         | ❌              | NONE                                               |
-| Samsung Galaxy S10 | samsung-beyond1qlte    | ✅              | [Ww](https://github.com/Idonotkno)                 |
-| Samsung Galaxy Fold| samsung-winner         | ✅              | [Ost268](https://github.com/Ost268)                |
-| Smartisan Pro 3    | smartisan-aries        | ❌              | NONE                                               |
-| Xiaomi 9           | xiaomi-cepheus         | ✅              | [qaz6750](https://github.com/qaz6750)              |
-| Xiaomi Hercules    | xiaomi-hercules        | ✅              | [Ww](https://github.com/Idonotkno)                 |
-| Xiaomi K20 Pro     | xiaomi-raphael         | ✅              | [Degdag](https://github.com/degdag)&sunflower2333  |
-| Xiaomi Mix3 5G     | xiaomi-andromeda       | ✅              | NONE                                               |
-| Xiaomi Mix Alpha u2| xiaomi-avenger         | ❌              | NONE                                               |
-| Xiaomi Pad 5       | xiaomi-nabu            | ✅              | [Map220v](https://github.com/map220v)              |
-| Xiaomi Poco X3 Pro | xiaomi-vayu            | ✅              | [Degdag](https://github.com/degdag)                |
+| Device               | Target name            | DSDT Support    | Contributors                                       |
+|----------------------|------------------------|-----------------|----------------------------------------------------|
+| ASUS ROG2            | asus-I001DC            | ✅              | [sunflower2333](https://github.com/sunflower2333)  |
+| Axon Stage 5G        | kakao-pine             | ❌              | [AKA](https://github.com/AKAsaliza)                |
+| BlackShark 2         | blackshark-skywalker   | ❌              | NONE                                               |
+| BlackShark 2 Pro     | blackshark-darklighter | ❌              | NONE                                               |
+| HTC 5G Hub           | htc-rtx                | ❌              | NONE                                               |
+| LG G8                | lg-alphaplus           | ✅              | sunflower2333                                      |
+| LG G8S               | lg-betalm              | ✅              | [J0SH1X](https://github.com/J0SH1X)                |
+| LG G8X               | lg-mh2lm               | ✅              | [Molly Sophia](https://github.com/MollySophia)     |
+| LG V50               | lg-flashlmdd           | ✅              | [AKA](https://github.com/AKAsaliza)                |
+| LG V50S              | lg-mh2lm5g             | ✅              | [AKA](https://github.com/AKAsaliza)                |
+| Meizu 16T            | meizu-m928q            | ❌              | NONE                                               |
+| Meizu 16s            | meizu-m971q            | ❌              | NONE                                               |
+| Nubia RedMagic 3     | nubia-nx629j           | ❌              | NONE                                               |
+| Nubia RedMagic 3S    | nubia-nx629jv1s        | ❌              | NONE                                               |
+| Nubia Mini 5G        | nubia-tp1803           | ✅              | [Alula](https://github.com/alula)                  |
+| OnePlus 7            | oneplus-guacamoleb     | ✅              | UNKNOWN                                            |
+| OnePlus 7 Pro        | oneplus-guacamole      | ✅              | [Waseem Alkurdi](https://github.com/WaseemAlkurdi) |
+| OnePlus 7T           | oneplus-hotdogb        | ✅              | UNKNOWN                                            |
+| OnePlus 7T Pro       | oneplus-hotdog         | ✅              | [Morc](https://github.com/TheMorc)                 |
+| OnePlus 7T Pro 5G    | oneplus-hotdogg        | ✅              | NONE                                               |
+| OPPO Reno 10X        | oppo-op46c3            | ❌              | NONE                                               |
+| OPPO Reno ACE        | oppo-pclm10            | ✅              | NONE                                               |
+| QTI QRD 855          | qcom-qrd855            | ✅              | sunflower2333                                      |
+| Realme X3            | realme-rmx2086         | ❌              | NONE                                               |
+| Samsung Galaxy S10   | samsung-beyond1qlte    | ✅              | [Ww](https://github.com/Idonotkno)                 |
+| Samsung Galaxy Fold  | samsung-winner         | ✅              | [Ost268](https://github.com/Ost268)                |
+| Samsung Galaxy Tab S6| samsung-gts6l          | ✅              | [qaz6750](https://github.com/qaz6750)              |
+| Smartisan Pro 3      | smartisan-aries        | ❌              | NONE                                               |
+| Xiaomi 9             | xiaomi-cepheus         | ✅              | [qaz6750](https://github.com/qaz6750)              |
+| Xiaomi Hercules      | xiaomi-hercules        | ✅              | [Ww](https://github.com/Idonotkno)                 |
+| Xiaomi K20 Pro       | xiaomi-raphael         | ✅              | [Degdag](https://github.com/degdag)&sunflower2333  |
+| Xiaomi Mix3 5G       | xiaomi-andromeda       | ✅              | NONE                                               |
+| Xiaomi Mix Alpha u2  | xiaomi-avenger         | ❌              | NONE                                               |
+| Xiaomi Pad 5         | xiaomi-nabu            | ✅              | [Map220v](https://github.com/map220v)              |
+| Xiaomi Poco X3 Pro   | xiaomi-vayu            | ✅              | [Degdag](https://github.com/degdag)                |
 
 
 ### *SM7125*
