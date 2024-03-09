@@ -26,8 +26,7 @@ INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/UsbfnDwc3Dxe/UsbfnD
 INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/TzDxe/ScmDxe.inf
 #INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/TzDxe/TzDxe.inf
 #INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/AcpiPlatformDxe/AcpiPlatformDxe.inf
-#INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
-INF SurfaceDuoFamilyPkg/Driver/DisplayCallerDxe/DisplayCallerDxe.inf
+INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
 
 INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/MinidumpTADxe/MinidumpTADxe.inf
 #INF MdeModulePkg/Core/Dxe/DxeMain.inf
@@ -109,7 +108,6 @@ INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Application/QcomChargerApp
 # Device Specific Patched DXE
 INF AtollPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/ButtonsDxe.inf
 INF AtollPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UFSDxe.inf
-INF AtollPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/DisplayDxe.inf
 # Platform Specific Patched DXE
 INF QcomPkg/PatchedBinaries/EnvDxe.inf
 INF QcomPkg/PatchedBinaries/HALIOMMUDxe.inf
