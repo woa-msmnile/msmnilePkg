@@ -17,7 +17,7 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
     {"TZApps",            0x82200000, 0x02200000, NoHob,  SYS_MEM, SYS_MEM_CAP, Reserv, NS_DEVICE},
     {"HLOS Entry1",       0x84400000, 0x01700000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   UNCACHED_UNBUFFERED_XN},
     {"PIL Reserved",      0x85B00000, 0x0EB00000, AddMem, MEM_RES, UNCACHEABLE, Reserv, UNCACHED_UNBUFFERED_XN},
-    {"DXE Heap",          0x94600000, 0x04500000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv,   WRITE_BACK_XN},
+    {"DXE Heap",          0x94600000, 0x04500000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
     {"DBI Dump",          0x98B00000, 0x00D70000, NoHob,  MMAP_IO, INITIALIZED, Conv, UNCACHED_UNBUFFERED_XN},
     {"HLOS Entry2",       0x99870000, 0x01F90000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
     {"Sched Heap",        0x9B800000, 0x00400000, AddMem, SYS_MEM, SYS_MEM_CAP, BsData, WRITE_BACK_XN},
