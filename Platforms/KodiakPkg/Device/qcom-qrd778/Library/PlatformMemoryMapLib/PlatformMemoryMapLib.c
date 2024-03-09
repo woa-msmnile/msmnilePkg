@@ -26,7 +26,7 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
     { "Sched Heap",        0x82710000, 0x00400000, AddMem, SYS_MEM, SYS_MEM_CAP, BsData, WRITE_BACK_XN },
     { "HLOS3",             0x82B10000, 0x017F0000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN },
     { "PIL Reserved",      0x84300000, 0x17A00000, AddMem, MEM_RES, UNCACHEABLE, Reserv, UNCACHED_UNBUFFERED_XN },
-    { "DXE Heap",          0x9BD00000, 0x03300000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN },
+    { "RAM Partition",     0x9BD00000, 0x03300000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN },
     { "UEFI FD",           0x9F000000, 0x00500000, AddMem, SYS_MEM, SYS_MEM_CAP, BsData, WRITE_BACK },
     { "SEC Heap",          0x9F500000, 0x0008C000, AddMem, SYS_MEM, SYS_MEM_CAP, BsData, WRITE_BACK_XN },
     { "CPU Vectors",       0x9F58C000, 0x00001000, AddMem, SYS_MEM, SYS_MEM_CAP, BsData, WRITE_BACK },
@@ -56,7 +56,7 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
     { "HLOS7",             0xC6000000, 0x00500000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv, WRITE_BACK_XN },
     { "ADSP RPC",          0xC6500000, 0x00800000, AddMem, MEM_RES, UNCACHEABLE, Reserv, UNCACHED_UNBUFFERED_XN },
     { "Guest VM",          0xD0000000, 0x10000000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN },
-    { "RAM Partition",     0xD0C00000, 0x0F400000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+    { "DXE Heap",          0xD0C00000, 0x0F400000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
     { "Display Reserved",  0xE1000000, 0x02400000, AddMem, MEM_RES, SYS_MEM_CAP, Reserv, WRITE_THROUGH_XN },
     { "APSS Ext",          0xE3400000, 0x01700000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv, WRITE_BACK_XN },
 

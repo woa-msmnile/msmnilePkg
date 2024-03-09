@@ -4,8 +4,8 @@ APRIORI DXE {
     INF MdeModulePkg/Universal/PCD/Dxe/Pcd.inf
     # INF QcomPkg/PatchedBinaries/EnvDxe.inf
 
-    INF MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/ReportStatusCodeRouterRuntimeDxe.inf
-    INF MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf
+#    INF MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/ReportStatusCodeRouterRuntimeDxe.inf
+#    INF MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf
     INF MdeModulePkg/Core/RuntimeDxe/RuntimeDxe.inf
 
     # Next, install cpu protocol and enable the interrupt controller
@@ -63,6 +63,9 @@ APRIORI DXE {
     INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/UFSDxe/UFSDxe.inf
     INF MdeModulePkg/Bus/Pci/NvmExpressDxe/NvmExpressDxe.inf
     INF FatPkg/EnhancedFatDxe/Fat.inf
+    INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/DisplayDxe/DisplayDxe.inf
+    INF SurfaceDuoFamilyPkg/Driver/DisplayCallerDxe/DisplayCallerDxe.inf
+
     INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TzDxe/TzDxeLA.inf
 #    INF Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/TzDxe/TzDxe.inf
     INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/DDRInfoDxe/DDRInfoDxe.inf
@@ -167,7 +170,7 @@ APRIORI DXE {
 #    INF Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/TrEEDxe/TpmDxe.inf
 #    INF Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/TrEEDxe/TrEEDxe.inf
 
-    INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
+#    INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
     INF Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/AdapterInformationDxe/AdapterInformationDxe.inf
     INF MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
     INF Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/PciHostBridgeDxe/PciHostBridgeDxe.inf

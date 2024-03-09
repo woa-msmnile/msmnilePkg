@@ -7,7 +7,7 @@ Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/UsbMsdDxe/UsbMsdDxe.inf
 Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/UsbPwrCtrlDxe/UsbPwrCtrlDxe.inf
 Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/XhciPciEmulationDxe/XhciPciEmulationDxe.inf
 Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/UsbfnDwc3Dxe/UsbfnDwc3Dxe.inf
-
+SurfaceDuoFamilyPkg/Driver/DisplayCallerDxe/DisplayCallerDxe.inf
 #Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/UsbConfigDxe/UsbConfigDxe.inf
 
 #KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/EnvDxe/EnvDxe.inf
@@ -84,6 +84,7 @@ KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/ButtonsDxe.inf
 KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UFSDxe.inf
 KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UsbConfigDxe.inf
 # KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/ClockDxe.inf
+KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/DisplayDxe.inf
 QcomPkg/PatchedBinaries/ClockDxe.inf
 KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/PmicDxeLa.inf
 #KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/FeatureEnablerDxe.inf
