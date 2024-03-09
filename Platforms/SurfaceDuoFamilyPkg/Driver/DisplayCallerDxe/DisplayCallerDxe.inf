@@ -26,7 +26,8 @@
   PrintLib
 
 [FixedPcd]
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdExitDisableDisplay
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdDisplayCallerExitDisableDisplay
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdDisplayCallerStallBeforeEnable
 
 [Guids]
   gEfiEventExitBootServicesGuid

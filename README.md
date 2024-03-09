@@ -89,6 +89,7 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 - You will find Build/xxxxPkg/\<target-device\>.img after successfully building.
 
 ## Target list
+> Cross in *DSDT Support* means device only has UFS and USB working in Windows.
 
 ### *SDM845*
 > Comming soon...  
@@ -142,7 +143,7 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 
 | Device             | Target name            | DSDT Support    | Maintainers                                        |
 |--------------------|------------------------|-----------------|----------------------------------------------------|
-| QTI QRD 720        | qcom-atoll             | ✅              | sunflower2333                                      |
+| QTI QRD 720        | qcom-qrd720            | ✅              | sunflower2333                                      |
 | Xiaomi Note 9S     | xiaomi-miatoll         | ✅              | Icesito                                            |
 | Xiaomi Note 10 Pro | xiaomi-sweet           | ❌              | [dopaemon](https://github.com/dopaemon)            |
 
@@ -151,7 +152,7 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 
 | Device             | Target name            | DSDT Support    | Maintainers                                        |
 |--------------------|------------------------|-----------------|----------------------------------------------------|
-| QTI QRD 778        | qcom-kodiak            | ✅              | [Ayu](https://github.com/chenyu0329)&sunflower2333 |
+| QTI QRD 778        | qcom-qrd778            | ✅              | [Ayu](https://github.com/chenyu0329)&sunflower2333 |
 
 
 ### *SM8350*
@@ -159,7 +160,7 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 
 | Device             | Target name            | DSDT Support    | Maintainers                                        |
 |--------------------|------------------------|-----------------|----------------------------------------------------|
-| QTI QRD 888        | qcom-lahaina           | ❌              | None                                               |
+| QTI QRD 888        | qcom-qrd888            | ❌              | None                                               |
 
 
 ### *SM8550*
@@ -167,13 +168,12 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 | Device                | Target name            | DSDT Support    | Maintainers                                        |
 |-----------------------|------------------------|-----------------|----------------------------------------------------|
 | AYN Odin 2            | ayn-odin2              | ❌              | None                                               |
-| QTI QRD 8550          | qcom-kailua            | ❌              | None                                               |
+| QTI QRD 8550          | qcom-qrd8550           | ❌              | None                                               |
 | Nubia RedMagic 8 Pro  | nubia-nx729j           | ❌              | None                                               |
 | Xiaomi 13             | xiaomi-fuxi            | ❌              | None                                               |
 | Xiaomi 13 Pro         | xiaomi-nuwa            | ❌              | None                                               |
 
 ## Acknowledgements
-
 - Gustave Monce and his [mu_andromeda_platforms](https://github.com/WOA-Project/mu_andromeda_platforms)
 - [EFIDroid Project](http://efidroid.org)
 - Andrei Warkentin and his [RaspberryPiPkg](https://github.com/andreiw/RaspberryPiPkg)
@@ -188,3 +188,6 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 ## License ![License](https://img.shields.io/github/license/woa-msmnile/msmnilePkg)
 All code except drivers in `GPLDriver` directory are licensed under BSD 2-Clause.  
 GPL Drivers are licensed under GPLv2 license.
+
+
+## Check memePkg[https://github.com/woa-msmnile/memePkg] for other SoCs support!
