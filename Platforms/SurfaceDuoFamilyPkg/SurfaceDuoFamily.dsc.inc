@@ -50,11 +50,11 @@
   gEfiMdePkgTokenSpaceGuid.PcdReportStatusCodePropertyMask|0x07
 !else
   gEfiMdePkgTokenSpaceGuid.PcdDebugClearMemoryValue|0x00
-  gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x06
-  gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x800fee0f
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x00
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x80000000
   gEfiMdePkgTokenSpaceGuid.PcdPerformanceLibraryPropertyMask|0
   gEfiMdePkgTokenSpaceGuid.PcdPostCodePropertyMask|0
-  gEfiMdePkgTokenSpaceGuid.PcdReportStatusCodePropertyMask|0x07
+  gEfiMdePkgTokenSpaceGuid.PcdReportStatusCodePropertyMask|0x00
 !endif
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdResetOnMemoryTypeInformationChange|FALSE

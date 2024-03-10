@@ -40,7 +40,6 @@
   SEND_HEARTBEAT_TO_SERIAL       = 0
   USE_UART_FOR_SERIAL_OUTPUT     = 0
 
-  DEFAULT_KEYS                   = TRUE
   PK_DEFAULT_FILE                = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/OEMA0-PK.der
   KEK_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/Kek/MicCorKEKCA2011_2011-06-24.der
   KEK_DEFAULT_FILE2              = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/Kek/microsoft_corporation_kek_2k_ca_2023.der
