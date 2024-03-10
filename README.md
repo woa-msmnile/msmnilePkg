@@ -118,7 +118,7 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 | Nubia RedMagic 3     | nubia-nx629j           | ❌              | NONE                                               |
 | Nubia RedMagic 3S    | nubia-nx629jv1s        | ❌              | NONE                                               |
 | Nubia Mini 5G        | nubia-tp1803           | ✅              | [Alula](https://github.com/alula)                  |
-| OnePlus 7            | oneplus-guacamoleb     | ✅              | UNKNOWN                                            |
+| OnePlus 7            | oneplus-guacamoleb     | ✅              | [NetuserPRO](https://github.com/NetuserPRO)        |
 | OnePlus 7 Pro        | oneplus-guacamole      | ✅              | [Waseem Alkurdi](https://github.com/WaseemAlkurdi) |
 | OnePlus 7T           | oneplus-hotdogb        | ✅              | UNKNOWN                                            |
 | OnePlus 7T Pro       | oneplus-hotdog         | ✅              | [Morc](https://github.com/TheMorc)                 |
@@ -187,8 +187,5 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 - Lemon ICE
 
 ## License ![License](https://img.shields.io/github/license/woa-msmnile/msmnilePkg)
-All code except drivers in `GPLDriver` directory are licensed under BSD 2-Clause.  
-GPL Drivers are licensed under GPLv2 license.
 
-
-## Check memePkg[https://github.com/woa-msmnile/memePkg] for other SoCs support!
+## Check our memePkg[https://github.com/woa-msmnile/memePkg] for other SoCs support!

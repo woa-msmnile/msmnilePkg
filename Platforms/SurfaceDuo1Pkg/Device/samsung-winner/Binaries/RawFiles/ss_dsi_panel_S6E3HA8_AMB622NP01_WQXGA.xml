@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?><PanelName>AMB622NP01</PanelName><PanelDescription>LSI Single DSI Command Mode DSC Panel (1440x2960 24bpp)</PanelDescription><Group id="Active Timing"> <HorizontalActive units="Dot Clocks">1440</HorizontalActive> <HorizontalFrontPorch units="Dot Clocks">116</HorizontalFrontPorch> <HorizontalBackPorch units="Dot Clocks">120</HorizontalBackPorch> <HorizontalSyncPulse units="Dot Clocks">44</HorizontalSyncPulse> <HorizontalSyncSkew units="Dot Clocks">0</HorizontalSyncSkew> <HorizontalLeftBorder units="Dot Clocks">0</HorizontalLeftBorder> <HorizontalRightBorder units="Dot Clocks">0</HorizontalRightBorder> <VerticalActive units="Dot Clocks">2960</VerticalActive> <VerticalFrontPorch units="Lines">120</VerticalFrontPorch> <VerticalBackPorch units="Lines">124</VerticalBackPorch> <VerticalSyncPulse units="Lines">80</VerticalSyncPulse> <VerticalSyncSkew units="Lines">0</VerticalSyncSkew> <VerticalTopBorder units="Lines">0</VerticalTopBorder> <VerticalBottomBorder units="Lines">0</VerticalBottomBorder> <InvertDataPolarity>False</InvertDataPolarity> <InvertVsyncPolairty>False</InvertVsyncPolairty> <InvertHsyncPolarity>False</InvertHsyncPolarity> <BorderColor>0x0</BorderColor></Group><Group id="Display Interface"> <InterfaceType units="QDI_DisplayConnectType">9</InterfaceType> <InterfaceColorFormat units="QDI_PixelFormatType">3</InterfaceColorFormat></Group><Group id="DSI Interface"> <DSIChannelId units="DSI_Channel_IDType">2</DSIChannelId> <DSIVirtualId units="DSI_Display_VCType">0</DSIVirtualId> <DSIColorFormat units="DSI_ColorFormatType">36</DSIColorFormat> <DSITrafficMode units="DSI_TrafficModeType">2</DSITrafficMode> <DSILanes units="integer">4</DSILanes> <DSIRefreshRate>0x3C0000</DSIRefreshRate> <DSIBitClockFrequency units="integer">898000000</DSIBitClockFrequency> <DSICmdSwapInterface units="Bool">False</DSICmdSwapInterface> <DSICmdUsingTrigger units="Bool">False</DSICmdUsingTrigger> <DSIEnableAutoRefresh units="Bool">True</DSIEnableAutoRefresh> <DSIAutoRefreshFrameNumDiv units="integer">2</DSIAutoRefreshFrameNumDiv> <DSITECheckEnable>True</DSITECheckEnable> <DSITEUsingDedicatedTEPin>True</DSITEUsingDedicatedTEPin> <DSITEvSyncStartPos>2960</DSITEvSyncStartPos> <DSITEvSyncInitVal>2960</DSITEvSyncInitVal> <DSIDSCEnable units="Bool">True</DSIDSCEnable> <DSIDSCMajor>1</DSIDSCMajor> <DSIDSCMinor>1</DSIDSCMinor> <DSIDSCProfileID units="integer">7</DSIDSCProfileID> <DSIDSCSliceWidth units="integer">720</DSIDSCSliceWidth> <DSIDSCSliceHeight units="integer">40</DSIDSCSliceHeight> <DSILP11AtInit units="Bool">True</DSILP11AtInit> <DSIControllerMapping>
+  00
+ </DSIControllerMapping>
+ <DSITimingCLKZeroOverride units="Bool">True</DSITimingCLKZeroOverride> <DSITimingCLKPrepareOverride units="Bool">True</DSITimingCLKPrepareOverride> <DSITimingCLKTrailOverride units="Bool">True</DSITimingCLKTrailOverride> <DSITimingHSExitOverride units="Bool">True</DSITimingHSExitOverride> <DSITimingHSZeroOverride units="Bool">True</DSITimingHSZeroOverride> <DSITimingHSPrepareOverride units="Bool">True</DSITimingHSPrepareOverride> <DSITimingHSTrailOverride units="Bool">True</DSITimingHSTrailOverride> <DSITimingHSRequestOverride units="Bool">True</DSITimingHSRequestOverride> <DSITimingTASureOverride units="Bool">True</DSITimingTASureOverride> <DSITimingTAGoOverride units="Bool">True</DSITimingTAGoOverride> <DSITimingTAGetOverride units="Bool">True</DSITimingTAGetOverride> <DSITimingCLKZeroValue units="integer">0x1E</DSITimingCLKZeroValue> <DSITimingCLKPrepareValue units="integer">0x08</DSITimingCLKPrepareValue> <DSITimingCLKTrailValue units="integer">0x08</DSITimingCLKTrailValue> <DSITimingHSExitValue units="integer">0x24</DSITimingHSExitValue> <DSITimingHSZeroValue units="integer">0x22</DSITimingHSZeroValue> <DSITimingHSPrepareValue units="integer">0x08</DSITimingHSPrepareValue> <DSITimingHSTrailValue units="integer">0x08</DSITimingHSTrailValue> <DSITimingHSRequestValue units="integer">0x05 </DSITimingHSRequestValue> <DSITimingTASureValue units="integer">0x00 </DSITimingTASureValue> <DSITimingTAGoValue units="integer">0x03</DSITimingTAGoValue> <DSITimingTAGetValue units="integer">0x04</DSITimingTAGetValue> <DSITimingCLKPreOverride units="Bool">True</DSITimingCLKPreOverride> <DSITimingCLKPostOverride units="Bool">True</DSITimingCLKPostOverride> <DSITimingCLKPreValue units="integer">0x19</DSITimingCLKPreValue> <DSITimingCLKPostValue units="integer">0x18</DSITimingCLKPostValue></Group><DSIInitSequence> 29 9F A5 A5
+ 29 F0 5A 5A
+ 07 01
+ 0A 11 00 00 89 30 80 0B 90 05 A0 00 28 02 D0 02 D0 02 00 02 68 00 20 04 6C 00 0A 00 0C 02 77 01 E9 18 00 10 F0 03 0C 20 00 06 0B 0B 33 0E 1C 2A 38 46 54 62 69 70 77 79 7B 7D 7E 01 02 01 00 09 40 09 BE 19 FC 19 FA 19 F8 1A 38 1A 78 1A B6 2A F6 2B 34 2B 74 3B 74 6B F4 00
+ 29 F0 A5 A5
+ 05 11
+ FF 0A
+ 29 F0 5A 5A
+ 29 35 00
+ 29 ED 4C
+ 29 FC 5A 5A
+ 29 C5 0D 10 B4 3E 01
+ 29 FC A5 A5
+ 29 B9 00 B0 81 09 00 00 00 11 03
+ 29 B0 03
+ 29 F6 43
+ 29 CA 07 00 00 00 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 00 00 00
+ 29 B1 00 0C
+ 29 B5 19 DC 16 01 34 67 9A CD 01 22 33 44 00 00 05 55 CC 0C 01 11 11 10
+ 29 F4 EB 28
+ 29 F7 03
+ 29 F0 A5 A5
+ 29 9F 5A 5A
+ FE 00 00 00
+ 29 9F A5 A5
+ 29 29 00
+ 29 9F 5A 5A
+</DSIInitSequence><DSITermSequence> 05 28 00
+ 05 10 00
+ FF 78
+</DSITermSequence><Group id='Backlight Configuration'> <BacklightType units='MDP_Panel_BacklightType'>0</BacklightType>
+ <BacklightPmicControlType units='MDP_PmicBacklightControlType'>0xFFF0</BacklightPmicControlType>
+</Group>

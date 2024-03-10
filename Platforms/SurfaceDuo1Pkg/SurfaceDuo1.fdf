@@ -93,6 +93,7 @@ READ_LOCK_STATUS   = TRUE
 
   INF SurfaceDuoFamilyPkg/Driver/SystemIntegrityPolicyProvisioningDxe/SystemIntegrityPolicyProvisioningDxe.inf
 
+  INF SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
   INF EmbeddedPkg/Drivers/VirtualKeyboardDxe/VirtualKeyboardDxe.inf
 
   # BDS
@@ -136,8 +137,7 @@ READ_LOCK_STATUS   = TRUE
     SECTION RAW = SurfaceDuo1Pkg/Include/Resources/RegulatoryLogos.png
   }
 
-  # INF GPLDriver/Application/SwitchSlotsApp/SwitchSlotsApp.inf
-  # INF GPLDriver/Driver/BootSlotDxe/BootSlotDxe.inf
+  INF SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
 
 #  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLogoFile) {
 #    SECTION RAW = SurfaceDuoFamilyPkg/Include/Resources/BootLogo.bmp
