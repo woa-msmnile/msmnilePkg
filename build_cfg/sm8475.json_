@@ -1,9 +1,0 @@
-{
-    "silicon": "Sm8475",
-    "package": "PalimaPkg",
-    "bootshim": {
-        "UEFI_BASE": "0x80C00000",
-        "UEFI_SIZE": "0x00400000",
-        "PADDING_SIZE": "0"
-    }
-}

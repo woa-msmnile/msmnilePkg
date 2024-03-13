@@ -88,11 +88,10 @@ READ_LOCK_STATUS   = TRUE
 
   # Secure Boot Key Enroll
   !if $(SECURE_BOOT_ENABLE) == 1
-    INF SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
-    # INF SurfaceDuoFamilyPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
+    INF SurfaceDuoFamilyPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
   !endif
 
-#  INF SurfaceDuoFamilyPkg/Driver/SystemIntegrityPolicyProvisioningDxe/SystemIntegrityPolicyProvisioningDxe.inf
+  INF SurfaceDuoFamilyPkg/Driver/SystemIntegrityPolicyProvisioningDxe/SystemIntegrityPolicyProvisioningDxe.inf
 
   INF EmbeddedPkg/Drivers/VirtualKeyboardDxe/VirtualKeyboardDxe.inf
 
@@ -132,13 +131,11 @@ READ_LOCK_STATUS   = TRUE
     SECTION RAW = $(PACKAGE_NAME)/Include/Resources/RegulatoryLogos.png
   }
 
-  # INF SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
-
   INF AdvLoggerPkg/AdvancedFileLogger/AdvancedFileLogger.inf
   INF ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
+  INF ArmPkg/Drivers/ArmPsciMpServicesDxe/ArmPsciMpServicesDxe.inf
   INF ArmPkg/Drivers/CpuDxe/CpuDxe.inf
   INF ArmPkg/Drivers/TimerDxe/TimerDxe.inf
-  INF ArmPkg/Drivers/ArmPsciMpServicesDxe/ArmPsciMpServicesDxe.inf
   INF EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
   INF EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf
   INF FatPkg/EnhancedFatDxe/Fat.inf
@@ -164,9 +161,13 @@ READ_LOCK_STATUS   = TRUE
   INF MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/ReportStatusCodeRouterRuntimeDxe.inf
   INF MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf
   INF MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf
-  INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
+#  INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
+  FILE DRIVER = CBD2E4D5-7068-4FF5-B462-9822B4AD8D60 {
+    SECTION PE32 = SurfaceDuoFamilyPkg/Binaries/VariableRuntimeDxe.efi
+    SECTION DXE_DEPEX_EXP = {gEfiPcdProtocolGuid AND gEfiDevicePathUtilitiesProtocolGuid}
+    SECTION UI = "VariableRuntimeDxe"
+  }
   INF MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
-  # INF MsCorePkg/MuVarPolicyFoundationDxe/MuVarPolicyFoundationDxe.inf
   # INF NetworkPkg/ArpDxe/ArpDxe.inf
   # INF NetworkPkg/Dhcp4Dxe/Dhcp4Dxe.inf
   # INF NetworkPkg/Dhcp6Dxe/Dhcp6Dxe.inf
@@ -188,6 +189,7 @@ READ_LOCK_STATUS   = TRUE
   # INF NetworkPkg/VlanConfigDxe/VlanConfigDxe.inf
   # INF SurfaceDuoFamilyPkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
   # INF SurfaceDuoFamilyPkg/Driver/SurfaceFirmwareProvisioningDataDxe/SurfaceFirmwareProvisioningDataDxe.inf
+  # INF SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
 
 [FV.FVMAIN_COMPACT]
 FvAlignment        = 8

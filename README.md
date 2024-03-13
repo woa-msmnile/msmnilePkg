@@ -1,4 +1,4 @@
-## This Repo Is Based On [SurfaceDuoPkg](https://github.com/Woa-Project/SurfaceDuoPkg/)
+## This Repo Is Based On [mu_andromeda_platforms](https://github.com/WOA-Project/mu_andromeda_platforms/)
 
 ### Thanks for [Gustave](https://github.com/gus33000)'s instructions!
 
@@ -40,9 +40,9 @@ Please see https://woa-msmnile.github.io for some tutorials.
   - mono-devel
   - git-core, git
   - build-essential
-  - clang38 (or higher), llvm, ggc-aarch64-linux-gnu
-- Exported CLANG38_BIN environment variable pointing to LLVM 10 binary folder
-- Exported CLANG38_AARCH64_PREFIX variable equalling to aarch64-linux-gnu-
+  - clangdwarf (or higher), llvm, ggc-aarch64-linux-gnu
+- Exported CLANGDWARF_BIN environment variable pointing to LLVM 10 binary folder
+- Exported CLANGDWARF_AARCH64_PREFIX variable equalling to aarch64-linux-gnu-
 
 ### Build Instructions
 
@@ -65,25 +65,31 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 
 *Then finish the following process in docker environment*
 
-*You can also use docker-compose if you know how to use*
-```
-docker-compose up
-```
-
 2. Build UEFI & Generate Android Boot Image
-> Usage: build_uefi.py -d \<target-device\>  
-- Exmaple:
+> Usage: build_uefi.py -d \<target-device\> -s \<secureboot status\> -t \<build type\>  
+- Exmaple with secure boot off and release build:
   ```
   ./build_uefi.py -d <target-name>
   ```
 
+- Exmaple with secure boot on:
+  ```
+  ./build_uefi.py -d <target-name> -s 1
+  ```
+
+- Exmaple with secure boot off and DEBUG build:
+  ```
+  ./build_uefi.py -d <target-name> -t DEBUG
+  ```
+
 - Tips:
-  - use `-s all` to build all devices.
-  - use `-d all -s <target-silicon>` to build all devices in same platform.
+  - use `-p all` to build devices in all platforms.
+  - use `-d all -p <target-platform>` to build all devices in same platform.
 
 - You will find Build/xxxxPkg/\<target-device\>.img after successfully building.
 
 ## Target list
+> Cross in *DSDT Support* means device only has UFS and USB working in Windows.
 
 ### *SDM845*
 > Comming soon...  
@@ -95,49 +101,51 @@ docker-compose up
 
 ### *SM8150*
 
-| Device             | Target name            | DSDT Support    | Maintainers                                        |
-|--------------------|------------------------|-----------------|----------------------------------------------------|
-| ASUS ROG2          | asus-I001DC            | ✅              | [Ww](https://github.com/Idonotkno)                 |
-| Axon Stage 5G      | kakao-pine             | ❌              | [AKA](https://github.com/AKAsaliza)                |
-| BlackShark 2       | blackshark-skywalker   | ❌              | NONE                                               |
-| BlackShark 2 Pro   | blackshark-darklighter | ❌              | NONE                                               |
-| HTC 5G Hub         | htc-rtx                | ❌              | NONE                                               |
-| LG G8              | lg-alphaplus           | ✅              | [Yanhua](https://github.com/yanhua-tj)             |
-| LG G8S             | lg-betalm              | ✅              | [J0SH1X](https://github.com/J0SH1X)                |
-| LG G8X             | lg-mh2lm               | ✅              | [Molly Sophia](https://github.com/MollySophia)     |
-| LG V50             | lg-flashlmdd           | ✅              | [AKA](https://github.com/AKAsaliza)                |
-| LG V50S            | lg-mh2lm5g             | ✅              | [AKA](https://github.com/AKAsaliza)                |
-| Meizu 16T          | meizu-m928q            | ❌              | NONE                                               |
-| Meizu 16s          | meizu-m971q            | ❌              | NONE                                               |
-| Nubia RedMagic 3   | nubia-nx629j           | ❌              | NONE                                               |
-| Nubia RedMagic 3S  | nubia-nx629jv1s        | ❌              | NONE                                               |
-| Nubia Mini 5G      | nubia-tp1803           | ✅              | [Alula](https://github.com/alula)                  |
-| OnePlus 7          | oneplus-guacamoleb     | ✅              | [NetuserPRO](https://github.com/NetuserPRO)        |
-| OnePlus 7 Pro      | oneplus-guacamole      | ✅              | [Waseem Alkurdi](https://github.com/WaseemAlkurdi) |
-| OnePlus 7T Pro     | oneplus-hotdog         | ✅              | [Morc](https://github.com/TheMorc)                 |
-| OnePlus 7T Pro 5G  | oneplus-hotdogg        | ✅              | NONE                                               |
-| OPPO Reno 10X      | oppo-op46c3            | ❌              | NONE                                               |
-| OPPO Reno ACE      | oppo-pclm10            | ✅              | [sunflower2333](https://github.com/sunflower2333)  |
-| QTI QRD 855        | qcom-msmnile           | ✅              | sunflower2333                                      |
-| Realme X3          | realme-rmx2086         | ❌              | NONE                                               |
-| Samsung Galaxy S10 | samsung-beyond1qlte    | ✅              | [Ww](https://github.com/Idonotkno)                 |
-| Samsung Galaxy Fold | samsung-winner        | ✅              | [Ost268](https://github.com/Ost268)                |
-| Smartisan Pro 3    | smartisan-aries        | ❌              | NONE                                               |
-| Xiaomi 9           | xiaomi-cepheus         | ✅              | [qaz6750](https://github.com/qaz6750)              |
-| Xiaomi Hercules    | xiaomi-hercules        | ✅              | [Ww](https://github.com/Idonotkno)                 |
-| Xiaomi K20 Pro     | xiaomi-raphael         | ✅              | sunflower2333                                      |
-| Xiaomi Mix3 5G     | xiaomi-andromeda       | ✅              | sunflower2333                                      |
-| Xiaomi Mix Alpha u2| xiaomi-avenger         | ❌              | NONE                                               |
-| Xiaomi Pad 5       | xiaomi-nabu            | ✅              | [Map220v](https://github.com/map220v)              |
-| Xiaomi Poco X3 Pro | xiaomi-vayu            | ✅              | [Degdag](https://github.com/degdag)                |
+| Device               | Target name            | DSDT Support    | Contributors                                       |
+|----------------------|------------------------|-----------------|----------------------------------------------------|
+| ASUS ROG2            | asus-I001DC            | ✅              | [sunflower2333](https://github.com/sunflower2333)  |
+| Axon Stage 5G        | kakao-pine             | ❌              | [AKA](https://github.com/AKAsaliza)                |
+| BlackShark 2         | blackshark-skywalker   | ❌              | NONE                                               |
+| BlackShark 2 Pro     | blackshark-darklighter | ❌              | NONE                                               |
+| HTC 5G Hub           | htc-rtx                | ❌              | NONE                                               |
+| LG G8                | lg-alphaplus           | ✅              | sunflower2333                                      |
+| LG G8S               | lg-betalm              | ✅              | [J0SH1X](https://github.com/J0SH1X)                |
+| LG G8X               | lg-mh2lm               | ✅              | [Molly Sophia](https://github.com/MollySophia)     |
+| LG V50               | lg-flashlmdd           | ✅              | [AKA](https://github.com/AKAsaliza)                |
+| LG V50S              | lg-mh2lm5g             | ✅              | [AKA](https://github.com/AKAsaliza)                |
+| Meizu 16T            | meizu-m928q            | ❌              | NONE                                               |
+| Meizu 16s            | meizu-m971q            | ❌              | NONE                                               |
+| Nubia RedMagic 3     | nubia-nx629j           | ❌              | NONE                                               |
+| Nubia RedMagic 3S    | nubia-nx629jv1s        | ❌              | NONE                                               |
+| Nubia Mini 5G        | nubia-tp1803           | ✅              | [Alula](https://github.com/alula)                  |
+| OnePlus 7            | oneplus-guacamoleb     | ✅              | [NetuserPRO](https://github.com/NetuserPRO)        |
+| OnePlus 7 Pro        | oneplus-guacamole      | ✅              | [Waseem Alkurdi](https://github.com/WaseemAlkurdi) |
+| OnePlus 7T           | oneplus-hotdogb        | ✅              | UNKNOWN                                            |
+| OnePlus 7T Pro       | oneplus-hotdog         | ✅              | [Morc](https://github.com/TheMorc)                 |
+| OnePlus 7T Pro 5G    | oneplus-hotdogg        | ✅              | NONE                                               |
+| OPPO Reno 10X        | oppo-op46c3            | ❌              | NONE                                               |
+| OPPO Reno ACE        | oppo-pclm10            | ✅              | NONE                                               |
+| QTI QRD 855          | qcom-qrd855            | ✅              | sunflower2333                                      |
+| Realme X3            | realme-rmx2086         | ❌              | NONE                                               |
+| Samsung Galaxy S10   | samsung-beyond1qlte    | ✅              | [Ww](https://github.com/Idonotkno)                 |
+| Samsung Galaxy Fold  | samsung-winner         | ✅              | [Ost268](https://github.com/Ost268)                |
+| Samsung Galaxy Tab S6| samsung-gts6l          | ✅              | NONE                                               |
+| Smartisan Pro 3      | smartisan-aries        | ❌              | NONE                                               |
+| Xiaomi 9             | xiaomi-cepheus         | ✅              | [qaz6750](https://github.com/qaz6750)              |
+| Xiaomi Hercules      | xiaomi-hercules        | ✅              | [Ww](https://github.com/Idonotkno)                 |
+| Xiaomi K20 Pro       | xiaomi-raphael         | ✅              | [Degdag](https://github.com/degdag)&sunflower2333  |
+| Xiaomi Mix3 5G       | xiaomi-andromeda       | ✅              | NONE                                               |
+| Xiaomi Mix Alpha u2  | xiaomi-avenger         | ❌              | NONE                                               |
+| Xiaomi Pad 5         | xiaomi-nabu            | ✅              | [Map220v](https://github.com/map220v)              |
+| Xiaomi Poco X3 Pro   | xiaomi-vayu            | ✅              | [Degdag](https://github.com/degdag)                |
 
 
 ### *SM7125*
 
 | Device             | Target name            | DSDT Support    | Maintainers                                        |
 |--------------------|------------------------|-----------------|----------------------------------------------------|
-| QTI QRD 720        | qcom-atoll             | ✅              | sunflower2333                                      |
-| Xiaomi Note 9S     | xiaomi-miatoll         | ❌              | Icesito                                            |
+| QTI QRD 720        | qcom-qrd720            | ✅              | sunflower2333                                      |
+| Xiaomi Note 9S     | xiaomi-miatoll         | ✅              | Icesito                                            |
 | Xiaomi Note 10 Pro | xiaomi-sweet           | ❌              | [dopaemon](https://github.com/dopaemon)            |
 
 
@@ -145,7 +153,7 @@ docker-compose up
 
 | Device             | Target name            | DSDT Support    | Maintainers                                        |
 |--------------------|------------------------|-----------------|----------------------------------------------------|
-| QTI QRD 778        | qcom-kodiak            | ✅              | [Ayu](https://github.com/chenyu0329)&sunflower2333 |
+| QTI QRD 778        | qcom-qrd778            | ✅              | [Ayu](https://github.com/chenyu0329)&sunflower2333 |
 
 
 ### *SM8350*
@@ -153,29 +161,31 @@ docker-compose up
 
 | Device             | Target name            | DSDT Support    | Maintainers                                        |
 |--------------------|------------------------|-----------------|----------------------------------------------------|
-| QTI QRD 888        | qcom-lahaina           | ❌              | None                                               |
+| QTI QRD 888        | qcom-qrd888            | ❌              | None                                               |
 
 
 ### *SM8550*
 
 | Device                | Target name            | DSDT Support    | Maintainers                                        |
 |-----------------------|------------------------|-----------------|----------------------------------------------------|
-| QTI QRD 8550          | qcom-kailua            | ❌              | None                                               |
+| AYN Odin 2            | ayn-odin2              | ❌              | None                                               |
+| QTI QRD 8550          | qcom-qrd8550           | ❌              | None                                               |
 | Nubia RedMagic 8 Pro  | nubia-nx729j           | ❌              | None                                               |
 | Xiaomi 13             | xiaomi-fuxi            | ❌              | None                                               |
 | Xiaomi 13 Pro         | xiaomi-nuwa            | ❌              | None                                               |
 
 ## Acknowledgements
-
-- Gustave Monce and his [SurfaceDuoPkg](https://github.com/Woa-Project/SurfaceDuoPkg/)
+- Gustave Monce and his [mu_andromeda_platforms](https://github.com/WOA-Project/mu_andromeda_platforms)
 - [EFIDroid Project](http://efidroid.org)
 - Andrei Warkentin and his [RaspberryPiPkg](https://github.com/andreiw/RaspberryPiPkg)
 - Sarah Purohit
 - [Googulator](https://github.com/Googulator/)
 - [Ben (Bingxing) Wang](https://github.com/imbushuo/)
 - Samuel Tulach and his [Rainbow Patcher](https://github.com/SamuelTulach/rainbow)
-- BigfootACA and his [SimpleInit](https://github.com/BigfootACA/simple-init)
+- [BigfootACA](https://github.com/BigfootACA) and his [SimpleInit](https://github.com/BigfootACA/simple-init)
 - Developers in [Renegade Project](https://github.com/edk2-porting)
 - Lemon ICE
 
 ## License ![License](https://img.shields.io/github/license/woa-msmnile/msmnilePkg)
+
+## Check our memePkg[https://github.com/woa-msmnile/memePkg] for other SoCs support!

@@ -1,5 +1,5 @@
 {
-    "silicon": "Sm7325",
+    "platform": "Sm7325",
     "package": "KodiakPkg",
     "bootshim": {
         "UEFI_BASE": "0x9F000000",

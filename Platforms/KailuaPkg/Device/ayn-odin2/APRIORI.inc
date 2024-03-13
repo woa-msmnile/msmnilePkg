@@ -17,7 +17,7 @@ APRIORI DXE {
     INF ArmPkg/Drivers/TimerDxe/TimerDxe.inf
     INF ArmPkg/Drivers/ArmPsciMpServicesDxe/ArmPsciMpServicesDxe.inf
 
-    # INF SurfaceDuoFamilyPkg/Driver/RamPartitionDxe/RamPartitionDxe.inf
+    INF SurfaceDuoFamilyPkg/Driver/RamPartitionDxe/RamPartitionDxe.inf
     INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SmemDxe/SmemDxe.inf
     INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/DALSYSDxe/DALSYSDxe.inf
     INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/HWIODxe/HWIODxe.inf
@@ -74,7 +74,12 @@ APRIORI DXE {
             SECTION PE32 = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TzDxe/TzDxeLA.efi
             SECTION UI = "TzDxe"
     }
-    INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
+#    INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
+    FILE DRIVER = CBD2E4D5-7068-4FF5-B462-9822B4AD8D60 {
+            SECTION PE32 = SurfaceDuoFamilyPkg/Binaries/VariableRuntimeDxe.efi
+            SECTION DXE_DEPEX_EXP = {gEfiPcdProtocolGuid AND gEfiDevicePathUtilitiesProtocolGuid}
+            SECTION UI = "VariableRuntimeDxe"
+    }
 #    INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/VariableDxe/VariableDxe.inf
 #    INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/QcomWDogDxe/QcomWDogDxe.inf
     INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/DDRInfoDxe/DDRInfoDxe.inf
@@ -158,10 +163,10 @@ APRIORI DXE {
     }
 
 #   INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/RNGDxe/RngDxe.inf
-    FILE DRIVER = B0D3689E-11F8-43C6-8ECE-023A29CEC35B {
-            SECTION UI = "RngDxe"
-            SECTION PE32 = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/RNGDxe/RngDxe.efi
-    }
+#    FILE DRIVER = B0D3689E-11F8-43C6-8ECE-023A29CEC35B {
+#            SECTION UI = "RngDxe"
+#            SECTION PE32 = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/RNGDxe/RngDxe.efi
+#    }
     INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SimpleTextInOutSerialDxe/SimpleTextInOutSerial.inf
     INF MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
     INF MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
@@ -185,11 +190,4 @@ APRIORI DXE {
     }
 
     INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/RscDxe/RscDxe.inf
-    INF ArmPkg/Drivers/ArmPciCpuIo2Dxe/ArmPciCpuIo2Dxe.inf
-    INF X86EmulatorPkg/X86Emulator.inf
-
-    FILE DRIVER = 2BE7CFE5-4DFC-4F21-992A-CA1B71B2EF14 {
-            SECTION PE32 = SurfaceDuoFamilyPkg/HyperSpace/HyperSpace.efi
-            SECTION UI = "HyperSpace"
-    }
 }

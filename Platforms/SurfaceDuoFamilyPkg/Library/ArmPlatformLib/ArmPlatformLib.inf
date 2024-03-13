@@ -27,11 +27,11 @@
   MemoryMapHelperLib
   PlatformMemoryMapLib
   PlatformPrePiLib
+
 [Sources.common]
   ArmPlatformLib.c
   ArmPlatformLibMem.c
   InitializationUtils.c
-  LinuxUtils.c
 
 [Sources.AArch64]
   AArch64/ArmPlatformHelper.S

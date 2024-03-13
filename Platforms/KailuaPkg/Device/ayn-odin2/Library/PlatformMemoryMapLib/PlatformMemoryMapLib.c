@@ -52,24 +52,30 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
     // 0x100000000 - 0x880000000
     // Size: 0x780000000
 
-    { "RAM Partition",     0x880000000, 0x39A00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+//    { "RAM Partition",     0x880000000, 0x35800000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv,   WRITE_BACK_XN},
 
     // Memory Hole
     // 0x8B9A00000 - 0x8c0000000
     // Size: 0x6600000
-    { "RAM Partition",     0x8C0000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
-    { "RAM Partition",     0x940000000, 0x40000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+//    { "RAM Partition",     0x8C0000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+//    { "RAM Partition",     0x940000000, 0x40000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
 
-#if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
-    { "PStore",            0x940000000, 0x00400000, AddMem, MEM_RES, SYS_MEM_CAP, Reserv, WRITE_THROUGH_XN},
-    { "RAM Partition",     0x940400000, 0x3FC00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
-#else
-    { "RAM Partition",     0x940000000, 0x40000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
-#endif
+//#if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
+//    { "PStore",            0x940000000, 0x00400000, AddMem, MEM_RES, SYS_MEM_CAP, Reserv, WRITE_THROUGH_XN},
+//    { "RAM Partition",     0x940400000, 0x3FC00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+//#else
+//    { "RAM Partition",     0x940000000, 0x40000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+//#endif
 
-    { "RAM Partition",     0x980000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
-    { "RAM Partition",     0xA00000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
-    { "RAM Partition",     0xA80000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+//    { "RAM Partition",     0x980000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+//    { "RAM Partition",     0xA00000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+//    { "RAM Partition",     0xA80000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+//    { "RAM Partition",     0xB00000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+//    { "RAM Partition",     0xB80000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+//    { "RAM Partition",     0xC00000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+//    { "RAM Partition",     0xC80000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+//    { "RAM Partition",     0xD00000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+//    { "RAM Partition",     0xD80000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
 
 
     /* Other memory regions */

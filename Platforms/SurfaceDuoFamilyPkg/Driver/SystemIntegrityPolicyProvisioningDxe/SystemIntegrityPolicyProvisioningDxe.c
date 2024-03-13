@@ -24,11 +24,40 @@
 #include <Library/UefiLib.h>
 #include <Library/UefiRuntimeServicesTableLib.h>
 
+#include <Guid/GlobalVariable.h>
+
 //
 // Global variables.
 //
 VOID                 *mFileSystemRegistration = NULL;
 STATIC EFI_IMAGE_LOAD EfiImageLoad            = NULL;
+
+/**
+  Helper function to query whether the secure boot variable is in place.
+  For Project Mu Code if the PK is set then Secure Boot is enforced (there is no
+  SetupMode)
+
+  @retval     TRUE if secure boot is enabled, FALSE otherwise.
+**/
+BOOLEAN
+IsSecureBootOn()
+{
+  EFI_STATUS Status;
+  UINTN      PkSize = 0;
+
+  Status = gRT->GetVariable(
+      EFI_PLATFORM_KEY_NAME, &gEfiGlobalVariableGuid, NULL, &PkSize, NULL);
+  if ((Status == EFI_BUFFER_TOO_SMALL) && (PkSize > 0)) {
+    DEBUG(
+        (DEBUG_INFO, "%a - PK exists.  Secure boot on.  Pk Size is 0x%X\n",
+         __FUNCTION__, PkSize));
+    return TRUE;
+  }
+
+  DEBUG(
+      (DEBUG_INFO, "%a - PK doesn't exist.  Secure boot off\n", __FUNCTION__));
+  return FALSE;
+}
 
 EFI_STATUS
 EFIAPI
@@ -52,7 +81,7 @@ TryWritePlatformSiPolicy(EFI_HANDLE SfsHandle)
       &mSiPolicyDefaultSize);
 
   DEBUG(
-      (DEBUG_ERROR, "%a: HandleProtocol gEfiSimpleFileSystemProtocolGuid\n",
+      (DEBUG_INFO, "%a: HandleProtocol gEfiSimpleFileSystemProtocolGuid\n",
        __FUNCTION__));
 
   Status = gBS->HandleProtocol(
@@ -63,7 +92,7 @@ TryWritePlatformSiPolicy(EFI_HANDLE SfsHandle)
     goto exit;
   }
 
-  DEBUG((DEBUG_ERROR, "%a: OpenVolume EfiSfsProtocol\n", __FUNCTION__));
+  DEBUG((DEBUG_INFO, "%a: OpenVolume EfiSfsProtocol\n", __FUNCTION__));
 
   Status = EfiSfsProtocol->OpenVolume(EfiSfsProtocol, &FileProtocol);
 
@@ -73,7 +102,7 @@ TryWritePlatformSiPolicy(EFI_HANDLE SfsHandle)
   }
 
   DEBUG(
-      (DEBUG_ERROR, "%a: FileProtocol \\EFI\\Microsoft\\Boot\\bootmgfw.efi\n",
+      (DEBUG_INFO, "%a: FileProtocol \\EFI\\Microsoft\\Boot\\bootmgfw.efi\n",
        __FUNCTION__));
 
   Status = FileProtocol->Open(
@@ -82,12 +111,12 @@ TryWritePlatformSiPolicy(EFI_HANDLE SfsHandle)
       EFI_FILE_READ_ONLY | EFI_FILE_HIDDEN | EFI_FILE_SYSTEM);
 
   if (EFI_ERROR(Status)) {
-    DEBUG((DEBUG_ERROR, "Failed to open bootmgfw.efi: %r\n", Status));
+    DEBUG((DEBUG_INFO, "Failed to open bootmgfw.efi: %r\n", Status));
     goto exit;
   }
 
   DEBUG(
-      (DEBUG_ERROR, "%a: Close \\EFI\\Microsoft\\Boot\\bootmgfw.efi\n",
+      (DEBUG_INFO, "%a: Close \\EFI\\Microsoft\\Boot\\bootmgfw.efi\n",
        __FUNCTION__));
 
   Status = PayloadFileProtocol->Close(PayloadFileProtocol);
@@ -109,8 +138,14 @@ TryWritePlatformSiPolicy(EFI_HANDLE SfsHandle)
     goto exit;
   }
 
+  // File already exists. No need to write it again.
   if (Status != EFI_NOT_FOUND) {
-    PayloadFileProtocol->Delete(PayloadFileProtocol);
+    // SecureBoot is off. Delete it.
+    if (!IsSecureBootOn()) {
+      PayloadFileProtocol->Delete(PayloadFileProtocol);
+    }
+    Status = EFI_SUCCESS;
+    goto exit;
   }
 
   Status = FileProtocol->Open(
@@ -124,7 +159,7 @@ TryWritePlatformSiPolicy(EFI_HANDLE SfsHandle)
   }
 
   DEBUG(
-      (DEBUG_ERROR, "%a: Write \\EFI\\Microsoft\\Boot\\SiPolicy.p7b\n",
+      (DEBUG_INFO, "%a: Write \\EFI\\Microsoft\\Boot\\SiPolicy.p7b\n",
        __FUNCTION__));
 
   Status = PayloadFileProtocol->Write(
@@ -134,7 +169,7 @@ TryWritePlatformSiPolicy(EFI_HANDLE SfsHandle)
   }
 
   DEBUG(
-      (DEBUG_ERROR, "%a: Close \\EFI\\Microsoft\\Boot\\SiPolicy.p7b\n",
+      (DEBUG_INFO, "%a: Close \\EFI\\Microsoft\\Boot\\SiPolicy.p7b\n",
        __FUNCTION__));
 
   Status = PayloadFileProtocol->Close(PayloadFileProtocol);
