@@ -8,7 +8,7 @@
 
 You can download the latest UEFI build by clicking [here](https://github.com/woa-msmnile/msmnilePkg/actions).
 
-![ActionStatus](https://img.shields.io/github/actions/workflow/status/woa-msmnile/msmnilepkg/all_silicons.yml)
+![ActionStatus](https://img.shields.io/github/actions/workflow/status/woa-msmnile/msmnilepkg/all_platforms.yml)
 
 ## What's this?
 
