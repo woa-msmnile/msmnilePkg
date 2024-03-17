@@ -11,14 +11,32 @@ ___
 ## **Part 0.** Introduce some directories and files.
   - We only need to know few directories and files under `Platform/SurfaceDuo1Pkg/`
     ```
-    ~/mu-msmnile$ tree Platforms/SurfaceDuo1Pkg/ -L 2 -d
+    ~/msmnilePkg$ tree Platforms/SurfaceDuo1Pkg/ -L 2 -d
     Platforms/SurfaceDuo1Pkg/
-    |-- AcpiTables
-    |   |-- 8150
-    |   |-- CustomizedACPI
-    |   `-- Include
+    |-- AtollPkg
+    |-- KailuaPkg
+    |-- KodiakPkg
+    |-- SurfaceDuo1Pkg
+    |-- SurfaceDuoACPI
+    |-- SurfaceDuoFamilyPkg
+    
+..
+    |-- SurfaceDuoFamilyPkg
+     |   |-- Device
+     |   |-- Include
+     |   |-- PythonLibs
+     |   |-- PlatformBuild.py
+     |   |-- SurfaceDuo1.dsc
+     |   |-- SurfaceDuo1.fdf
+     |   |-- SurfaceDuo1Pkg.dec
+
+..
+
     |-- Device
     |   |-- asus-I001DC
+    |   |-- blackshark-darklighter
+    |   |-- blackshark-skywalker
+    |   |-- htc-rtx
     |   |-- kakao-pine
     |   |-- lg-alphaplus
     |   |-- lg-betalm
@@ -26,33 +44,40 @@ ___
     |   |-- lg-mh2lm
     |   |-- lg-mh2lm5g
     |   |-- meizu-m928q
+    |   |-- meizu-m971q
     |   |-- nubia-tp1803
     |   |-- oneplus-guacamole
+    |   |-- oneplus-guacamoleь
     |   |-- oneplus-hotdog
+    |   |-- oneplus-hotdogb
+    |   |-- oneplus-hotdogg
+    |   |-- oppo-op46c3
+    |   |-- oppo-pclm10
+    |   |-- qcom-qrd855
+    |   |-- realme-rmx1931
+    |   |-- realme-rmx2086
     |   |-- samsung-beyond1qlte
+    |   |-- samsung-gts6l
+    |   |-- samsung-gts6lwifi
+    |   |-- samsung-winner
+    |   |-- smartisan-aries
     |   |-- xiaomi-andromeda
+    |   |-- xiaomi-avenger
     |   |-- xiaomi-cepheus
+    |   |-- xiaomi-crux
     |   |-- xiaomi-hercules
     |   |-- xiaomi-nabu
     |   |-- xiaomi-raphael
     |   `-- xiaomi-vayu
-    |-- Driver
-    |   |-- GpioButtons
-    |   `-- KernelErrataPatcher
-    |-- FdtBlob
     |-- Include
-    |   |-- Configuration
-    |   |-- Library
+    |   |-- IndustryStandard
     |   `-- Resources
-    |-- Library
-    |   |-- MemoryInitPeiLib
-    |   |-- MsPlatformDevicesLib
-    |   |-- PlatformPeiLib
-    |   |-- PlatformPrePiLib
-    |   |-- PlatformThemeLib
-    |   `-- RFSProtectionLib
-    |-- PatchedBinaries
-    `-- PythonLibs
+    |   |-- ACPI.inc
+    |   |-- FDT.inc
+    |-- PythonLibs
+    |   |-- PostBuild.py
+    |   |-- StampBuild.py
+    |   `-- mkbootimg.py
     ```
     - **AcpiTables/**
       * *Stores ACPI tables.*
@@ -79,6 +104,8 @@ ___
     ├── Binaries
     ├── Defines.dsc.inc
     ├── DeviceTreeBlob
+    ├── Include
+    ├── Library
     ├── DXE.dsc.inc
     ├── DXE.inc
     ├── Library
