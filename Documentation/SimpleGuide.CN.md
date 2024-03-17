@@ -11,60 +11,73 @@ ___
 ## **步骤0.** 介绍一些目录和文件
   - 我们只需要了解`Platform/SurfaceDuo1Pkg/`目录下的一些目录和文件。
     ```
-    ~/mu-msmnile$ tree Platforms/SurfaceDuo1Pkg/ -L 2 -d
-    Platforms/SurfaceDuo1Pkg/
-    |-- AcpiTables                    # 存放ACPI tables
-    |   |-- 8150
-    |   |-- CustomizedACPI
-    |   `-- Include
+~/msmnilePkg$ tree Platforms/SurfaceDuo1Pkg/ -L 2 -d
+Platforms/SurfaceDuo1Pkg/
+|-- AtollPkg
+|-- KailuaPkg
+|-- KodiakPkg
+|-- SurfaceDuo1Pkg
+|-- SurfaceDuoACPI
+|-- SurfaceDuoFamilyPkg
+
     |-- Device                        # 存放每个设备独有的驱动/库和配置。子文件夹的名字必须是`品牌-设备代号`
-    |   |-- asus-I001DC
-    |   |-- kakao-pine
-    |   |-- lg-alphaplus
-    |   |-- lg-betalm
-    |   |-- lg-flashlmdd
-    |   |-- lg-mh2lm
-    |   |-- lg-mh2lm5g
-    |   |-- meizu-m928q
-    |   |-- nubia-tp1803
-    |   |-- oneplus-guacamole
-    |   |-- oneplus-hotdog
-    |   |-- samsung-beyond1qlte
-    |   |-- xiaomi-andromeda
-    |   |-- xiaomi-cepheus
-    |   |-- xiaomi-hercules
-    |   |-- xiaomi-nabu
-    |   |-- xiaomi-raphael
-    |   `-- xiaomi-vayu
-    |-- Driver                        # 存放UEFI驱动
-    |   |-- GpioButtons
-    |   `-- KernelErrataPatcher
-    |-- FdtBlob                       # 包含SurfaceDuo的扁平设备树文件
-    |-- Include                       # 包含C语言头文件
-    |   |-- Configuration
-    |   |-- Library
-    |   `-- Resources
-    |-- Library                       # 包含驱动所需的libs。
-    |   |-- MemoryInitPeiLib
-    |   |-- MsPlatformDevicesLib
-    |   |-- PlatformPeiLib
-    |   |-- PlatformPrePiLib
-    |   |-- PlatformThemeLib
-    |   `-- RFSProtectionLib
-    |-- PatchedBinaries               # 包含SurfaceDuo1的补丁过后的驱动文件
-    `-- PythonLibs                    # 存放一些Python库
+|   |-- asus-I001DC
+|   |-- blackshark-darklighter
+|   |-- blackshark-skywalker
+|   |-- htc-rtx
+|   |-- kakao-pine
+|   |-- lg-alphaplus
+|   |-- lg-betalm
+|   |-- lg-flashlmdd
+|   |-- lg-mh2lm
+|   |-- lg-mh2lm5g
+|   |-- meizu-m928q
+|   |-- meizu-m971q
+|   |-- nubia-tp1803
+|   |-- oneplus-guacamole
+|   |-- oneplus-guacamoleь
+|   |-- oneplus-hotdog
+|   |-- oneplus-hotdogb
+|   |-- oneplus-hotdogg
+|   |-- oppo-op46c3
+|   |-- oppo-pclm10
+|   |-- qcom-qrd855
+|   |-- realme-rmx1931
+|   |-- realme-rmx2086
+|   |-- samsung-beyond1qlte
+|   |-- samsung-gts6l
+|   |-- samsung-gts6lwifi
+|   |-- samsung-winner
+|   |-- smartisan-aries
+|   |-- xiaomi-andromeda
+|   |-- xiaomi-avenger
+|   |-- xiaomi-cepheus
+|   |-- xiaomi-crux
+|   |-- xiaomi-hercules
+|   |-- xiaomi-nabu
+|   |-- xiaomi-raphael
+|   `-- xiaomi-vayu
+|-- Include
+|   |-- IndustryStandard
+|   `-- Resources
+|   |-- ACPI.inc
+|   |-- FDT.in
+|-- PythonLibs
+|   |-- PostBuild.py
+|   |-- StampBuild.py
+|   `-- mkbootimg.py
     ```
 
   - 近距离观察一下`Device/nubia-tp1803`。
     ```
-    ~/mu-msmnile/Platforms/SurfaceDuo1Pkg/Device$ tree -L 1  nubia-tp1803/
+    ~/msmnilePkg/Platforms/SurfaceDuo1Pkg/Device$ tree -L 1  nubia-tp1803/
     ├── ACPI                          # 存放设备的dsdt table
     ├── APRIORI.inc                   # Dxe的加载顺序。包含在SurfaceDuo1.fdf内
     ├── Binaries                      # 存放设备的firmware binaries
     ├── Defines.dsc.inc               # 特殊用途的宏指令。详情请参阅[DefinesGuidance.md](DefinesGuidance.md)
     ├── DeviceTreeBlob                # 存放设备的tree blob。
-    │                                    # 这里你需要注意的是：
-    │                                    # 子文件夹`Linux`存放主线Linux dtb，文件名必须是`linux-设备代号.dtb`
+    ├── Include                                    # 这里你需要注意的是：
+    ├── Library                                   # 子文件夹`Linux`存放主线Linux dtb，文件名必须是`linux-设备代号.dtb`
     │                                    # 子文件夹`Android`存放安卓dtb，文件名必须是`android-设备代号.dtb`
     ├── DXE.dsc.inc                   # 声明驱动。该文件被包含于SurfaceDuo1.dsc中
     ├── DXE.inc                       # 声明驱动。该文件被包含于SurfaceDuo1.fdf中
