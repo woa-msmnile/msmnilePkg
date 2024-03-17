@@ -11,48 +11,73 @@ ___
 ## **Часть 0.** Ознакомление с некоторыми каталогами и файлами.
    - Нам нужно знать лишь несколько каталогов и файлов под `Platform/SurfaceDuo1Pkg/`
      ```
-     ~/mu-msmnile$ tree Platforms/SurfaceDuo1Pkg/ -L 2 -d
-     Platforms/SurfaceDuo1Pkg/
-     |-- AcpiTables
-     | |-- 8150
-     | |-- CustomizedACPI
-     | `-- Include
-     |-- Device
-     | |-- asus-I001DC
-     | |-- kakao-pine
-     | |-- lg-alphaplus
-     | |-- lg-betalm
-     | |-- lg-flashlmdd
-     | |-- lg-mh2lm
-     | |-- lg-mh2lm5g
-     | |-- meizu-m928q
-     | |-- nubia-tp1803
-     | |-- oneplus-guacamole
-     | |-- oneplus-hotdog
-     | |-- samsung-beyond1qlte
-     | |-- xiaomi-andromeda
-     | |-- xiaomi-cepheus
-     | |-- xiaomi-hercules
-     | |-- xiaomi-nabu
-     | |-- xiaomi-raphael
-     | `-- xiaomi-vayu
-     |-- Driver
-     | |-- GpioButtons
-     | `-- KernelErrataPatcher
-     |-- FdtBlob
-     |-- Include
-     | |-- Configuration
-     | |-- Library
-     | `-- Resources
-     |-- Library
-     | |-- MemoryInitPeiLib
-     | |-- MsPlatformDevicesLib
-     | |-- PlatformPeiLib
-     | |-- PlatformPrePiLib
-     | |-- PlatformThemeLib
-     | `-- RFSProtectionLib
-     |-- PatchedBinaries
-     `-- PythonLibs
+    ~/msmnilePkg$ tree Platforms/SurfaceDuo1Pkg/ -L 2 -d
+    Platforms/SurfaceDuo1Pkg/
+    |-- AtollPkg
+    |-- KailuaPkg
+    |-- KodiakPkg
+    |-- SurfaceDuo1Pkg
+    |-- SurfaceDuoACPI
+    |-- SurfaceDuoFamilyPkg
+    
+..
+    |-- SurfaceDuoFamilyPkg
+     |   |-- Device
+     |   |-- Include
+     |   |-- PythonLibs
+     |   |-- PlatformBuild.py
+     |   |-- SurfaceDuo1.dsc
+     |   |-- SurfaceDuo1.fdf
+     |   |-- SurfaceDuo1Pkg.dec
+
+..
+
+    |-- Device
+    |   |-- asus-I001DC
+    |   |-- blackshark-darklighter
+    |   |-- blackshark-skywalker
+    |   |-- htc-rtx
+    |   |-- kakao-pine
+    |   |-- lg-alphaplus
+    |   |-- lg-betalm
+    |   |-- lg-flashlmdd
+    |   |-- lg-mh2lm
+    |   |-- lg-mh2lm5g
+    |   |-- meizu-m928q
+    |   |-- meizu-m971q
+    |   |-- nubia-tp1803
+    |   |-- oneplus-guacamole
+    |   |-- oneplus-guacamoleь
+    |   |-- oneplus-hotdog
+    |   |-- oneplus-hotdogb
+    |   |-- oneplus-hotdogg
+    |   |-- oppo-op46c3
+    |   |-- oppo-pclm10
+    |   |-- qcom-qrd855
+    |   |-- realme-rmx1931
+    |   |-- realme-rmx2086
+    |   |-- samsung-beyond1qlte
+    |   |-- samsung-gts6l
+    |   |-- samsung-gts6lwifi
+    |   |-- samsung-winner
+    |   |-- smartisan-aries
+    |   |-- xiaomi-andromeda
+    |   |-- xiaomi-avenger
+    |   |-- xiaomi-cepheus
+    |   |-- xiaomi-crux
+    |   |-- xiaomi-hercules
+    |   |-- xiaomi-nabu
+    |   |-- xiaomi-raphael
+    |   `-- xiaomi-vayu
+    |-- Include
+    |   |-- IndustryStandard
+    |   `-- Resources
+    |   |-- ACPI.inc
+    |   |-- FDT.inc
+    |-- PythonLibs
+    |   |-- PostBuild.py
+    |   |-- StampBuild.py
+    |   `-- mkbootimg.py
      ```
      - **AcpiTables/**
        * *Содержит ACPI таблицы.*
@@ -74,17 +99,19 @@ ___
    - Рассмотрим подробнее на примере `Device/nubia-tp1803`.
      ```
     ```
-~/mu-msmnile/Platforms/SurfaceDuo1Pkg/Device$ tree -L 1 nubia-tp1803/
-     ├── ACPI
-     ├── APRIORI.inc
-     ├── Binaries
-     ├── Defines.dsc.inc
-     ├── DeviceTreeBlob
-     ├── DXE.dsc.inc
-     ├── DXE.inc
-     ├── Library
-     ├── PatchedBinaries
-     └── PcdsFixedAtBuild.dsc.inc
+    ~/msmnilePkg/Platforms/SurfaceDuo1Pkg/Device$ tree -L 1  nubia-tp1803/
+    |-- ACPI
+    |-- APRIORI.inc
+    |-- Binaries
+    |-- Defines.dsc.inc
+    |-- DeviceTreeBlob
+    |-- Include
+    |-- Library
+    |-- DXE.dsc.inc
+    |-- DXE.inc
+    |-- Library
+    |-- PatchedBinaries
+    |-- PcdsFixedAtBuild.dsc.inc
      ```
      - **ACPI/**
        * *Содержит DSDT таблицу устройства.*
