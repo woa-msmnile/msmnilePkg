@@ -11,46 +11,84 @@ ___
 ## **Część 0.** Zapoznanie się z niektórymi katalogami i plikami.
      - Musimy znać tylko kilka katalogów i plików w `Platform/SurfaceDuo1Pkg/`
        ````
-       ~/mu-msmnile$ drzewo Platformy/SurfaceDuo1Pkg/ -L 2 -d
-       Platformy/SurfaceDuo1Pkg/
-       |-- Tabele Acpi
-       | |-- 8150
-       | |-- Dostosowane ACPI
-       | `-- Uwzględnij
-       |-- Urządzenie
-       | |-- asus-I001DC
-       | |-- sosna kakaowa
-       | |-- LG-alfaplus
-       | |-- lg-betalm
-       | |-- lg-flashlmdd
-       | |-- lg-mh2lm
-       | |-- lg-mh2lm5g
-       | |-- meizu-m928q
-       | |-- nubia-tp1803
-       | |-- oneplus-guacamole
-       | |-- Oneplus-hotdog
-       | |-- Samsung-Beyond1qlte
-       | |-- xiaomi-andromeda
-       | |-- xiaomi-cefeusz
-       | |-- Xiaomi-Hercules
-       | |-- Xiaomi-Nabu
-       | |-- Xiaomi-Raphael
-       | `--xiaomi-vayu
-       |-- Kierowca
-       | |-- Przyciski Gpio
-       | `-- KernelErrataPatcher
-       |-- FdtBlob
-       |-- Uwzględnij
-       | |-- Konfiguracja
-       | |-- Biblioteka
-       | `-- Zasoby
-       |-- Biblioteka
-       | |-- MemoryInitPeiLib
-       | |-- MsPlatformDevicesLib
-       | |-- PlatformaPeiLib
-       | |-- PlatformaPrePiLib
-       | |-- PlatformThemeLib
-       | `--RFSFProtectionLib
+~/msmnilePkg$ tree Platforms/SurfaceDuo1Pkg/ -L 2 -d
+Platforms/SurfaceDuo1Pkg/
+|-- AtollPkg
+|-- KailuaPkg
+|-- KodiakPkg
+|-- SurfaceDuo1Pkg
+|-- SurfaceDuoACPI
+|-- SurfaceDuoFamilyPkg
+
+.. |-- SurfaceDuoFamilyPkg | |-- Device | |-- Include | |-- PythonLibs | |-- PlatformBuild.py | |-- SurfaceDuo1.dsc | |-- SurfaceDuo1.fdf | |-- SurfaceDuo1Pkg.dec
+
+..
+
+|-- Device
+|   |-- asus-I001DC
+|   |-- blackshark-darklighter
+|   |-- blackshark-skywalker
+|   |-- htc-rtx
+|   |-- kakao-pine
+|   |-- lg-alphaplus
+|   |-- lg-betalm
+|   |-- lg-flashlmdd
+|   |-- lg-mh2lm
+|   |-- lg-mh2lm5g
+|   |-- meizu-m928q
+|   |-- meizu-m971q
+|   |-- nubia-tp1803
+|   |-- oneplus-guacamole
+|   |-- oneplus-guacamoleь
+|   |-- oneplus-hotdog
+|   |-- oneplus-hotdogb
+|   |-- oneplus-hotdogg
+|   |-- oppo-op46c3
+|   |-- oppo-pclm10
+|   |-- qcom-qrd855
+|   |-- realme-rmx1931
+|   |-- realme-rmx2086
+|   |-- samsung-beyond1qlte
+|   |-- samsung-gts6l
+|   |-- samsung-gts6lwifi
+|   |-- samsung-winner
+|   |-- smartisan-aries
+|   |-- xiaomi-andromeda
+|   |-- xiaomi-avenger
+|   |-- xiaomi-cepheus
+|   |-- xiaomi-crux
+|   |-- xiaomi-hercules
+|   |-- xiaomi-nabu
+|   |-- xiaomi-raphael
+|   `-- xiaomi-vayu
+|-- Include
+|   |-- IndustryStandard
+|   `-- Resources
+|   |-- ACPI.inc
+|   |-- FDT.inc
+|-- PythonLibs
+|   |-- PostBuild.py
+|   |-- StampBuild.py
+|   `-- mkbootimg.py
+```
+- **AcpiTables/**
+  * *Stores ACPI tables.*
+- **Device/**
+  * *Stores each device's specific binaries and configurations.*
+  * *The subfolder's name should be `brand-codename`.*
+- **Driver/**
+  * *Stores uefi drivers.*
+- **FdtBlob/**
+  * *Contains SurfaceDuo's flat device tree blob.*
+- **Include/**
+  * *Contains C headers.*
+- **Library/**
+  * *Contains libs the drivers need.*
+- **PatchedBinaries/**
+  * *Contains patched binaries for SurfaceDuo1.*
+- **PythonLibs/**
+  * *Stores python libs.*
+
        |-- Poprawione pliki binarne
        `--PythonLibs
        ````
@@ -74,17 +112,19 @@ ___
      - Przyjrzyjmy się bliżej przykładowi `Device/nubia-tp1803'.
        ````
       ````
-~/mu-msmnile/Platformy/SurfaceDuo1Pkg/Device$ Tree -L 1 nubia-tp1803/
-       ├── ACPI
-       ├── APRIORI.inc
-       ├── Pliki binarne
-       ├── Definiuje.dsc.inc
-       ├── DeviceTreeBlob
-       ├── DXE.dsc.inc
-       ├── DXE.inc
-       ├── Biblioteka
-       ├── Poprawione pliki binarne
-       └── PcdsFixedAtBuild.dsc.inc
+    ~/msmnilePkg/Platforms/SurfaceDuo1Pkg/Device$ tree -L 1  nubia-tp1803/
+    ├── ACPI
+    ├── APRIORI.inc
+    ├── Binaries
+    ├── Defines.dsc.inc
+    ├── DeviceTreeBlob
+    ├── Include
+    ├── Library
+    ├── DXE.dsc.inc
+    ├── DXE.inc
+    ├── Library
+    ├── PatchedBinaries
+    └── PcdsFixedAtBuild.dsc.inc
        ````
        - **ACPI/**
          * *Zawiera tabelę DSDT urządzenia.*
