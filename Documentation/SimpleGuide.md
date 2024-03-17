@@ -98,7 +98,7 @@ ___
       * *Stores python libs.*
   - Let's take a closer look at `Device/nubia-tp1803`. 
     ```
-    ~/mu-msmnile/Platforms/SurfaceDuo1Pkg/Device$ tree -L 1  nubia-tp1803/
+    ~/msmnilePkg/Platforms/SurfaceDuo1Pkg/Device$ tree -L 1  nubia-tp1803/
     ├── ACPI
     ├── APRIORI.inc
     ├── Binaries
