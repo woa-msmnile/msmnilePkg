@@ -113,18 +113,18 @@ Platforms/SurfaceDuo1Pkg/
        ````
       ````
     ~/msmnilePkg/Platforms/SurfaceDuo1Pkg/Device$ tree -L 1  nubia-tp1803/
-    ├── ACPI
-    ├── APRIORI.inc
-    ├── Binaries
-    ├── Defines.dsc.inc
-    ├── DeviceTreeBlob
-    ├── Include
-    ├── Library
-    ├── DXE.dsc.inc
-    ├── DXE.inc
-    ├── Library
-    ├── PatchedBinaries
-    └── PcdsFixedAtBuild.dsc.inc
+    |--ACPI
+    |-- APRIORI.inc
+    |-- Binaries
+    |-- Defines.dsc.inc
+    |-- DeviceTreeBlob
+    |-- Include
+    |-- Library
+    |-- DXE.dsc.inc
+    |-- DXE.inc
+    |-- Library
+    |-- PatchedBinaries
+    |-- PcdsFixedAtBuild.dsc.inc
        ````
        - **ACPI/**
          * *Zawiera tabelę DSDT urządzenia.*
