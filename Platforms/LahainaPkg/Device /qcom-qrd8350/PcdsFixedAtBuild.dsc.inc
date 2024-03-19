@@ -9,7 +9,7 @@ gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdDisplayCallerStallBeforeEnable|0
 # Smbios Info
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"QTI"
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"QRD Snapdragon 8 Gen2"
-gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"kailua"
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"lahaina"
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"DVT"
 
 # Necessary Addresses
