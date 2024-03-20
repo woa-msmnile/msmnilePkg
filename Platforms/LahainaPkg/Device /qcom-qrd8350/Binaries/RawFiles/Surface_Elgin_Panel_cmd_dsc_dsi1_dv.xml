@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PanelName>Surface_Elgin_Secondary DV</PanelName>
+<PanelDescription>Elgin DSI Secondary Cmd Mode AMOLED Panel with DSC DV (1344x1896 24bpp)</PanelDescription>
+<Group id="Active Timing">
+  <HorizontalActive>1344</HorizontalActive>
+  <VerticalActive>1892</VerticalActive>
+  <HorizontalLeftBorder>0</HorizontalLeftBorder>
+  <HorizontalRightBorder>0</HorizontalRightBorder>
+  <VerticalTopBorder>0</VerticalTopBorder>
+  <VerticalBottomBorder>0</VerticalBottomBorder>
+  <BorderColor>0x0</BorderColor>
+  <InvertDataPolarity>False</InvertDataPolarity>
+  <InvertVsyncPolairty>False</InvertVsyncPolairty>
+  <InvertHsyncPolarity>False</InvertHsyncPolarity>
+</Group>
+<Group id="Display Interface">
+  <InterfaceType>11</InterfaceType>
+  <InterfaceColorFormat>3</InterfaceColorFormat>
+</Group>
+<Group id="DSI Interface">
+  <DSIChannelId>2</DSIChannelId>
+  <DSIVirtualId>0</DSIVirtualId>
+  <DSIColorFormat>36</DSIColorFormat>
+  <DSITrafficMode>1</DSITrafficMode>
+  <DSILanes>4</DSILanes>
+  <DSIHsaHseAfterVsVe>False</DSIHsaHseAfterVsVe>
+  <DSILowPowerModeInHFP>False</DSILowPowerModeInHFP>
+  <DSILowPowerModeInHBP>False</DSILowPowerModeInHBP>
+  <DSILowPowerModeInHSA>False</DSILowPowerModeInHSA>
+  <DSILowPowerModeInBLLPEOF>True</DSILowPowerModeInBLLPEOF>
+  <DSILowPowerModeInBLLP>True</DSILowPowerModeInBLLP>
+  <DSIRefreshRate>0x3C0000</DSIRefreshRate>
+  <DSIEnableAutoRefresh>True</DSIEnableAutoRefresh>
+  <DSIPhyDCDCMode>False</DSIPhyDCDCMode>
+  <DSIPacketTransferHS>True</DSIPacketTransferHS>
+  <DSIClockHSForceRequest>1</DSIClockHSForceRequest>
+  <DSILP11AtInit>True</DSILP11AtInit>
+  <DSIForceCmdInVideoHS>True</DSIForceCmdInVideoHS>
+  <DSIDSCEnable>True</DSIDSCEnable>
+  <DSIDSCMajor>1</DSIDSCMajor>
+  <DSIDSCMinor>1</DSIDSCMinor>
+  <DSIDSCScr>0</DSIDSCScr>
+  <DSIDSCProfileID>4</DSIDSCProfileID>
+  <DSITECheckEnable>True</DSITECheckEnable>
+  <DSITEUsingDedicatedTEPin>True</DSITEUsingDedicatedTEPin>
+  <DSITEvSyncSelect>1</DSITEvSyncSelect>
+  <DSITEvSyncStartPos>1892</DSITEvSyncStartPos>
+  <DSITEvSyncInitVal>1892</DSITEvSyncInitVal>
+  <DSIDSCSliceWidth>672</DSIDSCSliceWidth>
+  <DSIDSCSliceHeight>946</DSIDSCSliceHeight>
+  <DSIBitClockFrequency>760000000</DSIBitClockFrequency>
+  <DisplayPrimaryFlags>0x01000000</DisplayPrimaryFlags>
+  <DSINullpacketInsertionBytes>1</DSINullpacketInsertionBytes>
+</Group>
+<DSIControllerMapping>
+  01
+</DSIControllerMapping>
+<DSIInitSequence>
+  39 7F 5A 5A
+	39 F0 5A 5A
+  39 F1 5A 5A
+	39 F2 5A 5A
+	39 E7 00
+	15 02 01
+	15 59 00
+	39 2A 00 00 05 3F
+  39 2B 00 00 07 63
+	39 51 02 4D
+	15 53 28
+	15 55 04
+	39 57 20 01 00 F8 FF F0 00
+	39 58 00 00 00 F8 FF FC
+	15 76 00
+  0A 11 00 00 89 30 80 07 64 05 40 03 B2 02 A0 02 A0 02 00 02 50 00 20 65 21 00 09 00 0C 00 1A 00 17 18 00 10 F0 03 0C 20 00 06 0B 0B 33 0E 1C 2A 38 46 54 62 69 70 77 79 7B 7D 7E 01 02 01 00 09 40 09 BE 19 FC 19 FA 19 F8 1A 38 1A 78 1A B6 2A F6 2B 34 2B 74 3B 74 6B F4 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  39 74 05 00 34
+  15 35 00
+  39 44 00 00
+	05 11
+	FF 82
+  39 E5 00 20
+  15 B0 08
+  39 E1 00 04 50
+  15 B0 10
+  39 E1 00 00 60
+  39 B0 09
+  39 E6 F0 01 59 92 76 01 68
+  FF 82
+</DSIInitSequence>
+<Group id='DSI Timing parameters'>
+  <DSITimingHSPrepareOverride>False</DSITimingHSPrepareOverride>
+  <DSITimingHSPrepareValue>21</DSITimingHSPrepareValue>
+</Group>
+<DSITermSequence>
+  05 28
+  05 10
+</DSITermSequence>
+<DSIPostInitSequence>
+  05 29
+</DSIPostInitSequence>
+<TLMMGPIODefaultHigh>0x32</TLMMGPIODefaultHigh>
+<Group id='Backlight Configuration'>
+ <BacklightType>3</BacklightType>
+ <BacklightBitWidth>10</BacklightBitWidth>
+ <DisplayResetInfo>0 10 1000 10000 0</DisplayResetInfo>
+</Group>
