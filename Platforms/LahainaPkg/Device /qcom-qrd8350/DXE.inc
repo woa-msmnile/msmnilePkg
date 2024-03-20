@@ -45,10 +45,10 @@ INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/PmicDxeLa.inf
 #INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/QcomChargerDxeLA.inf
 
 # DXE without depex
-#INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TzDxe/ScmDxeLA_Kailua.inf
-FILE DRIVER = 16E48F1F-7944-4BAA-BCA5-2D0CB788A904 {
-    SECTION PE32 = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TzDxe/ScmDxeLA_Kailua.efi
-    SECTION UI = "ScmDxeLA_Kailua"
+#INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TzDxe/ScmDxeLA.inf
+FILE DRIVER = 4B4973EE-401B-4F36-A6A9-533DFCCDFC33 {
+    SECTION PE32 = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TzDxe/ScmDxeLA.efi
+    SECTION UI = "ScmDxeLA"
 }
 
 #INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TzDxe/TzDxeLA.inf
@@ -58,31 +58,19 @@ FILE DRIVER = CF6DFC66-14AB-4E13-84DB-9C02912D1404 {
 }
 
 #INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ShmBridgeDxe/ShmBridgeDxeLA.inf
-FILE DRIVER = 41EBB6A6-2C19-4C02-841D-848CE004A282 {
+FILE DRIVER = 8430C46D-AB1C-4F82-896B-33E156931FB3 {
     SECTION PE32 = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ShmBridgeDxe/ShmBridgeDxeLA.efi
     SECTION UI = "ShmBridgeDxe"
 }
 
-#INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/QRKSDxe/QRKSDxe.inf
-FILE DRIVER = 3CF7F36E-5A97-496A-BB4B-D4F9937FA311 {
-    SECTION PE32 = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/QRKSDxe/QRKSDxe.efi
-    SECTION UI = "QRKSDxe"
-}
-
-FILE DRIVER = 6b38f7b4-ad98-40e9-9093-aca2b5a253c4 {
+FILE DRIVER = 6B38F7B4-AD98-40E9-9093-ACA2B5A253C4 {
     SECTION PE32 = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.efi
     SECTION UI = "DiskIoDxe"
 }
 
-FILE DRIVER = 1fa1f39e-feff-4aae-bd7b-38a070a3b609 {
+FILE DRIVER = 1FA1F39E-FEFF-4AAE-BD7B-38A070A3B609{
     SECTION PE32 = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.efi
     SECTION UI = "PartitionDxe"
-}
-
-#INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/LimitsDxe/LimitsDxe.inf
-FILE DRIVER =  F09AD92E-4E91-490F-AB99-E69939B840B2 {
-    SECTION PE32 = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/LimitsDxe/LimitsDxe.efi
-    SECTION UI = "LimitsDxe"
 }
 
 #INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/RNGDxe/RngDxe.inf
@@ -187,6 +175,10 @@ FILE FREEFORM = 81CE7295-491D-4E3F-AAA7-AB43FEF2F615 {
     SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_r66451_60hz_fhd_plus_dsc_cmd.xml
 }
 
+FILE FREEFORM = 81CE7295-491D-4E3F-AAA7-AB43FEF2F692 {
+    SECTION UI = "Panel_r66451_fhd_plus_60hz_dsc_cmd.xml"
+    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_r66451_fhd_plus_60hz_dsc_cmd.xml
+}
 
 FILE FREEFORM = 8297C793-9861-422C-9F67-D447AF1EA812 {
     SECTION UI = "Panel_r66451_120hz_fhd_plus_dsc_cmd.xml"
@@ -217,94 +209,92 @@ FILE FREEFORM = D192FEE9-6A04-4BE8-ABFE-5534E2B457EC {
     SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_secondary_truly_1080p_vid.xml
 }
 
+FILE FREEFORM = 13594E78-635E-49C9-80C7-F2A3EF8D959B {
+    SECTION UI = "Panel_r66451_60hz_fhd_plus_dsc_cmd_cphy.xml"
+    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_r66451_60hz_fhd_plus_dsc_cmd_cphy.xml
+}
 
-FILE FREEFORM = 9874B60A-6B80-4D76-8EEB-7862C780EC03 {
-    SECTION UI = "Panel_r66451_144hz_fhd_plus_dsc_cmd_cphy.xml"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_r66451_144hz_fhd_plus_dsc_cmd_cphy.xml
+FILE FREEFORM = 40C19F7E-C171-4C05-9C56-DE6E30AED8C9 {
+    SECTION UI = "Panel_r66451_90hz_fhd_plus_dsc_vid_cphy.xml"
+    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_r66451_90hz_fhd_plus_dsc_vid_cphy.xml
 }
 
 
-FILE FREEFORM = BC28E12E-C7E0-47F9-BBF9-0B45ED6F4B18 {
-    SECTION UI = "Panel_r66451_144hz_fhd_plus_dsc_vid_cphy.xml"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_r66451_144hz_fhd_plus_dsc_vid_cphy.xml
+FILE FREEFORM = 7246C37A-04E7-4D15-8DB6-638D8B59155E {
+    SECTION UI = "Surface_Elgin_Panel_cmd_dsc_dsi0.xml"
+    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Surface_Elgin_Panel_cmd_dsc_dsi0.xml
 }
 
 
-FILE FREEFORM = 637AD94D-7D9B-4D5F-B420-770B65BECDA8 {
-    SECTION UI = "Panel_r66451_60hz_fhd_plus_dsc_vid.xml"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_r66451_60hz_fhd_plus_dsc_vid.xml
+FILE FREEFORM = 8CA934CC-4385-4D4E-BC8B-37E8AC0B0960 {
+    SECTION UI = "Surface_Elgin_Panel_cmd_dsc_dsi1.xml"
+    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Surface_Elgin_Panel_cmd_dsc_dsi1.xml
 }
 
 
-FILE FREEFORM = AE3F9548-010C-4AEC-A9D2-4AE3E16D2F8B {
-    SECTION UI = "Panel_vtdr6130_144hz_fhd_plus_dsc_cmd.xml"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_vtdr6130_144hz_fhd_plus_dsc_cmd.xml
+FILE FREEFORM = 4365FDD2-2A06-11EB-ADC1-0242AC120002 {
+    SECTION UI = "Surface_Elgin_Panel_cmd_dsc_dsi0_ev2.xml"
+    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Surface_Elgin_Panel_cmd_dsc_dsi0_ev2.xml
 }
 
 
-FILE FREEFORM = 12372575-2A07-4C4E-BE92-6093A55FED33 {
-    SECTION UI = "Panel_vtdr6130_144hz_fhd_plus_dsc_vid.xml"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_vtdr6130_144hz_fhd_plus_dsc_vid.xml
+FILE FREEFORM = 54DE8CDC-2A06-11EB-ADC1-0242AC120002 {
+    SECTION UI = "Surface_Elgin_Panel_cmd_dsc_dsi1_ev2.xml"
+    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Surface_Elgin_Panel_cmd_dsc_dsi1_ev2.xml
 }
 
 
-FILE FREEFORM = 36630E03-0236-4983-ABDE-F982B23419FE {
-    SECTION UI = "Panel_vtdr6130_60hz_fhd_plus_dsc_cmd.xml"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_vtdr6130_60hz_fhd_plus_dsc_cmd.xml
+FILE FREEFORM = EDC40719-989A-45D4-9442-1E35AF98D8A6 {
+    SECTION UI = "Surface_Elgin_Panel_cmd_dsc_dsi0_ev3.xml"
+    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Surface_Elgin_Panel_cmd_dsc_dsi0_ev3.xml
 }
 
 
-FILE FREEFORM = 573FA171-1D5C-4C12-BDC8-19DCEFBBD483 {
-    SECTION UI = "Panel_vtdr6130_60hz_fhd_plus_dsc_vid.xml"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_vtdr6130_60hz_fhd_plus_dsc_vid.xml
+FILE FREEFORM = D0EEC6E6-EE21-438A-A7FB-8252F1F0F25D {
+    SECTION UI = "Surface_Elgin_Panel_cmd_dsc_dsi1_ev3.xml"
+    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Surface_Elgin_Panel_cmd_dsc_dsi1_ev3.xml
 }
 
 
-FILE FREEFORM = 0A60AF27-D18D-452F-BB8B-1A886F7F6CCC {
-    SECTION UI = "Panel_sharp_120hz_qhd_plus_dsc_cmd.xml"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_sharp_120hz_qhd_plus_dsc_cmd.xml
+FILE FREEFORM = BA2F91C8-278E-447E-9121-373B0D812651 {
+    SECTION UI = "Surface_Elgin_Panel_cmd_dsc_dsi0_dv.xml"
+    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Surface_Elgin_Panel_cmd_dsc_dsi0_dv.xml
 }
 
 
-FILE FREEFORM = 81466938-BB9E-43DC-A208-A41BA82A5861 {
-    SECTION UI = "Panel_sharp_120hz_qhd_plus_dsc_vid.xml"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_sharp_120hz_qhd_plus_dsc_vid.xml
+FILE FREEFORM = B374F91E-464C-4325-9F9B-657035B9A9B6 {
+    SECTION UI = "Surface_Elgin_Panel_cmd_dsc_dsi1_dv.xml"
+    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Surface_Elgin_Panel_cmd_dsc_dsi1_dv.xml
 }
 
 
-FILE FREEFORM = 23EB5E2D-4A4D-4B35-BB7B-BE39D7EE440D {
-    SECTION UI = "Panel_secondary_vtdr6130_144hz_fhd_plus_dsc_cmd.xml"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_secondary_vtdr6130_144hz_fhd_plus_dsc_cmd.xml
+FILE FREEFORM = A21F6348-4F65-4BF0-BCDD-B8DE64D9AB5A {
+    SECTION UI = "Surface_Elgin_Panel_cmd_dsc_dsi0_mp.xml"
+    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Surface_Elgin_Panel_cmd_dsc_dsi0_mp.xml
 }
 
 
-FILE FREEFORM = A413F4E1-50FE-4848-82F1-EFB814608221 {
-    SECTION UI = "Panel_secondary_vtdr6130_144hz_fhd_plus_dsc_vid.xml"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_secondary_vtdr6130_144hz_fhd_plus_dsc_vid.xml
+FILE FREEFORM = 84267C04-7399-498B-B294-0CEB2B369169 {
+    SECTION UI = "Surface_Elgin_Panel_cmd_dsc_dsi1_mp.xml"
+    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Surface_Elgin_Panel_cmd_dsc_dsi1_mp.xml
 }
 
 
-FILE FREEFORM = EB0A97F6-39DB-41D4-9B3C-CA3BADC144B4 {
-    SECTION UI = "Panel_truly_wqxga_cmd_splitlink.xml"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_truly_wqxga_cmd_splitlink.xml
+FILE FREEFORM = C32CB97A-D116-4D64-83B9-6BA1236057AD {
+    SECTION UI = "Panel_boe_amoled_wqhd_dsc_cmd_demura.xml"
+    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_boe_amoled_wqhd_dsc_cmd_demura.xml
 }
 
 
-FILE FREEFORM = F4A245C8-940E-4523-A53B-82E3C8BC6970 {
-    SECTION UI = "Panel_r66451_120hz_fhd_plus_dsc_cmd_demura.xml"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_r66451_120hz_fhd_plus_dsc_cmd_demura.xml
+FILE FREEFORM = 453D4CEB-2EC9-49A6-8EEC-B233EB679591 {
+    SECTION UI = "Panel_boe_amoled_wqhd_dsc_vid_demura.xml"
+    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_boe_amoled_wqhd_dsc_vid_demura.xml
 }
 
 
-FILE FREEFORM = 3DE03011-41E8-4353-A4E5-02721E71A0F4 {
-    SECTION UI = "Panel_vtdr6130_144hz_fhd_plus_dsc_cmd_demura.xml"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_vtdr6130_144hz_fhd_plus_dsc_cmd_demura.xml
-}
-
-
-FILE FREEFORM = 03E9256F-E621-48D8-8576-7E3B4FCF2D41 {
-    SECTION UI = "PanelSimConfig.csv"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/PanelSimConfig.csv
+FILE FREEFORM = 602CFFCD-8A5E-438E-B432-BF1A656A2561 {
+    SECTION UI = "Panel_secondary_r66451_fhd_plus_dsc_cmd.xml"
+    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_secondary_r66451_fhd_plus_dsc_cmd.xml
 }
 
 
@@ -317,6 +307,11 @@ FILE FREEFORM = 21E9BDD9-6C3F-4F10-84A5-BBEC322741F1 {
 FILE FREEFORM = 45FE4B7C-150C-45DA-A021-4BEB2048EC6F {
     SECTION UI = "QcomChargerCfg.cfg"
     SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/QcomChargerCfg.cfg
+}
+
+FILE FREEFORM = F780C779-DD7C-47CD-BD1A-5EB414C51704 {
+    SECTION UI = "BATTERY.PROVISION"
+    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/BATTERY.PROVISION
 }
 
 ###### FV2 ######

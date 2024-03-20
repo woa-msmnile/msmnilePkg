@@ -1,6 +1,6 @@
 [PcdsFixedAtBuild.common]
-gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
-gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2400
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1344
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|1892
 
 # Display Caller
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdDisplayCallerExitDisableDisplay|FALSE
@@ -13,15 +13,15 @@ gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"lahaina"
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"DVT"
 
 # Necessary Addresses
-gKailuaPkgTokenSpaceGuid.KernelProtocolAddress|0xA703B918
-gKailuaPkgTokenSpaceGuid.XBLDTProtocolAddress|0xA703B0C8
+gLahainaPkgTokenSpaceGuid.KernelProtocolAddress|0xA703B918
+gLahainaPkgTokenSpaceGuid.XBLDTProtocolAddress|0xA703B0C8
 
 [PcdsDynamicDefault.common]
-gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1080
-gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|2400
-gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|1080
-gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|2400
-gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|99  # = 1080 / EFI_GLYPH_WIDTH(8)
-gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|126    # = 2400 / EFI_GLYPH_HEIGHT(19)
-gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn|99       # = 1080 / EFI_GLYPH_WIDTH(8)
-gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow|126         # = 2400 / EFI_GLYPH_HEIGHT(19)
+gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1344
+gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|1892
+gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|1344
+gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|1892
+gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|168  # = 1344 / EFI_GLYPH_WIDTH(8)
+gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|99    # = 1892 / EFI_GLYPH_HEIGHT(19)
+gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn|168       # = 1344 / EFI_GLYPH_WIDTH(8)
+gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow|99         # = 1892 / EFI_GLYPH_HEIGHT(19)
