@@ -14,7 +14,6 @@ gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"DVT"
 
 # Necessary Addresses
 gLahainaPkgTokenSpaceGuid.KernelProtocolAddress|0xA703B918
-gLahainaPkgTokenSpaceGuid.XBLDTProtocolAddress|0xA703B0C8
 
 [PcdsDynamicDefault.common]
 gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1344
