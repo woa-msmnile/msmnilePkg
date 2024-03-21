@@ -219,67 +219,6 @@ FILE FREEFORM = 40C19F7E-C171-4C05-9C56-DE6E30AED8C9 {
     SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_r66451_90hz_fhd_plus_dsc_vid_cphy.xml
 }
 
-
-FILE FREEFORM = 7246C37A-04E7-4D15-8DB6-638D8B59155E {
-    SECTION UI = "Surface_Elgin_Panel_cmd_dsc_dsi0.xml"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Surface_Elgin_Panel_cmd_dsc_dsi0.xml
-}
-
-
-FILE FREEFORM = 8CA934CC-4385-4D4E-BC8B-37E8AC0B0960 {
-    SECTION UI = "Surface_Elgin_Panel_cmd_dsc_dsi1.xml"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Surface_Elgin_Panel_cmd_dsc_dsi1.xml
-}
-
-
-FILE FREEFORM = 4365FDD2-2A06-11EB-ADC1-0242AC120002 {
-    SECTION UI = "Surface_Elgin_Panel_cmd_dsc_dsi0_ev2.xml"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Surface_Elgin_Panel_cmd_dsc_dsi0_ev2.xml
-}
-
-
-FILE FREEFORM = 54DE8CDC-2A06-11EB-ADC1-0242AC120002 {
-    SECTION UI = "Surface_Elgin_Panel_cmd_dsc_dsi1_ev2.xml"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Surface_Elgin_Panel_cmd_dsc_dsi1_ev2.xml
-}
-
-
-FILE FREEFORM = EDC40719-989A-45D4-9442-1E35AF98D8A6 {
-    SECTION UI = "Surface_Elgin_Panel_cmd_dsc_dsi0_ev3.xml"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Surface_Elgin_Panel_cmd_dsc_dsi0_ev3.xml
-}
-
-
-FILE FREEFORM = D0EEC6E6-EE21-438A-A7FB-8252F1F0F25D {
-    SECTION UI = "Surface_Elgin_Panel_cmd_dsc_dsi1_ev3.xml"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Surface_Elgin_Panel_cmd_dsc_dsi1_ev3.xml
-}
-
-
-FILE FREEFORM = BA2F91C8-278E-447E-9121-373B0D812651 {
-    SECTION UI = "Surface_Elgin_Panel_cmd_dsc_dsi0_dv.xml"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Surface_Elgin_Panel_cmd_dsc_dsi0_dv.xml
-}
-
-
-FILE FREEFORM = B374F91E-464C-4325-9F9B-657035B9A9B6 {
-    SECTION UI = "Surface_Elgin_Panel_cmd_dsc_dsi1_dv.xml"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Surface_Elgin_Panel_cmd_dsc_dsi1_dv.xml
-}
-
-
-FILE FREEFORM = A21F6348-4F65-4BF0-BCDD-B8DE64D9AB5A {
-    SECTION UI = "Surface_Elgin_Panel_cmd_dsc_dsi0_mp.xml"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Surface_Elgin_Panel_cmd_dsc_dsi0_mp.xml
-}
-
-
-FILE FREEFORM = 84267C04-7399-498B-B294-0CEB2B369169 {
-    SECTION UI = "Surface_Elgin_Panel_cmd_dsc_dsi1_mp.xml"
-    SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Surface_Elgin_Panel_cmd_dsc_dsi1_mp.xml
-}
-
-
 FILE FREEFORM = C32CB97A-D116-4D64-83B9-6BA1236057AD {
     SECTION UI = "Panel_boe_amoled_wqhd_dsc_cmd_demura.xml"
     SECTION RAW = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/RawFiles/Panel_boe_amoled_wqhd_dsc_cmd_demura.xml
