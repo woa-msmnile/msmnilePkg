@@ -153,9 +153,9 @@ DisplayCallerDxeInitialize(
                     &ExitBootServicesEvent
                 );
 
-exit:
     if (EFI_ERROR (Status))
         DEBUG ((DEBUG_ERROR, "[DisplayCallerDxe]: Failed to power off display while exit boot service Status=%r\n", Status));
 
+exit:
     return Status;
 }
