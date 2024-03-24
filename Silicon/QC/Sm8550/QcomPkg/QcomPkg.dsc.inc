@@ -17,7 +17,7 @@
   gArmTokenSpaceGuid.PcdArmArchTimerIntrNum|30
   gArmTokenSpaceGuid.PcdGicDistributorBase|0x17100000
   gArmTokenSpaceGuid.PcdGicRedistributorsBase|0x17180000
-#  gArmTokenSpaceGuid.PcdGicInterruptInterfaceBase|0x17140000
+  gArmTokenSpaceGuid.PcdGicInterruptInterfaceBase|0x17140000
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemRevision|0x00008550
   gEmbeddedTokenSpaceGuid.PcdPrePiStackBase|0xA760D000
