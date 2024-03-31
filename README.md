@@ -89,15 +89,6 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 - You will find Build/xxxxPkg/\<target-device\>.img after successfully building.
 
 ## Target list
-> Cross in *DSDT Support* means device only has UFS and USB working in Windows.
-
-### *SDM845*
-> Comming soon...  
-
-| Device             | Target name            | DSDT Support    | Maintainers                                        |
-|--------------------|------------------------|-----------------|----------------------------------------------------|
-| HDK 845            | qcom-hdk845            | ✅              | NONE                                               |
-| Xiaomi Mix 2s      | xiaomi-polaris         | ❌              | NONE                                               |
 
 ### *SM8150*
 
@@ -157,11 +148,10 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 
 
 ### *SM8350*
-> Comming soon...  
 
 | Device             | Target name            | DSDT Support    | Maintainers                                        |
 |--------------------|------------------------|-----------------|----------------------------------------------------|
-| QTI QRD 888        | qcom-qrd888            | ❌              | None                                               |
+| QTI MTP 888        | qcom-mtp8350           | ✅              | [Ayu](https://github.com/chenyu0329)               |
 
 
 ### *SM8550*
@@ -174,6 +164,7 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 | Xiaomi 13             | xiaomi-fuxi            | ❌              | None                                               |
 | Xiaomi 13 Pro         | xiaomi-nuwa            | ❌              | None                                               |
 
+
 ## Acknowledgements
 - Gustave Monce and his [mu_andromeda_platforms](https://github.com/WOA-Project/mu_andromeda_platforms)
 - [EFIDroid Project](http://efidroid.org)
@@ -183,6 +174,7 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 - [Ben (Bingxing) Wang](https://github.com/imbushuo/)
 - Samuel Tulach and his [Rainbow Patcher](https://github.com/SamuelTulach/rainbow)
 - [BigfootACA](https://github.com/BigfootACA) and his [SimpleInit](https://github.com/BigfootACA/simple-init)
+- [Uotan](https://github.com/Uotan-Dev)
 - Developers in [Renegade Project](https://github.com/edk2-porting)
 - Lemon ICE
 
