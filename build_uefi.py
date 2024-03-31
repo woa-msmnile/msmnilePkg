@@ -87,15 +87,17 @@ def update_device_configuration_map(this_target):
                             "DeviceConfigurationMap.h")
     des_path = os.path.join("Silicon", "QC", this_target.platform, "QcomPkg", "Include", "Configuration",
                             "DeviceConfigurationMap.h")
+
+    # Symbol Link to destination Place.
+    if not os.path.exists(des_path):
+        os.symlink(os.path.abspath(src_path), des_path)
+
     # Delete cache.
     try:
-        os.remove(des_path)
-        shutil.rmtree(os.path.join("Build", this_target.package[:-3] + "-AARCH64", this_target.buildtype + "_CLANGDWARF", "AARCH64", "QcomPkg",
+        shutil.rmtree(os.path.join("Build", this_target.package, this_target.buildtype + "_CLANGDWARF", "AARCH64", "QcomPkg",
                                "PlatformPei"))
     except FileNotFoundError:
         print("First Building...")
-    # Symbol Link to destination Place.
-    os.symlink(os.path.abspath(src_path), des_path)
 
 
 def get_devices_list(package_name):
