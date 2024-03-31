@@ -1,0 +1,1 @@
+/home/xiang/MU-sm8150pkg/Platforms/SurfaceDuo2Pkg/Device/qcom-mtp8350/Include/Configuration/DeviceConfigurationMap.h

@@ -57,3 +57,9 @@ jobs:
         with:
           name: uefi-images-kailua
           path: Build/KailuaPkg/ci_artifacts
+
+      - name: Upload Lahaina's Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: uefi-images-lahaina
+          path: Build/LahainaPkg/ci_artifacts
