@@ -42,7 +42,6 @@
   gEfiChipInfoProtocolGuid                      ## CONSUMES
   gEfiSMEMProtocolGuid                          ## CONSUMES
   gEfiPlatformInfoProtocolGuid                  ## CONSUMES
-  gEfiClockProtocolGuid                         ## CONSUMES
 
 [FixedPcd]
   gArmPlatformTokenSpaceGuid.PcdClusterCount
