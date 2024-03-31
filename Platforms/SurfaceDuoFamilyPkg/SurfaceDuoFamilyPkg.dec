@@ -163,6 +163,10 @@
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdDisplayCallerExitDisableDisplay|FALSE|BOOLEAN|0x0000a701
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdDisplayCallerStallBeforeEnable|0|UINT64|0x0000a702
 
+  # Previous XBL's Protcol Addresses.
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.KernelProtocolAddress|0x00000000|UINT64|0x0000a801
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.XBLDTProtocolAddress|0x00000000|UINT64|0x0000a802
+
   ## This PCD points to the file name GUID of the UFPMenuApp
   #  Platform can customize the PCD to point to different application for UFP Menu
   # @Prompt UFP Menu File

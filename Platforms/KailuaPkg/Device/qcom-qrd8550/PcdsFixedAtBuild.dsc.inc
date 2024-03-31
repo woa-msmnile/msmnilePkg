@@ -4,7 +4,7 @@ gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2400
 
 # Display Caller
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdDisplayCallerExitDisableDisplay|FALSE
-gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdDisplayCallerStallBeforeEnable|0
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdDisplayCallerStallBeforeEnable|1000
 
 # Smbios Info
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"QTI"
@@ -13,8 +13,9 @@ gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"kailua"
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"DVT"
 
 # Necessary Addresses
-gKailuaPkgTokenSpaceGuid.KernelProtocolAddress|0xA703B918
-gKailuaPkgTokenSpaceGuid.XBLDTProtocolAddress|0xA703B0C8
+gSurfaceDuoFamilyPkgTokenSpaceGuid.KernelProtocolAddress|0xA703B948
+gSurfaceDuoFamilyPkgTokenSpaceGuid.XBLDTProtocolAddress|0xA703B0C8
+
 
 [PcdsDynamicDefault.common]
 gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1080

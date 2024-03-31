@@ -9,7 +9,3 @@
 
 [Guids.common]
   gKailuaPkgTokenSpaceGuid = { 0x4c59628e, 0x0a8a, 0x4099, { 0x8d, 0xe5, 0xf2, 0x08, 0xff, 0x80, 0xc4, 0xbf } }
-
-[PcdsFixedAtBuild.common]
-  gKailuaPkgTokenSpaceGuid.KernelProtocolAddress|0x00000000|UINT64|0x0000a101
-  gKailuaPkgTokenSpaceGuid.XBLDTProtocolAddress|0x00000000|UINT64|0x0000a102

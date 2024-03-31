@@ -9,8 +9,8 @@ gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"Odin"
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"HDK"
 
 # Necessary Addresses
-gKailuaPkgTokenSpaceGuid.KernelProtocolAddress|0xA703A948
-gKailuaPkgTokenSpaceGuid.XBLDTProtocolAddress|0xA703A0C8
+gSurfaceDuoFamilyPkgTokenSpaceGuid.KernelProtocolAddress|0xA703A948
+gSurfaceDuoFamilyPkgTokenSpaceGuid.XBLDTProtocolAddress|0xA703A0C8
 
 [PcdsDynamicDefault.common]
 gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1080
