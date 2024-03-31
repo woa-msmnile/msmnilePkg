@@ -14,5 +14,3 @@ ShellCode.elf: ShellCode.S
 
 ShellCode.S:  ShellCode.c
 	$(CC) gcc -S -o $@ -O1 -fno-stack-protector $<
-
-ShellCode.c:

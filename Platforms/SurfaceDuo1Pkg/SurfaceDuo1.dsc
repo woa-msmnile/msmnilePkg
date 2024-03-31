@@ -69,6 +69,11 @@
   # Device-specific memory map hacks
   HAS_MLVM                       = FALSE
 
+  PLATFORM_HAS_ACTLR_EL1_UNIMPLEMENTED_ERRATA         = 0
+  PLATFORM_HAS_AMCNTENSET0_EL0_UNIMPLEMENTED_ERRATA   = 0
+  PLATFORM_HAS_GIC_V3_WITHOUT_IRM_FLAG_SUPPORT_ERRATA = 0
+  PLATFORM_HAS_PSCI_MEMPROTECT_FAILING_ERRATA         = 1
+
 !include SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Defines.dsc.inc
 
 [BuildOptions.common]

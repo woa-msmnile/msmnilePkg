@@ -4,12 +4,10 @@ CROSS_COMPILE     = $(TARGET)-
 CC                = $(CROSS_COMPILE)gcc
 OBJCOPY           = $(CROSS_COMPILE)objcopy
 
-all: ShellCode.elf ShellCode.bin
+all: PoC.elf PoC.bin
 
-ShellCode.bin: ShellCode.elf
+PoC.bin: PoC.elf
 	$(OBJCOPY) -O binary $< $@
 
-ShellCode.elf: ShellCode.S
-	$(CC) -c $< -o $@
-
-ShellCode.S:
+PoC.elf: PoC.S
+	$(CC) -c $< -o $@ -DUEFI_BASE=$(UEFI_BASE) -DUEFI_SIZE=$(UEFI_SIZE)
