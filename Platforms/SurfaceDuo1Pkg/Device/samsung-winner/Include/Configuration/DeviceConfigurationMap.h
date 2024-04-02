@@ -51,7 +51,7 @@ static CONFIGURATION_DESCRIPTOR_EX gDeviceConfigurationDescriptorEx[] = {
     {"SharedIMEMBaseAddr", 0x146BF000},
     {"ShmBridgememSize", 0xA00000},
     {"TzAppsRegnAddr", 0x87900000},
-    {"TzAppsRegnSize", 0x02200000},
+    {"TzAppsRegnSize", 0x03E00000},
     {"TzDiagOffset", 0x720},
     {"TzDiagSize", 0x2000},
     {"UfsSmmuConfigForOtherBootDev", 1},
