@@ -18,14 +18,15 @@
 //  INT VOID *OsLoaderBlock, INT *KernelAddress
 //  );
 _Start:
-	mov	x8, x0
-	ldr	x6, [x8, 16]!
-	cmp	x6, x8
+	mov	x9, x0
+	ldr	x6, [x9, 16]!
+	cmp	x6, x9
 	beq	_Payload
-	mov	w5, 53928
+	mov	w5, 53920
 	movk	w5, 0xd53b, lsl 16
-	mov	w7, 8
-	movk	w7, 0xd280, lsl 16
+	mov	w8, 11615
+	movk	w8, 0x2844, lsl 16
+	mov	w7, -763363328
 	b	.L8
 .L6:
 	add	x2, x2, 4
@@ -33,13 +34,15 @@ _Start:
 	bcs	.L5
 .L7:
 	ldr	w3, [x2]
-	cmp	w3, w5
+	bics	wzr, w5, w3
 	bne	.L6
-	str	w7, [x2]
+	and	w3, w3, w8
+	orr	w3, w3, w7
+	str	w3, [x2]
 	b	.L6
 .L5:
 	ldr	x6, [x6]
-	cmp	x6, x8
+	cmp	x6, x9
 	beq	_Payload
 .L8:
 	ldr	x2, [x6, 48]

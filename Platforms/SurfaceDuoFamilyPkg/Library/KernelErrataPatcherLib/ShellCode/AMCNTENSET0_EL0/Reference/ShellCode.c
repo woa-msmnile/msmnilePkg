@@ -278,9 +278,9 @@ VOID OslArm64TransferToKernel(VOID *OsLoaderBlock, VOID *KernelAddress)
 
     for (EFI_PHYSICAL_ADDRESS current = base; current < base + size;
          current += sizeof(UINT32)) {
-      if (*(UINT32 *)current == 0xD53BD2A8) { // mrs x8,
+      if ((*(UINT32 *)current & 0xD53BD2A0) == 0xD53BD2A0) { // mrs x?,
                                               // amcntenset0_el0
-        *(UINT32 *)current = 0xD2800008;      // movz x8, #0
+        *(UINT32 *)current = (*(UINT32 *)current & ~(0xD53BD2A0)) | 0xD2800000; // movz x?, #0
       }
     }
   }
