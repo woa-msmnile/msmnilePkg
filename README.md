@@ -119,7 +119,7 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 | QTI QRD 855          | qcom-qrd855            | ✅              | sunflower2333                                      |
 | Realme X3            | realme-rmx2086         | ❌              | NONE                                               |
 | Samsung Galaxy S10   | samsung-beyond1qlte    | ✅              | [Ww](https://github.com/Idonotkno)                 |
-| Samsung Galaxy Fold  | samsung-winner         | ✅              | [Ost268](https://github.com/Ost268)                |
+| Samsung Galaxy Fold  | samsung-winner         | ✅              | NONE                                               |
 | Samsung Galaxy Tab S6| samsung-gts6l          | ✅              | NONE                                               |
 | Smartisan Pro 3      | smartisan-aries        | ❌              | NONE                                               |
 | Xiaomi 9             | xiaomi-cepheus         | ✅              | [qaz6750](https://github.com/qaz6750)              |
@@ -152,6 +152,7 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 | Device             | Target name            | DSDT Support    | Maintainers                                        |
 |--------------------|------------------------|-----------------|----------------------------------------------------|
 | QTI MTP 888        | qcom-mtp8350           | ✅              | [Ayu](https://github.com/chenyu0329)               |
+| Galaxy Z Fold 3 5G | samsung-q2q            | ✅              | None                                               |
 
 
 ### *SM8550*
