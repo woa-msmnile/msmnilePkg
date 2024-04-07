@@ -24,7 +24,7 @@ _Start:
 	beq	_Payload
 	mov	x3, 0
 	mov	x4, 0
-	mov	w8, 52138
+	mov	w8, 52136
 	movk	w8, 0xd518, lsl 16
 	mov	x7, 3
 	movk	x7, 0x9, lsl 16
@@ -70,15 +70,15 @@ _Start:
 	movk	x2, 0x3fd, lsl 32
 	movk	x2, 0x9100, lsl 48
 	str	x2, [x3, -168]
-	mov	x2, 586
+	mov	x2, 584
 	movk	x2, 0xb640, lsl 16
-	movk	x2, 0xf94a, lsl 32
+	movk	x2, 0xf908, lsl 32
 	movk	x2, 0x9257, lsl 48
 	str	x2, [x3, -160]
-	mov	x2, 330
+	mov	x2, 264
 	movk	x2, 0xb240, lsl 16
 	movk	x2, 0x3f6, lsl 32
-	movk	x2, 0xaa0a, lsl 48
+	movk	x2, 0xaa08, lsl 48
 	str	x2, [x3, -152]
 	mov	x2, 169
 	movk	x2, 0xd538, lsl 16
@@ -95,12 +95,12 @@ _Start:
 	movk	x2, 0xa0, lsl 32
 	movk	x2, 0x5400, lsl 48
 	str	x2, [x3, -128]
-	mov	x2, 48776
+	mov	x2, 48778
 	movk	x2, 0xd370, lsl 16
-	movk	x2, 0x2ca, lsl 32
-	movk	x2, 0xaa08, lsl 48
+	movk	x2, 0x2c8, lsl 32
+	movk	x2, 0xaa0a, lsl 48
 	str	x2, [x3, -120]
-	mov	x2, 52138
+	mov	x2, 52136
 	movk	x2, 0xd518, lsl 16
 	movk	x2, 0x3f9f, lsl 32
 	movk	x2, 0xd503, lsl 48
@@ -115,7 +115,7 @@ _Start:
 	movk	x2, 0x2, lsl 32
 	movk	x2, 0x1400, lsl 48
 	str	x2, [x3, -96]
-	mov	x2, 52138
+	mov	x2, 52136
 	movk	x2, 0xd518, lsl 16
 	movk	x2, 0x7bfd, lsl 32
 	movk	x2, 0xa8c1, lsl 48

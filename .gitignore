@@ -8,6 +8,7 @@ Silicon/QC/Sdm845/QcomPkg/Include/Configuration/DeviceConfigurationMap.h
 Silicon/QC/Sm7125/QcomPkg/Include/Configuration/DeviceConfigurationMap.h
 Silicon/QC/Sm7325/QcomPkg/Include/Configuration/DeviceConfigurationMap.h
 Silicon/QC/Sm8150/QcomPkg/Include/Configuration/DeviceConfigurationMap.h
+Silicon/QC/Sm8350/QcomPkg/Include/Configuration/DeviceConfigurationMap.h
 Silicon/QC/Sm8550/QcomPkg/Include/Configuration/DeviceConfigurationMap.h
 
 

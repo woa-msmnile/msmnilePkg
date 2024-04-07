@@ -4,13 +4,10 @@ CROSS_COMPILE     = $(TARGET)-
 CC                = $(CROSS_COMPILE)gcc
 OBJCOPY           = $(CROSS_COMPILE)objcopy
 
-all: ShellCode.elf ShellCode.bin ShellCode.S
+all: ShellCode.elf ShellCode.bin
 
 ShellCode.bin: ShellCode.elf
 	$(OBJCOPY) -O binary $< $@
 
-ShellCode.elf: ShellCode.S
+ShellCode.elf: ShellCode.WithoutLoop.S
 	$(CC) -c $< -o $@
-
-ShellCode.S: ShellCode.c
-	$(CC) -S -o $@ -O1 -fno-stack-protector $<
