@@ -69,7 +69,7 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 > Usage: build_uefi.py -d \<target-device\> -s \<secureboot status\> -t \<build type\>  
 - Exmaple with secure boot off and release build:
   ```
-  ./build_uefi.py -d samsung-gts6lwifi
+  ./build_uefi.py -d <target-name>
   ```
 
 - Exmaple with secure boot on:
