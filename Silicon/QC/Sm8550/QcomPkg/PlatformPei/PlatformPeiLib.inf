@@ -40,8 +40,8 @@
 
 [FixedPcd]
   gArmTokenSpaceGuid.PcdFvSize
-  gKailuaPkgTokenSpaceGuid.KernelProtocolAddress
-  gKailuaPkgTokenSpaceGuid.XBLDTProtocolAddress
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.KernelProtocolAddress
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.XBLDTProtocolAddress
 
 [Pcd]
   gArmTokenSpaceGuid.PcdFvBaseAddress
