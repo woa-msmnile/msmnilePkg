@@ -172,7 +172,7 @@ VOID InstallPlatformHob()
   if (!initialized) {
     ARM_MEMORY_REGION_DESCRIPTOR_EX InfoBlk;
     LocateMemoryMapAreaByName("Info Blk", &InfoBlk);
-    UINTN Data3 = 0xC5F27000; // FV2 Address
+    UINTN Data3 = 0xC5D47000; // FV2 Address
     UINTN InfoBlkAddress = InfoBlk.Address;
     UINTN ShLibAddress   = (UINTN)&ShLib;
     EFI_KERNEL_PROTOCOL   *SchedIntf       = (VOID *)PcdGet64(KernelProtocolAddress);
