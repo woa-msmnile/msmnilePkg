@@ -154,6 +154,7 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 | Device             | Target name            | DSDT Support    | Maintainers                                        |
 |--------------------|------------------------|-----------------|----------------------------------------------------|
 | QTI MTP 888        | qcom-mtp8350           | ✅              | [Ayu](https://github.com/chenyu0329)               |
+| Galaxy Z Fold 3 5G | samsung-q2q            | ✅              | None                                               |
 
 
 ### *SM8550*
