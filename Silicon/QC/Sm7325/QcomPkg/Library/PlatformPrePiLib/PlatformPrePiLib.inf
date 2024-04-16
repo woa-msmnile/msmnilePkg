@@ -10,9 +10,18 @@
   PlatformUtils.c
 
 [Packages]
+  ArmPkg/ArmPkg.dec
   MdePkg/MdePkg.dec
+  QcomPkg/QcomPkg.dec
   SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
 
 [LibraryClasses]
   BaseLib
   IoLib
+
+[FixedPcd]
+  gArmTokenSpaceGuid.PcdGicRedistributorsBase
+
+[Pcd]
+  gQcomPkgTokenSpaceGuid.PcdStr3
+  gQcomPkgTokenSpaceGuid.PcdStr4
