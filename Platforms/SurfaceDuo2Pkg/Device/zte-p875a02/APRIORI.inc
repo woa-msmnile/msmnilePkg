@@ -116,7 +116,7 @@ APRIORI DXE {
     }
 
     INF QcomPkg/PatchedBinaries/UsbConfigDxe.inf
-    INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/ButtonsDxe.inf
+    INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ButtonsDxe/ButtonsDxe.inf
     INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/GpiDxe/GpiDxe.inf
 
     FILE DRIVER = 5f0937cd-73f9-445e-b320-bb6fd5d3cbde {

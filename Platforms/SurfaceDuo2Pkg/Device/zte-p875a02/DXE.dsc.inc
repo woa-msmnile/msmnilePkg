@@ -6,13 +6,12 @@ $(PACKAGE_NAME)/Device/qcom-mtp8350/PatchedBinaries/PmicDxeLa.inf
 QcomPkg/PatchedBinaries/QcomWDogDxe.inf
 QcomPkg/PatchedBinaries/UFSDxe.inf
 QcomPkg/PatchedBinaries/UsbConfigDxe.inf
-$(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/ButtonsDxe.inf
 
 # Drivers
 MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
 SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
 SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
-#$(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ButtonsDxe/ButtonsDxe.inf
+$(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ButtonsDxe/ButtonsDxe.inf
 $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ChargerExDxe/ChargerExDxe.inf
 $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ChipInfoDxe/ChipInfoDxe.inf
 $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/CmdDbDxe/CmdDbDxe.inf
