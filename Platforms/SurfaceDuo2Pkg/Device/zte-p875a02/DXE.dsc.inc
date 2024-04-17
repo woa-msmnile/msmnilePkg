@@ -2,7 +2,7 @@
 # Patched Binaries
 QcomPkg/PatchedBinaries/ClockDxe.inf
 QcomPkg/PatchedBinaries/MinidumpTADxe.inf
-$(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/PmicDxeLa.inf
+$(PACKAGE_NAME)/Device/qcom-mtp8350/PatchedBinaries/PmicDxeLa.inf
 QcomPkg/PatchedBinaries/QcomWDogDxe.inf
 QcomPkg/PatchedBinaries/UFSDxe.inf
 QcomPkg/PatchedBinaries/UsbConfigDxe.inf
