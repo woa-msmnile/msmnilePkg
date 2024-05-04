@@ -81,6 +81,9 @@ APRIORI DXE {
     INF MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
     INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/FontDxe/FontDxe.inf
     INF MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
+
+    INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/AdcDxe/AdcDxe.inf
+
     INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SamsungDxe/CcicDxe/CcicDxe.inf
     INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SamsungDxe/MuicDxe/MuicDxe.inf
     INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SamsungDxe/ChgDxe/ChgDxe.inf
@@ -95,7 +98,6 @@ APRIORI DXE {
 #        SECTION UI = "ASN1X509Dxe"
 #    }
 
-    INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/AdcDxe/AdcDxe.inf
 #    INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/UsbPwrCtrlDxe/UsbPwrCtrlDxe.inf
     INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/PmicGlinkDxe/PmicGlinkDxe.inf
     INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbPwrCtrlDxe/UsbPwrCtrlDxe.inf
