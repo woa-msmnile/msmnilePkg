@@ -117,7 +117,7 @@ READ_LOCK_STATUS   = TRUE
   INF SurfaceDuoFamilyPkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
 
   # ACPI Tables
-  # !include KodiakPkg/Include/ACPI.inc
+  !include KodiakPkg/Include/ACPI.inc
 
   # DT
   INF EmbeddedPkg/Drivers/DtPlatformDxe/DtPlatformDxe.inf
