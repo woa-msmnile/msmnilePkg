@@ -13,6 +13,7 @@ APRIORI DXE {
     INF MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/SCHandlerRtDxe.inf
     INF QcomPkg/Drivers/VariableDxe/VariableDxe.inf
     INF QcomPkg/Drivers/EmbeddedMonotonicCounter/EmbeddedMonotonicCounter.inf
+    INF QcomPkg/Drivers/SimpleTextInOutSerialDxe/SimpleTextInOutSerial.inf
     INF QcomPkg/Drivers/ResetRuntimeDxe/ResetRuntimeDxe.inf
     INF EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf
     INF EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
@@ -54,10 +55,12 @@ APRIORI DXE {
     INF QcomPkg/Drivers/PlatformInfoDxe/PlatformInfoDxe.inf
     INF QcomPkg/Drivers/ButtonsDxe/ButtonsDxe.inf
     INF QcomPkg/Drivers/PmicDxe/PmicDxeLa.inf
+    INF QcomPkg/Drivers/OGaugeAuthDxe/OGaugeAuth.inf
     INF QcomPkg/Drivers/ChargerExDxe/ChargerExDxe.inf
     INF QcomPkg/Drivers/QcomChargerDxe/QcomChargerDxeLA.inf
     INF QcomPkg/Drivers/UsbPwrCtrlDxe/UsbPwrCtrlDxe.inf
     INF QcomPkg/Drivers/AdcDxe/AdcDxe.inf
+    INF QcomPkg/Drivers/OcdtDxe/OppoProject.inf
     INF QcomPkg/Drivers/TsensDxe/TsensDxe.inf
     INF QcomPkg/Drivers/LimitsDxe/LimitsDxe.inf
     INF QcomPkg/Drivers/DDRInfoDxe/DDRInfoDxe.inf
@@ -66,6 +69,7 @@ APRIORI DXE {
     INF QcomPkg/Drivers/HashDxe/HashDxe.inf
     INF QcomPkg/Drivers/CipherDxe/CipherDxe.inf
     INF QcomPkg/Drivers/RNGDxe/RngDxe.inf
+    INF QcomPkg/Drivers/PhoenixDxe/PhoenixDxe.inf
     INF QcomPkg/Drivers/QcomBds/QcomBds.inf
     INF QcomPkg/Drivers/PILDxe/PILDxe.inf
     INF QcomPkg/Drivers/ShmBridgeDxe/ShmBridgeDxeLA.inf
