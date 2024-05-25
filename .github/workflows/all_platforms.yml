@@ -7,6 +7,14 @@ on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
+    paths:
+      - 'Binaries'
+      - 'Common/**'
+      - 'Features/**'
+      - 'MU_BASECORE'
+      - 'Silicon/Arm/**'
+      - 'scripts/**'
+      - 'Platforms/SurfaceDuoFamilyPkg/**'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -14,6 +22,14 @@ on:
   # Triggers the workflow on pull request
   pull_request:
     types: [opened, reopened]
+    paths:
+      - 'Binaries'
+      - 'Common/**'
+      - 'Features/**'
+      - 'MU_BASECORE'
+      - 'Silicon/Arm/**'
+      - 'scripts/**'
+      - 'Platforms/SurfaceDuoFamilyPkg/**'
 
 
 # Indicate that we are running in CI
@@ -37,29 +53,29 @@ jobs:
       - name: Upload Atoll's Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: uefi-images-atoll
+          name: uefi-images-atoll-sm7125
           path: Build/AtollPkg/ci_artifacts
 
       - name: Upload Hana's Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: uefi-images-hana
+          name: uefi-images-hana-sm8150
           path: Build/SurfaceDuo1Pkg/ci_artifacts
 
       - name: Upload Kodiak's Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: uefi-images-kodiak
+          name: uefi-images-kodiak-sm7325
           path: Build/KodiakPkg/ci_artifacts
 
       - name: Upload Kailua's Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: uefi-images-kailua
+          name: uefi-images-kailua-sm8550
           path: Build/KailuaPkg/ci_artifacts
 
       - name: Upload Lahaina's Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: uefi-images-lahaina
+          name: uefi-images-lahaina-sm8350
           path: Build/LahainaPkg/ci_artifacts
