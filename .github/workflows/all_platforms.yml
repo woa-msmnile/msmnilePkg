@@ -46,36 +46,41 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: build uefi for all devices in all platforms
         run: bash scripts/ci_setup.sh && ./build_uefi.py -p all
 
       - name: Upload Atoll's Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: uefi-images-atoll-sm7125
           path: Build/AtollPkg/ci_artifacts
+          compression-level: 9
 
       - name: Upload Hana's Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: uefi-images-hana-sm8150
           path: Build/SurfaceDuo1Pkg/ci_artifacts
+          compression-level: 9
 
       - name: Upload Kodiak's Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: uefi-images-kodiak-sm7325
           path: Build/KodiakPkg/ci_artifacts
+          compression-level: 9
 
       - name: Upload Kailua's Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: uefi-images-kailua-sm8550
           path: Build/KailuaPkg/ci_artifacts
+          compression-level: 9
 
       - name: Upload Lahaina's Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: uefi-images-lahaina-sm8350
           path: Build/LahainaPkg/ci_artifacts
+          compression-level: 9
