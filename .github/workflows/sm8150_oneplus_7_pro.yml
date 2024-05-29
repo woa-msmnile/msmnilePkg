@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Sm8150 OnePlus 7Pro SB/NOSB Uefi Build
+name: Sm8150 Oneplus 7P
 
 # Controls when the workflow will run
 on:
@@ -27,7 +27,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-      - name: build uefi for oneplus 7 pro.
+      - name: Build SB/NOSB uefi for oneplus 7pro.
         run: bash scripts/ci_setup.sh && ./build_uefi.py -d oneplus-guacamole
 
       - name: Upload Artifact

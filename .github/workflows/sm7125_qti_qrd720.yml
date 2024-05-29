@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Sm7125 QTI QRD720 SB/NOSB Uefi Build
+name: Sm7125 QTI QRD720
 
 # Controls when the workflow will run
 on:
@@ -27,7 +27,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-      - name: build uefi for qti qrd720.
+      - name: Build SB/NOSB uefi for qti qrd720.
         run: bash scripts/ci_setup.sh && ./build_uefi.py -d qcom-qrd720
 
       - name: Upload Artifact

@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Sm8350 QTI MTP8350 SB/NOSB Uefi Build
+name: Sm8350 QTI MTP8350
 
 # Controls when the workflow will run
 on:
@@ -27,7 +27,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-      - name: build uefi for qti mtp8350.
+      - name: Build SB/NOSB uefi for qti mtp8350.
         run: bash scripts/ci_setup.sh && ./build_uefi.py -d qcom-mtp8350
 
       - name: Upload Artifact
