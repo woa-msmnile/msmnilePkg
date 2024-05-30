@@ -42,9 +42,11 @@
 
 [Protocols]
   gEfiRamPartitionProtocolGuid
+  gArmPageTableMemoryAllocationProtocolGuid
   
 [Depex]
   gEfiRamPartitionProtocolGuid
+  gArmPageTableMemoryAllocationProtocolGuid
 
 #[BuildOptions.AARCH64]
 #  GCC:*_*_*_CC_FLAGS = -Wno-unused-function
