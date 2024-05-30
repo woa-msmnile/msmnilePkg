@@ -64,6 +64,13 @@ jobs:
           path: Build/SurfaceDuo1Pkg/ci_artifacts
           compression-level: 9
 
+      - name: Upload Kona's Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: uefi-images-kona-sm8150
+          path: Build/KonaPkg/ci_artifacts
+          compression-level: 9
+
       - name: Upload Kodiak's Artifact
         uses: actions/upload-artifact@v4
         with:
