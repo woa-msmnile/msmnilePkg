@@ -11,7 +11,6 @@
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiLib.h>
 
-#include <Library/MemoryMapHelperLib.h>
 #include <Library/RFSProtectionLib.h>
 
 #include <Protocol/EFIChipInfo.h>
