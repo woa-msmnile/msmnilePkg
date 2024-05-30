@@ -116,6 +116,7 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 | OnePlus 7T Pro 5G         | oneplus-hotdogg        | ✅              | NONE                                               |
 | OPPO Reno 10X             | oppo-op46c3            | ❌              | NONE                                               |
 | OPPO Reno ACE             | oppo-pclm10            | ✅              | NONE                                               |
+| QTI MTP 855               | qcom-mtp8150           | ✅              | NONE                                               |
 | QTI QRD 855               | qcom-qrd855            | ✅              | sunflower2333                                      |
 | Realme X2 Pro             | realme-rmx1931         | ❌              | NONE                                               |
 | Realme X3 SuperZoom       | realme-rmx2086         | ✅              | NONE                                               |
