@@ -79,6 +79,8 @@
   # Notice: PlatformMemoryMapLib was moved to Device/<device>/Library/
   PlatformMemoryMapLib|$(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
 
+  # Notice: PlatformConfigurationMapLib was moved to Device/<device>/Library/
+  PlatformConfigurationMapLib|$(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Library/PlatformConfigurationMapLib/PlatformConfigurationMapLib.inf
 
 !include $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/DXE.dsc.inc
 !include QcomPkg/QcomPkg.dsc.inc
