@@ -45,7 +45,7 @@
   gArmPageTableMemoryAllocationProtocolGuid
   
 [Depex]
-  gEfiRamPartitionProtocolGuid
+  gEfiRamPartitionProtocolGuid AND
   gArmPageTableMemoryAllocationProtocolGuid
 
 #[BuildOptions.AARCH64]
