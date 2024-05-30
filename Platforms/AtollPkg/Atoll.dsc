@@ -104,6 +104,9 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=7125
   # Move PlatformMemoryMapLib to Device/<device>/Library
   PlatformMemoryMapLib|AtollPkg/Device/$(TARGET_DEVICE)/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
 
+  # Move PlatformConfigurationMapLib to Device/<device>/Library
+  PlatformConfigurationMapLib|AtollPkg/Device/$(TARGET_DEVICE)/Library/PlatformConfigurationMapLib/PlatformConfigurationMapLib.inf
+
 
 # Suggest you updating them to your device's dsc.inc.
 #[PcdsDynamicDefault.common]

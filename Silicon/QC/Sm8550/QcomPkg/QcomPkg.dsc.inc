@@ -40,6 +40,11 @@
   # Different Device has different Memory Map.
   # So the define of this Lib is moved to KailuaPkg/Kailua.dsc
   #PlatformMemoryMapLib|QcomPkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
+
+  # Different Device has different Configuration Map.
+  # So the define of this Lib is moved to KailuaPkg/Kailua.dsc
+  #PlatformConfigurationMapLib|QcomPkg/Library/PlatformConfigurationMapLib/PlatformConfigurationMapLib.inf
+
   PlatformPeiLib|QcomPkg/PlatformPei/PlatformPeiLib.inf
   PlatformPrePiLib|QcomPkg/Library/PlatformPrePiLib/PlatformPrePiLib.inf
   AslUpdateLib|SurfaceDuoFamilyPkg/Library/DxeAslUpdateLib/DxeAslUpdateLib.inf

@@ -48,38 +48,14 @@ STATIC
 EFI_STATUS
 CfgGetCfgInfoVal(CHAR8 *Key, UINT32 *Value)
 {
-  PCONFIGURATION_DESCRIPTOR_EX ConfigurationDescriptorEx =
-      gDeviceConfigurationDescriptorEx;
-
-  // Run through each configuration descriptor
-  while (ConfigurationDescriptorEx->Value != 0xFFFFFFFF) {
-    if (AsciiStriCmp(Key, ConfigurationDescriptorEx->Name) == 0) {
-      *Value = (UINT32)(ConfigurationDescriptorEx->Value & 0xFFFFFFFF);
-      return EFI_SUCCESS;
-    }
-    ConfigurationDescriptorEx++;
-  }
-
-  return EFI_NOT_FOUND;
+  return LocateConfigurationMapUINT32ByName(Key, Value);
 }
 
 STATIC
 EFI_STATUS
 CfgGetCfgInfoVal64(CHAR8 *Key, UINT64 *Value)
 {
-  PCONFIGURATION_DESCRIPTOR_EX ConfigurationDescriptorEx =
-      gDeviceConfigurationDescriptorEx;
-
-  // Run through each configuration descriptor
-  while (ConfigurationDescriptorEx->Value != 0xFFFFFFFF) {
-    if (AsciiStriCmp(Key, ConfigurationDescriptorEx->Name) == 0) {
-      *Value = ConfigurationDescriptorEx->Value;
-      return EFI_SUCCESS;
-    }
-    ConfigurationDescriptorEx++;
-  }
-
-  return EFI_NOT_FOUND;
+  return LocateConfigurationMapUINT64ByName(Key, Value);
 }
 
 STATIC
@@ -155,8 +131,8 @@ VOID BuildMemHobForFv(IN UINT16 Type)
   }
 }
 
-STATIC GUID gEfiShLibHobGuid   = EFI_SHIM_LIBRARY_GUID;
 STATIC GUID gEfiInfoBlkHobGuid = EFI_INFORMATION_BLOCK_GUID;
+STATIC GUID gEfiShLibHobGuid   = EFI_SHIM_LIBRARY_GUID;
 STATIC GUID gEfiProdmodeHobGuid = EFI_PRODMODE_INFORMATION_GUID;
 
 VOID InstallPlatformHob()
@@ -167,6 +143,7 @@ VOID InstallPlatformHob()
     BOOLEAN Prodmode = FALSE;
     ARM_MEMORY_REGION_DESCRIPTOR_EX InfoBlk;
     LocateMemoryMapAreaByName("Info Blk", &InfoBlk);
+
     UINTN InfoBlkAddress = InfoBlk.Address;
     UINTN ShLibAddress   = (UINTN)&ShLib;
 
