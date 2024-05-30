@@ -1,12 +1,5 @@
-#ifndef _DEVICE_CONFIGURATION_MAP_H_
-#define _DEVICE_CONFIGURATION_MAP_H_
-
-#define CONFIGURATION_NAME_MAX_LENGTH 64
-
-typedef struct {
-  CHAR8                        Name[CONFIGURATION_NAME_MAX_LENGTH];
-  UINT64                       Value;
-} CONFIGURATION_DESCRIPTOR_EX, *PCONFIGURATION_DESCRIPTOR_EX;
+#include <Library/BaseLib.h>
+#include <Library/PlatformConfigurationMapLib.h>
 
 static CONFIGURATION_DESCRIPTOR_EX gDeviceConfigurationDescriptorEx[] = {
     {"AbnormalResetOccurredOffset", 0x24},
@@ -62,4 +55,7 @@ static CONFIGURATION_DESCRIPTOR_EX gDeviceConfigurationDescriptorEx[] = {
     /* Terminator */
     {"Terminator", 0xFFFFFFFF}};
 
-#endif
+CONFIGURATION_DESCRIPTOR_EX *GetPlatformConfigurationMap()
+{
+  return gDeviceConfigurationDescriptorEx;
+}
