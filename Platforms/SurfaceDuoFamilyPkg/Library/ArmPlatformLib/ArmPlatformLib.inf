@@ -42,8 +42,6 @@
 [FixedPcd]
   gArmTokenSpaceGuid.PcdArmPrimaryCoreMask
   gArmTokenSpaceGuid.PcdArmPrimaryCore
-  gArmTokenSpaceGuid.PcdFdSize
-  gArmTokenSpaceGuid.PcdGicRedistributorsBase
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp

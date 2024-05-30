@@ -5,7 +5,6 @@
 #include <Library/HobLib.h>
 #include <Library/MemoryMapHelperLib.h>
 #include <Library/SerialPortLib.h>
-#include <Library/BaseMemoryLib.h>
 
 #include <Resources/FbColor.h>
 #include <Resources/font5x12.h>
@@ -35,52 +34,6 @@ void FbConReset(void);
 void FbConScrollUp(void);
 void FbConFlush(void);
 
-UINTN RainBow[12] = {
-  FB_BGRA8888_RED,
-  FB_BGRA8888_ORANGE,
-  FB_BGRA8888_YELLOW,
-  FB_BGRA8888_GREEN,
-  FB_BGRA8888_CYAN,
-  FB_BGRA8888_BLUE,
-  FB_BGRA8888_PURPLE,
-  FB_BGRA8888_BLUE,
-  FB_BGRA8888_CYAN,
-  FB_BGRA8888_GREEN,
-  FB_BGRA8888_YELLOW,
-  FB_BGRA8888_ORANGE,
-};
-
-UINT8 RainBowColorNum = 0;
-
-static UINT32 next = 1;
-#define RAND_MAX (0x7fffffff)
-
-/** Compute a pseudo-random number.
-  *
-  * Compute x = (7^5 * x) mod (2^31 - 1)
-  * without overflowing 31 bits:
-  *      (2^31 - 1) = 127773 * (7^5) + 2836
-  * From "Random number generators: good ones are hard to find",
-  * Park and Miller, Communications of the ACM, vol. 31, no. 10,
-  * October 1988, p. 1195.
-**/
-int rand() {
-  INT32 hi, lo, x;
-  /* Can't be initialized with 0, so use another value. */
-  if (next == 0)
-    next = 123459876;
-  hi = next / 127773;
-  lo = next % 127773;
-  x = 16807 * lo - 2836 * hi;
-  if (x < 0)
-    x += 0x7fffffff;
-  return ((next = x) % ((UINT32)RAND_MAX + 1));
-}
-
-void srand(unsigned int seed){
-  next = (UINT32)seed;
-}
-
 RETURN_STATUS
 EFIAPI
 SerialPortInitialize(VOID)
@@ -92,8 +45,6 @@ SerialPortInitialize(VOID)
   LocateMemoryMapAreaByName("Display Reserved", &DisplayMemoryRegion);
   p_Position = (FBCON_POSITION*)(DisplayMemoryRegion.Address + (FixedPcdGet32(PcdMipiFrameBufferWidth) * FixedPcdGet32(PcdMipiFrameBufferHeight) * FixedPcdGet32(PcdMipiFrameBufferPixelBpp) / 8));
 
-  srand((unsigned int)0x7825601247091723ULL);
-
   // Reset console
   FbConReset();
 
@@ -101,13 +52,6 @@ SerialPortInitialize(VOID)
   m_Initialized = TRUE;
 
   return RETURN_SUCCESS;
-}
-
-UINT32 GenerateRandomColor(){
-  UINT32 v=0;
-  do{v=(rand()&0xffffff)|0xff000000;}
-  while(((v&0xff)+((v>>8)&0xff)+((v>>16)&0xff))/3<=0x20);
-  return v;
 }
 
 void ResetFb(void)
@@ -169,13 +113,13 @@ paint:
     return;
 
   BOOLEAN intstate = ArmGetInterruptState();
-  ArmDisableInterrupts();
+  if (intstate)
+    ArmDisableInterrupts();
 
   Pixels = (void *)DisplayMemoryRegion.Address;
   Pixels += p_Position->y * ((gBpp / 8) * FONT_HEIGHT * gWidth);
   Pixels += p_Position->x * scale_factor * ((gBpp / 8) * (FONT_WIDTH + 1));
 
-  // m_Color.Foreground = GenerateRandomColor();
   FbConDrawglyph(
       Pixels, gWidth, (gBpp / 8), font5x12 + (c - 32) * 2, scale_factor);
 
@@ -192,8 +136,7 @@ newline:
   p_Position->y += scale_factor;
   p_Position->x = 0;
   if (p_Position->y >= m_MaxPosition.y - scale_factor) {
-//    ResetFb();
-
+    ResetFb();
     FbConFlush();
     p_Position->y = 0;
 
@@ -202,9 +145,6 @@ newline:
     goto paint;
   }
   else {
-    Pixels = (void *)DisplayMemoryRegion.Address;
-    Pixels += p_Position->y * ((gBpp / 8) * FONT_HEIGHT * gWidth);
-    ZeroMem(Pixels, ((gBpp / 8) * FONT_HEIGHT * gWidth) * scale_factor);
     FbConFlush();
     if (intstate)
       ArmEnableInterrupts();
@@ -348,36 +288,13 @@ SerialPortWrite(IN UINT8 *Buffer, IN UINTN NumberOfBytes)
 {
   UINT8 *CONST Final          = &Buffer[NumberOfBytes];
   UINTN        InterruptState = ArmGetInterruptState();
-  ArmDisableInterrupts();
-
-//  m_Color.Foreground = RainBow[RainBowColorNum++];
-//  if (RainBowColorNum == 12) RainBowColorNum = 0;
-
-  while (Buffer < Final) {
-    FbConPutCharWithFactor(*Buffer++, FBCON_COMMON_MSG, SCALE_FACTOR);
-  }
 
   if (InterruptState)
-    ArmEnableInterrupts();
-  return NumberOfBytes;
-}
-
-UINTN
-EFIAPI
-SerialPortWriteWarn(IN UINT8 *Buffer, IN UINTN NumberOfBytes)
-{
-  UINT8 *CONST Final             = &Buffer[NumberOfBytes];
-  UINTN        CurrentForeground = m_Color.Foreground;
-  UINTN        InterruptState    = ArmGetInterruptState();
-
-  ArmDisableInterrupts();
-  m_Color.Foreground = FB_BGRA8888_ORANGE;
+    ArmDisableInterrupts();
 
   while (Buffer < Final) {
     FbConPutCharWithFactor(*Buffer++, FBCON_COMMON_MSG, SCALE_FACTOR);
   }
-
-  m_Color.Foreground = CurrentForeground;
 
   if (InterruptState)
     ArmEnableInterrupts();
@@ -392,8 +309,10 @@ SerialPortWriteCritical(IN UINT8 *Buffer, IN UINTN NumberOfBytes)
   UINTN        CurrentForeground = m_Color.Foreground;
   UINTN        InterruptState    = ArmGetInterruptState();
 
-  ArmDisableInterrupts();
-  m_Color.Foreground = FB_BGRA8888_RED;
+  if (InterruptState)
+    ArmDisableInterrupts();
+
+  m_Color.Foreground = FB_BGRA8888_YELLOW;
 
   while (Buffer < Final) {
     FbConPutCharWithFactor(*Buffer++, FBCON_COMMON_MSG, SCALE_FACTOR);
