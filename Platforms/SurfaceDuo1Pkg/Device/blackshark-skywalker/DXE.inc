@@ -99,11 +99,11 @@ INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Application/QcomChar
 
 # Patched Binaries
 INF QcomPkg/PatchedBinaries/05472C14-ACB9-4458-A354-A68357AC3BF0.inf
-INF QcomPkg/PatchedBinaries/ButtonsDxe.inf
+INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PatchedBinaries/ButtonsDxe.inf
 INF QcomPkg/PatchedBinaries/HALIOMMUDxe.inf
 INF QcomPkg/PatchedBinaries/PciHostBridgeDxe.inf
 INF QcomPkg/PatchedBinaries/UFSDxe.inf
-INF QcomPkg/PatchedBinaries/UsbConfigDxe.inf
+INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UsbConfigDxe.inf
 
 # DXE without depex
 FILE DRIVER = 6b38f7b4-ad98-40e9-9093-aca2b5a253c4 {
