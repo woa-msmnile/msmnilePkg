@@ -92,6 +92,7 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=7125
   !if $(USE_SIMPLEFBDXE) == TRUE
     SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
   !endif
+  SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
 
   # Auto Memory Adder
   SurfaceDuoFamilyPkg/Driver/RamPartitionDxe/RamPartitionDxe.inf

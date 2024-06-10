@@ -131,8 +131,8 @@ READ_LOCK_STATUS   = TRUE
     SECTION RAW = AtollPkg/Include/Resources/RegulatoryLogos.png
   }
 
-  # INF SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
-  # INF SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
+  INF SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
+  INF SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
 
   INF AdvLoggerPkg/AdvancedFileLogger/AdvancedFileLogger.inf
   INF ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
