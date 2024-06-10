@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PanelName>FT8756 Video</PanelName>
 <PanelDescription>FT8756 video mode dsi huaxing panel</PanelDescription>
+<PanelId>0x8756</PanelId>
 <Group id="Active Timing">
  <HorizontalActive>1080</HorizontalActive>
  <HorizontalFrontPorch>20</HorizontalFrontPorch>
