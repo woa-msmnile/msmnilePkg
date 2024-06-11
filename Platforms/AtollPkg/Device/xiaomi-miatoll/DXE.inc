@@ -22,7 +22,8 @@ INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/UsbfnChgDxe/UsbfnCh
 INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/UsbConfigDxe/UsbConfigDxe.inf
 INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/UsbfnDwc3Dxe/UsbfnDwc3Dxe.inf
 #INF Rennell/BOOT.XF.3.1.1-00014-SC7180XWZB-1/QcomPkg/Drivers/SecurityDxe/SecurityDxe.inf
-INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
+#INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
+INF SurfaceDuoFamilyPkg/Driver/DisplayCallerDxe/DisplayCallerDxe.inf
 
 INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/VibratorDxe/VibratorDxe.inf
 
@@ -104,6 +105,7 @@ INF AtollPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Application/QcomChargerApp
 # Device Specific Patched DXE
 INF AtollPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/ButtonsDxe.inf
 INF AtollPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UFSDxe.inf
+INF AtollPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/DisplayDxe.inf
 # Platform Specific Patched DXE
 INF QcomPkg/PatchedBinaries/EnvDxe.inf
 INF QcomPkg/PatchedBinaries/HALIOMMUDxe.inf
