@@ -68,6 +68,7 @@ APRIORI DXE {
     INF QcomPkg/Drivers/CipherDxe/CipherDxe.inf
     INF QcomPkg/Drivers/RNGDxe/RngDxe.inf
     INF QcomPkg/Drivers/QcomBds/QcomBds.inf
+    INF MiPkg/Protocol/MiToken/MiToken.inf
     INF QcomPkg/Drivers/PILDxe/PILDxe.inf
     INF QcomPkg/Drivers/HwBoardIdDxe/HwBoardIdDxe.inf
     INF QcomPkg/Drivers/ShmBridgeDxe/ShmBridgeDxeLA.inf

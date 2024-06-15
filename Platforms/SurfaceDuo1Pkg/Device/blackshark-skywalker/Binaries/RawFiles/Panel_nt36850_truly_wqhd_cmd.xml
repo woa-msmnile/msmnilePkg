@@ -36,7 +36,6 @@
  <DSICmdUsingTrigger>False</DSICmdUsingTrigger>
  <DSIEnableAutoRefresh>True</DSIEnableAutoRefresh>
  <DSIAutoRefreshFrameNumDiv>2</DSIAutoRefreshFrameNumDiv>
- <DSIClockHSForceRequest>1</DSIClockHSForceRequest>
  <DSITECheckEnable>True</DSITECheckEnable>
  <DSITEUsingDedicatedTEPin>True</DSITEUsingDedicatedTEPin>
  <DSITEvSyncStartPos>2560</DSITEvSyncStartPos>

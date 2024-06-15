@@ -27,6 +27,7 @@ MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
 QcomPkg/Drivers/FontDxe/FontDxe.inf
 QcomPkg/Drivers/EnvDxe/EnvDxe.inf
 QcomPkg/Drivers/QcomWDogDxe/QcomWDogDxe.inf
+QcomPkg/Drivers/QcomMpmTimerDxe/QcomMpmTimerDxe.inf
 ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
 ArmPkg/Drivers/TimerDxe/TimerDxe.inf
 QcomPkg/Drivers/ChipInfoDxe/ChipInfoDxe.inf
@@ -71,6 +72,7 @@ QcomPkg/Drivers/HashDxe/HashDxe.inf
 QcomPkg/Drivers/CipherDxe/CipherDxe.inf
 QcomPkg/Drivers/RNGDxe/RngDxe.inf
 QcomPkg/Drivers/QcomBds/QcomBds.inf
+MiPkg/Protocol/MiToken/MiToken.inf
 QcomPkg/Drivers/PILDxe/PILDxe.inf
 QcomPkg/Drivers/HwBoardIdDxe/HwBoardIdDxe.inf
 QcomPkg/Application/QcomChargerApp/QcomChargerApp.inf
