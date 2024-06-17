@@ -368,8 +368,10 @@
 
   FmpAuthenticationLib|SecurityPkg/Library/FmpAuthenticationLibPkcs7/FmpAuthenticationLibPkcs7.inf
 
-  MemoryMapHelperLib|SurfaceDuoFamilyPkg/Library/MemoryMapHelperLib/MemoryMapHelperLib.inf
-  ConfigurationMapHelperLib|SurfaceDuoFamilyPkg/Library/ConfigurationMapHelperLib/ConfigurationMapHelperLib.inf
+  #MemoryMapHelperLib|SurfaceDuoFamilyPkg/Library/MemoryMapHelperLib/MemoryMapHelperLib.inf
+  MemoryMapHelperLib|SurfaceDuoFamilyPkg/Library/MemoryMapHelperSecLib/MemoryMapHelperSecLib.inf
+  #ConfigurationMapHelperLib|SurfaceDuoFamilyPkg/Library/ConfigurationMapHelperLib/ConfigurationMapHelperLib.inf
+  ConfigurationMapHelperLib|SurfaceDuoFamilyPkg/Library/ConfigurationMapHelperSecLib/ConfigurationMapHelperSecLib.inf
 
   ShLib|SurfaceDuoFamilyPkg/Library/ShLib/ShLib.inf
   UefiCfgLib|SurfaceDuoFamilyPkg/Library/UefiCfgLib/UefiCfgLib.inf
