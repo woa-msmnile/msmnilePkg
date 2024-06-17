@@ -120,11 +120,6 @@ READ_LOCK_STATUS   = TRUE
 
   !include SurfaceDuoFamilyPkg/Frontpage.fdf.inc
 
-  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLogoFile) {
-    SECTION RAW = SurfaceDuoFamilyPkg/Include/Resources/BootLogo.bmp
-    SECTION UI = "BootLogo.bmp"
-  }
-
   FILE FREEFORM = PCD(gMsCorePkgTokenSpaceGuid.PcdRegulatoryGraphicFileGuid) {
     SECTION RAW = $(PACKAGE_NAME)/Include/Resources/RegulatoryLogos.png
   }
