@@ -89,5 +89,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: uefi-images-lahaina-sm8350
-          path: Build/LahainaPkg/ci_artifacts
+          path: Build/SurfaceDuo2Pkg/ci_artifacts
           compression-level: 9
