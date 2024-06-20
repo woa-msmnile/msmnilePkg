@@ -67,7 +67,7 @@ jobs:
       - name: Upload Kona's Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: uefi-images-kona-sm8150
+          name: uefi-images-kona-sm8250
           path: Build/KonaPkg/ci_artifacts
           compression-level: 9
 
