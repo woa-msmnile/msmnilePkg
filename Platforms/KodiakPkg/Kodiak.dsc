@@ -86,6 +86,9 @@
   # Move PlatformMemoryMapLib form Silicon/QC/QCxxxx/Library to Device/<device>/Library
   PlatformMemoryMapLib|KodiakPkg/Device/$(TARGET_DEVICE)/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
 
+  # Move PlatformConfigurationMapLib form Silicon/QC/QCxxxx/Library to Device/<device>/Library/
+  PlatformConfigurationMapLib|KodiakPkg/Device/$(TARGET_DEVICE)/Library/PlatformConfigurationMapLib/PlatformConfigurationMapLib.inf
+
 !include KodiakPkg/Device/$(TARGET_DEVICE)/DXE.dsc.inc
 !include QcomPkg/QcomPkg.dsc.inc
 !include KodiakPkg/Device/$(TARGET_DEVICE)/PcdsFixedAtBuild.dsc.inc

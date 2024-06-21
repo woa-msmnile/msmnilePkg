@@ -103,6 +103,9 @@
   # Notice: PlatformMemoryMapLib was moved to Device/<device>/Library/
   PlatformMemoryMapLib|SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
 
+  # Notice: PlatformConfigurationMapLib was moved to Device/<device>/Library/
+  PlatformConfigurationMapLib|SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Library/PlatformConfigurationMapLib/PlatformConfigurationMapLib.inf
+
 # Suggest you updating them to your device's pcds.dsc.inc.
 #[PcdsDynamicDefault.common]
 #  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1350

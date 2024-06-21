@@ -26,7 +26,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-      - name: build uefi for all devices in SurfaceDuo1Pkg.
+      - name: build uefi for all devices in SurfaceDuo2Pkg.
         run: bash scripts/ci_setup.sh && ./build_uefi.py -d all -p Sm8350
 
       - name: Upload Artifact

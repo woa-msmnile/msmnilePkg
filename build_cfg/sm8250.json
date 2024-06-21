@@ -1,0 +1,8 @@
+{
+    "platform": "Sm8250",
+    "package" : "KonaPkg",
+    "bootshim": {
+        "UEFI_BASE": "0x9FC41000",
+        "UEFI_SIZE": "0x002BF000"
+    }
+}
