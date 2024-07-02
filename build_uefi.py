@@ -81,25 +81,6 @@ def prepare_build(buildtype, package_name):
     os.system(stuart_update_cmd)
 
 
-def update_device_configuration_map(this_target):
-    # Get Configuration Map Path.
-    src_path = os.path.join("Platforms", this_target.package, "Device", this_target.device, "Include", "Configuration",
-                            "DeviceConfigurationMap.h")
-    des_path = os.path.join("Silicon", "QC", this_target.platform, "QcomPkg", "Include", "Configuration",
-                            "DeviceConfigurationMap.h")
-
-    # Symbol Link to destination Place.
-    if not os.path.exists(des_path):
-        os.symlink(os.path.abspath(src_path), des_path)
-
-    # Delete cache.
-    try:
-        shutil.rmtree(os.path.join("Build", this_target.package, this_target.buildtype + "_CLANGDWARF", "AARCH64", "QcomPkg",
-                               "PlatformPei"))
-    except FileNotFoundError:
-        print("First Building...")
-
-
 def get_devices_list(package_name):
     return os.listdir(os.path.join("Platforms", package_name, "Device"))
 
@@ -189,7 +170,6 @@ def build_single_device(this_target):
     check_args(this_target)
     # Prepare Environment
     build_bootshim(this_target)
-    update_device_configuration_map(this_target)
     prepare_build(this_target.buildtype, this_target.package)
 #    os.environ['CLANGDWARF_BIN'] = '/usr/lib/llvm-38/bin/'
 #    os.environ['CLANGDWARF_AARCH64_PREFIX']='aarch64-linux-gnu-'

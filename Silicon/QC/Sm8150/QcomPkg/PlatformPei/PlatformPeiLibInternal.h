@@ -10,9 +10,7 @@
 #include <Library/PcdLib.h>
 #include <Library/SerialPortLib.h>
 #include <Library/MemoryMapHelperLib.h>
+#include <Library/ConfigurationMapHelperLib.h>
 #include <Library/PlatformHobs.h>
-
-// This varies by device
-#include <Configuration/DeviceConfigurationMap.h>
 
 #endif // _PLATFORM_HOB_INTERNAL_H_

@@ -17,6 +17,7 @@
 
 [LibraryClasses]
   BaseLib
+  ConfigurationMapHelperLib
   IoLib
 
 [FixedPcd]

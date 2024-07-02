@@ -89,6 +89,9 @@
   # Move PlatformMemoryMapLib form Silicon/QC/QCxxxx/Library to Device/<device>/Library
   PlatformMemoryMapLib|$(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
 
+  # Move PlatformConfigurationMapLib form Silicon/QC/QCxxxx/Library to Device/<device>/Library/
+  PlatformConfigurationMapLib|$(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Library/PlatformConfigurationMapLib/PlatformConfigurationMapLib.inf
+
 !include $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/DXE.dsc.inc
 !include QcomPkg/QcomPkg.dsc.inc
 !include $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PcdsFixedAtBuild.dsc.inc

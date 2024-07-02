@@ -1,6 +1,5 @@
 #include <Library/BaseLib.h>
 #include <Library/PlatformMemoryMapLib.h>
-#include <Configuration/XblHlosHob.h>
 
 static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
     /* Name               Address     Length      HobOption        ResourceAttribute    ArmAttributes
@@ -28,8 +27,7 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
     {"DXE Heap",          0x9BE00000, 0x03600000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
     {"Sched Heap",        0x9F400000, 0x00400000, AddMem, SYS_MEM, SYS_MEM_CAP, BsData, WRITE_BACK_XN},
     {"FV Region",         0x9F800000, 0x00400000, AddMem, SYS_MEM, SYS_MEM_CAP, BsData, WRITE_BACK_XN},
-    {"XBL SEC FD",        0x9FC00000, 0x00041000, AddMem, SYS_MEM, SYS_MEM_CAP, BsData, WRITE_BACK},
-    {"UEFI FD",           0x9FC41000, 0x002BF000, AddMem, SYS_MEM, SYS_MEM_CAP, BsData, WRITE_BACK},
+    {"UEFI FD",           0x9FC00000, 0x00300000, AddMem, SYS_MEM, SYS_MEM_CAP, BsData, WRITE_BACK},
     {"SEC Heap",          0x9FF00000, 0x0008C000, AddMem, SYS_MEM, SYS_MEM_CAP, BsData, WRITE_BACK_XN},
     {"CPU Vectors",       0x9FF8C000, 0x00001000, AddMem, SYS_MEM, SYS_MEM_CAP, BsData, WRITE_BACK},
     {"MMU PageTables",    0x9FF8D000, 0x00003000, AddMem, SYS_MEM, SYS_MEM_CAP, BsData, WRITE_BACK_XN},
@@ -46,8 +44,12 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
 #endif
     {"RAM Partition",     0xAEB00000, 0x08600000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
     /* DDR Bank 0 End */
-    /* Carveout Region (0xB7100000 -> 0xC0000000, size 0x00600000) */
+    /* Carveout Region (0xB7100000 -> 0xB7700000, size 0x00600000) */
     /* DDR Bank 1 Start */
+    {"RAM Partition",     0xB7700000, 0x01E00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+    /* DDR Bank 1 End */
+    /* Carveout Region (0xB9500000 -> 0xC0000000, size 0x06B00000) */
+    /* DDR Bank 2 Start */
     {"RAM Partition",     0xC0000000, 0x05100000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
     {"DBI Dump",          0xC5100000, 0x01100000, NoHob,  MMAP_IO, INITIALIZED, Conv,   UNCACHED_UNBUFFERED_XN},
     {"RAM Partition",     0xC6200000, 0x12600000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
@@ -55,13 +57,14 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
     {"TZApps",            0xDA000000, 0x03900000, HobOnlyNoCacheSetting, MEM_RES, UNCACHEABLE, Reserv, UNCACHED_UNBUFFERED_XN},
     {"RAM Partition",     0xDD900000, 0x03700000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
     {"Display Reserved",  0xE1000000, 0x02400000, AddMem, MEM_RES, SYS_MEM_CAP, Reserv, WRITE_THROUGH_XN},
-    {"Apps Hob",          0xE3400000, 0x00001000, AddMem, MEM_RES, UNCACHEABLE, Reserv, UNCACHED_UNBUFFERED_XN},
-    {"Pon Hob",           0xE3401000, 0x00001000, AddMem, MEM_RES, UNCACHEABLE, Reserv, UNCACHED_UNBUFFERED_XN},
-    {"RAM Partition",     0xE3402000, 0x5CBFE000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+    {"RAM Partition",     0xE3400000, 0x5CC00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
 
     /* RAM partition regions */
-    {"RAM Partition",    0x140000000,0x140000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
-    /* DDR Bank 1 End */
+    {"RAM Partition",    0x140000000,0x0C0000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+    /* DDR Bank 2 End */
+    /* DDR Bank 3 Start */
+    {"RAM Partition",    0x200000000,0x180000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+    /* DDR Bank 3 End */
 
     /* Other memory regions */
     {"IMEM Base",         0x14680000, 0x00040000, NoHob,  MMAP_IO, INITIALIZED, Conv,   NS_DEVICE},

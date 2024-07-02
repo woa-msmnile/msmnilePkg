@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PanelName>NT36675 Video</PanelName>
 <PanelDescription>NT36675 video mode dsi tianma panel</PanelDescription>
+<PanelId>0x36675</PanelId>
 <Group id="Active Timing">
  <HorizontalActive>1080</HorizontalActive>
  <HorizontalFrontPorch>20</HorizontalFrontPorch>

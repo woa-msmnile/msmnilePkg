@@ -16,7 +16,8 @@ INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbInitDxe/UsbInitD
 INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbMsdDxe/UsbMsdDxe.inf
 INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbPwrCtrlDxe/UsbPwrCtrlDxe.inf
 INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/XhciPciEmulationDxe/XhciPciEmulationDxe.inf
-INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
+#INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
+INF SurfaceDuoFamilyPkg/Driver/DisplayCallerDxe/DisplayCallerDxe.inf
 
 #INF MdeModulePkg/Core/Dxe/DxeMain.inf
 #INF ArmPkg/Drivers/CpuDxe/CpuDxe.inf
@@ -103,6 +104,7 @@ INF QcomPkg/PatchedBinaries/PciHostBridgeDxe.inf
 INF QcomPkg/PatchedBinaries/UFSDxe.inf
 INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UsbConfigDxe.inf
 INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PatchedBinaries/ButtonsDxe.inf
+INF SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PatchedBinaries/DisplayDxe.inf
 
 # DXE without depex
 FILE DRIVER = 6b38f7b4-ad98-40e9-9093-aca2b5a253c4 {

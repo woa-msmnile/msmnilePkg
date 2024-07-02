@@ -115,7 +115,8 @@ paint:
     return;
 
   BOOLEAN intstate = ArmGetInterruptState();
-  ArmDisableInterrupts();
+  if (intstate)
+    ArmDisableInterrupts();
 
   Pixels = (void *)DisplayMemoryRegion.Address;
   Pixels += p_Position->y * ((gBpp / 8) * FONT_HEIGHT * gWidth);
@@ -302,7 +303,9 @@ SerialPortWrite(IN UINT8 *Buffer, IN UINTN NumberOfBytes)
 {
   UINT8 *CONST Final          = &Buffer[NumberOfBytes];
   UINTN        InterruptState = ArmGetInterruptState();
-  ArmDisableInterrupts();
+
+  if (InterruptState)
+    ArmDisableInterrupts();
 
   for (UINTN i = 0; i < NumberOfBytes; i++) {
     mem_putchar(Buffer[i]);
@@ -325,7 +328,8 @@ SerialPortWriteCritical(IN UINT8 *Buffer, IN UINTN NumberOfBytes)
   UINTN        CurrentForeground = m_Color.Foreground;
   UINTN        InterruptState    = ArmGetInterruptState();
 
-  ArmDisableInterrupts();
+  if (InterruptState)
+    ArmDisableInterrupts();
 
   for (UINTN i = 0; i < NumberOfBytes; i++) {
     mem_putchar(Buffer[i]);
