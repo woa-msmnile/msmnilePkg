@@ -505,8 +505,8 @@ MsBootOptionsLibRegisterDefaultBootOptions (
   RegisterFvBootOption (&gMsBootPolicyFileGuid, MS_SDD_BOOT, (UINTN)-1, LOAD_OPTION_ACTIVE, (UINT8 *)MS_SDD_BOOT_PARM, sizeof (MS_SDD_BOOT_PARM));
   RegisterFvBootOption (&gMsBootPolicyFileGuid, MS_USB_BOOT, (UINTN)-1, LOAD_OPTION_ACTIVE, (UINT8 *)MS_USB_BOOT_PARM, sizeof (MS_USB_BOOT_PARM));
   RegisterFvBootOption (&gMsBootPolicyFileGuid, MS_PXE_BOOT, (UINTN)-1, LOAD_OPTION_ACTIVE, (UINT8 *)MS_PXE_BOOT_PARM, sizeof (MS_PXE_BOOT_PARM));
-  RegisterFvBootOption (PcdGetPtr (PcdShellFile), INTERNAL_UEFI_SHELL_NAME, (UINTN)-1, LOAD_OPTION_ACTIVE, NULL, 0);
   RegisterFvBootOption (PcdGetPtr (PcdUFPMenuFile), INTERNAL_FFU_LOADER_NAME, (UINTN)-1, LOAD_OPTION_ACTIVE, NULL, 0);
+  RegisterFvBootOption (PcdGetPtr (PcdShellFile), INTERNAL_UEFI_SHELL_NAME, (UINTN)-1, LOAD_OPTION_ACTIVE, NULL, 0);
 }
 
 /**
@@ -540,15 +540,15 @@ MsBootOptionsLibGetDefaultOptions (
   Status |= CreateFvBootOption (&gMsBootPolicyFileGuid, MS_PXE_BOOT, &Option[2], LOAD_OPTION_ACTIVE, (UINT8 *)MS_PXE_BOOT_PARM, sizeof (MS_PXE_BOOT_PARM));
 
   AdditionalOptionCount = 0;
-  Status2 = CreateFvBootOption (PcdGetPtr (PcdShellFile), INTERNAL_UEFI_SHELL_NAME, &Option[LocalOptionCount + AdditionalOptionCount], LOAD_OPTION_ACTIVE, NULL, 0);
-  if (!EFI_ERROR (Status2)) {
-    // The shell is optional.  So, ignore that we cannot create it.
-    AdditionalOptionCount++;
-  }
-
   Status2 = CreateFvBootOption (PcdGetPtr (PcdUFPMenuFile), INTERNAL_FFU_LOADER_NAME, &Option[LocalOptionCount + AdditionalOptionCount], LOAD_OPTION_ACTIVE, NULL, 0);
   if (!EFI_ERROR (Status2)) {
     // The ffu loader is optional.  So, ignore that we cannot create it.
+    AdditionalOptionCount++;
+  }
+
+  Status2 = CreateFvBootOption (PcdGetPtr (PcdShellFile), INTERNAL_UEFI_SHELL_NAME, &Option[LocalOptionCount + AdditionalOptionCount], LOAD_OPTION_ACTIVE, NULL, 0);
+  if (!EFI_ERROR (Status2)) {
+    // The shell is optional.  So, ignore that we cannot create it.
     AdditionalOptionCount++;
   }
 

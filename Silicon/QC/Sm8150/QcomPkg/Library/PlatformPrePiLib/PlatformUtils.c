@@ -3,12 +3,6 @@
 #include <Library/PlatformPrePiLib.h>
 #include "PlatformUtils.h"
 
-BOOLEAN IsLinuxBootRequested(VOID)
-{
-  return FALSE;
-  // return (MmioRead32(LID0_GPIO121_STATUS_ADDR) & 1) == 1;
-}
-
 VOID ConfigureIOMMUContextBankCacheSetting(
     UINT32 ContextBankId, BOOLEAN CacheCoherent)
 {
@@ -26,16 +20,6 @@ VOID ConfigureIOMMUContextBankCacheSetting(
   MmioWrite32(ContextBankAddr + SMMU_CTX_BANK_TTBCR_OFFSET, 0);
 }
 
-VOID DisableMDSSDSIController(UINT32 MdssDsiBase)
-{
-  UINT32 DsiControlAddr  = MdssDsiBase + DSI_CTRL;
-  UINT32 DsiControlValue = MmioRead32(DsiControlAddr);
-  DsiControlValue &=
-      ~(DSI_CTRL_ENABLE | DSI_CTRL_VIDEO_MODE_ENABLE |
-        DSI_CTRL_COMMAND_MODE_ENABLE);
-  MmioWrite32(DsiControlAddr, DsiControlValue);
-}
-
 VOID SetWatchdogState(BOOLEAN Enable)
 {
   MmioWrite32(APSS_WDT_BASE + APSS_WDT_ENABLE_OFFSET, Enable);
@@ -43,12 +27,6 @@ VOID SetWatchdogState(BOOLEAN Enable)
 
 VOID PlatformInitialize(VOID)
 {
-  // Disable MDSS DSI0 Controller
-  // DisableMDSSDSIController(MDSS_DSI0);
-
-  // Disable MDSS DSI1 Controller
-  // DisableMDSSDSIController(MDSS_DSI1);
-
   // Windows requires Cache Coherency for the UFS to work at its best
   // The UFS device is currently attached to the main IOMMU on Context Bank 1
   // (Previous firmware) But said configuration is non cache coherent compliant,

@@ -1,0 +1,22 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = UefiCfgLib
+  FILE_GUID                      = F01995E0-825A-47AF-A0BE-76D875E187A2
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = UefiCfgLib
+
+[Sources]
+  UefiCfgLib.c
+
+[Packages]
+  ArmPkg/ArmPkg.dec
+  MdePkg/MdePkg.dec
+  QcomPkg/QcomPkg.dec
+  SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  HobLib
+  ShLib
+  

@@ -1,6 +1,6 @@
-<?xml version=\"1.0\" encoding=\"utf-8\"?>
+<?xml version="1.0" encoding="utf-8"?>
 <PanelDescription>Samsung ea8076 Single DSI Command Mode Panel (1080x2340 24bpp)</PanelDescription>
-<Group id=\"Active Timing\">
+<Group id="Active Timing">
  <HorizontalActive>1080</HorizontalActive>
  <HorizontalFrontPorch>64</HorizontalFrontPorch>
  <HorizontalBackPorch>64</HorizontalBackPorch>
@@ -91,4 +91,4 @@
  <BacklightType>3</BacklightType>
  <BacklightPmicControlType>2</BacklightPmicControlType>
  <DisplayResetInfo>0 1000 1000 10000 0</DisplayResetInfo>
-/Group>
+</Group>

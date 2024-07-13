@@ -39,6 +39,10 @@
   # And moved this Line to SurfaceDuo1.dsc
   #  PlatformMemoryMapLib|QcomPkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
 
+  # Move PlatformConfigurationMapLib to Device/<device>/Library
+  # And moved this Line to SurfaceDuo1.dsc
+  #  PlatformConfigurationMapLib|QcomPkg/Library/PlatformConfigurationMapLib/PlatformConfigurationMapLib.inf
+
   PlatformPeiLib|QcomPkg/PlatformPei/PlatformPeiLib.inf
   PlatformPrePiLib|QcomPkg/Library/PlatformPrePiLib/PlatformPrePiLib.inf
   AslUpdateLib|SurfaceDuoFamilyPkg/Library/DxeAslUpdateLib/DxeAslUpdateLib.inf
@@ -46,8 +50,8 @@
 
   AcpiPlatformUpdateLib|QcomPkg/Library/AcpiPlatformUpdateLib/AcpiPlatformUpdateLib.inf
   PlatformThemeLib|QcomPkg/Library/PlatformThemeLib/PlatformThemeLib.inf
-  ConsoleMsgLib|QcomPkg/Library/ConsoleMsgLib/ConsoleMsgLib.inf
-  PlatformHobLib|QcomPkg/Library/PlatformHobLib/PlatformHobLib.inf
+
+  ConsoleMsgLib|PcBdsPkg/Library/ConsoleMsgLibNull/ConsoleMsgLibNull.inf
 
 [Components.common]
  SurfaceDuoFamilyPkg/Driver/RamPartitionDxe/RamPartitionDxe.inf

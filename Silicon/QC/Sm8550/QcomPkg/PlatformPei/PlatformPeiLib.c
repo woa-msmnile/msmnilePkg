@@ -9,7 +9,9 @@
 
   NOTICE:
     Some Addresses, Protocols, Functions and Guids are got from decompile tools.
+
 **/
+
 #include <PiPei.h>
 
 #include <Library/DebugLib.h>
@@ -52,38 +54,14 @@ STATIC
 EFI_STATUS
 CfgGetCfgInfoVal(CHAR8 *Key, UINT32 *Value)
 {
-  PCONFIGURATION_DESCRIPTOR_EX ConfigurationDescriptorEx =
-      gDeviceConfigurationDescriptorEx;
-
-  // Run through each configuration descriptor
-  while (ConfigurationDescriptorEx->Value != 0xFFFFFFFF) {
-    if (AsciiStriCmp(Key, ConfigurationDescriptorEx->Name) == 0) {
-      *Value = (UINT32)(ConfigurationDescriptorEx->Value & 0xFFFFFFFF);
-      return EFI_SUCCESS;
-    }
-    ConfigurationDescriptorEx++;
-  }
-
-  return EFI_NOT_FOUND;
+  return LocateConfigurationMapUINT32ByName(Key, Value);
 }
 
 STATIC
 EFI_STATUS
 CfgGetCfgInfoVal64(CHAR8 *Key, UINT64 *Value)
 {
-  PCONFIGURATION_DESCRIPTOR_EX ConfigurationDescriptorEx =
-      gDeviceConfigurationDescriptorEx;
-
-  // Run through each configuration descriptor
-  while (ConfigurationDescriptorEx->Value != 0xFFFFFFFF) {
-    if (AsciiStriCmp(Key, ConfigurationDescriptorEx->Name) == 0) {
-      *Value = ConfigurationDescriptorEx->Value;
-      return EFI_SUCCESS;
-    }
-    ConfigurationDescriptorEx++;
-  }
-
-  return EFI_NOT_FOUND;
+  return LocateConfigurationMapUINT64ByName(Key, Value);
 }
 
 STATIC
@@ -201,4 +179,3 @@ PlatformPeim(VOID)
 
   return EFI_SUCCESS;
 }
-

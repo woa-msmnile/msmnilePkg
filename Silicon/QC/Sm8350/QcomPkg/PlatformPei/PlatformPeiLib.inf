@@ -30,19 +30,19 @@
   ArmLib
   ArmMmuLib
   BaseLib
+  ConfigurationMapHelperLib
   DebugLib
   HobLib
   IoLib
   MemoryAllocationLib
-  SerialPortLib
   MemoryMapHelperLib
+  SerialPortLib
 
 [FixedPcd]
   gArmTokenSpaceGuid.PcdFvSize
 
 [Pcd]
   gArmTokenSpaceGuid.PcdFvBaseAddress
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.KernelProtocolAddress
 
 [Depex]
   gEfiPeiMemoryDiscoveredPpiGuid

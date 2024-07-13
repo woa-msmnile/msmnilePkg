@@ -2,6 +2,7 @@
 
 #include <Library/IoLib.h>
 #include <Library/PlatformPrePiLib.h>
+#include <Library/ConfigurationMapHelperLib.h>
 
 #include "PlatformUtils.h"
 
@@ -19,13 +20,14 @@ VOID PlatformInitialize(VOID)
   // the redistributor for CPU 0 and CPU 1.
   //
 
-  // Wake up redistributor for CPU 0
-  MmioWrite32(
-      GICR_WAKER_CURRENT_CPU,
-      (MmioRead32(GICR_WAKER_CURRENT_CPU) & ~GIC_WAKER_PROCESSORSLEEP));
+  UINT32 EarlyInitCoreCnt = 2;
+  LocateConfigurationMapUINT32ByName("EarlyInitCoreCnt", &EarlyInitCoreCnt);
 
-  // Wake up redistributor for CPU 1
-  MmioWrite32(
-      GICR_WAKER_CPU(1),
-      (MmioRead32(GICR_WAKER_CPU(1)) & ~GIC_WAKER_PROCESSORSLEEP));
+  for (int i = 0; i < EarlyInitCoreCnt; i++)
+  {
+    // Wake up redistributor for CPU i
+    MmioWrite32(
+        GICR_WAKER_CPU(i),
+        (MmioRead32(GICR_WAKER_CPU(i)) & ~GIC_WAKER_PROCESSORSLEEP));
+  }
 }

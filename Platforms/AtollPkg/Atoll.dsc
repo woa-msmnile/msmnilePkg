@@ -92,6 +92,7 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=7125
   !if $(USE_SIMPLEFBDXE) == TRUE
     SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
   !endif
+  SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
 
   # Auto Memory Adder
   SurfaceDuoFamilyPkg/Driver/RamPartitionDxe/RamPartitionDxe.inf
@@ -102,6 +103,9 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=7125
 [LibraryClasses.common]
   # Move PlatformMemoryMapLib to Device/<device>/Library
   PlatformMemoryMapLib|AtollPkg/Device/$(TARGET_DEVICE)/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
+
+  # Move PlatformConfigurationMapLib to Device/<device>/Library
+  PlatformConfigurationMapLib|AtollPkg/Device/$(TARGET_DEVICE)/Library/PlatformConfigurationMapLib/PlatformConfigurationMapLib.inf
 
 
 # Suggest you updating them to your device's dsc.inc.

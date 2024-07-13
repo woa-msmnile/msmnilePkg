@@ -39,8 +39,8 @@
 !endif
 
   USE_PHYSICAL_TIMER             = 1
-  USE_SCREEN_FOR_SERIAL_OUTPUT   = 1
-  USE_UART_FOR_SERIAL_OUTPUT     = 0
+  USE_SCREEN_FOR_SERIAL_OUTPUT   = 0
+  USE_UART_FOR_SERIAL_OUTPUT     = 1
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
   SEND_HEARTBEAT_TO_SERIAL       = 0
   USE_SIMPLEFBDXE                = 1
@@ -102,6 +102,9 @@
 [LibraryClasses.common]
   # Notice: PlatformMemoryMapLib was moved to Device/<device>/Library/
   PlatformMemoryMapLib|SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
+
+  # Notice: PlatformConfigurationMapLib was moved to Device/<device>/Library/
+  PlatformConfigurationMapLib|SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Library/PlatformConfigurationMapLib/PlatformConfigurationMapLib.inf
 
 # Suggest you updating them to your device's pcds.dsc.inc.
 #[PcdsDynamicDefault.common]
