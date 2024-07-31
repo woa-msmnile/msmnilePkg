@@ -89,6 +89,6 @@ QcomPkg/PatchedBinaries/HALIOMMUDxe.inf
 QcomPkg/PatchedBinaries/PciHostBridgeDxe.inf
 QcomPkg/PatchedBinaries/UFSDxe.inf
 SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UsbConfigDxe.inf
-SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PatchedBinaries/ButtonsDxe.inf
 SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PatchedBinaries/PmicDxeLa.inf
 #SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/PatchedBinaries/DisplayDxe.inf
+QcomPkg/PatchedBinaries/ButtonsDxe.inf
