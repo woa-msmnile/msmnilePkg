@@ -89,8 +89,8 @@
   # SMBIOS
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 855 @ 2.84 GHz"|VOID*|0x0000a301
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8150"|VOID*|0x0000a302
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"Surface Duo"|VOID*|0x0000a303
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"1930"|VOID*|0x0000a304
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|""|VOID*|0x0000a303
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|""|VOID*|0x0000a304
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"Surface_Duo_1930"|VOID*|0x0000a305
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosBoardModel|"Surface Duo"|VOID*|0x0000a306
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"Microsoft"|VOID*|0x0000a307

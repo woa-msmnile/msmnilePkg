@@ -52,6 +52,7 @@
 [Protocols]
   gEfiChipInfoProtocolGuid
   gEfiHash2ProtocolGuid
+  gEfiPlatformInfoProtocolGuid
   gEfiSmbiosProtocolGuid
 # Ram Size Detect Patch
   gEfiRamPartitionProtocolGuid
