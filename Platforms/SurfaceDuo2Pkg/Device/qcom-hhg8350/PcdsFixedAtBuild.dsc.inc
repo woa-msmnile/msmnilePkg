@@ -14,7 +14,7 @@ gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8350P"
 # gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdDisplayCallerStallBeforeEnable|2000000
 
 # Scheduler Protocol Address
-gSurfaceDuoFamilyPkgTokenSpaceGuid.KernelProtocolAddress|0x9FC37968
+gQcomPkgTokenSpaceGuid.SchedIntfProtocolAddress|0x9FC37968
 
 [PcdsDynamicDefault.common]
 gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1080

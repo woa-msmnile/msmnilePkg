@@ -146,7 +146,7 @@ VOID InstallPlatformHob()
     UINTN XBL_UEFI_FD = 0x9FC00000;
 
     UINTN InfoBlkAddress      = InfoBlk.Address;
-    UINTN SchedIntfAddress    = XBL_UEFI_FD + 0x37980;
+    UINTN SchedIntfAddress    = PcdGet64(SchedIntfProtocolAddress);
     UINTN ShLibAddress        = (UINTN)&ShLib;
     UINTN FvDecompressAddress = XBL_UEFI_FD + 0x403C8;
 

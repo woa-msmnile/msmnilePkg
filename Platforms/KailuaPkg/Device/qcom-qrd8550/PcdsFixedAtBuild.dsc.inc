@@ -12,8 +12,8 @@ gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosBoardModel|"QRD"
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"6"
 
 # Necessary Addresses
-gSurfaceDuoFamilyPkgTokenSpaceGuid.KernelProtocolAddress|0xA703B948
-gSurfaceDuoFamilyPkgTokenSpaceGuid.XBLDTProtocolAddress|0xA703B0C8
+gQcomPkgTokenSpaceGuid.KernelProtocolAddress|0xA703B948
+gQcomPkgTokenSpaceGuid.XBLDTProtocolAddress|0xA703B0C8
 
 
 [PcdsDynamicDefault.common]

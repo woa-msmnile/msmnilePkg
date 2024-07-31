@@ -42,8 +42,8 @@
 
 [FixedPcd]
   gArmTokenSpaceGuid.PcdFvSize
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.KernelProtocolAddress
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.XBLDTProtocolAddress
+  gQcomPkgTokenSpaceGuid.KernelProtocolAddress
+  gQcomPkgTokenSpaceGuid.XBLDTProtocolAddress
 
 [Pcd]
   gArmTokenSpaceGuid.PcdFvBaseAddress
