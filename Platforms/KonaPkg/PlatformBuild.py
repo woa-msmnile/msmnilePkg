@@ -92,6 +92,7 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
             RequiredSubmodule("Features/CONFIG", True),
             RequiredSubmodule("Features/DFCI", True),
             RequiredSubmodule("MU_BASECORE", True),
+            RequiredSubmodule("Platforms/OpensslPkg/Library/OpensslLib/openssl", True),
             RequiredSubmodule("Platforms/SurfaceDuoACPI", True),
             RequiredSubmodule("Silicon/Arm/MU_TIANO", True),
         ]
@@ -248,7 +249,7 @@ class PlatformBuilder(UefiBuilder, BuildSettingsManager):
         self.env.SetValue("ACTIVE_PLATFORM", PackageName+"/"+PlatformName+".dsc", "Platform Hardcoded")
 ## woa-msmnile patch end
         self.env.SetValue("TARGET_ARCH", "AARCH64", "Platform Hardcoded")
-        self.env.SetValue("TOOL_CHAIN_TAG", "CLANGDWARF", "set default to clangdwarf")
+        self.env.SetValue("TOOL_CHAIN_TAG", "CLANGPDB", "set default to clangpdb")
         self.env.SetValue("EMPTY_DRIVE", "FALSE", "Default to false")
         self.env.SetValue("RUN_TESTS", "FALSE", "Default to false")
         self.env.SetValue("SHUTDOWN_AFTER_RUN", "FALSE", "Default to false")

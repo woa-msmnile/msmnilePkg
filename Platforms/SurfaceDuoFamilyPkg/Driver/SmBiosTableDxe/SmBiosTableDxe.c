@@ -62,9 +62,6 @@ be found at http://opensource.org/licenses/bsd-license.php
 /* Used to read Ram Info */
 #include <Protocol/EFIRamPartition.h>
 
-/* Used to read device serial number */
-#include <Protocol/SurfaceFirmwareProvisioningDataProtocol.h>
-
 /* Used to read UEFI release information */
 #include <Library/MuUefiVersionLib.h>
 
@@ -178,12 +175,12 @@ SMBIOS_TABLE_TYPE1 mSysInfoType1 = {
     6, // Family String
 };
 CHAR8 *mSysInfoType1Strings[] = {
-    "Microsoft Corporation",
+    "Qualcomm Incorporated",
     "Not Specified",
     "Not Specified",
     "Not Specified",
-    "Not Specified",
-    "Surface",
+    "6",
+    "MTP",
     NULL};
 
 /***********************************************************************
@@ -638,7 +635,6 @@ GetUUIDFromEFIChipInfoSerialNumType(
 
   return Status;
 }
-
 
 /**
 

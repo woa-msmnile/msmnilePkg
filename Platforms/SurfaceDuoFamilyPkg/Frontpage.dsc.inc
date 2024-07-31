@@ -272,8 +272,6 @@
 
   DfciPkg/Application/DfciMenu/DfciMenu.inf
 
-  !include $(SHARED_CRYPTO_PATH)/Driver/Bin/CryptoDriver.inc.dsc
-
 ################################################################
 # Hid Change Start
   HidPkg/UsbKbHidDxe/UsbKbHidDxe.inf

@@ -22,6 +22,7 @@
   MdeModulePkg/MdeModulePkg.dec
   SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
   SurfaceDuo1Pkg/SurfaceDuo1Pkg.dec
+  QcomModulePkg/QcomModulePkg.dec
 
 [Guids]
   gEfiDxeServicesTableGuid
