@@ -71,7 +71,7 @@
 
 [PcdsFixedAtBuild.common]
   # Platform-specific
-  gArmTokenSpaceGuid.PcdSystemMemorySize|0x200000000        # 8GB Size
+  gArmTokenSpaceGuid.PcdSystemMemorySize|0x300000000        # 12GB Size
 
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdABLProduct|"surfaceduo2"
 

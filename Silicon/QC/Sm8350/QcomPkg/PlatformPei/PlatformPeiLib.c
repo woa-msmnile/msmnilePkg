@@ -148,7 +148,7 @@ VOID InstallPlatformHob()
     UINTN InfoBlkAddress      = InfoBlk.Address;
     UINTN SchedIntfAddress    = XBL_UEFI_FD + 0x37980;
     UINTN ShLibAddress        = (UINTN)&ShLib;
-    UINTN FvDecompressAddress = XBL_UEFI_FD + 0x403D0;
+    UINTN FvDecompressAddress = XBL_UEFI_FD + 0x403C8;
 
     BuildMemHobForFv(EFI_HOB_TYPE_FV2);
     BuildGuidDataHob(
