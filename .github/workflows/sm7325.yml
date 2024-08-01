@@ -27,7 +27,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
       - name: build uefi for all devices in KodiakPkg.
-        run: bash scripts/ci_setup.sh && ./build_uefi.py -d all -p SM7325
+        run: bash scripts/ci_setup.sh && ./build_uefi.py -d all -p Sm7325
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
