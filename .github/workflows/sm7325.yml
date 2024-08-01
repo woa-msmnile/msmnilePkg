@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Build uefi for all Sm7325 devices.
+name: Build uefi for all SM7325 devices.
 
 # Controls when the workflow will run
 on:
@@ -27,7 +27,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
       - name: build uefi for all devices in KodiakPkg.
-        run: bash scripts/ci_setup.sh && ./build_uefi.py -d all -p Sm7325
+        run: bash scripts/ci_setup.sh && ./build_uefi.py -d all -p SM7325
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4

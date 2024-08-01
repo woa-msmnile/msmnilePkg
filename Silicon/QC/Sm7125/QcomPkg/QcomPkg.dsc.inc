@@ -11,34 +11,32 @@
 
 [PcdsFixedAtBuild.common]
   gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # Starting address
-  gArmTokenSpaceGuid.PcdCpuVectorBaseAddress|0x9FF8C000
+  gArmTokenSpaceGuid.PcdCpuVectorBaseAddress|0x9ff8c000
   gArmTokenSpaceGuid.PcdArmArchTimerFreqInHz|19200000
   gArmTokenSpaceGuid.PcdArmArchTimerSecIntrNum|17
   gArmTokenSpaceGuid.PcdArmArchTimerIntrNum|18
-  gArmTokenSpaceGuid.PcdGicDistributorBase|0x17A00000
-  gArmTokenSpaceGuid.PcdGicRedistributorsBase|0x17A60000
+  gArmTokenSpaceGuid.PcdGicDistributorBase|0x17a00000
+  gArmTokenSpaceGuid.PcdGicRedistributorsBase|0x17a60000
 
-  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemRevision|0x00000001
-
-  gEmbeddedTokenSpaceGuid.PcdPrePiStackBase|0x9ffB0000
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemRevision|0x00007180
+  gEmbeddedTokenSpaceGuid.PcdPrePiStackBase|0x9ffb0000
   gEmbeddedTokenSpaceGuid.PcdPrePiStackSize|0x00020000      # 128K stack
-
-  gEmbeddedTokenSpaceGuid.PcdInterruptBaseAddress|0x9BC0000
+  gEmbeddedTokenSpaceGuid.PcdInterruptBaseAddress|0x09bc0000
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize|44
 
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 7c @ 2.40 GHz"
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"Rennell"
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM7125"
 
   gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # 2GB Base
   gArmPlatformTokenSpaceGuid.PcdCoreCount|8
-  gArmPlatformTokenSpaceGuid.PcdClusterCount|2
+  gArmPlatformTokenSpaceGuid.PcdClusterCount|3
 
   # UART
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdUartSerialBase|0x00A90000
 
 [LibraryClasses.common]
-  #PlatformMemoryMapLib|QcomPkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
-  #PlatformConfigurationMapLib|QcomPkg/Library/PlatformConfigurationMapLib/PlatformConfigurationMapLib.inf
+  # PlatformMemoryMapLib|QcomPkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
+  # PlatformConfigurationMapLib|QcomPkg/Library/PlatformConfigurationMapLib/PlatformConfigurationMapLib.inf
 
   PlatformPeiLib|QcomPkg/PlatformPei/PlatformPeiLib.inf
   PlatformPrePiLib|QcomPkg/Library/PlatformPrePiLib/PlatformPrePiLib.inf

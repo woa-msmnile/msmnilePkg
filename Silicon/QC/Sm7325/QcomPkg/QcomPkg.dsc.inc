@@ -11,25 +11,25 @@
 
 [PcdsFixedAtBuild.common]
   gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # Starting address
-  gArmTokenSpaceGuid.PcdCpuVectorBaseAddress|0x9FF8C000
+  gArmTokenSpaceGuid.PcdCpuVectorBaseAddress|0x9ff8c000
   gArmTokenSpaceGuid.PcdArmArchTimerFreqInHz|19200000
   gArmTokenSpaceGuid.PcdArmArchTimerSecIntrNum|29
   gArmTokenSpaceGuid.PcdArmArchTimerIntrNum|30
-  gArmTokenSpaceGuid.PcdGicDistributorBase|0x17A00000
-  gArmTokenSpaceGuid.PcdGicRedistributorsBase|0x17A60000
+  gArmTokenSpaceGuid.PcdGicDistributorBase|0x17a00000
+  gArmTokenSpaceGuid.PcdGicRedistributorsBase|0x17a60000
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemRevision|0x00007280
-  gEmbeddedTokenSpaceGuid.PcdPrePiStackBase|0x9FF90000
+  gEmbeddedTokenSpaceGuid.PcdPrePiStackBase|0x9ff90000
   gEmbeddedTokenSpaceGuid.PcdPrePiStackSize|0x00040000      # 256K stack
-  gEmbeddedTokenSpaceGuid.PcdInterruptBaseAddress|0x9FF8C000
+  gEmbeddedTokenSpaceGuid.PcdInterruptBaseAddress|0x9ff8c000
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize|44
 
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 778G Plus @ 2.71 GHz"
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 7c+ Gen 3 @ 2.71 GHz"
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM7325"
 
   gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # 2GB Base
   gArmPlatformTokenSpaceGuid.PcdCoreCount|8
-  gArmPlatformTokenSpaceGuid.PcdClusterCount|2
+  gArmPlatformTokenSpaceGuid.PcdClusterCount|3
 
   # UART
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdUartSerialBase|0x00994000
