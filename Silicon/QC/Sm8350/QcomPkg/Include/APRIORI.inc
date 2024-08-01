@@ -13,7 +13,6 @@ APRIORI DXE {
     # Core Drivers
     INF EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
     INF ArmPkg/Drivers/TimerDxe/TimerDxe.inf
-    INF ArmPkg/Drivers/ArmPsciMpServicesDxe/ArmPsciMpServicesDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/SmemDxe/SmemDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/DALSYSDxe/DALSYSDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/HWIODxe/HWIODxe.inf
@@ -28,6 +27,7 @@ APRIORI DXE {
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/VcsDxe/VcsDxe.inf
     INF QcomPkg/PatchedBinaries/ClockDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/ICBDxe/ICBDxe.inf
+    INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/VerifiedBootDxe/VerifiedBootDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/ShmBridgeDxe/ShmBridgeDxeLA.inf
 
     FILE DRIVER = 4b4973ee-401b-4f36-a6a9-533dfccdfc33 {
@@ -46,7 +46,11 @@ APRIORI DXE {
             SECTION UI = "DiskIoDxe"
     }
 
-    INF MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
+    FILE DRIVER = 1fa1f39e-feff-4aae-bd7b-38a070a3b609 {
+            SECTION PE32 = Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.efi
+            SECTION UI = "PartitionDxe"
+    }
+
     INF MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
     INF MdeModulePkg/Universal/FvSimpleFileSystemDxe/FvSimpleFileSystemDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/SdccDxe/SdccDxe.inf
@@ -59,12 +63,13 @@ APRIORI DXE {
     }
 
     INF QcomPkg/PatchedBinaries/MsAbstractLayer.inf
-    # INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
-    FILE DRIVER = CBD2E4D5-7068-4FF5-B462-9822B4AD8D60 {
-            SECTION PE32 = SurfaceDuoFamilyPkg/Binaries/VariableRuntimeDxe.efi
-            SECTION DXE_DEPEX_EXP = {gEfiPcdProtocolGuid AND gEfiDevicePathUtilitiesProtocolGuid}
-            SECTION UI = "VariableRuntimeDxe"
+
+    FILE DRIVER = b0d3689e-11f8-43c6-8ece-023a29cec35b {
+            SECTION PE32 = Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/RNGDxe/RngDxe.efi
+            SECTION UI = "RngDxe"
     }
+
+    INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
     INF QcomPkg/PatchedBinaries/QcomWDogDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/DDRInfoDxe/DDRInfoDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/ResetRuntimeDxe/ResetRuntimeDxe.inf
@@ -125,16 +130,5 @@ APRIORI DXE {
             SECTION UI = "UCDxe"
     }
 
-    FILE DRIVER = b0d3689e-11f8-43c6-8ece-023a29cec35b {
-            SECTION PE32 = Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/RNGDxe/RngDxe.efi
-            SECTION UI = "RngDxe"
-    }
-
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/SimpleTextInOutSerialDxe/SimpleTextInOutSerial.inf
-
-    INF MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
-    INF MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
-
-    INF MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
-    INF MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
 }

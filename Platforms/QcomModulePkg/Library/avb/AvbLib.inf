@@ -1,0 +1,108 @@
+#/*
+# * Copyright (c) 2017-2018, 2020, The Linux Foundation. All rights reserved.
+# *
+# * Redistribution and use in source and binary forms, with or without
+# * modification, are permitted provided that the following conditions are
+# * met:
+# * * Redistributions of source code must retain the above copyright
+# *  notice, this list of conditions and the following disclaimer.
+# *  * Redistributions in binary form must reproduce the above
+# * copyright notice, this list of conditions and the following
+# * disclaimer in the documentation and/or other materials provided
+# *  with the distribution.
+# *   * Neither the name of The Linux Foundation nor the names of its
+# * contributors may be used to endorse or promote products derived
+# * from this software without specific prior written permission.
+# *
+# * THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
+# * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+# * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
+# * ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
+# * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+# * BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+# * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+# * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+# * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#*/
+
+
+[Defines]
+	INF_VERSION                    = 0x00010005
+	BASE_NAME                      = AvbLib
+	FILE_GUID                      = 4290415d-a219-41c2-8c00-31382eeb1d86
+	MODULE_TYPE                    = BASE
+	VERSION_STRING                 = 1.0
+	LIBRARY_CLASS                  = AvbLib
+
+[BuildOptions]
+	*_*_*_CC_FLAGS = -DAVB_COMPILATION -DAVB_ENABLE_DEBUG
+	*_*_*_CC_FLAGS = $(LLVM_ENABLE_SAFESTACK) $(LLVM_SAFESTACK_USE_PTR) $(LLVM_SAFESTACK_COLORING)
+
+[BuildOptions.AARCH64]
+	*_*_*_CC_FLAGS = $(SDLLVM_COMPILE_ANALYZE) $(SDLLVM_ANALYZE_REPORT)
+
+[Sources]
+   libavb/avb_chain_partition_descriptor.c
+   libavb/avb_crc32.c
+   libavb/avb_crypto.c
+   libavb/avb_descriptor.c
+   libavb/avb_footer.c
+   libavb/avb_hash_descriptor.c
+   libavb/avb_hashtree_descriptor.c
+   libavb/avb_kernel_cmdline_descriptor.c
+   libavb/avb_property_descriptor.c
+   libavb/avb_rsa.c
+   libavb/avb_sha512.c
+   libavb/avb_slot_verify.c
+   libavb/avb_sysdeps.c
+   libavb/avb_util.c
+   libavb/avb_vbmeta_image.c
+   libavb/avb_version.c
+   libavb/avb_ops.c
+   VerifiedBoot.c
+   KeymasterClient.c
+   Hash2Client.c
+
+[Packages]
+	ArmPkg/ArmPkg.dec
+	MdePkg/MdePkg.dec
+	EmbeddedPkg/EmbeddedPkg.dec
+	ArmPlatformPkg/ArmPlatformPkg.dec
+	MdeModulePkg/MdeModulePkg.dec
+	QcomModulePkg/QcomModulePkg.dec
+
+[LibraryClasses]
+	DxeServicesTableLib
+	UefiLib
+	ArmLib
+	BaseLib
+	DebugLib
+	DevicePathLib
+	DebugPrintErrorLevelLib
+	FdtLib
+	MemoryAllocationLib
+
+
+[Guids]
+	gEfiVbmetaPartitionGuid
+	gEfiBootImgPartitionGuid
+	gEfiDtboPartitionGuid
+	gEfiRecoveryImgPartitionGuid
+
+[Protocols]
+	gQcomQseecomProtocolGuid
+	gEfiPartitionRecordGuid
+	gEfiHash2ProtocolGuid
+	gEfiHashAlgorithmSha256Guid
+	gEfiQcomASN1X509ProtocolGuid
+	gEfiQcomSecRSAProtocolGuid
+
+[FixedPcd]
+	gQcomTokenSpaceGuid.EnableMdtpSupport
+	gQcomTokenSpaceGuid.AllowEio
+
+[Depex]
+	TRUE
+

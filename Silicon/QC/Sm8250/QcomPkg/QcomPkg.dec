@@ -9,3 +9,7 @@
 
 [Guids.common]
   gQcomPkgTokenSpaceGuid = { 0x59f58449, 0x99e1, 0x4a19, { 0x86, 0x65, 0x12, 0xd6, 0x37, 0xed, 0xbe, 0x5e } }
+
+[PcdsFixedAtBuild.common]
+  # Previous XBL's Protcol Addresses.
+  gQcomPkgTokenSpaceGuid.SchedIntfProtocolAddress|0x00000000|UINT64|0x0000a801

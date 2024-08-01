@@ -145,7 +145,7 @@ VOID InstallPlatformHob()
     LocateMemoryMapAreaByName("Info Blk", &InfoBlk);
 
     UINTN InfoBlkAddress      = InfoBlk.Address;
-    UINTN SchedIntfAddress    = PcdGet64(KernelProtocolAddress);
+    UINTN SchedIntfAddress    = PcdGet64(SchedIntfProtocolAddress);
     UINTN ShLibAddress        = (UINTN)&ShLib;
     UINTN FvDecompressAddress = 0x9FC403D0;
     BOOLEAN gProdmodeInfo     = FALSE;
