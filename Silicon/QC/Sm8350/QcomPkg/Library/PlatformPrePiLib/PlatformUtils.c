@@ -16,7 +16,7 @@ VOID PlatformInitialize(VOID)
   // awake on subsequent power on. In order for interrupts to work properly on
   // each CPU, we need to wake up the GIC redistributor ourselves for each CPU
   // that used to be online from the beginning of this current boot session.
-  // Surface Duo 2's XBL used 2 CPUs for multithreading, so we need to wake up
+  // MTP8350's XBL used 2 CPUs for multithreading, so we need to wake up
   // the redistributor for CPU 0 and CPU 1.
   //
 

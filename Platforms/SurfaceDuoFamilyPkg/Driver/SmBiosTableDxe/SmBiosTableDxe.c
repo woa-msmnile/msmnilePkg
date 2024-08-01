@@ -58,12 +58,10 @@ be found at http://opensource.org/licenses/bsd-license.php
 
 /* Used to read chip serial number */
 #include <Protocol/EFIChipInfo.h>
+#include <Protocol/EFIPlatformInfo.h>
 
 /* Used to read Ram Info */
 #include <Protocol/EFIRamPartition.h>
-
-/* Used to read device serial number */
-#include <Protocol/SurfaceFirmwareProvisioningDataProtocol.h>
 
 /* Used to read UEFI release information */
 #include <Library/MuUefiVersionLib.h>
@@ -71,6 +69,13 @@ be found at http://opensource.org/licenses/bsd-license.php
 /* Used to hash device serial number */
 #include <Protocol/Hash.h>
 #include <Protocol/Hash2.h>
+
+CONST CHAR8 *PlatformTypeStrings[EFI_PLATFORMINFO_NUM_TYPES] = {
+    "UNKNOWN", "CDP (SURF)", "FFA",    "FLUID",       "FUSION", "OEM", "QT",
+    "MTP_MDM", "MTP",        "LiQUID", "DragonBoard", "QRD",    "EVB", "HRD",
+    "DTV",     "RUMI",       "VIRTIO", "GOBI",        "CBH",    "BTS", "XPM",
+    "RCM",     "DMA",        "STP",    "SBC",         "ADP",    "CHI", "SDP",
+    "RRP",     "CLS",        "TTP",    "HDK",         "IOT",    "ATP", "IDP"};
 
 /***********************************************************************
         SMBIOS data definition  TYPE0  BIOS Information
@@ -177,14 +182,8 @@ SMBIOS_TABLE_TYPE1 mSysInfoType1 = {
     5, // SKUNumber String
     6, // Family String
 };
-CHAR8 *mSysInfoType1Strings[] = {
-    "Microsoft Corporation",
-    "Not Specified",
-    "Not Specified",
-    "Not Specified",
-    "Not Specified",
-    "Surface",
-    NULL};
+CHAR8 *mSysInfoType1Strings[] = {"Qualcomm", "MTP",    "2.2", "Not Specified",
+                                 "6",        "SDM855", NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE2  Board Information
@@ -212,13 +211,8 @@ SMBIOS_TABLE_TYPE2 mBoardInfoType2 = {
     {0}                       // ContainedObjectHandles[1];
 };
 CHAR8 *mBoardInfoType2Strings[] = {
-    "Microsoft Corporation",
-    "Not Specified",
-    "Not Specified",
-    "Not Specified",
-    "Not Specified",
-    "Not Specified",
-    NULL};
+    "Qualcomm",      "MTP", "Not Specified", "Not Specified", "Not Specified",
+    "Not Specified", NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE3  Enclosure Information
@@ -242,8 +236,7 @@ SMBIOS_TABLE_TYPE3 mEnclosureInfoType3 = {
     {{0}},                  // ContainedElements[1];
 };
 CHAR8 *mEnclosureInfoType3Strings[] = {
-    "Microsoft Corporation", "Not Specified", "Not Specified", "Not Specified",
-    NULL};
+    "Qualcomm", "Not Specified", "Not Specified", "Not Specified", NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE4  Processor Information
@@ -639,7 +632,6 @@ GetUUIDFromEFIChipInfoSerialNumType(
   return Status;
 }
 
-
 /**
 
   Create SMBIOS record.
@@ -765,25 +757,18 @@ VOID BIOSInfoUpdateSmbiosType0(VOID)
         SMBIOS data update  TYPE1  System Information
 ************************************************************************/
 
-VOID SysInfoUpdateSmbiosType1(CHAR8 *serialNo, EFIChipInfoSerialNumType serial)
+VOID SysInfoUpdateSmbiosType1(
+    CHAR8 *ProductNameString, CHAR8 *VersionString, CHAR8 *SerialNumberString,
+    CHAR8 *FamilyString, EFIChipInfoSerialNumType serial)
 {
   // Update string table before proceeds
-  mSysInfoType1Strings[1] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemModel);
-  mSysInfoType1Strings[2] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemRetailModel);
-  mSysInfoType1Strings[4] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemRetailSku);
-
-//
-// PcdSmbiosSystemBrand modification Start
-//
   mSysInfoType1Strings[0] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemBrand);
-//
-// PcdSmbiosSystemBrand modification End
-//
+  mSysInfoType1Strings[1] = ProductNameString;
+  mSysInfoType1Strings[2] = VersionString;
+  mSysInfoType1Strings[3] = SerialNumberString;
+  mSysInfoType1Strings[4] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemRetailSku);
+  mSysInfoType1Strings[5] = FamilyString;
 
-  // Update serial number from Board DXE
-  mSysInfoType1Strings[3] = serialNo;
-//  GetUUIDFromEFIChipInfoSerialNumType(
-//      serial, &mSysInfoType1.Uuid, sizeof(GUID));
   mSysInfoType1.Uuid.Data1 = serial;
 
   LogSmbiosData(
@@ -796,6 +781,7 @@ VOID SysInfoUpdateSmbiosType1(CHAR8 *serialNo, EFIChipInfoSerialNumType serial)
 VOID BoardInfoUpdateSmbiosType2(CHAR8 *serialNo)
 {
   // Update string table before proceeds
+  mBoardInfoType2Strings[0] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemBrand);
   mBoardInfoType2Strings[1] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosBoardModel);
 
   // Update serial number from Board DXE
@@ -864,25 +850,6 @@ VOID CacheInfoUpdateSmbiosType7(VOID)
         SMBIOS data update  TYPE16  Physical Memory Array Information
 ************************************************************************/
 
-//
-// Dynamic Ram Detect Patch End
-//
-
-// Original Code
-//VOID PhyMemArrayInfoUpdateSmbiosType16(VOID)
-//{
-//  EFI_SMBIOS_HANDLE MemArraySmbiosHande;
-//
-//  LogSmbiosData(
-//      (EFI_SMBIOS_TABLE_HEADER *)&mPhyMemArrayInfoType16,
-//      mPhyMemArrayInfoType16Strings, &MemArraySmbiosHande);
-//
-//  //
-//  // Update the memory device information
-//  //
-//  mMemDevInfoType17.MemoryArrayHandle = MemArraySmbiosHande;
-//}
-
 VOID PhyMemArrayInfoUpdateSmbiosType16(IN UINT64 SystemMemorySize)
 {
   EFI_SMBIOS_HANDLE MemArraySmbiosHande;
@@ -897,27 +864,9 @@ VOID PhyMemArrayInfoUpdateSmbiosType16(IN UINT64 SystemMemorySize)
   mMemDevInfoType17.MemoryArrayHandle = MemArraySmbiosHande;
 }
 
-//
-// Dynamic Ram Detect Patch End
-//
-
 /***********************************************************************
         SMBIOS data update  TYPE17  Memory Device Information
 ************************************************************************/
-
-//
-// Dynamic Ram Detect Patch Start
-//
-
-// Original Code:
-//VOID MemDevInfoUpdateSmbiosType17(VOID)
-//{
-//  mMemDevInfoType17.Size = FixedPcdGet64(PcdSystemMemorySize) / 0x100000;
-//
-//  LogSmbiosData(
-//      (EFI_SMBIOS_TABLE_HEADER *)&mMemDevInfoType17, mMemDevInfoType17Strings,
-//      NULL);
-//}
 
 VOID MemDevInfoUpdateSmbiosType17(IN UINT64 SystemMemorySize)
 {
@@ -928,50 +877,83 @@ VOID MemDevInfoUpdateSmbiosType17(IN UINT64 SystemMemorySize)
       NULL);
 }
 
-//
-// Dynamic Ram Detect Patch End
-//
-
 /***********************************************************************
         SMBIOS data update  TYPE19  Memory Array Map Information
 ************************************************************************/
-
-//
-// Dynamic Ram Detect Patch Start
-//
-
-// Original Code:
-//VOID MemArrMapInfoUpdateSmbiosType19(VOID)
-//{
-//  mMemArrMapInfoType19.StartingAddress =
-//      FixedPcdGet64(PcdSystemMemoryBase) / 1024;
-//  mMemArrMapInfoType19.EndingAddress =
-//      (FixedPcdGet64(PcdSystemMemorySize) + FixedPcdGet64(PcdSystemMemoryBase) -
-//       1) /
-//      1024;
-//
-//  LogSmbiosData(
-//      (EFI_SMBIOS_TABLE_HEADER *)&mMemArrMapInfoType19,
-//      mMemArrMapInfoType19Strings, NULL);
-//}
 
 VOID MemArrMapInfoUpdateSmbiosType19(IN UINT64 SystemMemorySize)
 {
   mMemArrMapInfoType19.StartingAddress =
       FixedPcdGet64(PcdSystemMemoryBase) / 1024;
   mMemArrMapInfoType19.EndingAddress =
-      (SystemMemorySize + FixedPcdGet64(PcdSystemMemoryBase) -
-       1) /
-      1024;
+      (SystemMemorySize + FixedPcdGet64(PcdSystemMemoryBase) - 1) / 1024;
 
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mMemArrMapInfoType19,
       mMemArrMapInfoType19Strings, NULL);
 }
 
-//
-// Dynamic Ram Detect Patch End
-//
+#define PLATFORM_TYPE_STRING_MAX_SIZE 64
+
+EFI_STATUS
+EFIAPI
+GetSystemMemorySize(UINT64 *SystemMemorySize)
+{
+  EFI_STATUS                 Status;
+  EFI_RAMPARTITION_PROTOCOL *mRamPartitionProtocol = NULL;
+  RamPartitionEntry         *RamPartitions         = NULL;
+  UINT32                     NumPartitions         = 0;
+
+  // Locate Qualcomm RamPartition Protocol (Needs EnvDxe !)
+  Status = gBS->LocateProtocol(
+      &gEfiRamPartitionProtocolGuid, NULL, (VOID *)&mRamPartitionProtocol);
+
+  // Get SystemMemorySize
+  if (mRamPartitionProtocol != NULL) {
+    Status = mRamPartitionProtocol->GetRamPartitions(
+        mRamPartitionProtocol, NULL, &NumPartitions);
+    if (Status == EFI_BUFFER_TOO_SMALL) {
+      RamPartitions =
+          AllocateZeroPool(NumPartitions * sizeof(RamPartitionEntry));
+      Status = mRamPartitionProtocol->GetRamPartitions(
+          mRamPartitionProtocol, RamPartitions, &NumPartitions);
+      if (EFI_ERROR(Status) || (NumPartitions < 1)) {
+        DEBUG((EFI_D_ERROR, "Failed to get RAM partitions\n"));
+        FreePool(RamPartitions);
+        RamPartitions     = NULL;
+        *SystemMemorySize = FixedPcdGet64(PcdSystemMemorySize);
+      }
+    }
+
+    // Update SystemMemorySize if meet no issue above,
+    //   Otherwise SystemMemorySize == FixedPcdGet64(PcdSystemMemorySize)
+    if (*SystemMemorySize != FixedPcdGet64(PcdSystemMemorySize)) {
+      for (UINTN i = 0; i < NumPartitions; i++)
+        *SystemMemorySize += RamPartitions[i].AvailableLength;
+      DEBUG(
+          (EFI_D_WARN, "The Total SystemMemorySize is 0x%016llx \n",
+           *SystemMemorySize));
+
+      UINTN DesignMemroySize = 0;
+      while (*SystemMemorySize >= DesignMemroySize)
+        DesignMemroySize += 0x40000000;
+
+      DEBUG(
+          (EFI_D_WARN, "The Totol DesignMemorySize is 0x%016llx \n",
+           DesignMemroySize));
+      *SystemMemorySize = DesignMemroySize;
+    }
+  }
+  else {
+    // Report FixedPcdGet64(PcdSystemMemorySize) if protocol not found.
+    DEBUG(
+        (EFI_D_ERROR,
+         "[SmBiosTableDxe] Locate Ram Partition Protocol Failed! \n"));
+    *SystemMemorySize = FixedPcdGet64(PcdSystemMemoryBase);
+  }
+
+  return Status;
+}
 
 /***********************************************************************
         Driver Entry
@@ -981,97 +963,99 @@ EFIAPI
 SmBiosTableDxeInitialize(
     IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 {
-  EFI_STATUS               Status;
-  CHAR8                    serialNo[EFICHIPINFO_MAX_ID_LENGTH];
-//  UINTN                    serialNoLength = EFICHIPINFO_MAX_ID_LENGTH;
+  EFI_STATUS Status;
+
+  CHAR8                    SerialNumberString[EFICHIPINFO_MAX_ID_LENGTH];
+  CHAR8                    FamilyString[EFICHIPINFO_MAX_ID_LENGTH] = {0};
   EFIChipInfoSerialNumType serial;
-  EFI_CHIPINFO_PROTOCOL   *mBoardProtocol  = NULL;
-//  SFPD_PROTOCOL           *mDeviceProtocol = NULL;
+  EFI_PLATFORMINFO_PLATFORM_INFO_TYPE PlatformInfo;
+  UINT64                              SystemMemorySize   = 0;
+  CHAR8 ProductNameString[PLATFORM_TYPE_STRING_MAX_SIZE] = {0};
+  CHAR8 VersionString[PLATFORM_TYPE_STRING_MAX_SIZE]     = {0};
+
+  EFI_CHIPINFO_PROTOCOL     *mBoardProtocol           = NULL;
+  EFI_PLATFORMINFO_PROTOCOL *pEfiPlatformInfoProtocol = NULL;
 
   // Locate Qualcomm Board Protocol
   Status = gBS->LocateProtocol(
       &gEfiChipInfoProtocolGuid, NULL, (VOID *)&mBoardProtocol);
 
+  // Locate Qualcomm Board Protocol
+  Status = gBS->LocateProtocol(
+      &gEfiPlatformInfoProtocolGuid, NULL, (VOID *)&pEfiPlatformInfoProtocol);
+
+  // Get Serial Number, Chip Version, Chip Family
   if (mBoardProtocol != NULL) {
     mBoardProtocol->GetSerialNumber(mBoardProtocol, &serial);
-    AsciiSPrint(serialNo, sizeof(serialNo), "%lld", serial);
+    AsciiSPrint(SerialNumberString, sizeof(SerialNumberString), "%lld", serial);
+
+    mBoardProtocol->GetChipIdString(
+        mBoardProtocol, FamilyString, EFICHIPINFO_MAX_ID_LENGTH);
   }
 
-//
-// Dynamic Ram Detect Patch Start
-//
+  CHAR8 *SmbiosSystemRetailModel =
+      (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemRetailModel);
+  if (AsciiStrLen(SmbiosSystemRetailModel) > 0) {
+    AsciiStrnCpyS(
+        VersionString, PLATFORM_TYPE_STRING_MAX_SIZE, SmbiosSystemRetailModel,
+        AsciiStrLen(SmbiosSystemRetailModel));
+  }
+  // Get Chip Version
+  else if (mBoardProtocol != NULL) {
+    UINT32 SIDV = 0;
+    mBoardProtocol->GetChipVersion(mBoardProtocol, &SIDV);
+    UINT16 SVMJ = (UINT16)((SIDV >> 16) & 0xFFFF);
+    UINT16 SVMI = (UINT16)(SIDV & 0xFFFF);
+    AsciiSPrint(
+        VersionString, PLATFORM_TYPE_STRING_MAX_SIZE, "%d.%d", SVMJ, SVMI);
+  }
+  else {
+    AsciiStrnCpyS(
+        VersionString, PLATFORM_TYPE_STRING_MAX_SIZE, "Not Specified",
+        AsciiStrLen("Not Specified"));
+  }
 
-  // Vars
-  EFI_RAMPARTITION_PROTOCOL *mRamPartitionProtocol = NULL;
-  RamPartitionEntry         *RamPartitions = NULL;
-  UINT32                     NumPartitions = 0;
-  UINT64                     SystemMemorySize = 0;
+  CHAR8 *SmbiosSystemModel = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemModel);
+  if (AsciiStrLen(SmbiosSystemModel) > 0) {
+    AsciiStrnCpyS(
+        ProductNameString, PLATFORM_TYPE_STRING_MAX_SIZE, SmbiosSystemModel,
+        AsciiStrLen(SmbiosSystemModel));
+  }
+  // Get Product Name
+  else if (pEfiPlatformInfoProtocol != NULL) {
+    if (!EFI_ERROR(pEfiPlatformInfoProtocol->GetPlatformInfo(
+            pEfiPlatformInfoProtocol, &PlatformInfo))) {
+      EFI_PLATFORMINFO_PLATFORM_TYPE platformInfoType = PlatformInfo.platform;
 
-  // Locate Qualcomm RamPartition Protocol (Needs EnvDxe !)
-  Status = gBS->LocateProtocol(
-      &gEfiRamPartitionProtocolGuid, NULL, (VOID *)&mRamPartitionProtocol);
-
-  // Locate Sfpd Protocol
-//  Status =
-//      gBS->LocateProtocol(&gSfpdProtocolGuid, NULL, (VOID *)&mDeviceProtocol);
-
-//  if (mDeviceProtocol != NULL) {
-//    ZeroMem(serialNo, serialNoLength);
-//    mDeviceProtocol->GetSurfaceSerialNumber(&serialNoLength, serialNo);
-//  }
-
-  // Get the SystemMemorySize
-  if (mRamPartitionProtocol != NULL) {
-    Status = mRamPartitionProtocol->GetRamPartitions(mRamPartitionProtocol, NULL, &NumPartitions);
-    if (Status == EFI_BUFFER_TOO_SMALL) {
-      RamPartitions = AllocateZeroPool(NumPartitions * sizeof (RamPartitionEntry));
-      Status = mRamPartitionProtocol->GetRamPartitions(mRamPartitionProtocol, RamPartitions, &NumPartitions);
-      if (EFI_ERROR (Status) || (NumPartitions < 1)) {
-        DEBUG ((EFI_D_ERROR, "Failed to get RAM partitions\n"));
-        FreePool (RamPartitions);
-        RamPartitions = NULL;
-        SystemMemorySize = FixedPcdGet64(PcdSystemMemorySize);
+      if (PlatformInfo.platform >= EFI_PLATFORMINFO_NUM_TYPES) {
+        platformInfoType = EFI_PLATFORMINFO_TYPE_UNKNOWN;
       }
+
+      AsciiStrnCpyS(
+          ProductNameString, PLATFORM_TYPE_STRING_MAX_SIZE,
+          PlatformTypeStrings[platformInfoType],
+          AsciiStrLen(PlatformTypeStrings[platformInfoType]));
     }
-
-    // Update SystemMemorySize if meet no issue above,
-    //   Otherwise SystemMemorySize == FixedPcdGet64(PcdSystemMemorySize)
-    if(SystemMemorySize != FixedPcdGet64(PcdSystemMemorySize)){
-      for (UINTN i = 0; i < NumPartitions; i++)
-        SystemMemorySize += RamPartitions[i].AvailableLength;
-      DEBUG((EFI_D_WARN, "The Total SystemMemorySize is 0x%016llx \n", SystemMemorySize));
-
-      UINTN DesignMemroySize = 0;
-      while(SystemMemorySize >= DesignMemroySize)
-        DesignMemroySize += 0x40000000;
-
-      DEBUG((EFI_D_WARN, "The Totol DesignMemorySize is 0x%016llx \n", DesignMemroySize));
-      SystemMemorySize = DesignMemroySize;
-    }
-  } else{
-    // Report FixedPcdGet64(PcdSystemMemorySize) if protocol not found.
-    DEBUG((EFI_D_ERROR, "[SmBiosTableDxe] Locate Ram Partition Protocol Failed! \n"));
-    SystemMemorySize = FixedPcdGet64(PcdSystemMemoryBase);
+  }
+  else {
+    AsciiStrnCpyS(
+        ProductNameString, PLATFORM_TYPE_STRING_MAX_SIZE, "Not Specified",
+        AsciiStrLen("Not Specified"));
   }
 
-  // Original Code:
-  //  PhyMemArrayInfoUpdateSmbiosType16();
-  //  MemDevInfoUpdateSmbiosType17();
-  //  MemArrMapInfoUpdateSmbiosType19();
+  // Get SystemMemorySize
+  GetSystemMemorySize(&SystemMemorySize);
 
-  // Pass Size to functions
   PhyMemArrayInfoUpdateSmbiosType16(SystemMemorySize);
   MemDevInfoUpdateSmbiosType17(SystemMemorySize);
   MemArrMapInfoUpdateSmbiosType19(SystemMemorySize);
 
-//
-// Dynamic Ram Detect Patch End
-//
-
   BIOSInfoUpdateSmbiosType0();
-  SysInfoUpdateSmbiosType1(serialNo, serial);
-  BoardInfoUpdateSmbiosType2(serialNo);
-  EnclosureInfoUpdateSmbiosType3(serialNo);
+  SysInfoUpdateSmbiosType1(
+      ProductNameString, VersionString, SerialNumberString, FamilyString,
+      serial);
+  BoardInfoUpdateSmbiosType2(SerialNumberString);
+  EnclosureInfoUpdateSmbiosType3(SerialNumberString);
   ProcessorInfoUpdateSmbiosType4(PcdGet32(PcdCoreCount));
   CacheInfoUpdateSmbiosType7();
 

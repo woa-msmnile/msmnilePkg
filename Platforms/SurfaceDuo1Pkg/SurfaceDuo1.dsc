@@ -28,22 +28,20 @@
   BUILD_TARGETS                  = DEBUG|RELEASE
   SKUID_IDENTIFIER               = DEFAULT
   FLASH_DEFINITION               = SurfaceDuo1Pkg/SurfaceDuo1.fdf
-
-  # Notice: TRUE == 1, FALSE == 0
-!if $(SEC_BOOT) == 1
-  SECURE_BOOT_ENABLE             = TRUE
-  DEFAULT_KEYS                   = TRUE
-!else
-  SECURE_BOOT_ENABLE             = FALSE
-  DEFAULT_KEYS                   = FALSE
-!endif
-
   USE_PHYSICAL_TIMER             = 1
   USE_SCREEN_FOR_SERIAL_OUTPUT   = 0
   USE_UART_FOR_SERIAL_OUTPUT     = 1
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
-  SEND_HEARTBEAT_TO_SERIAL       = 0
   USE_SIMPLEFBDXE                = 1
+
+  # Notice: TRUE == 1, FALSE == 0
+!if $(SEC_BOOT) == 1
+  SECURE_BOOT                    = 1
+  DEFAULT_KEYS                   = TRUE
+!else
+  SECURE_BOOT                    = 0
+  DEFAULT_KEYS                   = FALSE
+!endif
 
   PK_DEFAULT_FILE                = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/OEMA0-PK.der
   KEK_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/Kek/MicCorKEKCA2011_2011-06-24.der
@@ -55,14 +53,14 @@
   DB_DEFAULT_FILE4               = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/Db/microsoft_uefi_ca_2023.der
   DBX_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/Artifacts/Aarch64/DefaultDbx.bin
 
-  DXE_CRYPTO_SERVICES            = STANDARD
   PEI_CRYPTO_SERVICES            = NONE
-  RUNTIMEDXE_CRYPTO_SERVICES     = NONE
+  DXE_CRYPTO_SERVICES            = STANDARD
+  RUNTIMEDXE_CRYPTO_SERVICES     = STANDARD
   SMM_CRYPTO_SERVICES            = NONE
   STANDALONEMM_CRYPTO_SERVICES   = NONE
+  PEI_CRYPTO_ARCH                = NONE
   DXE_CRYPTO_ARCH                = AARCH64
   RUNTIMEDXE_CRYPTO_ARCH         = AARCH64
-  PEI_CRYPTO_ARCH                = NONE
   SMM_CRYPTO_ARCH                = NONE
   STANDALONEMM_CRYPTO_ARCH       = NONE
 
@@ -87,7 +85,9 @@
 
 [PcdsFixedAtBuild.common]
   # Platform-specific
-  gArmTokenSpaceGuid.PcdSystemMemorySize|0x100000000            # 4GB
+  gArmTokenSpaceGuid.PcdSystemMemorySize|0x100000000        # 4GB Size
+
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdABLProduct|"surfaceduo"
 
 [Components.common]
   # Graphics Driver

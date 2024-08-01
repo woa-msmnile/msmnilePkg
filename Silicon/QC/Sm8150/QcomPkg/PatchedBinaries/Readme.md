@@ -64,4 +64,4 @@ FmpDxe depends on the following Dynamic Pcd:
 ('PcdTestKeyUsed', 'gEfiMdeModulePkgTokenSpaceGuid') : 3
 ```
 
-The DXEs were patched to check for 3 and 6 instead of 2 and 3 respectively.
+The DXEs were patched to check for 5 and 6 instead of 2 and 3 respectively.

@@ -7,14 +7,13 @@ gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdDisplayCallerExitDisableDisplay|FALSE
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdDisplayCallerStallBeforeEnable|1000
 
 # Smbios Info
-gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"QTI"
-gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"QRD Snapdragon 8 Gen2"
-gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"kailua"
-gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"DVT"
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"Qualcomm"
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosBoardModel|"QRD"
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"6"
 
 # Necessary Addresses
-gSurfaceDuoFamilyPkgTokenSpaceGuid.KernelProtocolAddress|0xA703B948
-gSurfaceDuoFamilyPkgTokenSpaceGuid.XBLDTProtocolAddress|0xA703B0C8
+gQcomPkgTokenSpaceGuid.KernelProtocolAddress|0xA703B948
+gQcomPkgTokenSpaceGuid.XBLDTProtocolAddress|0xA703B0C8
 
 
 [PcdsDynamicDefault.common]

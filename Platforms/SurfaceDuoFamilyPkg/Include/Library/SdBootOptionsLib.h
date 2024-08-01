@@ -27,4 +27,21 @@ SdBootOptionsLibGetUFPMenu (
   IN     CHAR8                         *Parameter
   );
 
+/**
+  Return the boot option corresponding to the Bootloader Menu.
+
+  @param BootOption    Return a created Bootloader Menu with the parameter passed
+  @param Parameter     The parameter to add to the BootOption
+
+  @retval EFI_SUCCESS   The Bootloader Menu is successfully returned.
+  @retval Status        Return status of gRT->SetVariable (). BootOption still points
+                        to the Bootloader Menu even the Status is not EFI_SUCCESS.
+**/
+EFI_STATUS
+EFIAPI
+SdBootOptionsLibGetBootloaderMenu (
+  IN OUT EFI_BOOT_MANAGER_LOAD_OPTION  *BootOption,
+  IN     CHAR8                         *Parameter
+  );
+
 #endif // _SD_BOOT_OPTIONS_LIB_H_

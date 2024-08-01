@@ -56,14 +56,12 @@
     SECTION UI = "BootFailIndicator"
   }
 
-  !if $(SECURE_BOOT_ENABLE) == TRUE
-    FILE FREEFORM = PCD(gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSystemIntegrityPolicyFile) {
-      SECTION RAW = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/SystemIntegrity/SiPolicy.p7b
-      SECTION UI = "System Integrity Policy Default"
-    }
+  FILE FREEFORM = PCD(gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSystemIntegrityPolicyFile) {
+    SECTION RAW = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/SystemIntegrity/SiPolicy.p7b
+    SECTION UI = "System Integrity Policy Default"
+  }
 
-    !include ArmPlatformPkg/SecureBootDefaultKeys.fdf.inc
-  !endif
+  !include ArmPlatformPkg/SecureBootDefaultKeys.fdf.inc
 ################################################################
 # UEFI Shell Change Start
   FILE APPLICATION=PCD(gPcBdsPkgTokenSpaceGuid.PcdShellFile) {
@@ -88,3 +86,4 @@
 ################################################################
 
   !include $(SHARED_CRYPTO_PATH)/Driver/Bin/CryptoDriver.DXE.inc.fdf
+  !include $(SHARED_CRYPTO_PATH)/Driver/Bin/CryptoDriver.RUNTIMEDXE.inc.fdf

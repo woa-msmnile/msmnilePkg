@@ -26,6 +26,7 @@
   MdeModulePkg/MdeModulePkg.dec
   SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
   QcomPkg/QcomPkg.dec
+  QcomModulePkg/QcomModulePkg.dec
 
 [LibraryClasses]
   BaseMemoryLib

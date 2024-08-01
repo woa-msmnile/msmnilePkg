@@ -28,17 +28,16 @@
 
   # Notice: TRUE == 1, FALSE == 0
 !if $(SEC_BOOT) == 1
-  SECURE_BOOT_ENABLE             = TRUE
+  SECURE_BOOT                    = 1
   DEFAULT_KEYS                   = TRUE
 !else
-  SECURE_BOOT_ENABLE             = FALSE
+  SECURE_BOOT                    = 0
   DEFAULT_KEYS                   = FALSE
 !endif
 
   USE_PHYSICAL_TIMER             = 0
   USE_SCREEN_FOR_SERIAL_OUTPUT   = 1
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
-  SEND_HEARTBEAT_TO_SERIAL       = 0
   USE_UART_FOR_SERIAL_OUTPUT     = 0
 
   PK_DEFAULT_FILE                = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/OEMA0-PK.der
@@ -72,6 +71,8 @@
 [PcdsFixedAtBuild.common]
   # Platform-specific
   gArmTokenSpaceGuid.PcdSystemMemorySize|0x300000000        # 12GB Size
+
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdABLProduct|"kailua"
 
 #[PcdsDynamicDefault.common]
 #  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1344

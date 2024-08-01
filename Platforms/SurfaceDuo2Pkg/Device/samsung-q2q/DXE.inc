@@ -8,7 +8,6 @@ INF QcomPkg/PatchedBinaries/UsbConfigDxe.inf
 INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/ButtonsDxe.inf
 
 # Drivers
-INF MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
 INF SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
 INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
 #INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ButtonsDxe/ButtonsDxe.inf
@@ -66,6 +65,11 @@ FILE DRIVER = cf6dfc66-14ab-4e13-84db-9c02912d1404 {
 FILE DRIVER = 6b38f7b4-ad98-40e9-9093-aca2b5a253c4 {
         SECTION PE32 = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.efi
         SECTION UI = "DiskIoDxe"
+}
+
+FILE DRIVER = 1fa1f39e-feff-4aae-bd7b-38a070a3b609 {
+        SECTION PE32 = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.efi
+        SECTION UI = "PartitionDxe"
 }
 
 FILE DRIVER = 1c04f529-0612-4319-9315-b2e75c16810a {

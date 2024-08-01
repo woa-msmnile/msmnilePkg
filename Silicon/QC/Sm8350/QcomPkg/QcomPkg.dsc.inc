@@ -52,6 +52,3 @@
   PlatformThemeLib|QcomPkg/Library/PlatformThemeLib/PlatformThemeLib.inf
 
   ConsoleMsgLib|PcBdsPkg/Library/ConsoleMsgLibNull/ConsoleMsgLibNull.inf
-
-[Components.common]
-  SurfaceDuoFamilyPkg/Driver/RamPartitionDxe/RamPartitionDxe.inf

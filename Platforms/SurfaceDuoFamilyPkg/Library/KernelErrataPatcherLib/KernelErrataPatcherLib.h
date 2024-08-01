@@ -21,8 +21,6 @@
 #include <Library/UefiLib.h>
 #include <Uefi.h>
 
-#include <Library/ArmLib.h>
-#include <Library/ArmMmuLib.h>
 #include <Library/BaseLib.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>

@@ -911,24 +911,31 @@ DeviceBootManagerPriorityBoot (
   )
 {
   BOOLEAN     FrontPageBoot;
+  BOOLEAN     BootloaderMenuBoot;
   BOOLEAN     UFPBoot;
   BOOLEAN     AltDeviceBoot;
   EFI_STATUS  Status;
 
   FrontPageBoot = MsBootPolicyLibIsSettingsBoot ();
+  BootloaderMenuBoot = SdBootPolicyLibIsBootloaderMenuBoot ();
   UFPBoot = SdBootPolicyLibIsUFPBoot ();
   AltDeviceBoot = MsBootPolicyLibIsAltBoot ();
   MsBootPolicyLibClearBootRequests ();
 
-  // There are four cases:
+  // There are five cases:
   //   1. Nothing pressed.             return EFI_NOT_FOUND
   //   2. FrontPageBoot                load FrontPage
-  //   2. UFPBoot                      load UFP
-  //   3. AltDeviceBoot                load alternate boot order
-  //   4. Both indicators are present  Load NetworkUnlock
+  //   2. BootloaderMenuBoot           load Bootloader menu
+  //   3. UFPBoot                      load UFP
+  //   4. AltDeviceBoot                load alternate boot order
+  //   5. Both indicators are present  Load NetworkUnlock
 
-  if (UFPBoot) {
-    // Front Page Boot Option
+  if (BootloaderMenuBoot) {
+    // Bootloader Menu Option
+    DEBUG ((DEBUG_INFO, "[Bds] enter Bootloader Menu\n"));
+    Status = SdBootOptionsLibGetBootloaderMenu (BootOption, "VOL+");
+  } else if (UFPBoot) {
+    // UFP Boot Option
     DEBUG ((DEBUG_INFO, "[Bds] enter UFP\n"));
     Status = SdBootOptionsLibGetUFPMenu (BootOption, "VOL-");
   } else if (AltDeviceBoot) {

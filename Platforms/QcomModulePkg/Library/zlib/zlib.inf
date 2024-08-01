@@ -1,0 +1,28 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = Zlib
+  FILE_GUID                      = 34ddcb16-5264-11e5-885d-feff819cdc9f
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = Zlib
+
+[BuildOptions]
+  *_*_*_CC_FLAGS = $(LLVM_ENABLE_SAFESTACK) $(LLVM_SAFESTACK_USE_PTR) $(LLVM_SAFESTACK_COLORING)
+
+[BuildOptions.AARCH64]
+  *_*_*_CC_FLAGS = -O2 -DZ_SOLO
+  *_*_*_CC_FLAGS = $(SDLLVM_COMPILE_ANALYZE) $(SDLLVM_ANALYZE_REPORT)
+
+[Sources]
+  zutil.c
+  adler32.c
+  inftrees.c
+  inflate.c
+  inffast.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+
+[LibraryClasses]
+   BaseLib
+   DebugLib

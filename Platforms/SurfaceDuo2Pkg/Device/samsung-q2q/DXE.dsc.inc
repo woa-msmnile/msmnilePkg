@@ -10,7 +10,7 @@ $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/ButtonsDxe.inf
 
 
 # Drivers
-MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
+$(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
 SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
 SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
 #$(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ButtonsDxe/ButtonsDxe.inf

@@ -22,6 +22,7 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 #include <Library/UefiLib.h>
 
 #define INTERNAL_FFU_LOADER_NAME  L"FFU Loader"
+#define INTERNAL_BOOTLOADER_MENU_NAME  L"Bootloader Menu"
 #define INTERNAL_UEFI_SHELL_NAME  L"Internal UEFI Shell 2.0"
 
 #define MS_SDD_BOOT       L"Internal Storage"
@@ -199,6 +200,26 @@ SdBootOptionsLibGetUFPMenu (
   )
 {
   return BuildFwLoadOption (BootOption, PcdGetPtr (PcdUFPMenuFile), Parameter);
+}
+
+/**
+  Return the boot option corresponding to the Bootloader Menu.
+
+  @param BootOption    Return a created Bootloader Menu with the parameter passed
+  @param Parameter     The parameter to add to the BootOption
+
+  @retval EFI_SUCCESS   The Bootloader Menu is successfully returned.
+  @retval Status        Return status of gRT->SetVariable (). BootOption still points
+                        to the Bootloader Menu even the Status is not EFI_SUCCESS.
+**/
+EFI_STATUS
+EFIAPI
+SdBootOptionsLibGetBootloaderMenu (
+  IN OUT EFI_BOOT_MANAGER_LOAD_OPTION  *BootOption,
+  IN     CHAR8                         *Parameter
+  )
+{
+  return BuildFwLoadOption (BootOption, PcdGetPtr (PcdBootloaderMenuFile), Parameter);
 }
 
 /**
@@ -506,6 +527,7 @@ MsBootOptionsLibRegisterDefaultBootOptions (
   RegisterFvBootOption (&gMsBootPolicyFileGuid, MS_USB_BOOT, (UINTN)-1, LOAD_OPTION_ACTIVE, (UINT8 *)MS_USB_BOOT_PARM, sizeof (MS_USB_BOOT_PARM));
   RegisterFvBootOption (&gMsBootPolicyFileGuid, MS_PXE_BOOT, (UINTN)-1, LOAD_OPTION_ACTIVE, (UINT8 *)MS_PXE_BOOT_PARM, sizeof (MS_PXE_BOOT_PARM));
   RegisterFvBootOption (PcdGetPtr (PcdUFPMenuFile), INTERNAL_FFU_LOADER_NAME, (UINTN)-1, LOAD_OPTION_ACTIVE, NULL, 0);
+  RegisterFvBootOption (PcdGetPtr (PcdBootloaderMenuFile), INTERNAL_BOOTLOADER_MENU_NAME, (UINTN)-1, LOAD_OPTION_ACTIVE, NULL, 0);
   RegisterFvBootOption (PcdGetPtr (PcdShellFile), INTERNAL_UEFI_SHELL_NAME, (UINTN)-1, LOAD_OPTION_ACTIVE, NULL, 0);
 }
 
@@ -526,7 +548,7 @@ MsBootOptionsLibGetDefaultOptions (
   EFI_BOOT_MANAGER_LOAD_OPTION  *Option;
   EFI_STATUS                    Status;
   EFI_STATUS                    Status2;
-  UINTN                         AdditionalOptionCount = 2;
+  UINTN                         AdditionalOptionCount = 3;
 
   Option = (EFI_BOOT_MANAGER_LOAD_OPTION *)AllocateZeroPool (sizeof (EFI_BOOT_MANAGER_LOAD_OPTION) * (LocalOptionCount + AdditionalOptionCount));
   ASSERT (Option != NULL);
@@ -543,6 +565,12 @@ MsBootOptionsLibGetDefaultOptions (
   Status2 = CreateFvBootOption (PcdGetPtr (PcdUFPMenuFile), INTERNAL_FFU_LOADER_NAME, &Option[LocalOptionCount + AdditionalOptionCount], LOAD_OPTION_ACTIVE, NULL, 0);
   if (!EFI_ERROR (Status2)) {
     // The ffu loader is optional.  So, ignore that we cannot create it.
+    AdditionalOptionCount++;
+  }
+
+  Status2 = CreateFvBootOption (PcdGetPtr (PcdBootloaderMenuFile), INTERNAL_BOOTLOADER_MENU_NAME, &Option[LocalOptionCount + AdditionalOptionCount], LOAD_OPTION_ACTIVE, NULL, 0);
+  if (!EFI_ERROR (Status2)) {
+    // The bootloader menu is optional.  So, ignore that we cannot create it.
     AdditionalOptionCount++;
   }
 

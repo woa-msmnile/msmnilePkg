@@ -43,11 +43,6 @@ LocateButtonProtocol (
   Status = gBS->LocateDevicePath(
       &gEfiSimpleTextInputExProtocolGuid, &ButtonsDxeDevicePath, &Handle);
   if (EFI_ERROR(Status)) {
-    DEBUG(
-        (DEBUG_ERROR,
-         "Failed to locate ButtonsDxe device path for button service protocol, "
-         "Status = %r.\n",
-         Status));
     return EFI_OUT_OF_RESOURCES;
   }
 

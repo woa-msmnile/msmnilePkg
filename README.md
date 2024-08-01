@@ -40,9 +40,9 @@ Please see https://woa-msmnile.github.io for some tutorials.
   - mono-devel
   - git-core, git
   - build-essential
-  - clangdwarf (or higher), llvm, ggc-aarch64-linux-gnu
-- Exported CLANGDWARF_BIN environment variable pointing to LLVM 10 binary folder
-- Exported CLANGDWARF_AARCH64_PREFIX variable equalling to aarch64-linux-gnu-
+  - clangpdb (or higher), llvm, ggc-aarch64-linux-gnu
+- Exported CLANGPDB_BIN environment variable pointing to LLVM 10 binary folder
+- Exported CLANGPDB_AARCH64_PREFIX variable equalling to aarch64-linux-gnu-
 
 ### Build Instructions
 
@@ -52,7 +52,7 @@ Please see https://woa-msmnile.github.io for some tutorials.
 1. Setup Base environment
 
 ```
-./setup_env.sh
+./build_setup.sh
 pip install --upgrade -r pip-requirements.txt
 ```
 

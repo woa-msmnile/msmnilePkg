@@ -1,4 +1,3 @@
-    INF MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
     INF QcomPkg/PatchedBinaries/ClockDxe.inf
     INF QcomPkg/PatchedBinaries/MinidumpTADxe.inf
     INF QcomPkg/PatchedBinaries/MsAbstractLayer.inf
@@ -57,6 +56,7 @@
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/UsbMsdDxe/UsbMsdDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/UsbPwrCtrlDxe/UsbPwrCtrlDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/VcsDxe/VcsDxe.inf
+    INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/VerifiedBootDxe/VerifiedBootDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/XhciPciEmulationDxe/XhciPciEmulationDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/Sm8350FamilyPkg/Drivers/ExtFgDxe/ExtFgDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/Sm8350FamilyPkg/Drivers/MsDebugDxe/MsDebugDxe.inf
@@ -79,6 +79,11 @@
     FILE DRIVER = 6b38f7b4-ad98-40e9-9093-aca2b5a253c4 {
             SECTION PE32 = Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.efi
             SECTION UI = "DiskIoDxe"
+    }
+
+    FILE DRIVER = 1fa1f39e-feff-4aae-bd7b-38a070a3b609 {
+            SECTION PE32 = Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.efi
+            SECTION UI = "PartitionDxe"
     }
 
     FILE DRIVER = 1c04f529-0612-4319-9315-b2e75c16810a {

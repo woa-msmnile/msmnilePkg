@@ -1,0 +1,179 @@
+#/*
+# * Copyright (c) 2015-2021, The Linux Foundation. All rights reserved.
+# *
+# * Redistribution and use in source and binary forms, with or without
+# * modification, are permitted provided that the following conditions are
+# * met:
+# * * Redistributions of source code must retain the above copyright
+# *  notice, this list of conditions and the following disclaimer.
+# *  * Redistributions in binary form must reproduce the above
+# * copyright notice, this list of conditions and the following
+# * disclaimer in the documentation and/or other materials provided
+# *  with the distribution.
+# *   * Neither the name of The Linux Foundation nor the names of its
+# * contributors may be used to endorse or promote products derived
+# * from this software without specific prior written permission.
+# *
+# * THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
+# * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+# * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
+# * ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
+# * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+# * BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+# * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+# * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+# * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# *
+# * Changes from Qualcomm Innovation Center are provided under the following
+# * license:
+# * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+# * SPDX-License-Identifier: BSD-3-Clause-Clear
+#*/
+
+
+[Defines]
+	INF_VERSION                    = 0x00010005
+	BASE_NAME                      = BootLib
+	FILE_GUID                      = 48e6f825-676b-41a8-a42d-1b6f111b186f
+	MODULE_TYPE                    = BASE
+	VERSION_STRING                 = 1.0
+	LIBRARY_CLASS                  = BootLib
+
+[BuildOptions]
+	*_*_*_CC_FLAGS = $(LLVM_ENABLE_SAFESTACK) $(LLVM_SAFESTACK_USE_PTR) $(LLVM_SAFESTACK_COLORING)
+
+[BuildOptions.AARCH64]
+	*_*_*_CC_FLAGS = -O2 $(SDLLVM_COMPILE_ANALYZE) $(SDLLVM_ANALYZE_REPORT)
+	*_*_*_CC_FLAGS = $(UBSAN_UEFI_GCC_FLAG_UNDEFINED)
+	*_*_*_CC_FLAGS = $(UBSAN_UEFI_GCC_FLAG_ALIGNMENT)
+
+[Sources]
+	ShutdownServices.c
+	Board.c
+	BootLinux.c
+	Decompress.c
+	LocateDeviceTree.c
+	UpdateDeviceTree.c
+	LinuxLoaderLib.c
+	UpdateCmdLine.c
+	KeyPad.c
+	Recovery.c
+	BootStats.c
+	DrawUI.c
+	MenuKeysDetection.c
+	UnlockMenu.c
+	FastbootMenu.c
+	VerifiedBootMenu.c
+	PartitionTableUpdate.c
+	DeviceInfo.c
+	Rtic.c
+	PartialGoods.c
+	LECmdLine.c
+	HypervisorMvCalls.c
+	FdtRw.c
+	ThreadStack.c
+
+[Packages]
+	ArmPkg/ArmPkg.dec
+	MdePkg/MdePkg.dec
+	EmbeddedPkg/EmbeddedPkg.dec
+	ArmPlatformPkg/ArmPlatformPkg.dec
+	MdeModulePkg/MdeModulePkg.dec
+	QcomModulePkg/QcomModulePkg.dec
+  	SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
+
+[LibraryClasses]
+	DxeServicesTableLib
+	UefiLib
+	CacheMaintenanceLib
+	Zlib
+	ArmLib
+	BaseLib
+	DebugLib
+	DevicePathLib
+	HobLib
+	PerformanceLib
+	DebugPrintErrorLevelLib
+	FdtLib
+	TimerLib
+	MemoryAllocationLib
+	StackCanary
+	AvbLib
+	UbsanLib
+  	MemoryMapHelperLib
+
+[Guids]
+	gEfiFileInfoGuid
+	gEfiSdRemovableGuid
+	gEfiFileSystemInfoGuid
+	gEfiPartitionTypeGuid
+	gEfiEmmcRpmbPartitionGuid
+	gEfiEmmcGppPartition1Guid
+	gEfiEmmcUserPartitionGuid
+	gEfiPlatPartitionTypeGuid
+	gEfiFileInfoGuid
+	gEfiGlobalVariableGuid
+	gEfiLogFSPartitionGuid
+	gEfiNandUserPartitionGuid
+	gEfiMiscPartitionGuid
+	gEfiRNGAlgRawGuid
+	gEfiUfsLU0Guid
+	gEfiUfsLU1Guid
+	gEfiUfsLU2Guid
+	gEfiUfsLU3Guid
+	gEfiUfsLU4Guid
+	gEfiUfsLU5Guid
+	gEfiUfsLU6Guid
+	gEfiUfsLU7Guid
+
+[Protocols]
+	gEfiSimpleTextInputExProtocolGuid
+	gEfiBlockIoProtocolGuid
+	gEfiLoadedImageProtocolGuid
+	gEfiDevicePathToTextProtocolGuid
+	gEfiDevicePathProtocolGuid
+	gEfiDevicePathFromTextProtocolGuid
+	gEfiSimpleFileSystemProtocolGuid
+	gEfiLoadFileProtocolGuid
+	gEfiDiskIoProtocolGuid
+	gEfiUsbIoProtocolGuid
+	gEfiPlatformInfoProtocolGuid
+	gEfiChipInfoProtocolGuid
+	gQcomPmicVersionProtocolGuid
+	gEfiMemCardInfoProtocolGuid
+	gEfiPrint2ProtocolGuid
+	gEfiPartitionRecordGuid
+	gEfiRamPartitionProtocolGuid
+	gEfiResetReasonProtocolGuid
+	gQcomPmicPonProtocolGuid
+	gChargerExProtocolGuid
+	gEfiLimitsProtocolGuid
+	gEfiQcomVerifiedBootProtocolGuid
+	gQcomScmModeSwithProtocolGuid
+	gQcomRngProtocolGuid
+	gQcomMdtpProtocolGuid
+	gQcomScmProtocolGuid
+	gEfiNandPartiGuidProtocolGuid
+	gEfiDDRGetInfoProtocolGuid
+	gEfiKernelProtocolGuid
+	gEfiSoftSkuProtocolGuid
+
+[FixedPcd]
+	gArmTokenSpaceGuid.PcdSystemMemoryBase
+	gArmTokenSpaceGuid.PcdSystemMemorySize
+	gQcomTokenSpaceGuid.KernelLoadAddress
+	gQcomTokenSpaceGuid.TagsAddress
+	gQcomTokenSpaceGuid.RamdiskLoadAddress
+	gQcomTokenSpaceGuid.RamdiskEndAddress
+	gQcomTokenSpaceGuid.RamdiskEndAddress32
+	gQcomTokenSpaceGuid.EnablePartialGoods
+	gQcomTokenSpaceGuid.EnableDisplayMenu
+	gQcomTokenSpaceGuid.KernelLoadAddress32
+	gQcomTokenSpaceGuid.EnableMdtpSupport
+	gQcomTokenSpaceGuid.EnableNewNodeSearchFuc
+  	gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdABLProduct
+
+[Depex]
+	TRUE

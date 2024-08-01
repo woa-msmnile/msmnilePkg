@@ -1,0 +1,117 @@
+#/* @file
+#  Copyright (c) 2017-2018,2020-2021 The Linux Foundation. All rights reserved.
+#  Portions Copyright (c) 2011-2013, ARM Limited. All rights reserved.
+#
+#  This program and the accompanying materials
+#  are licensed and made available under the terms and conditions of the BSD License
+#  which accompanies this distribution.  The full text of the license may be found at
+#  http://opensource.org/licenses/bsd-license.php
+#
+#  THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+#
+#*/
+
+[Defines]
+	INF_VERSION                    = 0x00010006
+	BASE_NAME                      = LinuxLoader
+	FILE_GUID                      = f536d559-459f-48fa-8bbc-43b554ecae8d
+	MODULE_TYPE                    = UEFI_APPLICATION
+	VERSION_STRING                 = 0.1
+	ENTRY_POINT                    = LinuxLoaderEntry
+
+[Sources]
+	LinuxLoader.c
+
+[BuildOptions]
+	*_*_*_CC_FLAGS = $(LLVM_ENABLE_SAFESTACK) $(LLVM_SAFESTACK_USE_PTR) $(LLVM_SAFESTACK_COLORING)
+
+[BuildOptions.AARCH64]
+	*_*_*_CC_FLAGS = $(SDLLVM_COMPILE_ANALYZE) $(SDLLVM_ANALYZE_REPORT)
+	*_*_*_CC_FLAGS = $(UBSAN_UEFI_GCC_FLAG_UNDEFINED)
+	*_*_*_CC_FLAGS = $(UBSAN_UEFI_GCC_FLAG_ALIGNMENT)
+
+[Packages]
+	ArmPkg/ArmPkg.dec
+	MdePkg/MdePkg.dec
+	EmbeddedPkg/EmbeddedPkg.dec
+	ArmPlatformPkg/ArmPlatformPkg.dec
+	MdeModulePkg/MdeModulePkg.dec
+	QcomModulePkg/QcomModulePkg.dec
+
+[LibraryClasses]
+	DxeServicesTableLib
+	UefiLib
+	UefiApplicationEntryPoint
+	CacheMaintenanceLib
+	Zlib
+	ArmLib
+	ArmSmcLib
+	BaseLib
+	DebugLib
+	DevicePathLib
+	HobLib
+	PerformanceLib
+	DebugPrintErrorLevelLib
+	FdtLib
+	LibUfdt
+	TimerLib
+	BootLib
+	StackCanary
+	FastbootLib
+	UbsanLib
+
+[Guids]
+	gEfiFileInfoGuid
+	gArmMpCoreInfoGuid
+	gEfiSdRemovableGuid
+	gEfiFileSystemInfoGuid
+	gEfiPartitionTypeGuid
+	gEfiEventVirtualAddressChangeGuid
+	gEfiEmmcRpmbPartitionGuid
+	gEfiEmmcGppPartition1Guid
+	gEfiEmmcUserPartitionGuid
+	gEfiNandUserPartitionGuid
+	gEfiPlatPartitionTypeGuid
+	gEfiFileInfoGuid
+	gQcomKeypadDeviceGuid
+	gEfiGlobalVariableGuid
+	gEfiLogFSPartitionGuid
+	gEfiBootImgPartitionGuid
+	gEfiRecoveryImgPartitionGuid
+	gEfiUfsLU0Guid
+	gEfiUfsLU1Guid
+	gEfiUfsLU2Guid
+	gEfiUfsLU3Guid
+	gEfiUfsLU4Guid
+	gEfiUfsLU5Guid
+	gEfiUfsLU6Guid
+	gEfiUfsLU7Guid
+
+
+[Protocols]
+	gEfiSimpleTextInputExProtocolGuid
+	gEfiBlockIoProtocolGuid
+	gEfiLoadedImageProtocolGuid
+	gEfiDevicePathToTextProtocolGuid
+	gEfiDevicePathProtocolGuid
+	gEfiDevicePathFromTextProtocolGuid
+	gEfiSimpleFileSystemProtocolGuid
+	gEfiLoadFileProtocolGuid
+	gEfiDiskIoProtocolGuid
+	gEfiUsbIoProtocolGuid
+	gEfiPlatformInfoProtocolGuid
+	gEfiChipInfoProtocolGuid
+	gQcomPmicVersionProtocolGuid
+	gEfiMemCardInfoProtocolGuid
+	gEfiPrint2ProtocolGuid
+	gEfiPartitionRecordGuid
+	gEfiResetReasonProtocolGuid
+	gQcomRngProtocolGuid
+	gQcomDisplayUtilsProtocolGuid
+
+[FixedPcd]
+        gQcomTokenSpaceGuid.EnableMdtpSupport
+
+[Depex]
+	TRUE

@@ -23,7 +23,7 @@ steps:
 
 ###################################################################################################################
 
-- script: export CLANGDWARF_BIN=/usr/lib/llvm-38/bin/ && export CLANGDWARF_AARCH64_PREFIX=aarch64-linux-gnu-
+- script: export CLANGPDB_BIN=/usr/lib/llvm-38/bin/ && export CLANGPDB_AARCH64_PREFIX=aarch64-linux-gnu-
   displayName: 'Setup CLANG environment'
 
 ###################################################################################################################

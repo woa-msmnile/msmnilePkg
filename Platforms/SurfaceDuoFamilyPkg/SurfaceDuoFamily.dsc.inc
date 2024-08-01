@@ -9,6 +9,9 @@
 #
 ##
 
+[Components]
+  !include $(SHARED_CRYPTO_PATH)/Driver/Bin/CryptoDriver.inc.dsc
+
 [PcdsFeatureFlag.common]
   gArmTokenSpaceGuid.PcdCpuDxeProduceDebugSupport|FALSE
 
@@ -29,8 +32,8 @@
 
 [PcdsFixedAtBuild.common]
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor|L"DuoWoA authors"
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString|L"2405.64"
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareRevision|0x01240564
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString|L"2408.1"
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareRevision|0x01240801
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemId|"QCOM  "
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemTableId|0x324B44454D4F4351
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorId|0x4D4F4351
@@ -45,7 +48,7 @@
 
 !if $(TARGET) == DEBUG
   gEfiMdePkgTokenSpaceGuid.PcdDebugClearMemoryValue|0xAF
-  gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x0f
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x2f
   gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x800fee0f
   gEfiMdePkgTokenSpaceGuid.PcdPerformanceLibraryPropertyMask|1
   gEfiMdePkgTokenSpaceGuid.PcdPostCodePropertyMask|0
@@ -70,15 +73,9 @@
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiACPIReclaimMemory|0
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiACPIMemoryNVS|0
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiReservedMemoryType|0
-!if $(SECURE_BOOT_ENABLE) == TRUE
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiRuntimeServicesData|600
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiRuntimeServicesCode|400
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiBootServicesCode|1500
-!else
-  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiRuntimeServicesData|300
-  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiRuntimeServicesCode|150
-  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiBootServicesCode|1000
-!endif
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiBootServicesData|800
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiLoaderCode|10
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiLoaderData|0
@@ -97,10 +94,8 @@
   gArmTokenSpaceGuid.PcdPciBusMin|0x0
   gArmTokenSpaceGuid.PcdPciBusMax|0xff
 
-!if $(SECURE_BOOT_ENABLE) == TRUE
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxAuthVariableSize|0x2800
   gEfiSecurityPkgTokenSpaceGuid.PcdUserPhysicalPresence|TRUE
-!endif
 
   # a PCD that controls the enumeration and connection of ConIn's. When true, ConIn is only connected once a console input is requests
   gEfiMdeModulePkgTokenSpaceGuid.PcdConInConnectOnDemand|FALSE
@@ -116,8 +111,8 @@
   # 4042708A-0F2D-4823-AC60-0D77B3111889
   gEfiMdeModulePkgTokenSpaceGuid.PcdBootManagerMenuFile|{ 0x8A, 0x70, 0x42, 0x40, 0x2D, 0x0F, 0x23, 0x48, 0xAC, 0x60, 0x0D, 0x77, 0xB3, 0x11, 0x18, 0x89 }
 
-  gOemPkgTokenSpaceGuid.PcdUefiVersionNumber|0x1240564 # 1.24.05.64
-  gOemPkgTokenSpaceGuid.PcdUefiBuildDate|0x20240520 # 2024-05-20
+  gOemPkgTokenSpaceGuid.PcdUefiVersionNumber|0x1240801 # 1.24.08.01
+  gOemPkgTokenSpaceGuid.PcdUefiBuildDate|0x20240801 # 2024-08-01
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxVariableSize|0x2000
 
@@ -243,17 +238,16 @@
   # USB Libraries
   UefiUsbLib|MdePkg/Library/UefiUsbLib/UefiUsbLib.inf
 
-!if $(SECURE_BOOT_ENABLE) == TRUE
   #
   # OpensslPkg libraries needed by multiple firmware features
   #
-  RngLib|MdeModulePkg/Library/BaseRngLibTimerLib/BaseRngLibTimerLib.inf
+  RngLib|MdePkg/Library/DxeRngLib/DxeRngLib.inf
   Hash2CryptoLib|SecurityPkg/Library/BaseHash2CryptoLibNull/BaseHash2CryptoLibNull.inf
 
   #
   # Secure Boot dependencies
   #
-  AuthVariableLib|SecurityPkg/Library/AuthVariableLib/AuthVariableLib.inf
+  AuthVariableLib|SurfaceDuoFamilyPkg/Library/AuthVariableLib/AuthVariableLib.inf
   SecureBootVariableLib|SecurityPkg/Library/SecureBootVariableLib/SecureBootVariableLib.inf
   SecureBootVariableProvisionLib|SecurityPkg/Library/SecureBootVariableProvisionLib/SecureBootVariableProvisionLib.inf
   # re-use the UserPhysicalPresent() dummy implementation from the ovmf tree
@@ -265,16 +259,6 @@
   SecureBootKeyStoreLib |MsCorePkg/Library/BaseSecureBootKeyStoreLib/BaseSecureBootKeyStoreLib.inf
   PlatformPKProtectionLib|SecurityPkg/Library/PlatformPKProtectionLibVarPolicy/PlatformPKProtectionLibVarPolicy.inf
   MuSecureBootKeySelectorLib|MsCorePkg/Library/MuSecureBootKeySelectorLib/MuSecureBootKeySelectorLib.inf
-!else
-  AuthVariableLib|MdeModulePkg/Library/AuthVariableLibNull/AuthVariableLibNull.inf
-  SecureBootVariableLib|SecurityPkg/Library/SecureBootVariableLib/SecureBootVariableLib.inf
-
-  LockBoxLib            |MdeModulePkg/Library/LockBoxNullLib/LockBoxNullLib.inf
-  PasswordPolicyLib     |OemPkg/Library/PasswordPolicyLibNull/PasswordPolicyLibNull.inf
-  SecureBootKeyStoreLib |MsCorePkg/Library/SecureBootKeyStoreLibNull/SecureBootKeyStoreLibNull.inf
-  PlatformPKProtectionLib|SecurityPkg/Library/PlatformPKProtectionLibVarPolicy/PlatformPKProtectionLibVarPolicy.inf
-  MuSecureBootKeySelectorLib|MsCorePkg/Library/MuSecureBootKeySelectorLib/MuSecureBootKeySelectorLib.inf
-!endif
 
   ImagePropertiesRecordLib|MdeModulePkg/Library/ImagePropertiesRecordLib/ImagePropertiesRecordLib.inf
 
@@ -306,7 +290,7 @@
   MemoryTypeInformationChangeLib|MsCorePkg/Library/MemoryTypeInformationChangeLib/MemoryTypeInformationChangeLib.inf
   DxeMemoryProtectionHobLib|MdeModulePkg/Library/MemoryProtectionHobLib/DxeMemoryProtectionHobLib.inf
   VariableFlashInfoLib|MdeModulePkg/Library/BaseVariableFlashInfoLib/BaseVariableFlashInfoLib.inf
-  MemoryTypeInfoSecVarCheckLib|MdeModulePkg/Library/MemoryTypeInfoSecVarCheckLib/MemoryTypeInfoSecVarCheckLib.inf
+  MemoryTypeInfoSecVarCheckLib|SurfaceDuoFamilyPkg/Library/MemoryTypeInfoSecVarCheckLib/MemoryTypeInfoSecVarCheckLib.inf
   SecurityLockAuditLib|MdeModulePkg/Library/SecurityLockAuditDebugMessageLib/SecurityLockAuditDebugMessageLib.inf
   ResetUtilityLib|MdeModulePkg/Library/ResetUtilityLib/ResetUtilityLib.inf
   HwResetSystemLib|ArmPkg/Library/ArmSmcPsciResetSystemLib/ArmSmcPsciResetSystemLib.inf
@@ -349,7 +333,7 @@
 
   CapsulePersistLib|MdeModulePkg/Library/CapsulePersistLibNull/CapsulePersistLibNull.inf      ## MU_CHANGE
   LzmaDecompressLib|MdeModulePkg/Library/LzmaCustomDecompressLib/LzmaCustomDecompressLib.inf
-  MemoryBinOverrideLib|MdeModulePkg/Library/MemoryBinOverrideLibNull/MemoryBinOverrideLibNull.inf
+  #MemoryBinOverrideLib|MdeModulePkg/Library/MemoryBinOverrideLibNull/MemoryBinOverrideLibNull.inf
   OemHookStatusCodeLib|MdeModulePkg/Library/OemHookStatusCodeLibNull/OemHookStatusCodeLibNull.inf
   PcdDatabaseLoaderLib|MdeModulePkg/Library/PcdDatabaseLoaderLib/Dxe/PcdDatabaseLoaderLibDxe.inf
 
@@ -368,9 +352,7 @@
 
   FmpAuthenticationLib|SecurityPkg/Library/FmpAuthenticationLibPkcs7/FmpAuthenticationLibPkcs7.inf
 
-  #MemoryMapHelperLib|SurfaceDuoFamilyPkg/Library/MemoryMapHelperLib/MemoryMapHelperLib.inf
   MemoryMapHelperLib|SurfaceDuoFamilyPkg/Library/MemoryMapHelperSecLib/MemoryMapHelperSecLib.inf
-  #ConfigurationMapHelperLib|SurfaceDuoFamilyPkg/Library/ConfigurationMapHelperLib/ConfigurationMapHelperLib.inf
   ConfigurationMapHelperLib|SurfaceDuoFamilyPkg/Library/ConfigurationMapHelperSecLib/ConfigurationMapHelperSecLib.inf
 
   ShLib|SurfaceDuoFamilyPkg/Library/ShLib/ShLib.inf
@@ -474,13 +456,12 @@
   AdvLoggerPkg/AdvancedFileLogger/AdvancedFileLogger.inf
 
   ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
-  ArmPkg/Drivers/ArmPsciMpServicesDxe/ArmPsciMpServicesDxe.inf
 
   # Processor Core Services
-  ArmPkg/Drivers/CpuDxe/CpuDxe.inf # {
-  #   <LibraryClasses>
-  #   NULL|MsCorePkg/Library/MemoryProtectionExceptionHandlerLib/MemoryProtectionExceptionHandlerLib.inf
-  # }
+  ArmPkg/Drivers/CpuDxe/CpuDxe.inf {
+    <LibraryClasses>
+    NULL|MsCorePkg/Library/MemoryProtectionExceptionHandlerLib/MemoryProtectionExceptionHandlerLib.inf
+  }
 
   ArmPkg/Drivers/TimerDxe/TimerDxe.inf
 
@@ -573,9 +554,7 @@
   # Security Stub
   MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf {
     <LibraryClasses>
-!if $(SECURE_BOOT_ENABLE) == TRUE
       NULL|SecurityPkg/Library/DxeImageVerificationLib/DxeImageVerificationLib.inf
-!endif
   }
 
   MdeModulePkg/Universal/SerialDxe/SerialDxe.inf
@@ -585,14 +564,13 @@
   MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf
 
   # Fake Variable Services
-  # MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf {
-  #   <LibraryClasses>
-# !if $(SECURE_BOOT_ENABLE) == TRUE
-#       AuthVariableLib|SurfaceDuoFamilyPkg/Library/AuthVariableLib/AuthVariableLib.inf
-# !else
-#       AuthVariableLib|MdeModulePkg/Library/AuthVariableLibNull/AuthVariableLibNull.inf
-# !endif
-  # }
+  MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf {
+    <LibraryClasses>
+      BaseCryptLib|OpensslPkg/Library/BaseCryptLib/RuntimeCryptLib.inf
+      TlsLib|OpensslPkg/Library/TlsLib/TlsLib.inf
+      IntrinsicLib|OpensslPkg/Library/IntrinsicLib/IntrinsicLib.inf
+      OpensslLib|OpensslPkg/Library/OpensslLib/OpensslLib.inf # Contains openSSL library used by BaseCryptoLib
+  }
 
   MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
 
@@ -632,35 +610,42 @@
       NULL|SecurityPkg/Library/OemTpm2InitLibNull/OemTpm2InitLibVendorNull.inf
   }
 
-!if $(SECURE_BOOT_ENABLE) == TRUE
   SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
-!endif
-
-  SurfaceDuoFamilyPkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
-
-  # Debug heartbeat
-!if $(SEND_HEARTBEAT_TO_SERIAL) == 1
-  SurfaceDuoFamilyPkg/Driver/HeartbeatDxe/HeartbeatDxe.inf
-!endif
-
-!if $(SECURE_BOOT_ENABLE) == TRUE
   SurfaceDuoFamilyPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
-!endif
-
-  SurfaceDuoFamilyPkg/Driver/SystemIntegrityPolicyProvisioningDxe/SystemIntegrityPolicyProvisioningDxe.inf
 
   # ACPI and SMBIOS
   # We use pre-built ACPI tables, so only core components are loaded
   SurfaceDuoFamilyPkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
-  SurfaceDuoFamilyPkg/Driver/SurfaceFirmwareProvisioningDataDxe/SurfaceFirmwareProvisioningDataDxe.inf
 
   # PrePI
   SurfaceDuoFamilyPkg/PrePi/PeiUniCore.inf
 
   SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
 
-  UefiTestingPkg/FunctionalSystemTests/MpManagement/App/MpManagementTestApp.inf
-  UefiTestingPkg/FunctionalSystemTests/MpManagement/Driver/MpManagement.inf
+	QcomModulePkg/Application/LinuxLoader/LinuxLoader.inf {
+		<LibraryClasses>
+			DxeServicesTableLib|MdePkg/Library/DxeServicesTableLib/DxeServicesTableLib.inf
+			UefiLib|MdePkg/Library/UefiLib/UefiLib.inf
+			UefiApplicationEntryPoint|MdePkg/Library/UefiApplicationEntryPoint/UefiApplicationEntryPoint.inf
+			CacheMaintenanceLib|ArmPkg/Library/ArmCacheMaintenanceLib/ArmCacheMaintenanceLib.inf
+			Zlib|QcomModulePkg/Library/zlib/zlib.inf
+			ArmLib|ArmPkg/Library/ArmLib/ArmBaseLib.inf
+			BaseLib|MdePkg/Library/BaseLib/BaseLib.inf
+			DebugLib|MdePkg/Library/UefiDebugLibConOut/UefiDebugLibConOut.inf
+			DevicePathLib|MdePkg/Library/UefiDevicePathLib/UefiDevicePathLib.inf
+			HobLib|MdePkg/Library/DxeHobLib/DxeHobLib.inf
+			PerformanceLib|MdeModulePkg/Library/DxePerformanceLib/DxePerformanceLib.inf
+			DebugPrintErrorLevelLib|MdePkg/Library/BaseDebugPrintErrorLevelLib/BaseDebugPrintErrorLevelLib.inf
+
+			FdtLib|EmbeddedPkg/Library/FdtLib/FdtLib.inf
+			LibUfdt|QcomModulePkg/Library/LibUfdt/LibUfdt.inf
+			ArmSmcLib|ArmPkg/Library/ArmSmcLib/ArmSmcLib.inf
+			BootLib|QcomModulePkg/Library/BootLib/BootLib.inf
+			StackCanary|QcomModulePkg/Library/StackCanary/StackCanary.inf
+			FastbootLib|QcomModulePkg/Library/FastbootLib/FastbootLib.inf
+			AvbLib|QcomModulePkg/Library/avb/AvbLib.inf
+			UbsanLib|QcomModulePkg/Library/UbsanLib/UbsanLib.inf
+	}
 
 ###################################################################################################
 #
@@ -672,15 +657,23 @@
 #
 ###################################################################################################
 [BuildOptions]
-  *_CLANGDWARF_AARCH64_CC_FLAGS = -Wno-unused-const-variable -Wno-sometimes-uninitialized -Wno-unaligned-access -D CLANG
-  *_*_*_CC_FLAGS = -march=armv8.2-a+crypto+rcpc -DUSE_MEMORY_FOR_SERIAL_OUTPUT=$(USE_MEMORY_FOR_SERIAL_OUTPUT) -DUSE_SCREEN_FOR_SERIAL_OUTPUT=$(USE_SCREEN_FOR_SERIAL_OUTPUT) -DPLATFORM_HAS_ACTLR_EL1_UNIMPLEMENTED_ERRATA=$(PLATFORM_HAS_ACTLR_EL1_UNIMPLEMENTED_ERRATA) -DPLATFORM_HAS_AMCNTENSET0_EL0_UNIMPLEMENTED_ERRATA=$(PLATFORM_HAS_AMCNTENSET0_EL0_UNIMPLEMENTED_ERRATA) -DPLATFORM_HAS_GIC_V3_WITHOUT_IRM_FLAG_SUPPORT_ERRATA=$(PLATFORM_HAS_GIC_V3_WITHOUT_IRM_FLAG_SUPPORT_ERRATA) -DPLATFORM_HAS_PSCI_MEMPROTECT_FAILING_ERRATA=$(PLATFORM_HAS_PSCI_MEMPROTECT_FAILING_ERRATA) -D __DEPRECATED_AARCH64_4K_RUNTIME_GRANULARITY
+  *_CLANGPDB_AARCH64_CC_FLAGS = -Wno-unused-const-variable -Wno-sometimes-uninitialized -Wno-unaligned-access -D CLANG
+  *_*_*_CC_FLAGS = -march=armv8.2-a+crypto+rcpc -DSECURE_BOOT=$(SECURE_BOOT) -DUSE_MEMORY_FOR_SERIAL_OUTPUT=$(USE_MEMORY_FOR_SERIAL_OUTPUT) -DUSE_SCREEN_FOR_SERIAL_OUTPUT=$(USE_SCREEN_FOR_SERIAL_OUTPUT) -DPLATFORM_HAS_ACTLR_EL1_UNIMPLEMENTED_ERRATA=$(PLATFORM_HAS_ACTLR_EL1_UNIMPLEMENTED_ERRATA) -DPLATFORM_HAS_AMCNTENSET0_EL0_UNIMPLEMENTED_ERRATA=$(PLATFORM_HAS_AMCNTENSET0_EL0_UNIMPLEMENTED_ERRATA) -DPLATFORM_HAS_GIC_V3_WITHOUT_IRM_FLAG_SUPPORT_ERRATA=$(PLATFORM_HAS_GIC_V3_WITHOUT_IRM_FLAG_SUPPORT_ERRATA) -DPLATFORM_HAS_PSCI_MEMPROTECT_FAILING_ERRATA=$(PLATFORM_HAS_PSCI_MEMPROTECT_FAILING_ERRATA) -D __DEPRECATED_AARCH64_4K_RUNTIME_GRANULARITY
+  *_*_*_CC_FLAGS = -DZ_SOLO -DPRODUCT_NAME=\"Andromeda\" -DINIT_BIN=\"/init\" -DENABLE_UPDATE_PARTITIONS_CMDS -DENABLE_BOOT_CMD -DENABLE_DEVICE_CRITICAL_LOCK_UNLOCK_CMDS -DUSERDATA_FS_TYPE=\"ext4\"
+
+[BuildOptions.common.EDKII.SEC,BuildOptions.common.EDKII.MM_CORE_STANDALONE]
+  GCC:*_GCC*_*_DLINK_FLAGS = -z common-page-size=0x1000
+  GCC:*_CLANGPDB_*_DLINK_FLAGS = /ALIGN:0x1000 /FILEALIGN:0x1000
 
 [BuildOptions.common.EDKII.DXE_CORE,BuildOptions.common.EDKII.DXE_DRIVER,BuildOptions.common.EDKII.UEFI_DRIVER,BuildOptions.common.EDKII.UEFI_APPLICATION,BuildOptions.common.EDKII.MM_CORE_STANDALONE,BuildOptions.common.EDKII.MM_STANDALONE]
-  *_*_*_DLINK_FLAGS = -z common-page-size=0x1000
+  GCC:*_GCC*_*_DLINK_FLAGS = -z common-page-size=0x1000
+  GCC:*_CLANGPDB_*_DLINK_FLAGS = /ALIGN:0x1000
 
 [BuildOptions.common.EDKII.DXE_RUNTIME_DRIVER]
-  *_*_ARM_DLINK_FLAGS = -z common-page-size=0x1000
-  *_*_AARCH64_DLINK_FLAGS = -z common-page-size=0x10000
+  GCC:*_GCC*_ARM_DLINK_FLAGS = -z common-page-size=0x1000
+  GCC:*_GCC*_AARCH64_DLINK_FLAGS = -z common-page-size=0x10000
+  GCC:*_CLANGPDB_AARCH64_DLINK_FLAGS = /ALIGN:0x10000
+  RVCT:*_*_ARM_DLINK_FLAGS = --scatter $(EDK_TOOLS_PATH)/Scripts/Rvct-Align4K.sct
 
 [BuildOptions.AARCH64.EDKII.MM_CORE_STANDALONE,BuildOptions.AARCH64.EDKII.MM_STANDALONE]
-  *_*_*_CC_FLAGS = -mstrict-align -march=armv8-a
+  GCC:*_*_*_CC_FLAGS = -mstrict-align -march=armv8-a

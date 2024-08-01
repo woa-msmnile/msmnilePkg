@@ -171,8 +171,8 @@ def build_single_device(this_target):
     # Prepare Environment
     build_bootshim(this_target)
     prepare_build(this_target.buildtype, this_target.package)
-#    os.environ['CLANGDWARF_BIN'] = '/usr/lib/llvm-38/bin/'
-#    os.environ['CLANGDWARF_AARCH64_PREFIX']='aarch64-linux-gnu-'
+#    os.environ['CLANGPDB_BIN'] = '/usr/lib/llvm-38/bin/'
+#    os.environ['CLANGPDB_AARCH64_PREFIX']='aarch64-linux-gnu-'
 
     # Start Actual Build
     os.system("python3 " + os.path.join("Platforms", this_target.package, "PlatformBuild.py")
@@ -204,7 +204,7 @@ def ci_copy_fd_after_single_device_building(this_target):
     ci_upload_dir = os.path.join(build_output_path, "ci_artifacts", this_target.device)
 
     # File paths, fd and img
-    input_fd_path = os.path.join(build_output_path, this_target.buildtype + "_CLANGDWARF", "FV", this_target.platform.upper() + "_EFI.fd")
+    input_fd_path = os.path.join(build_output_path, this_target.buildtype + "_CLANGPDB", "FV", this_target.platform.upper() + "_EFI.fd")
     input_img_path = os.path.join(build_output_path, this_target.device + ".img")
     output_fd_path = os.path.join(ci_upload_dir, this_target.platform.upper() + "_EFI_" + secureboot_suffix + ".fd")
     output_img_path = os.path.join(ci_upload_dir, this_target.device + "_" + secureboot_suffix + ".img")
