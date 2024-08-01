@@ -7,12 +7,13 @@ Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/UsbMsdDxe/UsbMsdDxe.inf
 Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/UsbPwrCtrlDxe/UsbPwrCtrlDxe.inf
 Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/XhciPciEmulationDxe/XhciPciEmulationDxe.inf
 Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/UsbfnDwc3Dxe/UsbfnDwc3Dxe.inf
-#SurfaceDuoFamilyPkg/Driver/DisplayCallerDxe/DisplayCallerDxe.inf
+SurfaceDuoFamilyPkg/Driver/DisplayCallerDxe/DisplayCallerDxe.inf
 #Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/UsbConfigDxe/UsbConfigDxe.inf
 
 #KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/EnvDxe/EnvDxe.inf
 KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ParserDxe/ParserDxe.inf
 KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SerialPortDxe/SerialPortDxe.inf
+
 KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Application/SamsungQuestApp/SamsungQuestApp.inf
 KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Application/SamsungDdrApp/SamsungDdrApp.inf
 KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SamsungDxe/CcicDxe/CcicDxe.inf
@@ -21,6 +22,7 @@ KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SamsungDxe/MuicDxe/Mu
 KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SamsungDxe/VibDxe/VibDxe.inf
 KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SamsungDxe/ChgDxe/ChgDxe.inf
 KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SamsungDxe/GuidedFvDxe/GuidedFvDxe.inf
+
 #Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/BoardDxe/BoardDxe.inf
 #KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/VerifiedBootDxe/VerifiedBootDxe.inf
 KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ShmBridgeDxe/ShmBridgeDxeLA.inf
@@ -41,7 +43,9 @@ KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/HWIODxe/HWIODxe.inf
 KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/I2CDxe/I2CDxe.inf
 KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TLMMDxe/TLMMDxe.inf
 KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/PmicDxe/PmicDxeLa.inf
+
 KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SamsungDxe/BoardInfoDxe/BoardInfoDxe.inf
+
 #KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/UFSDxe/UFSDxe.inf
 KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/CmdDbDxe/CmdDbDxe.inf
 KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/PwrUtilsDxe/PwrUtilsDxe.inf
@@ -88,4 +92,4 @@ KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/ButtonsDxe.inf
 KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UFSDxe.inf
 KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UsbConfigDxe.inf
 #KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/DisplayDxe.inf
-#KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/FeatureEnablerDxe.inf
+#KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/FeatureEnablerDxe.inf 
