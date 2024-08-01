@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Sm8150 QTI QRD855
+name: SM7125 Qualcomm Technologies, Inc. QRD7125
 
 # Controls when the workflow will run
 on:
@@ -8,7 +8,7 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - 'Platforms/SurfaceDuo1Pkg/Device/qcom-qrd855/**'
+      - 'Platforms/AtollPkg/Device/qcom-qrd7125/**'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -27,12 +27,12 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-      - name: Build SB/NOSB uefi for qti qrd855.
-        run: bash scripts/ci_setup.sh && ./build_uefi.py -d qcom-qrd855
+      - name: Build SB/NOSB uefi for qti qrd7125.
+        run: bash scripts/ci_setup.sh && ./build_uefi.py -d qcom-qrd7125
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: uefi-images-qrd855
+          name: uefi-images-qrd7125
           path: Build/*/ci_artifacts
           compression-level: 9
