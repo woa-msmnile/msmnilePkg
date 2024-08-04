@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Sm8150 QTI MTP8150
+name: SM8150 Qualcomm Technologies, Inc. MTP8150
 
 # Controls when the workflow will run
 on:
