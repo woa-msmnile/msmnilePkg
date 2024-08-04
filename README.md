@@ -201,7 +201,7 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 | Xiaomi Poco X3 Pro                   | xiaomi-vayu            | ✅              | [Degdag](https://github.com/degdag)                |
 
 
-### Snapdragon 675/720G/7c/7c Gen 2 (*SM6150*/*SM7125*/*SC7180*)
+### Snapdragon 675/720G/7c/7c Gen 2 (*SM6250*/*SM7125*/*SC7180*)
 
 #### Qualcomm Technologies, Inc. Devices
 
