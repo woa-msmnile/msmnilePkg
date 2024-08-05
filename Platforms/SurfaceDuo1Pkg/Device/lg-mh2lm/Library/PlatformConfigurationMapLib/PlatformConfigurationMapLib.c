@@ -14,7 +14,7 @@ static CONFIGURATION_DESCRIPTOR_EX gDeviceConfigurationDescriptorEx[] = {
     {"EnableSecurityHoleForSplashPartition", 0x1},
     {"EnableShell", 0x1},
     {"EnableUefiSecAppDebugLogDump", 0x0},
-    {"EnableUfsIOC", 0},
+    {"EnableUfsIOC", 1},
     {"MaxCoreCnt", 8},
     {"MaxLogFileSize", 0x400000},
     {"NumActiveCores", 8},
