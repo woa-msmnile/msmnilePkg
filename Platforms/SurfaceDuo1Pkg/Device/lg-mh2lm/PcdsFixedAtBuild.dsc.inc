@@ -8,3 +8,6 @@ gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"LG Electronics"
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"G8X"
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"mh2lm"
 gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"MP"
+
+gArmTokenSpaceGuid.PcdCpuVectorBaseAddress|0xc3f8c000
+gEmbeddedTokenSpaceGuid.PcdPrePiStackBase|0xc3fb0000

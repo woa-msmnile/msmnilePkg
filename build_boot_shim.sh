@@ -14,7 +14,7 @@ if [ -z ${SIZE_PADDING} ] ;then
 fi
 
 if [ -z ${BASE} ] || [ -z ${SIZE} ] ;then
-    BASE=0x9FC00000
+    BASE=0xC3C00000
     SIZE=0x00300000
 fi
 
