@@ -37,7 +37,7 @@ env:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  # This workflow contains two jobs called "build" and "package"
   build:
     strategy:
       matrix:
@@ -102,6 +102,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
+
       - name: Build SecureBoot and No SecureBoot UEFI for ${{ matrix.target }}
         run: bash scripts/ci_setup.sh && ./build_uefi.py -d ${{ matrix.target }}
 
@@ -110,4 +111,56 @@ jobs:
         with:
           name: uefi-images-${{ matrix.target }}
           path: Build/*/ci_artifacts
+          compression-level: 9
+
+  package:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    needs: build
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: Build
+          merge-multiple: true
+
+      - name: Upload Atoll's Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: uefi-images-atoll-sm7125
+          path: Build/AtollPkg/ci_artifacts
+          compression-level: 9
+
+      - name: Upload Hana's Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: uefi-images-hana-sm8150
+          path: Build/SurfaceDuo1Pkg/ci_artifacts
+          compression-level: 9
+
+      - name: Upload Kona's Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: uefi-images-kona-sm8250
+          path: Build/KonaPkg/ci_artifacts
+          compression-level: 9
+
+      - name: Upload Kodiak's Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: uefi-images-kodiak-sm7325
+          path: Build/KodiakPkg/ci_artifacts
+          compression-level: 9
+
+      - name: Upload Kailua's Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: uefi-images-kailua-sm8550
+          path: Build/KailuaPkg/ci_artifacts
           compression-level: 9
