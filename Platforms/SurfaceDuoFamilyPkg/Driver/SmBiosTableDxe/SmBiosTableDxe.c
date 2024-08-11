@@ -1031,10 +1031,42 @@ SmBiosTableDxeInitialize(
         platformInfoType = EFI_PLATFORMINFO_TYPE_UNKNOWN;
       }
 
-      AsciiStrnCpyS(
-          ProductNameString, PLATFORM_TYPE_STRING_MAX_SIZE,
-          PlatformTypeStrings[platformInfoType],
-          AsciiStrLen(PlatformTypeStrings[platformInfoType]));
+      // HHG Platform was introduced with Lahaina later in the release cycle
+      // It lacks a proper platform type, and instead makes use of the HDK type
+      // with specific subtype values.
+      // On lahaina, these subtype values are 1 and 2.
+      // It is confirmed on official kalama kernel sources that HHG is a
+      // dedicated platform It also would not make sense to merge it with HDKs
+      // due to numerous differences Detect HHG and override the type
+      // accordingly.
+      UINT16 IsHHGPlatform = 0;
+
+      if (mBoardProtocol != NULL) {
+        UINT16 SDFE = 0;
+        mBoardProtocol->GetChipFamily(
+            mBoardProtocol, (EFIChipInfoFamilyType *)&SDFE);
+
+        // CHIPINFO_FAMILY_LAHAINA = 105
+        if (SDFE == 105) {
+          if (platformInfoType == EFI_PLATFORMINFO_TYPE_HDK &&
+              (PlatformInfo.subtype == 1 || PlatformInfo.subtype == 2)) {
+            // HHG
+            IsHHGPlatform = 1;
+          }
+        }
+      }
+
+      if (IsHHGPlatform == 1) {
+        AsciiStrnCpyS(
+            ProductNameString, PLATFORM_TYPE_STRING_MAX_SIZE, "HHG",
+            AsciiStrLen("HHG"));
+      }
+      else {
+        AsciiStrnCpyS(
+            ProductNameString, PLATFORM_TYPE_STRING_MAX_SIZE,
+            PlatformTypeStrings[platformInfoType],
+            AsciiStrLen(PlatformTypeStrings[platformInfoType]));
+      }
     }
   }
   else {
