@@ -47,8 +47,10 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - id: matrix
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
 
+      - id: matrix
         run: |
           echo "value=[$(find ./Platforms -maxdepth 3 -wholename "*/Device/*"  -printf "\"%f\", ")]" >> $GITHUB_OUTPUT
 
