@@ -114,6 +114,26 @@ jobs:
           compression-level: 9
 
   package:
+    strategy:
+      matrix:
+        target:
+          [
+            { platform: "AtollPkg", codename: "atoll", chipname: "sm7125" },
+            { platform: "KailuaPkg", codename: "kailua", chipname: "sm8550" },
+            { platform: "KodiakPkg", codename: "kodiak", chipname: "sm7325" },
+            { platform: "KonaPkg", codename: "kona", chipname: "sm8250" },
+            {
+              platform: "SurfaceDuo1Pkg",
+              codename: "hana",
+              chipname: "sm8150",
+            },
+            {
+              platform: "SurfaceDuo2Pkg",
+              codename: "lahaina",
+              chipname: "sm8350",
+            },
+          ]
+
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -130,37 +150,9 @@ jobs:
           path: Build
           merge-multiple: true
 
-      - name: Upload Atoll's Artifact
+      - name: Upload ${{ matrix.target.codename }}'s Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: uefi-images-atoll-sm7125
-          path: Build/AtollPkg/ci_artifacts
-          compression-level: 9
-
-      - name: Upload Hana's Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: uefi-images-hana-sm8150
-          path: Build/SurfaceDuo1Pkg/ci_artifacts
-          compression-level: 9
-
-      - name: Upload Kona's Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: uefi-images-kona-sm8250
-          path: Build/KonaPkg/ci_artifacts
-          compression-level: 9
-
-      - name: Upload Kodiak's Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: uefi-images-kodiak-sm7325
-          path: Build/KodiakPkg/ci_artifacts
-          compression-level: 9
-
-      - name: Upload Kailua's Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: uefi-images-kailua-sm8550
-          path: Build/KailuaPkg/ci_artifacts
+          name: uefi-images-${{ matrix.target.codename }}-${{ matrix.target.chipname }}
+          path: Build/${{ matrix.target.platform }}/ci_artifacts
           compression-level: 9
