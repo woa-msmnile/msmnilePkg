@@ -37,111 +37,46 @@ env:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains two jobs called "build" and "package"
+  # This workflow contains three jobs called "setup" "build" and "package"
+  setup:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    outputs:
+      matrix: ${{ steps.matrix.outputs.value }}
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - id: matrix
+
+        run: |
+          echo "value=[$(find ./Platforms -maxdepth 3 -wholename "*/Device/*"  -printf "\"%f\", ")]" >> $GITHUB_OUTPUT
+
+      - run: |
+          echo "${{ steps.matrix.outputs.value }}"
+
   build:
     strategy:
       matrix:
-        target:
-          [
-            {
-              platform: "AtollPkg",
-              codename: "atoll",
-              chipname: "sm7125",
-              device: ["qcom-qrd7125", "xiaomi-miatoll", "xiaomi-sweet"],
-            },
-            {
-              platform: "KailuaPkg",
-              codename: "kailua",
-              chipname: "sm8550",
-              device: ["ayaneo-aps", "ayn-odin2", "qcom-qrd8550"],
-            },
-            {
-              platform: "KodiakPkg",
-              codename: "kodiak",
-              chipname: "sm7325",
-              device: ["qcom-qrd7325"],
-            },
-            {
-              platform: "KonaPkg",
-              codename: "kona",
-              chipname: "sm8250",
-              device: ["qcom-mtp8250"],
-            },
-            {
-              platform: "SurfaceDuo1Pkg",
-              codename: "hana",
-              chipname: "sm8150",
-              device:
-                [
-                  "qcom-mtp8150",
-                  "qcom-qrd8150",
-                  "asus-I001DC",
-                  "blackshark-darklighter",
-                  "blackshark-skywalker",
-                  "htc-rtx",
-                  "kakao-pine",
-                  "lg-alphaplus",
-                  "lg-betalm",
-                  "lg-flashlmdd",
-                  "lg-mh2lm",
-                  "lg-mh2lm5g",
-                  "meizu-m928q",
-                  "meizu-m971q",
-                  "nubia-tp1803",
-                  "oneplus-guacamole",
-                  "oneplus-guacamoleb",
-                  "oneplus-hotdog",
-                  "oneplus-hotdogb",
-                  "oneplus-hotdogg",
-                  "oppo-op46c3",
-                  "oppo-pclm10",
-                  "realme-rmx1931",
-                  "realme-rmx2086",
-                  "samsung-beyond1qlte",
-                  "samsung-gts6l",
-                  "samsung-gts6lwifi",
-                  "samsung-winner",
-                  "smartisan-aries",
-                  "xiaomi-andromeda",
-                  "xiaomi-avenger",
-                  "xiaomi-cepheus",
-                  "xiaomi-crux",
-                  "xiaomi-hercules",
-                  "xiaomi-nabu",
-                  "xiaomi-raphael",
-                  "xiaomi-vayu",
-                ],
-            },
-            {
-              platform: "SurfaceDuo2Pkg",
-              codename: "lahaina",
-              chipname: "sm8350",
-              device:
-                [
-                  "qcom-hhg8350",
-                  "qcom-mtp8350",
-                  "qcom-qrd8350",
-                  "samsung-q2q",
-                  "zte-p875a02",
-                ],
-            },
-          ]
+        target: ${{fromJSON(needs.setup.outputs.matrix)}}
 
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+
+    needs: setup
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      - name: Build SecureBoot and No SecureBoot UEFI for ${{ matrix.target.device }}
-        run: bash scripts/ci_setup.sh && ./build_uefi.py -d ${{ matrix.target.device }}
+      - name: Build SecureBoot and No SecureBoot UEFI for ${{ matrix.target }}
+        run: bash scripts/ci_setup.sh && ./build_uefi.py -d ${{ matrix.target }}
 
-      - name: Upload ${{ matrix.target.device }}'s Artifact
+      - name: Upload ${{ matrix.target }}'s Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: uefi-images-${{ matrix.target.device }}
+          name: uefi-images-${{ matrix.target }}
           path: Build/*/ci_artifacts
           compression-level: 9
 
