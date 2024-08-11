@@ -91,9 +91,9 @@
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8150"|VOID*|0x0000a302
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|""|VOID*|0x0000a303
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|""|VOID*|0x0000a304
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"Surface_Duo_1930"|VOID*|0x0000a305
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosBoardModel|"Surface Duo"|VOID*|0x0000a306
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"Microsoft"|VOID*|0x0000a307
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"INVALID"|VOID*|0x0000a305
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosBoardModel|"INVALID"|VOID*|0x0000a306
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"INVALID"|VOID*|0x0000a307
 
   # Simple FrameBuffer
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1350|UINT32|0x0000a401
