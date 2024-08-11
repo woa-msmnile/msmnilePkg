@@ -170,9 +170,6 @@ def build_single_device(this_target):
     check_args(this_target)
     # Prepare Environment
     build_bootshim(this_target)
-    prepare_build(this_target.buildtype, this_target.package)
-#    os.environ['CLANGPDB_BIN'] = '/usr/lib/llvm-38/bin/'
-#    os.environ['CLANGPDB_AARCH64_PREFIX']='aarch64-linux-gnu-'
 
     # Start Actual Build
     os.system("python3 " + os.path.join("Platforms", this_target.package, "PlatformBuild.py")
@@ -337,6 +334,11 @@ if __name__ == '__main__':
     # Parse Config Files
     all_targets = []
     get_all_target(all_targets)
+
+    # Prepare Environment
+    # This never needs to be ran more than once, even for other packages usually
+    # All packages should reference the same amount of modules.
+    prepare_build(current_target.buildtype, "SurfaceDuo1Pkg")
 
     # Build all devices in one platform
     if current_target.platform == "all":
