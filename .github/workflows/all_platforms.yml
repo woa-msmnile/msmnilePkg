@@ -43,56 +43,88 @@ jobs:
       matrix:
         target:
           [
-            "qcom-hhg8350",
-            "qcom-mtp8150",
-            "qcom-mtp8250",
-            "qcom-mtp8350",
-            "qcom-qrd7125",
-            "qcom-qrd7325",
-            "qcom-qrd8150",
-            "qcom-qrd8350",
-            "qcom-qrd8550",
-            "asus-I001DC",
-            "ayaneo-aps",
-            "ayn-odin2",
-            "blackshark-darklighter",
-            "blackshark-skywalker",
-            "htc-rtx",
-            "kakao-pine",
-            "lg-alphaplus",
-            "lg-betalm",
-            "lg-flashlmdd",
-            "lg-mh2lm",
-            "lg-mh2lm5g",
-            "meizu-m928q",
-            "meizu-m971q",
-            "nubia-tp1803",
-            "oneplus-guacamole",
-            "oneplus-guacamoleb",
-            "oneplus-hotdog",
-            "oneplus-hotdogb",
-            "oneplus-hotdogg",
-            "oppo-op46c3",
-            "oppo-pclm10",
-            "realme-rmx1931",
-            "realme-rmx2086",
-            "samsung-beyond1qlte",
-            "samsung-gts6l",
-            "samsung-gts6lwifi",
-            "samsung-q2q",
-            "samsung-winner",
-            "smartisan-aries",
-            "xiaomi-andromeda",
-            "xiaomi-avenger",
-            "xiaomi-cepheus",
-            "xiaomi-crux",
-            "xiaomi-hercules",
-            "xiaomi-miatoll",
-            "xiaomi-nabu",
-            "xiaomi-raphael",
-            "xiaomi-sweet",
-            "xiaomi-vayu",
-            "zte-p875a02",
+            {
+              platform: "AtollPkg",
+              codename: "atoll",
+              chipname: "sm7125",
+              device: ["qcom-qrd7125", "xiaomi-miatoll", "xiaomi-sweet"],
+            },
+            {
+              platform: "KailuaPkg",
+              codename: "kailua",
+              chipname: "sm8550",
+              device: ["ayaneo-aps", "ayn-odin2", "qcom-qrd8550"],
+            },
+            {
+              platform: "KodiakPkg",
+              codename: "kodiak",
+              chipname: "sm7325",
+              device: ["qcom-qrd7325"],
+            },
+            {
+              platform: "KonaPkg",
+              codename: "kona",
+              chipname: "sm8250",
+              device: ["qcom-mtp8250"],
+            },
+            {
+              platform: "SurfaceDuo1Pkg",
+              codename: "hana",
+              chipname: "sm8150",
+              device:
+                [
+                  "qcom-mtp8150",
+                  "qcom-qrd8150",
+                  "asus-I001DC",
+                  "blackshark-darklighter",
+                  "blackshark-skywalker",
+                  "htc-rtx",
+                  "kakao-pine",
+                  "lg-alphaplus",
+                  "lg-betalm",
+                  "lg-flashlmdd",
+                  "lg-mh2lm",
+                  "lg-mh2lm5g",
+                  "meizu-m928q",
+                  "meizu-m971q",
+                  "nubia-tp1803",
+                  "oneplus-guacamole",
+                  "oneplus-guacamoleb",
+                  "oneplus-hotdog",
+                  "oneplus-hotdogb",
+                  "oneplus-hotdogg",
+                  "oppo-op46c3",
+                  "oppo-pclm10",
+                  "realme-rmx1931",
+                  "realme-rmx2086",
+                  "samsung-beyond1qlte",
+                  "samsung-gts6l",
+                  "samsung-gts6lwifi",
+                  "samsung-winner",
+                  "smartisan-aries",
+                  "xiaomi-andromeda",
+                  "xiaomi-avenger",
+                  "xiaomi-cepheus",
+                  "xiaomi-crux",
+                  "xiaomi-hercules",
+                  "xiaomi-nabu",
+                  "xiaomi-raphael",
+                  "xiaomi-vayu",
+                ],
+            },
+            {
+              platform: "SurfaceDuo2Pkg",
+              codename: "lahaina",
+              chipname: "sm8350",
+              device:
+                [
+                  "qcom-hhg8350",
+                  "qcom-mtp8350",
+                  "qcom-qrd8350",
+                  "samsung-q2q",
+                  "zte-p875a02",
+                ],
+            },
           ]
 
     # The type of runner that the job will run on
@@ -103,13 +135,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      - name: Build SecureBoot and No SecureBoot UEFI for ${{ matrix.target }}
-        run: bash scripts/ci_setup.sh && ./build_uefi.py -d ${{ matrix.target }}
+      - name: Build SecureBoot and No SecureBoot UEFI for ${{ matrix.target.device }}
+        run: bash scripts/ci_setup.sh && ./build_uefi.py -d ${{ matrix.target.device }}
 
-      - name: Upload ${{ matrix.target }}'s Artifact
+      - name: Upload ${{ matrix.target.device }}'s Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: uefi-images-${{ matrix.target }}
+          name: uefi-images-${{ matrix.target.device }}
           path: Build/*/ci_artifacts
           compression-level: 9
 
