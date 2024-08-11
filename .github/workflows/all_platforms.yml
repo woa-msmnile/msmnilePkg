@@ -54,13 +54,15 @@ jobs:
         run: |
           echo "value=[$(find ./Platforms -maxdepth 3 -wholename "*/Device/*"  -printf "\"%f\", ")]" >> $GITHUB_OUTPUT
 
-      - run: |
-          echo "${{ steps.matrix.outputs.value }}"
-
   build:
-    uses: woa-msmnile/msmnilePkg/.github/workflows/build.yml@main
+    strategy:
+      matrix:
+        target: ${{fromJSON(needs.setup.outputs.matrix)}}
+
+    needs: setup
+    uses: woa-msmnile/msmnilePkg/.github/workflows/build_device.yml@main
     with:
-      target: ${{fromJSON(needs.setup.outputs.matrix)}}
+      target: ${{ matrix.target }}
     secrets: inherit
 
   package:
