@@ -25,21 +25,13 @@
   SKUID_IDENTIFIER               = DEFAULT
   PACKAGE_NAME                   = $(PLATFORM_NAME)Pkg
   FLASH_DEFINITION               = $(PACKAGE_NAME)/$(PLATFORM_NAME).fdf
-
-  # Notice: TRUE == 1, FALSE == 0
-!if $(SEC_BOOT) == 1
   SECURE_BOOT                    = 1
-  DEFAULT_KEYS                   = TRUE
-!else
-  SECURE_BOOT                    = 0
-  DEFAULT_KEYS                   = FALSE
-!endif
-
   USE_PHYSICAL_TIMER             = 0
   USE_SCREEN_FOR_SERIAL_OUTPUT   = 1
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
   USE_UART_FOR_SERIAL_OUTPUT     = 0
 
+  DEFAULT_KEYS                   = TRUE
   PK_DEFAULT_FILE                = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/OEMA0-PK.der
   KEK_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/Kek/MicCorKEKCA2011_2011-06-24.der
   KEK_DEFAULT_FILE2              = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/Kek/microsoft_corporation_kek_2k_ca_2023.der

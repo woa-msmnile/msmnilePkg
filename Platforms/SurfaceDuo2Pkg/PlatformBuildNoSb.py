@@ -12,8 +12,8 @@ from io import StringIO
 from pathlib import Path
 
 ## woa-msmnile patch start
-SiliconName = "Sm7125"
-PlatformName = "Atoll"
+SiliconName = "Sm8350"
+PlatformName = "SurfaceDuo2"
 PackageName = PlatformName+"Pkg"
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), 'PythonLibs'))
@@ -147,7 +147,7 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
         The tuple should be (<workspace relative path to dsc file>, <input dictionary of dsc key value pairs>)
         '''
 ## woa-msmnile patch start
-        return (PackageName+"/"+PlatfromName+".dsc", {})
+        return (PackageName+"/"+PlatfromName+"NoSb.dsc", {})
 
     def GetName(self):
         return PackageName
@@ -246,7 +246,7 @@ class PlatformBuilder(UefiBuilder, BuildSettingsManager):
         logging.debug("PlatformBuilder SetPlatformEnv")
 ## woa-msmnile patch start
         self.env.SetValue("PRODUCT_NAME", PlatformName, "Platform Hardcoded")
-        self.env.SetValue("ACTIVE_PLATFORM", PackageName+"/"+PlatformName+".dsc", "Platform Hardcoded")
+        self.env.SetValue("ACTIVE_PLATFORM", PackageName+"/"+PlatformName+"NoSb.dsc", "Platform Hardcoded")
 ## woa-msmnile patch end
         self.env.SetValue("TARGET_ARCH", "AARCH64", "Platform Hardcoded")
         self.env.SetValue("TOOL_CHAIN_TAG", "CLANGPDB", "set default to clangpdb")
@@ -270,6 +270,7 @@ class PlatformBuilder(UefiBuilder, BuildSettingsManager):
         # Ship DTB Name
         self.env.SetValue("BLD_*_FDT", self.GetDTBName(), "Default")
 ## woa-msmnile patch end
+
         return 0
 
     def PlatformPreBuild(self):
