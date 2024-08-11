@@ -6,15 +6,15 @@ name: Build uefi for all devices.
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: ["main"]
     paths:
-      - 'Binaries'
-      - 'Common/**'
-      - 'Features/**'
-      - 'MU_BASECORE'
-      - 'Silicon/Arm/**'
-      - 'scripts/**'
-      - 'Platforms/SurfaceDuoFamilyPkg/**'
+      - "Binaries"
+      - "Common/**"
+      - "Features/**"
+      - "MU_BASECORE"
+      - "Silicon/Arm/**"
+      - "scripts/**"
+      - "Platforms/SurfaceDuoFamilyPkg/**"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -23,14 +23,13 @@ on:
   pull_request:
     types: [opened, reopened]
     paths:
-      - 'Binaries'
-      - 'Common/**'
-      - 'Features/**'
-      - 'MU_BASECORE'
-      - 'Silicon/Arm/**'
-      - 'scripts/**'
-      - 'Platforms/SurfaceDuoFamilyPkg/**'
-
+      - "Binaries"
+      - "Common/**"
+      - "Features/**"
+      - "MU_BASECORE"
+      - "Silicon/Arm/**"
+      - "scripts/**"
+      - "Platforms/SurfaceDuoFamilyPkg/**"
 
 # Indicate that we are running in CI
 env:
@@ -42,7 +41,59 @@ jobs:
   build:
     strategy:
       matrix:
-        platform: ["SM7125", "SM7325", "SM8150", "SM8250", "SM8350", "SM8550"]
+        target:
+          [
+            "qcom-hhg8350",
+            "qcom-mtp8150",
+            "qcom-mtp8250",
+            "qcom-mtp8350",
+            "qcom-qrd7125",
+            "qcom-qrd7325",
+            "qcom-qrd8150",
+            "qcom-qrd8350",
+            "qcom-qrd8550",
+            "asus-I001DC",
+            "ayaneo-aps",
+            "ayn-odin2",
+            "blackshark-darklighter",
+            "blackshark-skywalker",
+            "htc-rtx",
+            "kakao-pine",
+            "lg-alphaplus",
+            "lg-betalm",
+            "lg-flashlmdd",
+            "lg-mh2lm",
+            "lg-mh2lm5g",
+            "meizu-m928q",
+            "meizu-m971q",
+            "nubia-tp1803",
+            "oneplus-guacamole",
+            "oneplus-guacamoleb",
+            "oneplus-hotdog",
+            "oneplus-hotdogb",
+            "oneplus-hotdogg",
+            "oppo-op46c3",
+            "oppo-pclm10",
+            "realme-rmx1931",
+            "realme-rmx2086",
+            "samsung-beyond1qlte",
+            "samsung-gts6l",
+            "samsung-gts6lwifi",
+            "samsung-q2q",
+            "samsung-winner",
+            "smartisan-aries",
+            "xiaomi-andromeda",
+            "xiaomi-avenger",
+            "xiaomi-cepheus",
+            "xiaomi-crux",
+            "xiaomi-hercules",
+            "xiaomi-miatoll",
+            "xiaomi-nabu",
+            "xiaomi-raphael",
+            "xiaomi-sweet",
+            "xiaomi-vayu",
+            "zte-p875a02",
+          ]
 
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -51,12 +102,12 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-      - name: build uefi for all devices in ${{ matrix.platform }}.
-        run: bash scripts/ci_setup.sh && ./build_uefi.py -d all -p ${{ matrix.platform }}
+      - name: Build SecureBoot and No SecureBoot UEFI for ${{ matrix.target }}
+        run: bash scripts/ci_setup.sh && ./build_uefi.py -d ${{ matrix.target }}
 
-      - name: Upload ${{ matrix.platform }}'s Artifact
+      - name: Upload ${{ matrix.target }}'s Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: uefi-images-${{ matrix.platform }}
-          path: Build/${{ matrix.platform }}/ci_artifacts
+          name: uefi-images-${{ matrix.target }}
+          path: Build/*/ci_artifacts
           compression-level: 9
