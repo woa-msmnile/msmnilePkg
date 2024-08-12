@@ -52,7 +52,7 @@ jobs:
 
       - id: matrix
         run: |
-          echo "value=[$(find ./Platforms -maxdepth 3 -wholename "*/Device/*"  -printf "\"%f\", ")]" >> $GITHUB_OUTPUT
+          echo "value=[$(find ./Platforms -maxdepth 1 -type d -exec test -f '{}'/PlatformBuild.py -a -f '{}'/PlatformBuildNoSb.py \; -printf "\"%f\", ")]" >> $GITHUB_OUTPUT
 
   build:
     strategy:
@@ -60,9 +60,9 @@ jobs:
         target: ${{fromJSON(needs.setup.outputs.matrix)}}
 
     needs: setup
-    uses: woa-msmnile/msmnilePkg/.github/workflows/build_device.yml@main
+    uses: woa-msmnile/msmnilePkg/.github/workflows/build_platform.yml@main
     with:
-      target: ${{ matrix.target }}
+      platform: ${{ matrix.target }}
     secrets: inherit
 
   package:
