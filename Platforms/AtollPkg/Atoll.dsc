@@ -28,23 +28,14 @@
   BUILD_TARGETS                  = DEBUG|RELEASE
   SKUID_IDENTIFIER               = DEFAULT
   FLASH_DEFINITION               = AtollPkg/Atoll.fdf
-
-  # Notice: TRUE == 1, FALSE == 0
-!if $(SEC_BOOT) == 1
-  SECURE_BOOT_ENABLE             = TRUE
-  DEFAULT_KEYS                   = TRUE
-!else
-  SECURE_BOOT_ENABLE             = FALSE
-  DEFAULT_KEYS                   = FALSE
-!endif
-
+  SECURE_BOOT                    = 1
   USE_PHYSICAL_TIMER             = 1
   USE_SCREEN_FOR_SERIAL_OUTPUT   = 0
   USE_UART_FOR_SERIAL_OUTPUT     = 0
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
-  SEND_HEARTBEAT_TO_SERIAL       = 0
   USE_SIMPLEFBDXE                = 1
 
+  DEFAULT_KEYS                   = TRUE
   PK_DEFAULT_FILE                = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/OEMA0-PK.der
   KEK_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/Kek/MicCorKEKCA2011_2011-06-24.der
   KEK_DEFAULT_FILE2              = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/Kek/microsoft_corporation_kek_2k_ca_2023.der
@@ -86,6 +77,8 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=7125
 [PcdsFixedAtBuild.common]
   # Platform-specific
   gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000            # 6GB
+
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdABLProduct|"atoll"
 
 [Components.common]
   # Graphics Driver

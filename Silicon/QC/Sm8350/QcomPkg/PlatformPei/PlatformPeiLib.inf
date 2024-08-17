@@ -43,6 +43,7 @@
 
 [Pcd]
   gArmTokenSpaceGuid.PcdFvBaseAddress
+  gQcomPkgTokenSpaceGuid.SchedIntfProtocolAddress
 
 [Depex]
   gEfiPeiMemoryDiscoveredPpiGuid

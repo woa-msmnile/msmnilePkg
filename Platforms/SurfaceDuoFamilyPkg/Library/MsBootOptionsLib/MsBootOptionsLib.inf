@@ -51,6 +51,7 @@
   gPcBdsPkgTokenSpaceGuid.PcdShellFile
   gPcBdsPkgTokenSpaceGuid.PcdShellFvGuid
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdUFPMenuFile
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdBootloaderMenuFile
 
 [Depex]
   TRUE

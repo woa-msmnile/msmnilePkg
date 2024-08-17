@@ -3,12 +3,6 @@
 #include <Library/PlatformPrePiLib.h>
 #include "PlatformUtils.h"
 
-BOOLEAN IsLinuxBootRequested(VOID)
-{
-  return FALSE;
-  // return (MmioRead32(LID0_GPIO121_STATUS_ADDR) & 1) == 1;
-}
-
 VOID ConfigureIOMMUContextBankCacheSetting(
     UINT32 ContextBankId, BOOLEAN CacheCoherent)
 {

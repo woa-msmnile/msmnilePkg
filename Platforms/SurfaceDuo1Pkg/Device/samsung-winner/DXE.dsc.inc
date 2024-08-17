@@ -61,7 +61,7 @@ SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/RpmhDxe/RpmhDxe.
 #QcomPkg/Drivers/CPRDxe/CPRDxe.inf
 SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/PdcDxe/PdcDxe.inf
 #MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
-#MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
+#$(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
 #FatPkg/EnhancedFatDxe/Fat.inf
 #MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
 #MdeModulePkg/Universal/FvSimpleFileSystemDxe/FvSimpleFileSystemDxe.inf
@@ -76,9 +76,9 @@ SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TLMMDxe/TLMMDxe.
 SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/PlatformInfoDxe/PlatformInfoDxe.inf
 SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/PmicDxe/PmicDxeLa.inf
 #QcomPkg/Drivers/UsbPwrCtrlDxe/UsbPwrCtrlDxe.inf
-SurfaceDuo1Pkg/Device/qcom-qrd855/Binaries/QcomPkg/Drivers/ChargerExDxe/ChargerExDxe.inf
-SurfaceDuo1Pkg/Device/qcom-qrd855/Binaries/QcomPkg/Drivers/QcomChargerDxe/QcomChargerDxeLA.inf
-SurfaceDuo1Pkg/Device/qcom-qrd855/Binaries/QcomPkg/Application/QcomChargerApp/QcomChargerApp.inf
+SurfaceDuo1Pkg/Device/qcom-qrd8150/Binaries/QcomPkg/Drivers/ChargerExDxe/ChargerExDxe.inf
+SurfaceDuo1Pkg/Device/qcom-qrd8150/Binaries/QcomPkg/Drivers/QcomChargerDxe/QcomChargerDxeLA.inf
+SurfaceDuo1Pkg/Device/qcom-qrd8150/Binaries/QcomPkg/Application/QcomChargerApp/QcomChargerApp.inf
 SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/AdcDxe/AdcDxe.inf
 SurfaceDuo1Pkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TsensDxe/TsensDxe.inf
 #QcomPkg/Drivers/LimitsDxe/LimitsDxe.inf

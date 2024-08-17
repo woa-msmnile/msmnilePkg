@@ -26,6 +26,7 @@
   MdePkg/MdePkg.dec
   PcBdsPkg/PcBdsPkg.dec
   SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
+  QcomModulePkg/QcomModulePkg.dec
 
 [LibraryClasses]
   DebugLib

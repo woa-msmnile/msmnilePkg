@@ -162,36 +162,44 @@ def parse_cfg(pfile):
     return this_target
 
 
-# Build uefi for a single device
-def build_single_device(this_target):
+# Build uefi for a device
+def build_device(this_target):
     # Print args
     this_target.print_content()
-    # Check args
-    check_args(this_target)
     # Prepare Environment
     build_bootshim(this_target)
-    prepare_build(this_target.buildtype, this_target.package)
-#    os.environ['CLANGDWARF_BIN'] = '/usr/lib/llvm-38/bin/'
-#    os.environ['CLANGDWARF_AARCH64_PREFIX']='aarch64-linux-gnu-'
-
-    # Start Actual Build
-    os.system("python3 " + os.path.join("Platforms", this_target.package, "PlatformBuild.py")
-              + " TARGET=" + this_target.buildtype + " TARGET_DEVICE=" + this_target.device + " SEC_BOOT=" + str(this_target.secureboot))
 
     # Check if build successfully
     # if CI mode enabled, copy .FD and .img into CI upload directory.
     if os.getenv("WM_CI_BUILD") == "true":
         print("Buiding in CI...")
-        # Copy build NOSB output into ci upload dir.
-        ci_copy_fd_after_single_device_building(this_target)
+
         # In CI Environment, we build SB and NOSB at same time, build SB here.
         this_target.secureboot = 1
         os.system("python3 " + os.path.join("Platforms", this_target.package, "PlatformBuild.py")
-              + " TARGET=" + this_target.buildtype + " TARGET_DEVICE=" + this_target.device + " SEC_BOOT=" + str(this_target.secureboot))
+              + " TARGET=" + this_target.buildtype + " TARGET_DEVICE=" + this_target.device)
+
         # Copy build SB output into ci upload dir.
         ci_copy_fd_after_single_device_building(this_target)
+
         # Move secureboot status back.
         this_target.secureboot = 0
+
+        # Now build NOSB
+        os.system("python3 " + os.path.join("Platforms", this_target.package, "PlatformBuildNoSb.py")
+              + " TARGET=" + this_target.buildtype + " TARGET_DEVICE=" + this_target.device)
+        
+        # Copy build NOSB output into ci upload dir.
+        ci_copy_fd_after_single_device_building(this_target)
+    else:
+        if this_target.secureboot == 1:
+            # Start Actual Build
+            os.system("python3 " + os.path.join("Platforms", this_target.package, "PlatformBuild.py")
+              + " TARGET=" + this_target.buildtype + " TARGET_DEVICE=" + this_target.device)
+        else:
+            # Start Actual Build
+            os.system("python3 " + os.path.join("Platforms", this_target.package, "PlatformBuildNoSb.py")
+              + " TARGET=" + this_target.buildtype + " TARGET_DEVICE=" + this_target.device)
 
 
 def ci_copy_fd_after_single_device_building(this_target):
@@ -204,7 +212,7 @@ def ci_copy_fd_after_single_device_building(this_target):
     ci_upload_dir = os.path.join(build_output_path, "ci_artifacts", this_target.device)
 
     # File paths, fd and img
-    input_fd_path = os.path.join(build_output_path, this_target.buildtype + "_CLANGDWARF", "FV", this_target.platform.upper() + "_EFI.fd")
+    input_fd_path = os.path.join(build_output_path, this_target.buildtype + "_CLANGPDB", "FV", this_target.platform.upper() + "_EFI.fd")
     input_img_path = os.path.join(build_output_path, this_target.device + ".img")
     output_fd_path = os.path.join(ci_upload_dir, this_target.platform.upper() + "_EFI_" + secureboot_suffix + ".fd")
     output_img_path = os.path.join(ci_upload_dir, this_target.device + "_" + secureboot_suffix + ".img")
@@ -225,6 +233,13 @@ def ci_copy_fd_after_single_device_building(this_target):
         sys.exit(1)
 
 
+# Build uefi for a single device
+def build_single_device(this_target):
+    # Check args
+    check_args(current_target)
+    build_device(current_target)
+
+
 # Build uefi for all devices in one platform.
 def build_all_devices(this_target):
     # device == "all" here.
@@ -232,7 +247,7 @@ def build_all_devices(this_target):
     device_list = get_devices_list(this_target.package)
     for device_name in device_list:
         this_target.device = device_name
-        build_single_device(this_target)
+        build_device(this_target)
 
 
 # Build all uefi for all devices.
@@ -290,13 +305,6 @@ def find_device_by_name(device_name):
     for i in range(len(possible_dict)):
         if list(possible_dict.values())[i] - list(possible_dict.values())[0] < 1:
             possible_list.append(list(possible_dict.keys())[i])
-    # Debug Use
-    #    for _key,_val in possible_dict.items():
-    #        print(_key, _val)
-    #
-    #    print()
-    #    for i in possible_list:
-    #        print(i)
     return possible_list
 
 
@@ -337,6 +345,11 @@ if __name__ == '__main__':
     # Parse Config Files
     all_targets = []
     get_all_target(all_targets)
+
+    # Prepare Environment
+    # This never needs to be ran more than once, even for other packages usually
+    # All packages should reference the same amount of modules.
+    prepare_build(current_target.buildtype, "SurfaceDuo1Pkg")
 
     # Build all devices in one platform
     if current_target.platform == "all":

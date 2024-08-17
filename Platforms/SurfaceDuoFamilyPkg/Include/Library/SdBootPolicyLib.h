@@ -21,4 +21,16 @@ SdBootPolicyLibIsUFPBoot (
   VOID
   );
 
+/**
+ *Ask if the platform is requesting Bootloader Menu Change
+
+ *@retval TRUE     System is requesting Bootloader Menu Change
+ *@retval FALSE    System is not requesting Changes.
+**/
+BOOLEAN
+EFIAPI
+SdBootPolicyLibIsBootloaderMenuBoot (
+  VOID
+  );
+
 #endif

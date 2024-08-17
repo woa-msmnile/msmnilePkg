@@ -10,6 +10,5 @@
 #define FB_BGRA8888_ORANGE 0xffffa500
 #define FB_BGRA8888_RED 0xffff0000
 #define FB_BGRA8888_GREEN 0xff00ff00
-#define FB_BGRA8888_PURPLE 0x800080ff
 
 #endif

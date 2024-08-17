@@ -26,6 +26,7 @@
   KailuaPkg/KailuaPkg.dec
   SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
   QcomPkg/QcomPkg.dec
+  QcomModulePkg/QcomModulePkg.dec
 
 [LibraryClasses]
   ArmLib
@@ -41,8 +42,8 @@
 
 [FixedPcd]
   gArmTokenSpaceGuid.PcdFvSize
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.KernelProtocolAddress
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.XBLDTProtocolAddress
+  gQcomPkgTokenSpaceGuid.KernelProtocolAddress
+  gQcomPkgTokenSpaceGuid.XBLDTProtocolAddress
 
 [Pcd]
   gArmTokenSpaceGuid.PcdFvBaseAddress

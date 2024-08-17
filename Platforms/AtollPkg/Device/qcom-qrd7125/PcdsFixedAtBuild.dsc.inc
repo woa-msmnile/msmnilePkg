@@ -1,0 +1,23 @@
+[PcdsFixedAtBuild.common]
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2248
+#gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|32
+
+# Smbios Info
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"Qualcomm"
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosBoardModel|"QRD"
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"6"
+
+# Display Caller
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdDisplayCallerExitDisableDisplay|FALSE
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdDisplayCallerStallBeforeEnable|1000
+
+[PcdsDynamicDefault.common]
+gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1080
+gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|2248
+gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|1080
+gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|2248
+gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|120 # 94.73
+gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|90 # 168.75
+gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow|120 # 94.73
+gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn|90 # 168.75

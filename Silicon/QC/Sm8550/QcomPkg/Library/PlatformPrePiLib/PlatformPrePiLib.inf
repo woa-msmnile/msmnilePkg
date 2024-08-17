@@ -17,7 +17,3 @@
 [LibraryClasses]
   BaseLib
   IoLib
-
-[Pcd]
-  gQcomPkgTokenSpaceGuid.PcdStr3
-  gQcomPkgTokenSpaceGuid.PcdStr4
