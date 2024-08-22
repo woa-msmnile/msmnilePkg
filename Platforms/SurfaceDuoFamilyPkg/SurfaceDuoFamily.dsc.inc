@@ -569,6 +569,11 @@
       BaseCryptLib|OpensslPkg/Library/BaseCryptLib/RuntimeCryptLib.inf
       TlsLib|OpensslPkg/Library/TlsLib/TlsLib.inf
       IntrinsicLib|OpensslPkg/Library/IntrinsicLib/IntrinsicLib.inf
+## Patch: Fix memset redefine issue while linking, only implement while screen serial is enabled.
+!if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == 1
+      CompilerIntrinsicsLib|OpensslPkg/Library/IntrinsicLib/IntrinsicLib.inf
+!endif
+## End patch
       OpensslLib|OpensslPkg/Library/OpensslLib/OpensslLib.inf # Contains openSSL library used by BaseCryptoLib
   }
 
