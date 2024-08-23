@@ -255,6 +255,12 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 |--------------------------------------|------------------------|-----------------|----------------------------------------------------|
 | Qualcomm Technologies, Inc. QRD 8550 | qcom-qrd8550           | ❌              | None                                               |
 
+#### AYANEO Devices
+
+| Device                               | Target name            | DSDT Support    | Contributors                                       |
+|--------------------------------------|------------------------|-----------------|----------------------------------------------------|
+| AYANEO Pocket S                      | ayaneo-aps             | ❌              | None                                               |
+
 #### AYN Devices
 
 | Device                               | Target name            | DSDT Support    | Contributors                                       |
@@ -267,12 +273,18 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 |--------------------------------------|------------------------|-----------------|----------------------------------------------------|
 | Nubia RedMagic 8 Pro                 | nubia-nx729j           | ❌              | None                                               |
 
+#### Oneplus Devices
+| Device                               | Target name            | DSDT Support    | Contributors                                       |
+|--------------------------------------|------------------------|-----------------|----------------------------------------------------|
+| Oneplus 11 5G                        | oneplus-salami         | ❌              | None                                               |
+
 #### Xiaomi Devices
 
 | Device                               | Target name            | DSDT Support    | Contributors                                       |
 |--------------------------------------|------------------------|-----------------|----------------------------------------------------|
 | Xiaomi 13                            | xiaomi-fuxi            | ❌              | None                                               |
 | Xiaomi 13 Pro                        | xiaomi-nuwa            | ❌              | None                                               |
+| Xiaomi Pad6 S Pro                    | xiaomi-sheng           | ❌              | None                                               |
 
 
 ## Acknowledgements
