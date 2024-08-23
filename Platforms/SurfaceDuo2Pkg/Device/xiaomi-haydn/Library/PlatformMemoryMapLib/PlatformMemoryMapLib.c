@@ -42,14 +42,10 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
 #else
     {"HLOS4",             0xA0000000, 0x0EB00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
 #endif
-    {"RAM Partition",     0xAEB00000, 0x0B900000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+    {"RAM Partition",     0xAEB00000, 0x0AC00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
     /* DDR Bank 0 End */
-    /* Carveout Region (0xBA400000 -> 0xBAA00000, size 0x00600000) */
+    /* Carveout Region (0xB9700000 -> 0xC0000000, size 0x06900000) */
     /* DDR Bank 1 Start */
-    {"RAM Partition",     0xBAA00000, 0x01E00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
-    /* DDR Bank 1 End */
-    /* Carveout Region (0xBC800000 -> 0xC0000000, size 0x03800000) */
-    /* DDR Bank 2 Start */
     {"RAM Partition",     0xC0000000, 0x05100000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
     {"DBI Dump",          0xC5100000, 0x01100000, NoHob,  MMAP_IO, INITIALIZED, Conv,   UNCACHED_UNBUFFERED_XN},
     {"RAM Partition",     0xC6200000, 0x12600000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
@@ -60,8 +56,8 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
     {"RAM Partition",     0xE3400000, 0x5CC00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
 
     /* RAM partition regions */
-    {"RAM Partition",    0x140000000,0x0C0000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
-    /* DDR Bank 2 End */
+    {"RAM Partition",    0x140000000,0x140000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+    /* DDR Bank 1 End */
 
     /* Other memory regions */
     {"IMEM Base",         0x14680000, 0x00040000, NoHob,  MMAP_IO, INITIALIZED, Conv,   NS_DEVICE},
