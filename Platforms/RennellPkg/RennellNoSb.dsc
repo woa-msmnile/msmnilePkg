@@ -19,23 +19,23 @@
 #
 ################################################################################
 [Defines]
-  PLATFORM_NAME                  = Atoll
+  PLATFORM_NAME                  = Rennell
   PLATFORM_GUID                  = b6325ac2-9f3f-4b1d-b129-ac7b35ddde62
   PLATFORM_VERSION               = 0.1
   DSC_SPECIFICATION              = 0x00010005
-  OUTPUT_DIRECTORY               = Build/AtollPkg
+  OUTPUT_DIRECTORY               = Build/RennellPkg
   SUPPORTED_ARCHITECTURES        = AARCH64
   BUILD_TARGETS                  = DEBUG|RELEASE
   SKUID_IDENTIFIER               = DEFAULT
-  FLASH_DEFINITION               = AtollPkg/Atoll.fdf
-  SECURE_BOOT                    = 1
+  FLASH_DEFINITION               = RennellPkg/Rennell.fdf
+  SECURE_BOOT                    = 0
   USE_PHYSICAL_TIMER             = 1
   USE_SCREEN_FOR_SERIAL_OUTPUT   = 0
   USE_UART_FOR_SERIAL_OUTPUT     = 0
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
   USE_SIMPLEFBDXE                = 1
 
-  DEFAULT_KEYS                   = TRUE
+  DEFAULT_KEYS                   = FALSE
   PK_DEFAULT_FILE                = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/OEMA0-PK.der
   KEK_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/Kek/MicCorKEKCA2011_2011-06-24.der
   KEK_DEFAULT_FILE2              = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/Kek/microsoft_corporation_kek_2k_ca_2023.der
@@ -62,7 +62,7 @@
   PLATFORM_HAS_GIC_V3_WITHOUT_IRM_FLAG_SUPPORT_ERRATA = 0
   PLATFORM_HAS_PSCI_MEMPROTECT_FAILING_ERRATA         = 1
 
-!include AtollPkg/Device/$(TARGET_DEVICE)/Defines.dsc.inc
+!include RennellPkg/Device/$(TARGET_DEVICE)/Defines.dsc.inc
 
 [BuildOptions.common]
 
@@ -78,7 +78,7 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=7125
   # Platform-specific
   gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000            # 6GB
 
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdABLProduct|"atoll"
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdABLProduct|"rennell"
 
 [Components.common]
   # Graphics Driver
@@ -91,14 +91,14 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=7125
   SurfaceDuoFamilyPkg/Driver/RamPartitionDxe/RamPartitionDxe.inf
 
 # Device Specific Drivers
-!include AtollPkg/Device/$(TARGET_DEVICE)/DXE.dsc.inc
+!include RennellPkg/Device/$(TARGET_DEVICE)/DXE.dsc.inc
 
 [LibraryClasses.common]
   # Move PlatformMemoryMapLib to Device/<device>/Library
-  PlatformMemoryMapLib|AtollPkg/Device/$(TARGET_DEVICE)/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
+  PlatformMemoryMapLib|RennellPkg/Device/$(TARGET_DEVICE)/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
 
   # Move PlatformConfigurationMapLib to Device/<device>/Library
-  PlatformConfigurationMapLib|AtollPkg/Device/$(TARGET_DEVICE)/Library/PlatformConfigurationMapLib/PlatformConfigurationMapLib.inf
+  PlatformConfigurationMapLib|RennellPkg/Device/$(TARGET_DEVICE)/Library/PlatformConfigurationMapLib/PlatformConfigurationMapLib.inf
 
 
 # Suggest you updating them to your device's dsc.inc.
@@ -113,6 +113,6 @@ GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=7125
 #  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn|90 # 168.75
 
 !include QcomPkg/QcomPkg.dsc.inc
-!include AtollPkg/Device/$(TARGET_DEVICE)/PcdsFixedAtBuild.dsc.inc
+!include RennellPkg/Device/$(TARGET_DEVICE)/PcdsFixedAtBuild.dsc.inc
 !include SurfaceDuoFamilyPkg/SurfaceDuoFamily.dsc.inc
 !include SurfaceDuoFamilyPkg/Frontpage.dsc.inc

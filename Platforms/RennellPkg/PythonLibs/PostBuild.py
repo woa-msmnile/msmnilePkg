@@ -9,7 +9,7 @@ def makeAndroidImage(outputbin_dir, output_dir, root_dir, device_name, dtb_name)
     output_path = os.path.join(output_dir, device_name + '.img')
     fd_path = os.path.join(outputbin_dir, 'FV', 'SM7125_EFI.fd')
     bootshim_path = os.path.join(root_dir, 'BootShim', 'BootShim.bin')
-    dtb_path = os.path.join(root_dir, "Platforms", "AtollPkg", "Device", device_name, 'DeviceTreeBlob', 'Android', 'android-' + dtb_name)
+    dtb_path = os.path.join(root_dir, "Platforms", "RennellPkg", "Device", device_name, 'DeviceTreeBlob', 'Android', 'android-' + dtb_name)
 
     logging.info("Generating bootpayload.bin")
 

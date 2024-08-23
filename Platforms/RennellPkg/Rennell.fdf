@@ -78,8 +78,8 @@ READ_STATUS        = TRUE
 READ_LOCK_CAP      = TRUE
 READ_LOCK_STATUS   = TRUE
 
-  !include AtollPkg/Device/$(TARGET_DEVICE)/APRIORI.inc
-  !include AtollPkg/Device/$(TARGET_DEVICE)/DXE.inc
+  !include RennellPkg/Device/$(TARGET_DEVICE)/APRIORI.inc
+  !include RennellPkg/Device/$(TARGET_DEVICE)/DXE.inc
 
   # Secure Boot Key Enroll
   INF SurfaceDuoFamilyPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
@@ -108,18 +108,18 @@ READ_LOCK_STATUS   = TRUE
   INF SurfaceDuoFamilyPkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
 
   # ACPI Tables
-  !include AtollPkg/Include/ACPI.inc
+  !include RennellPkg/Include/ACPI.inc
 
   # DT
   INF EmbeddedPkg/Drivers/DtPlatformDxe/DtPlatformDxe.inf
-  !include AtollPkg/Include/FDT.inc
+  !include RennellPkg/Include/FDT.inc
 
   INF MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
 
   !include SurfaceDuoFamilyPkg/Frontpage.fdf.inc
 
   FILE FREEFORM = PCD(gMsCorePkgTokenSpaceGuid.PcdRegulatoryGraphicFileGuid) {
-    SECTION RAW = AtollPkg/Include/Resources/RegulatoryLogos.png
+    SECTION RAW = RennellPkg/Include/Resources/RegulatoryLogos.png
   }
 
   INF SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
@@ -201,7 +201,7 @@ READ_LOCK_STATUS   = TRUE
 
   FILE FREEFORM = dde58710-41cd-4306-dbfb-3fa90bb1d2dd {
     SECTION UI = "uefiplat.cfg"
-    SECTION RAW = AtollPkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/uefiplat.cfg
+    SECTION RAW = RennellPkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/uefiplat.cfg
   }
 
   FILE FV_IMAGE = 9E21FD93-9C72-4c15-8C4B-E77F1DB2D792 {

@@ -13,7 +13,7 @@ from pathlib import Path
 
 ## woa-msmnile patch start
 SiliconName = "Sm7125"
-PlatformName = "Atoll"
+PlatformName = "Rennell"
 PackageName = PlatformName+"Pkg"
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), 'PythonLibs'))

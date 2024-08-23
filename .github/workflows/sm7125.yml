@@ -17,7 +17,7 @@ jobs:
   build:
     uses: woa-msmnile/msmnilePkg/.github/workflows/build_platform.yml@main
     with:
-      platform: AtollPkg
+      platform: RennellPkg
     secrets: inherit
 
   package:
@@ -25,7 +25,7 @@ jobs:
       matrix:
         target:
           [
-            { platform: "AtollPkg", codename: "rennell", chipname: "sm7125" },
+            { platform: "RennellPkg", codename: "rennell", chipname: "sm7125" },
           ]
 
     # The type of runner that the job will run on
