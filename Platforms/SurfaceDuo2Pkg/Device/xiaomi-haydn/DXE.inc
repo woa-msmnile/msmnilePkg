@@ -1,4 +1,5 @@
 # Patched Binaries
+INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/ButtonsDxe.inf
 INF QcomPkg/PatchedBinaries/ClockDxe.inf
 INF QcomPkg/PatchedBinaries/MinidumpTADxe.inf
 INF QcomPkg/PatchedBinaries/QcomWDogDxe.inf
@@ -8,7 +9,7 @@ INF QcomPkg/PatchedBinaries/UsbConfigDxe.inf
 # Drivers
 INF SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
 INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
-INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ButtonsDxe/ButtonsDxe.inf
+#INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ButtonsDxe/ButtonsDxe.inf
 #INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ChargerExDxe/ChargerExDxe.inf
 INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ChipInfoDxe/ChipInfoDxe.inf
 INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/CmdDbDxe/CmdDbDxe.inf

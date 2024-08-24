@@ -1,5 +1,6 @@
 [Components.common]
 $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
+$(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/ButtonsDxe.inf
 QcomPkg/PatchedBinaries/ClockDxe.inf
 QcomPkg/PatchedBinaries/MinidumpTADxe.inf
 QcomPkg/PatchedBinaries/QcomWDogDxe.inf
@@ -9,7 +10,6 @@ QcomPkg/PatchedBinaries/UsbConfigDxe.inf
 # Drivers
 SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
 SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
-$(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ButtonsDxe/ButtonsDxe.inf
 $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ChargerExDxe/ChargerExDxe.inf
 $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ChipInfoDxe/ChipInfoDxe.inf
 $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/CmdDbDxe/CmdDbDxe.inf
