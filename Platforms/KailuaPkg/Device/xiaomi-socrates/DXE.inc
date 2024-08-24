@@ -38,13 +38,13 @@ INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SmemDxe/Sme
 
 # Patched Binaries
 INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/ButtonsDxe.inf
-INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/SPMIDxe.inf
+INF QcomPkg/PatchedBinaries/SPMIDxe.inf
 INF QcomPkg/PatchedBinaries/UFSDxe.inf
-INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/UsbConfigDxe.inf
-INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/ClockDxe.inf
+INF QcomPkg/PatchedBinaries/UsbConfigDxe.inf
+INF QcomPkg/PatchedBinaries/ClockDxe.inf
 #INF SurfaceDuoFamilyPkg/Driver/DisplayCallerDxe/DisplayCallerDxe.inf
 #INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/DisplayDxe.inf
-INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/PmicDxeLa.inf
+INF QcomPkg/PatchedBinaries/PmicDxeLa.inf
 #INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/QcomChargerDxeLA.inf
 
 # DXE without depex
@@ -444,8 +444,8 @@ FILE DRIVER = 32C71E68-83A8-46ED-AED1-094E71B12057 {
 }
 
 # Patched Binaries
-#INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/FeatureEnablerDxe.inf
+#INF QcomPkg/PatchedBinaries/FeatureEnablerDxe.inf
 FILE DRIVER = 1C04F529-0612-4319-9315-B2E75C16810A {
-    SECTION PE32 = $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/FeatureEnablerDxe.efi
+    SECTION PE32 = QcomPkg/PatchedBinaries/FeatureEnablerDxe.efi
     SECTION UI = "FeatureEnablerDxe"
 }
