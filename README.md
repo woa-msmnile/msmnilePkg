@@ -246,6 +246,12 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 |--------------------------------------|------------------------|-----------------|----------------------------------------------------|
 | ZTE A31 Pro                          | zte-p875a02            | ✅              | None                                               |
 
+#### Xiaomi Devices
+
+| Device                               | Target name            | DSDT Support    | Contributors                                       |
+|--------------------------------------|------------------------|-----------------|----------------------------------------------------|
+| Xiaomi K40 Pro                       | xiaomi-haydn           | ❌              | None                                               |
+
 
 ### Snapdragon 8 Gen 2 (*SM8550*)
 
@@ -285,6 +291,7 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 | Xiaomi 13                            | xiaomi-fuxi            | ❌              | None                                               |
 | Xiaomi 13 Pro                        | xiaomi-nuwa            | ❌              | None                                               |
 | Xiaomi Pad6 S Pro                    | xiaomi-sheng           | ❌              | None                                               |
+| Xiaomi K60 Pro                       | xiaomi-socrates        | ❌              | None                                               |
 
 
 ## Acknowledgements
