@@ -81,10 +81,10 @@ APRIORI DXE {
     INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/DDRInfoDxe/DDRInfoDxe.inf
 
 #   INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TzDxe/FeatureEnablerDxe.inf
-    FILE DRIVER = 1C04F529-0612-4319-9315-B2E75C16810A {
-            SECTION PE32 = QcomPkg/PatchedBinaries/FeatureEnablerDxe.efi
-            SECTION UI = "FeatureEnablerDxe"
-    }
+#    FILE DRIVER = 1C04F529-0612-4319-9315-B2E75C16810A {
+#            SECTION PE32 = QcomPkg/PatchedBinaries/FeatureEnablerDxe.efi
+#            SECTION UI = "FeatureEnablerDxe"
+#    }
 
 #    INF SurfaceDuoFamilyPkg/Driver/DisplayCallerDxe/DisplayCallerDxe.inf
 #    INF $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/DisplayDxe.inf
