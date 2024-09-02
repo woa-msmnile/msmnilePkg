@@ -20,7 +20,6 @@ APRIORI DXE {
     INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/HWIODxe/HWIODxe.inf
     INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ChipInfoDxe/ChipInfoDxe.inf
     INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/PlatformInfoDxe/PlatformInfoDxe.inf
-    # INF QcomPkg/PatchedBinaries/HALIOMMUDxe.inf
     INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/HALIOMMUDxe/HALIOMMUDxe.inf
 
     INF EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
@@ -67,7 +66,7 @@ APRIORI DXE {
     INF MdeModulePkg/Bus/Pci/NvmExpressDxe/NvmExpressDxe.inf
     INF FatPkg/EnhancedFatDxe/Fat.inf
     # INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/DisplayDxe/DisplayDxe.inf
-    # INF SurfaceDuoFamilyPkg/Driver/DisplayCallerDxe/DisplayCallerDxe.inf
+    INF SurfaceDuoFamilyPkg/Driver/DisplayCallerDxe/DisplayCallerDxe.inf
 
     FILE DRIVER = CF6DFC66-14AB-4E13-84DB-9C02912D1404 {
         SECTION PE32 = KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/TzDxe/TzDxeLA.efi
@@ -166,10 +165,9 @@ APRIORI DXE {
     # }
 
 
-    #INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ButtonsDxe/ButtonsDxe.inf
     # INF Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/VariableDxe/WP/VariableDxe.inf
     INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
-    # INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/QcomWDogDxe/QcomWDogDxe.inf
+    INF KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/QcomWDogDxe.inf
 
     # INF Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/TrEEDxe/TpmDxe.inf
     # INF Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/TrEEDxe/TrEEDxe.inf
