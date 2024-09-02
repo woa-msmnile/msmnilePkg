@@ -394,7 +394,11 @@ MsBootPolicyLibIsDevicePathBootable (
 
   Size = GetDevicePathSize (DevicePath);
 
-  SdCardDevicePath = GetSdCardDevicePath ();
+// woa msmnile patch start
+// Set SdCardDevicePath to NULL so the after codes will not disable SD Card Boot.
+  // SdCardDevicePath = GetSdCardDevicePath ();
+  SdCardDevicePath = NULL;
+// woa-msmnile patch end
 
   if (NULL != SdCardDevicePath) {
     PrintDevicePath (SdCardDevicePath);

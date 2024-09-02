@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <PanelDescription>J20S 42 02 0b Single DSI Vid Mode LCD Panel with DSC (1080x2400 24bpp)</PanelDescription>
+<PanelId>0x2a</PanelId>
 <Group id='Active Timing'>
  <HorizontalActive>1080</HorizontalActive>
  <HorizontalFrontPorch>67</HorizontalFrontPorch>

@@ -201,7 +201,7 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 | Xiaomi Poco X3 Pro                   | xiaomi-vayu            | ✅              | [Degdag](https://github.com/degdag)                |
 
 
-### Snapdragon 675/720G/7c/7c Gen 2 (*SM6150*/*SM7125*/*SC7180*)
+### Snapdragon 675/720G/7c/7c Gen 2 (*SM6250*/*SM7125*/*SC7180*)
 
 #### Qualcomm Technologies, Inc. Devices
 
@@ -246,6 +246,12 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 |--------------------------------------|------------------------|-----------------|----------------------------------------------------|
 | ZTE A31 Pro                          | zte-p875a02            | ✅              | None                                               |
 
+#### Xiaomi Devices
+
+| Device                               | Target name            | DSDT Support    | Contributors                                       |
+|--------------------------------------|------------------------|-----------------|----------------------------------------------------|
+| Xiaomi K40 Pro                       | xiaomi-haydn           | ❌              | None                                               |
+
 
 ### Snapdragon 8 Gen 2 (*SM8550*)
 
@@ -254,6 +260,12 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 | Device                               | Target name            | DSDT Support    | Maintainers                                        |
 |--------------------------------------|------------------------|-----------------|----------------------------------------------------|
 | Qualcomm Technologies, Inc. QRD 8550 | qcom-qrd8550           | ❌              | None                                               |
+
+#### AYANEO Devices
+
+| Device                               | Target name            | DSDT Support    | Contributors                                       |
+|--------------------------------------|------------------------|-----------------|----------------------------------------------------|
+| AYANEO Pocket S                      | ayaneo-aps             | ❌              | None                                               |
 
 #### AYN Devices
 
@@ -267,12 +279,19 @@ sudo docker run -v $(pwd):/build/ -it mu:v1
 |--------------------------------------|------------------------|-----------------|----------------------------------------------------|
 | Nubia RedMagic 8 Pro                 | nubia-nx729j           | ❌              | None                                               |
 
+#### Oneplus Devices
+| Device                               | Target name            | DSDT Support    | Contributors                                       |
+|--------------------------------------|------------------------|-----------------|----------------------------------------------------|
+| Oneplus 11 5G                        | oneplus-salami         | ❌              | None                                               |
+
 #### Xiaomi Devices
 
 | Device                               | Target name            | DSDT Support    | Contributors                                       |
 |--------------------------------------|------------------------|-----------------|----------------------------------------------------|
 | Xiaomi 13                            | xiaomi-fuxi            | ❌              | None                                               |
 | Xiaomi 13 Pro                        | xiaomi-nuwa            | ❌              | None                                               |
+| Xiaomi Pad6 S Pro                    | xiaomi-sheng           | ❌              | None                                               |
+| Xiaomi K60 Pro                       | xiaomi-socrates        | ❌              | None                                               |
 
 
 ## Acknowledgements

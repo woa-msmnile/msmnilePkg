@@ -22,7 +22,3 @@
 
 [FixedPcd]
   gArmTokenSpaceGuid.PcdGicRedistributorsBase
-
-[Pcd]
-  gQcomPkgTokenSpaceGuid.PcdStr3
-  gQcomPkgTokenSpaceGuid.PcdStr4
