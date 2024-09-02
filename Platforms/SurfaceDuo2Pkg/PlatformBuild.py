@@ -267,7 +267,6 @@ class PlatformBuilder(UefiBuilder, BuildSettingsManager):
 ## woa-msmnile patch start
         # Ship Device Name
         self.env.SetValue("BLD_*_TARGET_DEVICE", self.env.GetValue("TARGET_DEVICE"), "Default")
-        self.env.SetValue("BLD_*_SEC_BOOT", self.env.GetValue("SEC_BOOT"), "Default")
         # Ship DTB Name
         self.env.SetValue("BLD_*_FDT", self.GetDTBName(), "Default")
 ## woa-msmnile patch end

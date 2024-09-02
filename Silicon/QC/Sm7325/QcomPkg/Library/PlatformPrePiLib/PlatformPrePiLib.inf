@@ -17,11 +17,8 @@
 
 [LibraryClasses]
   BaseLib
+  ConfigurationMapHelperLib
   IoLib
 
 [FixedPcd]
   gArmTokenSpaceGuid.PcdGicRedistributorsBase
-
-[Pcd]
-  gQcomPkgTokenSpaceGuid.PcdStr3
-  gQcomPkgTokenSpaceGuid.PcdStr4

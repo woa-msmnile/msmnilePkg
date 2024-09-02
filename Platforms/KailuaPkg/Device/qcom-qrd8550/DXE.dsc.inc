@@ -1,4 +1,5 @@
 [Components.common]
+SurfaceDuoFamilyPkg/Driver/RamPartitionDxe/RamPartitionDxe.inf
 $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/EnvDxe/EnvDxe.inf
 $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ParserDxe/ParserDxe.inf
 $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SerialPortDxe/SerialPortDxe.inf
@@ -71,12 +72,12 @@ $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SPSSDxe/SPSSDxe
 $(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/FvUtilsDxe/FvUtilsDxe.inf
 
 # Patched Binaries
-$(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/ButtonsDxe.inf
+QcomPkg/PatchedBinaries/ButtonsDxe.inf
 QcomPkg/PatchedBinaries/UFSDxe.inf
-$(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/SPMIDxe.inf
-$(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/UsbConfigDxe.inf
-$(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/ClockDxe.inf
-$(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/PmicDxeLa.inf
-#$(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/QcomChargerDxeLA.inf
-#$(PACKAGE_NAME)/Device/$(TARGET_DEVICE)/PatchedBinaries/FeatureEnablerDxe.inf
+QcomPkg/PatchedBinaries/SPMIDxe.inf
+QcomPkg/PatchedBinaries/UsbConfigDxe.inf
+QcomPkg/PatchedBinaries/ClockDxe.inf
+QcomPkg/PatchedBinaries/PmicDxeLa.inf
+#QcomPkg/PatchedBinaries/QcomChargerDxeLA.inf
+#QcomPkg/PatchedBinaries/FeatureEnablerDxe.inf
 SurfaceDuoFamilyPkg/Driver/DisplayCallerDxe/DisplayCallerDxe.inf
