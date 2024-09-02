@@ -72,7 +72,6 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
 
     // Mapped 4GB till Here.
     { "RAM Partition",     0x180000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN },
-    { "RAM Partition",     0x200000000, 0x80000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN },
 
 // Mapped 8GB till Here
 
