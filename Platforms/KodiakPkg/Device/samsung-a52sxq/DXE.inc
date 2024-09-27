@@ -1,3 +1,10 @@
+# Patched Binaries
+INF KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UFSDxe.inf
+INF KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UsbConfigDxe.inf
+#INF KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/DisplayDxe.inf
+#INF KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/FeatureEnablerDxe.inf
+INF KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/QcomWDogDxe.inf
+
 #FILE FREEFORM = DDE58710-41CD-4306-DBFB-3FA90BB1D2DD {
 #    SECTION UI = "uefiplat.cfg"
 #    SECTION RAW = RawFiles/uefiplat.cfg
@@ -42,11 +49,10 @@ FILE DRIVER = CF6DFC66-14AB-4E13-84DB-9C02912D1404 {
     SECTION UI = "TzDxeLA"
 }
 
-#INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/VariableDxe/VariableDxe.inf
+INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/VariableDxe/VariableDxe.inf
 INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/EmbeddedMonotonicCounter/EmbeddedMonotonicCounter.inf
 INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ResetRuntimeDxe/ResetRuntimeDxe.inf
 INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/FontDxe/FontDxe.inf
-INF KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/QcomWDogDxe.inf
 INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ChipInfoDxe/ChipInfoDxe.inf
 INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/IPCCDxe/IPCCDxe.inf
 INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/GLinkDxe/GLinkDxe.inf
@@ -73,13 +79,6 @@ INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SmemDxe/SmemDxe.i
 INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SPMIDxe/SPMIDxe.inf
 #INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/QcomBds/QcomBds.inf
 
-# Patched Binaries
-#INF KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/ButtonsDxe.inf
-INF KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UFSDxe.inf
-INF KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/UsbConfigDxe.inf
-#INF KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/DisplayDxe.inf
-#INF KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/FeatureEnablerDxe.inf
-
 # DXE without depex
 FILE DRIVER = 6b38f7b4-ad98-40e9-9093-aca2b5a253c4 {
     SECTION PE32 = KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.efi
@@ -101,6 +100,12 @@ FILE FREEFORM = A1E235DE-E825-4591-9623-C43175811826 {
     SECTION UI = "SecParti.cfg"
     SECTION RAW = KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/RawFiles/SecParti.cfg
 }
+
+FILE FREEFORM = 21E9BDD9-6C3F-4F10-84A5-BBEC322741F1 {
+    SECTION UI = "uefipil.cfg"
+    SECTION RAW = RawFiles/uefipil.cfg
+}
+
 INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SimpleTextInOutSerialDxe/SimpleTextInOutSerial.inf
 INF MdeModulePkg/Universal/PrintDxe/PrintDxe.inf
 INF MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
@@ -110,7 +115,7 @@ INF MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
 INF Kodiak/BOOT.MXF.1.0.1-00206-KODIAKWP-1/QcomPkg/Drivers/CPRDxe/CPRDxe.inf
 INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/GpiDxe/GpiDxe.inf
 INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SPIDxe/SPIDxe.inf
-#INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SdccDxe/SdccDxe.inf
+INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SdccDxe/SdccDxe.inf
 #INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/DisplayDxe/DisplayDxe.inf
 #INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/MinidumpTADxe/MinidumpTADxe.inf
 INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ButtonsDxe/ButtonsDxe.inf
@@ -121,7 +126,6 @@ INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/DDRInfoDxe/DDRInf
 #INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/UsbBusDxe/UsbBusDxe.inf
 #INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/UsbKbDxe/UsbKbDxe.inf
 #INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/UsbMassStorageDxe/UsbMassStorageDxe.inf
-#INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/UCDxe/UCDxe.inf
 FILE DRIVER = 5F0937CD-73F9-445E-B320-BB6FD5D3CBDE {
     SECTION PE32 = KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/UCDxe/UCDxe.efi
     SECTION UI = "UCDxe"
@@ -132,7 +136,6 @@ INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/PILDxe/PILDxe.inf
 INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/PILProxyDxe/PILProxyDxe.inf
 #INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SecRSADxe/SecRSADxe.inf
 #INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ASN1X509Dxe/ASN1X509Dxe.inf
-#INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/SPSSDxe/SPSSDxe.inf
 INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/FvUtilsDxe/FvUtilsDxe.inf
 INF KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/QcomPkg/Drivers/ParserDxe/ParserDxe.inf
 
@@ -161,8 +164,6 @@ FILE DRIVER = 9FB4B4A7-42C0-4BCD-8540-9BCC6711F83E {
     SECTION UI = "UsbMassStorageDxe"
 }
 
-# Patched Binaries
-#INF KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/FeatureEnablerDxe.inf
 FILE DRIVER = 1C04F529-0612-4319-9315-B2E75C16810A {
     SECTION PE32 = KodiakPkg/Device/$(TARGET_DEVICE)/PatchedBinaries/FeatureEnablerDxe.efi
     SECTION UI = "FeatureEnablerDxe"
@@ -304,4 +305,3 @@ FILE DRIVER = cccb0c28-4b24-11d5-9a5a-0090273fc14d {
     SECTION PE32 = KodiakPkg/Device/$(TARGET_DEVICE)/Binaries/MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.efi
     SECTION UI = "GraphicsConsoleDxe"
 }
-#INF EmbeddedPkg/Ebl/Ebl.inf
