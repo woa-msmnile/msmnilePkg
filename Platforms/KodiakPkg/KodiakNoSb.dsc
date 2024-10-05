@@ -26,7 +26,7 @@
   FLASH_DEFINITION               = KodiakPkg/Kodiak.fdf
   SECURE_BOOT                    = 0
   USE_PHYSICAL_TIMER             = 0
-  USE_SCREEN_FOR_SERIAL_OUTPUT   = 0
+  USE_SCREEN_FOR_SERIAL_OUTPUT   = 1
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
   USE_UART_FOR_SERIAL_OUTPUT     = 0
 
@@ -43,7 +43,7 @@
 
   DXE_CRYPTO_SERVICES            = STANDARD
   PEI_CRYPTO_SERVICES            = NONE
-  RUNTIMEDXE_CRYPTO_SERVICES     = NONE
+  RUNTIMEDXE_CRYPTO_SERVICES     = STANDARD
   SMM_CRYPTO_SERVICES            = NONE
   STANDALONEMM_CRYPTO_SERVICES   = NONE
   DXE_CRYPTO_ARCH                = AARCH64
@@ -56,6 +56,7 @@
   PLATFORM_HAS_AMCNTENSET0_EL0_UNIMPLEMENTED_ERRATA   = 0
   PLATFORM_HAS_GIC_V3_WITHOUT_IRM_FLAG_SUPPORT_ERRATA = 1
   PLATFORM_HAS_PSCI_MEMPROTECT_FAILING_ERRATA         = 0
+
 [PcdsFixedAtBuild.common]
   # Platform-specific
   gArmTokenSpaceGuid.PcdSystemMemorySize|0x200000000        # 8GB Size
@@ -74,6 +75,7 @@
 
 [Components.common]
   SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
+  SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
 
 [LibraryClasses.common]
   # Move PlatformMemoryMapLib form Silicon/QC/QCxxxx/Library to Device/<device>/Library

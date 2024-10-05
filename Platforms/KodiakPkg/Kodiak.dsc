@@ -26,7 +26,7 @@
   FLASH_DEFINITION               = KodiakPkg/Kodiak.fdf
   SECURE_BOOT                    = 1
   USE_PHYSICAL_TIMER             = 0
-  USE_SCREEN_FOR_SERIAL_OUTPUT   = 0
+  USE_SCREEN_FOR_SERIAL_OUTPUT   = 1
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
   USE_UART_FOR_SERIAL_OUTPUT     = 0
 

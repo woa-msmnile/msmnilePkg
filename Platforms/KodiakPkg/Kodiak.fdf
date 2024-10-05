@@ -84,6 +84,7 @@ READ_LOCK_STATUS   = TRUE
   # Secure Boot Key Enroll
   INF SurfaceDuoFamilyPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
 
+  INF SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
   INF EmbeddedPkg/Drivers/VirtualKeyboardDxe/VirtualKeyboardDxe.inf
 
   # BDS
