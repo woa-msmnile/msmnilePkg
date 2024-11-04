@@ -12,11 +12,11 @@
 # https://www.python.org/dev/peps/pep-0440/#version-specifiers
 ##
 
-edk2-pytool-library==0.21.8
-edk2-pytool-extensions==0.27.10
-xmlschema==3.3.2
-regex==2024.7.24
+edk2-pytool-library==0.21.11
+edk2-pytool-extensions==0.27.12
+xmlschema==3.4.3
+regex==2024.9.11
 pygount==1.8.0
 
 # Optional Levenshtein, used by build_uefi.py
-Levenshtein
+levenshtein
