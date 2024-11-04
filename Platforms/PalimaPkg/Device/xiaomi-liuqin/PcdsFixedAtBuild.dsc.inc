@@ -1,0 +1,24 @@
+[PcdsFixedAtBuild.common]
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1800
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2880
+#gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|32
+
+# Smbios Info
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemBrand|"Xiaomi"
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"Xiaomi Pad 6 Pro"
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"liuqin"
+gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"MP"
+
+# Necessary Addresses
+gQcomPkgTokenSpaceGuid.KernelProtocolAddress|0xA703C920
+gQcomPkgTokenSpaceGuid.XBLDTProtocolAddress|0xA703C0C8
+
+[PcdsDynamicDefault.common]
+gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1800
+gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|2880
+gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|1800
+gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|2880
+gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|120 # 94.73
+gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|90 # 168.75
+gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow|120 # 94.73
+gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn|90 # 168.75
