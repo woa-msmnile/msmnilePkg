@@ -62,7 +62,7 @@ jobs:
     needs: setup
     uses: woa-msmnile/msmnilePkg/.github/workflows/build_platform_reference.yml@main
     with:
-      target: ${{ matrix.target }}
+      platform: ${{ matrix.target }}
     secrets: inherit
 
   package:
